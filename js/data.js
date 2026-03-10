@@ -1,5 +1,5 @@
 // ============================================
-// 2ND SEMESTER STUDY HUB - DATA (CORRECTED)
+// 2ND SEMESTER STUDY HUB - DATA (FULLY UPDATED)
 // ============================================
 
 const subjects = {
@@ -10,19 +10,19 @@ const subjects = {
         shortName: "Math-II",
         icon: "📐",
         color: "#4CAF50",
-        folder: "Mathematics-II",
+        folder: "Mathematics-II",  // ✓ Already correct (no spaces)
         types: {
             units: {
                 name: "Units / Notes",
                 icon: "📖",
                 color: "#4CAF50",
                 items: [
-                    { name: "Unit 1", file: "Mathematics-II - Unit 1.html", desc: "Matrices & Linear Algebra" },
-                    { name: "Unit 2", file: "Mathematics-II - Unit 2.html", desc: "Differential Equations" },
-                    { name: "Unit 3", file: "Mathematics-II - Unit 3.html", desc: "Laplace Transform" },
-                    { name: "Unit 4", file: "Mathematics-II - Unit 4.html", desc: "Fourier Series" },
-                    { name: "Unit 5", file: "Mathematics-II - Unit 5.html", desc: "Vector Calculus" },
-                    { name: "Unit 6", file: "Mathematics-II - Unit 6.html", desc: "Complex Analysis" }
+                    { name: "Unit 1", file: "Mathematics-II-Unit-1.html", desc: "Matrices & Linear Algebra" },
+                    { name: "Unit 2", file: "Mathematics-II-Unit-2.html", desc: "Differential Equations" },
+                    { name: "Unit 3", file: "Mathematics-II-Unit-3.html", desc: "Laplace Transform" },
+                    { name: "Unit 4", file: "Mathematics-II-Unit-4.html", desc: "Fourier Series" },
+                    { name: "Unit 5", file: "Mathematics-II-Unit-5.html", desc: "Vector Calculus" },
+                    { name: "Unit 6", file: "Mathematics-II-Unit-6.html", desc: "Complex Analysis" }
                 ]
             },
             pyq: {
@@ -51,7 +51,7 @@ const subjects = {
                 icon: "📋",
                 color: "#9C27B0",
                 isDirectType: true,
-                directLink: "Formula Sheet.html",
+                directLink: "Formula-Sheet.html",  // ✓ Updated with hyphen
                 desc: "Quick reference"
             }
         }
@@ -63,20 +63,20 @@ const subjects = {
         shortName: "Physics-II",
         icon: "⚡",
         color: "#2196F3",
-        folder: "Applied Physics-II",
+        folder: "Applied-Physics-II",  // ✓ FIXED: hyphen instead of space
         types: {
             units: {
                 name: "Units / Notes",
                 icon: "📖",
                 color: "#2196F3",
                 items: [
-                    { name: "Unit 1", file: "Applied Physics-II - Unit 1.html", desc: "Wave Optics" },
-                    { name: "Unit 2", file: "Applied Physics-II - Unit 2.html", desc: "Interference" },
-                    { name: "Unit 3", file: "Applied Physics-II - Unit 3.html", desc: "Diffraction" },
-                    { name: "Unit 4", file: "Applied Physics-II - Unit 4.html", desc: "Polarization" },
-                    { name: "Unit 5", file: "Applied Physics-II - Unit 5.html", desc: "Electrostatics" },
-                    { name: "Unit 6", file: "Applied Physics-II - Unit 6.html", desc: "Quantum Mechanics" },
-                    { name: "Unit 7", file: "Applied Physics-II - Unit 7.html", desc: "Semiconductors" }
+                    { name: "Unit 1", file: "Applied-Physics-II-Unit-1.html", desc: "Wave Optics" },
+                    { name: "Unit 2", file: "Applied-Physics-II-Unit-2.html", desc: "Interference" },
+                    { name: "Unit 3", file: "Applied-Physics-II-Unit-3.html", desc: "Diffraction" },
+                    { name: "Unit 4", file: "Applied-Physics-II-Unit-4.html", desc: "Polarization" },
+                    { name: "Unit 5", file: "Applied-Physics-II-Unit-5.html", desc: "Electrostatics" },
+                    { name: "Unit 6", file: "Applied-Physics-II-Unit-6.html", desc: "Quantum Mechanics" },
+                    { name: "Unit 7", file: "Applied-Physics-II-Unit-7.html", desc: "Semiconductors" }
                 ]
             },
             pyq: {
@@ -105,7 +105,7 @@ const subjects = {
                 icon: "📋",
                 color: "#9C27B0",
                 isDirectType: true,
-                directLink: "Formula Sheet.html",
+                directLink: "Formula-Sheet.html",  // ✓ Updated with hyphen
                 desc: "Quick reference"
             }
         }
@@ -117,18 +117,18 @@ const subjects = {
         shortName: "IT Systems",
         icon: "💻",
         color: "#9C27B0",
-        folder: "IT Systems Theory",
+        folder: "IT-Systems-Theory",  // ✓ FIXED: hyphens instead of spaces
         types: {
             units: {
                 name: "Units / Notes",
                 icon: "📖",
                 color: "#9C27B0",
                 items: [
-                    { name: "Unit 1", file: "IT Systems - Unit 1.html", desc: "System Fundamentals" },
-                    { name: "Unit 2", file: "IT Systems - Unit 2.html", desc: "Data Communication" },
-                    { name: "Unit 3", file: "IT Systems - Unit 3.html", desc: "Networking" },
-                    { name: "HTML5", file: "IT Systems - HTML5.html", desc: "Web Technologies" },
-                    { name: "Cybersecurity", file: "IT Systems - Unit 4 Cybersecurity.html", desc: "Security Concepts" }
+                    { name: "Unit 1", file: "IT-Systems-Unit-1.html", desc: "System Fundamentals" },
+                    { name: "Unit 2", file: "IT-Systems-Unit-2.html", desc: "Data Communication" },
+                    { name: "Unit 3", file: "IT-Systems-Unit-3.html", desc: "Networking" },
+                    { name: "HTML5", file: "IT-Systems-HTML5.html", desc: "Web Technologies" },
+                    { name: "Cybersecurity", file: "IT-Systems-Unit-4-Cybersecurity.html", desc: "Security Concepts" }
                 ]
             },
             pyq: {
@@ -161,20 +161,20 @@ const subjects = {
         shortName: "FEEE",
         icon: "🔌",
         color: "#FF9800",
-        folder: "FEEE",
+        folder: "FEEE",  // ✓ Already correct (no spaces)
         types: {
             units: {
                 name: "Units / Notes",
                 icon: "📖",
                 color: "#FF9800",
                 items: [
-                    { name: "Unit 1", file: "FEEE - Unit 1.html", desc: "DC Circuits" },
-                    { name: "Unit 2", file: "FEEE - Unit 2.html", desc: "Network Theorems" },
-                    { name: "Unit 3", file: "FEEE - Unit 3.html", desc: "AC Fundamentals" },
-                    { name: "Unit 4", file: "FEEE - Unit 4.html", desc: "Transformers" },
-                    { name: "Unit 5", file: "FEEE - Unit 5.html", desc: "Electrical Machines" },
-                    { name: "Unit 6", file: "FEEE - Unit 6.html", desc: "Semiconductors" },
-                    { name: "Unit 7", file: "FEEE - Unit 7.html", desc: "Digital Electronics" }
+                    { name: "Unit 1", file: "FEEE-Unit-1.html", desc: "DC Circuits" },
+                    { name: "Unit 2", file: "FEEE-Unit-2.html", desc: "Network Theorems" },
+                    { name: "Unit 3", file: "FEEE-Unit-3.html", desc: "AC Fundamentals" },
+                    { name: "Unit 4", file: "FEEE-Unit-4.html", desc: "Transformers" },
+                    { name: "Unit 5", file: "FEEE-Unit-5.html", desc: "Electrical Machines" },
+                    { name: "Unit 6", file: "FEEE-Unit-6.html", desc: "Semiconductors" },
+                    { name: "Unit 7", file: "FEEE-Unit-7.html", desc: "Digital Electronics" }
                 ]
             },
             pyq: {
@@ -207,20 +207,20 @@ const subjects = {
         shortName: "Eng Mechanics",
         icon: "⚙️",
         color: "#F44336",
-        folder: "Engineering Mechanics",
+        folder: "Engineering-Mechanics",  // ✓ FIXED: hyphens instead of spaces
         types: {
             units: {
                 name: "Units / Notes",
                 icon: "📖",
                 color: "#F44336",
                 items: [
-                    { name: "Unit 1", file: "Engineering Mechanics - Unit 1.html", desc: "Force Systems" },
-                    { name: "Unit 2", file: "Engineering Mechanics - Unit 2.html", desc: "Equilibrium" },
-                    { name: "Unit 3", file: "Engineering Mechanics - Unit 3.html", desc: "Friction" },
-                    { name: "Unit 4", file: "Engineering Mechanics - Unit 4.html", desc: "Centroid & MOI" },
-                    { name: "Unit 5", file: "Engineering Mechanics - Unit 5.html", desc: "Kinematics" },
-                    { name: "Unit 6", file: "Engineering Mechanics - Unit 6.html", desc: "Kinetics" },
-                    { name: "Motion in Plane", file: "Engineering Mechanics - Motion in Plane.html", desc: "2D Motion Analysis" }
+                    { name: "Unit 1", file: "Engineering-Mechanics-Unit-1.html", desc: "Force Systems" },
+                    { name: "Unit 2", file: "Engineering-Mechanics-Unit-2.html", desc: "Equilibrium" },
+                    { name: "Unit 3", file: "Engineering-Mechanics-Unit-3.html", desc: "Friction" },
+                    { name: "Unit 4", file: "Engineering-Mechanics-Unit-4.html", desc: "Centroid & MOI" },
+                    { name: "Unit 5", file: "Engineering-Mechanics-Unit-5.html", desc: "Kinematics" },
+                    { name: "Unit 6", file: "Engineering-Mechanics-Unit-6.html", desc: "Kinetics" },
+                    { name: "Motion in Plane", file: "Engineering-Mechanics-Motion-in-Plane.html", desc: "2D Motion Analysis" }
                 ]
             },
             pyq: {
@@ -254,27 +254,27 @@ const subjects = {
         icon: "📝",
         color: "#00BCD4",
         isPractice: true,
-        folder: "Practice_question",
+        folder: "Practice_question",  // ✓ Already correct (underscore)
         options: [
             {
                 name: "Practice Questions",
                 icon: "✏️",
                 color: "#00BCD4",
                 desc: "Daily practice (Day 1-10)",
-                link: "Practice_question/questions/index.html"  // ✅ FIXED
+                link: "Practice_question/questions/index.html"  // ✓ FIXED: added questions/ path
             },
             {
                 name: "Study Roadmap",
                 icon: "🗺️",
                 color: "#FF6B6B",
                 desc: "Complete preparation plan",
-                link: "Practice_question/roadmap.html"
+                link: "Practice_question/roadmap.html"  // ✓ Already correct
             }
         ]
     }
 };
 
-// More Section Links - FIXED (app-resorses not app-resources)
+// More Section Links - ✓ FIXED: app-resorses (not app-resources)
 const moreLinks = [
     {
         section: "App Info",
