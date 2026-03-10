@@ -1,5 +1,5 @@
 // ============================================
-// 2ND SEMESTER STUDY HUB - DATA (REFINED)
+// 2ND SEMESTER STUDY HUB - DATA (CORRECTED)
 // ============================================
 
 const subjects = {
@@ -261,7 +261,7 @@ const subjects = {
                 icon: "✏️",
                 color: "#00BCD4",
                 desc: "Daily practice (Day 1-10)",
-                link: "Practice_question/index.html"
+                link: "Practice_question/questions/index.html"  // ✅ FIXED
             },
             {
                 name: "Study Roadmap",
@@ -274,30 +274,30 @@ const subjects = {
     }
 };
 
-// More Section Links
+// More Section Links - FIXED (app-resorses not app-resources)
 const moreLinks = [
     {
         section: "App Info",
         items: [
-            { name: "About App", desc: "Learn about Study Hub", icon: "fas fa-info-circle", color: "blue", link: "app-resources/sections/about-app.html" },
-            { name: "Usage Guide", desc: "How to use this app", icon: "fas fa-book-reader", color: "green", link: "app-resources/sections/usage-guide.html" },
-            { name: "Professional Hub", desc: "Extra resources", icon: "fas fa-briefcase", color: "purple", link: "app-resources/sections/professional-hub.html" }
+            { name: "About App", desc: "Learn about Study Hub", icon: "fas fa-info-circle", color: "blue", link: "app-resorses/sections/about-app.html" },
+            { name: "Usage Guide", desc: "How to use this app", icon: "fas fa-book-reader", color: "green", link: "app-resorses/sections/usage-guide.html" },
+            { name: "Professional Hub", desc: "Extra resources", icon: "fas fa-briefcase", color: "purple", link: "app-resorses/sections/professional-hub.html" }
         ]
     },
     {
         section: "Support",
         items: [
-            { name: "Contact Support", desc: "Get help & assistance", icon: "fas fa-envelope", color: "cyan", link: "app-resources/sections/contact-support.html" },
-            { name: "Send Feedback", desc: "Share your thoughts", icon: "fas fa-comment-dots", color: "orange", link: "app-resources/sections/send-feedback.html" }
+            { name: "Contact Support", desc: "Get help & assistance", icon: "fas fa-envelope", color: "cyan", link: "app-resorses/sections/contact-support.html" },
+            { name: "Send Feedback", desc: "Share your thoughts", icon: "fas fa-comment-dots", color: "orange", link: "app-resorses/sections/send-feedback.html" }
         ]
     },
     {
         section: "Legal",
         items: [
-            { name: "Terms & Conditions", desc: "Terms of use", icon: "fas fa-file-contract", color: "orange", link: "app-resources/sections/terms-conditions.html" },
-            { name: "Privacy Policy", desc: "Your privacy matters", icon: "fas fa-shield-alt", color: "green", link: "app-resources/sections/privacy-policy.html" },
-            { name: "Disclaimer", desc: "Important notice", icon: "fas fa-exclamation-triangle", color: "red", link: "app-resources/sections/disclaimer-notice.html" },
-            { name: "Credits & Thanks", desc: "Acknowledgements", icon: "fas fa-heart", color: "red", link: "app-resources/sections/credits-thanks.html" }
+            { name: "Terms & Conditions", desc: "Terms of use", icon: "fas fa-file-contract", color: "orange", link: "app-resorses/sections/terms-conditions.html" },
+            { name: "Privacy Policy", desc: "Your privacy matters", icon: "fas fa-shield-alt", color: "green", link: "app-resorses/sections/privacy-policy.html" },
+            { name: "Disclaimer", desc: "Important notice", icon: "fas fa-exclamation-triangle", color: "red", link: "app-resorses/sections/disclaimer-notice.html" },
+            { name: "Credits & Thanks", desc: "Acknowledgements", icon: "fas fa-heart", color: "red", link: "app-resorses/sections/credits-thanks.html" }
         ]
     }
 ];
