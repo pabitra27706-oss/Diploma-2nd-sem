@@ -1,0 +1,359 @@
+{
+    "exam": {
+        "subject": "Mathematics-II (204N)",
+        "code": null,
+        "year": 2024,
+        "semester": "II",
+        "board": "WBSCTE",
+        "timeAllowed": "1 Hour",
+        "fullMarks": 60,
+        "instructions": "Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer. However, no marks will be given for wrong explanation of the answer of each MCQ type questions. Answer any five (05) questions from Group-B."
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "The cofactor of the element '3' in the determinant \\(\\begin{vmatrix} 1 & -1 & 3 \\\\ 0 & 2 & 6 \\\\ 1 & 5 & 2 \\end{vmatrix}\\) is",
+            "options": ["2", "-2", "0", "1"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p>The element '3' is in the first row and third column (\\(a_{13}\\)). Its cofactor is \\(C_{13} = (-1)^{1+3} M_{13}\\), where \\(M_{13}\\) is the minor.</p><p>\\(M_{13}\\) is the determinant of the submatrix obtained by deleting row 1 and column 3: \\(\\begin{vmatrix} 0 & 2 \\\\ 1 & 5 \\end{vmatrix} = (0)(5) - (2)(1) = 0 - 2 = -2\\).</p><p>So, \\(C_{13} = (+1) \\times (-2) = -2\\). Therefore, the correct option is <strong>-2</strong>.</p>",
+            "unit": "Matrices"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If \\(2\\begin{bmatrix} x & 2 \\\\ y+5 & 1 \\end{bmatrix} + \\begin{bmatrix} 3 & 4 \\\\ 1 & 2 \\end{bmatrix} = \\begin{bmatrix} 3 & 8 \\\\ 15 & 14 \\end{bmatrix}\\), then the value of (x, y) is",
+            "options": ["(0, 0)", "(1, 0)", "(1, 1)", "(0, 1)"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p>First, perform the scalar multiplication and addition on the left-hand side:</p><p>\\(\\begin{bmatrix} 2x & 4 \\\\ 2(y+5) & 2 \\end{bmatrix} + \\begin{bmatrix} 3 & 4 \\\\ 1 & 2 \\end{bmatrix} = \\begin{bmatrix} 2x+3 & 8 \\\\ 2y+10+1 & 4 \\end{bmatrix} = \\begin{bmatrix} 2x+3 & 8 \\\\ 2y+11 & 4 \\end{bmatrix}\\).</p><p>This is equal to the right-hand side matrix: \\(\\begin{bmatrix} 3 & 8 \\\\ 15 & 14 \\end{bmatrix}\\).</p><p>Comparing corresponding elements:</p><p>From (1,1): \\(2x+3 = 3 \\Rightarrow 2x = 0 \\Rightarrow x = 0\\).</p><p>From (2,1): \\(2y+11 = 15 \\Rightarrow 2y = 4 \\Rightarrow y = 2\\).</p><p>But (2,2) gives \\(4 = 14\\), which is false. There is an inconsistency in the problem statement. However, if we ignore the (2,2) element, the values from the first two equations are \\(x=0, y=2\\). This is not among the options. Perhaps the RHS matrix is \\(\\begin{bmatrix} 3 & 8 \\\\ 15 & 4 \\end{bmatrix}\\)? Assuming that, then \\(x=0, y=2\\) still not in options. If we instead compare (2,2): \\(4 = 14\\) is impossible. So, there's a typo. Possibly the RHS (2,2) element should be 4. Then with \\(x=0, y=2\\), still no match. The only matching option if we had \\(y=0\\) from somewhere. If we take (2,2) as 4, then no condition on y from that. So maybe the RHS (2,1) is 11? Then \\(2y+11=11 \\Rightarrow y=0\\). That gives (0,0). So option (a) (0,0) might be intended if the RHS matrix was \\(\\begin{bmatrix} 3 & 8 \\\\ 11 & 4 \\end{bmatrix}\\). Given the options, the most plausible intended answer is <strong>(0, 0)</strong>.</p>",
+            "unit": "Matrices"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The value of the determinant \\(\\begin{vmatrix} 1 & -1 & 3 \\\\ 1 & -1 & 3 \\\\ 1 & 5 & 2 \\end{vmatrix}\\) is",
+            "options": ["3", "0", "6", "None of these"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p>In the given determinant, the first two rows are identical (both are [1, -1, 3]). A property of determinants states that if two rows (or columns) are identical, the value of the determinant is zero.</p><p>Therefore, the value is <strong>0</strong>.</p>",
+            "unit": "Matrices"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "If \\(A = \\begin{bmatrix} 2 & m-3 \\\\ 3 & 6 \\end{bmatrix}\\) is singular, then the value of m is",
+            "options": ["3", "-3", "7", "-7"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p>A matrix is singular if its determinant is zero.</p><p>\\(\\det(A) = (2)(6) - (m-3)(3) = 12 - 3(m-3) = 12 - 3m + 9 = 21 - 3m\\).</p><p>Set determinant to zero: \\(21 - 3m = 0 \\Rightarrow 3m = 21 \\Rightarrow m = 7\\).</p><p>Therefore, the value of m is <strong>7</strong>.</p>",
+            "unit": "Matrices"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "The value of p for which the points (1, 2), (3, 6), (p, 4) are collinear is",
+            "options": ["2", "3", "1", "-1"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p>Points are collinear if the area of the triangle formed by them is zero.</p><p>Area = \\(\\frac{1}{2} | 1(6-4) + 3(4-2) + p(2-6) | = 0\\)</p><p>\\(\\Rightarrow | 1(2) + 3(2) + p(-4) | = 0\\)</p><p>\\(| 2 + 6 - 4p | = | 8 - 4p | = 0\\)</p><p>\\(8 - 4p = 0 \\Rightarrow 4p = 8 \\Rightarrow p = 2\\).</p><p>Therefore, the value of p is <strong>2</strong>.</p>",
+            "unit": "Coordinate Geometry"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "The Cartesian co-ordinates of a point are \\((-\\sqrt{3}, 1)\\), its polar co-ordinates are",
+            "options": ["(√3, 2)", "(2, -π/6)", "(2, 5π/6)", "(2, -5π/6)"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p>Given \\(x = -\\sqrt{3}\\), \\(y = 1\\).</p><p>Radius \\(r = \\sqrt{x^2 + y^2} = \\sqrt{3 + 1} = \\sqrt{4} = 2\\).</p><p>Angle \\(\\theta = \\tan^{-1}(y/x) = \\tan^{-1}(1/(-\\sqrt{3})) = \\tan^{-1}(-1/\\sqrt{3})\\).</p><p>The point \\((-\\sqrt{3}, 1)\\) lies in the second quadrant (x negative, y positive).</p><p>The reference angle whose tangent is \\(1/\\sqrt{3}\\) is \\(\\pi/6\\). In the second quadrant, \\(\\theta = \\pi - \\pi/6 = 5\\pi/6\\) radians.</p><p>Thus, polar coordinates are \\((2, 5\\pi/6)\\).</p><p>The correct option is <strong>(2, 5π/6)</strong>.</p>",
+            "unit": "Coordinate Geometry"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The value of \\(\\int_{0}^{\\pi} \\sin x \\, dx\\) is",
+            "options": ["1", "0", "-1", "2"],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p>\\(\\int_{0}^{\\pi} \\sin x \\, dx = [-\\cos x]_{0}^{\\pi} = (-\\cos \\pi) - (-\\cos 0) = (-(-1)) - (-1) = (1) - (-1) = 1 + 1 = 2\\).</p><p>Therefore, the value is <strong>2</strong>.</p>",
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The value of the integral \\(\\int_{0}^{1} \\frac{dx}{1+x^2}\\) is",
+            "options": ["π/2", "π/4", "0", "1"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p>\\(\\int \\frac{dx}{1+x^2} = \\tan^{-1} x + C\\).</p><p>So, \\(\\int_{0}^{1} \\frac{dx}{1+x^2} = [\\tan^{-1} x]_{0}^{1} = \\tan^{-1}(1) - \\tan^{-1}(0) = \\frac{\\pi}{4} - 0 = \\frac{\\pi}{4}\\).</p><p>Therefore, the value is <strong>π/4</strong>.</p>",
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "\\(\\int \\frac{\\sin x}{\\cos x} dx\\) is equal to",
+            "options": ["log sin x + c", "log cos x + c", "-log cos x + c", "log x + c"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p>\\(\\int \\frac{\\sin x}{\\cos x} dx = \\int \\tan x \\, dx\\).</p><p>We know that \\(\\int \\tan x \\, dx = \\ln |\\sec x| + C = -\\ln |\\cos x| + C\\).</p><p>Therefore, the correct option is <strong>-log cos x + c</strong>.</p>",
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "The order and degree of the differential equation \\(\\left(\\frac{d^3y}{dx^3}\\right)^2 + \\left(\\frac{dy}{dx}\\right)^5 + y = 3\\sin x\\) are",
+            "options": ["3 and 2", "5 and 5", "2 and 3", "None of these"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p>The order of a differential equation is the highest order derivative present. Here, the highest derivative is \\(\\frac{d^3y}{dx^3}\\), so the order is 3.</p><p>The degree is the power of the highest order derivative, provided the equation is polynomial in derivatives. The highest order derivative is raised to the power 2. So, the degree is 2.</p><p>Therefore, order = 3, degree = 2. The correct option is <strong>3 and 2</strong>.</p>",
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Complementary Function of the differential equation \\(\\frac{d^2y}{dx^2} - 2\\frac{dy}{dx} + y = e^x\\) is",
+            "options": ["(c₁ + c₂ x)e^x", "(c₁ + c₂ x)e^{-x}", "c₁ e^x + c₂ e^{-x}", "c₁ cos x + c₂ sin x"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p>The auxiliary equation for the homogeneous part \\(\\frac{d^2y}{dx^2} - 2\\frac{dy}{dx} + y = 0\\) is \\(m^2 - 2m + 1 = 0 \\Rightarrow (m-1)^2 = 0\\).</p><p>We have a repeated root: \\(m = 1, 1\\).</p><p>Therefore, the complementary function is \\((c_1 + c_2 x)e^{x}\\).</p><p>The correct option is <strong>(c₁ + c₂ x)e^x</strong>.</p>",
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If \\(f(x, y) = \\frac{x}{y}\\), then the value of \\(x\\frac{\\partial f}{\\partial x} + y\\frac{\\partial f}{\\partial y}\\) is equal to",
+            "options": ["f", "0", "1", "None of these"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p>Compute partial derivatives:</p><p>\\(\\frac{\\partial f}{\\partial x} = \\frac{1}{y}\\)</p><p>\\(\\frac{\\partial f}{\\partial y} = -\\frac{x}{y^2}\\)</p><p>Then, \\(x \\frac{\\partial f}{\\partial x} + y \\frac{\\partial f}{\\partial y} = x \\cdot \\frac{1}{y} + y \\cdot \\left(-\\frac{x}{y^2}\\right) = \\frac{x}{y} - \\frac{x}{y} = 0\\).</p><p>Therefore, the value is <strong>0</strong>.</p>",
+            "unit": "Partial Differentiation"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "An urn contains 12 white balls and 6 black balls. A ball is drawn at random. What is the probability of getting it to be a white?",
+            "options": ["1/2", "1/3", "2/3", "1/9"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p>Total number of balls = 12 white + 6 black = 18 balls.</p><p>Number of favorable outcomes (white) = 12.</p><p>Probability = \\(\\frac{12}{18} = \\frac{2}{3}\\).</p><p>Therefore, the correct option is <strong>2/3</strong>.</p>",
+            "unit": "Probability"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "If \\(Var(X) = 3\\) and \\(Y = 2X + 3\\) then \\(Var(Y)\\) is equal to",
+            "options": ["6", "12", "15", "9"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p>For a linear transformation \\(Y = aX + b\\), the variance is given by \\(Var(Y) = a^2 Var(X)\\).</p><p>Here, \\(a = 2\\), \\(b = 3\\). So, \\(Var(Y) = 2^2 \\times 3 = 4 \\times 3 = 12\\).</p><p>Therefore, the correct option is <strong>12</strong>.</p>",
+            "unit": "Statistics"
+        },
+        {
+            "id": "1.xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Let 'A' be any event then \\(P(A)\\) is always",
+            "options": ["0 ≤ P(A) ≤ 1", "1 < P(A) ≤ 0", "-1 ≤ P(A) ≤ 1", "P(A) = 1"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p>By the axioms of probability, the probability of any event lies between 0 and 1 inclusive.</p><p>That is, \\(0 \\leq P(A) \\leq 1\\).</p><p>Therefore, the correct option is <strong>0 ≤ P(A) ≤ 1</strong>.</p>",
+            "unit": "Probability"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Evaluate by Chio's method:\n\\(\\begin{vmatrix} 0 & -1 & 2 & 3 \\\\ 1 & 2 & -1 & 1 \\\\ 1 & 1 & 2 & 3 \\\\ 3 & 2 & 1 & 0 \\end{vmatrix}\\)",
+            "answer": "<p>Chio's method requires the first element \\(a_{11}\\) to be non-zero. Here, \\(a_{11} = 0\\). We need to perform row or column operations to bring a non-zero element to the (1,1) position without changing the determinant's value (or accounting for sign changes).</p><p>Let's swap row 1 and row 2 to make the pivot 1. Swapping rows changes the sign of the determinant. Let \\(\\Delta\\) be the original determinant.</p><p>After swapping R1 and R2, we get a new determinant \\(\\Delta' = -\\Delta\\) with \\(a_{11} = 1\\).</p><p>\\[\\Delta' = \\begin{vmatrix} 1 & 2 & -1 & 1 \\\\ 0 & -1 & 2 & 3 \\\\ 1 & 1 & 2 & 3 \\\\ 3 & 2 & 1 & 0 \\end{vmatrix}\\]</p><p>Now apply Chio's method with pivot \\(a_{11} = 1\\). We create a new determinant of order 3 where each element \\(b_{ij}\\) is given by:</p><p>\\[b_{ij} = \\begin{vmatrix} a_{11} & a_{1,j+1} \\\\ a_{i+1,1} & a_{i+1,j+1} \\end{vmatrix}\\]</p><p>For \\(n=4\\), \\(\\Delta' = \\frac{1}{(a_{11})^{n-2}} |B| = \\frac{1}{1^{2}} |B| = |B|\\).</p><p>Calculate \\(b_{ij}\\) for i, j = 1 to 3:</p><ul><li>\\(b_{11} = \\begin{vmatrix} 1 & 2 \\\\ 0 & -1 \\end{vmatrix} = (1)(-1) - (2)(0) = -1\\)</li><li>\\(b_{12} = \\begin{vmatrix} 1 & -1 \\\\ 0 & 2 \\end{vmatrix} = (1)(2) - (-1)(0) = 2\\)</li><li>\\(b_{13} = \\begin{vmatrix} 1 & 1 \\\\ 0 & 3 \\end{vmatrix} = (1)(3) - (1)(0) = 3\\)</li><li>\\(b_{21} = \\begin{vmatrix} 1 & 2 \\\\ 1 & 1 \\end{vmatrix} = (1)(1) - (2)(1) = 1 - 2 = -1\\)</li><li>\\(b_{22} = \\begin{vmatrix} 1 & -1 \\\\ 1 & 2 \\end{vmatrix} = (1)(2) - (-1)(1) = 2 + 1 = 3\\)</li><li>\\(b_{23} = \\begin{vmatrix} 1 & 1 \\\\ 1 & 3 \\end{vmatrix} = (1)(3) - (1)(1) = 3 - 1 = 2\\)</li><li>\\(b_{31} = \\begin{vmatrix} 1 & 2 \\\\ 3 & 2 \\end{vmatrix} = (1)(2) - (2)(3) = 2 - 6 = -4\\)</li><li>\\(b_{32} = \\begin{vmatrix} 1 & -1 \\\\ 3 & 1 \\end{vmatrix} = (1)(1) - (-1)(3) = 1 + 3 = 4\\)</li><li>\\(b_{33} = \\begin{vmatrix} 1 & 1 \\\\ 3 & 0 \\end{vmatrix} = (1)(0) - (1)(3) = 0 - 3 = -3\\)</li></ul><p>The new determinant \\(|B|\\) is:</p><p>\\[|B| = \\begin{vmatrix} -1 & 2 & 3 \\\\ -1 & 3 & 2 \\\\ -4 & 4 & -3 \\end{vmatrix}\\]</p><p>Evaluate this 3x3 determinant. Expand along the first row:</p><p>\\(|B| = (-1) \\begin{vmatrix} 3 & 2 \\\\ 4 & -3 \\end{vmatrix} - 2 \\begin{vmatrix} -1 & 2 \\\\ -4 & -3 \\end{vmatrix} + 3 \\begin{vmatrix} -1 & 3 \\\\ -4 & 4 \\end{vmatrix}\\)</p><p>\\(= (-1)[(3)(-3) - (2)(4)] - 2[(-1)(-3) - (2)(-4)] + 3[(-1)(4) - (3)(-4)]\\)</p><p>\\(= (-1)[-9 - 8] - 2[3 + 8] + 3[-4 + 12]\\)</p><p>\\(= (-1)(-17) - 2(11) + 3(8) = 17 - 22 + 24 = 19\\)</p><p>So, \\(|B| = 19\\).</p><p>Then, \\(\\Delta' = 19\\). Since \\(\\Delta' = -\\Delta\\), we have \\(-\\Delta = 19 \\Rightarrow \\Delta = -19\\).</p><p>Therefore, the value of the original determinant is \\(\\boxed{-19}\\).</p>",
+            "marks": 4,
+            "unit": "Matrices"
+        },
+        {
+            "id": "2.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Show that the matrix \\(A = \\frac{1}{3}\\begin{bmatrix} -1 & 2 & -2 \\\\ -2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix}\\) is orthogonal, i.e. \\(AA^T = A^TA = I_3\\).",
+            "answer": "<p>Given \\(A = \\frac{1}{3} \\begin{bmatrix} -1 & 2 & -2 \\\\ -2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix}\\).</p><p>First, find \\(A^T\\):</p><p>\\(A^T = \\frac{1}{3} \\begin{bmatrix} -1 & -2 & 2 \\\\ 2 & 1 & 2 \\\\ -2 & 2 & 1 \\end{bmatrix}\\).</p><p>Now, compute \\(A A^T\\). Since both matrices have a factor of \\(\\frac{1}{3}\\), their product will have a factor of \\(\\frac{1}{9}\\). We compute the product of the inner matrices (without the \\(\\frac{1}{3}\\) factor) and then multiply by \\(\\frac{1}{9}\\).</p><p>Let \\(B = \\begin{bmatrix} -1 & 2 & -2 \\\\ -2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix}\\) and \\(C = \\begin{bmatrix} -1 & -2 & 2 \\\\ 2 & 1 & 2 \\\\ -2 & 2 & 1 \\end{bmatrix}\\). Then \\(A A^T = \\frac{1}{9} B C\\).</p><p>Compute \\(BC\\):</p><p>Element (1,1): \\((-1)(-1) + (2)(2) + (-2)(-2) = 1 + 4 + 4 = 9\\)</p><p>(1,2): \\((-1)(-2) + (2)(1) + (-2)(2) = 2 + 2 - 4 = 0\\)</p><p>(1,3): \\((-1)(2) + (2)(2) + (-2)(1) = -2 + 4 - 2 = 0\\)</p><p>(2,1): \\((-2)(-1) + (1)(2) + (2)(-2) = 2 + 2 - 4 = 0\\)</p><p>(2,2): \\((-2)(-2) + (1)(1) + (2)(2) = 4 + 1 + 4 = 9\\)</p><p>(2,3): \\((-2)(2) + (1)(2) + (2)(1) = -4 + 2 + 2 = 0\\)</p><p>(3,1): \\((2)(-1) + (2)(2) + (1)(-2) = -2 + 4 - 2 = 0\\)</p><p>(3,2): \\((2)(-2) + (2)(1) + (1)(2) = -4 + 2 + 2 = 0\\)</p><p>(3,3): \\((2)(2) + (2)(2) + (1)(1) = 4 + 4 + 1 = 9\\)</p><p>So, \\(BC = 9 I_3\\).</p><p>Therefore, \\(A A^T = \\frac{1}{9} \\times 9 I_3 = I_3\\).</p><p>Similarly, we can show that \\(A^T A = I_3\\) by a similar calculation (by symmetry, it will also yield \\(I_3\\)).</p><p>Thus, \\(A A^T = A^T A = I_3\\), proving that A is an orthogonal matrix.</p>",
+            "marks": 4,
+            "unit": "Matrices"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Solve the following system of linear equations by Cramer's Rule:\n\\(2x + y + z = -2\\)\n\\(x + 2y + z = 1\\)\n\\(x - 2y - 3z = 1\\)",
+            "answer": "<p>We solve using Cramer's Rule. First, write the system in matrix form \\(AX = B\\).</p><p>\\[A = \\begin{bmatrix} 2 & 1 & 1 \\\\ 1 & 2 & 1 \\\\ 1 & -2 & -3 \\end{bmatrix}, \\quad X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\quad B = \\begin{bmatrix} -2 \\\\ 1 \\\\ 1 \\end{bmatrix}\\]</p><p><strong>Step 1: Calculate the determinant of A (\\(\\Delta\\)).</strong></p><p>\\[\\Delta = \\begin{vmatrix} 2 & 1 & 1 \\\\ 1 & 2 & 1 \\\\ 1 & -2 & -3 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta = 2 \\begin{vmatrix} 2 & 1 \\\\ -2 & -3 \\end{vmatrix} - 1 \\begin{vmatrix} 1 & 1 \\\\ 1 & -3 \\end{vmatrix} + 1 \\begin{vmatrix} 1 & 2 \\\\ 1 & -2 \\end{vmatrix}\\)</p><p>\\(= 2[(2)(-3) - (1)(-2)] - 1[(1)(-3) - (1)(1)] + 1[(1)(-2) - (2)(1)]\\)</p><p>\\(= 2[-6 + 2] - 1[-3 - 1] + 1[-2 - 2]\\)</p><p>\\(= 2(-4) - 1(-4) + 1(-4) = -8 + 4 - 4 = -8\\)</p><p>So, \\(\\Delta = -8\\).</p><p><strong>Step 2: Calculate \\(\\Delta_x\\) by replacing the first column of A with B.</strong></p><p>\\[\\Delta_x = \\begin{vmatrix} -2 & 1 & 1 \\\\ 1 & 2 & 1 \\\\ 1 & -2 & -3 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta_x = (-2) \\begin{vmatrix} 2 & 1 \\\\ -2 & -3 \\end{vmatrix} - 1 \\begin{vmatrix} 1 & 1 \\\\ 1 & -3 \\end{vmatrix} + 1 \\begin{vmatrix} 1 & 2 \\\\ 1 & -2 \\end{vmatrix}\\)</p><p>\\(= (-2)[(2)(-3) - (1)(-2)] - 1[(1)(-3) - (1)(1)] + 1[(1)(-2) - (2)(1)]\\)</p><p>\\(= (-2)[-6 + 2] - 1[-3 - 1] + 1[-2 - 2]\\)</p><p>\\(= (-2)(-4) - 1(-4) + 1(-4) = 8 + 4 - 4 = 8\\)</p><p><strong>Step 3: Calculate \\(\\Delta_y\\) by replacing the second column of A with B.</strong></p><p>\\[\\Delta_y = \\begin{vmatrix} 2 & -2 & 1 \\\\ 1 & 1 & 1 \\\\ 1 & 1 & -3 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta_y = 2 \\begin{vmatrix} 1 & 1 \\\\ 1 & -3 \\end{vmatrix} - (-2) \\begin{vmatrix} 1 & 1 \\\\ 1 & -3 \\end{vmatrix} + 1 \\begin{vmatrix} 1 & 1 \\\\ 1 & 1 \\end{vmatrix}\\)</p><p>\\(= 2[(1)(-3) - (1)(1)] + 2[(1)(-3) - (1)(1)] + 1[(1)(1) - (1)(1)]\\)</p><p>\\(= 2[-3 - 1] + 2[-3 - 1] + 1[1 - 1]\\)</p><p>\\(= 2(-4) + 2(-4) + 1(0) = -8 - 8 + 0 = -16\\)</p><p><strong>Step 4: Calculate \\(\\Delta_z\\) by replacing the third column of A with B.</strong></p><p>\\[\\Delta_z = \\begin{vmatrix} 2 & 1 & -2 \\\\ 1 & 2 & 1 \\\\ 1 & -2 & 1 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta_z = 2 \\begin{vmatrix} 2 & 1 \\\\ -2 & 1 \\end{vmatrix} - 1 \\begin{vmatrix} 1 & 1 \\\\ 1 & 1 \\end{vmatrix} + (-2) \\begin{vmatrix} 1 & 2 \\\\ 1 & -2 \\end{vmatrix}\\)</p><p>\\(= 2[(2)(1) - (1)(-2)] - 1[(1)(1) - (1)(1)] - 2[(1)(-2) - (2)(1)]\\)</p><p>\\(= 2[2 + 2] - 1[1 - 1] - 2[-2 - 2]\\)</p><p>\\(= 2(4) - 1(0) - 2(-4) = 8 + 0 + 8 = 16\\)</p><p><strong>Step 5: Apply Cramer's Rule: \\(x = \\frac{\\Delta_x}{\\Delta}, y = \\frac{\\Delta_y}{\\Delta}, z = \\frac{\\Delta_z}{\\Delta}\\).</strong></p><p>\\[x = \\frac{8}{-8} = -1\\]</p><p>\\[y = \\frac{-16}{-8} = 2\\]</p><p>\\[z = \\frac{16}{-8} = -2\\]</p><p>Therefore, the solution is \\(\\boxed{x = -1, y = 2, z = -2}\\).</p>",
+            "marks": 4,
+            "unit": "Matrices"
+        },
+        {
+            "id": "3.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Show that the matrix \\(A = \\begin{bmatrix} 2 & 0 & 2 \\\\ 4 & 6 & 0 \\\\ 0 & 2 & 4 \\end{bmatrix}\\) satisfies the equation \\(A = \\frac{1}{2}(A + A^T) + \\frac{1}{2}(A - A^T)\\).",
+            "answer": "<p>We need to verify that \\(A = \\frac{1}{2}(A + A^T) + \\frac{1}{2}(A - A^T)\\).</p><p>First, find \\(A^T\\):</p><p>\\(A^T = \\begin{bmatrix} 2 & 4 & 0 \\\\ 0 & 6 & 2 \\\\ 2 & 0 & 4 \\end{bmatrix}\\).</p><p>Now, compute \\(\\frac{1}{2}(A + A^T)\\):</p><p>\\(A + A^T = \\begin{bmatrix} 2+2 & 0+4 & 2+0 \\\\ 4+0 & 6+6 & 0+2 \\\\ 0+2 & 2+0 & 4+4 \\end{bmatrix} = \\begin{bmatrix} 4 & 4 & 2 \\\\ 4 & 12 & 2 \\\\ 2 & 2 & 8 \\end{bmatrix}\\).</p><p>\\(\\frac{1}{2}(A + A^T) = \\begin{bmatrix} 2 & 2 & 1 \\\\ 2 & 6 & 1 \\\\ 1 & 1 & 4 \\end{bmatrix}\\).</p><p>Next, compute \\(\\frac{1}{2}(A - A^T)\\):</p><p>\\(A - A^T = \\begin{bmatrix} 2-2 & 0-4 & 2-0 \\\\ 4-0 & 6-6 & 0-2 \\\\ 0-2 & 2-0 & 4-4 \\end{bmatrix} = \\begin{bmatrix} 0 & -4 & 2 \\\\ 4 & 0 & -2 \\\\ -2 & 2 & 0 \\end{bmatrix}\\).</p><p>\\(\\frac{1}{2}(A - A^T) = \\begin{bmatrix} 0 & -2 & 1 \\\\ 2 & 0 & -1 \\\\ -1 & 1 & 0 \\end{bmatrix}\\).</p><p>Now, add these two matrices:</p><p>\\(\\frac{1}{2}(A + A^T) + \\frac{1}{2}(A - A^T) = \\begin{bmatrix} 2+0 & 2+(-2) & 1+1 \\\\ 2+2 & 6+0 & 1+(-1) \\\\ 1+(-1) & 1+1 & 4+0 \\end{bmatrix} = \\begin{bmatrix} 2 & 0 & 2 \\\\ 4 & 6 & 0 \\\\ 0 & 2 & 4 \\end{bmatrix}\\).</p><p>This is exactly the original matrix A.</p><p>Thus, \\(A = \\frac{1}{2}(A + A^T) + \\frac{1}{2}(A - A^T)\\) is verified.</p>",
+            "marks": 4,
+            "unit": "Matrices"
+        },
+        {
+            "id": "4.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Find the straight line passes through the point (1, 0) and parallel to the straight line \\(2x + 3y = 6\\).",
+            "answer": "<p>The given line is \\(2x + 3y = 6\\). We can rewrite it in slope-intercept form to find its slope:</p><p>\\(3y = -2x + 6 \\Rightarrow y = -\\frac{2}{3}x + 2\\). So, the slope \\(m = -\\frac{2}{3}\\).</p><p>Any line parallel to this line will have the same slope, \\(m = -\\frac{2}{3}\\).</p><p>The required line passes through the point \\((1, 0)\\). Using the point-slope form:</p><p>\\(y - 0 = -\\frac{2}{3}(x - 1)\\)</p><p>\\(y = -\\frac{2}{3}x + \\frac{2}{3}\\)</p><p>Multiply by 3 to clear the fraction: \\(3y = -2x + 2\\)</p><p>Rearrange to standard form: \\(2x + 3y = 2\\)</p><p>Therefore, the equation of the required line is \\(\\boxed{2x + 3y = 2}\\).</p>",
+            "marks": 4,
+            "unit": "Coordinate Geometry"
+        },
+        {
+            "id": "4.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Prove that the triangle formed by the lines \\(x + y = 0\\), \\(3x + y = 4\\) and \\(x + 3y = 4\\) is an isosceles triangle.",
+            "answer": "<p>First, find the vertices of the triangle by solving the equations pairwise.</p><p><strong>Vertex A: Intersection of \\(x + y = 0\\) and \\(3x + y = 4\\).</strong></p><p>Subtract the first equation from the second: \\((3x + y) - (x + y) = 4 - 0 \\Rightarrow 2x = 4 \\Rightarrow x = 2\\).</p><p>Then from \\(x + y = 0\\), \\(2 + y = 0 \\Rightarrow y = -2\\). So, A = (2, -2).</p><p><strong>Vertex B: Intersection of \\(x + y = 0\\) and \\(x + 3y = 4\\).</strong></p><p>Subtract the first equation from the third: \\((x + 3y) - (x + y) = 4 - 0 \\Rightarrow 2y = 4 \\Rightarrow y = 2\\).</p><p>Then from \\(x + y = 0\\), \\(x + 2 = 0 \\Rightarrow x = -2\\). So, B = (-2, 2).</p><p><strong>Vertex C: Intersection of \\(3x + y = 4\\) and \\(x + 3y = 4\\).</strong></p><p>Solve these two equations. Multiply the second equation by 3: \\(3x + 9y = 12\\). Subtract the first equation from this:</p><p>\\((3x + 9y) - (3x + y) = 12 - 4 \\Rightarrow 8y = 8 \\Rightarrow y = 1\\).</p><p>Substitute into \\(x + 3y = 4\\): \\(x + 3(1) = 4 \\Rightarrow x = 1\\). So, C = (1, 1).</p><p>Now, calculate the lengths of the sides using the distance formula.</p><p>\\(AB = \\sqrt{(2 - (-2))^2 + (-2 - 2)^2} = \\sqrt{(4)^2 + (-4)^2} = \\sqrt{16 + 16} = \\sqrt{32} = 4\\sqrt{2}\\).</p><p>\\(BC = \\sqrt{(-2 - 1)^2 + (2 - 1)^2} = \\sqrt{(-3)^2 + (1)^2} = \\sqrt{9 + 1} = \\sqrt{10}\\).</p><p>\\(CA = \\sqrt{(1 - 2)^2 + (1 - (-2))^2} = \\sqrt{(-1)^2 + (3)^2} = \\sqrt{1 + 9} = \\sqrt{10}\\).</p><p>We see that \\(BC = CA = \\sqrt{10}\\), while \\(AB = 4\\sqrt{2}\\).</p><p>Since two sides (BC and CA) are equal, the triangle is isosceles.</p>",
+            "marks": 4,
+            "unit": "Coordinate Geometry"
+        },
+        {
+            "id": "5.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Evaluate: \\(\\int \\frac{x-1}{(x-3)(x+2)} dx\\).",
+            "answer": "<p>We use partial fractions. Write:</p><p>\\[\\frac{x-1}{(x-3)(x+2)} = \\frac{A}{x-3} + \\frac{B}{x+2}\\]</p><p>Multiplying both sides by \\((x-3)(x+2)\\):</p><p>\\(x-1 = A(x+2) + B(x-3)\\)</p><p>\\(x-1 = Ax + 2A + Bx - 3B\\)</p><p>\\(x-1 = (A+B)x + (2A - 3B)\\)</p><p>Comparing coefficients:</p><p>\\(A + B = 1\\)</p><p>\\(2A - 3B = -1\\)</p><p>Solve: From the first, \\(A = 1 - B\\). Substitute into the second:</p><p>\\(2(1 - B) - 3B = -1 \\Rightarrow 2 - 2B - 3B = -1 \\Rightarrow 2 - 5B = -1 \\Rightarrow -5B = -3 \\Rightarrow B = \\frac{3}{5}\\).</p><p>Then, \\(A = 1 - \\frac{3}{5} = \\frac{2}{5}\\).</p><p>So, \\(\\frac{x-1}{(x-3)(x+2)} = \\frac{2/5}{x-3} + \\frac{3/5}{x+2}\\).</p><p>Therefore, the integral is:</p><p>\\(\\int \\frac{x-1}{(x-3)(x+2)} dx = \\frac{2}{5} \\int \\frac{dx}{x-3} + \\frac{3}{5} \\int \\frac{dx}{x+2}\\)</p><p>\\(= \\frac{2}{5} \\ln|x-3| + \\frac{3}{5} \\ln|x+2| + C\\)</p><p>\\(= \\frac{1}{5} \\left( 2\\ln|x-3| + 3\\ln|x+2| \\right) + C\\)</p><p>Thus, \\(\\boxed{\\int \\frac{x-1}{(x-3)(x+2)} dx = \\frac{1}{5} \\left( 2\\ln|x-3| + 3\\ln|x+2| \\right) + C}\\).</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "5.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Show that \\(\\int_{0}^{\\frac{\\pi}{2}} \\frac{\\sin x}{\\sin x + \\cos x} dx = \\frac{\\pi}{4}\\).",
+            "answer": "<p>Let \\(I = \\int_0^{\\pi/2} \\frac{\\sin x}{\\sin x + \\cos x} dx\\).</p><p>Use the property \\(\\int_0^a f(x) dx = \\int_0^a f(a-x) dx\\). Here, \\(a = \\pi/2\\).</p><p>So, \\(I = \\int_0^{\\pi/2} \\frac{\\sin(\\pi/2 - x)}{\\sin(\\pi/2 - x) + \\cos(\\pi/2 - x)} dx = \\int_0^{\\pi/2} \\frac{\\cos x}{\\cos x + \\sin x} dx\\).</p><p>Now, add the two expressions for I:</p><p>\\(I + I = \\int_0^{\\pi/2} \\left( \\frac{\\sin x}{\\sin x + \\cos x} + \\frac{\\cos x}{\\sin x + \\cos x} \\right) dx = \\int_0^{\\pi/2} \\frac{\\sin x + \\cos x}{\\sin x + \\cos x} dx = \\int_0^{\\pi/2} 1 \\, dx\\)</p><p>\\(2I = [x]_0^{\\pi/2} = \\frac{\\pi}{2}\\)</p><p>Therefore, \\(I = \\frac{\\pi}{4}\\). Hence proved.</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "5.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Evaluate: \\(\\int_{0}^{1} e^{2x} dx\\).",
+            "answer": "<p>\\(\\int e^{2x} dx = \\frac{e^{2x}}{2} + C\\).</p><p>Therefore, \\(\\int_{0}^{1} e^{2x} dx = \\left[ \\frac{e^{2x}}{2} \\right]_{0}^{1} = \\frac{e^{2}}{2} - \\frac{e^{0}}{2} = \\frac{e^{2}}{2} - \\frac{1}{2} = \\frac{e^{2} - 1}{2}\\).</p><p>Thus, \\(\\boxed{\\int_{0}^{1} e^{2x} dx = \\frac{e^{2} - 1}{2}}\\).</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Evaluate: \\(\\int_{0}^{\\frac{\\pi}{2}} \\frac{\\cos x}{(1+\\sin x)(2+\\sin x)} dx\\).",
+            "answer": "<p>Let \\(I = \\int_0^{\\pi/2} \\frac{\\cos x \\, dx}{(1+\\sin x)(2+\\sin x)}\\).</p><p>Use substitution: let \\(t = \\sin x\\). Then \\(dt = \\cos x \\, dx\\).</p><p>When \\(x = 0\\), \\(t = 0\\); when \\(x = \\pi/2\\), \\(t = 1\\).</p><p>So, \\(I = \\int_0^1 \\frac{dt}{(1+t)(2+t)}\\).</p><p>Now, use partial fractions. Write \\(\\frac{1}{(1+t)(2+t)} = \\frac{A}{1+t} + \\frac{B}{2+t}\\).</p><p>Multiplying by \\((1+t)(2+t)\\): \\(1 = A(2+t) + B(1+t) = 2A + At + B + Bt = (A+B)t + (2A + B)\\).</p><p>Comparing coefficients:</p><p>\\(A + B = 0 \\Rightarrow B = -A\\)</p><p>\\(2A + B = 1 \\Rightarrow 2A - A = 1 \\Rightarrow A = 1\\). Then \\(B = -1\\).</p><p>Thus, \\(\\frac{1}{(1+t)(2+t)} = \\frac{1}{1+t} - \\frac{1}{2+t}\\).</p><p>Therefore,</p><p>\\(I = \\int_0^1 \\left( \\frac{1}{1+t} - \\frac{1}{2+t} \\right) dt = \\left[ \\ln|1+t| - \\ln|2+t| \\right]_0^1 = \\left[ \\ln \\left( \\frac{1+t}{2+t} \\right) \\right]_0^1\\)</p><p>\\(= \\ln \\left( \\frac{2}{3} \\right) - \\ln \\left( \\frac{1}{2} \\right) = \\ln \\left( \\frac{2/3}{1/2} \\right) = \\ln \\left( \\frac{2}{3} \\times \\frac{2}{1} \\right) = \\ln \\left( \\frac{4}{3} \\right)\\).</p><p>Thus, \\(\\boxed{\\int_0^{\\pi/2} \\frac{\\cos x}{(1+\\sin x)(2+\\sin x)} dx = \\ln \\frac{4}{3}}\\).</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "6.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Find the area bounded by the circle \\(x^2 + y^2 = 4\\) and the straight line \\(x = y\\) in the first quadrant and x-axis.",
+            "answer": "<p>The region is in the first quadrant. The circle \\(x^2 + y^2 = 4\\) has center at (0,0) and radius 2. The line \\(x = y\\) passes through the origin at 45°.</p><p>The region is bounded by the x-axis (y=0), the line x=y, and the circle in the first quadrant. The intersection of the line and the circle in the first quadrant is found by substituting x=y into the circle equation:</p><p>\\(x^2 + x^2 = 4 \\Rightarrow 2x^2 = 4 \\Rightarrow x^2 = 2 \\Rightarrow x = \\sqrt{2}\\) (since first quadrant). So, the intersection point P is \\((\\sqrt{2}, \\sqrt{2})\\).</p><p>The region can be split into two parts:</p><p><strong>Part 1:</strong> From x=0 to x=√2, the upper boundary is the line y = x, and the lower boundary is the x-axis (y=0).</p><p><strong>Part 2:</strong> From x=√2 to x=2, the upper boundary is the circle \\(y = \\sqrt{4 - x^2}\\), and the lower boundary is the x-axis (y=0).</p><p>Thus, the total area A is:</p><p>\\(A = \\int_0^{\\sqrt{2}} x \\, dx + \\int_{\\sqrt{2}}^{2} \\sqrt{4 - x^2} \\, dx\\)</p><p>Compute the first integral: \\(\\int_0^{\\sqrt{2}} x \\, dx = \\left[ \\frac{x^2}{2} \\right]_0^{\\sqrt{2}} = \\frac{(\\sqrt{2})^2}{2} = \\frac{2}{2} = 1\\).</p><p>For the second integral, \\(\\int \\sqrt{4 - x^2} dx = \\frac{x}{2} \\sqrt{4 - x^2} + 2 \\sin^{-1}(x/2) + C\\).</p><p>So, \\(\\int_{\\sqrt{2}}^{2} \\sqrt{4 - x^2} dx = \\left[ \\frac{x}{2} \\sqrt{4 - x^2} + 2 \\sin^{-1}(x/2) \\right]_{\\sqrt{2}}^{2}\\).</p><p>At x=2: \\(\\frac{2}{2} \\sqrt{4-4} + 2 \\sin^{-1}(1) = 1 \\times 0 + 2 \\times \\frac{\\pi}{2} = \\pi\\).</p><p>At x=√2: \\(\\frac{\\sqrt{2}}{2} \\sqrt{4-2} + 2 \\sin^{-1}(\\sqrt{2}/2) = \\frac{\\sqrt{2}}{2} \\times \\sqrt{2} + 2 \\times \\frac{\\pi}{4} = \\frac{2}{2} + \\frac{\\pi}{2} = 1 + \\frac{\\pi}{2}\\).</p><p>Thus, the second integral = \\(\\pi - (1 + \\frac{\\pi}{2}) = \\pi - 1 - \\frac{\\pi}{2} = \\frac{\\pi}{2} - 1\\).</p><p>Total area = \\(1 + \\left( \\frac{\\pi}{2} - 1 \\right) = \\frac{\\pi}{2}\\).</p><p>Therefore, the required area is \\(\\boxed{\\frac{\\pi}{2}}\\) square units.</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "7.a",
+            "type": "saq",
+            "group": "B",
+            "question": "If \\(u = \\cos^{-1}\\left(\\frac{x+y}{\\sqrt{x}+\\sqrt{y}}\\right)\\), then show that \\(x\\frac{\\partial u}{\\partial x} + y\\frac{\\partial u}{\\partial y} + \\frac{1}{2}\\cot u = 0\\).",
+            "answer": "<p>Given \\(u = \\cos^{-1} \\left( \\frac{x+y}{\\sqrt{x} + \\sqrt{y}} \\right)\\). Let \\(v = \\frac{x+y}{\\sqrt{x} + \\sqrt{y}}\\), so \\(u = \\cos^{-1} v\\).</p><p>We need to show that \\(x \\frac{\\partial u}{\\partial x} + y \\frac{\\partial u}{\\partial y} = -\\frac{1}{2} \\cot u\\).</p><p><strong>Step 1: Express partial derivatives of u in terms of v.</strong></p><p>\\(\\frac{\\partial u}{\\partial x} = -\\frac{1}{\\sqrt{1-v^2}} \\frac{\\partial v}{\\partial x}\\), and similarly for y.</p><p>Note that \\(\\sqrt{1-v^2} = \\sin u\\) (since \\(u = \\cos^{-1} v\\), so \\(\\cos u = v\\) and \\(\\sin u = \\sqrt{1-v^2}\\), taking principal value).</p><p>Thus, \\(\\frac{\\partial u}{\\partial x} = -\\frac{1}{\\sin u} \\frac{\\partial v}{\\partial x}\\).</p><p>Then, \\(x \\frac{\\partial u}{\\partial x} + y \\frac{\\partial u}{\\partial y} = -\\frac{1}{\\sin u} \\left( x \\frac{\\partial v}{\\partial x} + y \\frac{\\partial v}{\\partial y} \\right)\\).</p><p>So, we need to find \\(E = x \\frac{\\partial v}{\\partial x} + y \\frac{\\partial v}{\\partial y}\\).</p><p><strong>Step 2: Check homogeneity of v.</strong></p><p>Replace \\(x\\) with \\(tx\\) and \\(y\\) with \\(ty\\):</p><p>\\(v(tx, ty) = \\frac{tx + ty}{\\sqrt{tx} + \\sqrt{ty}} = \\frac{t(x+y)}{\\sqrt{t}(\\sqrt{x} + \\sqrt{y})} = t^{1 - 1/2} \\frac{x+y}{\\sqrt{x}+\\sqrt{y}} = t^{1/2} v(x, y)\\).</p><p>So, \\(v\\) is a homogeneous function of degree \\(\\frac{1}{2}\\).</p><p><strong>Step 3: Apply Euler's theorem to v.</strong></p><p>By Euler's theorem, for a homogeneous function of degree \\(n\\), \\(x \\frac{\\partial v}{\\partial x} + y \\frac{\\partial v}{\\partial y} = n v\\).</p><p>Here, \\(n = \\frac{1}{2}\\), so \\(E = \\frac{1}{2} v = \\frac{1}{2} \\cos u\\).</p><p><strong>Step 4: Substitute back.</strong></p><p>\\(x \\frac{\\partial u}{\\partial x} + y \\frac{\\partial u}{\\partial y} = -\\frac{1}{\\sin u} \\cdot \\frac{1}{2} \\cos u = -\\frac{1}{2} \\cot u\\).</p><p>Rearranging:</p><p>\\(x \\frac{\\partial u}{\\partial x} + y \\frac{\\partial u}{\\partial y} + \\frac{1}{2} \\cot u = 0\\).</p><p>Hence, proved.</p>",
+            "marks": 4,
+            "unit": "Partial Differentiation"
+        },
+        {
+            "id": "7.b",
+            "type": "saq",
+            "group": "B",
+            "question": "If \\(u = \\log(x^3 + y^3 + z^3 - 3xyz)\\) then show that \\(\\frac{\\partial u}{\\partial x} + \\frac{\\partial u}{\\partial y} + \\frac{\\partial u}{\\partial z} = \\frac{3}{x+y+z}\\).",
+            "answer": "<p>Given \\(u = \\log(x^3 + y^3 + z^3 - 3xyz)\\).</p><p>We know the identity: \\(x^3 + y^3 + z^3 - 3xyz = (x+y+z)(x^2 + y^2 + z^2 - xy - yz - zx)\\).</p><p>So, \\(u = \\log(x+y+z) + \\log(x^2 + y^2 + z^2 - xy - yz - zx)\\).</p><p>Now, compute the partial derivatives.</p><p>\\(\\frac{\\partial u}{\\partial x} = \\frac{1}{x+y+z} \\cdot \\frac{\\partial}{\\partial x}(x+y+z) + \\frac{1}{x^2+y^2+z^2 - xy - yz - zx} \\cdot \\frac{\\partial}{\\partial x}(x^2+y^2+z^2 - xy - yz - zx)\\)</p><p>\\(= \\frac{1}{x+y+z} \\cdot 1 + \\frac{2x - y - z}{x^2+y^2+z^2 - xy - yz - zx}\\)</p><p>Similarly,</p><p>\\(\\frac{\\partial u}{\\partial y} = \\frac{1}{x+y+z} + \\frac{2y - x - z}{x^2+y^2+z^2 - xy - yz - zx}\\)</p><p>\\(\\frac{\\partial u}{\\partial z} = \\frac{1}{x+y+z} + \\frac{2z - x - y}{x^2+y^2+z^2 - xy - yz - zx}\\)</p><p>Now, sum them:</p><p>\\(\\frac{\\partial u}{\\partial x} + \\frac{\\partial u}{\\partial y} + \\frac{\\partial u}{\\partial z} = \\frac{3}{x+y+z} + \\frac{(2x - y - z) + (2y - x - z) + (2z - x - y)}{x^2+y^2+z^2 - xy - yz - zx}\\)</p><p>Simplify the numerator of the second fraction:</p><p>\\(2x - y - z + 2y - x - z + 2z - x - y = (2x - x - x) + (-y + 2y - y) + (-z - z + 2z) = 0\\).</p><p>Thus, the second term becomes zero.</p><p>Therefore, \\(\\frac{\\partial u}{\\partial x} + \\frac{\\partial u}{\\partial y} + \\frac{\\partial u}{\\partial z} = \\frac{3}{x+y+z}\\).</p><p>Hence, proved.</p>",
+            "marks": 4,
+            "unit": "Partial Differentiation"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Solve the differential equation: \\(\\frac{d^2y}{dx^2} - 10\\frac{dy}{dx} + 25y = 0\\).",
+            "answer": "<p>This is a second-order linear homogeneous differential equation with constant coefficients.</p><p>The auxiliary equation is: \\(m^2 - 10m + 25 = 0\\).</p><p>Factor: \\((m - 5)^2 = 0\\).</p><p>So, we have a repeated root: \\(m = 5, 5\\).</p><p>Therefore, the general solution is:</p><p>\\[y = (C_1 + C_2 x) e^{5x}\\]</p><p>where \\(C_1\\) and \\(C_2\\) are arbitrary constants.</p>",
+            "marks": 4,
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "8.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Solve the differential equation: \\(\\frac{d^2y}{dx^2} - 10\\frac{dy}{dx} + 25y = e^{5x}\\).",
+            "answer": "<p>This is a second-order linear non-homogeneous differential equation.</p><p><strong>Step 1: Solve the homogeneous equation.</strong></p><p>From part (a), the complementary function is \\(y_c = (C_1 + C_2 x) e^{5x}\\).</p><p><strong>Step 2: Find the Particular Integral (\\(y_p\\)).</strong></p><p>The right-hand side is \\(e^{5x}\\). Since the auxiliary equation has a repeated root \\(m = 5\\), the RHS is of the form \\(e^{5x}\\), which corresponds to the root with multiplicity 2.</p><p>For such a case, the particular integral is given by:</p><p>\\(y_p = \\frac{1}{(D-5)^2} e^{5x}\\).</p><p>Using the rule for repeated roots: \\(\\frac{1}{(D-\\alpha)^2} e^{\\alpha x} = \\frac{x^2}{2} e^{\\alpha x}\\).</p><p>Here, \\(\\alpha = 5\\). So,</p><p>\\(y_p = \\frac{x^2}{2} e^{5x}\\).</p><p><strong>Step 3: General Solution.</strong></p><p>The general solution is \\(y = y_c + y_p\\):</p><p>\\[\\boxed{y = (C_1 + C_2 x) e^{5x} + \\frac{x^2}{2} e^{5x}}\\]</p><p>We can factor out \\(e^{5x}\\): \\(y = e^{5x} \\left( C_1 + C_2 x + \\frac{x^2}{2} \\right)\\).</p>",
+            "marks": 4,
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "9.a",
+            "type": "laq",
+            "group": "B",
+            "question": "There are two identical urns containing 4 white and 3 red balls; 3 white and 7 red balls. An urn is chosen at random and a ball is drawn from it. Find the probability that the ball is white. What is the probability that it is from the first urn if the ball drawn is white?",
+            "answer": "<p>Let \\(U_1\\) be the event of choosing the first urn, and \\(U_2\\) be the event of choosing the second urn. Since the urns are identical, \\(P(U_1) = P(U_2) = \\frac{1}{2}\\).</p><p><strong>Part 1: Probability that the ball is white.</strong></p><p>Let W be the event that the drawn ball is white.</p><p>\\(P(W|U_1) = \\frac{4}{4+3} = \\frac{4}{7}\\)</p><p>\\(P(W|U_2) = \\frac{3}{3+7} = \\frac{3}{10}\\)</p><p>Using the law of total probability:</p><p>\\(P(W) = P(U_1) P(W|U_1) + P(U_2) P(W|U_2) = \\frac{1}{2} \\times \\frac{4}{7} + \\frac{1}{2} \\times \\frac{3}{10}\\)</p><p>\\(= \\frac{1}{2} \\left( \\frac{4}{7} + \\frac{3}{10} \\right) = \\frac{1}{2} \\left( \\frac{40}{70} + \\frac{21}{70} \\right) = \\frac{1}{2} \\times \\frac{61}{70} = \\frac{61}{140}\\).</p><p>So, \\(P(W) = \\frac{61}{140}\\).</p><p><strong>Part 2: Probability that it is from the first urn given that the ball is white.</strong></p><p>We need \\(P(U_1 | W)\\). Using Bayes' theorem:</p><p>\\(P(U_1 | W) = \\frac{P(U_1) P(W|U_1)}{P(W)} = \\frac{\\frac{1}{2} \\times \\frac{4}{7}}{\\frac{61}{140}} = \\frac{\\frac{2}{7}}{\\frac{61}{140}} = \\frac{2}{7} \\times \\frac{140}{61} = \\frac{2 \\times 20}{61} = \\frac{40}{61}\\).</p><p>Therefore, \\(\\boxed{P(W) = \\frac{61}{140}}\\) and \\(\\boxed{P(U_1|W) = \\frac{40}{61}}\\).</p>",
+            "marks": 4,
+            "unit": "Probability"
+        },
+        {
+            "id": "9.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Two dice are rolled. What is the probability that the sum total of the points on the dice is 6?",
+            "answer": "<p>When two dice are rolled, the total number of possible outcomes is \\(6 \\times 6 = 36\\).</p><p>We need the outcomes where the sum of the numbers on the two dice is 6.</p><p>The favorable outcomes are: (1,5), (2,4), (3,3), (4,2), (5,1).</p><p>That's 5 outcomes.</p><p>Therefore, the probability is \\(\\frac{5}{36}\\).</p><p>\\(\\boxed{P(\\text{sum}=6) = \\frac{5}{36}}\\).</p>",
+            "marks": 4,
+            "unit": "Probability"
+        },
+        {
+            "id": "9.c",
+            "type": "saq",
+            "group": "B",
+            "question": "If \\(P(A) = u\\), \\(P(B) = 0.7\\), \\(P(A \\cup B) = 0.8\\) and \\(P(A \\cap B) = 1 - u\\), then find the value of \\(u\\).",
+            "answer": "<p>We use the addition theorem of probability:</p><p>\\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\)</p><p>Substitute the given values:</p><p>\\(0.8 = u + 0.7 - (1 - u)\\)</p><p>\\(0.8 = u + 0.7 - 1 + u\\)</p><p>\\(0.8 = 2u - 0.3\\)</p><p>\\(2u = 0.8 + 0.3 = 1.1\\)</p><p>\\(u = \\frac{1.1}{2} = 0.55\\)</p><p>Therefore, \\(u = 0.55\\).</p>",
+            "marks": 4,
+            "unit": "Probability"
+        },
+        {
+            "id": "10.a",
+            "type": "laq",
+            "group": "B",
+            "question": "The table below gives the weights of 50 school students nearest to kilogram. Calculate mean and standard deviation from the following data:\n\n| Wt. in kg (x) | 40-42 | 43-45 | 46-48 | 49-51 | 52-54 | 55-57 | 58-60 |\n|----------------|-------|-------|-------|-------|-------|-------|-------|\n| No. of boys (f)| 3     | 6     | 9     | 13    | 8     | 7     | 4     |",
+            "answer": "<p><strong>Step 1: Find the mid-point (x) of each class.</strong></p><p>Classes: 40-42, 43-45, 46-48, 49-51, 52-54, 55-57, 58-60</p><p>Mid-points: 41, 44, 47, 50, 53, 56, 59</p><p><strong>Step 2: Calculate the mean.</strong></p><p>We use the formula \\(\\bar{x} = \\frac{\\sum f x}{\\sum f}\\).</p><p>\\[\n\\begin{array}{c|c|c|c}\n\\text{Class} & \\text{Mid-point (x)} & \\text{Frequency (f)} & f x \\\\\n\\hline\n40-42 & 41 & 3 & 123 \\\\\n43-45 & 44 & 6 & 264 \\\\\n46-48 & 47 & 9 & 423 \\\\\n49-51 & 50 & 13 & 650 \\\\\n52-54 & 53 & 8 & 424 \\\\\n55-57 & 56 & 7 & 392 \\\\\n58-60 & 59 & 4 & 236 \\\\\n\\hline\n\\text{Total} & & \\sum f = 50 & \\sum f x = 2512\n\\end{array}\n\\]</p><p>\\(\\bar{x} = \\frac{2512}{50} = 50.24\\) kg.</p><p><strong>Step 3: Calculate the standard deviation.</strong></p><p>We use the formula \\(\\sigma = \\sqrt{\\frac{\\sum f (x - \\bar{x})^2}{\\sum f}}\\).</p><p>First, compute deviations and squared deviations:</p><p>\\[\n\\begin{array}{c|c|c|c|c}\nx & f & d = x - \\bar{x} & d^2 & f d^2 \\\\\n\\hline\n41 & 3 & 41 - 50.24 = -9.24 & 85.3776 & 256.1328 \\\\\n44 & 6 & -6.24 & 38.9376 & 233.6256 \\\\\n47 & 9 & -3.24 & 10.4976 & 94.4784 \\\\\n50 & 13 & -0.24 & 0.0576 & 0.7488 \\\\\n53 & 8 & 2.76 & 7.6176 & 60.9408 \\\\\n56 & 7 & 5.76 & 33.1776 & 232.2432 \\\\\n59 & 4 & 8.76 & 76.7376 & 306.9504 \\\\\n\\hline\n\\text{Total} & 50 & & & \\sum f d^2 = 1185.12\n\\end{array}\n\\]</p><p>\\(\\sigma = \\sqrt{\\frac{1185.12}{50}} = \\sqrt{23.7024} \\approx 4.8685\\) kg.</p><p>Therefore, the mean is \\(\\boxed{50.24}\\) kg and the standard deviation is approximately \\(\\boxed{4.87}\\) kg.</p>",
+            "marks": 4,
+            "unit": "Statistics"
+        },
+        {
+            "id": "10.b",
+            "type": "laq",
+            "group": "B",
+            "question": "P can hit a target 4 times in 5 shots, Q 3 times in 4 shots and R twice in 3 shots. They fire a volley. What is the probability that two shots at least hit the target?",
+            "answer": "<p>Given probabilities of hitting:</p><p>\\(P(P) = \\frac{4}{5}\\), \\(P(Q) = \\frac{3}{4}\\), \\(P(R) = \\frac{2}{3}\\).</p><p>Probabilities of missing:</p><p>\\(P(\\bar{P}) = 1 - \\frac{4}{5} = \\frac{1}{5}\\)</p><p>\\(P(\\bar{Q}) = 1 - \\frac{3}{4} = \\frac{1}{4}\\)</p><p>\\(P(\\bar{R}) = 1 - \\frac{2}{3} = \\frac{1}{3}\\)</p><p>We need the probability that at least two shots hit the target. This means exactly two hit or all three hit.</p><p><strong>Case 1: Exactly two hit.</strong></p><p>There are three subcases:</p><ul><li>P and Q hit, R misses: \\(P(P) \\times P(Q) \\times P(\\bar{R}) = \\frac{4}{5} \\times \\frac{3}{4} \\times \\frac{1}{3} = \\frac{12}{60} = \\frac{1}{5}\\)</li><li>P and R hit, Q misses: \\(P(P) \\times P(\\bar{Q}) \\times P(R) = \\frac{4}{5} \\times \\frac{1}{4} \\times \\frac{2}{3} = \\frac{8}{60} = \\frac{2}{15}\\)</li><li>Q and R hit, P misses: \\(P(\\bar{P}) \\times P(Q) \\times P(R) = \\frac{1}{5} \\times \\frac{3}{4} \\times \\frac{2}{3} = \\frac{6}{60} = \\frac{1}{10}\\)</li></ul><p>Sum for exactly two = \\(\\frac{1}{5} + \\frac{2}{15} + \\frac{1}{10}\\). Find common denominator (30):</p><p>\\(\\frac{6}{30} + \\frac{4}{30} + \\frac{3}{30} = \\frac{13}{30}\\).</p><p><strong>Case 2: All three hit.</strong></p><p>\\(P(P) \\times P(Q) \\times P(R) = \\frac{4}{5} \\times \\frac{3}{4} \\times \\frac{2}{3} = \\frac{24}{60} = \\frac{2}{5} = \\frac{12}{30}\\).</p><p><strong>Total probability (at least two hit) = \\(\\frac{13}{30} + \\frac{12}{30} = \\frac{25}{30} = \\frac{5}{6}\\).</strong></p><p>Therefore, the required probability is \\(\\boxed{\\frac{5}{6}}\\).</p>",
+            "marks": 4,
+            "unit": "Probability"
+        }
+    ]
+}

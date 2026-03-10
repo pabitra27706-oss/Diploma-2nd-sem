@@ -1,0 +1,487 @@
+{
+    "exam": {
+        "title": "Applied Physics-II 2025 Question Paper",
+        "year": 2025,
+        "timeAllowed": "2.5 Hours",
+        "fullMarks": 60,
+        "instructions": "Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation. Answer any Five (05) Questions from Group B."
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "The velocity of a particle vibrating in S.H.M.-",
+            "options": [
+                "is maximum at the mean position",
+                "is minimum at the mean position",
+                "remains constant at every point",
+                "none of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Is maximum at the mean position</strong> is correct. In SHM, velocity is given by v = ω√(A² - x²). At the mean position, x = 0, so v = ωA (maximum). At extreme positions, x = ±A, so v = 0 (minimum). Velocity varies sinusoidally, not constant.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The equation of a plane progressive wave is y = 6 sin (2π/7)(14t - x). The frequency and amplitude of vibration is -",
+            "options": [
+                "2, 7",
+                "2, 6",
+                "6, 2",
+                "7, 6"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>2, 6</strong> is correct. Given equation: y = 6 sin (2π/7)(14t - x) = 6 sin (4πt - (2π/7)x). Comparing with y = A sin (ωt - kx), amplitude A = 6, angular frequency ω = 4π. Frequency f = ω/2π = 4π/2π = 2 Hz. So frequency = 2, amplitude = 6.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The wavelength of the ultrasonic sound",
+            "options": [
+                "is same as that of audible sound",
+                "is less compared to audible sound",
+                "is larger compared to audible sound",
+                "may be greater or less than audible sound"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Is less compared to audible sound</strong> is correct. Ultrasonic waves have frequencies greater than 20 kHz (above audible range). Since velocity v = fλ is constant in a given medium, higher frequency means shorter wavelength. So ultrasonic waves have smaller wavelengths than audible sound.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Focal length of a convex lens is 20cm. Power of the lens is -",
+            "options": [
+                "+5D",
+                "-5D",
+                "0.05D",
+                "-0.05D"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>+5D</strong> is correct. Power P = 1/f, where f must be in meters. f = 20 cm = 0.2 m. So P = 1/0.2 = +5 D. For convex lens, power is positive.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "For which colour of light the refractive index of a medium is maximum?",
+            "options": [
+                "Green",
+                "Yellow",
+                "Red",
+                "Violet"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Violet</strong> is correct. Due to dispersion, refractive index varies with wavelength. It is maximum for violet light (shortest wavelength) and minimum for red light (longest wavelength). This is why violet light bends most in a prism.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Force of repulsion between two point charges placed at a distance r is F. If the separation between them becomes 2r, the force of repulsion will be",
+            "options": [
+                "2F",
+                "F/2",
+                "4F",
+                "F/4"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>F/4</strong> is correct. According to Coulomb's law, F ∝ 1/r². If distance becomes 2r, new force F' = F × (r²/(2r)²) = F × (r²/4r²) = F/4.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Two capacitors of capacitance 6μF and 3μF are connected in series. The value of their equivalent capacitance is",
+            "options": [
+                "9μF",
+                "2μF",
+                "18μF",
+                "0.5μF"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>2μF</strong> is correct. For series combination: 1/C_eq = 1/C₁ + 1/C₂ = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2. So C_eq = 2 μF.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If the length of a copper wire is doubled by stretching it, its resistivity will",
+            "options": [
+                "be doubled",
+                "be halved",
+                "remain unchanged",
+                "be increased by 4 times"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Remain unchanged</strong> is correct. Resistivity (specific resistance) is a material property. It depends on the nature of the material and temperature, not on dimensions. Stretching changes length and area, but resistivity remains constant for a given material at constant temperature.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "When current is passed through a junction of two dissimilar metals, heat is evolved or absorbed at the junction. This process is called -",
+            "options": [
+                "Seebeck effect",
+                "Joule effect",
+                "Peltier effect",
+                "Thomson effect"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Peltier effect</strong> is correct. The Peltier effect is the phenomenon where heat is evolved or absorbed at the junction of two dissimilar metals when current passes through it. Seebeck effect is generation of emf due to temperature difference. Joule effect is heating due to resistance. Thomson effect is heating/cooling along a single conductor with temperature gradient.</p>",
+            "unit": "Thermoelectricity"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "A galvanometer can be converted into an ammeter by connecting it with a",
+            "options": [
+                "suitable high resistance in parallel",
+                "suitable low resistance in parallel",
+                "suitable high resistance in series",
+                "suitable low resistance in series"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Suitable low resistance in parallel</strong> is correct. To convert a galvanometer into an ammeter, a low resistance called shunt is connected in parallel. This shunt diverts most of the current, allowing only a small fraction through the galvanometer, enabling it to measure large currents.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Magnetic dipole moment of a current carrying loop is independent of",
+            "options": [
+                "number of turns in the coil",
+                "area of the loop of the coil",
+                "current in the coil",
+                "magnetic field in which it is placed"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Magnetic field in which it is placed</strong> is correct. Magnetic dipole moment of a current loop is M = NIA, where N is number of turns, I is current, A is area. It depends on these factors but is independent of the external magnetic field. The torque experienced depends on the field, but the dipole moment itself is a property of the loop.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "In X-ray tube, the penetrating power of X-rays can be increased by",
+            "options": [
+                "increasing the filament voltage",
+                "decreasing the filament voltage",
+                "increasing the voltage across the electrodes",
+                "decreasing the voltage across the electrodes"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Increasing the voltage across the electrodes</strong> is correct. Penetrating power of X-rays depends on their energy (wavelength). Higher tube voltage accelerates electrons to higher kinetic energy, producing X-rays with shorter wavelengths (higher energy, more penetrating). Filament voltage controls intensity (number of electrons), not penetrating power.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "N-type semiconductor is obtained on doping intrinsic germanium by",
+            "options": [
+                "gold",
+                "boron",
+                "aluminium",
+                "phosphorus"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Phosphorus</strong> is correct. N-type semiconductors are obtained by doping with pentavalent impurities (5 valence electrons) like phosphorus, arsenic, antimony. These provide extra electrons. Boron and aluminium are trivalent (3 valence electrons) and produce p-type semiconductors.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1.xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "In a transistor the base region is -",
+            "options": [
+                "highly doped",
+                "moderately doped",
+                "lightly doped",
+                "none of these"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Lightly doped</strong> is correct. In a transistor, the base is very thin and lightly doped to allow most charge carriers from the emitter to reach the collector with minimal recombination. The emitter is heavily doped, and the collector is moderately doped.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Write down the characteristics of SHM.",
+            "answer": "<p>The main characteristics of Simple Harmonic Motion (SHM) are:</p><ol><li><strong>Periodic motion:</strong> The motion repeats itself after a fixed interval of time called the time period (T).</li><li><strong>Restoring force:</strong> A restoring force always acts on the particle, which is directly proportional to the displacement from the mean position and directed towards it: F ∝ -x or F = -kx, where k is force constant.</li><li><strong>Acceleration proportional to displacement:</strong> Acceleration is directly proportional to the displacement and directed opposite to it: a ∝ -x or a = -ω²x, where ω is angular frequency.</li><li><strong>Sinsoidal variation:</strong> Displacement, velocity, and acceleration vary sinusoidally with time. Displacement x = A sin(ωt + φ) or x = A cos(ωt + φ).</li><li><strong>Energy conservation:</strong> Total mechanical energy remains constant. Energy is continuously exchanged between kinetic and potential forms. At mean position, KE is maximum, PE is zero; at extremes, KE is zero, PE is maximum.</li><li><strong>Velocity variation:</strong> Velocity is maximum at mean position (v_max = ωA) and zero at extreme positions.</li><li><strong>Acceleration variation:</strong> Acceleration is zero at mean position and maximum at extremes (a_max = ω²A).</li></ol>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.b",
+            "type": "saq",
+            "group": "B",
+            "question": "The equation of a plane progressive wave propagating along positive X direction is given by, y = 10 sin (100πt - (2π/T)x) cm, where x is in meter and t in second. Calculate the amplitude, frequency, wavelength and speed of the wave.",
+            "answer": "<p>Given: y = 10 sin (100πt - (2π/T)x) cm, with x in meters, t in seconds.</p><p>Comparing with standard wave equation y = A sin (ωt - kx):</p><ul><li>Amplitude A = 10 cm = 0.1 m (though the question gives in cm, so amplitude = 10 cm)</li><li>Angular frequency ω = 100π rad/s</li><li>Wave number k = 2π/T, where T is time period? Actually the equation shows (2π/T)x, so k = 2π/T, but T here is not time period but a constant with unit of length? This seems inconsistent.</li></ul><p>Let's re-examine: The equation is y = 10 sin (100πt - (2π/T)x). Here T must represent wavelength λ, because the term should be (2π/λ)x. So T is actually wavelength λ.</p><p>Thus, k = 2π/λ = 2π/T, so λ = T. But T is not given numerically. The problem likely expects us to find frequency from ω, but wavelength cannot be determined without knowing T/λ.</p><p>However, if we assume T represents wavelength in meters, then:</p><p>Frequency f = ω/2π = 100π/2π = 50 Hz</p><p>Wavelength λ = T (unknown numerical value, so we express in terms of T)</p><p>Wave speed v = fλ = 50 × T m/s</p><p>If the equation was meant to be y = 10 sin (100πt - 2πx/λ), then λ would be needed. Since λ is not given, we can only determine amplitude = 10 cm and frequency = 50 Hz.</p>",
+            "marks": 4,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Write down two applications of ultrasonic wave.",
+            "answer": "<p>Two important applications of ultrasonic waves are:</p><ol><li><strong>Medical Imaging (Ultrasonography):</strong> Ultrasonic waves are used to create images of internal organs like liver, kidneys, uterus, and for fetal imaging during pregnancy. It is safe, non-invasive, and uses no ionizing radiation.</li><li><strong>Non-destructive Testing (NDT):</strong> Ultrasonic waves are used to detect flaws, cracks, and defects in materials like metals, welds, and structures without damaging them. The waves reflect from discontinuities, revealing internal defects.</li></ol><p>Other applications include: SONAR for underwater navigation and detection, physiotherapy for deep heating, cleaning delicate objects, welding plastics, and flow measurement.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Establish the relation between critical angle and absolute refractive index of the two medium.",
+            "answer": "<p><strong>Relation between critical angle and refractive index:</strong></p><p>Consider a ray of light traveling from a denser medium (refractive index n₁) to a rarer medium (refractive index n₂). The critical angle θ_c is the angle of incidence in the denser medium for which the angle of refraction in the rarer medium is 90°.</p><p>Applying Snell's law at the interface:</p><p>$$n_1 \\sin \\theta_c = n_2 \\sin 90°$$</p><p>Since sin 90° = 1:</p><p>$$n_1 \\sin \\theta_c = n_2$$</p><p>$$\\sin \\theta_c = \\frac{n_2}{n_1}$$</p><p>If the rarer medium is air (or vacuum), n₂ = 1, and n₁ = n (absolute refractive index of the denser medium). Then:</p><p>$$\\sin \\theta_c = \\frac{1}{n}$$</p><p>or</p><p>$$n = \\frac{1}{\\sin \\theta_c}$$</p><p>This is the relation between critical angle and absolute refractive index. Thus, higher the refractive index, smaller the critical angle.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.b",
+            "type": "saq",
+            "group": "B",
+            "question": "With necessary ray diagram state the position and nature of image formed by an extended object placed in between principal focus and optical center of a convex lens.",
+            "answer": "<p><em>Refer to ray diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p><strong>Position of object:</strong> The object is placed between the principal focus (F) and the optical center (O) of the convex lens, i.e., object distance u < f (where f is focal length).</p><p><strong>Ray diagram description:</strong></p><ul><li>Ray 1: A ray parallel to the principal axis passes through the focus (F) on the other side after refraction.</li><li>Ray 2: A ray passing through the optical center goes straight without deviation.</li><li>These rays appear to diverge from a point on the same side as the object when extended backward.</li></ul><p><strong>Position and nature of image:</strong></p><ul><li><strong>Position:</strong> The image is formed on the same side as the object (virtual image location). It is located beyond F (farther from the lens than the object).</li><li><strong>Nature:</strong> The image is <strong>virtual, erect, and magnified</strong> (larger than the object).</li></ul><p>This is the principle used in simple microscopes and magnifying glasses.</p>",
+            "marks": 3,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.c",
+            "type": "saq",
+            "group": "B",
+            "question": "The radius of curvature of a plano-convex lens is 20 cm. Calculate its focal length if the absolute refractive index of the material of the lens is 1.5.",
+            "answer": "<p>Given: Plano-convex lens means one surface is plane (R₁ = ∞) and the other is convex with radius of curvature R₂ = 20 cm. Refractive index μ = 1.5. Lens is in air.</p><p>Using lens maker's formula:</p><p>$$\\frac{1}{f} = (\\mu - 1) \\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$$</p><p>For plano-convex lens with plane surface on the object side (R₁ = ∞) and convex surface on the other side (R₂ = -20 cm? Need sign convention).</p><p>Using Cartesian sign convention: For a convex surface, R is positive if the center of curvature is on the opposite side of incident light. For a plano-convex lens with plane surface facing the object, R₁ = ∞, and R₂ = -20 cm (since the center of curvature of the convex surface is on the opposite side of incident light? Actually careful).</p><p>Standard convention: For a plano-convex lens with the convex surface on the other side, if light is incident on the plane surface, then R₁ = ∞, R₂ = -R (where R is radius of curvature of convex surface, negative because center is on the incident side? Let's derive properly).</p><p>For a plano-convex lens placed in air, if the convex surface is on the side from which light emerges, and plane surface faces the incident light, then:</p><p>R₁ (first surface) = ∞ (plane surface)</p><p>R₂ (second surface) = -20 cm (concave surface for the light emerging, so negative)</p><p>Then:</p><p>$$\\frac{1}{f} = (1.5 - 1) \\left(\\frac{1}{\\infty} - \\frac{1}{-20}\\right) = 0.5 \\times (0 + \\frac{1}{20}) = 0.5 \\times \\frac{1}{20} = \\frac{0.5}{20} = \\frac{1}{40}$$</p><p>So f = 40 cm.</p><p>If the convex surface faces the incident light, then R₁ = +20 cm, R₂ = ∞, then:</p><p>$$\\frac{1}{f} = 0.5 \\left(\\frac{1}{20} - \\frac{1}{\\infty}\\right) = 0.5 \\times \\frac{1}{20} = \\frac{1}{40}$$, same result f = 40 cm.</p><p>Thus, focal length = 40 cm.</p>",
+            "marks": 3,
+            "unit": "Optics"
+        },
+        {
+            "id": "4.a",
+            "type": "laq",
+            "group": "B",
+            "question": "State Gauss' law in electrostatics. Using this law, derive an expression for the electric field intensity at an outside point of a uniformly charged sphere.",
+            "answer": "<p><strong>Gauss's Law in Electrostatics:</strong> It states that the total electric flux through any closed surface (called Gaussian surface) is equal to 1/ε₀ times the total electric charge enclosed by that surface.</p><p>Mathematically: $$\\oint \\vec{E} \\cdot d\\vec{A} = \\frac{q_{enc}}{\\varepsilon_0}$$</p><p>where $\\oint \\vec{E} \\cdot d\\vec{A}$ is the electric flux through the closed surface, $q_{enc}$ is the net charge enclosed, and $\\varepsilon_0$ is the permittivity of free space.</p><p><strong>Electric field at an outside point of a uniformly charged sphere:</strong></p><p>Consider a sphere of radius R with total charge Q uniformly distributed throughout its volume. We need to find electric field at a point P outside the sphere at distance r from the center (r > R).</p><p><strong>Step 1:</strong> Due to spherical symmetry, the electric field is radial and its magnitude depends only on distance r from the center.</p><p><strong>Step 2:</strong> Construct a spherical Gaussian surface of radius r (r > R) concentric with the charged sphere.</p><p><strong>Step 3:</strong> By symmetry, at every point on this Gaussian surface, the electric field E is perpendicular to the surface (radial) and has constant magnitude.</p><p><strong>Step 4:</strong> The electric flux through the Gaussian surface is:</p><p>$$\\oint \\vec{E} \\cdot d\\vec{A} = E \\times 4\\pi r^2$$</p><p>since E and dA are parallel and E is constant over the surface.</p><p><strong>Step 5:</strong> The charge enclosed by the Gaussian surface is the total charge Q of the sphere (since the Gaussian surface encloses the entire sphere).</p><p><strong>Step 6:</strong> Applying Gauss's law:</p><p>$$E \\times 4\\pi r^2 = \\frac{Q}{\\varepsilon_0}$$</p><p><strong>Step 7:</strong> Solving for E:</p><p>$$E = \\frac{1}{4\\pi\\varepsilon_0} \\frac{Q}{r^2}$$</p><p>In vector form: $$\\vec{E} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{Q}{r^2} \\hat{r}$$</p><p>where $\\hat{r}$ is the unit vector radially outward.</p><p><strong>Conclusion:</strong> For points outside the sphere, the electric field is exactly the same as if the entire charge Q were concentrated at the center of the sphere.</p>",
+            "marks": 4,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "4.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Calculate how many electrons are present in one coulomb of charge?",
+            "answer": "<p>Given: Charge q = 1 C, Charge of one electron e = 1.6 × 10⁻¹⁹ C.</p><p>The number of electrons n is given by:</p><p>$$n = \\frac{q}{e} = \\frac{1}{1.6 \\times 10^{-19}}$$</p><p>$$n = \\frac{1}{1.6} \\times 10^{19} = 0.625 \\times 10^{19} = 6.25 \\times 10^{18}$$</p><p>Thus, one coulomb of charge contains 6.25 × 10¹⁸ electrons.</p>",
+            "marks": 2,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "4.c",
+            "type": "saq",
+            "group": "B",
+            "question": "State the factors on which the capacitance of a conductor depends.",
+            "answer": "<p>The capacitance of a conductor depends on the following factors:</p><ol><li><strong>Size and shape of the conductor:</strong> Capacitance increases with increase in surface area. A larger conductor can store more charge at the same potential.</li><li><strong>Distance from other conductors:</strong> When another conductor is placed nearby, capacitance increases due to mutual influence (as in capacitors).</li><li><strong>Nature of the surrounding medium (dielectric):</strong> Capacitance depends on the dielectric constant (relative permittivity) of the medium surrounding the conductor. Capacitance increases if a dielectric medium replaces air/vacuum (C = KC₀, where K is dielectric constant).</li><li><strong>Presence of other conductors:</strong> In a capacitor, capacitance depends on the geometry (area of plates, separation between plates) and the dielectric between them.</li></ol><p>For an isolated spherical conductor of radius R, capacitance C = 4πε₀R, so it depends only on radius.</p>",
+            "marks": 2,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "5.a",
+            "type": "saq",
+            "group": "B",
+            "question": "On which factors does the resistance of a conductor depend and how? Define resistivity.",
+            "answer": "<p><strong>Factors affecting resistance of a conductor:</strong></p><p>The resistance R of a conductor depends on the following factors:</p><ol><li><strong>Length (l):</strong> Resistance is directly proportional to the length of the conductor. R ∝ l. Longer conductors offer more resistance.</li><li><strong>Area of cross-section (A):</strong> Resistance is inversely proportional to the area of cross-section. R ∝ 1/A. Thicker wires offer less resistance.</li><li><strong>Nature of material:</strong> Different materials have different resistances for the same dimensions due to their internal structure.</li><li><strong>Temperature:</strong> Resistance increases with increase in temperature for metals (positive temperature coefficient), but decreases for semiconductors.</li></ol><p>Combining these factors: $$R = \\rho \\frac{l}{A}$$ where ρ (rho) is the resistivity.</p><p><strong>Definition of resistivity:</strong> Resistivity (also called specific resistance) is defined as the resistance offered by a conductor of unit length and unit cross-sectional area. It is a material property that depends only on the nature of the material and temperature, not on the dimensions of the conductor. Its SI unit is ohm-meter (Ω·m).</p>",
+            "marks": 3,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "5.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Three resistors 6Ω, 4Ω and 8Ω are connected in sides AB, BC and AC respectively in a triangle ABC. A 12 V dc battery is connected across 6Ω resistor. With necessary diagram find the equivalent resistance between A and B and the current through 8Ω resistor.",
+            "answer": "<p><strong>Circuit diagram:</strong> <em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p>The resistors form a triangle ABC: R₁ = 6Ω between A and B, R₂ = 4Ω between B and C, R₃ = 8Ω between A and C. A 12V battery is connected across the 6Ω resistor, i.e., between terminals A and B.</p><p><strong>Step 1: Analyze the circuit.</strong> The battery is connected across A and B. So points A and B are connected to the battery terminals. This means the 6Ω resistor (R₁) is directly across the battery.</p><p>The other two resistors R₂ (4Ω) and R₃ (8Ω) are connected in series between points B and A through point C. That is, from B to C via R₂ (4Ω), and from C to A via R₃ (8Ω). So the series combination of R₂ and R₃ is in parallel with R₁.</p><p><strong>Step 2: Equivalent resistance between A and B.</strong></p><p>First, find the equivalent resistance of the series combination of R₂ and R₃:</p><p>R_series = R₂ + R₃ = 4 + 8 = 12 Ω</p><p>This 12Ω is in parallel with R₁ = 6Ω. So equivalent resistance R_AB is:</p><p>$$\\frac{1}{R_{AB}} = \\frac{1}{6} + \\frac{1}{12} = \\frac{2 + 1}{12} = \\frac{3}{12} = \\frac{1}{4}$$</p><p>$$R_{AB} = 4 \\Omega$$</p><p><strong>Step 3: Total current from battery.</strong></p><p>$$I_{total} = \\frac{V}{R_{AB}} = \\frac{12}{4} = 3 \\text{ A}$$</p><p><strong>Step 4: Current distribution.</strong></p><p>This total current divides between the two parallel branches: the 6Ω branch and the 12Ω series branch.</p><p>Current through 6Ω resistor: I₁ = V/R₁ = 12/6 = 2 A</p><p>Current through the series branch (through both R₂ and R₃): I₂ = V/R_series = 12/12 = 1 A</p><p><strong>Step 5: Current through 8Ω resistor.</strong></p><p>The 8Ω resistor (R₃) is in the series branch, so the current through it is I₂ = 1 A.</p><p>Thus, the current through the 8Ω resistor is 1 A.</p>",
+            "marks": 3,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "5.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Show that equivalent resistance in parallel combination of resistances is less than the smallest resistance in the combination.",
+            "answer": "<p>Consider n resistors R₁, R₂, R₃, ..., Rₙ connected in parallel. Let R_eq be their equivalent resistance.</p><p>For parallel combination: $$\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} + ... + \\frac{1}{R_n}$$</p><p>Since all terms on the right-hand side are positive, we have:</p><p>$$\\frac{1}{R_{eq}} > \\frac{1}{R_1}$$ (because we are adding positive terms to 1/R₁)</p><p>Taking reciprocals (which reverses inequality for positive numbers):</p><p>$$R_{eq} < R_1$$</p><p>Similarly, $$\\frac{1}{R_{eq}} > \\frac{1}{R_2}$$ implies R_eq < R₂, and so on for all resistors.</p><p>Thus, R_eq is less than each individual resistance in the parallel combination. In particular, R_eq is less than the smallest resistance among them.</p><p><strong>Example:</strong> If R₁ = 2Ω, R₂ = 3Ω, then 1/R_eq = 1/2 + 1/3 = 5/6, so R_eq = 6/5 = 1.2Ω, which is less than 2Ω (the smallest).</p>",
+            "marks": 2,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State and explain Kirchhoff's current law & Kirchhoff's voltage law.",
+            "answer": "<p><strong>Kirchhoff's Current Law (KCL) - Junction Rule:</strong></p><p><strong>Statement:</strong> The algebraic sum of all currents meeting at a junction (node) in an electrical network is zero. In other words, the total current entering a junction equals the total current leaving the junction.</p><p><strong>Explanation:</strong> This law is based on the principle of conservation of charge. Charge cannot accumulate at a junction, so the rate of charge flow (current) entering must equal the rate leaving. Mathematically, Σ I_in = Σ I_out, or Σ I = 0 taking appropriate signs (incoming positive, outgoing negative).</p><p><strong>Kirchhoff's Voltage Law (KVL) - Loop Rule:</strong></p><p><strong>Statement:</strong> The algebraic sum of all the potential differences (voltage drops and EMFs) around any closed loop in a network is zero.</p><p><strong>Explanation:</strong> This law is based on the principle of conservation of energy. As we traverse a closed loop, the total work done by the electric field on a charge moving around the loop is zero. Mathematically, Σ V = 0, or Σ EMF = Σ IR, where we assign signs based on the direction of traversal: EMF is positive if traversed from negative to positive terminal, voltage drop across resistor is positive if traversed opposite to current direction (or negative if same as current). Consistency in sign convention is essential.</p>",
+            "marks": 3,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "6.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Define neutral temperature & inversion temperature for a thermo couple.",
+            "answer": "<p><strong>Neutral temperature (θ_n):</strong> In a thermocouple, when the temperature of the hot junction is gradually increased while keeping the cold junction at a fixed temperature (usually 0°C), the thermo-emf increases, reaches a maximum value, and then starts decreasing. The temperature of the hot junction at which the thermo-emf becomes maximum is called the neutral temperature. It is constant for a given pair of metals and does not depend on the temperature of the cold junction.</p><p><strong>Inversion temperature (θ_i):</strong> The temperature of the hot junction at which the thermo-emf becomes zero (or changes its sign) is called the temperature of inversion. At this temperature, the thermo-emf becomes equal to the emf at the cold junction temperature (usually zero). Beyond this temperature, the direction of thermo-emf reverses. The inversion temperature is given by θ_i = 2θ_n - θ_c, where θ_c is the cold junction temperature. For a given cold junction temperature, θ_i is the temperature at which the emf becomes zero.</p><p>For most thermocouples, the relationship between thermo-emf (E) and temperature difference (θ) is parabolic: E = αθ + βθ², where θ is the temperature of hot junction (cold at 0°C). Neutral temperature θ_n = -α/(2β) and inversion temperature θ_i = -α/β = 2θ_n.</p>",
+            "marks": 3,
+            "unit": "Thermoelectricity"
+        },
+        {
+            "id": "6.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the thermo e.m.f. vs. temperature graph for a thermo couple & show the position of neutral temperature and temperature of inversion.",
+            "answer": "<p><em>Refer to graph in textbook/online. Students should draw this in their answer scripts.</em></p><p><strong>Thermo-emf vs Temperature graph:</strong></p><p>The graph is a parabola (approximately) showing the variation of thermo-emf (E) with temperature of the hot junction (θ), keeping the cold junction at a constant temperature (usually 0°C).</p><p><strong>Key features to show on the graph:</strong></p><ul><li>X-axis: Temperature of hot junction (θ) increasing from cold junction temperature θ_c (usually 0°C).</li><li>Y-axis: Thermo-emf (E).</li><li>The curve starts from E = 0 at θ = θ_c.</li><li>As θ increases, E increases, reaches a maximum at the <strong>neutral temperature (θ_n)</strong>.</li><li>Beyond θ_n, E decreases, becomes zero again at the <strong>temperature of inversion (θ_i)</strong>.</li><li>Beyond θ_i, E becomes negative (emf reverses direction).</li></ul><p><strong>Positions marked:</strong></p><ul><li>θ_n (neutral temperature) at the peak of the curve.</li><li>θ_i (inversion temperature) where the curve crosses the θ-axis again (E = 0).</li><li>For symmetric parabola, θ_i = 2θ_n (when cold junction is at 0°C).</li></ul><p>The graph shows that for a given thermocouple, there is a specific temperature range where it can be used effectively.</p>",
+            "marks": 2,
+            "unit": "Thermoelectricity"
+        },
+        {
+            "id": "7.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State and explain Biot-Savart Law in electromagnetism.",
+            "answer": "<p><strong>Biot-Savart Law:</strong> It states that the magnetic field dB produced at a point due to a small current element carrying current I is:</p><ul><li>Directly proportional to the current I.</li><li>Directly proportional to the length dl of the element.</li><li>Directly proportional to the sine of the angle θ between the element and the line joining the element to the point.</li><li>Inversely proportional to the square of the distance r from the element to the point.</li></ul><p>Mathematically: $$dB = \\frac{\\mu_0}{4\\pi} \\frac{I \\, dl \\, \\sin \\theta}{r^2}$$</p><p>In vector form: $$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I \\, d\\vec{l} \\times \\vec{r}}{r^3}$$</p><p>or $$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I \\, d\\vec{l} \\times \\hat{r}}{r^2}$$</p><p>where:</p><ul><li>$\\mu_0$ is the permeability of free space ($4\\pi \\times 10^{-7}$ Tm/A),</li><li>$d\\vec{l}$ is the length vector in the direction of current,</li><li>$\\vec{r}$ is the position vector from the element to the point,</li><li>$\\hat{r}$ is the unit vector along $\\vec{r}$,</li><li>$r$ is the distance.</li></ul><p><strong>Explanation:</strong> The law gives the magnetic field contribution from a small current element. The direction of $d\\vec{B}$ is perpendicular to both $d\\vec{l}$ and $\\vec{r}$, given by the right-hand rule (cross product). The total magnetic field due to a current-carrying conductor is obtained by integrating contributions from all such elements along the conductor. This law is fundamental in magnetostatics, analogous to Coulomb's law in electrostatics.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.b",
+            "type": "saq",
+            "group": "B",
+            "question": "A circular wire of radius 10 cm is carrying a current of 2 A. Calculate the magnetic field at the centre of the coil.",
+            "answer": "<p>Given: Radius R = 10 cm = 0.1 m, Current I = 2 A, μ₀ = 4π × 10⁻⁷ H/m.</p><p>For a circular coil of one turn, the magnetic field at the centre is:</p><p>$$B = \\frac{\\mu_0 I}{2R}$$</p><p>Substituting the values:</p><p>$$B = \\frac{4\\pi \\times 10^{-7} \\times 2}{2 \\times 0.1}$$</p><p>$$B = \\frac{8\\pi \\times 10^{-7}}{0.2} = \\frac{8\\pi \\times 10^{-7}}{2 \\times 10^{-1}}$$</p><p>$$B = 4\\pi \\times 10^{-6} \\text{ T}$$</p><p>$$B = 4 \\times 3.14 \\times 10^{-6} = 12.56 \\times 10^{-6} \\text{ T}$$</p><p>$$B = 1.256 \\times 10^{-5} \\text{ T} = 12.56 \\, \\mu\\text{T}$$</p><p>The magnetic field at the centre is 1.256 × 10⁻⁵ T.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Which rule gives the direction of the force on a current carrying conductor when placed in a magnetic field? State & explain the rule.",
+            "answer": "<p><strong>Fleming's Left Hand Rule</strong> gives the direction of force on a current-carrying conductor placed in a magnetic field.</p><p><strong>Statement of Fleming's Left Hand Rule:</strong> If we stretch the thumb, forefinger (index finger), and middle finger of our left hand such that they are mutually perpendicular to each other, then:</p><ul><li>The forefinger points in the direction of the magnetic field (from North to South).</li><li>The middle finger points in the direction of the current (from positive to negative).</li><li>The thumb then points in the direction of the force (motion) experienced by the conductor.</li></ul><p><strong>Explanation:</strong> When a current-carrying conductor is placed in a magnetic field, it experiences a force given by F = BIL sin θ, where θ is the angle between the conductor and the magnetic field. The direction of this force is perpendicular to both the magnetic field and the current direction. Fleming's left hand rule provides a convenient way to determine this direction. This rule is also used for electric motors (hence called motor rule).</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.d",
+            "type": "saq",
+            "group": "B",
+            "question": "\"Magnetic force on a charge particle does no work\" - explain.",
+            "answer": "<p>The magnetic force on a charged particle is given by Lorentz force equation: $$\\vec{F} = q(\\vec{v} \\times \\vec{B})$$</p><p>This force is always perpendicular to the velocity vector $\\vec{v}$ of the particle (since it's a cross product).</p><p>Work done by a force is defined as $W = \\vec{F} \\cdot \\vec{d}$, where $\\vec{d}$ is displacement. For infinitesimal displacement $d\\vec{s} = \\vec{v} \\, dt$, the work done is:</p><p>$$dW = \\vec{F} \\cdot d\\vec{s} = (q(\\vec{v} \\times \\vec{B})) \\cdot (\\vec{v} \\, dt)$$</p><p>Since $\\vec{v} \\times \\vec{B}$ is perpendicular to $\\vec{v}$, their dot product is zero. Therefore, $dW = 0$.</p><p><strong>Explanation:</strong> The magnetic force can only change the direction of the velocity of the charged particle, not its speed (magnitude of velocity). It acts as a centripetal force, causing circular or helical motion. Since the speed (kinetic energy) does not change, no work is done by the magnetic field. Any change in kinetic energy of a charged particle in combined electric and magnetic fields is due to the electric field component only.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State & explain Faraday's law of electromagnetic induction.",
+            "answer": "<p><strong>Faraday's laws of electromagnetic induction:</strong></p><p><strong>First law:</strong> Whenever the magnetic flux linked with a circuit changes, an electromotive force (emf) is induced in the circuit. The induced emf exists only as long as the change in flux continues.</p><p><strong>Explanation:</strong> The change in magnetic flux can be caused by:</p><ul><li>Moving a magnet relative to the coil.</li><li>Moving the coil in a non-uniform magnetic field.</li><li>Changing the current in a nearby coil (mutual induction).</li><li>Changing the current in the same coil (self-induction).</li><li>Rotating a coil in a magnetic field.</li></ul><p><strong>Second law:</strong> The magnitude of the induced emf is directly proportional to the rate of change of magnetic flux linked with the circuit.</p><p>Mathematically: $$\\epsilon = -\\frac{d\\phi}{dt}$$</p><p>For a coil with N turns: $$\\epsilon = -N \\frac{d\\phi}{dt}$$</p><p>where φ is the magnetic flux through one turn, and dφ/dt is the rate of change of flux.</p><p>The negative sign represents Lenz's law, indicating that the induced emf opposes the change in flux that produces it.</p><p>If the flux changes from φ₁ to φ₂ in time Δt, the average induced emf is:</p><p>$$\\epsilon_{avg} = -N \\frac{\\phi_2 - \\phi_1}{\\Delta t}$$</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "8.b",
+            "type": "laq",
+            "group": "B",
+            "question": "A galvanometer of resistance 20Ω gives full scale deflection when a current of 0.5mA passes through it. Explain with proper circuit diagram how can this be converted to an ammeter reading up to 5 A.",
+            "answer": "<p><strong>Given:</strong> Galvanometer resistance G = 20 Ω, Full-scale deflection current I_g = 0.5 mA = 0.5 × 10⁻³ A = 5 × 10⁻⁴ A. Desired ammeter range I = 5 A.</p><p><strong>Principle:</strong> To convert a galvanometer into an ammeter, a low resistance called shunt (S) is connected in parallel with the galvanometer. The shunt diverts most of the current, allowing only I_g through the galvanometer at full scale, while the remaining current (I - I_g) passes through the shunt.</p><p><strong>Circuit Diagram:</strong> <em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p>The diagram should show:</p><ul><li>The galvanometer (coil with pointer) with internal resistance G.</li><li>A shunt resistance S connected in parallel with the galvanometer.</li><li>The combination connected in series with the load where current is to be measured.</li><li>Terminals marked as ammeter terminals (usually labeled + and -).</li></ul><p><strong>Calculation of shunt resistance S:</strong></p><p>In parallel combination, voltage across galvanometer = voltage across shunt.</p><p>I_g × G = (I - I_g) × S</p><p>$$S = \\frac{I_g \\times G}{I - I_g}$$</p><p>Substituting values:</p><p>$$S = \\frac{(5 \\times 10^{-4}) \\times 20}{5 - (5 \\times 10^{-4})}$$</p><p>$$S = \\frac{10^{-2}}{5 - 0.0005} = \\frac{0.01}{4.9995} \\approx \\frac{0.01}{5} = 0.002 \\, \\Omega$$</p><p>More precisely: S = 0.01/4.9995 = 0.0020002 Ω ≈ 0.002 Ω</p><p><strong>Explanation:</strong> A shunt resistance of approximately 0.002 Ω (2 mΩ) must be connected in parallel with the galvanometer. The combination will now work as an ammeter with a range of 0-5 A. When 5 A current flows in the circuit, 0.5 mA passes through the galvanometer (full scale) and the remaining 4.9995 A passes through the shunt. For any current less than 5 A, the deflection is proportional.</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "9.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Write down the differences between insulator, semiconductor and conductor.",
+            "answer": "<table><tr><th>Property</th><th>Conductor</th><th>Semiconductor</th><th>Insulator</th></tr><tr><td><strong>Energy band gap</strong></td><td>No gap (valence and conduction bands overlap) or partially filled conduction band.</td><td>Small band gap (≈ 0.7 eV for Ge, 1.1 eV for Si).</td><td>Large band gap (> 3 eV, e.g., diamond 5.5 eV).</td></tr><tr><td><strong>Electrical conductivity</strong></td><td>Very high (10⁷ to 10⁸ S/m).</td><td>Intermediate (10⁻⁶ to 10⁴ S/m), increases with temperature.</td><td>Very low (< 10⁻¹² S/m).</td></tr><tr><td><strong>Effect of temperature</strong></td><td>Conductivity decreases with increase in temperature (positive temperature coefficient of resistance).</td><td>Conductivity increases with increase in temperature (negative temperature coefficient).</td><td>Conductivity remains very low even at high temperatures.</td></tr><tr><td><strong>Free electrons at 0 K</strong></td><td>Free electrons available even at 0 K.</td><td>No free electrons at 0 K (behaves as insulator).</td><td>No free electrons at 0 K.</td></tr><tr><td><strong>Fermi level</strong></td><td>Inside the conduction band or at the overlapping region.</td><td>In the middle of the band gap (intrinsic) or near conduction/valence band (extrinsic).</td><td>Near the valence band top.</td></tr><tr><td><strong>Examples</strong></td><td>Copper, Aluminum, Silver, Gold.</td><td>Silicon, Germanium, Gallium Arsenide.</td><td>Glass, Rubber, Wood, Diamond, Mica.</td></tr></table>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9.b",
+            "type": "laq",
+            "group": "B",
+            "question": "With necessary diagram and drawing input and output waveform explain the working of p-n junction diode as full wave rectifier using two diodes.",
+            "answer": "<h5>Full Wave Rectifier using Two Diodes (Center-Tap Type)</h5><p><strong>Circuit Diagram:</strong> <em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p>The circuit consists of:</p><ul><li>A center-tapped transformer with primary and secondary windings. The center tap is connected to ground/return path.</li><li>Two p-n junction diodes, D₁ and D₂.</li><li>A load resistor R_L connected between the common cathode point and the center tap.</li></ul><p><strong>Working:</strong></p><p><strong>During positive half-cycle of AC input:</strong> The upper end of secondary (A) becomes positive, lower end (B) becomes negative with respect to center tap (C). Diode D₁ is forward-biased (anode at A positive, cathode at X through R_L) and conducts. Diode D₂ is reverse-biased and does not conduct. Current flows from A → D₁ → X → R_L → C. Current through R_L flows from X to C (top to bottom), producing a positive voltage across R_L.</p><p><strong>During negative half-cycle of AC input:</strong> The upper end (A) becomes negative, lower end (B) becomes positive. Diode D₂ is forward-biased and conducts, while D₁ is reverse-biased. Current flows from B → D₂ → X → R_L → C. Note that current through R_L still flows in the same direction (X to C, top to bottom).</p><p><strong>Waveforms:</strong> <em>Refer to waveforms in textbook/online.</em></p><ul><li><strong>Input waveform:</strong> A sine wave alternating between positive and negative values.</li><li><strong>Output waveform across R_L:</strong> A series of positive half-sine waves. For every full cycle of input, output consists of two positive half-cycles. This is pulsating DC (unidirectional but varying).</li></ul><p>Thus, both half-cycles are utilized, and current through load flows in the same direction, converting AC to DC. The output has higher average value and lower ripple compared to half-wave rectifier. A filter circuit can be added to smooth the output to pure DC.</p>",
+            "marks": 4,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What is LED?",
+            "answer": "<p><strong>LED (Light Emitting Diode):</strong> LED is a p-n junction diode that emits light when forward biased. It is made of direct band gap semiconductors like Gallium Arsenide (GaAs), Gallium Phosphide (GaP), or Gallium Arsenide Phosphide (GaAsP).</p><p><strong>Working principle:</strong> When the diode is forward biased, electrons from the n-side and holes from the p-side are injected into the junction region. They recombine, releasing energy in the form of photons (light). The wavelength (color) of light depends on the band gap of the semiconductor material.</p><p><strong>Characteristics:</strong></p><ul><li>Low power consumption.</li><li>Long life (up to 50,000 hours).</li><li>Fast switching (can be turned on/off quickly).</li><li>Available in various colors (red, green, yellow, blue, white).</li><li>Operates at low voltage (typically 1.5-3.5 V).</li></ul><p><strong>Applications:</strong> Indicator lights, display panels, traffic signals, automotive lighting, backlighting for LCD screens, decorative lighting, and fiber optic communication.</p>",
+            "marks": 1,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "10.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State & explain the postulates of Bohr's atomic model.",
+            "answer": "<p><strong>Bohr's atomic model postulates (for hydrogen atom):</strong></p><ol><li><strong>Stationary orbits postulate:</strong> Electrons revolve around the nucleus only in certain fixed circular orbits called stationary orbits or energy levels. In these orbits, the electron does not radiate energy despite being accelerated (contrary to classical electromagnetic theory). Each orbit corresponds to a definite energy level.</li><li><strong>Quantization of angular momentum postulate:</strong> The angular momentum of the electron in these stationary orbits is quantized and is an integral multiple of h/2π. Mathematically: $$mvr = n\\frac{h}{2\\pi}$$ where n = 1, 2, 3, ... (principal quantum number), m is electron mass, v is velocity, r is radius, h is Planck's constant.</li><li><strong>Frequency of radiation postulate:</strong> When an electron jumps from a higher energy orbit (E₂) to a lower energy orbit (E₁), the energy difference is emitted as a photon of frequency ν given by: $$h\\nu = E_2 - E_1$$ Conversely, when an electron absorbs a photon of appropriate energy, it jumps from lower to higher orbit.</li></ol><p><strong>Explanation:</strong> Bohr's model successfully explained the stability of atom (by postulating stationary orbits) and the discrete line spectrum of hydrogen. The quantization condition for angular momentum leads to quantized energy levels: E_n = -13.6/n² eV. However, it failed for multi-electron atoms and couldn't explain fine structure and intensities of spectral lines.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "10.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Explain the working principle of an optical fiber with a proper diagram.",
+            "answer": "<p><strong>Working principle of an optical fiber:</strong> Optical fiber works on the principle of <strong>total internal reflection (TIR)</strong>.</p><p><strong>Structure:</strong> An optical fiber consists of:</p><ul><li><strong>Core:</strong> Central cylindrical part made of glass or plastic with higher refractive index (n₁).</li><li><strong>Cladding:</strong> Outer layer made of glass or plastic with slightly lower refractive index (n₂, where n₂ < n₁).</li><li><strong>Buffer coating/Jacket:</strong> Protective outer layer.</li></ul><p><strong>Working:</strong> <em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><ol><li>Light is launched into the fiber core at one end at an appropriate angle.</li><li>The light rays travel through the core and strike the core-cladding interface.</li><li>If the angle of incidence at the interface is greater than the critical angle (θ_c = sin⁻¹(n₂/n₁)), total internal reflection occurs. The light is completely reflected back into the core without any loss.</li><li>The reflected ray again strikes the opposite interface at an angle greater than θ_c and is again totally internally reflected.</li><li>This process of repeated total internal reflections continues along the length of the fiber, guiding the light from one end to the other, even around bends (provided the bend radius is not too sharp).</li></ol><p>Thus, the optical fiber acts as a waveguide, confining and transmitting light signals over long distances with minimal loss.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "10.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the curve showing the variation of intensity with wavelength of X-rays obtained from X-ray tube and mark cut-off wavelength (λ_min), continuous & characteristic X-rays.",
+            "answer": "<p><strong>X-ray Spectrum Curve:</strong> <em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p>The intensity vs wavelength curve for X-rays shows:</p><ul><li><strong>Continuous X-ray spectrum (Bremsstrahlung):</strong> A smooth curve starting from a minimum wavelength and increasing to a maximum, then gradually decreasing. This is due to deceleration of electrons by the target nuclei.</li><li><strong>Cut-off wavelength (λ_min):</strong> The minimum wavelength below which no X-rays are produced. It depends on the tube voltage (λ_min = hc/eV). At this point, intensity is zero.</li><li><strong>Characteristic X-rays:</strong> Sharp peaks (lines) superimposed on the continuous spectrum at specific wavelengths. These are due to electronic transitions between inner shells of target atoms (Kα, Kβ, Lα, etc.) and are characteristic of the target material.</li></ul><p><strong>Features to mark on the curve:</strong></p><ul><li>X-axis: Wavelength (λ) increasing from left to right.</li><li>Y-axis: Intensity (I).</li><li>Mark λ_min at the leftmost starting point of the curve.</li><li>Show the continuous spectrum as a smooth curve rising from λ_min to a peak and then falling.</li><li>Show sharp peaks (Kα, Kβ) at specific wavelengths superimposed on the continuous spectrum.</li></ul><p>This curve helps understand the production of X-rays and their properties.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "10.d",
+            "type": "saq",
+            "group": "B",
+            "question": "Write two uses of LASER.",
+            "answer": "<p>Two important uses of LASER are:</p><ol><li><strong>Medical Applications:</strong> Lasers are used in various medical procedures including eye surgery (LASIK to correct vision), dermatology (tattoo removal, hair removal), dentistry, cancer treatment (laser therapy), and cosmetic surgery. They provide precise, minimally invasive treatment.</li><li><strong>Industrial Applications:</strong> Lasers are used for cutting, welding, drilling, and marking materials in manufacturing. Laser cutting provides high precision and clean edges in metals, plastics, and other materials. Laser engraving is used for marking products.</li></ol><p>Other uses include: communication (fiber optics), barcode scanners, laser pointers, holography, military (range finders, guidance systems), scientific research (spectroscopy, interferometry), and entertainment (laser light shows).</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        }
+    ]
+}

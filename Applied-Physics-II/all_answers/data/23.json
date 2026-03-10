@@ -1,0 +1,290 @@
+{
+    "exam": {
+        "title": "Applied Physics-II 2023 Question Paper",
+        "year": 2023,
+        "timeAllowed": "2.5 Hours",
+        "fullMarks": 60,
+        "instructions": "Answer to Question No. 1 is compulsory and answer any Five (05) Questions from the rest."
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "saq",
+            "group": "A",
+            "question": "In which position the velocity of a particle executing SHM is maximum? Explain.",
+            "answer": "<p>The velocity of a particle executing Simple Harmonic Motion (SHM) is maximum at the <strong>mean position</strong> (equilibrium position).</p><p><strong>Explanation:</strong> In SHM, velocity is given by v = ω√(A² - x²), where A is amplitude, x is displacement from mean position, and ω is angular frequency. At the mean position, x = 0, so v = ωA, which is the maximum velocity. At the extreme positions (x = ±A), velocity becomes zero. This is because at the mean position, all the energy is kinetic, while at extremes, all energy is potential.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.ii",
+            "type": "saq",
+            "group": "A",
+            "question": "On what factors does the focal length of a lens depend?",
+            "answer": "<p>The focal length of a lens depends on the following factors:</p><ol><li><strong>Refractive index of the lens material (μ):</strong> Focal length is inversely proportional to (μ - 1). Higher refractive index gives shorter focal length.</li><li><strong>Radii of curvature of the lens surfaces (R₁ and R₂):</strong> From lens maker's formula, 1/f = (μ - 1)(1/R₁ - 1/R₂).</li><li><strong>Refractive index of the surrounding medium:</strong> If the lens is placed in a medium other than air, the relative refractive index changes, affecting focal length.</li><li><strong>Wavelength (color) of light used:</strong> Due to dispersion, refractive index varies with wavelength, so focal length is different for different colors (chromatic aberration).</li></ol>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "1.iii",
+            "type": "saq",
+            "group": "A",
+            "question": "Is the electric potential necessarily be zero at a point where the electric field strength is zero? Explain.",
+            "answer": "<p>No, electric potential is not necessarily zero at a point where electric field strength is zero.</p><p><strong>Explanation:</strong> Electric field E = -dV/dr, i.e., field is the negative gradient of potential. E = 0 means the potential is constant in that region (no change with distance), but the constant value need not be zero. For example:</p><ul><li>Inside a charged hollow conducting sphere, electric field is zero everywhere, but potential is constant and equal to the potential at the surface (which is non-zero if the sphere is charged).</li><li>At the midpoint between two equal like charges, electric field is zero, but potential is non-zero (twice the potential due to one charge).</li></ul><p>Thus, E = 0 implies potential is constant, not necessarily zero.</p>",
+            "marks": 2,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "1.iv",
+            "type": "saq",
+            "group": "A",
+            "question": "What are the differences between Peltier effect and Joule effect?",
+            "answer": "<table><tr><th>Peltier Effect</th><th>Joule Effect (Joule Heating)</th></tr><tr><td>It is a thermoelectric phenomenon where heat is absorbed or liberated at the junction of two dissimilar metals when current passes through it.</td><td>It is the production of heat when current flows through a conductor due to its resistance.</td></tr><tr><td>Heat absorbed or released is proportional to the current (Q ∝ I).</td><td>Heat produced is proportional to the square of current (Q ∝ I²R).</td></tr><tr><td>The effect is reversible: reversing current reverses the heating/cooling at the junctions.</td><td>The effect is irreversible: heat is always produced regardless of current direction.</td></tr><tr><td>Depends on the nature of the junction materials.</td><td>Depends on the resistance of the material.</td></tr><tr><td>Used in thermoelectric cooling (Peltier coolers).</td><td>Used in electric heaters, fuses, etc.</td></tr></table>",
+            "marks": 2,
+            "unit": "Thermoelectricity"
+        },
+        {
+            "id": "1.v",
+            "type": "saq",
+            "group": "A",
+            "question": "A wire cuts across a flux of 0.002 Weber in 0.12 seconds. What is the emf induced in the wire?",
+            "answer": "<p>Given: Change in flux Δφ = 0.002 Wb, Time interval Δt = 0.12 s.</p><p>According to Faraday's law, the induced emf is given by the rate of change of flux:</p><p>$$\\epsilon = -\\frac{\\Delta \\phi}{\\Delta t}$$</p><p>Taking magnitude: $$\\epsilon = \\frac{0.002}{0.12} = \\frac{2 \\times 10^{-3}}{12 \\times 10^{-2}} = \\frac{2}{12} \\times 10^{-1} = \\frac{1}{6} \\times 0.1 = 0.01667 \\text{ V}$$</p><p>$$\\epsilon = 1.667 \\times 10^{-2} \\text{ V} = 16.67 \\text{ mV}$$</p><p>The induced emf is 0.01667 V or 16.67 mV.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.vi",
+            "type": "saq",
+            "group": "A",
+            "question": "Write down the basic principle of operation of a solar photovoltaic cell.",
+            "answer": "<p><strong>Basic principle of operation of a solar photovoltaic cell:</strong></p><p>A solar cell works on the principle of <strong>photovoltaic effect</strong>, which is the generation of electromotive force (voltage) when light falls on a p-n junction.</p><p>When photons of light with energy greater than the band gap of the semiconductor material strike the p-n junction, they are absorbed and create electron-hole pairs (excitons) in the depletion region and within a diffusion length of it. The built-in electric field of the depletion region separates these charge carriers: electrons are swept to the n-side and holes to the p-side. This separation creates a potential difference across the junction. When an external circuit is connected, current flows, converting light energy directly into electrical energy.</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1.vii",
+            "type": "saq",
+            "group": "A",
+            "question": "What are the unique properties of LASER?",
+            "answer": "<p>The unique properties of LASER (Light Amplification by Stimulated Emission of Radiation) are:</p><ol><li><strong>High coherence:</strong> Laser light is highly coherent, meaning all light waves are in phase in both time and space. Ordinary light is incoherent.</li><li><strong>High monochromaticity:</strong> Laser light is highly monochromatic (single wavelength or very narrow bandwidth), while ordinary light contains many wavelengths.</li><li><strong>High directionality:</strong> Laser beams are highly directional with very small divergence. They travel as nearly parallel beams over long distances.</li><li><strong>High intensity:</strong> Due to its directionality and coherence, laser light can be focused to a very small spot, achieving extremely high intensity (power per unit area).</li></ol><p>These properties make lasers useful in diverse applications like communication, medicine, industry, and research.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.viii",
+            "type": "saq",
+            "group": "A",
+            "question": "Mention three uses of nanotechnology.",
+            "answer": "<p>Three important uses of nanotechnology are:</p><ol><li><strong>Medicine and Healthcare:</strong> Targeted drug delivery using nanoparticles to deliver drugs directly to cancer cells, minimizing side effects. Nanobiosensors for disease detection, and nanomaterials for tissue engineering and wound healing.</li><li><strong>Electronics:</strong> Development of smaller, faster, and more efficient electronic devices like transistors, memory chips, and displays using nanomaterials like carbon nanotubes and quantum dots.</li><li><strong>Energy and Environment:</strong> Improving solar cell efficiency using nanomaterials, developing better batteries and supercapacitors with higher energy density, water purification using nanofilters, and self-cleaning surfaces using photocatalytic nanoparticles like TiO₂.</li></ol><p>Other applications include cosmetics, textiles, food packaging, and aerospace materials.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "The equation of a particle vibrating in SHM is y = 5 sin (2π/5)(10t + x), where y and x are in m and t is in s. Find out the frequency and amplitude of vibration.",
+            "answer": "<p>Given: y = 5 sin (2π/5)(10t + x)</p><p>First, simplify: (2π/5)(10t + x) = (2π/5) × 10t + (2π/5) × x = 4πt + (2π/5)x</p><p>So, y = 5 sin (4πt + (2π/5)x)</p><p>Comparing with standard SHM equation y = A sin (ωt + φ), where ω is angular frequency and A is amplitude:</p><p>Amplitude A = 5 m</p><p>Angular frequency ω = 4π rad/s</p><p>Frequency f = ω/2π = 4π/2π = 2 Hz</p><p>Thus, frequency = 2 Hz and amplitude = 5 m.</p><p><strong>Note:</strong> The equation given appears to be a wave equation (with both t and x), but for a particle at a fixed x, it represents SHM with the above parameters.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Write down a few differences between Oscillatory and Periodic motion.",
+            "answer": "<table><tr><th>Oscillatory Motion</th><th>Periodic Motion</th></tr><tr><td>Motion that repeats itself about a mean position over the same path regularly.</td><td>Motion that repeats itself after a fixed interval of time (time period).</td></tr><tr><td>All oscillatory motions are periodic (if no damping).</td><td>All periodic motions are not necessarily oscillatory.</td></tr><tr><td>Involves to-and-fro movement about an equilibrium position.</td><td>May not involve to-and-fro movement; can be circular or any repetitive motion.</td></tr><tr><td>Examples: Pendulum swinging, vibration of a tuning fork, spring-mass system.</td><td>Examples: Earth revolving around the sun (periodic but not oscillatory), motion of hands of a clock, uniform circular motion.</td></tr><tr><td>Restoring force brings the particle back to mean position.</td><td>No restoring force necessarily involved.</td></tr></table>",
+            "marks": 3,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What is ultrasonic wave? Write down the properties and applications of it.",
+            "answer": "<p><strong>Ultrasonic waves:</strong> These are sound waves with frequencies higher than the upper audible limit of human hearing, typically above 20,000 Hz (20 kHz). They are mechanical waves that require a material medium for propagation.</p><p><strong>Properties of ultrasonic waves:</strong></p><ol><li>They have very high frequency and short wavelength.</li><li>They can travel over long distances without much attenuation.</li><li>They have high energy content and can produce intense heating effects.</li><li>They can be focused into narrow beams like light waves.</li><li>They exhibit properties like reflection, refraction, diffraction, and absorption.</li><li>They can produce cavitation in liquids (formation and collapse of bubbles).</li></ol><p><strong>Applications of ultrasonic waves:</strong></p><ol><li><strong>Medical:</strong> Ultrasonography (imaging), physiotherapy (deep heating), lithotripsy (breaking kidney stones), echocardiography.</li><li><strong>Industrial:</strong> Non-destructive testing (NDT) to detect flaws in materials, cleaning delicate objects, drilling and cutting hard materials, welding plastics and metals.</li><li><strong>Underwater:</strong> SONAR (Sound Navigation and Ranging) for depth measurement, fish finding, and submarine detection.</li><li><strong>Scientific:</strong> Studying elastic properties of materials, determining thickness of objects, flow measurement (Doppler flowmeters).</li></ol>",
+            "marks": 4,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "A lens is composed of different layers made of two different materials. A point object is placed on the axis. How many images of the object will be formed and why?",
+            "answer": "<p>If a lens is composed of different layers made of two different materials, <strong>two images</strong> of the object will be formed.</p><p><strong>Reason:</strong> Different materials have different refractive indices. Each layer of the lens will have its own focal length because focal length depends on the refractive index of the material (from lens maker's formula, 1/f ∝ (μ - 1)). When light passes through the lens, each layer refracts light according to its own refractive index, forming separate images at different positions along the axis. The two materials act as two different lenses combined, producing two distinct images. This is similar to how a lens with different refractive indices for different colors produces chromatic aberration (multiple images), but here it's due to different materials in layers rather than different wavelengths.</p>",
+            "marks": 3,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Calculate the speed of light in a medium whose critical angle is 45°.",
+            "answer": "<p>Given: Critical angle θ_c = 45°.</p><p>For a medium-air interface, the refractive index of the medium (n) is related to critical angle by:</p><p>$$\\sin \\theta_c = \\frac{1}{n}$$</p><p>$$n = \\frac{1}{\\sin 45°} = \\frac{1}{0.7071} = 1.414$$</p><p>The refractive index n = c/v, where c is speed of light in vacuum (3 × 10⁸ m/s) and v is speed in the medium.</p><p>$$v = \\frac{c}{n} = \\frac{3 \\times 10^8}{1.414} = 2.12 \\times 10^8 \\text{ m/s}$$</p><p>The speed of light in the medium is 2.12 × 10⁸ m/s.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw a ray diagram to show image formation when the convex lens produces a real, inverted and magnified image of the object.",
+            "answer": "<p><em>Refer to ray diagram in textbook/online. Students should draw this in their answer scripts as per the note.</em></p><p><strong>Ray diagram description for real, inverted, and magnified image by convex lens:</strong></p><ul><li><strong>Position of object:</strong> The object is placed between F and 2F (i.e., between focus and center of curvature) on the principal axis.</li><li><strong>Ray 1:</strong> A ray parallel to the principal axis passes through the focus (F) on the other side after refraction.</li><li><strong>Ray 2:</strong> A ray passing through the optical center goes straight without deviation.</li><li><strong>Ray 3:</strong> A ray passing through the focus on the object side emerges parallel to the principal axis after refraction (optional).</li><li><strong>Image formation:</strong> The refracted rays intersect on the other side of the lens beyond 2F, forming a real, inverted, and magnified image.</li></ul><p><strong>Characteristics of image:</strong> Real (can be obtained on screen), inverted (upside down), magnified (larger than object), formed beyond 2F on the opposite side.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.d",
+            "type": "saq",
+            "group": "B",
+            "question": "Write two features to distinguish between the interference patterns in Young's double slit experiment with the diffraction pattern obtained due to a single slit.",
+            "answer": "<table><tr><th>Interference Pattern (Double Slit)</th><th>Diffraction Pattern (Single Slit)</th></tr><tr><td><strong>1. Fringe width:</strong> All fringes (bright and dark) have the same width. Intensity of all bright fringes is nearly equal (except for modulation due to diffraction).</td><td><strong>1. Fringe width:</strong> The central maximum is twice as wide as other secondary maxima. The intensity of secondary maxima decreases rapidly as we move away from the center.</td></tr><tr><td><strong>2. Intensity distribution:</strong> Intensity varies as cos²θ, with all bright fringes having almost equal intensity (in ideal case).</td><td><strong>2. Intensity distribution:</strong> Intensity varies as (sin β/β)², with a very bright central maximum and much weaker secondary maxima.</td></tr><tr><td><strong>3. Number of slits:</strong> Requires two coherent sources (two slits).</td><td><strong>3. Number of slits:</strong> Requires only one slit.</td></tr><tr><td><strong>4. Cause:</strong> Due to superposition of waves from two different slits.</td><td><strong>4. Cause:</strong> Due to superposition of waves from different parts of the same slit (bending of waves around edges).</td></tr></table><p>(Any two distinguishing features can be given.)</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "4.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Compare conductor, semiconductor and insulator in terms of energy band diagram.",
+            "answer": "<p><strong>Comparison based on energy band diagrams:</strong></p><table><tr><th>Feature</th><th>Conductor</th><th>Semiconductor</th><th>Insulator</th></tr><tr><td><strong>Band structure</strong></td><td>Valence band and conduction band overlap, or conduction band is partially filled. No forbidden gap.</td><td>Valence band and conduction band are separated by a small forbidden gap (band gap) of about 1 eV.</td><td>Valence band and conduction band are separated by a large forbidden gap (band gap > 3 eV).</td></tr><tr><td><strong>Energy gap (E_g)</strong></td><td>Zero or negligible (overlapping bands).</td><td>Small (≈ 0.7 eV for Ge, ≈ 1.1 eV for Si).</td><td>Large (≈ 5-10 eV for materials like diamond, glass).</td></tr><tr><td><strong>Conduction at 0 K</strong></td><td>Conducts even at 0 K due to overlapping/partially filled bands.</td><td>Behaves as insulator at 0 K (no free electrons).</td><td>Insulator at all temperatures (electrons tightly bound).</td></tr><tr><td><strong>Effect of temperature</strong></td><td>Conductivity decreases slightly with temperature (resistance increases).</td><td>Conductivity increases with temperature (more electrons jump to conduction band).</td><td>Conductivity remains very low even at high temperatures.</td></tr><tr><td><strong>Electron availability</strong></td><td>Plenty of free electrons available for conduction.</td><td>Few electrons available at room temperature; increases with doping/temperature.</td><td>Practically no free electrons available.</td></tr></table><p><em>Refer to energy band diagrams in textbook.</em></p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "4.b",
+            "type": "laq",
+            "group": "B",
+            "question": "A student wants to use two p-n junction diodes to convert alternating current into direct current. Draw the labelled circuit diagram he/she would use and explain it.",
+            "answer": "<h5>Full Wave Rectifier using Two Diodes</h5><p><strong>Circuit Diagram (Center-Tap Full Wave Rectifier):</strong></p><p><em>Refer to labeled diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p><strong>Components:</strong></p><ul><li>A center-tapped transformer with primary and secondary coils. The center tap is connected to ground/return path.</li><li>Two p-n junction diodes, D₁ and D₂.</li><li>A load resistor R_L.</li></ul><p><strong>Connections:</strong></p><ul><li>The anode of D₁ is connected to one end of the secondary winding (A).</li><li>The anode of D₂ is connected to the other end of the secondary winding (B).</li><li>The cathodes of both diodes are connected together at point X.</li><li>The load resistor R_L is connected between point X and the center tap (C) of the secondary.</li><li>The AC input is applied across the primary winding.</li></ul><p><strong>Working Principle:</strong></p><p><strong>During positive half-cycle of AC input:</strong> Terminal A becomes positive with respect to center tap C, and terminal B becomes negative. Diode D₁ is forward-biased (anode positive, cathode negative through R_L) and conducts. Diode D₂ is reverse-biased and does not conduct. Current flows from A → D₁ → X → R_L → C (center tap). Current through R_L flows from X to C (top to bottom), producing a positive voltage across R_L.</p><p><strong>During negative half-cycle of AC input:</strong> Terminal A becomes negative and terminal B becomes positive with respect to center tap C. Now diode D₂ is forward-biased and conducts, while D₁ is reverse-biased. Current flows from B → D₂ → X → R_L → C. Note that current through R_L still flows in the same direction (X to C, top to bottom).</p><p>Thus, for both half-cycles, current flows through R_L in the same direction, producing a pulsating DC output across the load. This process converts AC to DC (rectification).</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "4.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Draw the typical input and output characteristics of an n-p-n transistor in CE configuration. Show how these characteristics can be used to determine (i) the input resistance (r_i), and (ii) current amplification factor (β).",
+            "answer": "<h5>Characteristics of NPN Transistor in Common Emitter (CE) Configuration</h5><p><em>Refer to characteristic curves in textbook/online. Students should draw these in their answer scripts.</em></p><p><strong>1. Input Characteristics:</strong></p><p>Input characteristics are graphs showing the variation of base current (I_B) versus base-emitter voltage (V_BE) at constant collector-emitter voltage (V_CE). They resemble a forward-biased diode characteristic.</p><p><strong>Determination of input resistance (r_i):</strong></p><p>Input resistance is defined as the ratio of change in base-emitter voltage to the corresponding change in base current at constant V_CE.</p><p>$$r_i = \\left( \\frac{\\Delta V_{BE}}{\\Delta I_B} \\right)_{V_{CE} = \\text{constant}}$$</p><p>From the input characteristic curve, for a fixed V_CE, choose two points on the curve, find ΔV_BE and corresponding ΔI_B, and calculate r_i. It is the reciprocal of the slope of the input characteristic at the operating point.</p><p><strong>2. Output Characteristics:</strong></p><p>Output characteristics are graphs showing the variation of collector current (I_C) versus collector-emitter voltage (V_CE) for different fixed values of base current (I_B). They have three regions: active, saturation, and cut-off.</p><p><strong>Determination of current amplification factor (β):</strong></p><p>The current amplification factor (β) or h_fe is defined as the ratio of change in collector current to the corresponding change in base current at constant V_CE.</p><p>$$\\beta = \\left( \\frac{\\Delta I_C}{\\Delta I_B} \\right)_{V_{CE} = \\text{constant}}$$</p><p>From the output characteristics, for a fixed V_CE (in the active region), select two curves with different I_B values (I_B₁ and I_B₂). Note the corresponding I_C values (I_C₁ and I_C₂). Then β = (I_C₂ - I_C₁)/(I_B₂ - I_B₁) at constant V_CE.</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "5.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Lenz's law. Does it obey the principle of conservation of energy?",
+            "answer": "<p><strong>Lenz's Law:</strong> It states that the direction of induced emf (or induced current) in a circuit is always such that it opposes the change in magnetic flux that produces it.</p><p>Mathematically, this is represented by the negative sign in Faraday's law: ε = -dφ/dt.</p><p><strong>Conservation of Energy:</strong> Yes, Lenz's law is a direct consequence of the law of conservation of energy. The opposition to the change in flux requires that work be done against the induced effects. This work done is converted into electrical energy. If the induced current aided the change instead of opposing it, we would get energy without any input work, violating energy conservation. For example, when we push a magnet into a coil, the induced current creates a magnetic field that repels the magnet, so we have to do work against this repulsion. This work appears as electrical energy in the coil. Thus, Lenz's law ensures energy conservation.</p>",
+            "marks": 4,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "5.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Deduce an expression for the magnitude of the magnetic field at the centre of a circular coil of N turns.",
+            "answer": "<p><strong>Magnetic field at the centre of a circular coil of N turns:</strong></p><p>Consider a circular coil of radius R carrying a current I. Let the coil have N closely wound turns.</p><p>Consider a small current element of length dl on the coil. According to Biot-Savart law, the magnetic field dB at the centre O due to this element is:</p><p>$$dB = \\frac{\\mu_0}{4\\pi} \\frac{I \\, dl \\, \\sin \\theta}{r^2}$$</p><p>Here, the angle between dl (tangential) and the radius vector r (from element to centre) is 90°, so sin 90° = 1, and r = R.</p><p>$$dB = \\frac{\\mu_0}{4\\pi} \\frac{I \\, dl}{R^2}$$</p><p>The direction of dB is perpendicular to the plane of the coil (by right-hand rule). All such elements contribute in the same direction.</p><p>The total field B due to one turn is obtained by integrating over the entire circumference:</p><p>$$B_{\\text{one turn}} = \\int dB = \\int \\frac{\\mu_0}{4\\pi} \\frac{I}{R^2} dl = \\frac{\\mu_0 I}{4\\pi R^2} \\int dl$$</p><p>$$\\int dl = 2\\pi R \\text{ (circumference)}$$</p><p>$$B_{\\text{one turn}} = \\frac{\\mu_0 I}{4\\pi R^2} \\times 2\\pi R = \\frac{\\mu_0 I}{2R}$$</p><p>For a coil with N turns, each turn contributes equally, and the fields add up. Therefore, the magnetic field at the centre is:</p><p>$$\\boxed{B = \\frac{\\mu_0 N I}{2R}}$$</p><p>The direction is perpendicular to the plane of the coil, given by the right-hand thumb rule.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "5.c",
+            "type": "saq",
+            "group": "B",
+            "question": "A straight wire carrying current of 12A is bent into a semi-circular arc of radius 0.02m. Find the magnitude of the magnetic field at the centre of the arc.",
+            "answer": "<p>Given: Current I = 12 A, radius R = 0.02 m, the wire is bent into a semi-circular arc.</p><p>For a circular arc subtending an angle θ at the centre, the magnetic field at the centre is given by:</p><p>$$B = \\frac{\\mu_0 I}{4\\pi R} \\times \\theta$$</p><p>where θ is in radians.</p><p>For a semi-circular arc, θ = π radians.</p><p>$$B = \\frac{\\mu_0 I}{4\\pi R} \\times \\pi = \\frac{\\mu_0 I}{4R}$$</p><p>Substituting μ₀ = 4π × 10⁻⁷ Tm/A:</p><p>$$B = \\frac{4\\pi \\times 10^{-7} \\times 12}{4 \\times 0.02}$$</p><p>$$B = \\frac{4\\pi \\times 10^{-7} \\times 12}{0.08} = \\frac{48\\pi \\times 10^{-7}}{8 \\times 10^{-2}}$$</p><p>$$B = 6\\pi \\times 10^{-5} \\text{ T}$$</p><p>$$B = 6 \\times 3.14 \\times 10^{-5} = 18.84 \\times 10^{-5} = 1.884 \\times 10^{-4} \\text{ T}$$</p><p>The magnetic field at the centre is 1.884 × 10⁻⁴ T.</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Biot-Savart law and express this law in the vector form.",
+            "answer": "<p><strong>Biot-Savart Law:</strong> It states that the magnetic field dB produced at a point due to a small current element carrying current I is:</p><ul><li>Directly proportional to the current I.</li><li>Directly proportional to the length dl of the element.</li><li>Directly proportional to the sine of the angle θ between the element and the line joining the element to the point.</li><li>Inversely proportional to the square of the distance r from the element to the point.</li></ul><p><strong>Vector form:</strong></p><p>$$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I \\, d\\vec{l} \\times \\vec{r}}{r^3}$$</p><p>or equivalently,</p><p>$$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I \\, d\\vec{l} \\times \\hat{r}}{r^2}$$</p><p>where:</p><ul><li>$d\\vec{B}$ is the magnetic field vector at the point,</li><li>$\\mu_0$ is the permeability of free space ($4\\pi \\times 10^{-7}$ Tm/A),</li><li>$I$ is the current,</li><li>$d\\vec{l}$ is the length vector of the current element in the direction of current,</li><li>$\\vec{r}$ is the position vector from the element to the point,</li><li>$\\hat{r}$ is the unit vector along $\\vec{r}$,</li><li>$r$ is the magnitude of $\\vec{r}$.</li></ul><p>The direction of $d\\vec{B}$ is perpendicular to both $d\\vec{l}$ and $\\vec{r}$, given by the right-hand rule.</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.b",
+            "type": "saq",
+            "group": "B",
+            "question": "An electron travelling with velocity 30 cm s⁻¹ enters a region of uniform magnetic field 0.2T acting perpendicular to its paths. Calculate the magnitude of force on the electron. (charge of electron = 1.6 × 10⁻¹⁹ C)",
+            "answer": "<p>Given: Velocity v = 30 cm/s = 0.3 m/s, Magnetic field B = 0.2 T, Charge of electron q = 1.6 × 10⁻¹⁹ C. The magnetic field is perpendicular to the velocity, so θ = 90°.</p><p>The magnetic force on a moving charge is given by:</p><p>$$F = qvB \\sin \\theta$$</p><p>Since sin 90° = 1:</p><p>$$F = (1.6 \\times 10^{-19}) \\times 0.3 \\times 0.2$$</p><p>$$F = 1.6 \\times 10^{-19} \\times 0.06 = 0.096 \\times 10^{-19}$$</p><p>$$F = 9.6 \\times 10^{-21} \\text{ N}$$</p><p>The magnitude of force on the electron is $9.6 \\times 10^{-21}$ N.</p><p>The direction of force is perpendicular to both velocity and magnetic field (given by Fleming's left-hand rule or cross product).</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.c",
+            "type": "saq",
+            "group": "B",
+            "question": "State and explain Lenz's law.",
+            "answer": "<p><strong>Lenz's Law:</strong> It states that the direction of induced electromotive force (emf) or induced current in a circuit is always such that it opposes the change in magnetic flux that produces it.</p><p><strong>Explanation:</strong> When the magnetic flux linked with a circuit changes, an emf is induced. The induced current flows in such a direction that it creates its own magnetic field that opposes the original change in flux. If the flux through the circuit increases, the induced current flows in a direction to produce a magnetic field that opposes this increase. If the flux decreases, the induced current flows to produce a magnetic field that opposes the decrease.</p><p>Mathematically, this is represented by the negative sign in Faraday's law: ε = -dφ/dt.</p><p><strong>Example:</strong> When a north pole of a magnet is moved towards a coil, the flux through the coil increases. The induced current flows in such a direction that the end of the coil facing the magnet becomes a north pole, repelling the approaching magnet. This opposes the motion of the magnet.</p><p>Lenz's law is a consequence of the law of conservation of energy.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.d",
+            "type": "saq",
+            "group": "B",
+            "question": "A galvanometer of resistance 100Ω gives full scale deflection when a current of 500μA passes through it. How can this be converted to a voltmeter reading up to 5V? Draw necessary circuit diagram.",
+            "answer": "<p><strong>Given:</strong> Galvanometer resistance G = 100 Ω, Full-scale deflection current I_g = 500 μA = 500 × 10⁻⁶ A = 5 × 10⁻⁴ A. Desired voltmeter range V = 5 V.</p><p><strong>Principle:</strong> To convert a galvanometer into a voltmeter, a high resistance R is connected in series with the galvanometer. This series resistance limits the current to I_g when the maximum voltage V is applied across the combination.</p><p><strong>Calculation of series resistance R:</strong></p><p>Total resistance of voltmeter = R + G</p><p>By Ohm's law: V = I_g (R + G)</p><p>R = V/I_g - G</p><p>R = 5/(5 × 10⁻⁴) - 100</p><p>R = 5/(0.0005) - 100 = 10000 - 100 = 9900 Ω</p><p>R = 9.9 kΩ</p><p><strong>Circuit Diagram:</strong></p><p><em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p>The diagram should show:</p><ul><li>The galvanometer (coil with pointer) with internal resistance G.</li><li>A high resistance R (9900 Ω) connected in series with the galvanometer.</li><li>The series combination connected across the two terminals (positive and negative) where the voltage is to be measured.</li><li>The terminals are labeled for 0-5 V measurement.</li></ul><p><strong>Explanation:</strong> By connecting a 9900 Ω resistor in series, the combination becomes a voltmeter with a range of 0-5 V. When 5 V is applied, the current through the galvanometer is exactly 500 μA, giving full-scale deflection. For any voltage less than 5 V, the deflection is proportional.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the differences between intrinsic and extrinsic semiconductors?",
+            "answer": "<table><tr><th>Intrinsic Semiconductor</th><th>Extrinsic Semiconductor</th></tr><tr><td>It is a pure semiconductor with no impurities added.</td><td>It is formed by doping a pure semiconductor with specific impurity atoms.</td></tr><tr><td>The number of free electrons equals the number of holes (n_e = n_h).</td><td>The number of electrons and holes are unequal. Either electrons (n-type) or holes (p-type) are majority carriers.</td></tr><tr><td>Conductivity is low and depends mainly on temperature.</td><td>Conductivity is higher and depends on the doping level as well as temperature.</td></tr><tr><td>Fermi level lies exactly in the middle of the energy band gap.</td><td>Fermi level shifts: near conduction band for n-type, near valence band for p-type.</td></tr><tr><td>Examples: Pure Silicon (Si), Pure Germanium (Ge).</td><td>Examples: Si doped with Phosphorus (n-type), Si doped with Boron (p-type).</td></tr><tr><td>Electron and hole concentrations are equal and relatively low.</td><td>Majority carrier concentration is much higher than minority carriers.</td></tr></table>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "7.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Calculate the tube voltage required to be applied to an X-ray tube to get minimum wavelength 1Å. (Planck's constant h = 6.626 × 10⁻³⁴ J·s)",
+            "answer": "<p>Given: Minimum wavelength λ_min = 1 Å = 1 × 10⁻¹⁰ m, h = 6.626 × 10⁻³⁴ J·s, c = 3 × 10⁸ m/s, e = 1.6 × 10⁻¹⁹ C.</p><p>The minimum wavelength in X-rays is given by the Duane-Hunt law:</p><p>$$\\lambda_{min} = \\frac{hc}{eV}$$</p><p>where V is the tube voltage (accelerating potential).</p><p>Rearranging for V:</p><p>$$V = \\frac{hc}{e \\lambda_{min}}$$</p><p>Substituting the values:</p><p>$$V = \\frac{(6.626 \\times 10^{-34}) \\times (3 \\times 10^8)}{(1.6 \\times 10^{-19}) \\times (1 \\times 10^{-10})}$$</p><p>$$V = \\frac{19.878 \\times 10^{-26}}{1.6 \\times 10^{-29}} = \\frac{19.878}{1.6} \\times 10^{3}$$</p><p>$$V = 12.42375 \\times 10^3 = 12423.75 \\text{ V}$$</p><p>$$V \\approx 12.42 \\text{ kV}$$</p><p>The required tube voltage is approximately 12.42 kV.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "7.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Define population inversion. Discuss some method to achieve population inversion.",
+            "answer": "<p><strong>Population Inversion:</strong> Population inversion is a non-equilibrium condition in which the number of atoms in a higher energy state (excited state) is greater than the number in a lower energy state (ground state). In normal thermal equilibrium, lower states have more atoms than higher states (Boltzmann distribution). For laser action, population inversion is necessary so that stimulated emission dominates over absorption.</p><p><strong>Methods to achieve population inversion (Pumping mechanisms):</strong></p><ol><li><strong>Optical pumping:</strong> Intense light from flash lamps, lasers, or other sources is used to excite atoms from lower to higher energy levels. Example: Ruby laser uses a xenon flash lamp to excite chromium ions in ruby crystal.</li><li><strong>Electrical discharge pumping:</strong> Electric current or discharge is passed through a gas or semiconductor, causing collisions between electrons and atoms/molecules, exciting them to higher states. Example: He-Ne laser, CO₂ laser, semiconductor lasers (injection current).</li><li><strong>Chemical pumping:</strong> Energy released from exothermic chemical reactions is used to excite atoms or molecules to higher states. Example: Chemical lasers like Hydrogen Fluoride (HF) laser.</li><li><strong>Thermal pumping:</strong> Heating the medium to high temperatures to populate higher energy levels (less common).</li><li><strong>Inelastic atom-atom collisions:</strong> In gas lasers like He-Ne, excited helium atoms collide with neon atoms, transferring energy and creating population inversion in neon.</li></ol><p>In all methods, an external energy source (pump) is used to create the non-equilibrium condition of population inversion.</p>",
+            "marks": 4,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the curve showing the variation of intensity with wavelength of X-rays and mark cut off wavelength, continuous & characteristic X-rays. Write down two important applications of X-rays.",
+            "answer": "<p><strong>X-ray Spectrum Curve:</strong></p><p><em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p>The intensity vs wavelength curve for X-rays shows:</p><ul><li><strong>Continuous X-ray spectrum (Bremsstrahlung):</strong> A smooth curve starting from a minimum wavelength (cut-off wavelength) and increasing to a maximum, then gradually decreasing. This is due to deceleration of electrons by the target nuclei.</li><li><strong>Cut-off wavelength (λ_min):</strong> The minimum wavelength below which no X-rays are produced. It depends on the tube voltage (λ_min = hc/eV).</li><li><strong>Characteristic X-rays:</strong> Sharp peaks (lines) superimposed on the continuous spectrum at specific wavelengths. These are due to electronic transitions between inner shells of target atoms (Kα, Kβ, Lα, etc.) and are characteristic of the target material.</li></ul><p><strong>Two important applications of X-rays:</strong></p><ol><li><strong>Medical Diagnosis:</strong> X-ray radiography for imaging bones (fractures), detecting tumors, dental imaging, CT scans, and mammography. X-rays penetrate soft tissues but are absorbed by denser materials like bone.</li><li><strong>Industrial Applications:</strong> Non-destructive testing (NDT) to detect flaws, cracks, or voids in metal castings, welded joints, and aircraft components. X-ray diffraction for studying crystal structures and material characterization.</li></ol><p>Other applications: Cancer therapy (radiotherapy), security scanning (airport baggage), scientific research (X-ray crystallography).</p>",
+            "marks": 5,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "8.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the energy level diagram of He-Ne Laser.",
+            "answer": "<p><strong>Energy Level Diagram of He-Ne Laser:</strong></p><p><em>Refer to diagram in textbook/online. Students should draw this in their answer scripts.</em></p><p>The He-Ne laser uses a mixture of helium and neon gases. The pumping is done by electrical discharge.</p><p><strong>Key features of the energy level diagram:</strong></p><ul><li><strong>Helium levels:</strong> Ground state (1s¹S₀), Metastable states (2³S and 2¹S) at around 19.8 eV and 20.6 eV above ground state. These are excited by electron collisions in the discharge.</li><li><strong>Neon levels:</strong> Ground state, and several excited states including 2s, 3s, 2p, 3p, etc. The laser transitions occur in neon.</li><li><strong>Energy transfer:</strong> Excited helium atoms (metastable) collide with ground state neon atoms, transferring energy and selectively populating the 2s and 3s levels of neon (which closely match helium's metastable energies). This creates population inversion between these upper levels (2s, 3s) and lower levels (2p, 3p).</li><li><strong>Laser transitions:</strong> The most common is the 632.8 nm (red) transition from 3s to 2p level. Other transitions include 1.15 μm (infrared) and 3.39 μm (infrared).</li><li><strong>Decay from lower levels:</strong> Atoms in 2p and 3p levels quickly decay to 1s levels by spontaneous emission, and then to ground state by collisions with tube walls, maintaining population inversion.</li></ul><p>The diagram should show energy levels on vertical axis, with arrows indicating excitation (by electron collision), energy transfer (collisions), laser transitions, and rapid decay.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "8.c",
+            "type": "saq",
+            "group": "B",
+            "question": "State some advantages of optical fibre over conducting wire.",
+            "answer": "<p><strong>Advantages of optical fibre over conventional conducting wires (copper cables):</strong></p><ol><li><strong>Higher bandwidth and data transmission capacity:</strong> Optical fibres can carry much more information (higher data rates) than copper wires due to higher frequency of light.</li><li><strong>Low attenuation and signal degradation:</strong> Signal loss in optical fibres is very low (≈ 0.2 dB/km) compared to copper wires, allowing transmission over longer distances without repeaters.</li><li><strong>Immunity to electromagnetic interference (EMI):</strong> Optical fibres are dielectric (non-metallic), so they are not affected by electromagnetic interference, radio frequency interference, or crosstalk. This ensures secure and noise-free transmission.</li><li><strong>Light weight and small size:</strong> Optical fibres are thinner, lighter, and more flexible than copper cables, making them easier to install and handle.</li><li><strong>Electrical isolation:</strong> No risk of short circuits, sparks, or ground loops, making them safe in hazardous environments (e.g., chemical plants, explosive areas).</li><li><strong>Security:</strong> Tapping into optical fibres is difficult and detectable, providing better data security.</li><li><strong>Corrosion resistance:</strong> Glass fibres are resistant to corrosion and environmental factors.</li></ol><p>These advantages make optical fibres the preferred choice for modern telecommunications, internet backbone, and networking.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        }
+    ]
+}

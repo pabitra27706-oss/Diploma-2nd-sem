@@ -1,0 +1,715 @@
+{
+    "exam": {
+        "title": "Applied Physics-II 2021 Question Paper",
+        "year": 2021,
+        "timeAllowed": "1.5 Hours",
+        "fullMarks": 60,
+        "instructions": "Answer to Question No.1 is compulsory and answer any two questions from the rest."
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "If the length of a conducting wire be made half and the area of cross section be made double, the resistance becomes",
+            "options": [
+                "four times",
+                "two times",
+                "halved",
+                "one-fourth"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>One-fourth</strong> is correct. Resistance is given by $R = \\rho \\frac{l}{A}$. If new length $l' = l/2$ and new area $A' = 2A$, then new resistance $R' = \\rho \\frac{l/2}{2A} = \\rho \\frac{l}{4A} = \\frac{R}{4}$.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "LASER is the acronym for",
+            "options": [
+                "Light Amplification by Stimulated Absorption of Radi",
+                "Light Amplification by Stimulated Emission of Radi",
+                "Light Amplification by Spontaneous Emission of Radi",
+                "None of these"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Light Amplification by Stimulated Emission of Radiation</strong> is correct. LASER works on the principle of stimulated emission of radiation.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "X- rays are deflected by",
+            "options": [
+                "electric field",
+                "magnetic field",
+                "both magnetic field and electric field",
+                "neither electric field nor magnetic field"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Neither electric field nor magnetic field</strong> is correct. X-rays are electromagnetic waves and have no charge, hence they are not deflected by electric or magnetic fields.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "The specific resistance of a copper conductor depends on",
+            "options": [
+                "Length",
+                "area of cross-section",
+                "temperature",
+                "all of these"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Temperature</strong> is correct. Specific resistance or resistivity ($\\rho$) is a material property. It depends on the nature of the material and temperature, not on its dimensions (length or area).</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "A moving charge produces",
+            "options": [
+                "an electric field only",
+                "a magnetic field only",
+                "Both electric and magnetic field",
+                "either electric field or magnetic field"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Both electric and magnetic field</strong> is correct. A stationary charge produces only an electric field. A moving charge (current) produces both an electric field and a magnetic field.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "If the forward bias voltage across a p- n junction be increased, the width of the depletion region",
+            "options": [
+                "decrease",
+                "increase",
+                "remains same",
+                "increases proportionally to the applied voltage"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Decrease</strong> is correct. In forward bias, the external voltage opposes the barrier potential, pushing charges into the depletion region, which reduces its width.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The SI unit of resistivity is",
+            "options": [
+                "ohm.m-1",
+                "volt.m-1",
+                "volt.m",
+                "ohm.m"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>ohm.m</strong> is correct. Resistivity $\\rho$ is given by $\\rho = R \\frac{A}{l}$. Its SI unit is $\\Omega \\cdot \\text{m}$.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "In germanium crystal, the energy band gap is",
+            "options": [
+                "0.068 eV",
+                "6.8 eV",
+                "68 eV",
+                "0.68 eV"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>0.68 eV</strong> is correct. Germanium is a semiconductor with a band gap of approximately 0.7 eV. 0.68 eV is the closest value among the options.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "The output of a full wave rectifier is",
+            "options": [
+                "an AC voltage",
+                "a constant DC voltage",
+                "zero",
+                "a pulsating unidirectional voltage"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>A pulsating unidirectional voltage</strong> is correct. A full-wave rectifier converts both halves of the AC cycle to the same direction, producing a pulsating DC output which is not constant and requires filtering.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "The power of two lenses is +5D and -2.5D. The focal length of the two lenses in contact will be",
+            "options": [
+                "+40cm",
+                "-40 cm",
+                "+40m",
+                "none of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>+40cm</strong> is correct. Combined power, P = P1 + P2 = 5 + (-2.5) = +2.5 D. Focal length, $f = 1/P = 1/2.5 = 0.4 \\text{ m} = +40 \\text{ cm}$.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "The SI unit of magnetic flux is",
+            "options": [
+                "weber",
+                "gauss",
+                "oersted",
+                "none of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Weber (Wb)</strong> is correct. Magnetic flux ($\\Phi = BA$) has the SI unit weber. 1 Wb = 1 T m².</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The phase difference between any two points situated on a wave front is",
+            "options": [
+                "π",
+                "2π",
+                "0",
+                "π/2"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>0</strong> is correct. A wavefront is defined as a surface of constant phase. All points on a wavefront oscillate in the same phase, so the phase difference is zero.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If the potential difference applied to an X- ray tube be doubled, the cut off (minimum) wavelength",
+            "options": [
+                "becomes halved",
+                "becomes doubled",
+                "becomes four times",
+                "remains same"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Becomes halved</strong> is correct. The cut-off wavelength ($\\lambda_{min}$) is given by $\\lambda_{min} = \\frac{hc}{eV}$. If V is doubled, $\\lambda_{min}$ becomes half.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Two resistances of 6Ω and 8Ω are connected in parallel and the combination is connected across a 24 volt battery. The total power consumed is",
+            "options": [
+                "48 watt",
+                "84 watt",
+                "168 watt",
+                "36 watt"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>168 watt</strong> is correct. Equivalent resistance, $R_p = \\frac{6 \\times 8}{6+8} = \\frac{48}{14} = \\frac{24}{7} \\Omega$. Power, $P = \\frac{V^2}{R_p} = 24^2 \\times \\frac{7}{24} = 24 \\times 7 = 168 \\text{ W}$.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "For obtaining a p- type semiconductor, doping is to be done with impurity material which is",
+            "options": [
+                "tetravalent",
+                "pentavalent",
+                "trivalent",
+                "none of these"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Trivalent</strong> is correct. Trivalent impurities (like Boron, Aluminium) have 3 valence electrons. They create 'holes' (positive charge carriers) in the semiconductor, making it p-type.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1.xvi",
+            "type": "mcq",
+            "group": "A",
+            "question": "The lasing action is based on",
+            "options": [
+                "Stimulated emission",
+                "Spontaneous emission",
+                "absorption",
+                "none of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Stimulated emission</strong> is correct. LASER (Light Amplification by Stimulated Emission of Radiation) works on the principle of stimulated emission, where an incoming photon triggers an excited atom to emit an identical photon.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.xvii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The induced emf in a 1 millihenry inductor in which the current changes from 5A to 3A in $10^{- 3}$ s is",
+            "options": [
+                "$2\\times 10^{-6}\\mathrm{V}$",
+                "$8\\times 10^{-6}\\mathrm{V}$",
+                "2V",
+                "8V"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>2V</strong> is correct. Induced emf, $\\epsilon = L \\frac{dI}{dt} = (1 \\times 10^{-3}) \\times \\frac{|3-5|}{10^{-3}} = 10^{-3} \\times \\frac{2}{10^{-3}} = 2 \\text{ V}$.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.xviii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The focal length of a convex lens is maximum for the colour of light",
+            "options": [
+                "blue",
+                "yellow",
+                "green",
+                "red"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Red</strong> is correct. Due to dispersion, the refractive index of lens material is minimum for red light and maximum for violet light. Since $1/f \\propto (\\mu-1)$, focal length is maximum for red light.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.xix",
+            "type": "mcq",
+            "group": "A",
+            "question": "In the interference fringe, if width of dark band is $\\beta_{1}$ and that of the bright band is $\\beta_{2}$ , then",
+            "options": [
+                "$2\\beta_{1} = \\beta_{2}$",
+                "$2\\beta_{2} = \\beta_{1}$",
+                "$\\beta_{1} = \\beta_{2}$",
+                "$\\beta_{1} + 3\\beta_{2} = 1$"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>$\\beta_{1} = \\beta_{2}$</strong> is correct. In an interference pattern, all fringes (bright and dark) have the same width. The fringe width $\\beta = \\frac{\\lambda D}{d}$.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.xx",
+            "type": "mcq",
+            "group": "A",
+            "question": "If a conductor moves across a magnetic field, the direction of induced emf is obtained from",
+            "options": [
+                "Laplace's law",
+                "Fleming's left hand rule",
+                "Fleming's right hand rule",
+                "none of these"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Fleming's right hand rule</strong> is correct. Fleming's right-hand rule (generator rule) gives the direction of induced current when a conductor moves in a magnetic field.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.xxi",
+            "type": "mcq",
+            "group": "A",
+            "question": "If a lens is surrounded by a medium denser than air, the focal length of the lens",
+            "options": [
+                "decreases",
+                "increases",
+                "remains same",
+                "cannot be determined"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Increases</strong> is correct. Lens maker's formula: $1/f = (\\mu_{lg} - 1)(1/R_1 - 1/R_2)$, where $\\mu_{lg} = \\mu_g/\\mu_l$. If the surrounding medium is denser ($\\mu_l$ increases), $\\mu_{lg}$ decreases, so $1/f$ decreases, and focal length $f$ increases.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.xxii",
+            "type": "mcq",
+            "group": "A",
+            "question": "For destructive interference the path difference of the waves emitted from the two sources is equal to",
+            "options": [
+                "odd multiple of $\\lambda /2$",
+                "even multiple of $\\lambda /2$",
+                "any multiple of $\\lambda /2$",
+                "any other number"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Odd multiple of $\\lambda /2$</strong> is correct. For destructive interference, the waves arrive out of phase by 180°. This corresponds to a path difference of $\\Delta x = (2n+1)\\frac{\\lambda}{2}$, i.e., an odd multiple of $\\lambda/2$.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.xxiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "A source of emf 2 volt sends 0.2 amp current to an external circuit for 5s. The energy used by the source is",
+            "options": [
+                "0.2 joule",
+                "0.4 joule",
+                "4.0 joule",
+                "2.0 joule"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>2.0 joule</strong> is correct. Energy (Work done) by the source is given by $W = VIt = 2 \\times 0.2 \\times 5 = 2 \\text{ J}$.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.xxiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "The intensity of X- rays produced by an X- ray tube can be increased by",
+            "options": [
+                "increasing the tube voltage",
+                "decreasing the tube voltage",
+                "decreasing the filament current",
+                "increasing the filament current"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Increasing the filament current</strong> is correct. Intensity of X-rays depends on the number of electrons striking the target. Increasing the filament current increases the number of electrons (thermionic emission), thus increasing the intensity.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.xxv",
+            "type": "mcq",
+            "group": "A",
+            "question": "In He- Ne laser pumping is done by",
+            "options": [
+                "optical method",
+                "Thermo- chemical reaction",
+                "atom- atom inelastic collision through electrical discharge",
+                "none of these"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Atom- atom inelastic collision through electrical discharge</strong> is correct. In a He-Ne laser, an electrical discharge excites Helium atoms. These excited He atoms then collide inelastically with Neon atoms, transferring energy and populating the upper laser level of Neon. This is electric discharge pumping.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What do you mean by free and damped oscillations?",
+            "answer": "<p><strong>Free oscillations:</strong> When a body vibrates with its natural frequency without any external force or resistive force, it is called free oscillation. Example: A simple pendulum swinging in vacuum. Its amplitude remains constant over time.</p><p><strong>Damped oscillations:</strong> When a body oscillates and its amplitude gradually decreases due to the presence of a resistive force (like friction or air resistance), it is called damped oscillation. Example: A pendulum swinging in air, a tuning fork. The energy is dissipated, causing the amplitude to decay.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.b",
+            "type": "saq",
+            "group": "B",
+            "question": "What are beats? Prove that, the number of beats per second produced by two sources of sound is equal to the difference in the frequencies of the two sources.",
+            "answer": "<p><strong>Beats:</strong> The phenomenon of periodic rise and fall in the intensity of sound when two waves of slightly different frequencies superimpose is called beats. One maximum and one minimum intensity together constitute one beat.</p><p><strong>Proof:</strong> Consider two sound waves of frequencies $n_1$ and $n_2$ ($n_1 \\approx n_2$) and same amplitude A. Their displacements at a point are $y_1 = A \\sin(2\\pi n_1 t)$ and $y_2 = A \\sin(2\\pi n_2 t)$. By superposition, $y = y_1 + y_2 = [2A \\cos(2\\pi \\frac{n_1-n_2}{2}t)] \\sin(2\\pi \\frac{n_1+n_2}{2}t)$. The amplitude varies with time as $R = 2A \\cos(2\\pi \\frac{n_1-n_2}{2}t)$. Intensity is maximum when $|\\cos| = 1$.</p><p>Condition for maxima: $\\cos(2\\pi \\frac{n_1-n_2}{2}t) = \\pm 1 \\Rightarrow 2\\pi \\frac{n_1-n_2}{2}t = m\\pi \\Rightarrow t = \\frac{m}{n_1-n_2}$ for m = 0, 1, 2... So, time between two successive maxima is $\\frac{1}{n_1-n_2}$. Hence, the beat frequency (number of beats per second) is $n_1 - n_2$.</p>",
+            "marks": 4,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the requirements of good acoustic in an auditorium?",
+            "answer": "<p>Requirements for good acoustics in an auditorium are:</p><ol><li><strong>Adequate Loudness:</strong> The sound should be sufficiently loud in all parts of the hall. This can be achieved by proper design and sometimes using sound reflectors.</li><li><strong>Uniform Distribution:</strong> Sound intensity should be evenly distributed throughout the hall. There should be no dead spots (very low sound) or echoes.</li><li><strong>Optimum Reverberation Time:</strong> The reverberation time should be neither too long (causes sound to become blurred and unclear) nor too short (makes sound seem dead and weak). It should be optimized for the hall's purpose (speech or music).</li><li><strong>Absence of Defects:</strong> There should be no echoes, no focusing of sound, and no external noise interference.</li></ol>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.d",
+            "type": "saq",
+            "group": "B",
+            "question": "Write down the medical applications of ultrasonic waves.",
+            "answer": "<p>Medical applications of ultrasonic waves include:</p><ul><li><strong>Ultrasonography (Imaging):</strong> Used to create images of internal organs like the liver, kidneys, and for fetal imaging during pregnancy. It is safe as it uses non-ionizing radiation.</li><li><strong>Physiotherapy:</strong> Used for deep heating of tissues to relieve pain, reduce inflammation, and promote healing in conditions like arthritis and muscle strains.</li><li><strong>Lithotripsy:</strong> High-intensity ultrasound waves are used to break down kidney stones and gallstones into smaller pieces that can be passed out of the body naturally, avoiding surgery.</li><li><strong>Echocardiography:</strong> Used to create images of the heart to study its structure and function, including valve movement and blood flow.</li><li><strong>Doppler Studies:</strong> Used to measure the speed and direction of blood flow in vessels to detect blockages or clots.</li></ul>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State the criteria for the phenomenon of total internal reflection of light to take place.",
+            "answer": "<p>The two necessary conditions for total internal reflection (TIR) are:</p><ol><li><strong>Optical Condition:</strong> Light must travel from a denser optical medium (higher refractive index, $n_1$) to a rarer optical medium (lower refractive index, $n_2$), i.e., $n_1 > n_2$.</li><li><strong>Angular Condition:</strong> The angle of incidence ($i$) in the denser medium must be greater than the critical angle ($\\theta_c$) for that pair of media, i.e., $i > \\theta_c$.</li></ol><p>The critical angle is defined by $\\sin \\theta_c = \\frac{n_2}{n_1}$.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.b",
+            "type": "saq",
+            "group": "B",
+            "question": "How does focal length of a lens change when red light incident on it is replaced by violet light? Give reason for your answer.",
+            "answer": "<p>When red light is replaced by violet light, the focal length of the lens decreases.</p><p><strong>Reason:</strong> The refractive index ($\\mu$) of the lens material is different for different colors (dispersion). It is maximum for violet light and minimum for red light. The lens maker's formula is $\\frac{1}{f} = (\\mu - 1)(\\frac{1}{R_1} - \\frac{1}{R_2})$. Since $\\mu_{violet} > \\mu_{red}$, the factor $(\\mu_{violet} - 1)$ is greater than $(\\mu_{red} - 1)$. Therefore, $\\frac{1}{f_{violet}} > \\frac{1}{f_{red}}$, which implies $f_{violet} < f_{red}$. So, the focal length is shorter for violet light.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw a ray diagram of a compound microscope. Write the expression for its magnifying power.",
+            "answer": "<p><em>Refer to ray diagram in textbook/online. The diagram should show two convex lenses (objective and eyepiece). The object is placed just beyond the focus of the objective, forming a real, inverted, and magnified image. This image acts as an object for the eyepiece and is placed within its focal length, forming a final, virtual, and highly magnified image.</em></p><p><strong>Expression for magnifying power (normal adjustment):</strong> When the final image is formed at infinity (normal adjustment), the magnifying power M is given by:</p><p>$$M = -\\frac{v_o}{u_o} \\times \\frac{D}{f_e}$$</p><p>Or more commonly, $M = -\\frac{L}{f_o} \\times \\frac{D}{f_e}$, where $L$ is the tube length (distance between objective and eyepiece), $f_o$ and $f_e$ are the focal lengths of the objective and eyepiece, and $D$ is the least distance of distinct vision (25 cm). The negative sign indicates an inverted image.</p><p>When the final image is formed at the near point D, the magnifying power is $M = -\\frac{v_o}{u_o} (1 + \\frac{D}{f_e})$.</p>",
+            "marks": 4,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.d",
+            "type": "saq",
+            "group": "B",
+            "question": "How will the interference pattern in Young's double slit experiment get affected, when (i) distance between the slits S1 and S2 reduced and (ii) the entire set up is immersed in water? Justify your answer.",
+            "answer": "<p>(i) <strong>Distance between slits reduced:</strong> The fringe width $\\beta$ is given by $\\beta = \\frac{\\lambda D}{d}$, where d is the distance between slits. If d is reduced, the fringe width $\\beta$ increases. The fringes become broader and more widely spaced. However, the overall pattern may become less distinct if the slits are too close, as the condition for interference requires d to be small but not too small.</p><p>(ii) <strong>Entire setup immersed in water:</strong> The wavelength of light changes in a medium. In water (refractive index $\\mu \\approx 4/3$), the wavelength becomes $\\lambda' = \\frac{\\lambda}{\\mu}$. The new fringe width becomes $\\beta' = \\frac{\\lambda' D}{d} = \\frac{\\lambda D}{\\mu d} = \\frac{\\beta}{\\mu}$. Since $\\mu > 1$, $\\beta' < \\beta$. The fringe width decreases, and the fringes become narrower and closer together. The pattern remains sharp but shrinks.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "4.a",
+            "type": "laq",
+            "group": "C",
+            "question": "State Gauss' law in electrostatics. Using this law, derive an expression for the electric field due to a uniformly charged sphere.",
+            "answer": "<h5>Gauss's Law and Electric Field of a Sphere</h5><p><strong>Statement of Gauss's Law:</strong> Gauss's law states that the total electric flux through any closed surface (called a Gaussian surface) is equal to $1/\\varepsilon_0$ times the total electric charge enclosed by that surface.</p><p>Mathematically, $$\\oint \\vec{E} \\cdot d\\vec{A} = \\frac{q_{enc}}{\\varepsilon_0}$$ where $\\oint \\vec{E} \\cdot d\\vec{A}$ is the electric flux through the closed surface, $q_{enc}$ is the total charge enclosed, and $\\varepsilon_0$ is the permittivity of free space.</p><p><strong>Derivation for a uniformly charged sphere:</strong> Consider a sphere of radius R with a uniform volume charge density $\\rho$ and total charge Q. We need to find the electric field at a point outside the sphere ($r > R$) and inside the sphere ($r < R$).</p><p><strong>Case 1: Electric field at a point outside the sphere ($r > R$)</strong></p><ul><li>Draw a spherical Gaussian surface of radius $r > R$, concentric with the charged sphere.</li><li>By symmetry, the electric field E is radial and constant in magnitude at every point on this surface.</li><li>The flux through the Gaussian surface is $\\oint \\vec{E} \\cdot d\\vec{A} = E \\times 4\\pi r^2$.</li><li>The charge enclosed by this surface is the total charge on the sphere, Q.</li><li>Applying Gauss's law: $E \\times 4\\pi r^2 = \\frac{Q}{\\varepsilon_0}$.</li><li>Therefore, the electric field is: $$E = \\frac{1}{4\\pi\\varepsilon_0} \\frac{Q}{r^2}$$</li><li>In vector form, $\\vec{E} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{Q}{r^2} \\hat{r}$. This is the same as the field due to a point charge Q placed at the center.</li></ul><p><strong>Case 2: Electric field at a point inside the sphere ($r < R$)</strong></p><ul><li>Draw a spherical Gaussian surface of radius $r < R$, concentric with the charged sphere.</li><li>The flux through this surface is $\\oint \\vec{E} \\cdot d\\vec{A} = E \\times 4\\pi r^2$.</li><li>The charge enclosed by this surface is only the charge inside the volume of this smaller sphere. $q_{enc} = \\rho \\times \\frac{4}{3}\\pi r^3$.</li><li>Since total charge $Q = \\rho \\times \\frac{4}{3}\\pi R^3$, we have $\\rho = \\frac{3Q}{4\\pi R^3}$. Therefore, $q_{enc} = \\frac{3Q}{4\\pi R^3} \\times \\frac{4}{3}\\pi r^3 = Q \\frac{r^3}{R^3}$.</li><li>Applying Gauss's law: $E \\times 4\\pi r^2 = \\frac{q_{enc}}{\\varepsilon_0} = \\frac{Q}{\\varepsilon_0} \\frac{r^3}{R^3}$.</li><li>Therefore, the electric field is: $$E = \\frac{1}{4\\pi\\varepsilon_0} \\frac{Q}{R^3} r$$</li><li>This shows that inside the sphere, the electric field is directly proportional to the distance r from the center. It is zero at the center ($r=0$) and maximum at the surface ($r=R$).</li></ul>",
+            "keyPoints": [
+                "Statement of Gauss's Law",
+                "Choosing Gaussian surface based on symmetry",
+                "Calculating flux for outside point",
+                "Calculating flux and enclosed charge for inside point",
+                "Final expressions for E outside and inside"
+            ],
+            "marks": 5,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "4.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Why electrostatic potential is constant throughout the volume of the conductor and has the same value as on its surface?",
+            "answer": "<p>In electrostatics, the electric field inside a conductor is zero. If there were an electric field, it would cause free charges to move, contradicting the electrostatic condition. The relationship between electric field and potential is $E = -\\frac{dV}{dr}$.</p><p>Since $E = 0$ inside the conductor, $\\frac{dV}{dr} = 0$. A zero rate of change of potential with distance means the potential V is constant. Therefore, the potential is the same at every point inside the conductor. At the boundary, the potential must be continuous to avoid an infinite electric field, so the potential on the surface is equal to the constant potential inside. Thus, the entire conductor is an equipotential volume.</p>",
+            "marks": 5,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "5.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define the term electrical resistivity of a material. Write its SI unit.",
+            "answer": "<p><strong>Electrical Resistivity:</strong> It is defined as the electrical resistance offered by a material of unit length and unit cross-sectional area. It is a fundamental property of the material and indicates how strongly it opposes the flow of electric current.</p><p>From the resistance formula $R = \\rho \\frac{l}{A}$, resistivity is given by $\\rho = R \\frac{A}{l}$.</p><p><strong>SI unit:</strong> The SI unit of resistivity is ohm-meter ($\\Omega \\cdot \\text{m}$).</p>",
+            "marks": 2,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "5.b",
+            "type": "saq",
+            "group": "B",
+            "question": "State Kirchhoff's rules for an electric network.",
+            "answer": "<p>Kirchhoff gave two rules for analyzing complex electric circuits:</p><p><strong>1. Kirchhoff's Current Law (Junction Rule):</strong> The algebraic sum of all currents meeting at a junction (node) in an electrical network is always zero. It is based on the law of conservation of charge. Mathematically, $\\sum I = 0$. Currents entering the node are taken as positive and currents leaving as negative.</p><p><strong>2. Kirchhoff's Voltage Law (Loop Rule):</strong> The algebraic sum of all the potential differences (voltage drops and EMFs) around any closed loop in a network is always zero. It is based on the law of conservation of energy. Mathematically, $\\sum V = 0$.</p>",
+            "marks": 2,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "5.c",
+            "type": "laq",
+            "group": "C",
+            "question": "Draw a circuit diagram for a Wheatstone bridge. For a Wheatstone bridge, use Kirchhoff's laws to obtain its balance condition.",
+            "answer": "<h5>Wheatstone Bridge and its Balance Condition</h5><p><strong>Circuit Diagram:</strong></p><p><em>Refer to circuit diagram in textbook/online. The diagram should show a quadrilateral ABCD with resistances P (AB), Q (BC), R (AD), and S (DC). A galvanometer (G) is connected between B and D. A battery (E) with a key (K) is connected between A and C.</em></p><p><strong>Derivation of Balance Condition using Kirchhoff's Laws:</strong></p><p>The bridge is said to be balanced when the galvanometer shows zero deflection ($I_g = 0$). This implies that points B and D are at the same potential. Applying Kirchhoff's laws to the balanced condition:</p><p><strong>Applying Kirchhoff's Voltage Law (KVL) to loop ABDA:</strong></p><p>Starting from A, going through B, then D, and back to A.</p><p>In branch AB, current $I_1$ flows through P, potential drop = $I_1 P$ (A to B, drop, so -$I_1 P$).</p><p>In branch BD, current $I_g = 0$, so potential drop = 0.</p><p>In branch DA, current $I_2$ flows through R, potential drop = $I_2 R$ (D to A, but we go from B to D to A. Since B and D are at same potential, going from B to D is zero. From D to A, potential rises? Let's define carefully: In loop ABDA, we go from A (higher potential) to B (lower potential) through P: $V_A - I_1P = V_B$. Then from B to D (no current, $V_B = V_D$). Then from D to A, we go through R. At D, potential is $V_D$. At A, potential is $V_A$. Since we are going from D to A, which is from lower to higher potential, the change is $+I_2 R$.</p><p>Applying KVL: $-I_1P + 0 + I_2R = 0$</p><p>$$I_1P = I_2R$$ ...(1)</p><p><strong>Applying KVL to loop BCDB:</strong></p><p>Starting from B, through C, through D, and back to B.</p><p>In branch BC, current $I_1$ flows through Q, potential drop = $I_1 Q$ (B to C, drop, so -$I_1 Q$).</p><p>In branch CD, current $I_2$ flows through S, potential drop = $I_2 S$ (C to D, drop, so -$I_2 S$). But we need to be consistent with signs. At C, potential is lower than B by $I_1Q$. From C to D, potential drops further by $I_2S$. So at D, potential is $V_B - I_1Q - I_2S$. From D to B, the potential rises by 0 (as $I_g=0$ and no source).</p><p>Let's apply KVL by summing potential changes: From B to C: $V_B - I_1Q = V_C$. From C to D: $V_C - I_2S = V_D$. From D to B: $V_D + 0 = V_B$.</p><p>Substituting: $(V_B - I_1Q) - I_2S = V_D = V_B$.</p><p>$$V_B - I_1Q - I_2S = V_B$$</p><p>$$-I_1Q - I_2S = 0$$</p><p>$$I_1Q = -I_2S$$</p><p>This gives a negative sign, which indicates our assumed direction for $I_2$ in the S branch might be opposite. In a balanced bridge, current $I_2$ flows from A to D to C. In loop BCDB, if we traverse B->C->D->B, the current through S is $I_2$ flowing from C to D, which is a potential drop. So the term is $-I_2 S$. And from D to B, no drop. So the sum is $-I_1Q - I_2S = 0$, leading to $I_1Q + I_2S = 0$, which is impossible with positive currents.</p><p>It is easier to use the potential equality method. At balance, $V_B = V_D$.</p><p>Potential at B: $V_B = V_A - I_1P$</p><p>Potential at D: $V_D = V_A - I_2R$</p><p>Equating: $V_A - I_1P = V_A - I_2R \\Rightarrow I_1P = I_2R$ ...(1)</p><p>Also, potential at C can be reached from B: $V_C = V_B - I_1Q = (V_A - I_1P) - I_1Q$</p><p>And from D: $V_C = V_D - I_2S = (V_A - I_2R) - I_2S$</p><p>Equating these two expressions for $V_C$:</p><p>$V_A - I_1P - I_1Q = V_A - I_2R - I_2S$</p><p>$$I_1(P+Q) = I_2(R+S)$$</p><p>From (1), $\\frac{I_1}{I_2} = \\frac{R}{P}$.</p><p>Substitute into $I_1(P+Q) = I_2(R+S)$:</p><p>$$\\frac{R}{P}(P+Q) = R+S$$</p><p>$$R + \\frac{RQ}{P} = R + S$$</p><p>$$\\frac{RQ}{P} = S$$</p><p>Thus, the condition for a balanced Wheatstone bridge is:</p><p>$$\\boxed{\\frac{P}{Q} = \\frac{R}{S}}$$</p>",
+            "keyPoints": [
+                "Circuit diagram with labels",
+                "Definition of balanced condition (Ig=0)",
+                "Applying KVL to two loops or potential method",
+                "Deriving two equations",
+                "Solving to get P/Q = R/S"
+            ],
+            "marks": 3,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "5.d",
+            "type": "saq",
+            "group": "B",
+            "question": "A wire of 15Ω resistance is gradually stretched to double its original length. It is then cut into two equal parts. These parts are then connected in parallel across a 3V battery. Find the current drawn from the battery.",
+            "answer": "<p><strong>Step 1: Resistance after stretching.</strong> Original: $R_1 = 15\\Omega$, length $l_1 = l$, area $A_1 = A$. Volume remains constant: $A_1 l_1 = A_2 l_2$. New length $l_2 = 2l$. So, $A \\times l = A_2 \\times 2l \\Rightarrow A_2 = A/2$. Resistance $R = \\rho \\frac{l}{A}$, so new resistance $R_2 = \\rho \\frac{2l}{A/2} = \\rho \\frac{4l}{A} = 4R_1 = 4 \\times 15 = 60\\Omega$.</p><p><strong>Step 2: Cutting and connecting.</strong> The wire of 60Ω is cut into two equal parts. Each part will have resistance $R_{each} = 60/2 = 30\\Omega$.</p><p><strong>Step 3: Parallel combination.</strong> Two 30Ω resistors in parallel. Equivalent resistance, $R_p = \\frac{30 \\times 30}{30+30} = \\frac{900}{60} = 15\\Omega$.</p><p><strong>Step 4: Current drawn.</strong> Battery voltage V = 3V. Current, $I = \\frac{V}{R_p} = \\frac{3}{15} = 0.2 \\text{ A}$.</p><p>The current drawn from the battery is <strong>0.2 A</strong>.</p>",
+            "marks": 3,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "6.a",
+            "type": "laq",
+            "group": "C",
+            "question": "State Biot-Savart's law in vector form expressing the magnetic field due to an element carrying current at a distance from the element. A circular coil of radius R carries a current I. Derive the expression for the magnetic field due to this coil at its centre. What is the effect of increasing the number of turns on magnetic field produced to a circular coil?",
+            "answer": "<h5>Biot-Savart Law and Magnetic Field at Center of a Circular Coil</h5><p><strong>Biot-Savart's Law (Vector Form):</strong> It states that the magnetic field $d\\vec{B}$ produced at a point due to a small current element $I d\\vec{l}$ is:</p><p>$$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I (d\\vec{l} \\times \\vec{r})}{r^3}$$</p><p>or equivalently, $$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I d\\vec{l} \\times \\hat{r}}{r^2}$$</p><p>where $\\mu_0$ is the permeability of free space, and $\\vec{r}$ is the position vector from the element to the point.</p><p><strong>Derivation for Magnetic Field at the Center of a Circular Coil:</strong></p><ul><li>Consider a circular coil of radius R carrying a steady current I.</li><li>We need to find the magnetic field at the center O.</li><li>Take a small current element of length $dl$ on the coil. The vector $d\\vec{l}$ is tangential to the coil.</li><li>The position vector $\\vec{r}$ from the element to the center O has magnitude $r = R$ and direction from the element to the center, which is radial inward.</li><li>The angle between $d\\vec{l}$ (tangential) and $\\vec{r}$ (radial) is 90°.</li><li>The magnitude of the field due to this element, from Biot-Savart law, is $dB = \\frac{\\mu_0}{4\\pi} \\frac{I \\, dl \\, R \\sin 90°}{R^3} = \\frac{\\mu_0}{4\\pi} \\frac{I \\, dl}{R^2}$.</li><li>The direction of $d\\vec{B}$ is given by the cross product $d\\vec{l} \\times \\vec{r}$. For an element on the coil, this direction is perpendicular to the plane of the coil, along the axis. For all elements, this direction is the same (into the page or out, depending on current direction).</li><li>To find the total field, we integrate $dB$ around the entire loop: $B = \\int dB = \\int \\frac{\\mu_0}{4\\pi} \\frac{I \\, dl}{R^2}$.</li><li>$\\frac{\\mu_0 I}{4\\pi R^2}$ is constant, and $\\int dl$ is the circumference $2\\pi R$.</li><li>Thus, $B = \\frac{\\mu_0 I}{4\\pi R^2} \\times 2\\pi R$.</li><li>Therefore, the magnetic field at the center of a circular coil is: $$B = \\frac{\\mu_0 I}{2R}$$</li></ul><p><strong>Effect of increasing the number of turns:</strong> If the coil has N closely wound turns, each turn contributes equally to the field at the center. The net field becomes N times the field due to a single turn. So, for an N-turn coil, $B = \\frac{\\mu_0 N I}{2R}$. Increasing the number of turns N increases the magnetic field proportionally.</p>",
+            "keyPoints": [
+                "Statement of Biot-Savart law in vector form",
+                "Setting up the geometry for a circular loop",
+                "Finding dB due to a small element",
+                "Integrating over the entire loop",
+                "Final expression and effect of number of turns"
+            ],
+            "marks": 5,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.b",
+            "type": "saq",
+            "group": "B",
+            "question": "State the Faraday's law of electromagnetic induction.",
+            "answer": "<p>Faraday's laws of electromagnetic induction consist of two laws:</p><p><strong>First Law:</strong> Whenever the magnetic flux linked with a circuit changes, an electromotive force (EMF) is induced in the circuit. The induced EMF exists only as long as the change in flux continues.</p><p><strong>Second Law:</strong> The magnitude of the induced EMF is directly proportional to the rate of change of magnetic flux linked with the circuit.</p><p>Mathematically, $$\\epsilon = -\\frac{d\\phi}{dt}$$ where $\\epsilon$ is the induced EMF and $\\frac{d\\phi}{dt}$ is the rate of change of flux. The negative sign indicates the direction of the induced EMF, as given by Lenz's law.</p><p>For a coil with N turns, $\\epsilon = -N \\frac{d\\phi}{dt}$.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.c",
+            "type": "laq",
+            "group": "C",
+            "question": "A galvanometer of resistance 50Ω gives full scale deflection when a current of 500μA passes through it. It is to be converted into a voltmeter reading up to 10V. Explain how this can be done? Circuit diagram is essential.",
+            "answer": "<h5>Conversion of Galvanometer to Voltmeter</h5><p><strong>Given:</strong> Galvanometer resistance, $G = 50 \\Omega$, Full-scale deflection current, $I_g = 500 \\mu A = 500 \\times 10^{-6} A = 5 \\times 10^{-4} A$. Desired range of voltmeter, V = 10 V.</p><p><strong>Principle:</strong> A galvanometer is converted into a voltmeter by connecting a high resistance in series with it. This series resistance limits the current through the galvanometer to $I_g$ when the desired maximum voltage V is applied across the combination.</p><p><strong>Circuit Diagram:</strong> <em>Refer to diagram in textbook/online. It should show the galvanometer (coil with pointer and scale) with internal resistance G. A high resistance R is connected in series with it. The combination is connected across the two points where voltage is to be measured. The terminals are labeled as positive and negative, and the scale is calibrated in volts (0-10V).</em></p><p><strong>Calculation of Series Resistance (R):</strong></p><p>Let R be the required series resistance. When the voltmeter is connected across a 10V supply, the total voltage V should drop across the series combination of G and R such that the current through the circuit is exactly $I_g$.</p><p>Total resistance of the voltmeter = $R + G$.</p><p>Applying Ohm's law to the entire circuit: $V = I_g (R + G)$.</p><p>Therefore, $R = \\frac{V}{I_g} - G$.</p><p>Substituting the values:</p><p>$R = \\frac{10}{5 \\times 10^{-4}} - 50$</p><p>$R = \\frac{10}{0.0005} - 50$</p><p>$R = 20000 - 50 = 19950 \\, \\Omega$.</p><p>$R = 19.95 \\, k\\Omega$.</p><p><strong>Explanation:</strong> A resistance of $19950 \\, \\Omega$ (or 19.95 kΩ) must be connected in series with the galvanometer. The combination will now work as a voltmeter with a range of 0-10V. When 10V is applied, the current through the galvanometer will be 500 μA, causing full-scale deflection. For any voltage less than 10V, the deflection will be proportional.</p>",
+            "keyPoints": [
+                "Principle: series resistance to limit current",
+                "Circuit diagram",
+                "Formula R = V/Ig - G",
+                "Substitution and calculation",
+                "Final explanation"
+            ],
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Distinguish between an intrinsic semiconductor and p-type semiconductor.",
+            "answer": "<table><tr><th>Feature</th><th>Intrinsic Semiconductor</th><th>p-type Semiconductor</th></tr><tr><td><strong>Definition</strong></td><td>A pure semiconductor without any significant impurity atoms.</td><td>An extrinsic semiconductor formed by doping a pure semiconductor with a trivalent impurity.</td></tr><tr><td><strong>Doping</strong></td><td>No doping. It is in its purest form.</td><td>Doped with trivalent atoms like Boron, Aluminium, Indium.</td></tr><tr><td><strong>Charge Carriers</strong></td><td>Electrons and holes are equal in number ($n_e = n_h$).</td><td>Holes are the majority charge carriers, electrons are minority carriers ($n_h >> n_e$).</td></tr><tr><td><strong>Fermi Level</strong></td><td>Located in the middle of the band gap.</td><td>Located closer to the valence band.</td></tr><tr><td><strong>Conductivity</strong></td><td>Low, as it depends on temperature.</td><td>Higher than intrinsic due to added impurities.</td></tr><tr><td><strong>Example</strong></td><td>Pure Silicon (Si), Pure Germanium (Ge).</td><td>Si doped with Boron, Ge doped with Aluminium.</td></tr></table>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "7.b",
+            "type": "saq",
+            "group": "B",
+            "question": "With the help of circuit diagrams, distinguish between forward biasing and reverse biasing of a p-n junction diode.",
+            "answer": "<p><strong>Forward Biasing:</strong> The positive terminal of the battery is connected to the p-side and the negative terminal to the n-side of the diode. The applied voltage opposes the barrier potential, reducing the depletion width and allowing current to flow easily.</p><p><em>Circuit Diagram (Forward Bias):</em> <em>Refer to diagram in textbook. It shows a diode symbol with p-side connected to (+) of a battery through a resistor and n-side to (-). Current direction is from p to n.</em></p><p><strong>Reverse Biasing:</strong> The positive terminal of the battery is connected to the n-side and the negative terminal to the p-side. The applied voltage adds to the barrier potential, increasing the depletion width and preventing current flow (except a very small leakage current).</p><p><em>Circuit Diagram (Reverse Bias):</em> <em>Refer to diagram in textbook. It shows a diode symbol with n-side connected to (+) of a battery and p-side to (-) through a resistor. There is practically no current.</em></p><p><strong>Key Difference Table:</strong></p><table><tr><th>Feature</th><th>Forward Bias</th><th>Reverse Bias</th></tr><tr><td>Battery Connection</td><td>p to (+), n to (-)</td><td>p to (-), n to (+)</td></tr><tr><td>Barrier Potential</td><td>Reduced</td><td>Increased</td></tr><tr><td>Depletion Width</td><td>Decreases</td><td>Increases</td></tr><tr><td>Current</td><td>High (mA range)</td><td>Almost zero (μA range - leakage)</td></tr><tr><td>Resistance</td><td>Low</td><td>Very High</td></tr></table>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "7.c",
+            "type": "laq",
+            "group": "C",
+            "question": "Draw a labeled diagram of a full wave rectifier circuit. Show the input-output waveforms.",
+            "answer": "<h5>Full Wave Rectifier Circuit</h5><p><strong>Circuit Diagram (Center-Tap Type):</strong></p><p><em>Refer to labeled diagram in textbook/online. The diagram should include:</em></p><ul><li>A center-tapped transformer with primary and secondary coils. The center tap is grounded or connected to the load's return path.</li><li>Two diodes, D1 and D2. The anode of D1 is connected to one end of the secondary, and the anode of D2 is connected to the other end of the secondary. Their cathodes are connected together.</li><li>A load resistor $R_L$ connected between the common cathode point and the center tap of the transformer.</li><li>Input and output terminals clearly marked.</li></ul><p><strong>Working:</strong></p><ul><li><strong>During the positive half-cycle of the AC input:</strong> The upper end of the secondary is positive, and the lower end is negative. Diode D1 is forward-biased and conducts, while D2 is reverse-biased and does not. Current flows from the upper end, through D1, through $R_L$ (from top to bottom), and back to the center tap. A positive voltage appears across $R_L$.</li><li><strong>During the negative half-cycle of the AC input:</strong> The upper end of the secondary is negative, and the lower end is positive. Diode D2 is now forward-biased and conducts, while D1 is reverse-biased. Current flows from the lower end, through D2, through $R_L$ (still from top to bottom), and back to the center tap. A positive voltage again appears across $R_L$.</li></ul><p><strong>Input and Output Waveforms:</strong></p><p><em>Refer to waveforms in textbook/online. The diagram should show:</em></p><ul><li><strong>Input waveform (AC):</strong> A sine wave alternating between positive and negative values.</li><li><strong>Output waveform (across $R_L$):</strong> A series of positive half-sine waves. For every full cycle of the input (one positive and one negative half), the output consists of two positive half-cycles. This is pulsating DC.</li></ul><p>The output is not pure DC; it contains a large AC component (ripple) which can be reduced using a filter circuit.</p>",
+            "keyPoints": [
+                "Circuit with center-tapped transformer and two diodes",
+                "Explanation of conduction in both half-cycles",
+                "Current direction through load remains same",
+                "Input sine wave and output full-wave rectified waveform"
+            ],
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "7.d",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the circuit diagram of an illuminated photodiode in reverse bias. How is photodiode used to measure light intensity.",
+            "answer": "<p><strong>Circuit Diagram:</strong></p><p><em>Refer to diagram in textbook/online. The diagram should show:</em> A photodiode symbol (with arrows indicating light falling on it) connected in series with a battery and a load resistor $R_L$. The battery is connected such that the photodiode is in reverse bias (positive terminal of battery to n-side, negative terminal to p-side). A voltmeter is connected across $R_L$ to measure the output voltage, or an ammeter in series to measure the photocurrent.</p><p><strong>Working Principle for Light Intensity Measurement:</strong></p><p>A photodiode is operated in reverse bias. In the absence of light (dark), a very small reverse saturation current (dark current) flows due to thermally generated electron-hole pairs. When light (photons) with energy greater than the band gap of the semiconductor falls on the photodiode, it generates additional electron-hole pairs. This increases the number of minority carriers, leading to a significant increase in the reverse current. This additional current is called photocurrent ($I_{ph}$).</p><p><strong>Measurement:</strong> The photocurrent is directly proportional to the intensity (illumination) of the incident light. As light intensity increases, more photons are absorbed, more electron-hole pairs are generated, and the reverse current increases proportionally. This current can be measured with an ammeter, or the voltage drop across the series resistor $R_L$ can be measured with a voltmeter. The meter scale can be calibrated in terms of light intensity (e.g., lux or W/m²). Thus, the photodiode converts light intensity into a corresponding electrical signal (current or voltage).</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Write any two distinguishing features between conductors, semiconductors and insulators on the basis of energy band diagrams.",
+            "answer": "<p>Distinguishing features based on energy band diagrams:</p><table><tr><th>Feature</th><th>Conductor</th><th>Semiconductor</th><th>Insulator</th></tr><tr><td><strong>Band Gap (Forbidden Gap)</strong></td><td>No band gap (valence and conduction bands overlap).</td><td>Small band gap (~1 eV). Eg: Si ~1.1 eV, Ge ~0.7 eV.</td><td>Large band gap (> 3 eV). Eg: Diamond ~5.5 eV.</td></tr><tr><td><strong>Conduction Band at 0 K</strong></td><td>Partially filled or overlapping with valence band, so it has free electrons even at 0 K.</td><td>Empty at 0 K. It behaves like an insulator at absolute zero.</td><td>Empty at 0 K. Electrons are tightly bound in the valence band.</td></tr><tr><td><strong>Effect of Temperature</strong></td><td>Conductivity decreases slightly with temperature due to increased lattice vibrations (resistance increases).</td><td>Conductivity increases significantly with temperature as electrons gain energy to jump the small band gap.</td><td>Conductivity remains very low even at high temperatures as the band gap is too large for electrons to jump.</td></tr></table><p>(Any two of these features can be used to distinguish them.)</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8.b",
+            "type": "saq",
+            "group": "B",
+            "question": "State two advantages of LED lamps over conventional incandescent lamps.",
+            "answer": "<p>Two main advantages of LED (Light Emitting Diode) lamps over conventional incandescent lamps are:</p><ol><li><strong>High Energy Efficiency and Lower Power Consumption:</strong> LEDs convert a much higher percentage of electrical energy into light, wasting very little as heat. Incandescent bulbs, on the other hand, produce light by heating a filament, wasting about 90% of the energy as heat. For the same light output (lumens), an LED consumes significantly less power (watts).</li><li><strong>Longer Lifespan:</strong> LEDs have a very long operational life, typically 25,000 to 50,000 hours or more. Incandescent bulbs have a much shorter life, usually around 1,000 hours, because their filament eventually burns out or breaks. This makes LEDs more durable and reduces the need for frequent replacement.</li></ol><p>(Other advantages include: they are smaller, more robust (no filament to break), turn on instantly, and contain no hazardous materials like mercury.)</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw a circuit diagram of n-p-n transistor amplifier in CE configuration.",
+            "answer": "<p><strong>Circuit Diagram of an NPN Transistor Amplifier in Common Emitter (CE) Configuration:</strong></p><p><em>Refer to labeled diagram in textbook/online. The diagram should include the following key components and connections:</em></p><ul><li><strong>Transistor:</strong> An NPN transistor symbol with emitter (E), base (B), and collector (C) terminals.</li><li><strong>Configuration:</strong> The emitter is common to both input and output circuits, hence grounded.</li><li><strong>Input Circuit (Base-Emitter side):</strong> An AC input signal source ($V_{in}$) is connected in series with a DC biasing voltage source ($V_{BB}$) and a current-limiting base resistor ($R_B$). This forward biases the base-emitter junction.</li><li><strong>Output Circuit (Collector-Emitter side):</strong> A DC collector supply voltage ($V_{CC}$) is connected to the collector through a load resistor ($R_C$). The output voltage ($V_{out}$) is taken across the collector and emitter (i.e., between collector and ground).</li><li><strong>Polarities:</strong> $V_{BB}$ and $V_{CC}$ are positive with respect to the emitter (ground).</li></ul><p><strong>Basic Working:</strong> The small input voltage signal at the base causes a change in the base current. This small change in base current is amplified by the transistor's current gain ($\\beta$), leading to a much larger change in the collector current. This large current change through the load resistor $R_C$ produces a large voltage change ($V_{out} = V_{CC} - I_C R_C$), which is the amplified output signal, which is 180° out of phase with the input.</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8.d",
+            "type": "saq",
+            "group": "B",
+            "question": "Why GaAs is most commonly used in making of a solar cell?",
+            "answer": "<p>Gallium Arsenide (GaAs) is most commonly used in making high-efficiency solar cells for several reasons:</p><ol><li><strong>Optimal Band Gap:</strong> GaAs has a direct band gap of approximately 1.43 eV. This is very close to the ideal band gap (around 1.4 eV) for maximum theoretical efficiency in converting sunlight to electricity, as it allows for good absorption of the solar spectrum.</li><li><strong>High Absorption Coefficient:</strong> As a direct band gap semiconductor, GaAs absorbs sunlight very efficiently. A very thin layer of GaAs (a few microns) is enough to absorb most of the incident light, allowing for thin and lightweight cells.</li><li><strong>High Temperature Tolerance:</strong> GaAs solar cells maintain their efficiency better at high temperatures compared to silicon cells, making them suitable for concentrator photovoltaic systems where cells get very hot.</li><li><strong>Radiation Resistance:</strong> They are more resistant to radiation damage, making them ideal for space applications (satellites).</li></ol><p>(Note: While GaAs cells are highly efficient, they are more expensive to manufacture than silicon cells, so their use is often limited to applications where high efficiency is critical, such as space and concentrated photovoltaics.)</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is the main difference between ordinary light and LASER?",
+            "answer": "<p>The main difference between ordinary light and LASER light lies in their coherence properties. LASER light is highly coherent, while ordinary light is incoherent.</p><p>This difference in coherence leads to three key distinguishing characteristics:</p><table><tr><th>Property</th><th>Ordinary Light (e.g., from bulb/sun)</th><th>LASER Light</th></tr><tr><td><strong>Coherence</strong></td><td>Incoherent: Waves have random phase differences.</td><td>Highly Coherent: Waves are in phase in both time and space.</td></tr><tr><td><strong>Monochromaticity</strong></td><td>Polychromatic: Contains a wide range of wavelengths/colors.</td><td>Highly Monochromatic: Light is of a single, pure wavelength or a very narrow band.</td></tr><tr><td><strong>Directionality</strong></td><td>Non-directional: Light spreads out in all directions.</td><td>Highly Directional: Light is emitted as a narrow, parallel beam that diverges very little.</td></tr><tr><td><strong>Intensity</strong></td><td>Intensity is generally low and spreads out.</td><td>Extremely high intensity can be focused to a small spot.</td></tr></table><p>In short, ordinary light is a chaotic mixture of waves, while LASER light is an organized, highly ordered beam.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "9.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Write a short note on 'population inversion'.",
+            "answer": "<p><strong>Population Inversion:</strong> In normal conditions (thermal equilibrium), the number of atoms in a lower energy state ($N_1$) is always greater than the number in a higher energy state ($N_2$), as given by the Boltzmann distribution. This is called normal population. For lasing action to occur, stimulated emission must dominate over absorption. This requires that the number of atoms in the higher (excited) energy state ($N_2$) be greater than the number in a lower energy state ($N_1$), i.e., $N_2 > N_1$.</p><p>This condition, opposite to the normal state, is called <strong>population inversion</strong>. It is a non-equilibrium state and is a prerequisite for achieving laser action. Population inversion cannot be achieved in a simple two-level system. It is achieved in three-level or four-level laser systems by a process called <strong>pumping</strong>.</p><p><strong>Pumping:</strong> This is the method of supplying energy to the active medium from an external source (like a flash lamp, electrical discharge, or another laser) to raise atoms from the ground state to higher energy levels, creating the necessary population inversion.</p>",
+            "marks": 3,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "9.c",
+            "type": "saq",
+            "group": "B",
+            "question": "How continuous and characteristic X-rays are produced in Coolidge tube? Explain.",
+            "answers": [
+                {
+                    "title": "Continuous X-rays",
+                    "content": "When high-speed electrons from the cathode strike the anode (target) in a Coolidge tube, they are rapidly decelerated by the electric field of the target atoms' nuclei. According to electromagnetic theory, a charged particle emits radiation when it is accelerated or decelerated. This radiation produced due to the deceleration of electrons is called Bremsstrahlung (braking radiation) or continuous X-rays. Since electrons can lose different amounts of their kinetic energy in a single encounter, the emitted X-ray photons have a continuous range of wavelengths, from a minimum value (when the electron loses all its energy in one go) up to infinity. The minimum wavelength ($\\lambda_{min}$) depends on the applied voltage."
+                },
+                {
+                    "title": "Characteristic X-rays",
+                    "content": "If the energy of the incident electron is high enough, it can knock out an electron from an inner shell (like K-shell) of the target atom, creating a vacancy. This vacancy is immediately filled by an electron from a higher energy shell (like L or M shell). When this transition occurs, the electron loses energy, and the excess energy is emitted as an X-ray photon. The energy (and hence wavelength) of this photon is equal to the difference in energy between the two shells. Since these energy levels are characteristic of the target element, the emitted X-rays have specific, discrete wavelengths, forming a line spectrum called characteristic X-rays."
+                }
+            ],
+            "marks": 3,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "9.d",
+            "type": "saq",
+            "group": "B",
+            "question": "Explain the mechanism of light propagation through optical fiber.",
+            "answer": "<p>Light propagation through an optical fiber is based on the principle of <strong>Total Internal Reflection (TIR)</strong>.</p><p>An optical fiber consists of a central glass or plastic core (with a higher refractive index, $n_1$) surrounded by a cladding layer (with a slightly lower refractive index, $n_2$).</p><p><strong>Mechanism:</strong></p><ol><li>Light is coupled into the fiber core at one end.</li><li>The light rays travel through the core and strike the core-cladding interface at an angle.</li><li>If the angle of incidence ($i$) at this interface is greater than the critical angle ($\\theta_c$) for the core-cladding pair ($\\sin \\theta_c = n_2/n_1$), total internal reflection occurs.</li><li>In TIR, the light is completely reflected back into the core without any loss of intensity. The reflected ray again strikes the opposite interface at an angle greater than the critical angle and is again totally internally reflected.</li><li>This process of repeated total internal reflections continues along the length of the fiber, effectively trapping the light within the core and guiding it from one end to the other, even around bends (provided the bend radius is not too sharp).</li></ol><p>Thus, the optical fiber acts as a waveguide, confining and transmitting light signals over long distances with minimal loss.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        }
+    ]
+}

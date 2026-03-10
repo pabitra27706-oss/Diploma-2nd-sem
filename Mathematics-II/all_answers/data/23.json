@@ -1,0 +1,221 @@
+{
+    "exam": {
+        "subject": "Mathematics-II (204N)",
+        "code": null,
+        "year": 2023,
+        "semester": "II",
+        "board": "WBSCTE",
+        "timeAllowed": "2.5 Hours",
+        "fullMarks": 60,
+        "instructions": "Answer to Question No. 1 is compulsory and answer any five (05) questions from the rest."
+    },
+    "questions": [
+        {
+            "id": "1.a",
+            "type": "saq",
+            "group": "A",
+            "question": "Find the probability that getting at least two heads in a toss of unbiased coin 3 times.",
+            "answer": "<p>When an unbiased coin is tossed 3 times, the total number of possible outcomes is \\(2^3 = 8\\).</p><p>The sample space is: {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}.</p><p>'At least two heads' means 2 heads or 3 heads.</p><p>Favorable outcomes: HHH (3 heads), HHT, HTH, THH (2 heads). So, number of favorable outcomes = 4.</p><p>Probability = \\(\\frac{4}{8} = \\frac{1}{2}\\).</p>",
+            "marks": 3,
+            "unit": "Probability"
+        },
+        {
+            "id": "1.b",
+            "type": "saq",
+            "group": "A",
+            "question": "Evaluate: \\(\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}} x^2 \\sin x^3 \\, dx\\).",
+            "answer": "<p>Let \\(f(x) = x^2 \\sin(x^3)\\). Check if the function is odd or even.</p><p>\\(f(-x) = (-x)^2 \\sin((-x)^3) = x^2 \\sin(-x^3) = -x^2 \\sin(x^3) = -f(x)\\).</p><p>Thus, \\(f(x)\\) is an odd function.</p><p>The integral of an odd function over a symmetric interval \\([-a, a]\\) is zero.</p><p>Therefore, \\(\\int_{-\\pi/2}^{\\pi/2} x^2 \\sin x^3 \\, dx = 0\\).</p>",
+            "marks": 3,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "1.c",
+            "type": "saq",
+            "group": "A",
+            "question": "Check the exactness: \\((xy - 2x^2) + xy \\frac{dy}{dx} = 0\\).",
+            "answer": "<p>Rewrite the equation in the form \\(M dx + N dy = 0\\).</p><p>\\((xy - 2x^2) dx + xy \\, dy = 0\\).</p><p>So, \\(M = xy - 2x^2\\) and \\(N = xy\\).</p><p>For exactness, we need \\(\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}\\).</p><p>\\(\\frac{\\partial M}{\\partial y} = \\frac{\\partial}{\\partial y}(xy - 2x^2) = x\\).</p><p>\\(\\frac{\\partial N}{\\partial x} = \\frac{\\partial}{\\partial x}(xy) = y\\).</p><p>Since \\(x \\neq y\\) in general, \\(\\frac{\\partial M}{\\partial y} \\neq \\frac{\\partial N}{\\partial x}\\).</p><p>Therefore, the differential equation is <strong>not exact</strong>.</p>",
+            "marks": 3,
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "1.d",
+            "type": "saq",
+            "group": "A",
+            "question": "Check whether the points \\((-3, 4), (0, -1)\\) and \\((1, 2)\\) are collinear.",
+            "answer": "<p>Three points are collinear if the area of the triangle formed by them is zero.</p><p>Area = \\(\\frac{1}{2} | x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2) |\\).</p><p>Substitute: \\(x_1 = -3, y_1 = 4; x_2 = 0, y_2 = -1; x_3 = 1, y_3 = 2\\).</p><p>Area = \\(\\frac{1}{2} | (-3)(-1 - 2) + 0(2 - 4) + 1(4 - (-1)) |\\)</p><p>\\(= \\frac{1}{2} | (-3)(-3) + 0 + 1(5) | = \\frac{1}{2} | 9 + 5 | = \\frac{1}{2} \\times 14 = 7\\).</p><p>Since the area is 7 (not zero), the points are <strong>not collinear</strong>.</p>",
+            "marks": 3,
+            "unit": "Coordinate Geometry"
+        },
+        {
+            "id": "1.e",
+            "type": "saq",
+            "group": "A",
+            "question": "Find the inverse of the matrix \\(\\begin{bmatrix} 2 & 3 \\\\ 1 & 5 \\end{bmatrix}\\).",
+            "answer": "<p>For a 2x2 matrix \\(A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}\\), the inverse is given by:</p><p>\\(A^{-1} = \\frac{1}{ad - bc} \\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}\\).</p><p>Here, \\(a = 2, b = 3, c = 1, d = 5\\).</p><p>Determinant \\(\\Delta = ad - bc = (2)(5) - (3)(1) = 10 - 3 = 7\\).</p><p>Therefore, \\(A^{-1} = \\frac{1}{7} \\begin{bmatrix} 5 & -3 \\\\ -1 & 2 \\end{bmatrix} = \\begin{bmatrix} 5/7 & -3/7 \\\\ -1/7 & 2/7 \\end{bmatrix}\\).</p>",
+            "marks": 3,
+            "unit": "Matrices"
+        },
+        {
+            "id": "1.f",
+            "type": "saq",
+            "group": "A",
+            "question": "State Euler's theorem on homogeneous function with two variables.",
+            "answer": "<p><strong>Euler's Theorem:</strong> If \\(f(x, y)\\) is a homogeneous function of degree \\(n\\), then:</p><p>\\[x \\frac{\\partial f}{\\partial x} + y \\frac{\\partial f}{\\partial y} = n f(x, y)\\]</p><p>In other words, the sum of the products of each variable with its corresponding partial derivative equals \\(n\\) times the original function.</p>",
+            "marks": 3,
+            "unit": "Partial Differentiation"
+        },
+        {
+            "id": "1.g",
+            "type": "saq",
+            "group": "A",
+            "question": "Find the median of the data: 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 4, 1, 2, 1.",
+            "answer": "<p>First, arrange the data in ascending order: 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4.</p><p>Let's count the total number of observations. The given data: 1,2,3,4,1,2,3,4,1,2,4,1,2,1. That's 14 numbers.</p><p>Sorted: 1,1,1,1,1,1,2,2,2,2,3,3,4,4.</p><p>Since \\(n = 14\\) (even), the median is the average of the \\(\\frac{n}{2}^{th}\\) and \\(\\left(\\frac{n}{2} + 1\\right)^{th}\\) observations.</p><p>\\(\\frac{n}{2} = 7^{th}\\) observation, and \\(8^{th}\\) observation.</p><p>7th observation = 2, 8th observation = 2.</p><p>Median = \\(\\frac{2 + 2}{2} = 2\\).</p><p>Therefore, the median is <strong>2</strong>.</p>",
+            "marks": 3,
+            "unit": "Statistics"
+        },
+        {
+            "id": "2.a",
+            "type": "laq",
+            "group": "C",
+            "question": "Solve by Cramer's rule:\n\\[ \\begin{cases} x + 2y + 3z = 5 \\\\ 3x - 2y + z = -1 \\\\ 4x + 2y + z = 13 \\end{cases} \\]",
+            "answer": "<p>We solve using Cramer's Rule. First, write the system in matrix form \\(AX = B\\).</p><p>\\[A = \\begin{bmatrix} 1 & 2 & 3 \\\\ 3 & -2 & 1 \\\\ 4 & 2 & 1 \\end{bmatrix}, \\quad X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\quad B = \\begin{bmatrix} 5 \\\\ -1 \\\\ 13 \\end{bmatrix}\\]</p><p><strong>Step 1: Calculate the determinant of A (\\(\\Delta\\)).</strong></p><p>\\[\\Delta = \\begin{vmatrix} 1 & 2 & 3 \\\\ 3 & -2 & 1 \\\\ 4 & 2 & 1 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta = 1 \\begin{vmatrix} -2 & 1 \\\\ 2 & 1 \\end{vmatrix} - 2 \\begin{vmatrix} 3 & 1 \\\\ 4 & 1 \\end{vmatrix} + 3 \\begin{vmatrix} 3 & -2 \\\\ 4 & 2 \\end{vmatrix}\\)</p><p>\\(= 1[(-2)(1) - (1)(2)] - 2[(3)(1) - (1)(4)] + 3[(3)(2) - (-2)(4)]\\)</p><p>\\(= 1[-2 - 2] - 2[3 - 4] + 3[6 + 8]\\)</p><p>\\(= 1(-4) - 2(-1) + 3(14) = -4 + 2 + 42 = 40\\)</p><p>So, \\(\\Delta = 40\\).</p><p><strong>Step 2: Calculate \\(\\Delta_x\\) by replacing the first column of A with B.</strong></p><p>\\[\\Delta_x = \\begin{vmatrix} 5 & 2 & 3 \\\\ -1 & -2 & 1 \\\\ 13 & 2 & 1 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta_x = 5 \\begin{vmatrix} -2 & 1 \\\\ 2 & 1 \\end{vmatrix} - 2 \\begin{vmatrix} -1 & 1 \\\\ 13 & 1 \\end{vmatrix} + 3 \\begin{vmatrix} -1 & -2 \\\\ 13 & 2 \\end{vmatrix}\\)</p><p>\\(= 5[(-2)(1) - (1)(2)] - 2[(-1)(1) - (1)(13)] + 3[(-1)(2) - (-2)(13)]\\)</p><p>\\(= 5[-2 - 2] - 2[-1 - 13] + 3[-2 + 26]\\)</p><p>\\(= 5(-4) - 2(-14) + 3(24) = -20 + 28 + 72 = 80\\)</p><p><strong>Step 3: Calculate \\(\\Delta_y\\) by replacing the second column of A with B.</strong></p><p>\\[\\Delta_y = \\begin{vmatrix} 1 & 5 & 3 \\\\ 3 & -1 & 1 \\\\ 4 & 13 & 1 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta_y = 1 \\begin{vmatrix} -1 & 1 \\\\ 13 & 1 \\end{vmatrix} - 5 \\begin{vmatrix} 3 & 1 \\\\ 4 & 1 \\end{vmatrix} + 3 \\begin{vmatrix} 3 & -1 \\\\ 4 & 13 \\end{vmatrix}\\)</p><p>\\(= 1[(-1)(1) - (1)(13)] - 5[(3)(1) - (1)(4)] + 3[(3)(13) - (-1)(4)]\\)</p><p>\\(= 1[-1 - 13] - 5[3 - 4] + 3[39 + 4]\\)</p><p>\\(= 1(-14) - 5(-1) + 3(43) = -14 + 5 + 129 = 120\\)</p><p><strong>Step 4: Calculate \\(\\Delta_z\\) by replacing the third column of A with B.</strong></p><p>\\[\\Delta_z = \\begin{vmatrix} 1 & 2 & 5 \\\\ 3 & -2 & -1 \\\\ 4 & 2 & 13 \\end{vmatrix}\\]</p><p>Expanding along the first row:</p><p>\\(\\Delta_z = 1 \\begin{vmatrix} -2 & -1 \\\\ 2 & 13 \\end{vmatrix} - 2 \\begin{vmatrix} 3 & -1 \\\\ 4 & 13 \\end{vmatrix} + 5 \\begin{vmatrix} 3 & -2 \\\\ 4 & 2 \\end{vmatrix}\\)</p><p>\\(= 1[(-2)(13) - (-1)(2)] - 2[(3)(13) - (-1)(4)] + 5[(3)(2) - (-2)(4)]\\)</p><p>\\(= 1[-26 + 2] - 2[39 + 4] + 5[6 + 8]\\)</p><p>\\(= 1(-24) - 2(43) + 5(14) = -24 - 86 + 70 = -40\\)</p><p><strong>Step 5: Apply Cramer's Rule: \\(x = \\frac{\\Delta_x}{\\Delta}, y = \\frac{\\Delta_y}{\\Delta}, z = \\frac{\\Delta_z}{\\Delta}\\).</strong></p><p>\\[x = \\frac{80}{40} = 2\\]</p><p>\\[y = \\frac{120}{40} = 3\\]</p><p>\\[z = \\frac{-40}{40} = -1\\]</p><p>Therefore, the solution is \\(\\boxed{x = 2, y = 3, z = -1}\\).</p>",
+            "marks": 5,
+            "unit": "Matrices"
+        },
+        {
+            "id": "2.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the area bounded by the parabola \\(y^2 = 4x\\) above x-axis and ordinate at \\(x = 2\\).",
+            "answer": "<p>The parabola \\(y^2 = 4x\\) opens to the right. The region is bounded by the parabola (above the x-axis, so \\(y = \\sqrt{4x} = 2\\sqrt{x}\\)), the x-axis (\\(y=0\\)), and the vertical line \\(x = 2\\).</p><p>The area is given by:</p><p>\\[A = \\int_{x=0}^{2} y \\, dx = \\int_0^2 2\\sqrt{x} \\, dx = 2 \\int_0^2 x^{1/2} dx\\]</p><p>\\[= 2 \\left[ \\frac{x^{3/2}}{3/2} \\right]_0^2 = 2 \\cdot \\frac{2}{3} \\left[ x^{3/2} \\right]_0^2 = \\frac{4}{3} \\left( 2^{3/2} - 0 \\right)\\]</p><p>\\(2^{3/2} = (\\sqrt{2})^3 = 2\\sqrt{2}\\).</p><p>So, \\(A = \\frac{4}{3} \\times 2\\sqrt{2} = \\frac{8\\sqrt{2}}{3}\\) square units.</p><p>Therefore, the required area is \\(\\boxed{\\frac{8\\sqrt{2}}{3}}\\).</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "3.a",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the equation of the straight line making \\(60^\\circ\\) angle with positive direction of x-axis and passing through the point (7, 8).",
+            "answer": "<p>The slope of a line making an angle \\(\\theta\\) with the positive x-axis is given by \\(m = \\tan \\theta\\).</p><p>Here, \\(\\theta = 60^\\circ\\), so \\(m = \\tan 60^\\circ = \\sqrt{3}\\).</p><p>The line passes through the point \\((x_1, y_1) = (7, 8)\\).</p><p>Using the point-slope form of a line: \\(y - y_1 = m(x - x_1)\\).</p><p>\\(y - 8 = \\sqrt{3}(x - 7)\\)</p><p>This is the equation of the line. We can also write it in standard form:</p><p>\\(y - 8 = \\sqrt{3}x - 7\\sqrt{3}\\)</p><p>\\(\\sqrt{3}x - y + (8 - 7\\sqrt{3}) = 0\\)</p><p>Thus, the required equation is \\(\\boxed{y - 8 = \\sqrt{3}(x - 7)}\\).</p>",
+            "marks": 5,
+            "unit": "Coordinate Geometry"
+        },
+        {
+            "id": "3.b",
+            "type": "laq",
+            "group": "C",
+            "question": "If \\(U = \\sin^{-1} \\left(\\frac{x - y}{\\sqrt{x} + \\sqrt{y}}\\right)\\) show that \\(x \\frac{\\partial U}{\\partial x} + y \\frac{\\partial U}{\\partial y} = \\frac{1}{2} \\tan U\\).",
+            "answer": "<p>Given \\(U = \\sin^{-1} \\left( \\frac{x-y}{\\sqrt{x} + \\sqrt{y}} \\right)\\). Let \\(v = \\frac{x-y}{\\sqrt{x} + \\sqrt{y}}\\), so \\(U = \\sin^{-1} v\\).</p><p>We need to show that \\(x \\frac{\\partial U}{\\partial x} + y \\frac{\\partial U}{\\partial y} = \\frac{1}{2} \\tan U\\).</p><p><strong>Step 1: Express partial derivatives of U in terms of v.</strong></p><p>\\(\\frac{\\partial U}{\\partial x} = \\frac{1}{\\sqrt{1-v^2}} \\frac{\\partial v}{\\partial x}\\), and similarly for y.</p><p>Note that \\(\\sqrt{1-v^2} = \\cos U\\) (since \\(U = \\sin^{-1} v\\), so \\(\\sin U = v\\) and \\(\\cos U = \\sqrt{1-v^2}\\)).</p><p>Thus, \\(\\frac{\\partial U}{\\partial x} = \\frac{1}{\\cos U} \\frac{\\partial v}{\\partial x}\\).</p><p>Then, \\(x \\frac{\\partial U}{\\partial x} + y \\frac{\\partial U}{\\partial y} = \\frac{1}{\\cos U} \\left( x \\frac{\\partial v}{\\partial x} + y \\frac{\\partial v}{\\partial y} \\right)\\).</p><p>So, we need to find \\(E = x \\frac{\\partial v}{\\partial x} + y \\frac{\\partial v}{\\partial y}\\).</p><p><strong>Step 2: Check homogeneity of v.</strong></p><p>Replace \\(x\\) with \\(tx\\) and \\(y\\) with \\(ty\\):</p><p>\\(v(tx, ty) = \\frac{tx - ty}{\\sqrt{tx} + \\sqrt{ty}} = \\frac{t(x-y)}{\\sqrt{t}(\\sqrt{x} + \\sqrt{y})} = t^{1 - 1/2} \\frac{x-y}{\\sqrt{x}+\\sqrt{y}} = t^{1/2} v(x, y)\\).</p><p>So, \\(v\\) is a homogeneous function of degree \\(\\frac{1}{2}\\).</p><p><strong>Step 3: Apply Euler's theorem to v.</strong></p><p>By Euler's theorem, \\(x \\frac{\\partial v}{\\partial x} + y \\frac{\\partial v}{\\partial y} = n v\\), where \\(n = \\frac{1}{2}\\).</p><p>Thus, \\(E = \\frac{1}{2} v = \\frac{1}{2} \\sin U\\).</p><p><strong>Step 4: Substitute back.</strong></p><p>\\(x \\frac{\\partial U}{\\partial x} + y \\frac{\\partial U}{\\partial y} = \\frac{1}{\\cos U} \\cdot \\frac{1}{2} \\sin U = \\frac{1}{2} \\cdot \\frac{\\sin U}{\\cos U} = \\frac{1}{2} \\tan U\\).</p><p>Hence, proved.</p>",
+            "marks": 4,
+            "unit": "Partial Differentiation"
+        },
+        {
+            "id": "4.a",
+            "type": "laq",
+            "group": "C",
+            "question": "Solve: \\(\\frac{d^2y}{dx^2} + 5\\frac{dy}{dx} + 6y = x^2 e^x.\\)",
+            "answer": "<p>We solve the second-order linear non-homogeneous differential equation: \\((D^2 + 5D + 6)y = x^2 e^x\\).</p><p><strong>Step 1: Solve the homogeneous equation (\\(y_c\\)).</strong></p><p>The auxiliary equation is \\(m^2 + 5m + 6 = 0 \\Rightarrow (m+2)(m+3) = 0\\).</p><p>Roots: \\(m = -2, -3\\).</p><p>Therefore, the complementary function is \\(y_c = C_1 e^{-2x} + C_2 e^{-3x}\\).</p><p><strong>Step 2: Find the Particular Integral (\\(y_p\\)).</strong></p><p>The right-hand side is \\(x^2 e^x\\). Since \\(e^x\\) corresponds to a root \\(m=1\\), which is not a root of the auxiliary equation (roots are -2 and -3), we use the method of undetermined coefficients.</p><p>Assume a particular solution of the form \\(y_p = e^x (a_0 + a_1 x + a_2 x^2)\\), because the RHS is a polynomial times exponential.</p><p>So, let \\(y_p = e^x (A + Bx + Cx^2)\\).</p><p>We need to find A, B, C. First, compute the derivatives:</p><p>\\(y_p' = e^x (A + Bx + Cx^2) + e^x (B + 2Cx) = e^x [A + Bx + Cx^2 + B + 2Cx]\\)</p><p>\\(= e^x [(A+B) + (B+2C)x + Cx^2]\\)</p><p>\\(y_p'' = e^x [(A+B) + (B+2C)x + Cx^2] + e^x [(B+2C) + 2Cx]\\)</p><p>\\(= e^x [(A+B + B+2C) + (B+2C + 2C)x + Cx^2]\\)</p><p>\\(= e^x [(A + 2B + 2C) + (B + 4C)x + Cx^2]\\)</p><p>Now, substitute into the differential equation \\(y_p'' + 5y_p' + 6y_p = x^2 e^x\\). Factor out \\(e^x\\) (which is non-zero).</p><p>\\([(A + 2B + 2C) + (B + 4C)x + Cx^2] + 5[(A+B) + (B+2C)x + Cx^2] + 6[A + Bx + Cx^2] = x^2\\)</p><p>Combine like terms:</p><p>Constant terms: \\(A + 2B + 2C + 5A + 5B + 6A = (A+5A+6A) + (2B+5B) + 2C = 12A + 7B + 2C\\)</p><p>Coefficient of x: \\((B + 4C) + 5(B+2C) + 6B = B + 4C + 5B + 10C + 6B = (B+5B+6B) + (4C+10C) = 12B + 14C\\)</p><p>Coefficient of x²: \\(C + 5C + 6C = 12C\\)</p><p>Right-hand side: \\(x^2 = 0 \\cdot x + 0 \\cdot 1 + 1 \\cdot x^2\\).</p><p>So, we have the system:</p><p>\\(12C = 1 \\Rightarrow C = \\frac{1}{12}\\)</p><p>\\(12B + 14C = 0 \\Rightarrow 12B + 14\\left(\\frac{1}{12}\\right) = 0 \\Rightarrow 12B + \\frac{14}{12} = 0 \\Rightarrow 12B = -\\frac{7}{6} \\Rightarrow B = -\\frac{7}{72}\\)</p><p>\\(12A + 7B + 2C = 0 \\Rightarrow 12A + 7\\left(-\\frac{7}{72}\\right) + 2\\left(\\frac{1}{12}\\right) = 0\\)</p><p>\\(12A - \\frac{49}{72} + \\frac{2}{12} = 0 \\Rightarrow 12A - \\frac{49}{72} + \\frac{12}{72} = 0 \\Rightarrow 12A - \\frac{37}{72} = 0\\)</p><p>\\(12A = \\frac{37}{72} \\Rightarrow A = \\frac{37}{864}\\)</p><p>Thus, the particular integral is \\(y_p = e^x \\left( \\frac{37}{864} - \\frac{7}{72}x + \\frac{1}{12}x^2 \\right)\\).</p><p><strong>Step 3: General Solution.</strong></p><p>The general solution is \\(y = y_c + y_p\\):</p><p>\\[\\boxed{y = C_1 e^{-2x} + C_2 e^{-3x} + e^x \\left( \\frac{37}{864} - \\frac{7}{72}x + \\frac{1}{12}x^2 \\right)}\\]</p>",
+            "marks": 5,
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "4.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Evaluate: \\(\\int \\frac{\\cos x}{(2\\sin x - 3)(\\sin x + 2)} \\, dx.\\)",
+            "answer": "<p>Let \\(I = \\int \\frac{\\cos x \\, dx}{(2\\sin x - 3)(\\sin x + 2)}\\).</p><p>We use substitution: let \\(t = \\sin x\\). Then \\(dt = \\cos x \\, dx\\).</p><p>The integral becomes:</p><p>\\(I = \\int \\frac{dt}{(2t - 3)(t + 2)}\\).</p><p>Now, we decompose into partial fractions:</p><p>\\[\\frac{1}{(2t-3)(t+2)} = \\frac{A}{2t-3} + \\frac{B}{t+2}\\]</p><p>Multiplying both sides by \\((2t-3)(t+2)\\):</p><p>\\(1 = A(t+2) + B(2t-3)\\)</p><p>\\(1 = At + 2A + 2Bt - 3B\\)</p><p>\\(1 = (A + 2B)t + (2A - 3B)\\)</p><p>Comparing coefficients:</p><p>Coefficient of t: \\(A + 2B = 0 \\Rightarrow A = -2B\\)</p><p>Constant term: \\(2A - 3B = 1\\)</p><p>Substitute \\(A = -2B\\): \\(2(-2B) - 3B = 1 \\Rightarrow -4B - 3B = 1 \\Rightarrow -7B = 1 \\Rightarrow B = -\\frac{1}{7}\\)</p><p>Then, \\(A = -2 \\times (-\\frac{1}{7}) = \\frac{2}{7}\\).</p><p>So, \\(\\frac{1}{(2t-3)(t+2)} = \\frac{2/7}{2t-3} - \\frac{1/7}{t+2}\\).</p><p>Therefore,</p><p>\\(I = \\int \\left( \\frac{2/7}{2t-3} - \\frac{1/7}{t+2} \\right) dt = \\frac{2}{7} \\int \\frac{dt}{2t-3} - \\frac{1}{7} \\int \\frac{dt}{t+2}\\)</p><p>\\(= \\frac{2}{7} \\cdot \\frac{1}{2} \\ln|2t-3| - \\frac{1}{7} \\ln|t+2| + C\\)</p><p>\\(= \\frac{1}{7} \\ln|2t-3| - \\frac{1}{7} \\ln|t+2| + C\\)</p><p>\\(= \\frac{1}{7} \\ln \\left| \\frac{2t-3}{t+2} \\right| + C\\)</p><p>Substitute back \\(t = \\sin x\\):</p><p>\\[\\boxed{\\int \\frac{\\cos x \\, dx}{(2\\sin x - 3)(\\sin x + 2)} = \\frac{1}{7} \\ln \\left| \\frac{2\\sin x - 3}{\\sin x + 2} \\right| + C}\\]</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "5.a",
+            "type": "laq",
+            "group": "C",
+            "question": "If \\(\\mathbf{A} = \\frac{1}{3}\\begin{pmatrix} -1 & 2 & -2 \\\\ -2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{pmatrix}\\) show that \\(\\mathbf{A}\\mathbf{A}^T = \\mathbf{A}^T\\mathbf{A} = \\mathbf{I}_3\\). Hence find \\(A^{-1}\\).",
+            "answer": "<p>Given \\(A = \\frac{1}{3} \\begin{bmatrix} -1 & 2 & -2 \\\\ -2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix}\\).</p><p>First, find \\(A^T\\):</p><p>\\(A^T = \\frac{1}{3} \\begin{bmatrix} -1 & -2 & 2 \\\\ 2 & 1 & 2 \\\\ -2 & 2 & 1 \\end{bmatrix}\\).</p><p>Now, compute \\(A A^T\\). Since both matrices have a factor of \\(\\frac{1}{3}\\), their product will have a factor of \\(\\frac{1}{9}\\). We compute the product of the inner matrices (without the \\(\\frac{1}{3}\\) factor) and then multiply by \\(\\frac{1}{9}\\).</p><p>Let \\(B = \\begin{bmatrix} -1 & 2 & -2 \\\\ -2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix}\\) and \\(C = \\begin{bmatrix} -1 & -2 & 2 \\\\ 2 & 1 & 2 \\\\ -2 & 2 & 1 \\end{bmatrix}\\). Then \\(A A^T = \\frac{1}{9} B C\\).</p><p>Compute \\(BC\\):</p><p>Element (1,1): \\((-1)(-1) + (2)(2) + (-2)(-2) = 1 + 4 + 4 = 9\\)</p><p>(1,2): \\((-1)(-2) + (2)(1) + (-2)(2) = 2 + 2 - 4 = 0\\)</p><p>(1,3): \\((-1)(2) + (2)(2) + (-2)(1) = -2 + 4 - 2 = 0\\)</p><p>(2,1): \\((-2)(-1) + (1)(2) + (2)(-2) = 2 + 2 - 4 = 0\\)</p><p>(2,2): \\((-2)(-2) + (1)(1) + (2)(2) = 4 + 1 + 4 = 9\\)</p><p>(2,3): \\((-2)(2) + (1)(2) + (2)(1) = -4 + 2 + 2 = 0\\)</p><p>(3,1): \\((2)(-1) + (2)(2) + (1)(-2) = -2 + 4 - 2 = 0\\)</p><p>(3,2): \\((2)(-2) + (2)(1) + (1)(2) = -4 + 2 + 2 = 0\\)</p><p>(3,3): \\((2)(2) + (2)(2) + (1)(1) = 4 + 4 + 1 = 9\\)</p><p>So, \\(BC = 9 I_3\\).</p><p>Therefore, \\(A A^T = \\frac{1}{9} \\times 9 I_3 = I_3\\).</p><p>Similarly, we can show that \\(A^T A = I_3\\) by a similar calculation (by symmetry, it will also yield \\(I_3\\)).</p><p>Thus, \\(A A^T = A^T A = I_3\\).</p><p>Since \\(A A^T = I_3\\), this implies that \\(A^T\\) is the inverse of \\(A\\).</p><p>Therefore, \\(A^{-1} = A^T = \\frac{1}{3} \\begin{bmatrix} -1 & -2 & 2 \\\\ 2 & 1 & 2 \\\\ -2 & 2 & 1 \\end{bmatrix}\\).</p>",
+            "marks": 5,
+            "unit": "Matrices"
+        },
+        {
+            "id": "5.b",
+            "type": "laq",
+            "group": "C",
+            "question": "An urn contains 2 white and 4 red balls. Two balls are drawn randomly one after another without replacement. What is the probability that the drawn balls are red?",
+            "answer": "<p>Total balls in the urn = 2 white + 4 red = 6 balls.</p><p>We draw two balls one after another without replacement. We want the probability that both drawn balls are red.</p><p><strong>Method 1: Using conditional probability.</strong></p><p>Probability that the first ball is red: \\(P(R_1) = \\frac{4}{6} = \\frac{2}{3}\\).</p><p>After drawing one red ball, the urn now has 2 white and 3 red balls (total 5 balls).</p><p>Probability that the second ball is red, given the first was red: \\(P(R_2 | R_1) = \\frac{3}{5}\\).</p><p>Thus, \\(P(\\text{both red}) = P(R_1) \\times P(R_2 | R_1) = \\frac{2}{3} \\times \\frac{3}{5} = \\frac{6}{15} = \\frac{2}{5}\\).</p><p><strong>Method 2: Using combinations.</strong></p><p>Total number of ways to choose 2 balls out of 6: \\(\\binom{6}{2} = 15\\).</p><p>Number of ways to choose 2 red balls out of 4: \\(\\binom{4}{2} = 6\\).</p><p>Probability = \\(\\frac{6}{15} = \\frac{2}{5}\\).</p><p>Therefore, the required probability is \\(\\boxed{\\frac{2}{5}}\\).</p>",
+            "marks": 4,
+            "unit": "Probability"
+        },
+        {
+            "id": "6.a",
+            "type": "laq",
+            "group": "C",
+            "question": "Solve: \\((x + 2y)\\frac{dy}{dx} = y.\\)",
+            "answer": "<p>The given equation is \\((x + 2y) \\frac{dy}{dx} = y\\).</p><p>We can rewrite it as:</p><p>\\(\\frac{dy}{dx} = \\frac{y}{x + 2y}\\).</p><p>This is a homogeneous differential equation (since the right-hand side is a function of \\(y/x\\)).</p><p>Let \\(v = \\frac{y}{x}\\), so \\(y = vx\\). Then \\(\\frac{dy}{dx} = v + x \\frac{dv}{dx}\\).</p><p>Substitute into the equation:</p><p>\\(v + x \\frac{dv}{dx} = \\frac{vx}{x + 2vx} = \\frac{vx}{x(1 + 2v)} = \\frac{v}{1 + 2v}\\), provided \\(x \\neq 0\\).</p><p>Thus, \\(x \\frac{dv}{dx} = \\frac{v}{1 + 2v} - v = \\frac{v - v(1 + 2v)}{1 + 2v} = \\frac{v - v - 2v^2}{1 + 2v} = \\frac{-2v^2}{1 + 2v}\\).</p><p>Separate the variables:</p><p>\\(\\frac{1 + 2v}{-2v^2} dv = \\frac{dx}{x}\\)</p><p>\\(-\\frac{1}{2} \\left( \\frac{1}{v^2} + \\frac{2}{v} \\right) dv = \\frac{dx}{x}\\)</p><p>\\(-\\frac{1}{2} \\left( v^{-2} + \\frac{2}{v} \\right) dv = \\frac{dx}{x}\\)</p><p>Integrate both sides:</p><p>\\(-\\frac{1}{2} \\left( \\int v^{-2} dv + 2 \\int \\frac{1}{v} dv \\right) = \\int \\frac{dx}{x}\\)</p><p>\\(-\\frac{1}{2} \\left( -v^{-1} + 2 \\ln |v| \\right) = \\ln |x| + C\\)</p><p>\\(-\\frac{1}{2} \\left( -\\frac{1}{v} + 2 \\ln |v| \\right) = \\ln |x| + C\\)</p><p>\\(\\frac{1}{2v} - \\ln |v| = \\ln |x| + C\\)</p><p>Substitute back \\(v = y/x\\):</p><p>\\(\\frac{1}{2(y/x)} - \\ln \\left| \\frac{y}{x} \\right| = \\ln |x| + C\\)</p><p>\\(\\frac{x}{2y} - (\\ln |y| - \\ln |x|) = \\ln |x| + C\\)</p><p>\\(\\frac{x}{2y} - \\ln |y| + \\ln |x| = \\ln |x| + C\\)</p><p>Cancelling \\(\\ln |x|\\) from both sides:</p><p>\\(\\frac{x}{2y} - \\ln |y| = C\\)</p><p>Thus, the general solution is \\(\\boxed{\\frac{x}{2y} - \\ln |y| = C}\\), or equivalently \\(\\frac{x}{2y} = \\ln |y| + C\\).</p>",
+            "marks": 4,
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "6.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the median of the distribution given below:\n\nx: 15-19, 20-24, 25-29, 30-34, 35-39, 40-44, 45-49\nf: 4, 8, 18, 20, 25, 16, 9",
+            "answer": "<p><strong>Step 1: Prepare the cumulative frequency table.</strong></p><table><tr><th>Class</th><th>Frequency (f)</th><th>Cumulative Frequency (cf)</th></tr><tr><td>15-19</td><td>4</td><td>4</td></tr><tr><td>20-24</td><td>8</td><td>12</td></tr><tr><td>25-29</td><td>18</td><td>30</td></tr><tr><td>30-34</td><td>20</td><td>50</td></tr><tr><td>35-39</td><td>25</td><td>75</td></tr><tr><td>40-44</td><td>16</td><td>91</td></tr><tr><td>45-49</td><td>9</td><td>100</td></tr></table><p>Total number of observations, \\(N = \\sum f = 100\\).</p><p><strong>Step 2: Find the median class.</strong></p><p>The median is the value of the \\(\\frac{N}{2}^{th}\\) observation. \\(\\frac{N}{2} = \\frac{100}{2} = 50\\).</p><p>The cumulative frequency just greater than or equal to 50 is 50 itself, which corresponds to the class \\(30-34\\). So, the median class is \\(30-34\\).</p><p><strong>Step 3: Apply the median formula.</strong></p><p>For grouped data, the median is given by:</p><p>\\[\\text{Median} = L + \\left( \\frac{\\frac{N}{2} - cf}{f} \\right) \\times h\\]</p><p>where:</p><ul><li>\\(L\\) = lower limit of the median class = 30</li><li>\\(N\\) = total frequency = 100</li><li>\\(cf\\) = cumulative frequency of the class preceding the median class = 30</li><li>\\(f\\) = frequency of the median class = 20</li><li>\\(h\\) = class width = 5 (since 15-19, 20-24, etc., each have width 5)</li></ul><p>Substitute the values:</p><p>\\[\\text{Median} = 30 + \\left( \\frac{50 - 30}{20} \\right) \\times 5 = 30 + \\left( \\frac{20}{20} \\right) \\times 5 = 30 + 1 \\times 5 = 35\\]</p><p>Therefore, the median of the distribution is <strong>35</strong>.</p>",
+            "marks": 4,
+            "unit": "Statistics"
+        },
+        {
+            "id": "7.a",
+            "type": "laq",
+            "group": "C",
+            "question": "The line segment \\(x + y = 1, 0 \\leq y \\leq 1\\) is revolved about y axis to generate a cone. Find the volume of the cone.",
+            "answer": "<p>The line segment is given by \\(x + y = 1\\), with \\(0 \\leq y \\leq 1\\). This can be rewritten as \\(x = 1 - y\\).</p><p>When this line segment is revolved about the y-axis, it generates a cone. The radius of the cone at a given y is the x-coordinate, \\(x = 1 - y\\).</p><p>We use the disc method (or washer method) integrating with respect to y. The volume is given by:</p><p>\\[V = \\pi \\int_{y=0}^{1} [x(y)]^2 \\, dy = \\pi \\int_0^1 (1 - y)^2 \\, dy\\]</p><p>Let \\(u = 1 - y\\), then \\(du = -dy\\). When \\(y = 0\\), \\(u = 1\\); when \\(y = 1\\), \\(u = 0\\).</p><p>\\[V = \\pi \\int_{u=1}^{0} u^2 (-du) = \\pi \\int_0^1 u^2 \\, du = \\pi \\left[ \\frac{u^3}{3} \\right]_0^1 = \\pi \\left( \\frac{1}{3} - 0 \\right) = \\frac{\\pi}{3}\\]</p><p>Thus, the volume of the cone is \\(\\boxed{\\frac{\\pi}{3}}\\) cubic units.</p><p>Note: This matches the volume of a cone with height 1 and base radius 1 (since at \\(y=0\\), \\(x=1\\)), which is \\(\\frac{1}{3} \\pi r^2 h = \\frac{\\pi}{3}\\).</p>",
+            "marks": 5,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "7.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Evaluate: \\(\\int_{0}^{\\frac{\\pi}{2}} \\frac{\\sqrt{\\tan x}}{\\sqrt{\\tan x} + \\sqrt{\\cot x}} \\, dx.\\)",
+            "answer": "<p>Let \\(I = \\int_0^{\\pi/2} \\frac{\\sqrt{\\tan x}}{\\sqrt{\\tan x} + \\sqrt{\\cot x}} dx\\).</p><p>We know that \\(\\cot x = \\frac{1}{\\tan x}\\), so \\(\\sqrt{\\cot x} = \\frac{1}{\\sqrt{\\tan x}}\\).</p><p>Thus, the integrand becomes \\(\\frac{\\sqrt{\\tan x}}{\\sqrt{\\tan x} + \\frac{1}{\\sqrt{\\tan x}}} = \\frac{\\sqrt{\\tan x}}{\\frac{\\tan x + 1}{\\sqrt{\\tan x}}} = \\frac{\\tan x}{\\tan x + 1}\\).</p><p>So, \\(I = \\int_0^{\\pi/2} \\frac{\\tan x}{1 + \\tan x} dx\\).</p><p>Now, use the property \\(\\int_0^a f(x) dx = \\int_0^a f(a-x) dx\\). Here, \\(a = \\pi/2\\).</p><p>Let \\(I = \\int_0^{\\pi/2} \\frac{\\tan(\\pi/2 - x)}{1 + \\tan(\\pi/2 - x)} dx = \\int_0^{\\pi/2} \\frac{\\cot x}{1 + \\cot x} dx\\).</p><p>Since \\(\\cot x = \\frac{1}{\\tan x}\\), the integrand becomes \\(\\frac{1/\\tan x}{1 + 1/\\tan x} = \\frac{1}{\\tan x + 1}\\).</p><p>Thus, \\(I = \\int_0^{\\pi/2} \\frac{1}{1 + \\tan x} dx\\).</p><p>Now, add the two expressions for I:</p><p>\\(I + I = \\int_0^{\\pi/2} \\left( \\frac{\\tan x}{1 + \\tan x} + \\frac{1}{1 + \\tan x} \\right) dx = \\int_0^{\\pi/2} \\frac{\\tan x + 1}{1 + \\tan x} dx = \\int_0^{\\pi/2} 1 \\, dx\\)</p><p>\\(2I = [x]_0^{\\pi/2} = \\frac{\\pi}{2}\\)</p><p>Therefore, \\(I = \\frac{\\pi}{4}\\).</p><p>Thus, \\(\\boxed{\\int_0^{\\pi/2} \\frac{\\sqrt{\\tan x}}{\\sqrt{\\tan x} + \\sqrt{\\cot x}} dx = \\frac{\\pi}{4}}\\).</p>",
+            "marks": 4,
+            "unit": "Integral Calculus"
+        },
+        {
+            "id": "8.a",
+            "type": "laq",
+            "group": "C",
+            "question": "A can hit a target 5 times out of 4, B 4 times out of 3 and C 2 times out of 3. Each is allowed to shoot once. What is the probability that the target is hit?",
+            "answer": "<p><strong>Note:</strong> There is a typo in the question. \"5 times out of 4\" is impossible. Assuming it means 4 out of 5, 3 out of 4, and 2 out of 3 respectively.</p><p>So, let:</p><p>\\(P(A) = \\frac{4}{5}\\), \\(P(B) = \\frac{3}{4}\\), \\(P(C) = \\frac{2}{3}\\).</p><p>We want the probability that the target is hit, i.e., at least one of them hits the target.</p><p>It is easier to find the probability that none of them hit the target (complement event).</p><p>\\(P(\\text{A misses}) = 1 - \\frac{4}{5} = \\frac{1}{5}\\)</p><p>\\(P(\\text{B misses}) = 1 - \\frac{3}{4} = \\frac{1}{4}\\)</p><p>\\(P(\\text{C misses}) = 1 - \\frac{2}{3} = \\frac{1}{3}\\)</p><p>Assuming their hits are independent events, the probability that all miss is:</p><p>\\(P(\\text{none hit}) = \\frac{1}{5} \\times \\frac{1}{4} \\times \\frac{1}{3} = \\frac{1}{60}\\).</p><p>Therefore, the probability that the target is hit (at least one hits) is:</p><p>\\(P(\\text{hit}) = 1 - P(\\text{none hit}) = 1 - \\frac{1}{60} = \\frac{59}{60}\\).</p><p>Thus, the required probability is \\(\\boxed{\\frac{59}{60}}\\).</p>",
+            "marks": 5,
+            "unit": "Probability"
+        },
+        {
+            "id": "8.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Solve: \\(\\cos y \\, dx + (1 + 2e^{-x}) \\sin y \\, dy = 0\\).",
+            "answer": "<p>The given equation is \\(\\cos y \\, dx + (1 + 2e^{-x}) \\sin y \\, dy = 0\\).</p><p>We can check for exactness. Here, \\(M = \\cos y\\) and \\(N = (1 + 2e^{-x}) \\sin y\\).</p><p>\\(\\frac{\\partial M}{\\partial y} = -\\sin y\\)</p><p>\\(\\frac{\\partial N}{\\partial x} = \\sin y \\cdot \\frac{\\partial}{\\partial x}(1 + 2e^{-x}) = \\sin y \\cdot ( -2e^{-x}) = -2e^{-x} \\sin y\\)</p><p>Since \\(\\frac{\\partial M}{\\partial y} \\neq \\frac{\\partial N}{\\partial x}\\), the equation is not exact. However, it might be separable or reducible to exact with an integrating factor.</p><p>Rewrite the equation as:</p><p>\\(\\cos y \\, dx = -(1 + 2e^{-x}) \\sin y \\, dy\\)</p><p>Separate variables by dividing both sides by \\(\\cos y \\, (1 + 2e^{-x})\\) (assuming these are non-zero):</p><p>\\(\\frac{dx}{1 + 2e^{-x}} = -\\frac{\\sin y}{\\cos y} \\, dy\\)</p><p>\\(\\frac{dx}{1 + 2e^{-x}} = -\\tan y \\, dy\\)</p><p>Now, integrate both sides.</p><p>Left-hand side: \\(\\int \\frac{dx}{1 + 2e^{-x}} = \\int \\frac{dx}{1 + 2e^{-x}}\\). Multiply numerator and denominator by \\(e^x\\):</p><p>\\(\\int \\frac{e^x}{e^x + 2} dx\\). Let \\(u = e^x + 2\\), then \\(du = e^x dx\\), so the integral becomes \\(\\int \\frac{du}{u} = \\ln |u| = \\ln |e^x + 2|\\).</p><p>Right-hand side: \\(-\\int \\tan y \\, dy = -\\int \\frac{\\sin y}{\\cos y} dy = \\ln |\\cos y| + C\\) (since \\(\\int \\tan y \\, dy = -\\ln |\\cos y|\\)).</p><p>So, we have:</p><p>\\(\\ln |e^x + 2| = \\ln |\\cos y| + C\\)</p><p>Let \\(C = \\ln K\\), where \\(K > 0\\). Then:</p><p>\\(\\ln |e^x + 2| = \\ln |\\cos y| + \\ln K = \\ln |K \\cos y|\\)</p><p>Taking antilogarithms:</p><p>\\(|e^x + 2| = |K \\cos y|\\)</p><p>Since \\(e^x + 2 > 0\\) for all x, and \\(\\cos y\\) can be positive or negative, we can drop the absolute values by allowing K to be any real constant (positive or negative).</p><p>Thus, \\(e^x + 2 = C \\cos y\\), where C is an arbitrary constant.</p><p>Therefore, the general solution is \\(\\boxed{e^x + 2 = C \\cos y}\\).</p>",
+            "marks": 4,
+            "unit": "Differential Equations"
+        },
+        {
+            "id": "9.a",
+            "type": "laq",
+            "group": "C",
+            "question": "Without expanding prove that \\((a + b + c)\\) is a factor of the determinant:\n\\[ \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix} \\]",
+            "answer": "<p>Let \\(\\Delta = \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}\\).</p><p>We perform the row operation: \\(R_1 \\to R_1 + R_2 + R_3\\). This operation does not change the value of the determinant.</p><p>After adding, the first row becomes:</p><p>\\(R_1: (a+b+c), (b+c+a), (c+a+b) = (a+b+c), (a+b+c), (a+b+c)\\).</p><p>So, \\(\\Delta = \\begin{vmatrix} a+b+c & a+b+c & a+b+c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}\\).</p><p>Now, factor out \\((a+b+c)\\) from the first row:</p><p>\\(\\Delta = (a+b+c) \\begin{vmatrix} 1 & 1 & 1 \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}\\).</p><p>This shows that \\((a+b+c)\\) is a factor of the determinant, as it is explicitly multiplied by the remaining determinant. Thus, without expanding, we have proved that \\((a+b+c)\\) is a factor.</p>",
+            "marks": 5,
+            "unit": "Matrices"
+        },
+        {
+            "id": "9.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the equation of the ellipse whose eccentricity is 4/5 and axes are along the coordinate axes and with foci at \\((0, \\pm 4)\\).",
+            "answer": "<p>The foci are at \\((0, \\pm 4)\\), which lie on the y-axis. This indicates that the major axis is along the y-axis.</p><p>The standard equation of an ellipse with major axis along y-axis is:</p><p>\\[\\frac{x^2}{b^2} + \\frac{y^2}{a^2} = 1\\] where \\(a > b\\), and the foci are at \\((0, \\pm ae)\\), with \\(e\\) being the eccentricity.</p><p>Given: Foci at \\((0, \\pm 4)\\), so \\(ae = 4\\).</p><p>Eccentricity \\(e = \\frac{4}{5}\\) (given).</p><p>Therefore, \\(a \\times \\frac{4}{5} = 4 \\Rightarrow a = 5\\).</p><p>For an ellipse, we have the relation \\(b^2 = a^2(1 - e^2)\\).</p><p>\\(b^2 = 5^2 \\left(1 - \\left(\\frac{4}{5}\\right)^2\\right) = 25 \\left(1 - \\frac{16}{25}\\right) = 25 \\times \\frac{9}{25} = 9\\).</p><p>Thus, \\(b^2 = 9\\), so \\(b = 3\\).</p><p>Therefore, the equation of the ellipse is:</p><p>\\[\\frac{x^2}{9} + \\frac{y^2}{25} = 1\\]</p><p>or equivalently, \\(\\boxed{25x^2 + 9y^2 = 225}\\).</p>",
+            "marks": 4,
+            "unit": "Coordinate Geometry"
+        }
+    ]
+}

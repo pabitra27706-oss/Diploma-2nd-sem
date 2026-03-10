@@ -1,0 +1,756 @@
+{
+    "exam": {
+        "title": "Applied Physics-II 2022 Question Paper",
+        "year": 2022,
+        "timeAllowed": "2.5 Hours",
+        "fullMarks": 60,
+        "instructions": "Answer the following questions from Group A, B & C as directed"
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "The equation of a particle executing S.H.M. is y = 5 sin (2π/5)(10t + z). The frequency and amplitude of vibration is",
+            "options": [
+                "10, 5",
+                "5, 2",
+                "2, 5",
+                "5/7, 5"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>2, 5</strong> is correct. The given equation is y = 5 sin (2π/5)(10t + z) = 5 sin (4πt + 2πz/5). Comparing with standard SHM equation y = A sin (ωt + φ), we get amplitude A = 5 and angular frequency ω = 4π. Frequency f = ω/2π = 4π/2π = 2 Hz. So frequency = 2, amplitude = 5.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If two progressive waves given by y₁ = 6 sin 250πt and y₂ = 3 sin 256πt superpose, the number of beats formed per second is",
+            "options": [
+                "3",
+                "5",
+                "6",
+                "8"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>3</strong> is correct. Beat frequency = |f₁ - f₂|. From the equations, ω₁ = 250π, so f₁ = ω₁/2π = 250π/2π = 125 Hz. ω₂ = 256π, so f₂ = 256π/2π = 128 Hz. Beat frequency = |128 - 125| = 3 beats per second.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The focal lengths of a convex lens for blue and yellow light are f_b and f_y respectively. The correct relation is",
+            "options": [
+                "f_b = f_y",
+                "f_b > f_y",
+                "f_b < f_y",
+                "f_b ≤ f_y"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>f_b < f_y</strong> is correct. Refractive index (μ) is greater for blue light than for yellow light (due to dispersion). From lens maker's formula, 1/f ∝ (μ - 1). Since μ_blue > μ_yellow, (μ_blue - 1) > (μ_yellow - 1), so 1/f_blue > 1/f_yellow, which means f_blue < f_yellow.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "The speed of light in air is 3 × 10⁸ ms⁻¹. Its speed in diamond of refractive index 2.4 is",
+            "options": [
+                "3 × 10⁸ ms⁻¹",
+                "7.2 × 10⁸ ms⁻¹",
+                "1.25 × 10⁸ ms⁻¹",
+                "none of these"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>1.25 × 10⁸ ms⁻¹</strong> is correct. Refractive index n = c/v, where c is speed in air and v is speed in medium. So v = c/n = (3 × 10⁸)/2.4 = 1.25 × 10⁸ ms⁻¹.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "If the current flowing through a circuit is 0.5 A in 5 mins, the amount of charge flowing through it is",
+            "options": [
+                "216 C",
+                "300 C",
+                "150 C",
+                "25 C"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>150 C</strong> is correct. Charge Q = I × t = 0.5 A × (5 × 60) s = 0.5 × 300 = 150 C.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Specific resistance of the material of wire is 45 × 10⁻⁸ Ωm. The length of the wire (radius 0.25 mm) required to make a resistance of 8 Ω is",
+            "options": [
+                "5 m",
+                "4.5 m",
+                "3.5 m",
+                "2.5 m"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>3.5 m</strong> is correct. Resistance R = ρl/A, so l = R × A/ρ. Area A = πr² = π × (0.25 × 10⁻³)² = π × 6.25 × 10⁻⁸ = 1.96 × 10⁻⁷ m². l = (8 × 1.96 × 10⁻⁷)/(45 × 10⁻⁸) = (15.68 × 10⁻⁷)/(45 × 10⁻⁸) = (15.68/4.5) = 3.48 m ≈ 3.5 m.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "A Carbon resistor has three strips of red colour and a gold strip. What is the value of the resistor?",
+            "options": [
+                "(200 ± 5) Ω",
+                "(2000 ± 5) Ω",
+                "(2200 ± 5) Ω",
+                "(2220 ± 5) Ω"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>(2200 ± 5) Ω</strong> is correct. In color coding, red = 2. Three red strips: first band = 2, second band = 2, third band (multiplier) = 10² = 100. So resistance = 22 × 100 = 2200 Ω. Gold strip indicates tolerance of ±5%. So value is (2200 ± 5%) Ω.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The formula for the magnetic field inside a long solenoid of length L & total number of turns N, carrying a current I is",
+            "options": [
+                "μ₀NI/2",
+                "μ₀NI/2L",
+                "μ₀NI/L",
+                "None of these"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>μ₀NI/L</strong> is correct. For a long solenoid, number of turns per unit length n = N/L. Magnetic field inside a solenoid is B = μ₀nI = μ₀(N/L)I = μ₀NI/L.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Lenz's law in electromagnetic induction is another form of the law of",
+            "options": [
+                "Conservation of energy",
+                "Conservation of charge",
+                "Conservation of mass",
+                null
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Conservation of energy</strong> is correct. Lenz's law states that the induced current opposes the change in flux that produces it. This opposition requires work to be done against magnetic forces, and this work appears as electrical energy, thus conserving energy.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following does not exist?",
+            "options": [
+                "Static charge",
+                "Moving charge",
+                "Magnetic dipole",
+                "Magnetic monopole"
+            ],
+            "correct": 3,
+            "marks": 1,
+            "explanation": "<p><strong>Magnetic monopole</strong> is correct. Magnetic monopoles (isolated north or south poles) do not exist in nature. Magnets always exist as dipoles with both north and south poles. Electric charges (monopoles) do exist, but magnetic monopoles do not.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If the voltage of X-ray tube is doubled, the intensity of X-rays will become",
+            "options": [
+                "half",
+                "doubled",
+                "four times",
+                "unchanged"
+            ],
+            "correct": 3,
+            "marks": 1,
+            "explanation": "<p><strong>Unchanged</strong> is correct. Intensity of X-rays depends on the number of electrons striking the target (i.e., filament current), not on the tube voltage. Doubling voltage increases the energy (and penetrating power) of X-rays, but not the intensity.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is a unique property of laser?",
+            "options": [
+                "Low level of directionality",
+                "Polychromatic",
+                "High coherence",
+                "Low intensity"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>High coherence</strong> is correct. Laser light is highly coherent (both temporal and spatial coherence), meaning all waves are in phase. Ordinary light is incoherent. Lasers are also highly directional, monochromatic, and have high intensity.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "If I_diff and I_drift are the diffusion current and drift current in an unbiased p-n junction diode, then",
+            "options": [
+                "I_diff = I_drift",
+                "I_diff > I_drift",
+                "I_diff < I_drift",
+                "I_diff < I_drift"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>I_diff = I_drift</strong> is correct. In an unbiased p-n junction, the diffusion current (due to majority carriers crossing the junction) and drift current (due to minority carriers swept across by the electric field) are equal and opposite, resulting in zero net current.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1.xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "The energy of the first excited state of hydrogen atom is",
+            "options": [
+                "-13.6 eV",
+                "-3.4 eV",
+                "-1.51 eV",
+                "none of these"
+            ],
+            "correct": 1,
+            "marks": 1,
+            "explanation": "<p><strong>-3.4 eV</strong> is correct. The ground state energy (n=1) of hydrogen atom is -13.6 eV. The first excited state is n=2. Energy E_n = -13.6/n² eV. So E₂ = -13.6/4 = -3.4 eV.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "2.i",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The absorption coefficient of an open window is ________.",
+            "answer": "1",
+            "acceptableAnswers": ["1", "unity", "one"],
+            "marks": 1,
+            "explanation": "<p><strong>1</strong> is correct. An open window absorbs all sound falling on it (sound passes through without reflection), so its absorption coefficient is taken as 1 (unity), which is the reference for acoustical measurements.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.ii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "In ________ wave, direction of vibration of the particles is perpendicular to the direction of propagation of the wave.",
+            "answer": "transverse",
+            "acceptableAnswers": ["transverse", "Transverse"],
+            "marks": 1,
+            "explanation": "<p><strong>Transverse</strong> is correct. In transverse waves, particles vibrate perpendicular to the direction of wave propagation (e.g., waves on a string, light waves). In longitudinal waves, vibration is parallel.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.iii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Two or more light waves are said to be coherent if they are in same ________.",
+            "answer": "phase",
+            "acceptableAnswers": ["phase", "Phase", "phase difference"],
+            "marks": 1,
+            "explanation": "<p><strong>Phase</strong> is correct. Coherent waves have a constant phase difference (including zero) and the same frequency. They are necessary to produce sustained interference patterns.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "2.iv",
+            "type": "gapfill",
+            "group": "A",
+            "question": "For total internal reflection, light should travel from ________ medium to ________ medium.",
+            "answer": "denser, rarer",
+            "acceptableAnswers": ["denser to rarer", "denser, rarer", "optically denser to optically rarer"],
+            "marks": 1,
+            "explanation": "<p><strong>Denser to rarer</strong> is correct. For total internal reflection, light must travel from an optically denser medium (higher refractive index) to an optically rarer medium (lower refractive index).</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "2.v",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The electric field inside a hollow charged sphere is ________.",
+            "answer": "zero",
+            "acceptableAnswers": ["zero", "0"],
+            "marks": 1,
+            "explanation": "<p><strong>Zero</strong> is correct. According to Gauss's law, the electric field inside a hollow charged conducting sphere is zero everywhere because the charge resides only on the outer surface.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "2.vi",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Keeping the charge same, if the capacitance of a capacitor is increased, the potential difference across it will ________.",
+            "answer": "decrease",
+            "acceptableAnswers": ["decrease", "decreases", "go down"],
+            "marks": 1,
+            "explanation": "<p><strong>Decrease</strong> is correct. From the relation Q = CV, if charge Q is constant and capacitance C increases, then potential difference V = Q/C will decrease.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "2.vii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The equivalent resistance in parallel combination of three resistances 7Ω, 5Ω, 3Ω is ________.",
+            "answer": "1.48 Ω",
+            "acceptableAnswers": ["1.48 Ω", "1.48 ohm", "1.48", "1.48Ω"],
+            "marks": 1,
+            "explanation": "<p><strong>1.48 Ω</strong> is correct. For parallel combination, 1/Rp = 1/R₁ + 1/R₂ + 1/R₃ = 1/7 + 1/5 + 1/3 = 0.1429 + 0.2 + 0.3333 = 0.6762. So Rp = 1/0.6762 = 1.48 Ω.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "2.viii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Seebeck effect is a ________ process.",
+            "answer": "thermoelectric",
+            "acceptableAnswers": ["thermoelectric", "thermo-electric"],
+            "marks": 1,
+            "explanation": "<p><strong>Thermoelectric</strong> is correct. The Seebeck effect is a thermoelectric phenomenon where a temperature difference between two dissimilar metals or semiconductors produces an electromotive force (voltage).</p>",
+            "unit": "Thermoelectricity"
+        },
+        {
+            "id": "2.ix",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The SI unit of magnetic flux density is ________.",
+            "answer": "tesla",
+            "acceptableAnswers": ["tesla", "Tesla", "T"],
+            "marks": 1,
+            "explanation": "<p><strong>Tesla (T)</strong> is correct. Magnetic flux density (B) is measured in tesla (T) in SI units. 1 T = 1 Wb/m².</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "2.x",
+            "type": "gapfill",
+            "group": "A",
+            "question": "In a moving coil galvanometer ________ is produced to rotate the pointer.",
+            "answer": "deflecting torque",
+            "acceptableAnswers": ["deflecting torque", "torque", "couple"],
+            "marks": 1,
+            "explanation": "<p><strong>Deflecting torque</strong> is correct. When current flows through the coil placed in a magnetic field, a deflecting torque (τ = NIAB) is produced, which rotates the coil and moves the pointer.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "2.xi",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Doping of Indium to silicon leads to ________ type semiconductor.",
+            "answer": "p-type",
+            "acceptableAnswers": ["p-type", "p type", "p"],
+            "marks": 1,
+            "explanation": "<p><strong>P-type</strong> is correct. Indium is a trivalent impurity (3 valence electrons). When added to silicon (tetravalent), it creates holes, making it a p-type semiconductor.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "2.xii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "X-rays are produced by hitting a target (heavy metal) with a stream of ________.",
+            "answer": "high-speed electrons",
+            "acceptableAnswers": ["electrons", "high speed electrons", "fast electrons"],
+            "marks": 1,
+            "explanation": "<p><strong>High-speed electrons</strong> is correct. In an X-ray tube, electrons are accelerated by high voltage and strike a metal target (like tungsten), producing X-rays.</p>",
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "2.xiii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "In the depletion region of a p-n junction, there is a ________.",
+            "answer": "potential barrier",
+            "acceptableAnswers": ["potential barrier", "barrier potential", "electric field"],
+            "marks": 1,
+            "explanation": "<p><strong>Potential barrier</strong> is correct. The depletion region has immobile ions (positive on n-side, negative on p-side) that create an electric field and a potential barrier that opposes further diffusion of majority carriers.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "3.i",
+            "type": "saq",
+            "group": "A",
+            "question": "If A & ω are the amplitude and the angular frequency respectively of a particle in SHM, then write down the formula for the maximum acceleration of the particle.",
+            "answer": "<p>The maximum acceleration of a particle in SHM is given by:</p><p>$$a_{max} = \\omega^2 A$$</p><p>where ω is the angular frequency and A is the amplitude. This occurs at the extreme positions where displacement is maximum (x = ±A).</p>",
+            "marks": 1,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "3.ii",
+            "type": "saq",
+            "group": "A",
+            "question": "In which medium transverse wave cannot propagate?",
+            "answer": "<p>Transverse waves cannot propagate in gases and liquids (fluids).</p><p>This is because transverse waves require a medium that can sustain shear stress (rigidity), which is absent in fluids. Fluids can only sustain compression, so they support only longitudinal waves. Transverse waves can propagate in solids.</p>",
+            "marks": 1,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "3.iii",
+            "type": "saq",
+            "group": "A",
+            "question": "If a lens is immersed in water what will happen to its focal length?",
+            "answer": "<p>When a lens is immersed in water, its focal length increases.</p><p>Reason: The focal length depends on the relative refractive index of lens material with respect to the surrounding medium. In water, the relative refractive index (μ_lens/μ_water) decreases compared to air. From lens maker's formula, 1/f ∝ (μ_rel - 1), so f increases.</p>",
+            "marks": 1,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.iv",
+            "type": "saq",
+            "group": "A",
+            "question": "Which one of the core and cladding in an optical fiber has higher refractive index?",
+            "answer": "<p>The core has higher refractive index than the cladding.</p><p>Total internal reflection requires light to travel from denser to rarer medium. For TIR to occur at the core-cladding interface, the core must have higher refractive index (denser medium) and cladding lower refractive index (rarer medium).</p>",
+            "marks": 1,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.v",
+            "type": "saq",
+            "group": "A",
+            "question": "Find out the equivalent capacitance for two capacitors of capacitance 30μF and 50μF connected in series.",
+            "answer": "<p>For capacitors in series, the equivalent capacitance is given by:</p><p>$$\\frac{1}{C_{eq}} = \\frac{1}{C_1} + \\frac{1}{C_2} = \\frac{1}{30} + \\frac{1}{50} = \\frac{5+3}{150} = \\frac{8}{150}$$</p><p>$$C_{eq} = \\frac{150}{8} = 18.75 \\mu F$$</p><p>The equivalent capacitance is 18.75 μF.</p>",
+            "marks": 1,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "3.vi",
+            "type": "saq",
+            "group": "A",
+            "question": "If the voltage across a bulb is decreased by 1%, what will be the percentage change in its power?",
+            "answer": "<p>Power P = V²/R (assuming constant resistance). For small changes, fractional change in power = 2 × fractional change in voltage.</p><p>Percentage change in power = 2 × (-1%) = -2%.</p><p>The power will decrease by 2%.</p>",
+            "marks": 1,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "3.vii",
+            "type": "saq",
+            "group": "A",
+            "question": "If a static charge is placed inside a magnetic field, will there be any force acting on it?",
+            "answer": "<p>No, there will be no force acting on a static charge placed in a magnetic field.</p><p>The magnetic force on a charge is given by F = q(v × B). Since the charge is static (v = 0), the force is zero. A magnetic field only exerts force on moving charges.</p>",
+            "marks": 1,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3.viii",
+            "type": "saq",
+            "group": "A",
+            "question": "Why induced emf is also called back emf?",
+            "answer": "<p>Induced emf is called back emf because it always opposes the change that produces it, according to Lenz's law.</p><p>For example, in a motor, the induced emf opposes the applied voltage and acts in the opposite direction, hence it is called \"back\" emf. It tries to reduce the current and opposes the motion.</p>",
+            "marks": 1,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3.ix",
+            "type": "saq",
+            "group": "A",
+            "question": "Among Kα and Kβ X-ray which has higher energy?",
+            "answer": "<p>Kβ X-ray has higher energy than Kα X-ray.</p><p>Kα is produced when an electron jumps from L-shell (n=2) to K-shell (n=1). Kβ is produced when an electron jumps from M-shell (n=3) to K-shell. The energy difference between K and M shells is greater than between K and L shells, so Kβ photons have higher energy.</p>",
+            "marks": 1,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "3.x",
+            "type": "saq",
+            "group": "A",
+            "question": "Two parallel wires carry same current in same direction. What will happen?",
+            "answer": "<p>The two parallel wires will attract each other.</p><p>According to Ampere's law, each wire produces a magnetic field. The force on a current-carrying conductor in a magnetic field is given by F = BIL. For parallel currents in the same direction, the force is attractive. For opposite directions, the force is repulsive.</p>",
+            "marks": 1,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3.xi",
+            "type": "saq",
+            "group": "A",
+            "question": "Which one of Silicon or Germanium has higher energy band gap?",
+            "answer": "<p>Silicon has higher energy band gap than Germanium.</p><p>At room temperature, the band gap of Silicon is about 1.1 eV, while that of Germanium is about 0.7 eV. This is why silicon is more commonly used in semiconductor devices as it can operate at higher temperatures.</p>",
+            "marks": 1,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "3.xii",
+            "type": "saq",
+            "group": "A",
+            "question": "Which bias causes breakdown in p-n junction diode?",
+            "answer": "<p>Reverse bias causes breakdown in a p-n junction diode.</p><p>When reverse bias voltage exceeds a certain value (breakdown voltage), a large current suddenly flows due to either Zener breakdown (avalanche breakdown in heavily doped diodes) or avalanche breakdown. This is called reverse breakdown.</p>",
+            "marks": 1,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "3.xiii",
+            "type": "saq",
+            "group": "A",
+            "question": "Which type of biasing gives a semiconductor diode very high resistance?",
+            "answer": "<p>Reverse biasing gives a semiconductor diode very high resistance.</p><p>In reverse bias, the depletion width increases, and the potential barrier increases, preventing the flow of majority carriers. Only a very small leakage current flows due to minority carriers, so the diode offers very high resistance (ideally infinite).</p>",
+            "marks": 1,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "3.xiv",
+            "type": "saq",
+            "group": "A",
+            "question": "Name two types of pumping mechanism in laser production.",
+            "answer": "<p>Two common types of pumping mechanisms in laser production are:</p><ol><li><strong>Optical pumping:</strong> Using intense light from flash lamps or another laser to excite atoms (e.g., Ruby laser).</li><li><strong>Electrical discharge pumping:</strong> Using electric current or discharge to excite atoms through collisions with electrons (e.g., He-Ne laser, CO₂ laser).</li></ol><p>Other methods include chemical pumping and injection current pumping (in semiconductor lasers).</p>",
+            "marks": 1,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "3.xv",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the full form of CNT in respect to nanotechnology?",
+            "answer": "<p>CNT stands for <strong>Carbon Nanotube</strong>.</p><p>Carbon nanotubes are allotropes of carbon with a cylindrical nanostructure. They have exceptional mechanical, electrical, and thermal properties and are used in various nanotechnology applications including electronics, materials science, and medicine.</p>",
+            "marks": 1,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "4.i",
+            "type": "saq",
+            "group": "B",
+            "question": "Will there be any change in critical angle if the colour of light is changed? Give reason.",
+            "answer": "<p>Yes, the critical angle changes with the colour of light.</p><p><strong>Reason:</strong> Critical angle depends on the refractive index of the medium, which varies with the wavelength (colour) of light due to dispersion. The refractive index is maximum for violet light and minimum for red light. Since sin θ_c = n₂/n₁ (where n₁ > n₂), as refractive index increases, critical angle decreases. Therefore, critical angle is smallest for violet light and largest for red light.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "4.ii",
+            "type": "saq",
+            "group": "B",
+            "question": "What happens to the capacitance of a capacitor when a dielectric slab is placed between its plates? Explain with relevant formula.",
+            "answer": "<p>When a dielectric slab is placed between the plates of a capacitor, its capacitance increases.</p><p><strong>Explanation:</strong> The capacitance of a parallel plate capacitor in vacuum is C₀ = ε₀A/d. When a dielectric of dielectric constant K is inserted, the capacitance becomes C = Kε₀A/d = KC₀. This is because the dielectric reduces the effective electric field between the plates (by polarization), allowing more charge to be stored for the same potential difference. The factor K (>1 for dielectrics) is called the dielectric constant or relative permittivity.</p>",
+            "marks": 2,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "4.iii",
+            "type": "saq",
+            "group": "B",
+            "question": "Out of resistance (R) and specific resistance (ρ), which one is more fundamental and why?",
+            "answer": "<p><strong>Specific resistance (resistivity, ρ) is more fundamental</strong> than resistance (R).</p><p><strong>Reason:</strong> Resistance R depends on the dimensions (length and area) of the conductor as given by R = ρl/A. Different pieces of the same material can have different resistances depending on their size and shape. However, specific resistance (resistivity) ρ is an intrinsic property of the material itself. It depends only on the nature of the material and temperature, not on its dimensions. Hence, it is a more fundamental characteristic of the material.</p>",
+            "marks": 2,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "4.iv",
+            "type": "saq",
+            "group": "B",
+            "question": "State the factors on which the thermo-emf developed in a thermocouple depends.",
+            "answer": "<p>The thermo-emf (thermoelectric emf) developed in a thermocouple depends on the following factors:</p><ol><li><strong>Nature of metals:</strong> Different pairs of metals produce different thermo-emf for the same temperature difference (Seebeck coefficient depends on the materials).</li><li><strong>Temperature difference:</strong> Thermo-emf is proportional to the temperature difference between the hot and cold junctions (for small temperature differences).</li><li><strong>Temperature of the cold junction:</strong> The emf depends on the reference temperature (usually 0°C or room temperature).</li><li><strong>Composition of the metals:</strong> Purity and alloy composition affect the thermo-emf.</li></ol>",
+            "marks": 2,
+            "unit": "Thermoelectricity"
+        },
+        {
+            "id": "4.v",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the measures to be taken to reduce the reverberation in a hall?",
+            "answer": "<p>To reduce reverberation in a hall, the following measures can be taken:</p><ol><li><strong>Use sound-absorbing materials:</strong> Line the walls, ceiling, and floor with acoustically absorbent materials like fiberglass, acoustic tiles, curtains, carpets, and perforated panels.</li><li><strong>Install sound absorbers:</strong> Use hanging baffles, acoustic panels, or resonant absorbers to absorb sound energy.</li><li><strong>Increase audience and furnishings:</strong> People and upholstered furniture absorb sound effectively, so ensuring good occupancy helps reduce reverberation time.</li><li><strong>Use curved surfaces:</strong> Avoid large parallel reflecting surfaces that cause echoes; use curved or angled surfaces to diffuse sound.</li></ol><p>These measures absorb sound energy and prevent multiple reflections, thereby reducing the reverberation time.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "4.vi",
+            "type": "saq",
+            "group": "B",
+            "question": "Are Electromotive force and Potential Difference same for a cell? Explain.",
+            "answer": "<p>No, electromotive force (emf) and potential difference (terminal voltage) are not the same for a cell.</p><p><strong>Explanation:</strong> The emf (ε) of a cell is the maximum potential difference between its terminals when no current is drawn from it (open circuit). It represents the energy supplied per unit charge by the cell. The terminal potential difference (V) is the voltage across the terminals when current is flowing. When current I flows through the cell, there is an internal voltage drop due to the cell's internal resistance r. So, V = ε - Ir. Thus, V is less than ε when the cell is supplying current. Only in an ideal cell (r = 0) or under open circuit conditions (I = 0) are they equal.</p>",
+            "marks": 2,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "4.vii",
+            "type": "saq",
+            "group": "B",
+            "question": "What will happen if a very high resistance, instead of a low resistance, is connected in parallel to a galvanometer to convert it into an ammeter?",
+            "answer": "<p>If a very high resistance is connected in parallel to a galvanometer to convert it into an ammeter, the conversion will fail and the instrument will not function properly as an ammeter.</p><p><strong>Reason:</strong> An ammeter is connected in series in a circuit and must have very low resistance to avoid affecting the circuit current. To convert a galvanometer into an ammeter, a low resistance called a shunt is connected in parallel. This shunt diverts most of the current, allowing only a small fraction (I_g) through the galvanometer. If a high resistance is used instead, most of the current will still flow through the galvanometer, damaging it. Also, the overall resistance of the ammeter will be high, which will alter the circuit current when connected in series, leading to incorrect measurements.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4.viii",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the necessary circuit diagram for studying the forward bias characteristic curve (V-I curve) of a p-n junction diode.",
+            "answer": "<p><em>Refer to circuit diagram in textbook/online.</em></p><p>The circuit diagram should include:</p><ul><li>A DC power supply (battery) connected across the diode with the p-side connected to positive and n-side to negative (forward bias condition).</li><li>A variable resistor (rheostat) in series to vary the voltage.</li><li>A voltmeter connected in parallel across the diode to measure the forward voltage (V_F).</li><li>A milliammeter (mA) connected in series to measure the forward current (I_F).</li><li>A protective resistor (few hundred ohms) in series to limit current and prevent diode damage.</li></ul><p>The connections should clearly show the forward bias configuration. By varying the voltage using the rheostat, different readings of V_F and I_F are noted and plotted to obtain the forward bias V-I characteristic curve.</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "4.ix",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the different types of breakdown in p-n junction diode?",
+            "answer": "<p>There are two main types of breakdown in a p-n junction diode under reverse bias:</p><ol><li><strong>Zener breakdown:</strong> Occurs in heavily doped diodes at relatively low reverse voltages (typically < 5V). When the reverse voltage increases, the electric field in the depletion region becomes very high, directly breaking covalent bonds and generating electron-hole pairs through tunneling. This leads to a sudden increase in current.</li><li><strong>Avalanche breakdown:</strong> Occurs in moderately doped diodes at higher reverse voltages. Minority carriers accelerated by the high electric field gain sufficient kinetic energy to knock out electrons from covalent bonds by impact ionization, creating more electron-hole pairs. These new carriers further cause more ionization, leading to an avalanche multiplication of carriers and a large current.</li></ol><p>Both are non-destructive if the current is limited by an external resistor.</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "4.x",
+            "type": "saq",
+            "group": "B",
+            "question": "Describe briefly the phenomenon of Stimulated emission.",
+            "answer": "<p><strong>Stimulated emission</strong> is the process that forms the basis of laser operation.</p><p>When an atom is already in an excited state (higher energy level E₂), and a photon of energy exactly equal to E₂ - E₁ (the energy difference between excited state and ground state) interacts with it, the atom is stimulated to make a transition to the lower energy level E₁. In this process, the atom emits an additional photon that has the same energy, phase, direction, and polarization as the incident photon.</p><p>Thus, one incoming photon results in two identical photons (the original plus the emitted one), leading to amplification of light. This is different from spontaneous emission, where atoms decay randomly without external stimulus. For stimulated emission to dominate over absorption, population inversion (N₂ > N₁) must be achieved.</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "5.i.a",
+            "type": "saq",
+            "group": "C",
+            "question": "What are damped and forced vibrations?",
+            "answer": "<p><strong>Damped vibrations:</strong> When a vibrating system experiences a resistive force (like friction, air resistance) that gradually reduces its amplitude over time, the vibrations are called damped vibrations. The energy of the system is dissipated as heat. Example: A pendulum swinging in air, a tuning fork after being struck.</p><p><strong>Forced vibrations:</strong> When a system is made to vibrate by an external periodic force applied to it, the vibrations are called forced vibrations. The system vibrates with the frequency of the external force, not its natural frequency. Example: A bridge vibrating due to marching soldiers, a sound box of a musical instrument vibrating due to the string.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "5.i.b",
+            "type": "saq",
+            "group": "C",
+            "question": "Determine the focal length of the lens of refractive index 1.7 when placed in air. The radii of curvature of the two spherical surfaces of the lens are 20cm and 35cm.",
+            "answer": "<p>Given: Refractive index of lens material μ = 1.7, surrounding medium is air (μ_air = 1). Radii of curvature: R₁ = 20 cm, R₂ = -35 cm (using sign convention: for a convex lens, first surface is convex (R positive), second surface is concave (R negative)).</p><p>Using lens maker's formula:</p><p>$$\\frac{1}{f} = (\\mu - 1) \\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$$</p><p>$$\\frac{1}{f} = (1.7 - 1) \\left(\\frac{1}{20} - \\frac{1}{-35}\\right)$$</p><p>$$\\frac{1}{f} = 0.7 \\left(\\frac{1}{20} + \\frac{1}{35}\\right)$$</p><p>$$\\frac{1}{f} = 0.7 \\left(\\frac{35 + 20}{700}\\right) = 0.7 \\left(\\frac{55}{700}\\right)$$</p><p>$$\\frac{1}{f} = 0.7 \\times \\frac{55}{700} = \\frac{38.5}{700} = \\frac{385}{7000} = \\frac{77}{1400}$$</p><p>$$f = \\frac{1400}{77} = 18.18 \\text{ cm}$$</p><p>The focal length of the lens is 18.18 cm.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "5.i.c",
+            "type": "saq",
+            "group": "C",
+            "question": "Write down the characteristics of simple harmonic motion.",
+            "answer": "<p>The main characteristics of Simple Harmonic Motion (SHM) are:</p><ol><li><strong>Periodic motion:</strong> The motion repeats itself after a fixed interval of time called the time period.</li><li><strong>Restoring force:</strong> A restoring force always acts on the particle, which is proportional to the displacement from the mean position and directed towards it: F ∝ -x or F = -kx.</li><li><strong>Acceleration proportional to displacement:</strong> Acceleration is directly proportional to the displacement from the mean position and always directed towards it: a ∝ -x or a = -ω²x.</li><li><strong>Sinsoidal variation:</strong> Displacement, velocity, and acceleration vary sinusoidally with time.</li><li><strong>Energy conservation:</strong> Total mechanical energy remains constant. Energy is continuously exchanged between kinetic and potential forms.</li><li><strong>Velocity is maximum at mean position and zero at extremes.</strong></li><li><strong>Acceleration is zero at mean position and maximum at extremes.</strong></li></ol>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "5.ii.a",
+            "type": "saq",
+            "group": "C",
+            "question": "A particle executing S.H.M has a maximum displacement of 4cm and its acceleration at a distance of 1.0 cm from its mean position is 3 cm/s². What will be its velocity when it is at a distance of 2cm from its mean position?",
+            "answer": "<p>Given: Amplitude A = 4 cm, acceleration at x = 1 cm is a = 3 cm/s².</p><p>In SHM, acceleration a = -ω²x. Taking magnitude: a = ω²x</p><p>So, ω² = a/x = 3/1 = 3 s⁻²</p><p>Therefore, ω = √3 rad/s</p><p>Velocity in SHM is given by: v = ω√(A² - x²)</p><p>We need velocity at x = 2 cm:</p><p>v = √3 × √(4² - 2²) = √3 × √(16 - 4) = √3 × √12</p><p>v = √3 × 2√3 = 2 × 3 = 6 cm/s</p><p>The velocity at a distance of 2 cm from mean position is 6 cm/s.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "5.ii.b",
+            "type": "saq",
+            "group": "C",
+            "question": "Indicate in ray diagram the kind of lens needed, the position of the object and the position of the image to obtain a magnified virtual image.",
+            "answer": "<p><em>Refer to ray diagram in textbook/online.</em></p><p>To obtain a magnified virtual image, we need a <strong>convex lens</strong> (converging lens).</p><p><strong>Ray diagram description:</strong></p><ul><li><strong>Kind of lens:</strong> Convex lens (shown with its optical center and principal focus F on both sides).</li><li><strong>Position of object:</strong> The object should be placed between the optical center (O) and the principal focus (F) of the convex lens, i.e., object distance u < f (where f is focal length).</li><li><strong>Position of image:</strong> When the object is between O and F, the image formed is virtual, erect, and magnified. The image is formed on the same side as the object, beyond F (i.e., image distance v is negative and greater than object distance in magnitude).</li></ul><p>In the ray diagram, two rays are drawn from the top of the object: one parallel to the principal axis (passing through F after refraction) and one through the optical center (passing undeviated). These rays appear to diverge from a point on the same side as the object, forming a virtual image that is larger than the object.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "5.ii.c",
+            "type": "saq",
+            "group": "C",
+            "question": "Define optical center of a lens with diagram.",
+            "answer": "<p><strong>Definition:</strong> The optical center of a lens is a point on the principal axis such that any ray of light passing through this point emerges parallel to its incident direction without any deviation. In other words, a ray directed towards the optical center passes through the lens undeviated.</p><p><em>Refer to diagram in textbook/online.</em></p><p><strong>Diagram description:</strong> A convex lens is shown with its principal axis. A point O on the principal axis inside the lens is marked as the optical center. Two rays are shown: one ray entering the lens directed towards O and emerging from the other side without any change in direction (i.e., parallel to the incident ray). For a thin lens, the optical center lies approximately at the geometric center of the lens.</p><p><strong>Properties:</strong></p><ul><li>A ray passing through the optical center does not suffer any deviation.</li><li>It is the point where the principal axis meets the lens.</li><li>For a symmetric biconvex or biconcave lens, the optical center lies at the center of the lens.</li></ul>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "5.iii.a",
+            "type": "saq",
+            "group": "C",
+            "question": "The equation of a progressive wave is given by y = (4/5) sin (100πt - 0.4πx) where y and x are in m and t is in s. Find out the wavelength, frequency and velocity of the wave.",
+            "answer": "<p>Given wave equation: y = (4/5) sin (100πt - 0.4πx)</p><p>Comparing with standard progressive wave equation: y = A sin (ωt - kx)</p><p>We have: Angular frequency ω = 100π rad/s, Wave number k = 0.4π rad/m</p><p><strong>Frequency:</strong> f = ω/2π = (100π)/(2π) = 50 Hz</p><p><strong>Wavelength:</strong> λ = 2π/k = 2π/(0.4π) = 2π/(0.4π) = 2/0.4 = 5 m</p><p><strong>Wave velocity:</strong> v = fλ = 50 × 5 = 250 m/s</p><p>Alternatively, v = ω/k = (100π)/(0.4π) = 100/0.4 = 250 m/s</p><p>Thus, wavelength = 5 m, frequency = 50 Hz, velocity = 250 m/s.</p>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "5.iii.b",
+            "type": "saq",
+            "group": "C",
+            "question": "Write down the conditions for total internal reflection of light.",
+            "answer": "<p>The two necessary conditions for total internal reflection (TIR) of light are:</p><ol><li><strong>Optical condition:</strong> Light must travel from an optically denser medium (higher refractive index, n₁) to an optically rarer medium (lower refractive index, n₂), i.e., n₁ > n₂.</li><li><strong>Angular condition:</strong> The angle of incidence (i) in the denser medium must be greater than the critical angle (θ_c) for the pair of media, i.e., i > θ_c.</li></ol><p>The critical angle is defined by Snell's law at the critical condition (angle of refraction = 90°):</p><p>$$\\sin \\theta_c = \\frac{n_2}{n_1}$$</p><p>When both conditions are satisfied, the light is completely reflected back into the denser medium without any loss of intensity.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "5.iii.c",
+            "type": "saq",
+            "group": "C",
+            "question": "An object is placed at a certain distance from a convex lens of focal length 20cm. Find the distance of the object if the image obtained is magnified 4 times.",
+            "answer": "<p>Given: Focal length f = +20 cm (convex lens), magnification |m| = 4.</p><p>For a convex lens, magnification can be positive (virtual image) or negative (real image). So we have two cases.</p><p>Using lens formula: 1/f = 1/v - 1/u, and magnification m = v/u.</p><p><strong>Case 1: Real image (m = -4, inverted)</strong></p><p>v = m × u = -4u</p><p>1/20 = 1/(-4u) - 1/u = -1/(4u) - 1/u = -(1/(4u) + 4/(4u)) = -5/(4u)</p><p>1/20 = -5/(4u) ⇒ 4u = -100 ⇒ u = -25 cm</p><p><strong>Case 2: Virtual image (m = +4, erect)</strong></p><p>v = m × u = 4u (v is positive for virtual image on same side?) Wait, sign convention: For virtual image formed by convex lens, v is negative (image on same side as object). So m = v/u = +4 ⇒ v = 4u (but u is negative, so v will also be negative).</p><p>Let u = -x (x > 0). Then v = -4x (since v is also negative for virtual image).</p><p>1/20 = 1/(-4x) - 1/(-x) = -1/(4x) + 1/x = (-1 + 4)/(4x) = 3/(4x)</p><p>1/20 = 3/(4x) ⇒ 4x = 60 ⇒ x = 15 cm</p><p>So u = -15 cm</p><p>Therefore, the object distances are 25 cm (for real, inverted image) and 15 cm (for virtual, erect image).</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "6.i.a",
+            "type": "saq",
+            "group": "C",
+            "question": "Two point charges A and B, having charges +Q and -Q respectively, are placed at certain distance apart and force acting between them is F. If 25% charge of A is transferred to B, then what will be the force between them.",
+            "answer": "<p>Initial charges: q_A = +Q, q_B = -Q, distance = r (constant).</p><p>Initial force F = k|q_A × q_B|/r² = k(Q × Q)/r² = kQ²/r² (attractive).</p><p>25% of charge from A is transferred to B.</p><p>Charge transferred = 25% of Q = 0.25Q</p><p>New charge on A: q_A' = Q - 0.25Q = 0.75Q</p><p>New charge on B: q_B' = -Q + 0.25Q = -0.75Q</p><p>New force F' = k|q_A' × q_B'|/r² = k(0.75Q × 0.75Q)/r² = k(0.5625 Q²)/r²</p><p>F' = 0.5625 × (kQ²/r²) = 0.5625 F</p><p>The new force is 0.5625 F (still attractive as charges are opposite signs).</p>",
+            "marks": 2,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "6.i.b",
+            "type": "saq",
+            "group": "C",
+            "question": "Find the equivalent resistance for the circuit shown below: (Fig. 5(i): Circuit diagram for Q6(i)(b))",
+            "answer": "<p><em>Note: Since the circuit diagram is not provided in the text, I'll provide a general approach for finding equivalent resistance.</em></p><p>To find equivalent resistance in a circuit:</p><ol><li>Identify series and parallel combinations of resistors.</li><li>Resistors in series: R_eq = R₁ + R₂ + ...</li><li>Resistors in parallel: 1/R_eq = 1/R₁ + 1/R₂ + ...</li><li>Simplify step by step from the innermost combinations outward.</li><li>For complex circuits with bridges, use Kirchhoff's laws or star-delta transformation.</li></ol><p>Without the actual circuit diagram, a specific numerical answer cannot be provided. Students should analyze the given circuit and apply the above principles.</p>",
+            "marks": 2,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "6.ii.a",
+            "type": "saq",
+            "group": "C",
+            "question": "State and explain Ampere's circuital law.",
+            "answer": "<p><strong>Ampere's Circuital Law:</strong> It states that the line integral of the magnetic field B around any closed loop is equal to μ₀ times the total current passing through the area enclosed by the loop.</p><p>Mathematically: $$\\oint \\vec{B} \\cdot d\\vec{l} = \\mu_0 I_{enc}$$</p><p>where:</p><ul><li>$\\oint \\vec{B} \\cdot d\\vec{l}$ is the line integral of magnetic field along a closed path,</li><li>$\\mu_0$ is the permeability of free space ($4\\pi \\times 10^{-7}$ Tm/A),</li><li>$I_{enc}$ is the net current enclosed by the path.</li></ul><p><strong>Explanation:</strong> The law relates the magnetic field along a closed loop to the current passing through it. The direction of current and the direction of integration are related by the right-hand rule. This law is useful for calculating magnetic fields in symmetric situations like straight wires, solenoids, and toroids.</p><p>Maxwell later modified this law by adding displacement current to make it consistent for time-varying fields.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.ii.b",
+            "type": "saq",
+            "group": "C",
+            "question": "A long solenoid has 500 turns per meter and carries a current of 4A. Calculate the magnetic field inside the solenoid.",
+            "answer": "<p>Given: Number of turns per unit length n = 500 turns/m, Current I = 4 A.</p><p>The magnetic field inside a long solenoid is given by:</p><p>$$B = \\mu_0 n I$$</p><p>where $\\mu_0 = 4\\pi \\times 10^{-7}$ Tm/A.</p><p>Substituting the values:</p><p>$$B = (4\\pi \\times 10^{-7}) \\times 500 \\times 4$$</p><p>$$B = 4\\pi \\times 10^{-7} \\times 2000$$</p><p>$$B = 4\\pi \\times 2 \\times 10^{-4} = 8\\pi \\times 10^{-4} \\text{ T}$$</p><p>$$B = 8 \\times 3.14 \\times 10^{-4} = 25.12 \\times 10^{-4} = 2.512 \\times 10^{-3} \\text{ T}$$</p><p>$$B = 2.512 \\text{ mT}$$</p><p>The magnetic field inside the solenoid is $2.512 \\times 10^{-3}$ T or 2.512 mT.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.ii.c",
+            "type": "saq",
+            "group": "C",
+            "question": "What is the difference between diamagnetic and paramagnetic materials?",
+            "answer": "<table><tr><th>Property</th><th>Diamagnetic Materials</th><th>Paramagnetic Materials</th></tr><tr><td><strong>Magnetic susceptibility (χ)</strong></td><td>Negative and very small (∼ -10⁻⁵ to -10⁻⁶)</td><td>Positive and small (∼ 10⁻³ to 10⁻⁵)</td></tr><tr><td><strong>Relative permeability (μ_r)</strong></td><td>Less than 1 (μ_r < 1)</td><td>Greater than 1 (μ_r > 1)</td></tr><tr><td><strong>Behavior in non-uniform field</strong></td><td>Weakly repelled from stronger to weaker field</td><td>Weakly attracted from weaker to stronger field</td></tr><tr><td><strong>Origin of magnetism</strong></td><td>Orbital motion of electrons; induced magnetic moments oppose the applied field</td><td>Presence of permanent atomic magnetic moments due to unpaired electrons; they align partially with the field</td></tr><tr><td><strong>Temperature dependence</strong></td><td>Independent of temperature</td><td>Follows Curie's law: χ ∝ 1/T</td></tr><tr><td><strong>Examples</strong></td><td>Bismuth, Copper, Water, Gold, Mercury</td><td>Aluminium, Platinum, Oxygen, Sodium</td></tr></table>",
+            "marks": 2,
+            "unit": "Magnetism"
+        },
+        {
+            "id": "6.iii.a",
+            "type": "saq",
+            "group": "C",
+            "question": "Explain the working principle of a transformer.",
+            "answer": "<p><strong>Working principle of a transformer:</strong></p><p>A transformer works on the principle of <strong>mutual induction</strong>. When an alternating current (AC) flows through the primary coil, it produces a continuously changing magnetic flux in the core. This changing flux links with the secondary coil through the common magnetic core. According to Faraday's law of electromagnetic induction, a changing flux linked with the secondary coil induces an EMF in it.</p><p>The induced EMF in the secondary is given by: E_s = -N_s dφ/dt, where N_s is the number of turns in the secondary.</p><p>The voltage ratio is equal to the turns ratio: V_s/V_p = N_s/N_p.</p><p>For a step-up transformer, N_s > N_p, so V_s > V_p.</p><p>For a step-down transformer, N_s < N_p, so V_s < V_p.</p><p>The transformer works only on AC, not DC, because a changing flux is essential for induction. The core is laminated to minimize eddy current losses.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.iii.b",
+            "type": "saq",
+            "group": "C",
+            "question": "A step-up transformer has 200 turns on primary and 1200 turns on secondary. If the primary voltage is 230V, find the secondary voltage.",
+            "answer": "<p>Given: Number of turns in primary N_p = 200, Number of turns in secondary N_s = 1200, Primary voltage V_p = 230 V.</p><p>For an ideal transformer, the voltage ratio equals the turns ratio:</p><p>$$\\frac{V_s}{V_p} = \\frac{N_s}{N_p}$$</p><p>$$V_s = V_p \\times \\frac{N_s}{N_p}$$</p><p>$$V_s = 230 \\times \\frac{1200}{200}$$</p><p>$$V_s = 230 \\times 6 = 1380 \\text{ V}$$</p><p>The secondary voltage is 1380 V.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.iii.c",
+            "type": "saq",
+            "group": "C",
+            "question": "What are eddy currents? How can they be minimized?",
+            "answer": "<p><strong>Eddy currents:</strong> These are loops of electric current induced within conductors by a changing magnetic field, due to electromagnetic induction. When a conductor experiences a changing magnetic flux, circulating currents are induced in the conductor itself, flowing in closed loops perpendicular to the magnetic field. These currents dissipate energy as heat (Joule heating) and are undesirable in many applications as they cause power loss (called eddy current loss).</p><p><strong>Methods to minimize eddy currents:</strong></p><ol><li><strong>Lamination:</strong> The magnetic core is made of thin, insulated sheets (laminations) stacked together. The thin sheets restrict the eddy current paths to small loops within each lamination, reducing their magnitude. The insulation between laminations prevents current from flowing across laminations.</li><li><strong>Using high resistivity materials:</strong> Cores are made of materials with high electrical resistivity, such as silicon steel or ferrites. Higher resistance reduces the magnitude of eddy currents for the same induced EMF.</li><li><strong>Using ferrite cores:</strong> At high frequencies, ferrite cores (which are ceramic and have very high resistance) are used to virtually eliminate eddy currents.</li></ol>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        }
+    ]
+}

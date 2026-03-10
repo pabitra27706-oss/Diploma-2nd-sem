@@ -1,0 +1,473 @@
+{
+    "exam": {
+        "title": "Applied Physics-II 2024 Question Paper",
+        "year": 2024,
+        "timeAllowed": "3 Hours",
+        "fullMarks": 60,
+        "instructions": "Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation. Answer any Five (05) Questions from Group B."
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "What happens to the wavelength of a sound wave in a medium if its frequency increases?",
+            "options": [
+                "The wavelength decreases",
+                "The wavelength increases",
+                "The wavelength remains constant",
+                "The wavelength becomes zero"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>The wavelength decreases</strong> is correct. For a wave traveling in a medium, the velocity v remains constant (depends on medium properties). Since v = fλ, if frequency f increases, wavelength λ = v/f must decrease to keep velocity constant.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "What is the beat frequency when two waves of frequencies 400 Hz and 405 Hz interfere?",
+            "options": [
+                "5 Hz",
+                "400 Hz",
+                "405 Hz",
+                "805 Hz"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>5 Hz</strong> is correct. Beat frequency is the absolute difference between the two frequencies: |f₁ - f₂| = |405 - 400| = 5 Hz. The beat frequency is heard as periodic variations in intensity at this frequency.</p>",
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The working of an optical fibre for transmission of light waves is based on",
+            "options": [
+                "total internal reflection",
+                "refraction",
+                "interference",
+                "diffraction"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Total internal reflection</strong> is correct. Optical fibres work on the principle of total internal reflection (TIR). Light entering the fibre strikes the core-cladding interface at an angle greater than the critical angle, causing it to reflect repeatedly and travel along the fibre with minimal loss.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "What is the nature of the image formed by a convex lens when the object is placed at twice the focal length?",
+            "options": [
+                "Real and inverted",
+                "Virtual and erect",
+                "Real and erect",
+                "Virtual and inverted"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Real and inverted</strong> is correct. When an object is placed at 2F (twice the focal length) of a convex lens, the image is formed at 2F on the other side. The image is real (can be obtained on screen), inverted, and of the same size as the object.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "Velocity of light in vacuum is 3 × 10⁸ m/s. Velocity of light in glass of refractive index 1.5 will be",
+            "options": [
+                "3 × 10⁸ m/s",
+                "4.5 × 10⁸ m/s",
+                "2 × 10⁸ m/s",
+                "1.5 × 10⁸ m/s"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>2 × 10⁸ m/s</strong> is correct. Refractive index n = c/v, where c is speed in vacuum and v is speed in medium. So v = c/n = (3 × 10⁸)/1.5 = 2 × 10⁸ m/s.</p>",
+            "unit": "Optics"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following factors does capacitance depend on?",
+            "options": [
+                "Voltage",
+                "Current",
+                "Area of plates",
+                "Resistance"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Area of plates</strong> is correct. For a parallel plate capacitor, capacitance C = ε₀A/d, where A is the area of plates, d is separation, and ε₀ is permittivity. Capacitance depends on physical construction (area, separation, dielectric), not on voltage or current. Voltage affects charge stored (Q = CV) but not capacitance itself.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The SI unit of resistivity of a conductor is",
+            "options": [
+                "ohm-m",
+                "ohm/m",
+                "ohm-m²",
+                "unit-less"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Ohm-m (Ω·m)</strong> is correct. Resistivity ρ = R × A/l, where R is in ohms (Ω), A in m², and l in m. So unit of ρ = (Ω × m²)/m = Ω·m.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If three currents of 1A, 2A, and 3A enter a junction, the total current leaving the junction according to KCL is",
+            "options": [
+                "6A",
+                "5A",
+                "3A",
+                "0A"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>6A</strong> is correct. Kirchhoff's Current Law (KCL) states that the algebraic sum of currents at a junction is zero. Currents entering are positive, leaving are negative. So I_entering = I_leaving. Here, total entering current = 1 + 2 + 3 = 6A, so total leaving current must also be 6A.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "An electric lamp is marked 100W, 220V. Its resistance is",
+            "options": [
+                "22Ω",
+                "484Ω",
+                "56Ω",
+                "2.2Ω"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>484Ω</strong> is correct. Power P = V²/R, so R = V²/P = (220)²/100 = 48400/100 = 484 Ω.</p>",
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "The correct dimensional formula of electric field (E = F/q) is",
+            "options": [
+                "[MLT⁻²I⁻¹]",
+                "[MLT⁻³I⁻¹]",
+                "[MLT⁻³I⁻¹]",
+                "[MLT⁻²I¹]"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>[MLT⁻²I⁻¹]</strong> is correct. Force F has dimensions [MLT⁻²]. Charge q has dimensions [IT] (current × time). So E = F/q has dimensions [MLT⁻²]/[IT] = [MLT⁻³I⁻¹]. Wait, the given options: first is [MLT⁻²I⁻¹], second and third are same [MLT⁻³I⁻¹]. Actually E = F/q, F = [MLT⁻²], q = [IT], so E = [MLT⁻²]/[IT] = [MLT⁻³I⁻¹]. So the correct should be [MLT⁻³I⁻¹]. There seems to be a typo in options with two identical ones. [MLT⁻³I⁻¹] is correct.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "The weber/m² (Tesla) is the unit of",
+            "options": [
+                "magnetic field",
+                "magnetic flux density",
+                "magnetic flux",
+                "none of these"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Magnetic flux density</strong> is correct. Magnetic flux (Φ) is measured in weber (Wb). Magnetic flux density B = Φ/A is measured in weber/m², which is also called tesla (T). It represents the strength of the magnetic field.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "In a p-n-p or n-p-n transistor, the correct statement is",
+            "options": [
+                "Emitter region is highly doped",
+                "Base region is moderately doped",
+                "Collector region is lightly doped",
+                "none of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Emitter region is highly doped</strong> is correct. In both p-n-p and n-p-n transistors, the emitter is heavily doped to inject maximum charge carriers into the base. The base is lightly doped and very thin, and the collector is moderately doped (larger in size to collect carriers). So the correct statement is that emitter is highly doped.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "2.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Define simple harmonic motion. Write the differential equation of SHM and give its solution.",
+            "answer": "<p><strong>Definition of Simple Harmonic Motion (SHM):</strong> Simple harmonic motion is a type of periodic motion in which the restoring force (or acceleration) acting on the particle is directly proportional to its displacement from the mean position and is always directed towards the mean position.</p><p>Mathematically, F ∝ -x or a ∝ -x, where x is the displacement from equilibrium.</p><p><strong>Differential equation of SHM:</strong></p><p>The acceleration a = d²x/dt². Since a ∝ -x, we can write:</p><p>$$\\frac{d^2x}{dt^2} = -\\omega^2 x$$</p><p>or</p><p>$$\\frac{d^2x}{dt^2} + \\omega^2 x = 0$$</p><p>where ω is the angular frequency (constant). This is the differential equation of SHM.</p><p><strong>Solution of the differential equation:</strong></p><p>The general solution of the equation d²x/dt² + ω²x = 0 is:</p><p>$$x = A \\sin(\\omega t + \\phi)$$</p><p>or</p><p>$$x = A \\cos(\\omega t + \\phi)$$</p><p>where:</p><ul><li>A is the amplitude (maximum displacement),</li><li>ω is the angular frequency,</li><li>φ is the initial phase (phase constant),</li><li>(ωt + φ) is the phase at time t.</li></ul><p>The solution can be verified by differentiating twice and substituting back into the differential equation.</p>",
+            "marks": 3,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.b",
+            "type": "saq",
+            "group": "B",
+            "question": "A particle executes SHM with amplitude 0.1m and time period 2 seconds. Find its maximum velocity and maximum acceleration.",
+            "answer": "<p>Given: Amplitude A = 0.1 m, Time period T = 2 s.</p><p>Angular frequency ω = 2π/T = 2π/2 = π rad/s.</p><p><strong>Maximum velocity:</strong> In SHM, velocity v = ω√(A² - x²). Maximum velocity occurs at mean position (x = 0):</p><p>$$v_{max} = \\omega A = \\pi \\times 0.1 = 0.314 \\text{ m/s}$$</p><p><strong>Maximum acceleration:</strong> In SHM, acceleration a = -ω²x. Maximum acceleration occurs at extreme positions (x = ±A):</p><p>$$a_{max} = \\omega^2 A = (\\pi)^2 \\times 0.1 = (9.87) \\times 0.1 = 0.987 \\text{ m/s}^2$$</p><p>Thus, maximum velocity = 0.314 m/s and maximum acceleration = 0.987 m/s².</p>",
+            "marks": 3,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "2.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What is the difference between free and forced oscillations?",
+            "answer": "<table><tr><th>Free Oscillations</th><th>Forced Oscillations</th></tr><tr><td>Oscillations that occur when a system is displaced from equilibrium and left to vibrate on its own.</td><td>Oscillations that occur when an external periodic force is applied to a system.</td></tr><tr><td>The system oscillates with its natural frequency (characteristic frequency).</td><td>The system oscillates with the frequency of the external driving force, not its natural frequency.</td></tr><tr><td>No external force acts on the system after the initial displacement (ideally).</td><td>An external periodic force continuously supplies energy to the system.</td></tr><tr><td>Amplitude remains constant if no damping, but in practice, amplitude decreases due to damping.</td><td>Amplitude depends on the driving frequency and can be large at resonance.</td></tr><tr><td>Example: A pendulum swinging in vacuum (ideal), a tuning fork struck and left to vibrate.</td><td>Example: A bridge vibrating due to wind or marching soldiers, a sound box of a guitar.</td></tr></table>",
+            "marks": 2,
+            "unit": "Oscillations and Waves"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Snell's law of refraction. What is total internal reflection? State the conditions for total internal reflection.",
+            "answer": "<p><strong>Snell's law of refraction:</strong> When a ray of light passes from one transparent medium to another, the ratio of the sine of the angle of incidence to the sine of the angle of refraction is constant for the given pair of media. This constant is called the refractive index of the second medium with respect to the first.</p><p>Mathematically: $$\\frac{\\sin i}{\\sin r} = \\text{constant} = \\mu_{21} = \\frac{\\mu_2}{\\mu_1}$$</p><p>where i is the angle of incidence, r is the angle of refraction, μ₁ and μ₂ are absolute refractive indices of the two media.</p><p><strong>Total Internal Reflection (TIR):</strong> It is the phenomenon in which a ray of light traveling from a denser medium to a rarer medium is completely reflected back into the denser medium when the angle of incidence exceeds a certain value called the critical angle.</p><p><strong>Conditions for total internal reflection:</strong></p><ol><li>Light must travel from an optically denser medium (higher refractive index) to an optically rarer medium (lower refractive index).</li><li>The angle of incidence in the denser medium must be greater than the critical angle for that pair of media (i > θ_c).</li></ol><p>The critical angle θ_c is given by: sin θ_c = n₂/n₁, where n₁ > n₂.</p>",
+            "marks": 3,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.b",
+            "type": "saq",
+            "group": "B",
+            "question": "A ray of light enters from air into glass (refractive index 1.5). If the angle of incidence is 30°, find the angle of refraction.",
+            "answer": "<p>Given: Refractive index of air μ₁ = 1 (approximately), Refractive index of glass μ₂ = 1.5, Angle of incidence i = 30°.</p><p>According to Snell's law: μ₁ sin i = μ₂ sin r</p><p>1 × sin 30° = 1.5 × sin r</p><p>sin 30° = 0.5, so:</p><p>0.5 = 1.5 × sin r</p><p>sin r = 0.5/1.5 = 1/3 = 0.3333</p><p>r = sin⁻¹(0.3333) = 19.47°</p><p>The angle of refraction is approximately 19.47°.</p>",
+            "marks": 2,
+            "unit": "Optics"
+        },
+        {
+            "id": "3.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Write the lens maker's formula and explain the terms.",
+            "answer": "<p><strong>Lens maker's formula:</strong></p><p>$$\\frac{1}{f} = (\\mu - 1) \\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$$</p><p>where:</p><ul><li><strong>f</strong> is the focal length of the lens.</li><li><strong>μ</strong> (or n) is the refractive index of the lens material relative to the surrounding medium (usually air). If the lens is in air, μ = absolute refractive index of the lens material.</li><li><strong>R₁</strong> is the radius of curvature of the first surface (closer to the object).</li><li><strong>R₂</strong> is the radius of curvature of the second surface (farther from the object).</li></ul><p><strong>Sign convention:</strong> According to the Cartesian sign convention:</p><ul><li>R is positive if the center of curvature is on the opposite side of the incident light (convex surface).</li><li>R is negative if the center of curvature is on the same side as the incident light (concave surface).</li></ul><p>The formula relates the focal length of a lens to its geometry (radii of curvature) and the refractive index of the material. It is called \"lens maker's formula\" because it helps lens manufacturers design lenses with desired focal lengths.</p>",
+            "marks": 3,
+            "unit": "Optics"
+        },
+        {
+            "id": "4.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Coulomb's law in electrostatics. Write its vector form.",
+            "answer": "<p><strong>Coulomb's law in electrostatics:</strong> It states that the electrostatic force between two point charges is directly proportional to the product of the magnitudes of the charges and inversely proportional to the square of the distance between them. The force acts along the line joining the two charges.</p><p>Mathematically, the magnitude of force is:</p><p>$$F = k \\frac{|q_1 q_2|}{r^2}$$</p><p>where k = 1/(4πε₀) ≈ 9 × 10⁹ Nm²/C², q₁ and q₂ are the charges, and r is the distance between them.</p><p><strong>Vector form of Coulomb's law:</strong></p><p>$$\\vec{F}_{12} = k \\frac{q_1 q_2}{r^2} \\hat{r}_{12}$$</p><p>or</p><p>$$\\vec{F}_{12} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{q_1 q_2}{r^2} \\hat{r}_{12}$$</p><p>where:</p><ul><li>$\\vec{F}_{12}$ is the force on charge q₁ due to q₂,</li><li>$\\hat{r}_{12}$ is the unit vector pointing from q₂ to q₁,</li><li>r is the distance between the charges.</li></ul><p>If the charges are like (same sign), the force is repulsive (directed away from each other). If unlike, the force is attractive (directed toward each other).</p>",
+            "marks": 2,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "4.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Define electric field intensity. Find the electric field due to a point charge.",
+            "answer": "<p><strong>Electric field intensity (E):</strong> It is defined as the force experienced by a unit positive test charge placed at a point in an electric field. Mathematically,</p><p>$$\\vec{E} = \\frac{\\vec{F}}{q_0}$$</p><p>where $\\vec{F}$ is the force on the test charge q₀. The direction of E is the direction of the force on a positive test charge.</p><p><strong>Electric field due to a point charge:</strong></p><p>Consider a point charge Q. To find the electric field at a distance r from it, place a test charge q₀ at that point. The force on q₀ due to Q, from Coulomb's law, is:</p><p>$$F = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|Q q_0|}{r^2}$$</p><p>Then electric field intensity E = F/q₀:</p><p>$$E = \\frac{1}{4\\pi\\varepsilon_0} \\frac{|Q|}{r^2}$$</p><p>In vector form, for a point charge Q located at the origin:</p><p>$$\\vec{E} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{Q}{r^2} \\hat{r}$$</p><p>where $\\hat{r}$ is the unit vector radially outward from Q. If Q is positive, E is radially outward; if Q is negative, E is radially inward.</p>",
+            "marks": 3,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "4.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Two point charges of +5μC and -5μC are placed 10cm apart. Find the electric field at the midpoint of the line joining the charges.",
+            "answer": "<p>Given: q₁ = +5 μC = 5 × 10⁻⁶ C, q₂ = -5 μC = -5 × 10⁻⁶ C, distance between charges = 10 cm = 0.1 m.</p><p>The midpoint is at distance r = 0.05 m from each charge.</p><p>Electric field due to a point charge is E = (1/4πε₀) × q/r², with 1/4πε₀ = 9 × 10⁹ Nm²/C².</p><p><strong>Field due to q₁ (+5 μC):</strong> At the midpoint, E₁ is directed away from q₁ (since q₁ is positive). So if q₁ is on the left and q₂ on the right, E₁ points to the right.</p><p>E₁ = 9 × 10⁹ × (5 × 10⁻⁶)/(0.05)² = 9 × 10⁹ × (5 × 10⁻⁶)/(0.0025)</p><p>E₁ = 9 × 10⁹ × 5 × 10⁻⁶ × 400 = 9 × 10⁹ × 2 × 10⁻³ = 18 × 10⁶ = 1.8 × 10⁷ N/C (to the right)</p><p><strong>Field due to q₂ (-5 μC):</strong> At the midpoint, E₂ is directed toward q₂ (since q₂ is negative). So E₂ also points to the right (toward the negative charge).</p><p>E₂ = 9 × 10⁹ × (5 × 10⁻⁶)/(0.05)² (using magnitude) = same as E₁ = 1.8 × 10⁷ N/C (to the right)</p><p><strong>Net electric field:</strong> Both fields are in the same direction (to the right), so they add:</p><p>E = E₁ + E₂ = 1.8 × 10⁷ + 1.8 × 10⁷ = 3.6 × 10⁷ N/C</p><p>The electric field at the midpoint is 3.6 × 10⁷ N/C directed from the positive charge toward the negative charge.</p>",
+            "marks": 3,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "5.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Kirchhoff's Current Law and Kirchhoff's Voltage Law.",
+            "answer": "<p><strong>Kirchhoff's Current Law (KCL) or Junction Rule:</strong> It states that the algebraic sum of all currents meeting at a junction (node) in an electrical network is zero. In other words, the total current entering a junction equals the total current leaving the junction.</p><p>Mathematically: $$\\sum I = 0$$ or $$\\sum I_{in} = \\sum I_{out}$$</p><p>This law is based on the principle of conservation of charge.</p><p><strong>Kirchhoff's Voltage Law (KVL) or Loop Rule:</strong> It states that the algebraic sum of all the potential differences (voltage drops) around any closed loop in a network is zero. This includes voltage drops across resistors (IR drops) and electromotive forces (emf) of sources.</p><p>Mathematically: $$\\sum V = 0$$ or $$\\sum \\epsilon = \\sum IR$$</p><p>This law is based on the principle of conservation of energy. While traversing a loop, potential gains (from sources) are taken as positive and potential drops (across resistors) as negative, or vice versa consistently.</p>",
+            "marks": 2,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "5.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Find the equivalent resistance of three resistors 2Ω, 3Ω, and 6Ω connected in parallel.",
+            "answer": "<p>Given: R₁ = 2 Ω, R₂ = 3 Ω, R₃ = 6 Ω connected in parallel.</p><p>For parallel combination, the reciprocal of equivalent resistance is the sum of reciprocals of individual resistances:</p><p>$$\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3}$$</p><p>$$\\frac{1}{R_{eq}} = \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{6}$$</p><p>$$\\frac{1}{R_{eq}} = \\frac{3 + 2 + 1}{6} = \\frac{6}{6} = 1$$</p><p>$$R_{eq} = 1 \\, \\Omega$$</p><p>The equivalent resistance is 1 Ω.</p>",
+            "marks": 3,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "5.c",
+            "type": "saq",
+            "group": "B",
+            "question": "A wire of resistance 10Ω is stretched to double its length. Find its new resistance.",
+            "answer": "<p>Given: Original resistance R₁ = 10 Ω, original length l₁ = l, original area A₁ = A.</p><p>When the wire is stretched to double its length, new length l₂ = 2l.</p><p>Volume of wire remains constant: A₁l₁ = A₂l₂</p><p>A × l = A₂ × 2l ⇒ A₂ = A/2</p><p>Resistance R = ρl/A, so new resistance R₂ = ρl₂/A₂ = ρ(2l)/(A/2) = ρ(2l) × (2/A) = 4ρl/A = 4R₁</p><p>R₂ = 4 × 10 = 40 Ω</p><p>The new resistance is 40 Ω.</p>",
+            "marks": 3,
+            "unit": "Current Electricity"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Biot-Savart law. Write the expression for magnetic field due to a straight current-carrying conductor.",
+            "answer": "<p><strong>Biot-Savart Law:</strong> It states that the magnetic field dB produced at a point due to a small current element of length dl carrying current I is:</p><ul><li>Directly proportional to the current I.</li><li>Directly proportional to the length dl of the element.</li><li>Directly proportional to the sine of the angle θ between the element and the line joining the element to the point.</li><li>Inversely proportional to the square of the distance r from the element to the point.</li></ul><p>Mathematically: $$dB = \\frac{\\mu_0}{4\\pi} \\frac{I \\, dl \\, \\sin \\theta}{r^2}$$</p><p>In vector form: $$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I \\, d\\vec{l} \\times \\vec{r}}{r^3}$$</p><p><strong>Magnetic field due to a straight current-carrying conductor:</strong></p><p>For a finite straight conductor of length L, carrying current I, the magnetic field at a perpendicular distance R from the conductor is:</p><p>$$B = \\frac{\\mu_0 I}{4\\pi R} (\\sin \\theta_1 + \\sin \\theta_2)$$</p><p>where θ₁ and θ₂ are the angles subtended by the ends of the conductor at the point.</p><p>For an infinitely long straight conductor (θ₁ = θ₂ = 90°):</p><p>$$B = \\frac{\\mu_0 I}{2\\pi R}$$</p><p>The direction is given by the right-hand thumb rule (circular magnetic field lines around the conductor).</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Find the magnetic field at the centre of a circular coil of radius 0.1m carrying current 5A (μ₀ = 4π × 10⁻⁷ H/m).",
+            "answer": "<p>Given: Radius R = 0.1 m, Current I = 5 A, μ₀ = 4π × 10⁻⁷ H/m.</p><p>For a circular coil of one turn, the magnetic field at the centre is:</p><p>$$B = \\frac{\\mu_0 I}{2R}$$</p><p>Substituting the values:</p><p>$$B = \\frac{4\\pi \\times 10^{-7} \\times 5}{2 \\times 0.1}$$</p><p>$$B = \\frac{20\\pi \\times 10^{-7}}{0.2} = \\frac{20\\pi \\times 10^{-7}}{2 \\times 10^{-1}}$$</p><p>$$B = 10\\pi \\times 10^{-6} = 3.14 \\times 10^{-5} \\text{ T}$$</p><p>$$B = 3.14 \\times 10^{-5} \\text{ T} = 31.4 \\, \\mu\\text{T}$$</p><p>The magnetic field at the centre is 3.14 × 10⁻⁵ T.</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6.c",
+            "type": "saq",
+            "group": "B",
+            "question": "State Ampere's circuital law.",
+            "answer": "<p><strong>Ampere's Circuital Law:</strong> It states that the line integral of the magnetic field B around any closed loop is equal to μ₀ times the total current passing through the area enclosed by the loop.</p><p>Mathematically: $$\\oint \\vec{B} \\cdot d\\vec{l} = \\mu_0 I_{enc}$$</p><p>where:</p><ul><li>$\\oint \\vec{B} \\cdot d\\vec{l}$ is the line integral of magnetic field along a closed path,</li><li>$\\mu_0$ is the permeability of free space (4π × 10⁻⁷ Tm/A),</li><li>$I_{enc}$ is the net current enclosed by the path.</li></ul><p>The direction of current and the direction of integration are related by the right-hand rule. This law is useful for calculating magnetic fields in symmetric situations like straight wires, solenoids, and toroids.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Faraday's laws of electromagnetic induction. Write the expression for induced emf.",
+            "answer": "<p><strong>Faraday's laws of electromagnetic induction:</strong></p><p><strong>First law:</strong> Whenever the magnetic flux linked with a circuit changes, an electromotive force (emf) is induced in the circuit. The induced emf exists only as long as the change in flux continues.</p><p><strong>Second law:</strong> The magnitude of the induced emf is directly proportional to the rate of change of magnetic flux linked with the circuit.</p><p>Mathematically, the induced emf is given by:</p><p>$$\\epsilon = -\\frac{d\\phi}{dt}$$</p><p>where φ is the magnetic flux linked with the circuit and dφ/dt is the rate of change of flux.</p><p>For a coil with N turns:</p><p>$$\\epsilon = -N \\frac{d\\phi}{dt}$$</p><p>The negative sign represents Lenz's law, indicating that the induced emf opposes the change in flux that produces it.</p><p>If the flux changes from φ₁ to φ₂ in time Δt, the average induced emf is:</p><p>$$\\epsilon_{avg} = -N \\frac{\\phi_2 - \\phi_1}{\\Delta t}$$</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.b",
+            "type": "saq",
+            "group": "B",
+            "question": "A coil of 100 turns has a magnetic flux of 0.02 Wb. If the flux is reduced to zero in 0.1 seconds, find the induced emf.",
+            "answer": "<p>Given: Number of turns N = 100, Initial flux φ₁ = 0.02 Wb, Final flux φ₂ = 0 Wb, Time Δt = 0.1 s.</p><p>Change in flux Δφ = φ₂ - φ₁ = 0 - 0.02 = -0.02 Wb.</p><p>The induced emf is given by Faraday's law:</p><p>$$\\epsilon = -N \\frac{\\Delta \\phi}{\\Delta t}$$</p><p>$$\\epsilon = -100 \\times \\frac{(-0.02)}{0.1}$$</p><p>$$\\epsilon = -100 \\times (-0.2) = 20 \\text{ V}$$</p><p>The magnitude of induced emf is 20 V. The positive sign indicates that the direction of induced emf opposes the decrease in flux.</p>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7.c",
+            "type": "saq",
+            "group": "B",
+            "question": "State Lenz's law. How does it obey the law of conservation of energy?",
+            "answer": "<p><strong>Lenz's Law:</strong> It states that the direction of induced emf (or induced current) in a circuit is always such that it opposes the change in magnetic flux that produces it.</p><p>Mathematically, this is represented by the negative sign in Faraday's law: ε = -dφ/dt.</p><p><strong>Conservation of Energy:</strong> Lenz's law is a direct consequence of the law of conservation of energy. The opposition to the change in flux requires that work be done against the induced effects. This work done is converted into electrical energy.</p><p>For example, when a magnet is pushed toward a coil, the induced current creates a magnetic field that repels the magnet. To continue moving the magnet toward the coil, we must do work against this repulsive force. The mechanical work done is converted into electrical energy in the coil. If the induced current aided the motion instead of opposing it, we would get energy without any input work, which would violate the law of conservation of energy. Thus, Lenz's law ensures that energy is conserved.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Explain the formation of p-n junction. What is depletion region?",
+            "answer": "<p><strong>Formation of p-n junction:</strong> A p-n junction is formed when a p-type semiconductor and an n-type semiconductor are joined together. This is typically done by doping one side of a semiconductor crystal with acceptor impurities (p-type) and the other side with donor impurities (n-type).</p><p>When the junction is formed, the following occurs:</p><ol><li>Due to the concentration gradient, holes from the p-side diffuse into the n-side, and electrons from the n-side diffuse into the p-side.</li><li>As holes leave the p-side, they leave behind negatively charged acceptor ions (immobile). As electrons leave the n-side, they leave behind positively charged donor ions (immobile).</li><li>This creates a region near the junction that is depleted of free charge carriers, called the depletion region.</li><li>These immobile ions create an electric field directed from the n-side to the p-side, which opposes further diffusion. This electric field creates a potential barrier across the junction.</li></ol><p><strong>Depletion region:</strong> It is the region near the p-n junction that is depleted of free charge carriers (electrons and holes). It contains only immobile positive ions on the n-side and negative ions on the p-side. This region acts as an insulator and has a built-in electric field and potential barrier (typically 0.3 V for Ge and 0.7 V for Si).</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the V-I characteristics of a p-n junction diode in forward and reverse bias.",
+            "answer": "<p><em>Refer to characteristic curves in textbook/online. Students should draw these in their answer scripts.</em></p><p><strong>Forward bias characteristics:</strong></p><ul><li>The graph shows current (I_F) on y-axis and voltage (V_F) on x-axis.</li><li>Initially, for small forward voltages (below cut-in voltage, ~0.3V for Ge, ~0.7V for Si), current is almost zero (negligible).</li><li>After the cut-in voltage, current increases exponentially with voltage (steep rise).</li><li>The curve follows the diode equation: I = I₀(e^(eV/ηkT) - 1).</li></ul><p><strong>Reverse bias characteristics:</strong></p><ul><li>The graph shows reverse current (I_R) on negative y-axis and reverse voltage (V_R) on negative x-axis.</li><li>For small reverse voltages, a very small reverse saturation current (I₀) flows (almost constant).</li><li>At a certain high reverse voltage (breakdown voltage), the current increases dramatically (avalanche or Zener breakdown).</li><li>In Zener diodes, this breakdown is sharp and used for voltage regulation.</li></ul><p>The combined V-I characteristic curve shows that the diode conducts heavily in forward bias and conducts negligibly in reverse bias until breakdown.</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What is Zener breakdown? Write one application of Zener diode.",
+            "answer": "<p><strong>Zener breakdown:</strong> Zener breakdown is a phenomenon that occurs in heavily doped p-n junction diodes under reverse bias. When the reverse bias voltage exceeds a certain value called Zener voltage (V_z), the electric field in the depletion region becomes extremely high (∼10⁷ V/m). This high electric field breaks the covalent bonds directly, generating a large number of electron-hole pairs through the tunneling mechanism. This leads to a sudden increase in reverse current while the voltage remains nearly constant.</p><p>Zener breakdown occurs at relatively low reverse voltages (typically < 5-6 V) and is characterized by a sharp breakdown with a negative temperature coefficient (V_z decreases with temperature increase).</p><p><strong>Application of Zener diode:</strong></p><p>Zener diodes are primarily used as <strong>voltage regulators</strong>. In a simple shunt regulator circuit, the Zener diode maintains a constant output voltage despite variations in input voltage or load current. When the input voltage increases, the Zener diode conducts more current through a series resistor, keeping the voltage across the load constant at V_z. This makes Zener diodes essential in power supplies and reference voltage circuits.</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9.a",
+            "type": "laq",
+            "group": "B",
+            "question": "What is a transistor? Explain the working of an n-p-n transistor in common emitter configuration.",
+            "answer": "<p><strong>Transistor:</strong> A transistor is a three-layer, three-terminal semiconductor device used for amplification and switching. It consists of two p-n junctions. There are two types: n-p-n and p-n-p. In an n-p-n transistor, two n-type regions (emitter and collector) are separated by a thin p-type region (base).</p><p><strong>Working of n-p-n transistor in Common Emitter (CE) configuration:</strong></p><p><em>Refer to circuit diagram in textbook/online.</em></p><p>In CE configuration, the emitter is common to both input and output circuits. The input is applied between base and emitter, and output is taken between collector and emitter.</p><p><strong>Biasing:</strong> The base-emitter junction is forward biased (by V_BB), and the collector-base junction is reverse biased (by V_CC).</p><p><strong>Working principle:</strong></p><ol><li>When no input signal is applied, a small DC base current I_B flows due to forward bias, causing a larger collector current I_C = β I_B to flow (where β is the current gain).</li><li>When an AC input signal is applied between base and emitter, it varies the base-emitter voltage, causing variations in base current (ΔI_B).</li><li>Due to the transistor action, these variations in base current produce much larger variations in collector current (ΔI_C = β ΔI_B).</li><li>These current variations through the load resistor R_C produce large voltage variations at the output (V_out = V_CC - I_C R_C).</li><li>Thus, the transistor amplifies the input signal. The output is 180° out of phase with the input (phase inversion).</li></ol><p>The CE configuration provides high current gain, high voltage gain, and high power gain, making it the most widely used amplifier configuration.</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Define α and β of a transistor. Derive the relation between them.",
+            "answer": "<p><strong>Definition of α (alpha) - Common Base current gain:</strong></p><p>α is defined as the ratio of collector current to emitter current in a common base configuration, with collector-base voltage held constant.</p><p>$$\\alpha = \\frac{I_C}{I_E}$$ (for DC)</p><p>or $$\\alpha_{ac} = \\frac{\\Delta I_C}{\\Delta I_E}$$ (for AC)</p><p>α is always less than 1 (typically 0.95 to 0.99) because some carriers recombine in the base.</p><p><strong>Definition of β (beta) - Common Emitter current gain:</strong></p><p>β is defined as the ratio of collector current to base current in a common emitter configuration, with collector-emitter voltage held constant.</p><p>$$\\beta = \\frac{I_C}{I_B}$$ (for DC)</p><p>or $$\\beta_{ac} = \\frac{\\Delta I_C}{\\Delta I_B}$$ (for AC)</p><p>β is typically large (20 to 500).</p><p><strong>Relation between α and β:</strong></p><p>We know that in a transistor, emitter current I_E = I_C + I_B (KCL at the transistor).</p><p>Dividing both sides by I_C:</p><p>$$\\frac{I_E}{I_C} = 1 + \\frac{I_B}{I_C}$$</p><p>$$\\frac{1}{\\alpha} = 1 + \\frac{1}{\\beta}$$</p><p>$$\\frac{1}{\\alpha} = \\frac{\\beta + 1}{\\beta}$$</p><p>Taking reciprocal:</p><p>$$\\alpha = \\frac{\\beta}{\\beta + 1}$$</p><p>Also, solving for β in terms of α:</p><p>$$\\beta = \\frac{\\alpha}{1 - \\alpha}$$</p><p>This is the required relation between α and β.</p>",
+            "marks": 3,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Write two applications of transistor.",
+            "answer": "<p>Two important applications of transistors are:</p><ol><li><strong>Amplification:</strong> Transistors are used as amplifiers in various electronic devices to amplify weak signals. Examples include audio amplifiers in radios, public address systems, and hearing aids; RF amplifiers in communication systems; operational amplifiers (op-amps) in analog circuits.</li><li><strong>Switching:</strong> Transistors are used as electronic switches in digital circuits and power control applications. In saturation mode (fully ON), they act as closed switches; in cut-off mode (fully OFF), they act as open switches. Examples include logic gates in computers and microprocessors, power supplies, motor control circuits, and inverter circuits.</li></ol><p>Other applications include oscillators, voltage regulators, and sensor circuits.</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "10.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What are X-rays? How are they produced in an X-ray tube?",
+            "answer": "<p><strong>X-rays:</strong> X-rays are electromagnetic waves with very short wavelengths ranging from about 0.1 Å to 100 Å (10⁻¹¹ m to 10⁻⁸ m). They have high penetrating power and are invisible to the eye. They were discovered by Wilhelm Roentgen in 1895.</p><p><strong>Production of X-rays in an X-ray tube (Coolidge tube):</strong></p><p><em>Refer to diagram in textbook/online.</em></p><p>An X-ray tube consists of:</p><ul><li>A filament (cathode) made of tungsten, which is heated to emit electrons by thermionic emission.</li><li>A target (anode) made of a heavy metal like tungsten, copper, or molybdenum.</li><li>A high voltage source (typically 20-150 kV) connected between cathode and anode, with cathode negative and anode positive.</li></ul><p><strong>Working:</strong></p><ol><li>The filament is heated by a low voltage current, causing electrons to be emitted (thermionic emission).</li><li>The high voltage accelerates these electrons toward the anode with high kinetic energy.</li><li>When these high-speed electrons strike the target (anode), they are suddenly decelerated. This deceleration produces X-rays (continuous X-rays or Bremsstrahlung).</li><li>Additionally, if the electron energy is sufficient, they can knock out electrons from inner shells of target atoms, causing characteristic X-rays when outer electrons fill the vacancies.</li><li>The X-rays are emitted in all directions, but a window allows them to exit the tube in a useful beam.</li></ol><p>The entire tube is evacuated to prevent collisions with air molecules.</p>",
+            "marks": 3,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "10.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Distinguish between continuous and characteristic X-rays.",
+            "answer": "<table><tr><th>Continuous X-rays</th><th>Characteristic X-rays</th></tr><tr><td>Produced due to deceleration of high-speed electrons when they strike the target (Bremsstrahlung radiation).</td><td>Produced due to electronic transitions between inner shells of target atoms when electrons are knocked out.</td></tr><tr><td>Have a continuous range of wavelengths from a minimum value (λ_min) to infinity.</td><td>Have discrete wavelengths (line spectrum) characteristic of the target material.</td></tr><tr><td>Intensity varies smoothly with wavelength, increasing to a maximum then decreasing.</td><td>Intensity appears as sharp peaks superimposed on the continuous spectrum at specific wavelengths.</td></tr><tr><td>Depend on the tube voltage (λ_min = hc/eV) but not strongly on target material.</td><td>Depend on the atomic number (Z) of the target material (Moseley's law: √ν ∝ Z).</td></tr><tr><td>All X-ray tubes produce continuous X-rays regardless of target.</td><td>Characteristic X-rays are produced only when tube voltage exceeds a critical value (excitation potential of that target).</td></tr><tr><td>Example: General radiography uses continuous X-rays.</td><td>Example: Used in X-ray diffraction for material analysis.</td></tr></table>",
+            "marks": 3,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "10.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Write two medical applications of X-rays.",
+            "answer": "<p>Two important medical applications of X-rays are:</p><ol><li><strong>Diagnostic Radiography:</strong> X-rays are used to create images of internal body structures. Bones absorb X-rays more than soft tissues, creating contrast in the image. This helps in detecting fractures, dislocations, bone infections, arthritis, and monitoring bone healing. Chest X-rays detect pneumonia, tuberculosis, lung tumors, and heart enlargement. Dental X-rays detect cavities and tooth problems.</li><li><strong>Radiotherapy (Cancer Treatment):</strong> High-energy X-rays are used to destroy cancerous tumors. By focusing intense X-ray beams on the tumor site, cancer cells are killed while minimizing damage to surrounding healthy tissue. This is called radiation therapy. It is used for various cancers including breast, lung, prostate, and brain cancers.</li></ol><p>Other medical applications include CT scans (computed tomography), mammography (breast cancer screening), fluoroscopy (real-time imaging), and angiography (blood vessel imaging).</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "11.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Explain the principle of LASER. What is population inversion?",
+            "answer": "<p><strong>Principle of LASER:</strong> LASER stands for Light Amplification by Stimulated Emission of Radiation. The working principle is based on three key processes:</p><ol><li><strong>Absorption:</strong> When light falls on atoms, photons can be absorbed, exciting electrons from lower to higher energy levels.</li><li><strong>Spontaneous emission:</strong> Excited atoms can randomly decay to lower levels, emitting photons in random directions and phases (ordinary light).</li><li><strong>Stimulated emission:</strong> An incoming photon of energy equal to the energy difference between excited and ground state can stimulate an excited atom to emit an identical photon (same energy, phase, direction, polarization). This is the key process for laser action.</li></ol><p>For laser action, stimulated emission must dominate over absorption. This requires population inversion.</p><p><strong>Population Inversion:</strong> Population inversion is a non-equilibrium condition in which the number of atoms in a higher energy state (excited state) is greater than the number in a lower energy state (ground state). In normal thermal equilibrium, lower states have more atoms (Boltzmann distribution). Population inversion is achieved by pumping (supplying energy) using optical, electrical, or chemical methods. It is necessary for light amplification by stimulated emission.</p>",
+            "marks": 3,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "11.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Write three properties of LASER light.",
+            "answer": "<p>Three important properties of LASER light are:</p><ol><li><strong>High Coherence:</strong> Laser light is highly coherent, meaning all light waves are in phase in both time (temporal coherence) and space (spatial coherence). This allows lasers to produce interference patterns and be used in holography.</li><li><strong>High Monochromaticity:</strong> Laser light is highly monochromatic (single wavelength or extremely narrow bandwidth). For example, a He-Ne laser emits light at 632.8 nm with a very narrow spectral width.</li><li><strong>High Directionality:</strong> Laser beams are highly directional with very small divergence. They travel as nearly parallel beams over long distances, allowing them to be focused to a very small spot with high intensity.</li></ol><p>Additional properties include high intensity (brightness) and the ability to produce extremely short pulses (in pulsed lasers).</p>",
+            "marks": 2,
+            "unit": "Modern Physics"
+        },
+        {
+            "id": "11.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Explain the working of an optical fibre. Write two advantages of optical fibre communication.",
+            "answer": "<p><strong>Working of an optical fibre:</strong></p><p>An optical fibre works on the principle of <strong>total internal reflection (TIR)</strong>. It consists of a core (with higher refractive index n₁) and cladding (with slightly lower refractive index n₂).</p><p>When light enters the fibre at one end, it strikes the core-cladding interface. If the angle of incidence at the interface is greater than the critical angle (θ_c = sin⁻¹(n₂/n₁)), total internal reflection occurs. The light is completely reflected back into the core without any loss. This process repeats along the fibre, guiding the light from one end to the other, even around bends (provided the bend radius is not too sharp). Thus, the optical fibre acts as a waveguide for light.</p><p><strong>Two advantages of optical fibre communication:</strong></p><ol><li><strong>High bandwidth and data rate:</strong> Optical fibres can carry much more information (higher data rates) than copper wires due to the high frequency of light. They are used in high-speed internet, cable TV, and telecommunications.</li><li><strong>Immunity to electromagnetic interference (EMI):</strong> Optical fibres are dielectric (non-metallic), so they are not affected by electromagnetic interference, radio frequency interference, or crosstalk. This ensures secure, noise-free transmission and makes them suitable for use in electrically noisy environments.</li></ol><p>Other advantages include low attenuation (signals travel longer distances without amplification), light weight, small size, and electrical isolation (no risk of sparks).</p>",
+            "marks": 3,
+            "unit": "Optics"
+        }
+    ]
+}
