@@ -1,0 +1,441 @@
+{
+    "subject": "Introduction to IT Systems",
+    "year": 2022,
+    "totalMarks": 60,
+    "timeAllowed": "2.5 Hours",
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "A web browser is an application that is used to",
+            "options": [
+                "find and retrieve webpage",
+                "send e-Mail",
+                "prepare a document",
+                "none of these"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>find and retrieve webpage</strong> is correct because a web browser (like Chrome, Firefox, Edge) is primarily designed to access and display webpages from the internet.</p>",
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "In any search engine user can",
+            "options": [
+                "use of two or more keywords",
+                "use of +",
+                "use of And",
+                "All of these"
+            ],
+            "correct": 3,
+            "marks": 1,
+            "explanation": "<p><strong>All of these</strong> is correct because search engines support multiple keywords, Boolean operators like AND, and symbols like + for more precise searches.</p>",
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "A small program that gets loaded in the computer without the user knowledge and replicate itself repeatedly called:",
+            "options": [
+                "Worms",
+                "Virus",
+                "Browser",
+                "None of these"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Worms</strong> is correct because worms are self-replicating malware that spread without user intervention. Viruses also replicate but typically need host files.</p>",
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "What is the term for unsolicited email?",
+            "options": [
+                "Spam",
+                "Worm",
+                "Browser",
+                "News Group"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Spam</strong> is correct because unsolicited bulk emails, especially commercial messages, are called spam emails.</p>",
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "Rules to exchange data between computers are called",
+            "options": [
+                "Procedure",
+                "protocols",
+                "hyperlink",
+                "program"
+            ],
+            "correct": 1,
+            "marks": 1,
+            "explanation": "<p><strong>protocols</strong> is correct because protocols are standardized rules that govern data communication between devices (e.g., TCP/IP, HTTP).</p>",
+            "unit": "Computer Networks"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "CPU scheduling is the basis of",
+            "options": [
+                "Large memory size system",
+                "Multiprogramming system",
+                "Multiprocessing system",
+                "none of the above"
+            ],
+            "correct": 1,
+            "marks": 1,
+            "explanation": "<p><strong>Multiprogramming system</strong> is correct because CPU scheduling allows multiple programs to share CPU time efficiently in multiprogramming environments.</p>",
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following errors will be handled by the operating system?",
+            "options": [
+                "Lack of paper in printer",
+                "Connection failure in the network",
+                "Power failure",
+                "All of the mentioned above"
+            ],
+            "correct": 3,
+            "marks": 1,
+            "explanation": "<p><strong>All of the mentioned above</strong> is correct because the OS handles various hardware and software errors through interrupts, error handling routines, and device drivers.</p>",
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Decimal equivalent of 16 in hexadecimal",
+            "options": [
+                "22",
+                "16",
+                "10",
+                "20"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>22</strong> is correct because hexadecimal 16 = (1 × 16¹) + (6 × 16⁰) = 16 + 6 = 22 in decimal.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "The number of bits used to store a BCD digit is",
+            "options": [
+                "2",
+                "1",
+                "4",
+                "8"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>4</strong> is correct because BCD (Binary Coded Decimal) represents each decimal digit using 4 bits (e.g., 9 = 1001).</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "What is the resultant binary equivalent of the decimal problem 49 + 1 =",
+            "options": [
+                "00110010",
+                "01010101",
+                "00110001",
+                "00110101"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>00110010</strong> is correct because 49 + 1 = 50 in decimal. 50 in binary is 110010, represented as 00110010 in 8-bit format.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Flowcharts and Algorithms are used for",
+            "options": [
+                "better programming",
+                "easy testing and debugging",
+                "efficient coding",
+                "all of these"
+            ],
+            "correct": 3,
+            "marks": 1,
+            "explanation": "<p><strong>all of these</strong> is correct because algorithms and flowcharts help in planning, testing, debugging, and writing efficient code.</p>",
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "2.1",
+            "type": "saq",
+            "group": "A",
+            "question": "Identify the device which receives analog data and creates its digital equivalent.",
+            "answer": "<p><strong>Analog-to-Digital Converter (ADC)</strong> is the device that receives analog data and converts it into digital equivalent. Examples include ADCs in digital multimeters, audio interfaces, and sensor systems.</p>",
+            "marks": 1,
+            "unit": "Computer Hardware"
+        },
+        {
+            "id": "2.2",
+            "type": "saq",
+            "group": "A",
+            "question": "Define Booting.",
+            "answer": "<p><strong>Booting</strong> is the process of starting a computer, where the system loads the operating system into main memory from secondary storage. It involves hardware initialization, POST (Power-On Self-Test), and loading the OS kernel.</p>",
+            "marks": 1,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "2.3",
+            "type": "saq",
+            "group": "A",
+            "question": "What is the first page of a website called?",
+            "answer": "<p>The first page of a website is called the <strong>Homepage</strong>. It serves as the main entry point and typically provides navigation to other pages on the site.</p>",
+            "marks": 1,
+            "unit": "Web Technology"
+        },
+        {
+            "id": "2.4",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the full form of HTTP.",
+            "answer": "<p><strong>HTTP</strong> stands for <strong>Hypertext Transfer Protocol</strong>. It is the foundation protocol used for transmitting web pages and data on the World Wide Web.</p>",
+            "marks": 1,
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "2.5",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the full form of SSD.",
+            "answer": "<p><strong>SSD</strong> stands for <strong>Solid State Drive</strong>. It is a storage device that uses flash memory to store data, offering faster access times than traditional hard disk drives.</p>",
+            "marks": 1,
+            "unit": "Computer Hardware"
+        },
+        {
+            "id": "2.6",
+            "type": "saq",
+            "group": "A",
+            "question": "Differentiate between Data and Information.",
+            "answer": "<p><strong>Data:</strong> Raw, unprocessed facts and figures without context. Example: numbers 25, 30, 35.</p><p><strong>Information:</strong> Processed data that has meaning and context. Example: The average temperature for three days is 30°C.</p>",
+            "marks": 1,
+            "unit": "Computer Fundamentals"
+        },
+        {
+            "id": "2.7",
+            "type": "saq",
+            "group": "A",
+            "question": "What is BIOS?",
+            "answer": "<p><strong>BIOS (Basic Input/Output System)</strong> is firmware stored on a ROM chip that initializes hardware components during booting and provides runtime services for operating systems.</p>",
+            "marks": 1,
+            "unit": "Computer Hardware"
+        },
+        {
+            "id": "2.8",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the utility of Cache Memory.",
+            "answer": "<p><strong>Cache Memory</strong> is high-speed memory between CPU and main memory that stores frequently accessed data and instructions, reducing average time to access data from main memory and improving system performance.</p>",
+            "marks": 1,
+            "unit": "Computer Architecture"
+        },
+        {
+            "id": "2.9",
+            "type": "saq",
+            "group": "A",
+            "question": "Define Truth Table.",
+            "answer": "<p>A <strong>Truth Table</strong> is a mathematical table used in logic to represent all possible input combinations and corresponding outputs of a logic gate or digital circuit.</p>",
+            "marks": 1,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "2.10",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the utility of Command Line Interpreter.",
+            "answer": "<p><strong>Command Line Interpreter (CLI)</strong> accepts user commands in text form, interprets them, and executes corresponding programs. It provides direct system control, scripting capabilities, and automation.</p>",
+            "marks": 1,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "2.11",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the full form of URL.",
+            "answer": "<p><strong>URL</strong> stands for <strong>Uniform Resource Locator</strong>. It is the web address used to locate and access resources on the internet.</p>",
+            "marks": 1,
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "2.12",
+            "type": "saq",
+            "group": "A",
+            "question": "What is Malware?",
+            "answer": "<p><strong>Malware (Malicious Software)</strong> is any software intentionally designed to cause damage, disrupt operations, steal data, or gain unauthorized access to computer systems.</p>",
+            "marks": 1,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "4.i",
+            "type": "saq",
+            "group": "B",
+            "question": "Write the differences between SRAM and DRAM.",
+            "answer": "<p><strong>SRAM (Static RAM) vs DRAM (Dynamic RAM):</strong></p><ul><li><strong>Storage:</strong> SRAM uses flip-flops, DRAM uses capacitors</li><li><strong>Refresh:</strong> SRAM no refresh needed, DRAM requires periodic refresh</li><li><strong>Speed:</strong> SRAM faster, DRAM slower</li><li><strong>Density:</strong> SRAM low density, DRAM high density</li><li><strong>Cost:</strong> SRAM expensive, DRAM cheaper</li><li><strong>Power consumption:</strong> SRAM low standby power, DRAM higher due to refresh</li><li><strong>Usage:</strong> SRAM for cache memory, DRAM for main memory</li></ul>",
+            "marks": 2,
+            "unit": "Computer Memory"
+        },
+        {
+            "id": "4.ii",
+            "type": "saq",
+            "group": "B",
+            "question": "Why should we use more than one search engine simultaneously?",
+            "answer": "<p><strong>Reasons to use multiple search engines:</strong></p><ul><li>Different search engines have different indexing algorithms and databases</li><li>Get more comprehensive and diverse search results</li><li>Verify information from multiple sources</li><li>Some search engines specialize in specific content types</li><li>Avoid bias from a single search engine's ranking algorithm</li><li>Better chance of finding obscure or niche content</li></ul>",
+            "marks": 2,
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "4.iii",
+            "type": "saq",
+            "group": "B",
+            "question": "How is 8-4-2-1 code different from 4-2-2-1 code?",
+            "answer": "<p><strong>8-4-2-1 code</strong> is the standard BCD (Binary Coded Decimal) where each decimal digit is represented by its 4-bit binary equivalent with weights 8,4,2,1.</p><p><strong>4-2-2-1 code</strong> is an alternative weighted code where bits have weights 4,2,2,1. This allows some decimal digits to have multiple representations, making it self-complementing.</p><p><strong>Example for digit 6:</strong><br>8-4-2-1: 0110<br>4-2-2-1: 1100 or 0110 (multiple representations)</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "4.iv",
+            "type": "saq",
+            "group": "B",
+            "question": "\"Two's complement is the most popular technique to represent signed number\". Justify the statement.",
+            "answer": "<p><strong>Justification for Two's complement popularity:</strong></p><ul><li>Single representation for zero (unlike one's complement with +0 and -0)</li><li>Simplifies arithmetic operations - addition and subtraction use same hardware</li><li>Easier to implement in digital circuits</li><li>Range is symmetric (-2^(n-1) to 2^(n-1)-1)</li><li>Sign extension is straightforward</li><li>Most computers use two's complement for integer representation</li><li>Overflow detection is simpler</li></ul><p>Example: -5 in 4-bit two's complement: 1011 (versus 1100 in one's complement)</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "4.v",
+            "type": "saq",
+            "group": "B",
+            "question": "Is there any difference between compiler and an interpreter?",
+            "answer": "<p><strong>Yes, there are significant differences:</strong></p><p><strong>Compiler:</strong></p><ul><li>Translates entire program at once</li><li>Produces executable machine code</li><li>Faster execution after compilation</li><li>Errors reported after full compilation</li><li>Examples: C, C++ compilers</li></ul><p><strong>Interpreter:</strong></p><ul><li>Translates and executes line by line</li><li>No separate executable file</li><li>Slower execution due to real-time translation</li><li>Errors reported line by line</li><li>Examples: Python, JavaScript interpreters</li></ul>",
+            "marks": 2,
+            "unit": "Programming Languages"
+        },
+        {
+            "id": "4.vi",
+            "type": "saq",
+            "group": "B",
+            "question": "With the help of an example, explain the use of flow chart.",
+            "answer": "<p><strong>Flowchart Example: Finding the largest of three numbers</strong></p><p><em>Flowchart symbols should include:</em></p><ul><li>Start (Oval)</li><li>Input A,B,C (Parallelogram)</li><li>Decision: Is A > B? (Diamond)</li><li>If Yes: Compare A > C? (Diamond)</li><li>If No: Compare B > C? (Diamond)</li><li>Output largest number (Parallelogram)</li><li>Stop (Oval)</li></ul><p><strong>Use:</strong> Flowcharts provide visual representation of algorithm logic, making it easier to understand, debug, and communicate program flow before coding.</p>",
+            "marks": 2,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "4.vii",
+            "type": "saq",
+            "group": "B",
+            "question": "Does all HTML tags have an end tag?",
+            "answer": "<p><strong>No, not all HTML tags have an end tag.</strong></p><p><strong>Tags with end tags (container tags):</strong> &lt;html&gt;&lt;/html&gt;, &lt;body&gt;&lt;/body&gt;, &lt;h1&gt;&lt;/h1&gt;, &lt;p&gt;&lt;/p&gt;, &lt;div&gt;&lt;/div&gt;</p><p><strong>Empty tags (self-closing tags without end tags):</strong> &lt;br&gt; (line break), &lt;hr&gt; (horizontal rule), &lt;img&gt; (image), &lt;input&gt;, &lt;meta&gt;, &lt;link&gt;</p><p>In XHTML, empty tags are written as self-closing: &lt;br /&gt;</p>",
+            "marks": 2,
+            "unit": "HTML"
+        },
+        {
+            "id": "4.viii",
+            "type": "saq",
+            "group": "B",
+            "question": "Write the utility of a scripting language.",
+            "answers": [
+                {
+                    "text": "<p><strong>Utilities of scripting languages:</strong></p><ul><li>Automate repetitive tasks</li><li>Add interactivity to web pages (JavaScript)</li><li>Server-side web development (PHP, Python)</li><li>Rapid application development</li><li>System administration and automation</li><li>Glue code between applications</li><li>Easy to learn and use with minimal code</li><li>Platform independence</li><li>Dynamic typing for flexibility</li><li>Excellent for prototyping</li></ul>",
+                    "marks": 2
+                }
+            ],
+            "marks": 2,
+            "unit": "Scripting Languages"
+        },
+        {
+            "id": "4.ix",
+            "type": "saq",
+            "group": "B",
+            "question": "How does a virus get installed in a computer?",
+            "answer": "<p><strong>Common ways viruses get installed:</strong></p><ul><li>Downloading infected files from internet</li><li>Opening malicious email attachments</li><li>Clicking on suspicious links</li><li>Using infected USB drives or external media</li><li>Visiting compromised websites (drive-by downloads)</li><li>Installing pirated software</li><li>Social engineering tricks (fake updates, alerts)</li><li>Network propagation through vulnerabilities</li><li>File sharing networks (torrents, P2P)</li><li>Exploiting unpatched software vulnerabilities</li></ul>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "4.x",
+            "type": "saq",
+            "group": "B",
+            "question": "Define source code and Executable code.",
+            "answer": "<p><strong>Source Code:</strong> Human-readable instructions written by programmers in high-level languages (C, Java, Python). Requires compilation or interpretation to run.</p><p><strong>Executable Code:</strong> Machine-readable binary code that the computer can directly execute. Produced by compiling source code or assembling. Contains machine language instructions specific to a processor.</p><p><strong>Example:</strong> A C program (.c file) is source code; after compilation, we get .exe file which is executable code.</p>",
+            "marks": 2,
+            "unit": "Programming Languages"
+        },
+        {
+            "id": "5.a.i",
+            "type": "laq",
+            "group": "C",
+            "question": "How can two numbers be subtracted only through addition?",
+            "answer": "<p><strong>Subtraction through addition using complements:</strong></p><p>Subtraction can be performed using addition by employing the concept of complements. This method is used in digital computers because they have hardware adders but not separate subtractors.</p><p><strong>For decimal numbers (10's complement method):</strong><br>To subtract B from A: A - B = A + (10's complement of B) - (carry adjustment)</p><p><strong>Steps:</strong><br>1. Find 9's complement of B (subtract each digit from 9)<br>2. Add 1 to get 10's complement<br>3. Add A and 10's complement of B<br>4. If there's a carry, add it to the result; if no carry, take 10's complement of result and add negative sign</p><p><strong>For binary numbers (2's complement method):</strong><br>To subtract B from A: A - B = A + (2's complement of B)</p><p><strong>Example (binary):</strong> 13 - 5 = 8<br>13 in binary: 1101<br>5 in binary: 0101<br>1's complement of 5: 1010<br>2's complement of 5: 1011<br>Add: 1101 + 1011 = 11000 (carry 1 discarded) = 1000 (8 in decimal)</p><p>This works because adding the complement is equivalent to adding the negative of the number in two's complement representation.</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "5.a.ii",
+            "type": "laq",
+            "group": "C",
+            "question": "What do you mean by Universal Logic Gates? Why Universal Logic Gates are called Universal?",
+            "answer": "<p><strong>Universal Logic Gates</strong> are gates that can be used to implement any Boolean function without needing any other gate types. The two universal gates are NAND and NOR.</p><p><strong>Why they are called Universal:</strong></p><p>NAND and NOR gates are called universal because any logic gate (AND, OR, NOT, XOR, XNOR) can be constructed using only NAND gates or only NOR gates.</p><p><strong>Implementation of basic gates using NAND:</strong></p><ul><li><strong>NOT gate:</strong> Connect both inputs of NAND together (Y = A·A = A)</li><li><strong>AND gate:</strong> Connect two NAND gates in series (first NAND output to both inputs of second NAND)</li><li><strong>OR gate:</strong> Invert inputs using NAND NOT, then feed to another NAND (DeMorgan's theorem)</li></ul><p><strong>Implementation of basic gates using NOR:</strong></p><ul><li><strong>NOT gate:</strong> Connect both inputs of NOR together (Y = A+A = A)</li><li><strong>OR gate:</strong> Connect two NOR gates in series</li><li><strong>AND gate:</strong> Invert inputs using NOR NOT, then feed to another NOR</li></ul><p>This universality simplifies integrated circuit manufacturing since only one type of gate needs to be fabricated.</p>",
+            "marks": 3,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "5.a.iii",
+            "type": "laq",
+            "group": "C",
+            "question": "Why SSD is faster than Hard Disk?",
+            "answer": "<p><strong>SSD (Solid State Drive) is faster than HDD (Hard Disk Drive) for several reasons:</strong></p><p><strong>1. No moving parts:</strong> SSDs use flash memory with no mechanical components, while HDDs have spinning platters and moving read/write heads.</p><p><strong>2. Access time:</strong> SSDs have near-instantaneous access (0.1ms) compared to HDDs (5-15ms) due to no seek time or rotational latency.</p><p><strong>3. Random I/O performance:</strong> SSDs excel at random read/write operations because any memory cell can be accessed directly. HDDs suffer from head movement delays.</p><p><strong>4. Data transfer rates:</strong> Modern SSDs (NVMe) achieve 3500 MB/s vs HDDs at 160 MB/s.</p><p><strong>5. Parallelism:</strong> SSDs can access multiple flash chips simultaneously, while HDDs are limited by single read/write head.</p><p><strong>6. Fragmentation impact:</strong> SSDs performance is unaffected by fragmentation; HDDs slow down with fragmentation.</p><p><strong>7. Boot and load times:</strong> Systems boot in seconds with SSDs versus minutes with HDDs.</p><p><strong>8. No noise/vibration:</strong> SSDs are silent; HDDs generate noise from spinning disks.</p>",
+            "marks": 1,
+            "unit": "Computer Hardware"
+        },
+        {
+            "id": "5.b.i",
+            "type": "laq",
+            "group": "C",
+            "question": "Write the utility of Excess-3 code.",
+            "answer": "<p><strong>Excess-3 Code (XS-3) is a non-weighted BCD code with several utilities:</strong></p><p><strong>Definition:</strong> Excess-3 code is obtained by adding 3 (0011) to each BCD digit.</p><p><strong>Key utilities and advantages:</strong></p><p><strong>1. Self-complementing property:</strong> The 9's complement of a decimal digit in Excess-3 is obtained by simply inverting bits. This simplifies subtraction circuits.</p><p><strong>2. Arithmetic operations:</strong> Facilitates addition and subtraction in decimal arithmetic circuits.</p><p><strong>3. Error detection:</strong> Certain bit patterns are invalid, helping detect errors in data transmission.</p><p><strong>4. No all-zero or all-one patterns:</strong> Avoids transmission synchronization issues.</p><p><strong>5. Simplified 9's complement generation:</strong> Important for subtraction in decimal machines.</p><p><strong>Example:</strong> Decimal 5 in Excess-3: BCD 0101 + 0011 = 1000<br>9's complement of 5 is 4: 1000 bitwise complement = 0111 (Excess-3 for 4)</p><p><strong>Applications:</strong> Used in older computer systems, digital displays, and arithmetic logic units for decimal operations.</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "5.b.ii",
+            "type": "laq",
+            "group": "C",
+            "question": "Convert the number (5674)₈ into the hexadecimal system.",
+            "answer": "<p><strong>Converting (5674)₈ to hexadecimal:</strong></p><p><strong>Method 1: Octal → Binary → Hexadecimal</strong></p><p><strong>Step 1: Convert octal to binary</strong><br>Each octal digit converts to 3 binary bits:<br>5₈ = 101₂<br>6₈ = 110₂<br>7₈ = 111₂<br>4₈ = 100₂</p><p>Therefore, (5674)₈ = 101 110 111 100₂ = 101110111100₂</p><p><strong>Step 2: Group binary into 4-bit groups (from right)</strong><br>1011 1011 1100₂</p><p><strong>Step 3: Convert each 4-bit group to hexadecimal</strong><br>1011₂ = 11₁₀ = B₁₆<br>1011₂ = 11₁₀ = B₁₆<br>1100₂ = 12₁₀ = C₁₆</p><p><strong>Step 4: Combine</strong><br>(5674)₈ = (BBC)₁₆</p><p><strong>Method 2: Octal → Decimal → Hexadecimal (Verification)</strong><br>(5674)₈ = 5×8³ + 6×8² + 7×8¹ + 4×8⁰<br>= 5×512 + 6×64 + 7×8 + 4<br>= 2560 + 384 + 56 + 4 = 3004₁₀</p><p>3004 ÷ 16 = 187 remainder 12 (C)<br>187 ÷ 16 = 11 remainder 11 (B)<br>11 ÷ 16 = 0 remainder 11 (B)</p><p>Reading upward: (BBC)₁₆ ✓</p><p>Therefore, (5674)₈ = <strong>(BBC)₁₆</strong></p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "5.b.iii",
+            "type": "laq",
+            "group": "C",
+            "question": "Write the advantages of multiprocessing operating system.",
+            "answer": "<p><strong>Advantages of Multiprocessing Operating System:</strong></p><p><strong>1. Increased Throughput:</strong> Multiple processors work simultaneously, completing more tasks per unit time.</p><p><strong>2. Enhanced Reliability/Fault Tolerance:</strong> If one processor fails, others continue working (graceful degradation).</p><p><strong>3. Better Performance:</strong> Complex applications can be divided among processors for parallel execution.</p><p><strong>4. Load Sharing:</strong> Workload distributed evenly across processors, preventing any single processor from becoming overloaded.</p><p><strong>5. Scalability:</strong> Additional processors can be added to increase computing power as needed.</p><p><strong>6. Cost Effectiveness:</strong> Multiple processors can share peripherals, memory, and power supplies, reducing overall cost.</p><p><strong>7. Parallel Processing:</strong> Enables true parallel execution of multiple tasks or threads.</p><p><strong>8. Resource Sharing:</strong> Efficient sharing of memory and I/O devices among processors.</p><p><strong>9. Faster Processing:</strong> Time-critical tasks can be assigned dedicated processors.</p><p><strong>10. Improved Response Time:</strong> Multiple users experience better response times due to parallel processing capability.</p><p><strong>Examples:</strong> SMP (Symmetric Multiprocessing) systems like modern multi-core computers, servers with multiple CPUs.</p>",
+            "marks": 2,
+            "unit": "Operating Systems"
+        }
+    ]
+}

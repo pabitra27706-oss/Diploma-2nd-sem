@@ -1,0 +1,445 @@
+{
+    "exam": {
+        "subject": "ENGINEERING MECHANICS",
+        "code": "105(S)",
+        "year": "2021",
+        "board": "WBSCTE",
+        "semester": "II",
+        "timeAllowed": "3 Hours",
+        "fullMarks": 70,
+        "instructions": "Answer to Question No.1 is compulsory and Answer any five questions from the rest."
+    },
+    "questions": [
+        {
+            "id": "1.A.i",
+            "type": "truefalse",
+            "group": "A",
+            "question": "A roller support has reaction normal to the support plane.",
+            "correct": true,
+            "marks": 1,
+            "explanation": "<p><strong>True.</strong> A roller support allows rotation and horizontal movement but provides reaction only perpendicular (normal) to the support surface.</p>",
+            "unit": "Supports and Reactions"
+        },
+        {
+            "id": "1.A.ii",
+            "type": "truefalse",
+            "group": "A",
+            "question": "If the law of lifting machine is P = 0.04W + 20, the maximum mechanical advantage is 25.",
+            "correct": true,
+            "marks": 1,
+            "explanation": "<p><strong>True.</strong> Maximum MA = 1/m = 1/0.04 = 25, where m is the slope of the law of machine.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.A.iii",
+            "type": "truefalse",
+            "group": "A",
+            "question": "If two equal forces each of magnitude P act at an angle θ then their resultant will be P√(2(1 - cosθ)).",
+            "correct": false,
+            "marks": 1,
+            "explanation": "<p><strong>False.</strong> The correct formula is $R = P\\sqrt{2(1 + \\cos\\theta)}$ or $2P\\cos(\\theta/2)$. The given formula with (1 - cosθ) would give zero resultant at θ=0°, which is incorrect.</p>",
+            "unit": "Forces and Resultants"
+        },
+        {
+            "id": "1.A.iv",
+            "type": "truefalse",
+            "group": "A",
+            "question": "In SI, the unit of coefficient of friction is Nm⁻¹.",
+            "correct": false,
+            "marks": 1,
+            "explanation": "<p><strong>False.</strong> Coefficient of friction is a dimensionless quantity. It has no units as it is the ratio of frictional force to normal reaction (both in Newtons).</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.A.v",
+            "type": "truefalse",
+            "group": "A",
+            "question": "Centroid of a triangular lamina lies at a point where its three medians meet.",
+            "correct": true,
+            "marks": 1,
+            "explanation": "<p><strong>True.</strong> The centroid of a triangle is the intersection point of its three medians, located at a distance of one-third the height from each side.</p>",
+            "unit": "Centroid and Centre of Gravity"
+        },
+        {
+            "id": "1.A.vi",
+            "type": "truefalse",
+            "group": "A",
+            "question": "The normal force of an object lying on an inclined plane will be lesser than the normal force acting on it, when it rests horizontally.",
+            "correct": true,
+            "marks": 1,
+            "explanation": "<p><strong>True.</strong> On an inclined plane, normal force N = W cosθ, while on horizontal surface N = W. Since cosθ < 1 for θ>0°, the normal force on incline is lesser.</p>",
+            "unit": "Forces on Inclined Planes"
+        },
+        {
+            "id": "1.A.vii",
+            "type": "truefalse",
+            "group": "A",
+            "question": "Mechanical advantage is the ability of a machine to multiply force.",
+            "correct": true,
+            "marks": 1,
+            "explanation": "<p><strong>True.</strong> Mechanical Advantage (MA) = Load/Effort, representing the factor by which a machine multiplies the input force.</p>",
+            "unit": "Simple Lifting Machines"
+        },
+        {
+            "id": "1.A.viii",
+            "type": "truefalse",
+            "group": "A",
+            "question": "A body isolated from all other members which are connected to it is called Free body.",
+            "correct": true,
+            "marks": 1,
+            "explanation": "<p><strong>True.</strong> A free body diagram shows a body isolated from its surroundings with all forces acting on it clearly indicated.</p>",
+            "unit": "Free Body Diagrams"
+        },
+        {
+            "id": "1.A.ix",
+            "type": "truefalse",
+            "group": "A",
+            "question": "In case of a lifting machine load vs. effort graph is a curve.",
+            "correct": false,
+            "marks": 1,
+            "explanation": "<p><strong>False.</strong> The load-effort graph for a lifting machine is typically a straight line following the law P = mW + C, where m and C are constants.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.A.x",
+            "type": "truefalse",
+            "group": "A",
+            "question": "In locating centroid of a body, we apply principle of moments.",
+            "correct": true,
+            "marks": 1,
+            "explanation": "<p><strong>True.</strong> The centroid is found using the principle of moments: the moment of the total area equals the sum of moments of individual areas.</p>",
+            "unit": "Centroid"
+        },
+        {
+            "id": "1.A.xi",
+            "type": "truefalse",
+            "group": "A",
+            "question": "The C.G. of a semicircle lies at a distance from its base measured along the vertical radius is 4π/3π.",
+            "correct": false,
+            "marks": 1,
+            "explanation": "<p><strong>False.</strong> The correct distance is $\\frac{4r}{3\\pi}$ from the base along the vertical radius, not 4π/3π which would be dimensionally incorrect.</p>",
+            "unit": "Centre of Gravity"
+        },
+        {
+            "id": "1.A.xii",
+            "type": "truefalse",
+            "group": "A",
+            "question": "Rotational tendency of a force is called resultant.",
+            "correct": false,
+            "marks": 1,
+            "explanation": "<p><strong>False.</strong> The rotational tendency of a force is called moment or torque. Resultant is the single force that produces the same effect as a system of forces.</p>",
+            "unit": "Moments"
+        },
+        {
+            "id": "1.B.i",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The angle which an inclined surface makes with the horizontal when a body placed on it is on the point of moving down is known as ________.",
+            "answer": "angle of repose",
+            "acceptableAnswers": ["angle of repose", "Angle of repose", "repose angle"],
+            "marks": 1,
+            "explanation": "<p><strong>Angle of repose</strong> is the maximum angle of inclined plane at which a body remains in equilibrium without sliding.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.B.ii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Instead of simple wheel and axle, differential wheel and axle gives ________ V.R.",
+            "answer": "higher",
+            "acceptableAnswers": ["higher", "greater", "more", "large", "high"],
+            "marks": 1,
+            "explanation": "<p><strong>Higher</strong> velocity ratio. Differential wheel and axle uses two axles of different diameters to achieve greater velocity ratio than simple wheel and axle.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.B.iii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "In the equation P = mW + C of a lifting machine, C indicates the effort required to overcome friction under ________ condition.",
+            "answer": "no load",
+            "acceptableAnswers": ["no load", "zero load", "no-load", "W=0"],
+            "marks": 1,
+            "explanation": "<p><strong>No load</strong> condition. When W = 0, P = C, representing the effort needed just to overcome machine friction without any load.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.B.iv",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The C.G. of an equilateral triangle with each side 'a' is at a distance of ________ from any of the three sides.",
+            "answer": "a/(2√3) or h/3",
+            "acceptableAnswers": ["a/(2√3)", "h/3", "a/2√3", "height/3"],
+            "marks": 1,
+            "explanation": "<p>For an equilateral triangle, height h = a√3/2, and centroid is at h/3 from any side = a/(2√3).</p>",
+            "unit": "Centre of Gravity"
+        },
+        {
+            "id": "1.B.v",
+            "type": "gapfill",
+            "group": "A",
+            "question": "If the resultant of two forces P and Q (acting at an angle θ) makes an angle α with P, then tan α = ________.",
+            "answer": "Q sinθ/(P + Q cosθ)",
+            "acceptableAnswers": ["Q sinθ/(P + Q cosθ)", "(Q sinθ)/(P+Q cosθ)"],
+            "marks": 1,
+            "explanation": "<p>From the parallelogram law, $\\tan \\alpha = \\frac{Q \\sin \\theta}{P + Q \\cos \\theta}$, where α is the angle between resultant and force P.</p>",
+            "unit": "Forces and Resultants"
+        },
+        {
+            "id": "1.B.vi",
+            "type": "gapfill",
+            "group": "A",
+            "question": "If the arm of a couple is doubled, its moment will be ________.",
+            "answer": "doubled",
+            "acceptableAnswers": ["doubled", "twice", "2 times", "increased two times"],
+            "marks": 1,
+            "explanation": "<p>Moment of a couple = Force × Arm. If arm is doubled with same force, moment becomes twice the original value.</p>",
+            "unit": "Couples"
+        },
+        {
+            "id": "1.B.vii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Maximum value of static friction is known as ________.",
+            "answer": "limiting friction",
+            "acceptableAnswers": ["limiting friction", "Limiting friction"],
+            "marks": 1,
+            "explanation": "<p><strong>Limiting friction</strong> is the maximum frictional force that can be developed between two surfaces before motion starts.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.B.viii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The units which are used for measurement of fundamental quantities i.e. mass, length and time, are known as ________.",
+            "answer": "fundamental units",
+            "acceptableAnswers": ["fundamental units", "Fundamental units", "base units"],
+            "marks": 1,
+            "explanation": "<p><strong>Fundamental units</strong> are basic units that cannot be expressed in terms of other units, like kilogram (mass), meter (length), second (time).</p>",
+            "unit": "Units and Measurements"
+        },
+        {
+            "id": "1.B.ix",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The body which does not deform under the action of applied forces is known as ________.",
+            "answer": "rigid body",
+            "acceptableAnswers": ["rigid body", "Rigid body"],
+            "marks": 1,
+            "explanation": "<p><strong>Rigid body</strong> is an ideal body that does not change its shape or size under the action of forces.</p>",
+            "unit": "Basic Concepts"
+        },
+        {
+            "id": "1.B.x",
+            "type": "gapfill",
+            "group": "A",
+            "question": "If for a number of coplanar concurrent forces the force polygon is closed, the forces are in ________.",
+            "answer": "equilibrium",
+            "acceptableAnswers": ["equilibrium", "Equilibrium", "balance"],
+            "marks": 1,
+            "explanation": "<p>For coplanar concurrent forces, if the force polygon closes, the resultant is zero, meaning the forces are in equilibrium.</p>",
+            "unit": "Equilibrium of Forces"
+        },
+        {
+            "id": "1.B.xii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "When frictional force (F) increases, the ratio between F and normal reaction (N) ________.",
+            "answer": "increases",
+            "acceptableAnswers": ["increases", "increase", "increased"],
+            "marks": 1,
+            "explanation": "<p>F/N = μ (coefficient of friction). As F increases upto limiting friction, μ increases proportionally.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.B.xiii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "If efficiency of a lifting machine is kept constant, its velocity ratio is directly proportional to its ________.",
+            "answer": "mechanical advantage",
+            "acceptableAnswers": ["mechanical advantage", "MA"],
+            "marks": 1,
+            "explanation": "<p>Efficiency η = MA/VR. If η constant, then MA ∝ VR.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State and explain Varignon's theorem.",
+            "answer": "<p><strong>Varignon's Theorem (Principle of Moments):</strong> The moment of a force about any point is equal to the sum of the moments of its components about the same point.</p><p><strong>Explanation:</strong> If a force R is the resultant of two forces P and Q, then the moment of R about any point O equals the algebraic sum of moments of P and Q about the same point O.</p><p>Mathematically, $M_O(R) = M_O(P) + M_O(Q)$</p><p><strong>Applications:</strong> Used to find moments of forces by resolving them into components, simplifying complex force systems.</p>",
+            "marks": 4,
+            "unit": "Forces and Moments"
+        },
+        {
+            "id": "2.b",
+            "type": "saq",
+            "group": "B",
+            "question": "An oil drum of 400mm diameter and 1.5m long is to be rolled across a footstep of 100mm high. Find the minimum push required at the top of the drum. Take density of oil as 1kg/litre. Neglect weight of the drum.",
+            "answer": "<p><strong>Given:</strong> d = 400mm = 0.4m, r = 0.2m, L = 1.5m, step height h = 100mm = 0.1m, density ρ = 1 kg/litre = 1000 kg/m³</p><p><strong>Step 1: Calculate weight of oil</strong></p><p>Volume = πr²L = π(0.2)²(1.5) = 0.1885 m³</p><p>Mass = ρV = 1000 × 0.1885 = 188.5 kg</p><p>Weight W = mg = 188.5 × 9.81 = 1850 N</p><p><strong>Step 2: Geometry for rolling over step</strong></p><p>When drum is about to roll over step, it pivots about point A (edge of step).</p><p>Distance from pivot to center = r = 0.2m</p><p>Vertical height of center above pivot = r - h = 0.2 - 0.1 = 0.1m</p><p>Horizontal distance = √(r² - (r-h)²) = √(0.04 - 0.01) = √0.03 = 0.1732m</p><p><strong>Step 3: Apply moment equilibrium about pivot</strong></p><p>Moment due to weight = W × horizontal distance = 1850 × 0.1732 = 320.42 Nm (clockwise)</p><p>Moment due to push P at top = P × vertical distance from pivot to line of action</p><p>Vertical distance = 2r - h = 0.4 - 0.1 = 0.3m</p><p>For minimum push, P acts horizontally at top.</p><p>P × 0.3 = 320.42</p><p><strong>Step 4: Calculate P</strong></p><p>P = 320.42/0.3 = 1068.07 N</p><p>Therefore, minimum push required = <strong>1068 N</strong></p>",
+            "marks": 6,
+            "keyPoints": [
+                "Volume calculation of drum",
+                "Weight calculation from density",
+                "Geometry for rolling over step",
+                "Moment equilibrium condition"
+            ],
+            "unit": "Forces and Moments"
+        },
+        {
+            "id": "3",
+            "type": "laq",
+            "group": "C",
+            "question": "A body resting on a rough horizontal plane, required a pull of 180N inclined at 30° to the plane just to move it. It was found that a push of 200N inclined at 30° to the plane just removed the body. Determine the weight of the body and the coefficient of friction.",
+            "answer": "<h5>Solution: Finding Weight and Coefficient of Friction</h5>\n\n<p><strong>Given:</strong> Pull P₁ = 180N at 30°, Push P₂ = 200N at 30°, body on rough horizontal plane.</p>\n\n<p><strong>Case 1: Pull applied at angle θ</strong></p>\n<p>Resolving forces:</p>\n<p>Horizontal: P₁cosθ = μN₁ ...(1)</p>\n<p>Vertical: N₁ + P₁sinθ = W ...(2)</p>\n<p>From (2): N₁ = W - P₁sinθ</p>\n<p>Substitute in (1):</p>\n<p>P₁cosθ = μ(W - P₁sinθ)</p>\n<p>180cos30° = μ(W - 180sin30°)</p>\n<p>180 × 0.866 = μ(W - 180 × 0.5)</p>\n<p>155.88 = μ(W - 90) ...(3)</p>\n\n<p><strong>Case 2: Push applied at angle θ</strong></p>\n<p>Horizontal: P₂cosθ = μN₂ ...(4)</p>\n<p>Vertical: N₂ = W + P₂sinθ ...(5)</p>\n<p>From (5): N₂ = W + P₂sinθ</p>\n<p>Substitute in (4):</p>\n<p>P₂cosθ = μ(W + P₂sinθ)</p>\n<p>200cos30° = μ(W + 200sin30°)</p>\n<p>200 × 0.866 = μ(W + 200 × 0.5)</p>\n<p>173.2 = μ(W + 100) ...(6)</p>\n\n<p><strong>Step 3: Solve equations (3) and (6)</strong></p>\n<p>From (3): μ = 155.88/(W - 90)</p>\n<p>From (6): μ = 173.2/(W + 100)</p>\n<p>Equating:</p>\n<p>155.88/(W - 90) = 173.2/(W + 100)</p>\n<p>155.88(W + 100) = 173.2(W - 90)</p>\n<p>155.88W + 15588 = 173.2W - 15588</p>\n<p>15588 + 15588 = 173.2W - 155.88W</p>\n<p>31176 = 17.32W</p>\n<p>W = 31176/17.32 = 1800 N</p>\n\n<p><strong>Step 4: Find coefficient of friction</strong></p>\n<p>μ = 155.88/(W - 90) = 155.88/(1800 - 90)</p>\n<p>μ = 155.88/1710 = 0.091</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Weight of body W = <strong>1800 N</strong></li>\n<li>Coefficient of friction μ = <strong>0.091</strong></li>\n</ul>",
+            "keyPoints": [
+                "Force resolution for pull and push cases",
+                "Normal reaction differs in pull vs push",
+                "Equilibrium equations for both cases",
+                "Solving simultaneous equations"
+            ],
+            "marks": 10,
+            "unit": "Friction"
+        },
+        {
+            "id": "4.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define centre of gravity and centroid.",
+            "answer": "<p><strong>Centre of Gravity (CG):</strong> It is the point through which the entire weight of a body acts, irrespective of the body's orientation. For all practical purposes, the weight of the body is assumed to be concentrated at this point.</p><p><strong>Centroid:</strong> It is the geometric center of a plane figure or solid. For uniform bodies, the centroid coincides with the centre of gravity. It is the point where the total area of a plane figure is assumed to be concentrated.</p><p><strong>Difference:</strong> CG applies to bodies with weight/mass, while centroid applies to geometric shapes regardless of material.</p>",
+            "marks": 4,
+            "unit": "Centroid and Centre of Gravity"
+        },
+        {
+            "id": "4.b",
+            "type": "laq",
+            "group": "C",
+            "question": "An I-section has the following dimensions in mm units: Bottom flange = 250 × 100, Top flange = 150 × 50, Web = 400 × 50. Determine mathematically the position of centre of gravity of the section.",
+            "answer": "<h5>Solution: Finding CG of I-Section</h5>\n\n<p><strong>Given dimensions (in mm):</strong></p>\n<ul>\n<li>Bottom flange: width b₁ = 250mm, depth d₁ = 100mm</li>\n<li>Top flange: width b₂ = 150mm, depth d₂ = 50mm</li>\n<li>Web: width b₃ = 50mm, depth d₃ = 400mm</li>\n<li>Total height of section = 100 + 400 + 50 = 550mm</li>\n</ul>\n\n<p><strong>Step 1: Take reference axis at bottom of section</strong></p>\n\n<p><strong>Step 2: Calculate areas and centroidal distances</strong></p>\n\n<p><strong>Bottom flange (Rectangle 1):</strong></p>\n<p>A₁ = b₁ × d₁ = 250 × 100 = 25000 mm²</p>\n<p>y₁ = d₁/2 = 100/2 = 50 mm (from bottom)</p>\n\n<p><strong>Web (Rectangle 2):</strong></p>\n<p>A₂ = b₃ × d₃ = 50 × 400 = 20000 mm²</p>\n<p>y₂ = d₁ + d₃/2 = 100 + 200 = 300 mm (from bottom)</p>\n\n<p><strong>Top flange (Rectangle 3):</strong></p>\n<p>A₃ = b₂ × d₂ = 150 × 50 = 7500 mm²</p>\n<p>y₃ = d₁ + d₃ + d₂/2 = 100 + 400 + 25 = 525 mm (from bottom)</p>\n\n<p><strong>Step 3: Calculate total area</strong></p>\n<p>A = A₁ + A₂ + A₃ = 25000 + 20000 + 7500 = 52500 mm²</p>\n\n<p><strong>Step 4: Apply principle of moments to find CG</strong></p>\n<p>Ȳ = (A₁y₁ + A₂y₂ + A₃y₃)/A</p>\n<p>Ȳ = (25000×50 + 20000×300 + 7500×525)/52500</p>\n<p>Ȳ = (1250000 + 6000000 + 3937500)/52500</p>\n<p>Ȳ = 11187500/52500</p>\n<p>Ȳ = 213.1 mm</p>\n\n<p><strong>Result:</strong> The centre of gravity of the I-section is located at <strong>213.1 mm</strong> from the bottom of the section.</p>\n\n<p><strong>Verification:</strong> Since the bottom flange is larger and heavier (area-wise), the CG is below the geometric center (275mm), which is correct.</p>",
+            "keyPoints": [
+                "Division of I-section into three rectangles",
+                "Area calculation for each part",
+                "Centroidal distances from reference axis",
+                "Moment summation method"
+            ],
+            "marks": 6,
+            "unit": "Centroid"
+        },
+        {
+            "id": "5",
+            "type": "laq",
+            "group": "C",
+            "question": "A uniform ladder 5m long rests on a horizontal ground floor and leans against a smooth vertical wall at angle of 60° with the horizontal. The weight of the ladder is 900N acts at the middle. The ladder is at the point of sliding, when a man weighing 750N stands on a rung 1.5m from the bottom of the ladder. Calculate the coefficient of friction between the ladder and the floor.",
+            "answer": "<h5>Solution: Ladder Friction Problem</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Ladder length L = 5m</li>\n<li>Angle with horizontal θ = 60°</li>\n<li>Weight of ladder W₁ = 900N (at center, i.e., 2.5m from bottom)</li>\n<li>Weight of man W₂ = 750N (at 1.5m from bottom)</li>\n<li>Wall is smooth (no friction at wall)</li>\n<li>Ladder at point of sliding (maximum friction at floor)</li>\n</ul>\n\n<p><strong>Step 1: Identify forces</strong></p>\n<ul>\n<li>R₁ = Normal reaction at floor (vertical)</li>\n<li>F = Frictional force at floor (horizontal) = μR₁</li>\n<li>R₂ = Normal reaction at wall (horizontal, since wall is smooth)</li>\n<li>W₁ = 900N downward at 2.5m from A</li>\n<li>W₂ = 750N downward at 1.5m from A</li>\n</ul>\n\n<p><strong>Step 2: Equilibrium equations</strong></p>\n<p>Horizontal forces: F = R₂ ...(1)</p>\n<p>Vertical forces: R₁ = W₁ + W₂ = 900 + 750 = 1650N ...(2)</p>\n<p>From (2), R₁ = 1650N</p>\n\n<p><strong>Step 3: Take moments about point A (bottom of ladder)</strong></p>\n<p>Clockwise moments:</p>\n<p>Due to W₁: W₁ × (L/2) × cosθ = 900 × 2.5 × cos60° = 900 × 2.5 × 0.5 = 1125 Nm</p>\n<p>Due to W₂: W₂ × 1.5 × cosθ = 750 × 1.5 × 0.5 = 562.5 Nm</p>\n<p>Total clockwise moment = 1125 + 562.5 = 1687.5 Nm</p>\n\n<p>Counter-clockwise moment due to R₂:</p>\n<p>R₂ × L × sinθ = R₂ × 5 × sin60° = R₂ × 5 × 0.866 = 4.33 R₂</p>\n\n<p><strong>Step 4: Apply moment equilibrium</strong></p>\n<p>4.33 R₂ = 1687.5</p>\n<p>R₂ = 1687.5/4.33 = 389.6 N</p>\n\n<p><strong>Step 5: Find coefficient of friction</strong></p>\n<p>From equation (1): F = R₂ = 389.6 N</p>\n<p>μ = F/R₁ = 389.6/1650 = 0.236</p>\n\n<p><strong>Result:</strong> The coefficient of friction between ladder and floor is <strong>0.236</strong></p>",
+            "keyPoints": [
+                "Force identification on ladder",
+                "Vertical force equilibrium",
+                "Moment equilibrium about bottom point",
+                "Relation between friction and normal reaction"
+            ],
+            "marks": 10,
+            "unit": "Friction"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define velocity ratio, mechanical advantage and efficiency of a simple lifting machine.",
+            "answer": "<p><strong>Velocity Ratio (VR):</strong> It is the ratio of the distance moved by the effort to the distance moved by the load in the same time interval. VR = Distance moved by effort / Distance moved by load.</p><p><strong>Mechanical Advantage (MA):</strong> It is the ratio of the load lifted to the effort applied. MA = Load / Effort. It represents the force multiplication factor of the machine.</p><p><strong>Efficiency (η):</strong> It is the ratio of output work to input work, expressed as percentage. η = (MA/VR) × 100% = (Work output/Work input) × 100%.</p><p>Relationship: η = MA/VR (in decimal). For an ideal machine, η = 100% and MA = VR.</p>",
+            "marks": 4,
+            "unit": "Simple Lifting Machines"
+        },
+        {
+            "id": "6.b",
+            "type": "saq",
+            "group": "B",
+            "question": "In a differential wheel and axle, the diameter of the effort wheel is 40cm. The radii of the axles are 15cm and 10cm respectively. Find the load which can be lifted by an effort of 100N, assuming the efficiency of the machine to be 75%.",
+            "answer": "<p><strong>Given:</strong> Effort wheel diameter D = 40cm, so radius R = 20cm</p><p>Axle radii: r₁ = 15cm, r₂ = 10cm</p><p>Effort P = 100N, Efficiency η = 75% = 0.75</p>\n\n<p><strong>Step 1: Velocity Ratio of differential wheel and axle</strong></p>\n<p>VR = Distance moved by effort / Distance moved by load</p>\n<p>VR = (2πR) / [π(r₁ - r₂)] = 2R/(r₁ - r₂)</p>\n<p>VR = (2 × 20)/(15 - 10) = 40/5 = 8</p>\n\n<p><strong>Step 2: Find Mechanical Advantage from efficiency</strong></p>\n<p>η = MA/VR</p>\n<p>0.75 = MA/8</p>\n<p>MA = 0.75 × 8 = 6</p>\n\n<p><strong>Step 3: Find load using MA formula</strong></p>\n<p>MA = W/P</p>\n<p>6 = W/100</p>\n<p>W = 6 × 100 = 600N</p>\n\n<p><strong>Result:</strong> The load that can be lifted is <strong>600 N</strong></p>",
+            "marks": 6,
+            "keyPoints": [
+                "VR formula for differential wheel and axle",
+                "Relationship between VR, MA and efficiency",
+                "Load calculation from MA and effort"
+            ],
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "7",
+            "type": "laq",
+            "group": "C",
+            "question": "In a simple machine, whose velocity ratio is 40, a load of 1500N is lifted by an effort of 100N and a load of 2500N is lifted by an effort of 160N. Find the law of machine. Also calculate the load that could be lifted by an effort of 200N.",
+            "answer": "<h5>Solution: Finding Law of Machine and Load for Given Effort</h5>\n\n<p><strong>Given:</strong> VR = 40</p>\n<p>Case 1: W₁ = 1500N, P₁ = 100N</p>\n<p>Case 2: W₂ = 2500N, P₂ = 160N</p>\n\n<p><strong>Step 1: General law of machine</strong></p>\n<p>The law of machine is given by: P = mW + C</p>\n<p>where m = slope, C = constant (effort at no load)</p>\n\n<p><strong>Step 2: Form equations using given data</strong></p>\n<p>From Case 1: 100 = m × 1500 + C ...(1)</p>\n<p>From Case 2: 160 = m × 2500 + C ...(2)</p>\n\n<p><strong>Step 3: Solve for m and C</strong></p>\n<p>Subtract equation (1) from (2):</p>\n<p>160 - 100 = m(2500 - 1500)</p>\n<p>60 = m × 1000</p>\n<p>m = 60/1000 = 0.06</p>\n\n<p>Substitute m = 0.06 in equation (1):</p>\n<p>100 = 0.06 × 1500 + C</p>\n<p>100 = 90 + C</p>\n<p>C = 100 - 90 = 10</p>\n\n<p><strong>Step 4: Write the law of machine</strong></p>\n<p>P = 0.06W + 10</p>\n\n<p><strong>Step 5: Find load for P = 200N</strong></p>\n<p>200 = 0.06W + 10</p>\n<p>0.06W = 200 - 10 = 190</p>\n<p>W = 190/0.06 = 3166.67 N</p>\n\n<p><strong>Step 6: Verification (optional)</strong></p>\n<p>For W = 1500N: P = 0.06×1500 + 10 = 90 + 10 = 100N ✓</p>\n<p>For W = 2500N: P = 0.06×2500 + 10 = 150 + 10 = 160N ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Law of machine: <strong>P = 0.06W + 10</strong></li>\n<li>Load for 200N effort: <strong>3166.67 N</strong></li>\n</ul>",
+            "keyPoints": [
+                "Linear law of machine P = mW + C",
+                "Forming simultaneous equations",
+                "Solving for constants m and C",
+                "Using law to find load for given effort"
+            ],
+            "marks": 10,
+            "unit": "Simple Lifting Machines"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define and explain parallelogram law of forces.",
+            "answer": "<p><strong>Parallelogram Law of Forces:</strong> If two forces acting simultaneously at a point are represented in magnitude and direction by the adjacent sides of a parallelogram, then their resultant is represented in magnitude and direction by the diagonal of the parallelogram passing through that point.</p><p><strong>Explanation:</strong> Consider two forces P and Q acting at point O at an angle θ. If OA and OB represent P and Q, complete parallelogram OACB. Then diagonal OC represents the resultant R in magnitude and direction.</p><p><strong>Magnitude:</strong> $R = \\sqrt{P^2 + Q^2 + 2PQ\\cos\\theta}$</p><p><strong>Direction:</strong> $\\tan\\alpha = \\frac{Q\\sin\\theta}{P + Q\\cos\\theta}$, where α is the angle between R and P.</p>",
+            "marks": 4,
+            "unit": "Forces"
+        },
+        {
+            "id": "8.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Two forces act at an angle of 120°. The bigger force is of 40N and the resultant is perpendicular to the smaller one, find the smaller force.",
+            "answer": "<p><strong>Given:</strong> θ = 120°, P = 40N (bigger force), Q = ? (smaller force)</p><p>Resultant R is perpendicular to smaller force Q, so angle between R and Q = 90°</p>\n\n<p><strong>Step 1: Relation between forces and resultant</strong></p>\n<p>If resultant is perpendicular to Q, then the angle between R and Q = 90°</p>\n<p>This means that the angle between P and Q = 120°, and the angle between R and P = 120° - 90° = 30°</p>\n\n<p><strong>Step 2: Apply formula for direction of resultant</strong></p>\n<p>$\\tan\\alpha = \\frac{Q\\sin\\theta}{P + Q\\cos\\theta}$</p>\n<p>Here α = 30° (angle between R and P), θ = 120°</p>\n<p>$\\tan 30° = \\frac{Q\\sin 120°}{40 + Q\\cos 120°}$</p>\n\n<p><strong>Step 3: Substitute values</strong></p>\n<p>$\\frac{1}{\\sqrt{3}} = \\frac{Q \\times 0.866}{40 + Q \\times (-0.5)}$</p>\n<p>$0.577 = \\frac{0.866Q}{40 - 0.5Q}$</p>\n\n<p><strong>Step 4: Solve for Q</strong></p>\n<p>$0.577(40 - 0.5Q) = 0.866Q$</p>\n<p>$23.08 - 0.2885Q = 0.866Q$</p>\n<p>$23.08 = 0.866Q + 0.2885Q = 1.1545Q$</p>\n<p>$Q = 23.08/1.1545 = 20 N$</p>\n\n<p><strong>Result:</strong> The smaller force is <strong>20 N</strong></p>",
+            "marks": 6,
+            "keyPoints": [
+                "Interpreting geometry of forces",
+                "Direction formula application",
+                "Trigonometric values substitution",
+                "Solving for unknown force"
+            ],
+            "unit": "Forces"
+        },
+        {
+            "id": "9.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State and explain Lami's theorem.",
+            "answer": "<p><strong>Lami's Theorem:</strong> If three coplanar concurrent forces acting at a point are in equilibrium, then each force is proportional to the sine of the angle between the other two forces.</p><p><strong>Mathematical expression:</strong></p><p>$$\\frac{P}{\\sin\\alpha} = \\frac{Q}{\\sin\\beta} = \\frac{R}{\\sin\\gamma}$$</p><p>where P, Q, R are three forces and α, β, γ are the angles opposite to these forces respectively (angles between the other two forces).</p><p><strong>Explanation:</strong> For forces in equilibrium, the force triangle closes. Lami's theorem is derived from the law of sines applied to this triangle of forces. It is particularly useful for solving problems with three concurrent forces in equilibrium.</p><p><strong>Conditions for application:</strong></p><ul><li>Exactly three forces act at a point</li><li>Forces are coplanar and concurrent</li><li>The system is in equilibrium</li></ul>",
+            "marks": 4,
+            "unit": "Equilibrium of Forces"
+        },
+        {
+            "id": "9.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Determine the horizontal force P to be applied to a block of weight 450N to hold it in position on a smooth inclined plane which makes an angle 30° with horizontal.",
+            "answer": "<p><strong>Given:</strong> Weight W = 450N, incline angle θ = 30°, smooth plane (no friction), force P is horizontal.</p>\n\n<p><strong>Step 1: Identify forces acting on block</strong></p>\n<ul>\n<li>Weight W = 450N acting vertically downward</li>\n<li>Normal reaction N perpendicular to inclined plane</li>\n<li>Horizontal force P to hold block in position</li>\n</ul>\n\n<p><strong>Step 2: Resolve forces along and perpendicular to plane</strong></p>\n<p>Along the plane (downward direction positive):</p>\n<p>W sinθ - P cosθ = 0 (for equilibrium)</p>\n<p>450 × sin30° - P × cos30° = 0</p>\n<p>450 × 0.5 - P × 0.866 = 0</p>\n<p>225 - 0.866P = 0</p>\n\n<p><strong>Step 3: Solve for P</strong></p>\n<p>0.866P = 225</p>\n<p>P = 225/0.866 = 259.8 N</p>\n\n<p><strong>Result:</strong> The horizontal force required is <strong>259.8 N</strong></p>\n\n<p><strong>Alternative approach using Lami's theorem:</strong></p>\n<p>Three forces: W (450N downward), N (⊥ to plane), P (horizontal)</p>\n<p>Angle between W and N = 150°, between N and P = 120°, between P and W = 90°</p>\n<p>By Lami's theorem: P/sin150° = W/sin120°</p>\n<p>P = W × sin150°/sin120° = 450 × 0.5/0.866 = 259.8 N</p>",
+            "marks": 6,
+            "keyPoints": [
+                "Force identification on inclined plane",
+                "Resolution along plane direction",
+                "Equilibrium condition along plane",
+                "Alternative Lami's theorem approach"
+            ],
+            "unit": "Forces on Inclined Planes"
+        },
+        {
+            "id": "10",
+            "type": "laq",
+            "group": "C",
+            "question": "A simply supported beam AB of span 4m is carrying point loads of 5, 2 and 3kN at 1, 2 and 3m from the support A. Calculate the reactions at the supports A & B.",
+            "answer": "<h5>Solution: Beam Reactions Calculation</h5>\n\n<p><strong>Given:</strong> Simply supported beam AB, span L = 4m</p>\n<p>Loads:</p>\n<ul>\n<li>5 kN at 1m from A</li>\n<li>2 kN at 2m from A</li>\n<li>3 kN at 3m from A</li>\n</ul>\n\n<p><strong>Step 1: Identify supports and reactions</strong></p>\n<ul>\n<li>Support A: Roller/ pinned, vertical reaction R_A (upward)</li>\n<li>Support B: Roller/ pinned, vertical reaction R_B (upward)</li>\n</ul>\n\n<p><strong>Step 2: Apply moment equilibrium about support A</strong></p>\n<p>Taking clockwise moments as positive:</p>\n<p>Sum of moments about A = 0</p>\n<p>Clockwise moments due to loads:</p>\n<p>5 kN × 1m = 5 kNm</p>\n<p>2 kN × 2m = 4 kNm</p>\n<p>3 kN × 3m = 9 kNm</p>\n<p>Total clockwise moment = 5 + 4 + 9 = 18 kNm</p>\n\n<p>Counter-clockwise moment due to R_B at distance 4m:</p>\n<p>R_B × 4 (counter-clockwise)</p>\n\n<p>For equilibrium: Clockwise moments = Counter-clockwise moments</p>\n<p>R_B × 4 = 18</p>\n<p>R_B = 18/4 = 4.5 kN</p>\n\n<p><strong>Step 3: Apply vertical force equilibrium</strong></p>\n<p>Sum of vertical forces = 0 (upward positive)</p>\n<p>R_A + R_B - 5 - 2 - 3 = 0</p>\n<p>R_A + R_B - 10 = 0</p>\n<p>R_A + 4.5 - 10 = 0</p>\n<p>R_A = 10 - 4.5 = 5.5 kN</p>\n\n<p><strong>Step 4: Verification by taking moments about B</strong></p>\n<p>Moments about B (clockwise positive):</p>\n<p>Due to loads (all create counter-clockwise moments about B):</p>\n<p>5 kN at 3m from B (4-1=3m): 5 × 3 = 15 kNm (counter-clockwise, negative)</p>\n<p>2 kN at 2m from B (4-2=2m): 2 × 2 = 4 kNm (counter-clockwise, negative)</p>\n<p>3 kN at 1m from B (4-3=1m): 3 × 1 = 3 kNm (counter-clockwise, negative)</p>\n<p>Total load moment = -(15 + 4 + 3) = -22 kNm</p>\n\n<p>Due to R_A at 4m from B: R_A × 4 = 5.5 × 4 = 22 kNm (clockwise, positive)</p>\n<p>Sum = 22 - 22 = 0 ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Reaction at support A, R_A = <strong>5.5 kN</strong> (upward)</li>\n<li>Reaction at support B, R_B = <strong>4.5 kN</strong> (upward)</li>\n</ul>",
+            "keyPoints": [
+                "Moment equilibrium about one support",
+                "Vertical force equilibrium",
+                "Systematic calculation of moments",
+                "Verification using other support"
+            ],
+            "marks": 10,
+            "unit": "Beams and Reactions"
+        }
+    ]
+}

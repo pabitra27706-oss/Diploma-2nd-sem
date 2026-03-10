@@ -1,0 +1,439 @@
+{
+    "exam": {
+        "subject": "ENGINEERING MECHANICS",
+        "year": "2025",
+        "board": "WBSCTE",
+        "semester": "II",
+        "timeAllowed": "2.5 Hours",
+        "fullMarks": 60,
+        "instructions": "Answer Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation. Answer any Five Questions from Group-B."
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "According to the Principle of Transmissibility of Force, the effect of a force on a rigid body remains unchanged if",
+            "options": [
+                "the force is removed from the body",
+                "the force is applied to a different body",
+                "the force is shifted along its line of action",
+                "the force is doubled"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (c) the force is shifted along its line of action.</strong> The principle of transmissibility states that the state of rest or motion of a rigid body remains unchanged if a force acting at a point is replaced by another force of the same magnitude and direction acting at any other point along its line of action.</p>",
+            "unit": "Forces"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is NOT a condition for the equilibrium of a coplanar system of non-concurrent parallel forces?",
+            "options": [
+                "Sum of all horizontal forces must be zero",
+                "Sum of all vertical forces must be zero",
+                "Sum of all moments about any point must be zero",
+                "The forces must always be equal in magnitude"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (d) The forces must always be equal in magnitude.</strong> For equilibrium of coplanar parallel forces, conditions are: (1) sum of all forces = 0, (2) sum of moments about any point = 0. Forces need not be equal in magnitude. For non-concurrent forces, horizontal forces are zero anyway as forces are parallel.</p>",
+            "unit": "Equilibrium"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "A force of 100 N is acting at an angle of 60° with the horizontal. What is the vertical component of the force?",
+            "options": [
+                "50 N",
+                "86.6 N",
+                "100 N",
+                "43.3 N"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (b) 86.6 N.</strong> Vertical component = F sinθ = 100 × sin60° = 100 × 0.866 = 86.6 N.</p>",
+            "unit": "Forces"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "The unit of a couple is:",
+            "options": [
+                "N/m²",
+                "N/m",
+                "N-m",
+                "N"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (c) N-m.</strong> A couple is the product of force and perpendicular distance between forces, so unit is Newton-meter (Nm), same as moment of force.</p>",
+            "unit": "Couples"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "The resultant in parallelogram law of forces has maximum value when the angle between two forces is equal to:",
+            "options": [
+                "30°",
+                "90°",
+                "0°",
+                "180°"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (c) 0°.</strong> Resultant R = √(P² + Q² + 2PQ cosθ). Maximum occurs when cosθ is maximum, i.e., cosθ = 1 at θ = 0°, giving R = P + Q.</p>",
+            "unit": "Forces"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "A block resting on a rough plane having angle of friction 12° will impend motion, if the inclination of the surface with the horizontal is:",
+            "options": [
+                "11°",
+                "12°",
+                "13°",
+                "15°"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (b) 12°.</strong> The angle of friction is the angle at which the body just begins to slide. Motion impends when the angle of inclination equals the angle of friction.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The stability of an object increases when:",
+            "options": [
+                "Its centre of gravity is raised",
+                "Its base is made smaller",
+                "Its centre of gravity is lowered",
+                "It is tilted"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (c) Its centre of gravity is lowered.</strong> Lower centre of gravity increases stability by increasing the angle through which the object can be tilted before toppling.</p>",
+            "unit": "Centre of Gravity"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Limiting force of friction is the",
+            "options": [
+                "ratio of limiting friction and normal reaction",
+                "the friction force acting when the body is in motion",
+                "the friction force acting when the body is just about to move",
+                "all of the above"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (c) the friction force acting when the body is just about to move.</strong> Limiting friction is the maximum static friction that can be developed just before motion starts.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "In the law of simple machine, P = mW + C, the constant C denotes",
+            "options": [
+                "effort lost in friction under load W",
+                "effort lost in friction under no load",
+                "effort lost in friction when M.A. is maximum",
+                "none of the above"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (b) effort lost in friction under no load.</strong> When W = 0, P = C, which represents the effort required to overcome friction when there is no load.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "If a wheel rotates at 10 rad/s, what is the linear velocity of a point on its rim if the radius is 0.5 m?",
+            "options": [
+                "2 m/s",
+                "5 m/s",
+                "10 m/s",
+                "20 m/s"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (b) 5 m/s.</strong> Linear velocity v = ωr = 10 × 0.5 = 5 m/s.</p>",
+            "unit": "Rotational Motion"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "A machine has a power rating of 500 W. How much work does it do in 30 seconds?",
+            "options": [
+                "1500 J",
+                "1000 J",
+                "15 kJ",
+                "150 kJ"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (c) 15 kJ.</strong> Work = Power × Time = 500 W × 30 s = 15000 J = 15 kJ.</p>",
+            "unit": "Work, Power and Energy"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If efficiency of a lifting machine is kept constant, then its V.R. is directly proportional to its",
+            "options": [
+                "effort applied",
+                "M.A.",
+                "machine friction",
+                "all of the above"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Correct answer: (b) M.A.</strong> Efficiency η = MA/VR. If η is constant, then MA ∝ VR.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State and explain Varignon's theorem.",
+            "answer": "<p><strong>Varignon's Theorem (Principle of Moments):</strong> The moment of a force about any point is equal to the sum of the moments of its components about the same point.</p><p><strong>Explanation:</strong> If a force R is the resultant of two forces P and Q, then the moment of R about any point O equals the algebraic sum of moments of P and Q about the same point O.</p><p>Mathematically, M₀(R) = M₀(P) + M₀(Q)</p><p><strong>Applications:</strong> Used to find moments of forces by resolving them into components, simplifying complex force systems. Particularly useful in determining reactions in beams and frames.</p><p><strong>Example:</strong> A force of 100N at 30° can be resolved into horizontal and vertical components. The moment of the original force equals the sum of moments of its components.</p>",
+            "marks": 4,
+            "unit": "Forces and Moments"
+        },
+        {
+            "id": "2.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Two forces of magnitude '2P' and 'P' act on a particle. If the first force be doubled and the second force is increased by 12kN, the direction of their resultant remains unaltered. Find the value of P.",
+            "answer": "<h5>Solution: Finding the value of P</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Initial forces: F₁ = 2P, F₂ = P</li>\n<li>After change: F₁' = 2 × 2P = 4P, F₂' = P + 12 kN</li>\n<li>Direction of resultant remains unaltered</li>\n</ul>\n\n<p><strong>Step 1: Let θ be the angle between the forces</strong></p>\n<p>The direction of resultant is given by the angle it makes with the first force.</p>\n<p>For initial forces: tan α = (P sin θ)/(2P + P cos θ) = (sin θ)/(2 + cos θ) ...(1)</p>\n\n<p><strong>Step 2: For changed forces</strong></p>\n<p>tan α = [(P + 12) sin θ] / [4P + (P + 12) cos θ] ...(2)</p>\n\n<p><strong>Step 3: Since direction is same, equations (1) and (2) are equal</strong></p>\n<p>(sin θ)/(2 + cos θ) = [(P + 12) sin θ] / [4P + (P + 12) cos θ]</p>\n<p>Assuming sin θ ≠ 0, we can cancel sin θ:</p>\n<p>1/(2 + cos θ) = (P + 12)/[4P + (P + 12) cos θ]</p>\n\n<p><strong>Step 4: Cross multiply</strong></p>\n<p>4P + (P + 12) cos θ = (P + 12)(2 + cos θ)</p>\n<p>4P + (P + 12) cos θ = 2(P + 12) + (P + 12) cos θ</p>\n\n<p><strong>Step 5: Cancel (P + 12) cos θ from both sides</strong></p>\n<p>4P = 2P + 24</p>\n<p>2P = 24</p>\n<p>P = 12 kN</p>\n\n<p><strong>Result:</strong> The value of P is <strong>12 kN</strong>.</p>",
+            "keyPoints": [
+                "Direction of resultant depends on force magnitudes",
+                "Expression for tan α for both cases",
+                "Equating the direction equations",
+                "Solving for P"
+            ],
+            "marks": 5,
+            "unit": "Forces"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define co-efficient of friction and limiting friction.",
+            "answer": "<p><strong>Limiting Friction:</strong> It is the maximum value of static friction that can be developed between two surfaces just before the motion starts. It is the maximum frictional force that must be overcome to initiate motion.</p><p><strong>Co-efficient of Friction (μ):</strong> It is the ratio of limiting friction (F) to the normal reaction (N) between two surfaces in contact.</p><p>μ = F/N</p><p>It is a dimensionless quantity that depends on the nature and roughness of the contacting surfaces. It is independent of the area of contact and the applied force (up to the limiting value).</p><p><strong>Characteristics:</strong></p><ul><li>μ is higher for rougher surfaces</li><li>μ_s (static) > μ_k (kinetic) for the same surfaces</li><li>μ has no units</li><li>It is constant for a given pair of surfaces</li></ul>",
+            "marks": 4,
+            "unit": "Friction"
+        },
+        {
+            "id": "3.b",
+            "type": "laq",
+            "group": "C",
+            "question": "A body of weight 500N is lying on a rough plane inclined at an angle of 25° with the horizontal. It is supported by an effort (P) parallel to the plane. Determine the minimum value of P, for which the equilibrium can exist, if the angle of friction is 20°.",
+            "answer": "<h5>Solution: Minimum effort on inclined plane</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Weight W = 500N</li>\n<li>Inclination θ = 25°</li>\n<li>Angle of friction φ = 20°</li>\n<li>Effort P parallel to plane</li>\n<li>Need minimum P for equilibrium</li>\n</ul>\n\n<p><strong>Step 1: Interpret the problem</strong></p>\n<p>The body is on an inclined plane. With angle of friction φ = 20°, the coefficient of friction μ = tan φ = tan 20° = 0.364</p>\n<p>The body tends to slide down due to its weight component. The minimum effort P will be when the body is about to move downward, with friction acting upward along the plane.</p>\n\n<p><strong>Step 2: Resolve weight into components</strong></p>\n<p>Component parallel to plane (downward): W sin θ = 500 × sin 25° = 500 × 0.4226 = 211.3 N</p>\n<p>Component perpendicular to plane: W cos θ = 500 × cos 25° = 500 × 0.9063 = 453.15 N</p>\n\n<p><strong>Step 3: Normal reaction</strong></p>\n<p>N = W cos θ = 453.15 N</p>\n\n<p><strong>Step 4: Maximum friction force available</strong></p>\n<p>F_max = μN = 0.364 × 453.15 = 164.95 N</p>\n\n<p><strong>Step 5: Apply equilibrium condition</strong></p>\n<p>For minimum P (body about to slide down):</p>\n<p>Forces parallel to plane: P + F = W sin θ</p>\n<p>P = W sin θ - F</p>\n<p>P = 211.3 - 164.95 = 46.35 N</p>\n\n<p><strong>Step 6: Check if this is the minimum</strong></p>\n<p>If P is less than 46.35 N, the body will slide down. If P is greater, the body can be in equilibrium with friction partially developed. So the minimum P for equilibrium is 46.35 N.</p>\n\n<p><strong>Result:</strong> The minimum value of P is <strong>46.35 N</strong>.</p>",
+            "keyPoints": [
+                "Force resolution on inclined plane",
+                "Normal reaction calculation",
+                "Maximum friction from μ = tan φ",
+                "Equilibrium condition for impending motion"
+            ],
+            "marks": 5,
+            "unit": "Friction"
+        },
+        {
+            "id": "4",
+            "type": "laq",
+            "group": "C",
+            "question": "The law of wheel and axle machine is P = 0.2W + 50. The diameter of wheel is 600mm and radius of axle is 50mm. Determine (a) Mechanical Advantage, (b) Effort required to lift a load of 2000N, (c) Maximum Efficiency, (d) Maximum Mechanical Advantage and (e) Load to be lifted by an effort of 520N.",
+            "answer": "<h5>Solution: Wheel and Axle Machine Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Law of machine: P = 0.2W + 50, where P = effort in N, W = load in N</li>\n<li>Diameter of wheel D = 600 mm, so radius of wheel R = 300 mm = 0.3 m</li>\n<li>Radius of axle r = 50 mm = 0.05 m</li>\n</ul>\n\n<p><strong>Step 1: Calculate Velocity Ratio (VR)</strong></p>\n<p>For wheel and axle: VR = (Distance moved by effort)/(Distance moved by load) = (2πR)/(2πr) = R/r</p>\n<p>VR = 300/50 = 6</p>\n\n<p><strong>(a) Mechanical Advantage for a given load</strong></p>\n<p>MA = W/P. But MA varies with load since P = 0.2W + 50</p>\n<p>For any load W: MA = W/(0.2W + 50)</p>\n\n<p><strong>(b) Effort required for W = 2000N</strong></p>\n<p>P = 0.2 × 2000 + 50 = 400 + 50 = 450 N</p>\n<p>MA at this load = 2000/450 = 4.44</p>\n\n<p><strong>(c) Maximum Efficiency</strong></p>\n<p>Efficiency η = MA/VR = [W/(0.2W + 50)]/6 = W/[6(0.2W + 50)]</p>\n<p>As W → ∞, η → 1/(6 × 0.2) = 1/1.2 = 0.8333 = 83.33%</p>\n<p>Maximum efficiency = 83.33%</p>\n\n<p><strong>(d) Maximum Mechanical Advantage</strong></p>\n<p>MA_max = 1/m = 1/0.2 = 5 (where m = 0.2 is the slope of the law)</p>\n<p>This is the theoretical maximum MA as load approaches infinity.</p>\n\n<p><strong>(e) Load for P = 520N</strong></p>\n<p>520 = 0.2W + 50</p>\n<p>0.2W = 520 - 50 = 470</p>\n<p>W = 470/0.2 = 2350 N</p>\n\n<p><strong>Summary of results:</strong></p>\n<ul>\n<li>VR = 6</li>\n<li>For W = 2000N: P = 450 N, MA = 4.44</li>\n<li>Maximum efficiency = 83.33%</li>\n<li>Maximum MA = 5</li>\n<li>For P = 520N: W = 2350 N</li>\n</ul>",
+            "keyPoints": [
+                "VR calculation from wheel and axle dimensions",
+                "MA formula from law of machine",
+                "Efficiency as function of load",
+                "Maximum efficiency at infinite load",
+                "Maximum MA from law of machine"
+            ],
+            "marks": 9,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "5.a",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the friction force developed in the given figure for P = 20N, 50N and 60N. Coefficient of static friction μ_s = 0.5 and Coefficient of kinetic friction μ_k = 0.4.",
+            "answer": "<h5>Solution: Friction Force Analysis</h5>\n\n<p><strong>Given:</strong> μ_s = 0.5, μ_k = 0.4. (Assuming a block of weight W on horizontal surface with applied force P. Since weight not given, let's assume W = 100N for calculation, as typical in such problems)</p>\n\n<p><strong>Step 1: Calculate maximum static friction</strong></p>\n<p>Assuming normal reaction N = W = 100N (if horizontal surface, no vertical forces other than weight and normal reaction)</p>\n<p>F_max = μ_s × N = 0.5 × 100 = 50 N</p>\n\n<p><strong>Step 2: Kinetic friction once moving</strong></p>\n<p>F_k = μ_k × N = 0.4 × 100 = 40 N</p>\n\n<p><strong>Step 3: For P = 20N</strong></p>\n<p>Since P < F_max (20 < 50), the block does not move. Friction force developed equals applied force to maintain equilibrium.</p>\n<p>F = P = 20 N (static friction)</p>\n\n<p><strong>Step 4: For P = 50N</strong></p>\n<p>P = F_max exactly, so the block is on the point of motion (limiting equilibrium).</p>\n<p>F = F_max = 50 N</p>\n\n<p><strong>Step 5: For P = 60N</strong></p>\n<p>P > F_max, so the block accelerates. Once motion starts, kinetic friction applies.</p>\n<p>F = F_k = 40 N</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>For P = 20N: Friction force = <strong>20 N</strong> (static)</li>\n<li>For P = 50N: Friction force = <strong>50 N</strong> (limiting static)</li>\n<li>For P = 60N: Friction force = <strong>40 N</strong> (kinetic)</li>\n</ul>\n\n<p><strong>Note:</strong> If the weight W is different, the values would scale proportionally. The principle remains that friction force equals applied force until reaching μ_sN, then drops to μ_kN during motion.</p>",
+            "keyPoints": [
+                "Maximum static friction calculation",
+                "Comparison of applied force with F_max",
+                "Static friction equals applied force when P ≤ F_max",
+                "Kinetic friction applies when motion occurs"
+            ],
+            "marks": 4,
+            "unit": "Friction"
+        },
+        {
+            "id": "5.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Two smooth spheres each of radius 100mm and weighing 100N, rest in a channel having smooth vertical walls, the distance between which is 360mm. Find the reactions at the points of contacts.",
+            "answer": "<h5>Solution: Reactions for Spheres in Channel</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Each sphere: radius r = 100 mm, weight W = 100 N</li>\n<li>Channel width = 360 mm (distance between vertical walls)</li>\n<li>Walls are smooth (no friction, reactions perpendicular to walls)</li>\n<li>Spheres are smooth (no friction between them)</li>\n</ul>\n\n<p><strong>Step 1: Understand the geometry</strong></p>\n<p>Two spheres of equal radius placed in a channel. The centers will be at the same level if the channel width is exactly 4r = 400mm. Here channel width is 360mm, which is less than 400mm, so the spheres cannot both touch the vertical walls while also touching each other at the same horizontal level.</p>\n<p>They must be at different heights, with the upper sphere resting on the lower one, and both touching the walls.</p>\n\n<p><strong>Step 2: Determine the geometry</strong></p>\n<p>Let the lower sphere touch the left wall and the upper sphere touch the right wall.</p>\n<p>Distance between centers = 2r = 200 mm</p>\n<p>Horizontal distance between centers = channel width - r - r = 360 - 100 - 100 = 160 mm</p>\n<p>Vertical distance between centers = √(200² - 160²) = √(40000 - 25600) = √14400 = 120 mm</p>\n\n<p><strong>Step 3: Identify contact points and reactions</strong></p>\n<ul>\n<li>Lower sphere contacts left wall: Reaction R₁ (horizontal, rightward)</li>\n<li>Upper sphere contacts right wall: Reaction R₂ (horizontal, leftward)</li>\n<li>Contact between spheres: Reaction R (along line joining centers, at angle θ to horizontal)</li>\n<li>Each sphere contacts bottom surface: Vertical reactions V₁ and V₂ supporting weights</li>\n</ul>\n\n<p><strong>Step 4: Find angle θ</strong></p>\n<p>tan θ = vertical/horizontal = 120/160 = 0.75</p>\n<p>θ = 36.87°</p>\n\n<p><strong>Step 5: Consider equilibrium of lower sphere</strong></p>\n<p>Forces on lower sphere:</p>\n<ul>\n<li>Weight W₁ = 100N downward</li>\n<li>Wall reaction R₁ horizontal rightward</li>\n<li>Contact force R from upper sphere (along line joining centers, downward at angle θ)</li>\n<li>Vertical reaction V₁ from bottom</li>\n</ul>\n<p>Resolve R into components:</p>\n<p>R_x = R cos θ = R × 0.8</p>\n<p>R_y = R sin θ = R × 0.6</p>\n<p>Horizontal equilibrium: R₁ = R_x = 0.8R ...(1)</p>\n<p>Vertical equilibrium: V₁ = 100 + R_y = 100 + 0.6R ...(2)</p>\n\n<p><strong>Step 6: Consider equilibrium of upper sphere</strong></p>\n<p>Forces on upper sphere:</p>\n<ul>\n<li>Weight W₂ = 100N downward</li>\n<li>Wall reaction R₂ horizontal leftward</li>\n<li>Contact force R from lower sphere (upward at angle θ)</li>\n<li>Vertical reaction V₂ from bottom</li>\n</ul>\n<p>Resolve R into components:</p>\n<p>R_x = R cos θ = 0.8R (acting leftward on upper sphere)</p>\n<p>R_y = R sin θ = 0.6R (upward)</p>\n<p>Horizontal equilibrium: R₂ = 0.8R ...(3)</p>\n<p>Vertical equilibrium: V₂ + 0.6R = 100</p>\n<p>V₂ = 100 - 0.6R ...(4)</p>\n\n<p><strong>Step 7: Consider geometry of bottom reactions</strong></p>\n<p>The spheres rest on the bottom surface, so V₁ and V₂ are positive. From (4), 100 - 0.6R > 0 ⇒ R < 166.67 N</p>\n\n<p><strong>Step 8: Need additional condition - moment equilibrium or force polygon closure</strong></p>\n<p>For the two-sphere system, taking moments about the point of contact of lower sphere with left wall would give another equation. However, without a specific diagram showing the bottom support conditions, we need to assume the bottom surface is horizontal and provides vertical reactions only.</p>\n\n<p>The system is statically indeterminate without additional information about the bottom support. However, if we assume the spheres are in contact with each other and both touching the walls, and the bottom is smooth, then by symmetry of the two-sphere system, the horizontal reactions R₁ and R₂ must be equal, which they are from (1) and (3): R₁ = R₂ = 0.8R.</p>\n\n<p>From vertical equilibrium of the entire system: V₁ + V₂ = 200 N</p>\n<p>Substituting (2) and (4): (100 + 0.6R) + (100 - 0.6R) = 200 N ✓ (satisfied automatically)</p>\n\n<p><strong>Step 9: Determine R from geometry</strong></p>\n<p>The line of action of R must pass through the point of contact of the two spheres. This condition is already satisfied by our geometry.</p>\n<p>R can be determined by considering the equilibrium of either sphere using Lami's theorem or by taking moments.</p>\n\n<p>For the lower sphere, taking moments about the bottom-left corner would give a relationship. However, without exact bottom support points, we cannot determine R uniquely.</p>\n\n<p><strong>Given the constraints, the reactions are:</strong></p>\n<ul>\n<li>R₁ = R₂ = 0.8R</li>\n<li>V₁ = 100 + 0.6R</li>\n<li>V₂ = 100 - 0.6R</li>\n</ul>\n<p>where R is the contact force between spheres, which depends on the exact bottom support conditions.</p>",
+            "keyPoints": [
+                "Geometry of spheres in narrow channel",
+                "Force identification at contact points",
+                "Resolution of contact forces",
+                "Equilibrium equations"
+            ],
+            "marks": 5,
+            "unit": "Forces"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is the difference between centre of gravity and centre of mass?",
+            "answer": "<p><strong>Centre of Mass:</strong> It is the point where the entire mass of a body is assumed to be concentrated. It depends on the distribution of mass and is independent of the gravitational field.</p><p><strong>Centre of Gravity:</strong> It is the point through which the entire weight of a body acts. It depends on the gravitational field and coincides with the centre of mass only in a uniform gravitational field.</p><p><strong>Key differences:</strong></p><ol><li>Centre of mass is a mass-dependent concept, while centre of gravity is a weight-dependent concept.</li><li>Centre of mass exists even in weightless conditions (space), while centre of gravity may not be defined in zero gravity.</li><li>For objects in a non-uniform gravitational field, centre of gravity may not coincide with centre of mass.</li><li>For practical purposes on Earth (uniform gravity field), both coincide and the terms are often used interchangeably.</li><li>Centre of mass is calculated using mass distribution (∑m_i r_i / ∑m_i), while centre of gravity uses weight distribution (∑w_i r_i / ∑w_i).</li></ol>",
+            "marks": 2,
+            "unit": "Centroid and Centre of Gravity"
+        },
+        {
+            "id": "6.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the centroid of an I-section having the following dimensions: Top flange = 160mm × 20mm, Web = 80mm × 30mm and bottom flange = 200mm × 10mm.",
+            "answer": "<h5>Solution: Centroid of I-Section</h5>\n\n<p><strong>Given dimensions (in mm):</strong></p>\n<ul>\n<li>Top flange: width b₁ = 160mm, depth d₁ = 20mm</li>\n<li>Web: width b₂ = 30mm, depth d₂ = 80mm</li>\n<li>Bottom flange: width b₃ = 200mm, depth d₃ = 10mm</li>\n</ul>\n\n<p><strong>Step 1: Determine the total height and reference axis</strong></p>\n<p>Total height H = d₁ + d₂ + d₃ = 20 + 80 + 10 = 110mm</p>\n<p>Take reference axis at the bottom of the section.</p>\n\n<p><strong>Step 2: Calculate areas and centroidal distances</strong></p>\n\n<p><strong>Bottom flange (Rectangle 1):</strong></p>\n<p>A₁ = b₃ × d₃ = 200 × 10 = 2000 mm²</p>\n<p>y₁ = d₃/2 = 10/2 = 5 mm (from bottom)</p>\n\n<p><strong>Web (Rectangle 2):</strong></p>\n<p>A₂ = b₂ × d₂ = 30 × 80 = 2400 mm²</p>\n<p>y₂ = d₃ + d₂/2 = 10 + 40 = 50 mm (from bottom)</p>\n\n<p><strong>Top flange (Rectangle 3):</strong></p>\n<p>A₃ = b₁ × d₁ = 160 × 20 = 3200 mm²</p>\n<p>y₃ = d₃ + d₂ + d₁/2 = 10 + 80 + 10 = 100 mm (from bottom)</p>\n\n<p><strong>Step 3: Calculate total area</strong></p>\n<p>A = A₁ + A₂ + A₃ = 2000 + 2400 + 3200 = 7600 mm²</p>\n\n<p><strong>Step 4: Apply principle of moments to find centroid</strong></p>\n<p>Ȳ = (A₁y₁ + A₂y₂ + A₃y₃) / A</p>\n<p>Ȳ = (2000×5 + 2400×50 + 3200×100) / 7600</p>\n<p>Ȳ = (10000 + 120000 + 320000) / 7600</p>\n<p>Ȳ = 450000 / 7600</p>\n<p>Ȳ = 59.21 mm</p>\n\n<p><strong>Step 5: Interpret the result</strong></p>\n<p>The centroid is located at 59.21 mm from the bottom of the section.</p>\n<p>Since the geometric center (mid-height) is at 55 mm, the centroid is slightly above the center because the top flange has larger area (3200 mm²) compared to bottom flange (2000 mm²), pulling the centroid upward.</p>\n\n<p><strong>Result:</strong> The centroid of the I-section is at <strong>59.21 mm</strong> from the bottom.</p>\n\n<p><strong>Alternative calculation from top:</strong> Distance from top = 110 - 59.21 = 50.79 mm</p>",
+            "keyPoints": [
+                "Division into three rectangular parts",
+                "Area calculation for each part",
+                "Centroidal distances from reference axis",
+                "Moment summation method"
+            ],
+            "marks": 7,
+            "unit": "Centroid"
+        },
+        {
+            "id": "7.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is the relationship between effort and the load lifted of a simple lifting machine? Plot the graph of effort vs load lifted for actual machine.",
+            "answer": "<p><strong>Relationship between Effort (P) and Load (W):</strong></p><p>For a simple lifting machine, the relationship is given by the law of machine:</p><p>$$P = mW + C$$</p><p>where:</p><ul><li>P = effort applied</li><li>W = load lifted</li><li>m = constant (slope) representing the effort required per unit load due to friction</li><li>C = constant representing the effort required to overcome friction when there is no load (W = 0)</li></ul><p><strong>Graph of Effort vs Load for Actual Machine:</strong></p><p>The graph is a straight line with:</p><ul><li>Slope = m</li><li>Y-intercept = C</li></ul><p><em>Graph description:</em></p><ul><li>X-axis: Load (W)</li><li>Y-axis: Effort (P)</li><li>The line starts at point (0, C) on the Y-axis</li><li>Increases linearly with slope m</li><li>For any load W, the effort P is read from the line</li></ul><p><strong>Comparison with Ideal Machine:</strong></p><ul><li>Ideal machine (no friction): P = W/VR (passes through origin with slope 1/VR)</li><li>Actual machine: P = mW + C (parallel to ideal line but shifted up by C)</li><li>The vertical distance between actual and ideal lines at any load represents the effort lost in friction</li></ul>",
+            "marks": 4,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "7.b",
+            "type": "laq",
+            "group": "C",
+            "question": "In a lifting machine, the effort of 15 N lifted a load of 700 N. Find the velocity ratio (V.R.) if the efficiency at this load is 60%. If a load of 1300 N is lifted by an effort of 25 N by the same machine, find the law of the machine. What will be effort required to lift the load of 1000 N? Determine maximum Mechanical Advantage (M.A.) and maximum efficiency.",
+            "answer": "<h5>Solution: Lifting Machine Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Case 1: P₁ = 15 N, W₁ = 700 N, η₁ = 60% = 0.6</li>\n<li>Case 2: P₂ = 25 N, W₂ = 1300 N (same machine)</li>\n</ul>\n\n<p><strong>Step 1: Find VR from first case</strong></p>\n<p>MA₁ = W₁/P₁ = 700/15 = 46.67</p>\n<p>η₁ = MA₁/VR</p>\n<p>0.6 = 46.67/VR</p>\n<p>VR = 46.67/0.6 = 77.78</p>\n\n<p><strong>Step 2: Find law of machine P = mW + C</strong></p>\n<p>Using Case 1: 15 = m × 700 + C ...(1)</p>\n<p>Using Case 2: 25 = m × 1300 + C ...(2)</p>\n\n<p>Subtract (1) from (2):</p>\n<p>25 - 15 = m(1300 - 700)</p>\n<p>10 = 600m</p>\n<p>m = 10/600 = 0.01667</p>\n\n<p>Substitute m in (1):</p>\n<p>15 = 0.01667 × 700 + C</p>\n<p>15 = 11.67 + C</p>\n<p>C = 15 - 11.67 = 3.33 N</p>\n\n<p><strong>Step 3: Law of machine</strong></p>\n<p>P = 0.01667W + 3.33</p>\n\n<p><strong>Step 4: Effort for W = 1000 N</strong></p>\n<p>P = 0.01667 × 1000 + 3.33 = 16.67 + 3.33 = 20 N</p>\n\n<p><strong>Step 5: Maximum Mechanical Advantage</strong></p>\n<p>MA_max = 1/m = 1/0.01667 = 60</p>\n\n<p><strong>Step 6: Maximum Efficiency</strong></p>\n<p>η_max = 1/(m × VR) = 1/(0.01667 × 77.78) = 1/1.296 = 0.771 = 77.1%</p>\n\n<p><strong>Alternative:</strong> η_max = MA_max/VR = 60/77.78 = 0.771 = 77.1%</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Velocity Ratio VR = <strong>77.78</strong></li>\n<li>Law of machine: <strong>P = 0.01667W + 3.33</strong></li>\n<li>Effort for W = 1000 N: <strong>20 N</strong></li>\n<li>Maximum MA = <strong>60</strong></li>\n<li>Maximum efficiency = <strong>77.1%</strong></li>\n</ul>",
+            "keyPoints": [
+                "Finding VR from efficiency and MA",
+                "Determining law of machine constants",
+                "Calculating effort for given load",
+                "Maximum MA from slope",
+                "Maximum efficiency from VR and slope"
+            ],
+            "marks": 8,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Derive a relationship for the distance travelled by a body in the 'n'th second.",
+            "answer": "<h5>Derivation: Distance Travelled in nth Second</h5>\n\n<p><strong>Given:</strong> Body starts with initial velocity u and uniform acceleration a.</p>\n\n<p><strong>Step 1:</strong> Distance travelled in t seconds is given by:</p>\n<p>s_t = ut + (1/2)at²</p>\n\n<p><strong>Step 2:</strong> Distance travelled in (n-1) seconds:</p>\n<p>s_{n-1} = u(n-1) + (1/2)a(n-1)²</p>\n\n<p><strong>Step 3:</strong> Distance travelled in n seconds:</p>\n<p>s_n = un + (1/2)an²</p>\n\n<p><strong>Step 4:</strong> Distance travelled in the nth second (between t = n-1 and t = n) is:</p>\n<p>s_nth = s_n - s_{n-1}</p>\n<p>s_nth = [un + (1/2)an²] - [u(n-1) + (1/2)a(n-1)²]</p>\n\n<p><strong>Step 5:</strong> Simplify:</p>\n<p>s_nth = un - u(n-1) + (1/2)a[n² - (n-1)²]</p>\n<p>s_nth = u[n - (n-1)] + (1/2)a[n² - (n² - 2n + 1)]</p>\n<p>s_nth = u(1) + (1/2)a(2n - 1)</p>\n\n<p><strong>Final formula:</strong></p>\n<p>$$s_{nth} = u + \\frac{a}{2}(2n - 1)$$</p>\n\n<p>where s_nth is the distance travelled during the nth second.</p>\n\n<p><strong>Example:</strong> If a body starts from rest (u = 0) with a = 2 m/s², distance in 5th second = 0 + (2/2)(2×5 - 1) = 1 × 9 = 9 m.</p>",
+            "keyPoints": [
+                "Formula for distance in t seconds",
+                "Difference of distances",
+                "Algebraic simplification",
+                "Final expression"
+            ],
+            "marks": 4,
+            "unit": "Kinematics"
+        },
+        {
+            "id": "8.b",
+            "type": "saq",
+            "group": "B",
+            "question": "A motorist rushing at 15 m/s, finds a block on the road 40 m ahead. He instantly applies brakes to stop the car within 5 m of the block, calculate: (i) retardation and (ii) time required to stop the car.",
+            "answer": "<h5>Solution: Braking Distance Problem</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Initial velocity u = 15 m/s</li>\n<li>Distance to block = 40 m</li>\n<li>Car must stop within 5 m of block, so stopping distance s = 40 - 5 = 35 m</li>\n<li>Final velocity v = 0 (car stops)</li>\n</ul>\n\n<p><strong>Step 1: Find retardation (deceleration) using v² = u² + 2as</strong></p>\n<p>0 = (15)² + 2 × a × 35</p>\n<p>0 = 225 + 70a</p>\n<p>70a = -225</p>\n<p>a = -225/70 = -3.214 m/s²</p>\n<p>Retardation = 3.214 m/s²</p>\n\n<p><strong>Step 2: Find time using v = u + at</strong></p>\n<p>0 = 15 + (-3.214)t</p>\n<p>3.214t = 15</p>\n<p>t = 15/3.214 = 4.67 seconds</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Retardation = <strong>3.214 m/s²</strong></li>\n<li>Time required to stop = <strong>4.67 seconds</strong></li>\n</ul>\n\n<p><strong>Verification:</strong> Distance during this time: s = ut + ½at² = 15×4.67 + 0.5×(-3.214)×(4.67)² = 70.05 - 0.5×3.214×21.81 = 70.05 - 35.05 = 35 m ✓</p>",
+            "keyPoints": [
+                "Determining stopping distance",
+                "Using equation of motion v² = u² + 2as",
+                "Using v = u + at for time"
+            ],
+            "marks": 4,
+            "unit": "Kinematics"
+        },
+        {
+            "id": "9.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define centre of gravity, centroid and centre of mass.",
+            "answer": "<p><strong>Centre of Mass:</strong> It is the point where the entire mass of a body is assumed to be concentrated. It is the average position of all mass particles in the body. Mathematically, for a system of particles, r_cm = (∑m_i r_i)/(∑m_i).</p><p><strong>Centre of Gravity:</strong> It is the point through which the entire weight of a body acts. In a uniform gravitational field, it coincides with the centre of mass. Mathematically, r_cg = (∑w_i r_i)/(∑w_i).</p><p><strong>Centroid:</strong> It is the geometric center of a plane figure or solid. For areas and volumes, it is the point where the total area or volume is assumed to be concentrated. For uniform bodies, centroid coincides with centre of mass and centre of gravity.</p><p><strong>Key relationships:</strong></p><ul><li>For uniform bodies in uniform gravity: Centroid = Centre of Mass = Centre of Gravity</li><li>Centroid applies to geometric shapes (areas, volumes)</li><li>Centre of mass applies to mass distribution</li><li>Centre of gravity applies to weight distribution</li></ul>",
+            "marks": 4,
+            "unit": "Centroid and Centre of Gravity"
+        },
+        {
+            "id": "10.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Deduce the condition for self-locking of a machine.",
+            "answer": "<h5>Condition for Self-Locking Machine</h5>\n\n<p><strong>Self-locking machine:</strong> A machine in which the load remains stationary even when the effort is removed. The load cannot cause the machine to reverse.</p>\n\n<p><strong>Deduction of condition:</strong></p>\n\n<p><strong>Step 1:</strong> For a lifting machine, the law of machine is P = mW + C, where:</p>\n<ul>\n<li>P = effort applied</li>\n<li>W = load lifted</li>\n<li>m = slope (related to friction)</li>\n<li>C = effort at no load (friction constant)</li>\n</ul>\n\n<p><strong>Step 2:</strong> When effort is removed (P = 0), for the load to remain stationary (self-locking), the load should not be able to overcome friction.</p>\n\n<p><strong>Step 3:</strong> For descending motion (if machine were to reverse), the effort required would be P_desc = mW - C.</p>\n\n<p><strong>Step 4:</strong> For self-locking, P_desc should be positive (meaning effort would be needed to lower the load), i.e.:</p>\n<p>mW - C > 0</p>\n<p>mW > C</p>\n\n<p><strong>Step 5:</strong> This condition must hold for all loads. The most critical is at minimum load, but C is constant. Alternatively, using efficiency:</p>\n<p>Maximum efficiency η_max = 1/(m × VR)</p>\n<p>For self-locking: η_max ≤ 0.5 (50%)</p>\n<p>Therefore: 1/(m × VR) ≤ 0.5</p>\n<p>m × VR ≥ 2</p>\n\n<p><strong>Step 6:</strong> Also, from the law of machine, at the point of reversibility, mW = C. For self-locking, mW > C for all practical loads.</p>\n\n<p><strong>Practical condition:</strong> A machine is self-locking if its efficiency is ≤ 50%.</p>\n\n<p><strong>Examples:</strong> Screw jack (η ≈ 30-40%), worm and worm wheel.</p>",
+            "keyPoints": [
+                "Law of machine P = mW + C",
+                "Condition for no reverse motion",
+                "Efficiency-based condition",
+                "m × VR ≥ 2 for self-locking"
+            ],
+            "marks": 3,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "10.b",
+            "type": "saq",
+            "group": "B",
+            "question": "A load of 2 kN is to be lifted by a screw-jack, having threads of 10 mm pitch. The efficiency of the jack at this load is 50%. Determine the effort applied at the end of the handle of 50 cm length.",
+            "answer": "<h5>Solution: Screw Jack Effort Calculation</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Load W = 2 kN = 2000 N</li>\n<li>Pitch p = 10 mm = 0.01 m</li>\n<li>Effort arm length L = 50 cm = 0.5 m</li>\n<li>Efficiency η = 50% = 0.5</li>\n</ul>\n\n<p><strong>Step 1: Calculate Velocity Ratio (VR) of screw jack</strong></p>\n<p>VR = (2πL)/p = (2 × 3.14 × 0.5)/0.01 = 3.14/0.01 = 314</p>\n\n<p><strong>Step 2: Find Mechanical Advantage (MA) from efficiency</strong></p>\n<p>η = MA/VR</p>\n<p>0.5 = MA/314</p>\n<p>MA = 0.5 × 314 = 157</p>\n\n<p><strong>Step 3: Find effort P using MA = W/P</strong></p>\n<p>157 = 2000/P</p>\n<p>P = 2000/157 = 12.74 N</p>\n\n<p><strong>Step 4: Verify using work principle</strong></p>\n<p>Work input = P × 2πL = 12.74 × 3.14 = 40 Nm (approx)</p>\n<p>Work output = W × p = 2000 × 0.01 = 20 Nm</p>\n<p>Efficiency = 20/40 = 0.5 ✓</p>\n\n<p><strong>Result:</strong> The effort required is <strong>12.74 N</strong>.</p>",
+            "keyPoints": [
+                "VR calculation for screw jack",
+                "Efficiency-MA-VR relationship",
+                "MA = W/P to find effort"
+            ],
+            "marks": 5,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "11.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Write mathematical expression of potential energy and kinetic energy with SI units. Give one example of each of potential energy and kinetic energy.",
+            "answer": "<p><strong>Potential Energy (PE):</strong> It is the energy possessed by a body by virtue of its position or configuration.</p><p><strong>Mathematical expression:</strong> PE = mgh</p><p>where m = mass of the body (kg), g = acceleration due to gravity (9.81 m/s²), h = height above reference level (m).</p><p><strong>SI unit:</strong> Joule (J) = kg·m²/s²</p><p><strong>Example of Potential Energy:</strong> Water stored in a dam has potential energy due to its height above the turbine. When released, this energy converts to kinetic energy to generate electricity.</p>\n\n<p><strong>Kinetic Energy (KE):</strong> It is the energy possessed by a body by virtue of its motion.</p><p><strong>Mathematical expression:</strong> KE = ½ mv²</p><p>where m = mass of the body (kg), v = velocity of the body (m/s).</p><p><strong>SI unit:</strong> Joule (J) = kg·m²/s²</p><p><strong>Example of Kinetic Energy:</strong> A moving car has kinetic energy. When brakes are applied, this energy is converted to heat energy through friction.</p>\n\n<p><strong>Work-Energy Theorem:</strong> Work done on a body equals the change in its kinetic energy. W = ΔKE = ½ m(v² - u²).</p>",
+            "marks": 4,
+            "unit": "Work, Power and Energy"
+        },
+        {
+            "id": "11.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Water from a tank of capacity 18000 litres is to be lifted in 20 minutes by a pump through a height of 12 m. If the efficiency of the pump is 65%, find the power of the pump. (Take 1 litre = 1 kg).",
+            "answer": "<h5>Solution: Pump Power Calculation</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Volume of water = 18000 litres</li>\n<li>Since 1 litre = 1 kg, mass m = 18000 kg</li>\n<li>Height h = 12 m</li>\n<li>Time t = 20 minutes = 20 × 60 = 1200 seconds</li>\n<li>Efficiency η = 65% = 0.65</li>\n<li>g = 9.81 m/s²</li>\n</ul>\n\n<p><strong>Step 1: Calculate work output (useful work done)</strong></p>\n<p>Work done against gravity = mgh = 18000 × 9.81 × 12</p>\n<p>Work output = 18000 × 9.81 × 12 = 18000 × 117.72 = 2,118,960 J</p>\n\n<p><strong>Step 2: Calculate power output</strong></p>\n<p>Power output = Work output / Time = 2,118,960 / 1200 = 1765.8 W</p>\n\n<p><strong>Step 3: Calculate power input using efficiency</strong></p>\n<p>Efficiency η = Power output / Power input</p>\n<p>0.65 = 1765.8 / Power input</p>\n<p>Power input = 1765.8 / 0.65 = 2716.6 W</p>\n\n<p><strong>Step 4: Express in appropriate units</strong></p>\n<p>Power input = 2.7166 kW ≈ 2.72 kW</p>\n\n<p><strong>Result:</strong> The power of the pump required is <strong>2.72 kW</strong>.</p>\n\n<p><strong>Alternative approach:</strong> Power input = (mgh)/(η × t) = (18000 × 9.81 × 12)/(0.65 × 1200) = 2,118,960/780 = 2716.6 W</p>",
+            "keyPoints": [
+                "Work done against gravity = mgh",
+                "Power output = Work/time",
+                "Efficiency relationship for power",
+                "Unit conversions"
+            ],
+            "marks": 4,
+            "unit": "Work, Power and Energy"
+        }
+    ]
+}

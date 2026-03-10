@@ -1,0 +1,464 @@
+{
+    "subject": "Fundamentals of Electrical and Electronics Engineering (FEEE)",
+    "examYear": "2021",
+    "totalMarks": 60,
+    "timeAllowed": "1.5 Hours",
+    "questions": [
+        {
+            "id": "1",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which component opposes any change in current?",
+            "options": ["Resistor", "Capacitor", "Inductor", "Diode"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Inductor</strong> is correct because it opposes any change in current due to its property of self-inductance. When current changes, the inductor induces an emf that opposes the change according to Lenz's law.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "2",
+            "type": "mcq",
+            "group": "A",
+            "question": "The duration of one cycle known as",
+            "options": ["waveform", "peak value", "instantaneous value", "period"],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Period</strong> is correct. The period (T) is the time taken to complete one full cycle of a periodic waveform, measured in seconds.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "3",
+            "type": "mcq",
+            "group": "A",
+            "question": "In case of ideal current sources, they have",
+            "options": ["zero internal resistance", "low value of voltage", "large value of current", "infinite internal resistance"],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Infinite internal resistance</strong> is correct. An ideal current source maintains constant current regardless of load resistance, which requires infinite internal resistance.</p>",
+            "unit": "Network Theory"
+        },
+        {
+            "id": "4",
+            "type": "mcq",
+            "group": "A",
+            "question": "The unit of magnetomotive force is",
+            "options": ["ampere-turn", "weber", "mho", "Maxwell"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Ampere-turn (AT)</strong> is correct. Magnetomotive force (MMF) is the product of number of turns and current, given by $F = NI$ ampere-turns.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "5",
+            "type": "mcq",
+            "group": "A",
+            "question": "The property of a material which opposes the creation of magnetic flux is called",
+            "options": ["permeability", "permittivity", "reluctance", "resistance"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Reluctance</strong> is correct. Reluctance ($S$) is the magnetic equivalent of resistance, opposing the establishment of magnetic flux: $S = \\frac{l}{\\mu A}$.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6",
+            "type": "mcq",
+            "group": "A",
+            "question": "The energy stored in a magnetic field is given by (L= self inductance, I= current)-",
+            "options": ["$\\frac{1}{2}LI^2$", "$\\frac{1}{2}II^2$", "$LI^2$", "$LI^2$"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>$\\frac{1}{2}LI^2$</strong> is correct. Energy stored in an inductor is $W = \\frac{1}{2}LI^2$, analogous to $\\frac{1}{2}CV^2$ in capacitors.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "7",
+            "type": "mcq",
+            "group": "A",
+            "question": "Eddy current loss is directly proportional to (f= frequency, $B_m$ = maximum flux density)-",
+            "options": ["$f^2$ and $B_m^2$", "$f$ and $B_m$", "$f$ and $B_m^2$", "$f^2$ and $B_m$"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>$f^2$ and $B_m^2$</strong> is correct. Eddy current loss $P_e \\propto f^2 B_m^2$, while hysteresis loss $P_h \\propto f B_m^{1.6}$.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "8",
+            "type": "mcq",
+            "group": "A",
+            "question": "The direction of induced emf is such that it will oppose the cause to which it is created, is related to law of electromagnetic induction.",
+            "options": ["Faraday's", "Lenz's", "Ohm's", "Ampere's"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Lenz's law</strong> is correct. Lenz's law states that induced emf always opposes the change causing it, giving the negative sign in Faraday's law: $e = -\\frac{d\\phi}{dt}$.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "9",
+            "type": "mcq",
+            "group": "A",
+            "question": "The unit of inductive reactance is",
+            "options": ["Henry", "Farad", "Ohm", "Joule"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Ohm ($\\Omega$)</strong> is correct. Inductive reactance $X_L = \\omega L = 2\\pi f L$ opposes current flow and is measured in ohms, same as resistance.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "10",
+            "type": "mcq",
+            "group": "A",
+            "question": "In an ac circuit 'VI sin θ' represents",
+            "options": ["Active power", "Reactive power", "Apparent power", "True power"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Reactive power</strong> is correct. In AC circuits, $P = VI\\cos\\phi$ (active power), $Q = VI\\sin\\phi$ (reactive power), $S = VI$ (apparent power).</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "11",
+            "type": "mcq",
+            "group": "A",
+            "question": "When sinusoidal voltage is applied across a pure capacitor the current in the capacitor",
+            "options": ["lags applied voltage by 90°", "leads applied voltage by 90°", "is in phase with applied voltage", "is in phase opposition with applied voltage"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Leads applied voltage by 90°</strong> is correct. In a pure capacitor, $i = C\\frac{dv}{dt}$. For $v = V_m\\sin\\omega t$, $i = \\omega C V_m\\cos\\omega t = I_m\\sin(\\omega t+90°)$.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "12",
+            "type": "mcq",
+            "group": "A",
+            "question": "Peak factor for a sine wave is",
+            "options": ["1", "1.414", "1.11", "2"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>1.414</strong> is correct. Peak factor = $\\frac{V_m}{V_{rms}} = \\frac{V_m}{V_m/\\sqrt{2}} = \\sqrt{2} = 1.414$. Form factor = 1.11 for sine wave.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "13",
+            "type": "mcq",
+            "group": "A",
+            "question": "The maximum value of sine wave current is 100 A, the rms value of current in the circuit will be",
+            "options": ["70.7 A", "100 A", "50 A", "70.7 mA"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>70.7 A</strong> is correct. For sinusoidal waveform, $I_{rms} = \\frac{I_m}{\\sqrt{2}} = \\frac{100}{1.414} = 70.7$ A.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "14",
+            "type": "mcq",
+            "group": "A",
+            "question": "Voltage per turn in both primary and secondary winding of a transformer is",
+            "options": ["high in high voltage winding", "low in low voltage winding", "same", "cannot determine"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Same</strong> is correct. In a transformer, $\\frac{V_1}{N_1} = \\frac{V_2}{N_2} = \\text{voltage per turn}$, as induced emf per turn is constant due to same mutual flux.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "15",
+            "type": "numerical",
+            "group": "A",
+            "question": "A 10 KVA, 1100/400 V, 50 Hz single phase transformer has 100 turns in the secondary winding. The number of turns in primary winding is",
+            "answer": "275 turns",
+            "acceptableAnswers": ["275", "275 turns", "275"],
+            "marks": 2,
+            "explanation": "<p>Using transformer turns ratio: $\\frac{N_1}{N_2} = \\frac{V_1}{V_2}$</p><p>$\\frac{N_1}{100} = \\frac{1100}{400}$</p><p>$N_1 = 100 \\times \\frac{1100}{400} = 100 \\times 2.75 = 275$ turns</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "16",
+            "type": "truefalse",
+            "group": "A",
+            "question": "Direction of rotation of the motor armature/rotor can be determined by applying Fleming's left hand rule.",
+            "correct": true,
+            "marks": 2,
+            "explanation": "<p><strong>True.</strong> Fleming's left hand rule is used for motors to determine direction of force (motion) when current and magnetic field are known. Right hand rule is for generators.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "17",
+            "type": "mcq",
+            "group": "A",
+            "question": "A diode is a/an",
+            "options": ["bidirectional device", "unidirectional device", "both (a) and (b)", "none of the above"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Unidirectional device</strong> is correct. Diode allows current to flow only in one direction (forward biased) and blocks in reverse direction, making it unidirectional.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "18",
+            "type": "mcq",
+            "group": "A",
+            "question": "Free electrons in p type material -",
+            "options": ["are majority carrier", "are minority carriers", "both (a) and (b)", "none of the above"],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Are minority carriers</strong> is correct. In p-type material, holes are majority carriers (due to trivalent doping), and free electrons are minority carriers.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "19",
+            "type": "mcq",
+            "group": "A",
+            "question": "In intrinsic semiconductor, there are:",
+            "options": ["few free electrons", "few holes", "many holes and free electrons", "no holes and free electrons"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Few free electrons</strong> is correct, but note that intrinsic semiconductors have equal number of free electrons and holes. At room temperature, these are few in number (low conductivity).</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "20",
+            "type": "mcq",
+            "group": "A",
+            "question": "An ideal OP-AMP has the following characteristics- ($R_{in}$ = input resistance, A = open loop gain, $R_{out}$ = output resistance)",
+            "options": ["$R_{in} = \\infty, A = \\infty, R_{out} = 0$", "$R_{in} = 0, A = \\infty, R_{out} = 0$", "$R_{in} = \\infty, A = 0, R_{out} = \\infty$", "$R_{in} = 0, A = \\infty, R_{out} = \\infty$"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>$R_{in} = \\infty, A = \\infty, R_{out} = 0$</strong> is correct. Ideal op-amp has infinite input impedance (no loading), infinite open-loop gain, and zero output impedance.</p>",
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "21",
+            "type": "mcq",
+            "group": "A",
+            "question": "The expression of voltage gain in an inverting amplifier using ideal OP-AMP is ($R_f$ = feedback resistance, $R_i$ = input resistance)-",
+            "options": ["$-R_f/R_i$", "$R_f/R_i$", "$1 + R_f/R_i$", "$-1 + R_f/R_i$"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>$-R_f/R_i$</strong> is correct. For inverting amplifier, gain $A_v = -\\frac{R_f}{R_i}$. Negative sign indicates 180° phase shift.</p>",
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "22",
+            "type": "mcq",
+            "group": "A",
+            "question": "The expression of voltage gain in a non-inverting amplifier using ideal OP-AMP is ($R_f$ = feedback resistance, $R_i$ = input resistance)-",
+            "options": ["$-R_f/R_i$", "$R_f/R_i$", "$1 + R_f/R_i$", "$-1 + R_f/R_i$"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>$1 + R_f/R_i$</strong> is correct. For non-inverting amplifier, gain $A_v = 1 + \\frac{R_f}{R_i}$. Output is in phase with input.</p>",
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "23",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of these sets of logic gates are known as universal gates?",
+            "options": ["XOR, NAND, OR", "OR, NOT, XOR", "NOR, NAND, XNOR", "NOR, NAND"],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>NOR, NAND</strong> is correct. NAND and NOR are universal gates because any logic gate (AND, OR, NOT, XOR) can be implemented using only NAND or only NOR gates.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "24",
+            "type": "mcq",
+            "group": "A",
+            "question": "A digital circuit that can store only 1 bit information",
+            "options": ["NOR gate", "XOR gate", "Flip flop", "AND gate"],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Flip flop</strong> is correct. A flip-flop is a bistable multivibrator that can store one bit (0 or 1) of digital information until changed.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "25",
+            "type": "mcq",
+            "group": "A",
+            "question": "The logical sum of two or more than two logical products is termed as",
+            "options": ["SOP", "POS", "Boolean expression", "Logic gate"],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Sum of Products (SOP)</strong> is correct. SOP form is ORing of ANDed terms (products), e.g., $Y = AB + BC + AC$. POS is ANDing of ORed terms.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "2",
+            "type": "saq",
+            "group": "B",
+            "question": "a) Define periodic & non-periodic waveform with one example of each.",
+            "answer": "<p><strong>Periodic waveform:</strong> A waveform that repeats itself after a fixed time interval called time period (T). Example: Sine wave, square wave.</p><p><strong>Non-periodic waveform:</strong> A waveform that does not repeat itself at regular intervals. Example: Speech signal, noise signal, transient pulse.</p>",
+            "marks": 4,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "2b",
+            "type": "saq",
+            "group": "B",
+            "question": "b) Using Source transformation principle find out the current through resistance R2.",
+            "answer": "<p><em>(Note: Since the circuit diagram Fig. 2(b) is not available, general approach is provided.)</em></p><p><strong>Source transformation principle:</strong> A voltage source V with series resistance R can be transformed to current source I = V/R with parallel resistance R, and vice versa.</p><p><strong>Steps to find current through R2:</strong></p><ul><li>Identify voltage sources in series with resistors and convert them to equivalent current sources with parallel resistors.</li><li>Combine parallel resistors and current sources algebraically.</li><li>Transform back to voltage source if needed.</li><li>Apply Ohm's law or current divider rule to find current through R2.</li></ul>",
+            "marks": 6,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "3a",
+            "type": "saq",
+            "group": "B",
+            "question": "a) Calculate the RMS and average values of a purely sinusoidal current having peak value 15A.",
+            "answer": "<p><strong>Given:</strong> Peak current $I_m = 15$ A</p><p><strong>RMS value:</strong> $I_{rms} = \\frac{I_m}{\\sqrt{2}} = \\frac{15}{1.414} = 10.61$ A</p><p><strong>Average value:</strong> For a purely sinusoidal waveform over complete cycle, average value = 0. For half-cycle, $I_{avg} = \\frac{2I_m}{\\pi} = \\frac{2 \\times 15}{3.14} = \\frac{30}{3.14} = 9.55$ A</p>",
+            "marks": 4,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "3b",
+            "type": "saq",
+            "group": "B",
+            "question": "b) Draw STAR & DELTA connections. Also write voltage and current relations for both types.",
+            "answer": "<p><strong>Star (Y) Connection:</strong></p><ul><li>Line voltage $V_L = \\sqrt{3} V_{ph}$ (Phase voltage)</li><li>Line current $I_L = I_{ph}$ (Phase current)</li></ul><p><strong>Delta ($\\Delta$) Connection:</strong></p><ul><li>Line voltage $V_L = V_{ph}$</li><li>Line current $I_L = \\sqrt{3} I_{ph}$</li></ul><p><em>Diagram reference: In star connection, one end of each winding joined together (neutral). In delta, windings connected end-to-end forming closed loop.</em></p><p><strong>Power relation:</strong> For both connections, total power $P = \\sqrt{3} V_L I_L \\cos\\phi$</p>",
+            "marks": 6,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "4a",
+            "type": "saq",
+            "group": "B",
+            "question": "a) Define self & mutual inductance.",
+            "answer": "<p><strong>Self inductance (L):</strong> It is the property of a coil due to which it opposes any change in current flowing through it. It is defined as the flux linkage per unit current: $L = \\frac{N\\phi}{I}$ henry.</p><p><strong>Mutual inductance (M):</strong> It is the property of two coils due to which a changing current in one coil induces emf in the other coil. It is defined as $M = \\frac{N_2\\phi_{12}}{I_1}$ henry, where $\\phi_{12}$ is flux linked with coil 2 due to current in coil 1.</p>",
+            "marks": 5,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4b",
+            "type": "saq",
+            "group": "B",
+            "question": "b) State Faraday's law of electromagnetic Induction.",
+            "answer": "<p><strong>Faraday's Laws of Electromagnetic Induction:</strong></p><p><strong>First Law:</strong> Whenever the magnetic flux linked with a circuit changes, an emf is induced in the circuit.</p><p><strong>Second Law:</strong> The magnitude of induced emf is directly proportional to the rate of change of flux linkage.</p><p>Mathematically, $e = -N\\frac{d\\phi}{dt}$ where negative sign indicates Lenz's law (opposition to cause).</p>",
+            "marks": 5,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "5a",
+            "type": "saq",
+            "group": "B",
+            "question": "a) Define true & reactive power.",
+            "answer": "<p><strong>True Power (Active Power):</strong> It is the actual power consumed in an AC circuit and converted to useful work or heat. $P = VI\\cos\\phi$ watts, where $\\cos\\phi$ is power factor.</p><p><strong>Reactive Power:</strong> It is the power that oscillates between source and load (inductor/capacitor) and does no useful work. $Q = VI\\sin\\phi$ VAR (Volt-Ampere Reactive).</p><p><strong>Apparent Power:</strong> $S = VI$ VA (vector sum of active and reactive power).</p>",
+            "marks": 4,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "5b",
+            "type": "saq",
+            "group": "B",
+            "question": "b) Show that in a pure capacitive circuit the current leads the applied voltage by 90 degree. Also show the phasor diagram for the same.",
+            "answer": "<p><strong>Pure Capacitive Circuit:</strong></p><p>Applied voltage: $v = V_m\\sin\\omega t$</p><p>Charge on capacitor: $q = Cv = CV_m\\sin\\omega t$</p><p>Current: $i = \\frac{dq}{dt} = \\frac{d}{dt}(CV_m\\sin\\omega t) = \\omega C V_m\\cos\\omega t$</p><p>$i = I_m\\sin(\\omega t + 90°)$ where $I_m = \\omega C V_m$</p><p>Thus, current leads voltage by 90°.</p><p><strong>Phasor Diagram:</strong></p><ul><li>Voltage phasor $V$ taken as reference along x-axis</li><li>Current phasor $I$ drawn at +90° (counterclockwise) from voltage</li><li>Indicates current leading voltage by 90°</li></ul>",
+            "marks": 6,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6a",
+            "type": "saq",
+            "group": "B",
+            "question": "a) Define a Transformer.",
+            "answer": "<p><strong>Transformer:</strong> It is a static electrical device that transfers electrical energy between two or more circuits through electromagnetic induction.</p><p>It works on the principle of mutual induction and is used to:</p><ul><li>Step up or step down AC voltage/current</li><li>Provide electrical isolation</li><li>Match impedance</li></ul><p>Key components: Primary winding, secondary winding, and magnetic core.</p>",
+            "marks": 4,
+            "unit": "Transformer"
+        },
+        {
+            "id": "6b",
+            "type": "saq",
+            "group": "B",
+            "question": "b) A single phase 50Hz transformer has 80 turns on the primary winding & 400 turns on the secondary winding. If the primary winding is connected to a 240 volt, 50 Hz supply, determine the e.m.f induced in the secondary winding.",
+            "answer": "<p><strong>Given:</strong> $N_1 = 80$ turns, $N_2 = 400$ turns, $V_1 = 240$ V, $f = 50$ Hz</p><p><strong>Step 1:</strong> For an ideal transformer, voltage ratio equals turns ratio:</p><p>$\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$</p><p><strong>Step 2:</strong> Substitute values:</p><p>$\\frac{V_2}{240} = \\frac{400}{80} = 5$</p><p><strong>Step 3:</strong> Calculate $V_2$:</p><p>$V_2 = 240 \\times 5 = 1200$ V</p><p><strong>Answer:</strong> EMF induced in secondary winding = 1200 V</p>",
+            "marks": 6,
+            "unit": "Transformer"
+        },
+        {
+            "id": "7a",
+            "type": "saq",
+            "group": "B",
+            "question": "a) Differentiate between Intrinsic & Extrinsic semiconductor.",
+            "answer": "<table><tr><th>Intrinsic Semiconductor</th><th>Extrinsic Semiconductor</th></tr><tr><td>Pure semiconductor without any doping</td><td>Doped with impurities to modify conductivity</td></tr><tr><td>Equal number of electrons and holes ($n_e = n_h$)</td><td>Unequal carriers ($n_e \\neq n_h$)</td></tr><tr><td>Low electrical conductivity</td><td>High electrical conductivity</td></tr><tr><td>Conductivity depends on temperature only</td><td>Conductivity depends on doping and temperature</td></tr><tr><td>Examples: Pure Si, Pure Ge</td><td>Examples: n-type Si, p-type Si</td></tr></table>",
+            "marks": 5,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "7b",
+            "type": "saq",
+            "group": "B",
+            "question": "b) Define the term Doping. Give examples of material for creation of p & n-type material.",
+            "answer": "<p><strong>Doping:</strong> The process of intentionally adding impurity atoms to a pure (intrinsic) semiconductor to increase its conductivity by increasing the number of charge carriers (electrons or holes).</p><p><strong>For n-type material (pentavalent doping):</strong></p><ul><li>Impurities: Phosphorus (P), Arsenic (As), Antimony (Sb)</li><li>These have 5 valence electrons, donate free electrons</li></ul><p><strong>For p-type material (trivalent doping):</strong></p><ul><li>Impurities: Boron (B), Aluminum (Al), Gallium (Ga), Indium (In)</li><li>These have 3 valence electrons, create holes</li></ul>",
+            "marks": 5,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8a",
+            "type": "saq",
+            "group": "B",
+            "question": "a) Why is transistor termed as current controlled device?",
+            "answer": "<p><strong>Transistor as current controlled device:</strong></p><p>A bipolar junction transistor (BJT) is called a current controlled device because the output current (collector current $I_C$) is controlled by the input current (base current $I_B$).</p><p>Relationship: $I_C = \\beta I_B$, where $\\beta$ is current gain factor.</p><p>A small change in base current produces a large change in collector current, enabling amplification. The voltage at the output depends on the current flow, making it fundamentally current-controlled.</p>",
+            "marks": 4,
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "8b",
+            "type": "saq",
+            "group": "B",
+            "question": "b) Explain with diagram the principle of operation of an NPN transistor.",
+            "answer": "<p><strong>NPN Transistor Operation:</strong></p><p><em>Diagram reference:</em> NPN transistor has two n-type regions (emitter and collector) separated by a thin p-type base.</p><p><strong>Biasing:</strong> Emitter-Base junction forward biased, Collector-Base junction reverse biased.</p><p><strong>Working principle:</strong></p><ul><li>Electrons from n-type emitter (heavily doped) flow into p-type base due to forward bias.</li><li>Base is thin and lightly doped, so most electrons (about 98%) diffuse across base to collector-base junction.</li><li>Reverse bias at collector-base junction sweeps these electrons into collector region, forming collector current $I_C$.</li><li>A small fraction of electrons recombine with holes in base, forming small base current $I_B$.</li><li>Thus, $I_E = I_B + I_C$ and $I_C \\approx I_E$.</li></ul>",
+            "marks": 6,
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "9a",
+            "type": "saq",
+            "group": "C",
+            "question": "a) Draw the circuit diagram of a non-inverting amplifier with feedback using op-amp & derive the expression of gain.",
+            "answer": "<h5>Non-Inverting Amplifier</h5>\n\n<p><em>Circuit Diagram:</em> Input signal applied to non-inverting (+) terminal. Feedback resistor $R_f$ connected between output and inverting (-) terminal. Resistor $R_i$ connected from inverting terminal to ground.</p>\n\n<p><strong>Derivation:</strong></p>\n<p>For ideal op-amp:</p>\n<ul>\n<li>Virtual short: $V_- = V_+ = V_{in}$</li>\n<li>Input current to op-amp is zero</li>\n</ul>\n\n<p>Current through $R_i$: $I = \\frac{V_-}{R_i} = \\frac{V_{in}}{R_i}$</p>\n<p>Same current flows through $R_f$ (since no current into op-amp):</p>\n<p>$V_{out} - V_- = I R_f$</p>\n<p>$V_{out} - V_{in} = \\frac{V_{in}}{R_i} \\times R_f$</p>\n<p>$V_{out} = V_{in} + \\frac{R_f}{R_i} V_{in}$</p>\n<p>$V_{out} = V_{in} \\left(1 + \\frac{R_f}{R_i}\\right)$</p>\n\n<p><strong>Voltage Gain:</strong></p>\n<p>$$A_v = \\frac{V_{out}}{V_{in}} = 1 + \\frac{R_f}{R_i}$$</p>\n\n<p>Gain is positive, so output is in phase with input. Input impedance is very high (ideally infinite).</p>",
+            "keyPoints": [
+                "Virtual short concept",
+                "Current through Ri and Rf same",
+                "Gain = 1 + Rf/Ri"
+            ],
+            "marks": 7,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "9b",
+            "type": "saq",
+            "group": "C",
+            "question": "b) Define Flip-Flop.",
+            "answer": "<p><strong>Flip-Flop:</strong> A flip-flop is a sequential digital circuit that can store one bit of binary information (0 or 1). It is a bistable multivibrator having two stable states.</p>\n\n<p><strong>Characteristics:</strong></p>\n<ul>\n<li>Has two outputs: Q and Q' (complement of Q)</li>\n<li>Changes state only when clock pulse (if clocked) or trigger signal is applied</li>\n<li>Used in memory elements, registers, counters</li>\n<li>Types: SR, JK, D, T flip-flops</li>\n</ul>\n\n<p><strong>Truth table example (SR Flip-Flop):</strong></p>\n<p>When S=1, R=0 → Q=1 (SET state)</p>\n<p>When S=0, R=1 → Q=0 (RESET state)</p>\n<p>When S=0, R=0 → Q remains previous state (HOLD)</p>\n<p>When S=1, R=1 → Invalid/Forbidden state</p>",
+            "marks": 3,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "10",
+            "type": "laq",
+            "group": "C",
+            "question": "Draw the pin diagram of IC 741 OP AMP & describe the function of each pin.",
+            "answer": "<h5>IC 741 Op-Amp Pin Diagram and Functions</h5>\n\n<p><em>IC 741 is an 8-pin DIP (Dual Inline Package) operational amplifier.</em></p>\n\n<p><strong>Pin Configuration:</strong></p>\n\n<table>\n<tr><th>Pin No.</th><th>Pin Name</th><th>Function</th></tr>\n<tr><td>1</td><td>Offset Null</td><td>Used to nullify the offset voltage; connect potentiometer between pin 1 and pin 5</td></tr>\n<tr><td>2</td><td>Inverting Input (-)</td><td>Input terminal where output is 180° out of phase with input</td></tr>\n<tr><td>3</td><td>Non-Inverting Input (+)</td><td>Input terminal where output is in phase with input</td></tr>\n<tr><td>4</td><td>V- (Negative Supply)</td><td>Connected to negative supply voltage (-Vcc), typically -15V or -12V</td></tr>\n<tr><td>5</td><td>Offset Null</td><td>Second offset null terminal; used with pin 1 for offset adjustment</td></tr>\n<tr><td>6</td><td>Output</td><td>Amplified output voltage terminal</td></tr>\n<tr><td>7</td><td>V+ (Positive Supply)</td><td>Connected to positive supply voltage (+Vcc), typically +15V or +12V</td></tr>\n<tr><td>8</td><td>NC (No Connection)</td><td>Not internally connected; may be used for some specific applications</td></tr>\n</table>\n\n<p><strong>Important Features:</strong></p>\n<ul>\n<li>Input impedance ≈ 2 MΩ</li>\n<li>Output impedance ≈ 75 Ω</li>\n<li>Open-loop gain ≈ 200,000</li>\n<li>Bandwidth ≈ 1 MHz</li>\n<li>Slew rate ≈ 0.5 V/μs</li>\n<li>Supply voltage range: ±5V to ±18V</li>\n</ul>\n\n<p><em>Diagram reference: Pins are numbered counterclockwise starting from pin 1 (marked by dot or notch) when viewing from top.</em></p>",
+            "keyPoints": [
+                "8 pins with specific functions",
+                "Two inputs (inverting and non-inverting)",
+                "Dual power supply required",
+                "Offset null pins for balancing"
+            ],
+            "marks": 10,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "11a",
+            "type": "saq",
+            "group": "C",
+            "question": "a) State De Morgan's Theorem.",
+            "answer": "<p><strong>De Morgan's Theorems:</strong></p>\n\n<p><strong>Theorem 1:</strong> The complement of a product (AND) of variables is equal to the sum (OR) of their complements.</p>\n<p>$$\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$$</p>\n<p>In Boolean algebra: (AB)' = A' + B'</p>\n\n<p><strong>Theorem 2:</strong> The complement of a sum (OR) of variables is equal to the product (AND) of their complements.</p>\n<p>$$\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$$</p>\n<p>In Boolean algebra: (A + B)' = A' · B'</p>\n\n<p>These theorems are useful in simplifying Boolean expressions and implementing logic circuits using NAND or NOR gates only.</p>",
+            "marks": 6,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "11b",
+            "type": "saq",
+            "group": "C",
+            "question": "b) Draw the NOR gate & write down its truth table.",
+            "answer": "<p><strong>NOR Gate:</strong> NOR gate is a universal gate. It is the combination of OR gate followed by NOT gate (inverter). Output is HIGH only when all inputs are LOW.</p>\n\n<p><strong>Truth Table (2-input NOR gate):</strong></p>\n<table>\n<tr><th>Input A</th><th>Input B</th><th>Output Y = (A+B)'</th></tr>\n<tr><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>0</td></tr>\n<tr><td>1</td><td>0</td><td>0</td></tr>\n<tr><td>1</td><td>1</td><td>0</td></tr>\n</table>\n\n<p><strong>Boolean Expression:</strong> $Y = \\overline{A + B}$</p>\n\n<p><strong>Logic Symbol:</strong> OR gate symbol with a small circle (bubble) at the output indicating inversion.</p>\n\n<p><strong>Applications:</strong> Can be used to implement any logic function (universal gate), used in SR latches, oscillators.</p>",
+            "marks": 4,
+            "unit": "Digital Electronics"
+        }
+    ]
+}

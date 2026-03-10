@@ -1,0 +1,437 @@
+{
+    "subject": "Introduction to IT Systems",
+    "year": 2025,
+    "totalMarks": 60,
+    "timeAllowed": "2.5 Hours",
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is NOT a web browser?",
+            "options": [
+                "Google Chrome",
+                "Mozilla Firefox",
+                "Microsoft Word",
+                "Safari"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Microsoft Word</strong> is correct because it is a word processing application software, not a web browser. Google Chrome, Mozilla Firefox, and Safari are all web browsers used to access and display websites.</p>",
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which protocol is used for secure web communication?",
+            "options": [
+                "HTTP",
+                "HTTPS",
+                "FTP",
+                "SMTP"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>HTTPS (Hypertext Transfer Protocol Secure)</strong> is correct because it is the secure version of HTTP that uses SSL/TLS encryption to protect data transmission between browser and website.</p>",
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "What is the invalid number representation?",
+            "options": [
+                "(12)8",
+                "(AB1)16",
+                "(187)8",
+                "(101)2"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>(187)8</strong> is invalid because in octal number system, digits are only 0-7. The digit 8 is not allowed in octal representation. (12)8 is valid, (AB1)16 is valid hexadecimal, (101)2 is valid binary.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which symbol is used to represent a decision in a flowchart?",
+            "options": [
+                "Rhombus",
+                "Oval",
+                "Parallelogram",
+                "Rectangle"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Rhombus (Diamond)</strong> is correct because in flowchart symbols, a diamond/rhombus represents a decision point where the flow branches based on Yes/No or True/False conditions.</p>",
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "Hard copy means",
+            "options": [
+                "Output on VDT",
+                "Output on hard disk",
+                "Output on paper",
+                "None of these"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Output on paper</strong> is correct because hard copy refers to physical printed output on paper, while soft copy is electronic display on screen (VDT) or storage.</p>",
+            "unit": "Computer Fundamentals"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "In Binary coded decimal, each digit of a decimal is represented with a group of",
+            "options": [
+                "3 binary digits",
+                "4 binary digits",
+                "5 binary digits",
+                "6 binary digits"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>4 binary digits</strong> is correct because BCD (Binary Coded Decimal) represents each decimal digit (0-9) using 4 bits. For example, 9 is represented as 1001.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is NOT a function of an operating system?",
+            "options": [
+                "Process management",
+                "Memory management",
+                "Compiling code",
+                "File management"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Compiling code</strong> is correct because compiling is done by compilers (separate system software), not by the operating system. OS functions include process, memory, file, and device management.</p>",
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which HTML tag is used to create a hyperlink?",
+            "options": [
+                "<link>",
+                "<a>",
+                "<href>",
+                "<url>"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>&lt;a&gt; (anchor tag)</strong> is correct because hyperlinks are created using the &lt;a&gt; tag with href attribute: &lt;a href=\"url\"&gt;link text&lt;/a&gt;.</p>",
+            "unit": "HTML"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is not the characteristics of Computer?",
+            "options": [
+                "Accuracy",
+                "Versatility",
+                "Diligence",
+                "IQ"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>IQ</strong> is correct because computers do not have intelligence quotient (IQ) - they cannot think or make decisions independently. They follow programmed instructions. Accuracy, versatility, and diligence are computer characteristics.</p>",
+            "unit": "Computer Fundamentals"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is an example of phishing?",
+            "options": [
+                "A hacker breaking into a system",
+                "A fake email asking for personal details",
+                "A computer virus spreading",
+                "A software update notification"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>A fake email asking for personal details</strong> is correct because phishing is a cyber attack where attackers disguise as legitimate entities to trick victims into revealing sensitive information like passwords, credit card details.</p>",
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Equivalent Gray Code representation of the Binary code 0110 is",
+            "options": [
+                "0101",
+                "1000",
+                "1010",
+                "0100"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>0101</strong> is correct because Gray code conversion: MSB same (0), next: 0 XOR 1 = 1, next: 1 XOR 1 = 0, next: 1 XOR 0 = 1, giving 0101.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "A small program that gets loaded in the computer without the user knowledge and replicate itself repeatedly called",
+            "options": [
+                "Worms",
+                "Virus",
+                "Browser",
+                "None of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Worms</strong> is correct because worms are self-replicating malware that spread independently without user intervention. Viruses also replicate but typically need host files.</p>",
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The number of steps on Algorithm should be",
+            "options": [
+                "Finite",
+                "Infinite",
+                "Fixed",
+                "None of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Finite</strong> is correct because an algorithm must terminate after a finite number of steps. An algorithm with infinite steps would never complete, violating its definition.</p>",
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is used for connecting computers in a large area such as country, continent etc",
+            "options": [
+                "LAN",
+                "PAN",
+                "MAN",
+                "WAN"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>WAN (Wide Area Network)</strong> is correct because WAN spans large geographical areas like countries or continents. LAN is local, PAN is personal, MAN is metropolitan.</p>",
+            "unit": "Computer Networks"
+        },
+        {
+            "id": "1.xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "In how many ways can CSS be written in?",
+            "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>3</strong> is correct because CSS can be written in three ways: Inline (style attribute), Internal (&lt;style&gt; tag), and External (linked .css file).</p>",
+            "unit": "CSS"
+        },
+        {
+            "id": "2.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Describe De Morgan's law.",
+            "answer": "<p><strong>De Morgan's Laws in Boolean Algebra:</strong></p><p>De Morgan's theorems provide rules for simplifying Boolean expressions involving complements of products and sums.</p><p><strong>Theorem 1:</strong> The complement of a product (AND) equals the sum (OR) of complements.</p><p>$$\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$$</p><p><strong>Theorem 2:</strong> The complement of a sum (OR) equals the product (AND) of complements.</p><p>$$\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$$</p><p><strong>Truth Table Verification for Theorem 1:</strong></p><table border='1' cellpadding='5'><tr><th>A</th><th>B</th><th>A·B</th><th>Ā·B</th><th>Ā + B̄</th></tr><tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr></table><p><strong>Extended Form for multiple variables:</strong></p><p>$$\\overline{A \\cdot B \\cdot C} = \\overline{A} + \\overline{B} + \\overline{C}$$<br>$$\\overline{A + B + C} = \\overline{A} \\cdot \\overline{B} \\cdot \\overline{C}$$</p><p><strong>Applications:</strong> Digital circuit simplification, implementing gates using NAND/NOR only, logic design optimization.</p>",
+            "marks": 3,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "2.b.i",
+            "type": "laq",
+            "group": "B",
+            "question": "What do you mean by Universal Logic Gates?",
+            "answer": "<p><strong>Universal Logic Gates:</strong> NAND gate and NOR gate are called universal gates.</p><p><strong>Definition:</strong> Universal gates are logic gates that can be used to implement any Boolean function without needing any other gate types. Any digital circuit can be constructed using only NAND gates or only NOR gates.</p><p><strong>Why they are called Universal:</strong></p><p><strong>1. Functional Completeness:</strong> NAND and NOR gates can generate all basic logic functions:</p><ul><li>NOT gate can be made from NAND (inputs shorted) or NOR (inputs shorted)</li><li>AND gate can be made from NAND + NOT, or from NOR with inverted inputs</li><li>OR gate can be made from NOR + NOT, or from NAND with inverted inputs</li><li>XOR, XNOR can also be constructed</li></ul><p><strong>2. Implementation Examples using NAND:</strong></p><ul><li>NOT: Connect both inputs together (A·A = A)</li><li>AND: Two NAND gates in series (first NAND output to both inputs of second NAND)</li><li>OR: Invert inputs using NAND NOT, then feed to another NAND</li></ul><p><strong>3. Manufacturing Advantage:</strong> ICs can be manufactured using only one type of gate, reducing complexity and cost.</p><p><strong>4. Flexibility:</strong> Any Boolean expression can be realized using only universal gates, making them essential in digital design.</p>",
+            "marks": 2,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "2.b.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Implement AND gate using only NOR gate.",
+            "answer": "<p><strong>Implementation of AND gate using only NOR gates:</strong></p><p>To implement AND gate using NOR gates, we need to use De Morgan's theorem: A·B = (A' + B')'</p><p><strong>Step-by-step implementation:</strong></p><p><strong>Step 1:</strong> First, we need to create NOT gates using NOR gates<br>NOT gate using NOR: Connect both inputs of NOR together<br>For input A: NOT A = A NOR A<br>For input B: NOT B = B NOR B</p><p><strong>Step 2:</strong> Apply these inverted inputs to another NOR gate<br>The NOR of (NOT A) and (NOT B) gives: (A' NOR B') = (A' + B')'</p><p><strong>Step 3:</strong> According to De Morgan's theorem, (A' + B')' = A·B</p><p><strong>Logic Diagram:</strong></p><pre><code>    A ──┬──[NOR]── A' ──┐\n        └──[NOR]───┘    │\n                         │\n    B ──┬──[NOR]── B' ──┼──[NOR]── Y = A·B\n        └──[NOR]───┘    │\n                         │\n                        [NOR]</code></pre><p><strong>Explanation with Boolean expression:</strong></p><p>Y = (A' NOR B') = (A' + B')'</p><p>Using De Morgan's theorem: (A' + B')' = (A')' · (B')' = A·B</p><p><strong>Verification:</strong></p><table border='1'><tr><th>A</th><th>B</th><th>A'</th><th>B'</th><th>A' + B'</th><th>(A' + B')' = A·B</th></tr><tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr></table><p>Thus, AND gate is successfully implemented using three NOR gates.</p>",
+            "marks": 3,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "3.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Write down a flowchart to find the greatest among three given numbers.",
+            "answer": "<p><strong>Flowchart to Find Greatest of Three Numbers:</strong></p><pre><code>    [Start]\n       |\n       V\n[Input A, B, C]\n       |\n       V\n   < Is A > B? >\n     /        \\\n   Yes         No\n    |           |\n    V           V\n< Is A > C? > < Is B > C? >\n  /    \\        /    \\\nYes    No      Yes    No\n |      |       |      |\n V      V       V      V\n[A is ] [C is ] [B is ] [C is ]\n[largest][largest][largest][largest]\n   |      |       |      |\n   --------+-------+------\n           V\n    [Print Largest]\n           |\n           V\n        [Stop]</code></pre><p><strong>Algorithm for finding greatest of three numbers:</strong></p><p>Step 1: Start<br>Step 2: Input three numbers A, B, C<br>Step 3: If A > B, go to step 4, else go to step 5<br>Step 4: If A > C, print \"A is largest\", else print \"C is largest\", go to step 6<br>Step 5: If B > C, print \"B is largest\", else print \"C is largest\"<br>Step 6: Stop</p><p><strong>Alternative approach using comparison chain:</strong></p><p>Step 1: Start<br>Step 2: Input A, B, C<br>Step 3: max = A<br>Step 4: If B > max, then max = B<br>Step 5: If C > max, then max = C<br>Step 6: Print max<br>Step 7: Stop</p><p><strong>Example:</strong> For A=15, B=27, C=12, the flowchart would identify B as largest.</p>",
+            "marks": 3,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "3.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Define algorithm. Write an algorithm to find out area of a Triangle.",
+            "answer": "<p><strong>Definition of Algorithm:</strong></p><p>An algorithm is a step-by-step, finite, and unambiguous sequence of instructions to solve a specific problem. It must have well-defined inputs and outputs and terminate after a finite number of steps.</p><p><strong>Characteristics of Algorithm:</strong></p><ul><li>Finiteness - must terminate after finite steps</li><li>Definiteness - each step must be clear and unambiguous</li><li>Input - zero or more inputs</li><li>Output - at least one output</li><li>Effectiveness - each step must be basic and executable</li></ul><p><strong>Algorithm to find Area of a Triangle:</strong></p><p><strong>Method 1: Using Base and Height</strong><br>Formula: Area = (1/2) × base × height</p><p>Step 1: Start<br>Step 2: Input base (b) and height (h) of triangle<br>Step 3: Calculate area = (b × h) / 2<br>Step 4: Output area<br>Step 5: Stop</p><p><strong>Method 2: Using Three Sides (Heron's Formula)</strong><br>Formula: s = (a + b + c)/2, Area = √[s(s-a)(s-b)(s-c)]</p><p>Step 1: Start<br>Step 2: Input three sides a, b, c of triangle<br>Step 3: Check if a, b, c form valid triangle (sum of any two sides > third side)<br>Step 4: If not valid, print \"Invalid triangle\" and go to step 8<br>Step 5: Calculate semi-perimeter s = (a + b + c)/2<br>Step 6: Calculate area = √[s × (s-a) × (s-b) × (s-c)]<br>Step 7: Output area<br>Step 8: Stop</p><p><strong>Example:</strong> For base=10, height=8, area = (10×8)/2 = 40 square units.</p>",
+            "marks": 5,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "4.a",
+            "type": "laq",
+            "group": "B",
+            "question": "What are the differences between Primary Memory and Secondary Memory?",
+            "answer": "<p><strong>Differences between Primary Memory and Secondary Memory:</strong></p><table border='1' cellpadding='5'><tr><th>Primary Memory</th><th>Secondary Memory</th></tr><tr><td>Also called Main Memory or Internal Memory</td><td>Also called Auxiliary Memory or External Storage</td></tr><tr><td>Directly accessible by CPU</td><td>Not directly accessible by CPU; data first copied to primary memory</td></tr><tr><td>Examples: RAM, ROM, Cache</td><td>Examples: Hard Disk, SSD, CD/DVD, USB Drive</td></tr><tr><td>Volatile (RAM) - loses data when power off<br>Non-volatile (ROM) - retains data</td><td>Non-volatile - retains data permanently</td></tr><tr><td>Faster access speed (nanoseconds)</td><td>Slower access speed (milliseconds)</td></tr><tr><td>Smaller storage capacity (GB)</td><td>Larger storage capacity (TB)</td></tr><tr><td>More expensive per GB</td><td>Less expensive per GB</td></tr><tr><td>Temporary storage for running programs</td><td>Permanent storage for files and data</td></tr><tr><td>Data is lost when power is off (RAM)</td><td>Data is retained even after power off</td></tr><tr><td>Used for currently executing programs</td><td>Used for long-term data storage</td></tr><tr><td>Limited capacity, expensive</td><td>High capacity, economical</td></tr><tr><td>Semiconductor memory (ICs)</td><td>Magnetic/Optical/Flash memory</td></tr></table><p><strong>Key Points:</strong></p><ul><li>Primary memory is the working memory of computer</li><li>Secondary memory provides permanent storage</li><li>CPU can only execute instructions from primary memory</li><li>Data from secondary memory must be loaded into primary memory before processing</li></ul>",
+            "marks": 3,
+            "unit": "Computer Memory"
+        },
+        {
+            "id": "4.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Write down the full form of ASCII, SSD, HTML, UPS, and SMPS in the context of computer system.",
+            "answer": "<p><strong>Full Forms in Computer Context:</strong></p><p><strong>1. ASCII - American Standard Code for Information Interchange</strong></p><ul><li>A character encoding standard for electronic communication</li><li>Represents text in computers using 7 or 8 bits</li><li>Includes 128 characters (letters, digits, symbols, control characters)</li></ul><p><strong>2. SSD - Solid State Drive</strong></p><ul><li>A storage device using flash memory (NAND) with no moving parts</li><li>Faster than traditional hard disk drives (HDD)</li><li>Used as primary storage in modern computers</li></ul><p><strong>3. HTML - Hypertext Markup Language</strong></p><ul><li>The standard markup language for creating web pages</li><li>Describes structure of web documents using tags</li><li>Used with CSS and JavaScript for web development</li></ul><p><strong>4. UPS - Uninterruptible Power Supply</strong></p><ul><li>An electrical device that provides emergency power when main power fails</li><li>Protects computers from power surges, voltage fluctuations, and sudden shutdowns</li><li>Contains battery that takes over instantly during power outage</li></ul><p><strong>5. SMPS - Switched Mode Power Supply</strong></p><ul><li>An electronic power supply unit in computers</li><li>Converts AC mains power to regulated DC voltages required by computer components</li><li>Provides +3.3V, +5V, +12V DC outputs for motherboard, drives, and other components</li><li>More efficient than linear power supplies</li></ul><p><strong>Additional Context:</strong> These terms are fundamental in understanding computer hardware (SSD, UPS, SMPS), software (HTML), and data representation (ASCII).</p>",
+            "marks": 5,
+            "unit": "Computer Fundamentals"
+        },
+        {
+            "id": "5.a",
+            "type": "laq",
+            "group": "B",
+            "question": "What is operating system? Explain functions of an Operating System.",
+            "answer": "<p><strong>Operating System (OS):</strong></p><p>An operating system is system software that acts as an interface between the user and computer hardware. It manages computer resources and provides a platform for application programs to run.</p><p><strong>Functions of Operating System:</strong></p><p><strong>1. Process Management:</strong></p><ul><li>Creates, schedules, and terminates processes</li><li>Manages CPU time sharing among processes</li><li>Handles process synchronization and communication</li><li>Implements process scheduling algorithms (FCFS, Round Robin, Priority)</li></ul><p><strong>2. Memory Management:</strong></p><ul><li>Allocates and deallocates memory space to programs</li><li>Keeps track of which memory is used by whom</li><li>Handles virtual memory and paging</li><li>Protects memory of different processes</li></ul><p><strong>3. File Management:</strong></p><ul><li>Creates, deletes, organizes files and directories</li><li>Manages file permissions and access control</li><li>Handles file reading/writing operations</li><li>Maintains file system structure (FAT, NTFS, ext4)</li></ul><p><strong>4. Device Management:</strong></p><ul><li>Manages I/O devices through device drivers</li><li>Handles interrupt requests from devices</li><li>Provides uniform interface for device access</li><li>Buffers and spools data for devices</li></ul><p><strong>5. Security and Protection:</strong></p><ul><li>Protects system from unauthorized access</li><li>Implements user authentication (passwords, biometrics)</li><li>Controls access rights to resources</li><li>Prevents interference between processes</li></ul><p><strong>6. User Interface:</strong></p><ul><li>Provides Command Line Interface (CLI) or Graphical User Interface (GUI)</li><li>Accepts and interprets user commands</li><li>Launches applications as requested</li></ul><p><strong>7. Error Handling:</strong></p><ul><li>Detects and handles hardware/software errors</li><li>Provides error messages and recovery options</li><li>Logs system errors for troubleshooting</li></ul><p><strong>8. Resource Allocation:</strong></p><ul><li>Manages all hardware resources efficiently</li><li>Resolves conflicts when multiple processes request same resource</li><li>Implements deadlock prevention/avoidance</li></ul>",
+            "marks": 3,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "5.b",
+            "type": "laq",
+            "group": "B",
+            "question": "What are the differences between multiprogramming and time-sharing system?",
+            "answer": "<p><strong>Differences between Multiprogramming and Time-Sharing Systems:</strong></p><table border='1' cellpadding='5'><tr><th>Multiprogramming</th><th>Time-Sharing</th></tr><tr><td>Multiple programs reside in memory simultaneously, CPU executes one while others wait for I/O</td><td>Multiple users share CPU time simultaneously, with rapid switching between users</td></tr><tr><td>Objective: Maximize CPU utilization by keeping CPU busy</td><td>Objective: Provide quick response time to multiple users</td></tr><tr><td>Switching occurs when current program performs I/O or completes</td><td>Switching occurs based on time quantum (preemptive)</td></tr><tr><td>No direct user interaction during program execution</td><td>Interactive - users interact with system in real-time</td></tr><tr><td>Focuses on throughput (jobs per unit time)</td><td>Focuses on response time and user experience</td></tr><tr><td>Used in batch processing systems</td><td>Used in interactive systems with multiple terminals</td></tr><tr><td>CPU idle time reduced by overlapping I/O with computation</td><td>CPU time divided equally among users in small time slices</td></tr><tr><td>Example: Early batch systems running multiple jobs</td><td>Example: UNIX timesharing, modern servers with multiple users</td></tr><tr><td>No context switching for time quantum - only on I/O</td><td>Regular context switching based on timer interrupts</td></tr><tr><td>Less complex scheduling algorithms</td><td>More complex scheduling for fairness and response time</td></tr><tr><td>Memory must hold multiple programs simultaneously</td><td>Memory must support multiple user processes</td></tr></table><p><strong>Key Distinction:</strong></p><ul><li>Multiprogramming is about keeping CPU busy by switching between programs when one waits for I/O</li><li>Time-sharing extends multiprogramming by adding timer interrupts to ensure each user gets fair CPU time, enabling interactive computing</li></ul><p><strong>Modern systems:</strong> Most modern OS combine both concepts - they are multiprogramming (multiple processes in memory) and also provide time-sharing for interactive users.</p>",
+            "marks": 5,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "6.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Subtract 25-16 using 2's complement method.",
+            "answer": "<p><strong>Subtracting 25 - 16 using 2's complement method:</strong></p><p>In 2's complement, subtraction A - B is performed as: A + (2's complement of B)</p><p><strong>Step 1: Convert numbers to binary (using 8 bits for clarity)</strong><br>25₁₀ = 00011001₂<br>16₁₀ = 00010000₂</p><p><strong>Step 2: Find 2's complement of 16 (the subtrahend)</strong></p><p>First, find 1's complement (invert all bits):<br>00010000 → 11101111</p><p>Add 1 to get 2's complement:<br>11101111 + 00000001 = 11110000</p><p>Therefore, 2's complement of 16 = 11110000</p><p><strong>Step 3: Add 25 and 2's complement of 16</strong><br>  00011001 (25)<br>+ 11110000 (2's complement of 16)<br>-----------<br>1 00001001 (9 bits)</p><p><strong>Step 4: Handle the carry</strong></p><p>We have a carry out (1) beyond 8 bits. In 2's complement subtraction, if there is a carry out, it indicates a positive result. We discard the carry and the remaining 8 bits are the answer.</p><p>Result after discarding carry: 00001001₂</p><p><strong>Step 5: Convert back to decimal</strong><br>00001001₂ = 8 + 1 = 9₁₀</p><p>Therefore, 25 - 16 = <strong>9</strong></p><p><strong>Verification using normal subtraction:</strong><br>25 - 16 = 9 ✓</p><p><strong>Alternative method for negative results:</strong> If there is no carry, the result is negative and we would need to take 2's complement again.</p>",
+            "marks": 4,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "6.b.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Convert (21C)₁₆ to Octal Number",
+            "answer": "<p><strong>Converting (21C)₁₆ to Octal:</strong></p><p><strong>Method: Hexadecimal → Binary → Octal</strong></p><p><strong>Step 1: Convert hexadecimal to binary</strong><br>Each hexadecimal digit converts to 4 binary bits:</p><p>2₁₆ = 0010₂<br>1₁₆ = 0001₂<br>C₁₆ = 12₁₀ = 1100₂</p><p>Therefore, (21C)₁₆ = 0010 0001 1100₂ = 001000011100₂</p><p><strong>Step 2: Group binary into 3-bit groups (from right for octal)</strong><br>001 000 011 100₂</p><p><strong>Step 3: Convert each 3-bit group to octal digit</strong><br>001₂ = 1₈<br>000₂ = 0₈<br>011₂ = 3₈<br>100₂ = 4₈</p><p><strong>Step 4: Combine octal digits</strong><br>001 000 011 100₂ = (1034)₈</p><p>Therefore, (21C)₁₆ = <strong>(1034)₈</strong></p><p><strong>Verification by converting to decimal:</strong></p><p>(21C)₁₆ = 2×16² + 1×16¹ + 12×16⁰<br>= 2×256 + 1×16 + 12<br>= 512 + 16 + 12 = 540₁₀</p><p>(1034)₈ = 1×8³ + 0×8² + 3×8¹ + 4×8⁰<br>= 1×512 + 0×64 + 3×8 + 4<br>= 512 + 0 + 24 + 4 = 540₁₀ ✓</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "6.b.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Convert (34.25)₁₀ to Binary Number",
+            "answer": "<p><strong>Converting (34.25)₁₀ to Binary:</strong></p><p><strong>Step 1: Convert integer part (34)₁₀</strong><br>34 ÷ 2 = 17 remainder 0<br>17 ÷ 2 = 8 remainder 1<br>8 ÷ 2 = 4 remainder 0<br>4 ÷ 2 = 2 remainder 0<br>2 ÷ 2 = 1 remainder 0<br>1 ÷ 2 = 0 remainder 1</p><p>Reading remainders from bottom to top: 34₁₀ = 100010₂</p><p><strong>Step 2: Convert fractional part (0.25)₁₀</strong><br>0.25 × 2 = 0.50 → integer part 0<br>0.50 × 2 = 1.00 → integer part 1 (fraction becomes 0, stop)</p><p>Reading integer parts from top to bottom: 0.25₁₀ = 0.01₂</p><p><strong>Step 3: Combine integer and fractional parts</strong><br>34.25₁₀ = 100010.01₂</p><p><strong>Verification:</strong></p><p>Binary 100010₂ = 1×2⁵ + 0×2⁴ + 0×2³ + 0×2² + 1×2¹ + 0×2⁰<br>= 32 + 0 + 0 + 0 + 2 + 0 = 34 ✓</p><p>Binary 0.01₂ = 0×2⁻¹ + 1×2⁻² = 0 + 0.25 = 0.25 ✓</p><p>Therefore, <strong>(34.25)₁₀ = (100010.01)₂</strong></p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "7.a",
+            "type": "laq",
+            "group": "B",
+            "question": "What is HTML? How many types of list in HTML?",
+            "answer": "<p><strong>HTML (Hypertext Markup Language):</strong></p><p>HTML is the standard markup language used to create web pages. It describes the structure of web documents using markup tags. HTML elements are the building blocks of web pages, represented by tags like &lt;html&gt;, &lt;head&gt;, &lt;body&gt;, etc.</p><p><strong>Key Features:</strong></p><ul><li>Uses tags to structure content (headings, paragraphs, links, images)</li><li>Creates hyperlinks between pages</li><li>Embeds multimedia (images, videos, audio)</li><li>Works with CSS for styling and JavaScript for interactivity</li></ul><p><strong>Types of Lists in HTML:</strong></p><p>HTML provides three main types of lists:</p><p><strong>1. Ordered List (&lt;ol&gt;):</strong> Displays items in numbered or lettered sequence</p><pre><code>&lt;ol&gt;<br>  &lt;li&gt;First item&lt;/li&gt;<br>  &lt;li&gt;Second item&lt;/li&gt;<br>  &lt;li&gt;Third item&lt;/li&gt;<br>&lt;/ol&gt;</code></pre><p>Output:<br>1. First item<br>2. Second item<br>3. Third item</p><p><strong>2. Unordered List (&lt;ul&gt;):</strong> Displays items with bullets</p><pre><code>&lt;ul&gt;<br>  &lt;li&gt;Apple&lt;/li&gt;<br>  &lt;li&gt;Banana&lt;/li&gt;<br>  &lt;li&gt;Orange&lt;/li&gt;<br>&lt;/ul&gt;</code></pre><p>Output:<br>• Apple<br>• Banana<br>• Orange</p><p><strong>3. Definition List (&lt;dl&gt;):</strong> Displays terms and their definitions</p><pre><code>&lt;dl&gt;<br>  &lt;dt&gt;HTML&lt;/dt&gt;<br>  &lt;dd&gt;Hypertext Markup Language&lt;/dd&gt;<br>  &lt;dt&gt;CSS&lt;/dt&gt;<br>  &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;<br>&lt;/dl&gt;</code></pre><p>Output:<br>HTML<br>    Hypertext Markup Language<br>CSS<br>    Cascading Style Sheets</p><p><strong>List Attributes:</strong></p><ul><li>&lt;ol&gt; supports type=\"1/A/a/I/i\" and start attribute</li><li>&lt;ul&gt; supports type=\"disc/circle/square\"</li><li>Lists can be nested inside each other</li></ul>",
+            "marks": 3,
+            "unit": "HTML"
+        },
+        {
+            "id": "7.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Write down the HTML code to create the given table: Animals | Birds | Fruits (Cow, Parrot, Banana; Dog, Pigeon, Mango; Horse, Crow, Apple; Deer, Cuckoo, Grapes)",
+            "answer": "<pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Animals, Birds and Fruits Table&lt;/title&gt;\n    &lt;style&gt;\n        table {\n            border-collapse: collapse;\n            width: 60%;\n            margin: 20px auto;\n            font-family: Arial, sans-serif;\n        }\n        th, td {\n            border: 2px solid #333;\n            padding: 10px;\n            text-align: left;\n        }\n        th {\n            background-color: #4CAF50;\n            color: white;\n            font-size: 18px;\n        }\n        tr:nth-child(even) {\n            background-color: #f2f2f2;\n        }\n        tr:hover {\n            background-color: #ddd;\n        }\n    &lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;h2 style=\"text-align:center;\"&gt;Animals, Birds and Fruits&lt;/h2&gt;\n    \n    &lt;table&gt;\n        &lt;tr&gt;\n            &lt;th&gt;Animals&lt;/th&gt;\n            &lt;th&gt;Birds&lt;/th&gt;\n            &lt;th&gt;Fruits&lt;/th&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;td&gt;Cow&lt;/td&gt;\n            &lt;td&gt;Parrot&lt;/td&gt;\n            &lt;td&gt;Banana&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;td&gt;Dog&lt;/td&gt;\n            &lt;td&gt;Pigeon&lt;/td&gt;\n            &lt;td&gt;Mango&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;td&gt;Horse&lt;/td&gt;\n            &lt;td&gt;Crow&lt;/td&gt;\n            &lt;td&gt;Apple&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;td&gt;Deer&lt;/td&gt;\n            &lt;td&gt;Cuckoo&lt;/td&gt;\n            &lt;td&gt;Grapes&lt;/td&gt;\n        &lt;/tr&gt;\n    &lt;/table&gt;\n\n    &lt;div style=\"text-align:center; margin-top:20px;\"&gt;\n        &lt;p&gt;&lt;strong&gt;Table showing Animals, Birds and their corresponding Fruits&lt;/strong&gt;&lt;/p&gt;\n    &lt;/div&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><p><strong>Explanation of the code:</strong></p><ul><li><strong>&lt;table&gt;</strong>: Creates the table structure</li><li><strong>&lt;tr&gt;</strong>: Defines table rows</li><li><strong>&lt;th&gt;</strong>: Defines header cells (bold and centered by default)</li><li><strong>&lt;td&gt;</strong>: Defines standard data cells</li><li><strong>CSS styling</strong>: Added for better visual appearance</li><li><strong>border-collapse</strong>: Merges borders for clean look</li><li><strong>hover effect</strong>: Highlights row on mouse over</li></ul><p><strong>Output:</strong> A 4×3 table with Animals in first column, Birds in second column, and Fruits in third column, with 4 rows of data plus header row.</p>",
+            "marks": 5,
+            "unit": "HTML"
+        },
+        {
+            "id": "8.a",
+            "type": "laq",
+            "group": "B",
+            "question": "What is CSS? Write the HTML code to implement CSS.",
+            "answer": "<p><strong>CSS (Cascading Style Sheets):</strong></p><p>CSS is a stylesheet language used to describe the presentation and formatting of HTML documents. It controls how web pages look - including layout, colors, fonts, spacing, and responsive design. CSS separates content (HTML) from presentation, making websites easier to maintain and update.</p><p><strong>CSS Syntax:</strong> selector { property: value; }<br>Example: h1 { color: blue; font-size: 24px; }</p><p><strong>HTML Code to Implement CSS (Three Methods):</strong></p><p><strong>1. Inline CSS (using style attribute):</strong></p><pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Inline CSS Example&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;h1 style=\"color: blue; text-align: center;\"&gt;This is a Blue Heading&lt;/h1&gt;\n    &lt;p style=\"color: red; font-size: 18px;\"&gt;This is a red paragraph with larger font.&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><p><strong>2. Internal CSS (using &lt;style&gt; tag in head):</strong></p><pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Internal CSS Example&lt;/title&gt;\n    &lt;style&gt;\n        body {\n            background-color: lightgray;\n            font-family: Arial, sans-serif;\n        }\n        h1 {\n            color: blue;\n            text-align: center;\n            text-decoration: underline;\n        }\n        p {\n            color: green;\n            font-size: 18px;\n            line-height: 1.5;\n        }\n        .highlight {\n            background-color: yellow;\n            padding: 5px;\n        }\n    &lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;h1&gt;Welcome to My Page&lt;/h1&gt;\n    &lt;p&gt;This is a paragraph with green text.&lt;/p&gt;\n    &lt;p class=\"highlight\"&gt;This paragraph has a yellow background.&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><p><strong>3. External CSS (linking to .css file):</strong></p><p><strong>HTML file (index.html):</strong></p><pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;External CSS Example&lt;/title&gt;\n    &lt;link rel=\"stylesheet\" href=\"styles.css\"&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;h1&gt;Welcome to My Page&lt;/h1&gt;\n    &lt;p&gt;This paragraph is styled by external CSS.&lt;/p&gt;\n    &lt;div class=\"box\"&gt;This is a styled box&lt;/div&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><p><strong>CSS file (styles.css):</strong></p><pre><code>body {\n    background-color: #f0f0f0;\n    font-family: Arial, sans-serif;\n    margin: 20px;\n}\n\nh1 {\n    color: navy;\n    text-align: center;\n    border-bottom: 2px solid navy;\n    padding-bottom: 10px;\n}\n\np {\n    color: #333;\n    font-size: 16px;\n    line-height: 1.6;\n}\n\n.box {\n    background-color: white;\n    border: 1px solid #ccc;\n    padding: 15px;\n    border-radius: 5px;\n    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);\n}</code></pre><p><strong>Priority Order:</strong> Inline CSS > Internal CSS > External CSS (cascading nature). External CSS is preferred for larger websites as it promotes reusability and easier maintenance.</p>",
+            "marks": 3,
+            "unit": "CSS"
+        },
+        {
+            "id": "8.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Design a HTML page with JavaScript to calculate the sum of two integer numbers.",
+            "answer": "<pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Sum of Two Numbers&lt;/title&gt;\n    &lt;style&gt;\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f4f4f4;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n            margin: 0;\n        }\n        .container {\n            background-color: white;\n            padding: 30px;\n            border-radius: 10px;\n            box-shadow: 0 0 20px rgba(0,0,0,0.1);\n            width: 400px;\n            text-align: center;\n        }\n        h2 {\n            color: #333;\n            margin-bottom: 20px;\n        }\n        .input-group {\n            margin-bottom: 15px;\n            text-align: left;\n        }\n        label {\n            display: block;\n            margin-bottom: 5px;\n            color: #555;\n            font-weight: bold;\n        }\n        input {\n            width: 100%;\n            padding: 10px;\n            border: 2px solid #ddd;\n            border-radius: 5px;\n            font-size: 16px;\n            box-sizing: border-box;\n        }\n        input:focus {\n            outline: none;\n            border-color: #4CAF50;\n        }\n        button {\n            background-color: #4CAF50;\n            color: white;\n            padding: 12px 30px;\n            border: none;\n            border-radius: 5px;\n            font-size: 16px;\n            cursor: pointer;\n            margin: 10px 0;\n            transition: background-color 0.3s;\n        }\n        button:hover {\n            background-color: #45a049;\n        }\n        .result {\n            margin-top: 20px;\n            padding: 15px;\n            background-color: #e8f5e9;\n            border-radius: 5px;\n            font-size: 18px;\n            font-weight: bold;\n            color: #2e7d32;\n            border: 1px solid #c8e6c9;\n        }\n        .error {\n            color: #d32f2f;\n            margin-top: 10px;\n            font-weight: normal;\n        }\n    &lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;div class=\"container\"&gt;\n        &lt;h2&gt;Sum of Two Integer Numbers&lt;/h2&gt;\n        \n        &lt;div class=\"input-group\"&gt;\n            &lt;label for=\"num1\"&gt;Enter First Number:&lt;/label&gt;\n            &lt;input type=\"number\" id=\"num1\" placeholder=\"e.g., 25\"&gt;\n        &lt;/div&gt;\n        \n        &lt;div class=\"input-group\"&gt;\n            &lt;label for=\"num2\"&gt;Enter Second Number:&lt;/label&gt;\n            &lt;input type=\"number\" id=\"num2\" placeholder=\"e.g., 17\"&gt;\n        &lt;/div&gt;\n        \n        &lt;button onclick=\"calculateSum()\"&gt;Calculate Sum&lt;/button&gt;\n        \n        &lt;div class=\"result\" id=\"result\"&gt;\n            Enter numbers and click Calculate\n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;script&gt;\n        function calculateSum() {\n            // Get input values\n            let num1 = document.getElementById('num1').value;\n            let num2 = document.getElementById('num2').value;\n            \n            // Check if inputs are empty\n            if (num1 === '' || num2 === '') {\n                document.getElementById('result').innerHTML = \n                    '⚠️ Please enter both numbers';\n                document.getElementById('result').style.backgroundColor = '#ffebee';\n                document.getElementById('result').style.color = '#c62828';\n                return;\n            }\n            \n            // Convert to integers\n            num1 = parseInt(num1);\n            num2 = parseInt(num2);\n            \n            // Check if valid numbers\n            if (isNaN(num1) || isNaN(num2)) {\n                document.getElementById('result').innerHTML = \n                    '⚠️ Please enter valid integer numbers';\n                document.getElementById('result').style.backgroundColor = '#ffebee';\n                document.getElementById('result').style.color = '#c62828';\n                return;\n            }\n            \n            // Calculate sum\n            let sum = num1 + num2;\n            \n            // Display result\n            document.getElementById('result').innerHTML = \n                `First Number: ${num1}&lt;br&gt;` +\n                `Second Number: ${num2}&lt;br&gt;` +\n                `&lt;strong&gt;Sum: ${num1} + ${num2} = ${sum}&lt;/strong&gt;`;\n            document.getElementById('result').style.backgroundColor = '#e8f5e9';\n            document.getElementById('result').style.color = '#2e7d32';\n        }\n        \n        // Optional: Allow Enter key to trigger calculation\n        document.getElementById('num2').addEventListener('keypress', function(event) {\n            if (event.key === 'Enter') {\n                calculateSum();\n            }\n        });\n    &lt;/script&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><p><strong>Features of this implementation:</strong></p><ul><li><strong>User-friendly interface:</strong> Clean design with labels and placeholders</li><li><strong>Input validation:</strong> Checks for empty fields and non-numeric input</li><li><strong>Error handling:</strong> Displays appropriate error messages in red</li><li><strong>Real-time calculation:</strong> Click button or press Enter to calculate</li><li><strong>Visual feedback:</strong> Styled result area changes color based on success/error</li><li><strong>Responsive design:</strong> Works on different screen sizes</li><li><strong>Accessibility:</strong> Proper labels and focus states</li></ul>",
+            "marks": 5,
+            "unit": "JavaScript"
+        },
+        {
+            "id": "9.a",
+            "type": "laq",
+            "group": "B",
+            "question": "How can you protect your computer from being hacked?",
+            "answer": "<p><strong>Ways to Protect Your Computer from Hacking:</strong></p><p><strong>1. Software Protection:</strong></p><ul><li>Install and regularly update antivirus/anti-malware software (e.g., Windows Defender, Norton, McAfee)</li><li>Enable firewall to monitor and block unauthorized network access</li><li>Keep operating system and all software updated with security patches</li><li>Use anti-spyware tools to detect and remove spyware</li></ul><p><strong>2. Strong Authentication:</strong></p><ul><li>Use strong, unique passwords for different accounts (mix of uppercase, lowercase, numbers, special characters)</li><li>Enable two-factor authentication (2FA) wherever possible</li><li>Use password manager to store complex passwords securely</li><li>Change default passwords on routers and devices</li><li>Biometric authentication where available</li></ul><p><strong>3. Safe Browsing Habits:</strong></p><ul><li>Don't click suspicious links in emails, messages, or pop-ups</li><li>Avoid downloading from untrusted websites or torrents</li><li>Verify website authenticity - look for HTTPS and valid SSL certificates</li><li>Be cautious with email attachments, even from known senders</li><li>Don't respond to phishing emails asking for personal information</li></ul><p><strong>4. Network Security:</strong></p><ul><li>Use secure Wi-Fi with WPA2/WPA3 encryption</li><li>Change default router passwords and disable WPS</li><li>Use VPN when on public Wi-Fi networks</li><li>Disable unnecessary network services and ports</li><li>Regularly monitor connected devices on your network</li></ul><p><strong>5. Data Protection:</strong></p><ul><li>Regular backups of important data to external drive or cloud</li><li>Encrypt sensitive files and folders</li><li>Use secure cloud storage with encryption</li><li>Shred files permanently before disposal</li></ul><p><strong>6. Physical Security:</strong></p><ul><li>Lock computer when not in use (Windows+L)</li><li>Set BIOS/UEFI password</li><li>Secure physical access to device</li><li>Use privacy screens in public places</li></ul><p><strong>7. Email Security:</strong></p><ul><li>Be wary of unexpected emails, even from known contacts</li><li>Check sender email address carefully for spoofing</li><li>Don't provide personal information via email</li><li>Use spam filters effectively</li></ul><p><strong>8. Social Media Safety:</strong></p><ul><li>Adjust privacy settings to limit information sharing</li><li>Don't post personal information (address, phone, birthday)</li><li>Be careful what you share in photos</li><li>Regularly review connected apps and revoke unused access</li></ul><p><strong>9. Regular Monitoring:</strong></p><ul><li>Check account statements and activities regularly</li><li>Monitor for unusual system behavior</li><li>Review login history for online accounts</li><li>Set up alerts for suspicious activities</li></ul><p><strong>10. Education and Awareness:</strong></p><ul><li>Stay informed about latest cyber threats and scams</li><li>Learn to recognize social engineering attempts</li><li>Train family members about online safety</li><li>Keep up with security best practices</li></ul>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "9.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Write short note on Denial of service attack works.",
+            "answer": "<p><strong>Denial of Service (DoS) Attack:</strong></p><p>A DoS attack is a cyber attack where malicious actors flood a target system, server, or network with excessive traffic or requests to overwhelm its resources, making it unavailable to legitimate users.</p><p><strong>How DoS Attack Works:</strong></p><p><strong>1. Resource Exhaustion:</strong> Attacker sends massive number of requests to consume all available resources (bandwidth, CPU, memory, connections).</p><p><strong>2. Exploitation of Vulnerabilities:</strong> Sends specially crafted packets that exploit protocol weaknesses, causing system crash or freeze.</p><p><strong>Types of DoS Attacks:</strong></p><p><strong>1. Volume-based Attacks:</strong></p><ul><li>Floods target with massive traffic</li><li>Examples: ICMP flood (Ping flood), UDP flood</li><li>Consumes all available bandwidth</li></ul><p><strong>2. Protocol Attacks:</strong></p><ul><li>Exploits weaknesses in network protocols</li><li>Examples: SYN flood (sends many TCP connection requests), Ping of Death (oversized packets)</li><li>Consumes server resources like connection tables</li></ul><p><strong>3. Application Layer Attacks:</strong></p><ul><li>Targets specific applications (web servers, databases)</li><li>Examples: HTTP flood, Slowloris (slow connections)</li><li>Appears as legitimate traffic but overwhelms application</li></ul><p><strong>DDoS (Distributed Denial of Service):</strong></p><ul><li>Multiple compromised systems (botnet) attack simultaneously from different locations</li><li>Harder to block because traffic comes from many IP addresses</li><li>Attackers use networks of infected computers or IoT devices</li></ul><p><strong>Attack Process:</strong></p><p>Step 1: Attacker builds botnet by infecting many computers<br>Step 2: Command and Control server sends attack instructions<br>Step 3: All bots send traffic to target simultaneously<br>Step 4: Target's resources become overwhelmed<br>Step 5: Legitimate users cannot access service</p><p><strong>Impact:</strong></p><ul><li>Service disruption and downtime</li><li>Financial loss (business cannot operate)</li><li>Reputation damage</li><li>Potential data breaches during chaos</li></ul><p><strong>Mitigation:</strong> Firewalls, intrusion detection systems, traffic filtering, rate limiting, cloud-based protection services (Cloudflare, Akamai).</p>",
+            "marks": 3,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "9.c",
+            "type": "laq",
+            "group": "B",
+            "question": "What is a Malware and types of Malwares?",
+            "answer": "<p><strong>Malware (Malicious Software):</strong></p><p>Malware is any software intentionally designed to cause damage, disrupt operations, steal data, or gain unauthorized access to computer systems. It is a broad term covering various types of malicious programs.</p><p><strong>Types of Malware:</strong></p><p><strong>1. Virus:</strong></p><ul><li>Self-replicating code that attaches to clean files and spreads when infected files are executed</li><li>Requires user action to spread (opening file, running program)</li><li>Can corrupt or delete data</li><li>Example: CIH (Chernobyl) virus</li></ul><p><strong>2. Worm:</strong></p><ul><li>Self-replicating malware that spreads independently across networks without user intervention</li><li>Exploits vulnerabilities to propagate</li><li>Consumes bandwidth and system resources</li><li>Example: Morris worm, Blaster worm</li></ul><p><strong>3. Trojan Horse:</strong></p><ul><li>Disguises as legitimate software but performs malicious actions</li><li>Does not self-replicate</li><li>Creates backdoors, steals data, installs other malware</li><li>Example: Zeus Trojan (banking credentials theft)</li></ul><p><strong>4. Ransomware:</strong></p><ul><li>Encrypts user data and demands payment for decryption key</li><li>Can also lock users out of system</li><li>Example: WannaCry, Petya, Locky</li></ul><p><strong>5. Spyware:</strong></p><ul><li>Secretly monitors user activity, collects personal information</li><li>Records keystrokes, browsing habits, login credentials</li><li>Sends data to attackers</li><li>Example: Keyloggers, FinFisher</li></ul><p><strong>6. Adware:</strong></p><ul><li>Displays unwanted advertisements, often redirects browsers</li><li>May not be strictly malicious but intrusive</li><li>Can collect browsing data for marketing</li></ul><p><strong>7. Rootkit:</strong></p><ul><li>Hides deep in operating system to conceal malicious activities</li><li>Gains administrator-level access</li><li>Very difficult to detect and remove</li><li>Example: Sony BMG rootkit scandal</li></ul><p><strong>8. Botnet:</strong></p><ul><li>Network of infected computers controlled remotely</li><li>Used for coordinated attacks (DDoS), spam sending</li><li>Each infected machine is a \"bot\" or \"zombie\"</li></ul><p><strong>9. Logic Bomb:</strong></p><ul><li>Malicious code triggered by specific conditions (date, event)</li><li>Often planted by disgruntled employees</li></ul><p><strong>10. Fileless Malware:</strong></p><ul><li>Operates in memory without writing files to disk</li><li>Harder to detect by traditional antivirus</li><li>Uses legitimate system tools (PowerShell, WMI)</li></ul>",
+            "marks": 3,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "10.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Differentiate Worm and Virus.",
+            "answer": "<p><strong>Differences between Worm and Virus:</strong></p><table border='1' cellpadding='5'><tr><th>Worm</th><th>Virus</th></tr><tr><td>Self-replicating malware that spreads independently across networks</td><td>Self-replicating code that attaches to clean files and requires host program</td></tr><tr><td>Does not need to attach to existing files or programs</td><td>Must attach to executable files, scripts, or documents</td></tr><tr><td>Spreads automatically without user intervention</td><td>Requires user action to spread (opening infected file, running program)</td></tr><tr><td>Exploits network vulnerabilities to propagate</td><td>Spreads through file sharing, email attachments, removable media</td></tr><tr><td>Can spread rapidly across networks, consuming bandwidth</td><td>Spreads slower, usually locally through file infection</td></tr><tr><td>Main impact: Network congestion, resource consumption</td><td>Main impact: File corruption, system damage</td></tr><tr><td>Example: Morris worm (1988), Blaster worm (2003)</td><td>Example: CIH/Chernobyl virus, ILOVEYOU virus</td></tr><tr><td>Often carries payload (backdoors, spyware)</td><td>Often carries destructive payload</td></tr><tr><td>Can exist independently in memory</td><td>Requires host file to exist</td></tr><tr><td>Detection: Network monitoring, traffic analysis</td><td>Detection: File scanning, signature-based</td></tr><tr><td>Removal: Patching vulnerabilities, network isolation</td><td>Removal: Antivirus cleaning, file quarantine</td></tr></table><p><strong>Key Differences Summary:</strong></p><ul><li><strong>Propagation:</strong> Worms self-propagate via networks; viruses need user action and host files</li><li><strong>Independence:</strong> Worms are standalone; viruses are file-dependent</li><li><strong>Speed:</strong> Worms spread faster across networks; viruses spread slower locally</li><li><strong>Impact:</strong> Worms mainly affect network/resources; viruses mainly affect files/system</li></ul><p><strong>Similarities:</strong></p><ul><li>Both are types of malware</li><li>Both can replicate and spread</li><li>Both can carry destructive payloads</li><li>Both need security measures for prevention</li></ul>",
+            "marks": 4,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "10.b",
+            "type": "laq",
+            "group": "B",
+            "question": "What do you understand by the term Fraud, Abuse and Cyber stalking?",
+            "answer": "<p><strong>Fraud, Abuse, and Cyber Stalking in Cyber Context:</strong></p><p><strong>1. Cyber Fraud:</strong></p><p>Cyber fraud is the use of internet or digital means to deceive victims for financial gain or personal benefit. It involves illegal activities where fraudsters trick individuals or organizations.</p><p><strong>Types of Cyber Fraud:</strong></p><ul><li><strong>Phishing:</strong> Fake emails/messages pretending to be legitimate entities to steal login credentials, credit card details</li><li><strong>Online Shopping Fraud:</strong> Fake e-commerce sites that collect payment but never deliver goods</li><li><strong>Banking Fraud:</strong> Unauthorized access to bank accounts, credit card fraud</li><li><strong>Investment Scams:</strong> Fake cryptocurrency schemes, pyramid schemes</li><li><strong>Identity Theft:</strong> Stealing personal information to impersonate victim</li><li><strong>Lottery Scams:</strong> Fake lottery wins requiring payment to release prize</li><li><strong>Romance Scams:</strong> Fake relationships to extract money</li><li><strong>Tech Support Scams:</strong> Fake calls about computer problems demanding payment</li></ul><p><strong>2. Cyber Abuse:</strong></p><p>Cyber abuse refers to harmful behavior directed at individuals through digital means, causing emotional or psychological distress.</p><p><strong>Forms of Cyber Abuse:</strong></p><ul><li><strong>Cyberbullying:</strong> Sending threatening messages, spreading rumors, posting embarrassing content about minors</li><li><strong>Online Harassment:</strong> Repeated unwanted messages, threats, intimidation of adults</li><li><strong>Trolling:</strong> Deliberately provoking or upsetting people online</li><li><strong>Doxing:</strong> Publishing private personal information without consent</li><li><strong>Revenge Porn:</strong> Sharing intimate images without consent</li><li><strong>Impersonation:</strong> Creating fake profiles to harass or defame</li><li><strong>Exclusion:</strong> Deliberately excluding someone from online groups</li></ul><p><strong>3. Cyber Stalking:</strong></p><p>Cyber stalking is the use of internet or electronic communication to repeatedly harass, threaten, or intimidate someone, causing fear and distress. It is a serious crime that can escalate to physical stalking.</p><p><strong>Characteristics of Cyber Stalking:</strong></p><ul><li><strong>Persistence:</strong> Repeated, unwanted contact over time</li><li><strong>Monitoring:</strong> Tracking victim's online activities, location through social media</li><li><strong>Threats:</strong> Sending threatening messages, implying harm</li><li><strong>False Accusations:</strong> Spreading lies about victim online</li><li><strong>Contact Methods:</strong> Email, social media, messaging apps, comments on posts</li><li><strong>Gathering Information:</strong> Collecting personal details to increase harassment</li><li><strong>Contacting Family/Friends:</strong> Involving others to intimidate victim</li></ul><p><strong>Prevention and Protection:</strong></p><ul><li>Use privacy settings on social media</li><li>Don't share personal information online</li><li>Document all incidents (screenshots, dates)</li><li>Block and report harassers</li><li>Change passwords and enable 2FA</li><li>Contact law enforcement (cyber crime cells)</li><li>Seek counseling if affected</li></ul><p><strong>Legal Aspects in India:</strong></p><ul><li>IT Act 2000 (amended 2008) covers cyber crimes</li><li>Section 66: Computer-related offenses</li><li>Section 66E: Privacy violation</li><li>Section 67: Publishing obscene material</li><li>Indian Penal Code also applies to cyber stalking and harassment</li></ul>",
+            "marks": 4,
+            "unit": "Cyber Security"
+        }
+    ]
+}

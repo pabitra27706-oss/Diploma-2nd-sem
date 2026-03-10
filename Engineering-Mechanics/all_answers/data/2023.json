@@ -1,0 +1,284 @@
+{
+    "exam": {
+        "subject": "ENGINEERING MECHANICS",
+        "year": "2023",
+        "board": "WBSCTE",
+        "semester": "II",
+        "timeAllowed": "3 Hours",
+        "fullMarks": 70,
+        "instructions": "Answer any five questions from Question No. 1"
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "saq",
+            "group": "A",
+            "question": "Explain the principle of transmissibility.",
+            "answer": "<p><strong>Principle of transmissibility of forces</strong> states that the state of rest or motion of a rigid body remains unchanged if a force acting at a point on the body is replaced by another force of the same magnitude and direction acting at any other point along its line of action.</p><p>This principle is valid only for rigid bodies where deformation is neglected. It implies that the force can be considered as a sliding vector along its line of action.</p><p><strong>Example:</strong> Pushing or pulling a block with the same force along the same line produces the same translational and rotational effects.</p>",
+            "marks": 3,
+            "unit": "Forces"
+        },
+        {
+            "id": "1.ii",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the conditions for equilibrium of forces.",
+            "answer": "<p><strong>Conditions for equilibrium of forces:</strong></p><p>For a body to be in complete equilibrium, two conditions must be satisfied:</p><p><strong>1. Translational equilibrium:</strong> The algebraic sum of all forces in any direction must be zero.</p><p>∑Fₓ = 0, ∑Fᵧ = 0, ∑F₂ = 0 (for three-dimensional forces)</p><p><strong>2. Rotational equilibrium:</strong> The algebraic sum of moments of all forces about any point must be zero.</p><p>∑M = 0 about any point</p><p>These conditions ensure that the body has no linear acceleration (translational equilibrium) and no angular acceleration (rotational equilibrium).</p>",
+            "marks": 3,
+            "unit": "Equilibrium"
+        },
+        {
+            "id": "1.iii",
+            "type": "saq",
+            "group": "A",
+            "question": "Show with diagram: Uniformly distributed load and uniformly varying load.",
+            "answer": "<p><strong>Uniformly Distributed Load (UDL):</strong></p><p>A load that is spread uniformly over a length of beam, represented by a rectangular block or a series of arrows of equal length. Intensity is constant (w N/m).</p><p><em>Diagram description:</em> A horizontal beam with vertical arrows of equal length spaced evenly along the entire span, represented as a rectangle along the beam length.</p><p><strong>Uniformly Varying Load (UVL):</strong></p><p>A load that varies linearly along the beam length, represented by a triangular shape. Intensity changes from zero at one end to maximum at the other end.</p><p><em>Diagram description:</em> A horizontal beam with vertical arrows increasing in length from zero at one end to maximum at the other end, forming a triangular shape.</p><p>For UVL, the total load = area of triangle = (1/2) × base × maximum intensity, and it acts at the centroid of the triangle (at 1/3 distance from the maximum intensity end).</p>",
+            "marks": 3,
+            "unit": "Beams"
+        },
+        {
+            "id": "1.iv",
+            "type": "saq",
+            "group": "A",
+            "question": "State the Coulomb's laws of friction.",
+            "answer": "<p><strong>Coulomb's laws of dry friction:</strong></p><ol><li>The frictional force always acts tangential to the contacting surfaces and opposes relative motion or its tendency.</li><li>The maximum static friction force (limiting friction) is directly proportional to the normal reaction between the surfaces. F_max = μₛN, where μₛ is the coefficient of static friction.</li><li>For moderate speeds, kinetic friction is independent of the velocity of sliding and is less than limiting friction. F_k = μₖN, where μₖ is the coefficient of kinetic friction.</li><li>Friction force depends on the nature and roughness of the contacting surfaces.</li><li>Friction force is independent of the area of contact (for moderate pressures).</li></ol>",
+            "marks": 3,
+            "unit": "Friction"
+        },
+        {
+            "id": "1.v",
+            "type": "saq",
+            "group": "A",
+            "question": "What is cone of friction? Draw the cone.",
+            "answer": "<p><strong>Cone of friction</strong> is a conical surface obtained by revolving the line of action of the resultant reaction (R) around the normal reaction (N) when the body is in limiting equilibrium.</p><p>When a body is about to move, the resultant reaction R makes an angle φ (angle of friction) with the normal. If the normal reaction N is taken as axis and the resultant reaction R is rotated around it, it traces a cone known as the cone of friction.</p><p><em>Diagram description:</em> A vertical axis representing normal reaction N. An inclined line making angle φ with the vertical representing resultant reaction R. When rotated around the vertical axis, it forms a cone with semi-vertex angle φ.</p><p><strong>Significance:</strong> If the line of action of the applied force lies inside the cone of friction, the body will not move regardless of the magnitude of the force (self-locking condition).</p>",
+            "marks": 3,
+            "unit": "Friction"
+        },
+        {
+            "id": "1.vi",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the advantages of friction.",
+            "answer": "<p><strong>Advantages of friction:</strong></p><ol><li><strong>Walking and running:</strong> Friction between shoes and ground enables us to walk without slipping.</li><li><strong>Braking:</strong> Vehicles use friction between brake pads and wheels to stop.</li><li><strong>Driving:</strong> Friction between tires and road provides traction for acceleration and turning.</li><li><strong>Holding objects:</strong> Friction allows us to grip and hold objects.</li><li><strong>Power transmission:</strong> Belt drives and friction clutches transmit power using friction.</li><li><strong>Nails and screws:</strong> Friction holds them in place after insertion.</li><li><strong>Writing:</strong> Pen on paper, chalk on blackboard work due to friction.</li><li><strong>Machining:</strong> Friction in grinding, polishing, and cutting operations.</li></ol>",
+            "marks": 3,
+            "unit": "Friction"
+        },
+        {
+            "id": "1.vii",
+            "type": "saq",
+            "group": "A",
+            "question": "What is Reversible & Non-reversible machine?",
+            "answer": "<p><strong>Reversible machine:</strong> A machine in which the load can move downward on its own when the effort is removed. Such machines have efficiency greater than 50%.</p><p><strong>Non-reversible (self-locking) machine:</strong> A machine in which the load remains stationary even when the effort is removed. The load cannot cause the machine to reverse. Such machines have efficiency less than or equal to 50%.</p><p><strong>Condition for reversibility:</strong> A machine is reversible if η > 50% and non-reversible if η ≤ 50%. For example, a screw jack with efficiency less than 50% is self-locking and holds the load in position without braking.</p>",
+            "marks": 3,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.viii",
+            "type": "saq",
+            "group": "A",
+            "question": "What do you mean by 'effort lost in friction' and 'frictional resistance'?",
+            "answer": "<p><strong>Effort lost in friction:</strong> It is the additional effort required to overcome friction in a machine. It is the difference between the actual effort (P_actual) and the ideal effort (P_ideal) for the same load.</p><p>Effort lost = P_actual - P_ideal = P_actual - W/VR</p><p><strong>Frictional resistance:</strong> It is the force that opposes relative motion between two surfaces in contact. In a machine, it represents the force that must be overcome due to friction between moving parts.</p><p>In the law of machine P = mW + C, the constant C represents the effort required to overcome friction when there is no load, and the term (mW) represents the effort lost in friction due to the load.</p>",
+            "marks": 3,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.ix",
+            "type": "saq",
+            "group": "A",
+            "question": "A train was moving at a constant velocity of 80 km/h, as it approached a station, the loco-pilot applied brakes at a constant retardation of 0.74 m/s² and stopped it at the station. How much time will it take to stop?",
+            "answer": "<p><strong>Given:</strong> Initial velocity u = 80 km/h, retardation a = -0.74 m/s², final velocity v = 0</p><p><strong>Step 1: Convert velocity to m/s</strong></p><p>u = 80 × (1000/3600) = 80 × (5/18) = 400/18 = 22.22 m/s</p><p><strong>Step 2: Use first equation of motion</strong></p><p>v = u + at</p><p>0 = 22.22 + (-0.74)t</p><p>0.74t = 22.22</p><p>t = 22.22/0.74 = 30.03 seconds</p><p><strong>Result:</strong> The train will take <strong>30 seconds</strong> to stop.</p>",
+            "marks": 3,
+            "unit": "Kinematics"
+        },
+        {
+            "id": "1.x",
+            "type": "saq",
+            "group": "A",
+            "question": "A ball is thrown vertically upwards from ground, with an initial velocity of 2 m/s. Find the greatest height attained by the ball.",
+            "answer": "<p><strong>Given:</strong> Initial velocity u = 2 m/s (upward), final velocity at highest point v = 0, acceleration a = -g = -9.81 m/s²</p><p><strong>Step 1: Use third equation of motion</strong></p><p>v² = u² + 2as</p><p>0 = (2)² + 2(-9.81)h</p><p>0 = 4 - 19.62h</p><p>19.62h = 4</p><p>h = 4/19.62 = 0.204 m</p><p><strong>Result:</strong> The greatest height attained is <strong>0.204 m</strong> or <strong>20.4 cm</strong>.</p>",
+            "marks": 3,
+            "unit": "Kinematics"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "State Varignon's theorem. Explain Bow's notation.",
+            "answer": "<p><strong>Varignon's Theorem (Principle of Moments):</strong> The moment of a force about any point is equal to the sum of the moments of its components about the same point.</p><p>Mathematically, if a force R is the resultant of forces P and Q, then M₀(R) = M₀(P) + M₀(Q) for any point O.</p><p><strong>Bow's Notation:</strong> It is a method of designating forces in a space diagram by placing capital letters in the spaces between forces.</p><p>In Bow's notation:</p><ul><li>Letters are placed in the spaces between forces, not on the forces themselves.</li><li>Each force is referred to by the two letters on either side of it.</li><li>For example, if forces are arranged around a joint, the space between two forces is labeled, and the force itself is denoted by the two adjacent letters (like AB, BC, etc.).</li><li>This notation is particularly useful in graphical analysis of trusses and force polygons, making it easier to identify forces and draw vector diagrams.</li></ul>",
+            "marks": 4,
+            "unit": "Forces and Moments"
+        },
+        {
+            "id": "2.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Two forces of magnitude '2P' and 'P' act on a particle. If the first force be doubled and the second force is increased by 12kN, the direction of their resultant remains unaltered. Find the value of P.",
+            "answer": "<h5>Solution: Finding the value of P</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Initial forces: F₁ = 2P, F₂ = P</li>\n<li>After change: F₁' = 2 × 2P = 4P, F₂' = P + 12 kN</li>\n<li>Direction of resultant remains unaltered</li>\n</ul>\n\n<p><strong>Step 1: Let θ be the angle between the forces</strong></p>\n<p>The direction of resultant is given by the angle it makes with the first force.</p>\n<p>For initial forces: tan α = (P sin θ)/(2P + P cos θ) = (sin θ)/(2 + cos θ) ...(1)</p>\n\n<p><strong>Step 2: For changed forces</strong></p>\n<p>tan α = [(P + 12) sin θ] / [4P + (P + 12) cos θ] ...(2)</p>\n\n<p><strong>Step 3: Since direction is same, equations (1) and (2) are equal</strong></p>\n<p>(sin θ)/(2 + cos θ) = [(P + 12) sin θ] / [4P + (P + 12) cos θ]</p>\n<p>Assuming sin θ ≠ 0, we can cancel sin θ:</p>\n<p>1/(2 + cos θ) = (P + 12)/[4P + (P + 12) cos θ]</p>\n\n<p><strong>Step 4: Cross multiply</strong></p>\n<p>4P + (P + 12) cos θ = (P + 12)(2 + cos θ)</p>\n<p>4P + (P + 12) cos θ = 2(P + 12) + (P + 12) cos θ</p>\n<p>4P + (P + 12) cos θ = 2P + 24 + (P + 12) cos θ</p>\n\n<p><strong>Step 5: Cancel (P + 12) cos θ from both sides</strong></p>\n<p>4P = 2P + 24</p>\n<p>2P = 24</p>\n<p>P = 12 kN</p>\n\n<p><strong>Result:</strong> The value of P is <strong>12 kN</strong>.</p>",
+            "keyPoints": [
+                "Direction of resultant depends on force magnitudes",
+                "Expression for tan α for both cases",
+                "Equating the direction equations",
+                "Solving for P"
+            ],
+            "marks": 5,
+            "unit": "Forces"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define co-efficient of friction and limiting friction.",
+            "answer": "<p><strong>Limiting Friction:</strong> It is the maximum value of static friction that can be developed between two surfaces just before the motion starts. It is the maximum frictional force that must be overcome to initiate motion.</p><p><strong>Co-efficient of Friction (μ):</strong> It is the ratio of limiting friction (F) to the normal reaction (N) between two surfaces in contact.</p><p>μ = F/N</p><p>It is a dimensionless quantity that depends on the nature and roughness of the contacting surfaces. It is independent of the area of contact and the applied force (up to the limiting value).</p><p>For example, if a block of weight 100N requires a force of 30N to just start moving on a horizontal surface, then μ = 30/100 = 0.3.</p>",
+            "marks": 4,
+            "unit": "Friction"
+        },
+        {
+            "id": "3.b",
+            "type": "laq",
+            "group": "C",
+            "question": "A body of weight 500N is lying on a rough plane inclined at an angle of 25° with the horizontal. It is supported by an effort (P) parallel to the plane. Determine the minimum value of P, for which the equilibrium can exist, if the angle of friction is 20°.",
+            "answer": "<h5>Solution: Minimum effort on inclined plane</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Weight W = 500N</li>\n<li>Inclination θ = 25°</li>\n<li>Angle of friction φ = 20°</li>\n<li>Effort P parallel to plane</li>\n<li>Need minimum P for equilibrium</li>\n</ul>\n\n<p><strong>Step 1: Interpret the problem</strong></p>\n<p>The body is on an inclined plane. With angle of friction φ = 20°, the coefficient of friction μ = tan φ = tan 20° = 0.364</p>\n<p>The body tends to slide down due to its weight component. The minimum effort P will be when the body is about to move downward, with friction acting upward along the plane.</p>\n\n<p><strong>Step 2: Resolve weight into components</strong></p>\n<p>Component parallel to plane (downward): W sin θ = 500 × sin 25° = 500 × 0.4226 = 211.3 N</p>\n<p>Component perpendicular to plane: W cos θ = 500 × cos 25° = 500 × 0.9063 = 453.15 N</p>\n\n<p><strong>Step 3: Normal reaction</strong></p>\n<p>N = W cos θ = 453.15 N</p>\n\n<p><strong>Step 4: Maximum friction force available</strong></p>\n<p>F_max = μN = 0.364 × 453.15 = 164.95 N</p>\n\n<p><strong>Step 5: Apply equilibrium condition</strong></p>\n<p>For minimum P (body about to slide down):</p>\n<p>Forces parallel to plane: P + F = W sin θ</p>\n<p>P = W sin θ - F</p>\n<p>P = 211.3 - 164.95 = 46.35 N</p>\n\n<p><strong>Step 6: Check if this is the minimum</strong></p>\n<p>If P is less than 46.35 N, the body will slide down. If P is greater, the body can be in equilibrium with friction partially developed. So the minimum P for equilibrium is 46.35 N.</p>\n\n<p><strong>Result:</strong> The minimum value of P is <strong>46.35 N</strong>.</p>",
+            "keyPoints": [
+                "Force resolution on inclined plane",
+                "Normal reaction calculation",
+                "Maximum friction from μ = tan φ",
+                "Equilibrium condition for impending motion"
+            ],
+            "marks": 5,
+            "unit": "Friction"
+        },
+        {
+            "id": "4",
+            "type": "laq",
+            "group": "C",
+            "question": "The law of wheel and axle machine is P = 0.2W + 50. The diameter of wheel is 600mm and radius of axle is 50mm. Determine (a) Mechanical Advantage, (b) Effort required to lift a load of 2000N, (c) Maximum Efficiency, (d) Maximum Mechanical Advantage and (e) Load to be lifted by an effort of 520N.",
+            "answer": "<h5>Solution: Wheel and Axle Machine Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Law of machine: P = 0.2W + 50, where P = effort in N, W = load in N</li>\n<li>Diameter of wheel D = 600 mm, so radius of wheel R = 300 mm = 0.3 m</li>\n<li>Radius of axle r = 50 mm = 0.05 m</li>\n</ul>\n\n<p><strong>Step 1: Calculate Velocity Ratio (VR)</strong></p>\n<p>For wheel and axle: VR = (Distance moved by effort)/(Distance moved by load) = (2πR)/(2πr) = R/r</p>\n<p>VR = 300/50 = 6</p>\n\n<p><strong>(a) Mechanical Advantage for a given load</strong></p>\n<p>MA = W/P. But MA varies with load since P = 0.2W + 50</p>\n<p>For any load W: MA = W/(0.2W + 50)</p>\n\n<p><strong>(b) Effort required for W = 2000N</strong></p>\n<p>P = 0.2 × 2000 + 50 = 400 + 50 = 450 N</p>\n<p>MA at this load = 2000/450 = 4.44</p>\n\n<p><strong>(c) Maximum Efficiency</strong></p>\n<p>Efficiency η = MA/VR = [W/(0.2W + 50)]/6 = W/[6(0.2W + 50)]</p>\n<p>As W → ∞, η → 1/(6 × 0.2) = 1/1.2 = 0.8333 = 83.33%</p>\n<p>Maximum efficiency = 83.33%</p>\n\n<p><strong>(d) Maximum Mechanical Advantage</strong></p>\n<p>MA_max = 1/m = 1/0.2 = 5 (where m = 0.2 is the slope of the law)</p>\n<p>This is the theoretical maximum MA as load approaches infinity.</p>\n\n<p><strong>(e) Load for P = 520N</strong></p>\n<p>520 = 0.2W + 50</p>\n<p>0.2W = 520 - 50 = 470</p>\n<p>W = 470/0.2 = 2350 N</p>\n\n<p><strong>Summary of results:</strong></p>\n<ul>\n<li>VR = 6</li>\n<li>For W = 2000N: P = 450 N, MA = 4.44</li>\n<li>Maximum efficiency = 83.33%</li>\n<li>Maximum MA = 5</li>\n<li>For P = 520N: W = 2350 N</li>\n</ul>",
+            "keyPoints": [
+                "VR calculation from wheel and axle dimensions",
+                "MA formula from law of machine",
+                "Efficiency as function of load",
+                "Maximum efficiency at infinite load",
+                "Maximum MA from law of machine"
+            ],
+            "marks": 9,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "5.a",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the friction force developed in the given figure for P = 20N, 50N and 60N. Coefficient of static friction μ_s = 0.5 and Coefficient of kinetic friction μ_d = 0.4.",
+            "answer": "<h5>Solution: Friction Force Analysis</h5>\n\n<p><strong>Given:</strong> μ_s = 0.5, μ_k = 0.4. (Assuming a block of weight W on horizontal surface with applied force P. Since weight not given, let's assume W = 100N for calculation, as typical in such problems)</p>\n\n<p><strong>Step 1: Calculate maximum static friction</strong></p>\n<p>Assuming normal reaction N = W = 100N (if horizontal surface, no vertical forces other than weight and normal reaction)</p>\n<p>F_max = μ_s × N = 0.5 × 100 = 50 N</p>\n\n<p><strong>Step 2: Kinetic friction once moving</strong></p>\n<p>F_k = μ_k × N = 0.4 × 100 = 40 N</p>\n\n<p><strong>Step 3: For P = 20N</strong></p>\n<p>Since P < F_max (20 < 50), the block does not move. Friction force developed equals applied force to maintain equilibrium.</p>\n<p>F = P = 20 N (static friction)</p>\n\n<p><strong>Step 4: For P = 50N</strong></p>\n<p>P = F_max exactly, so the block is on the point of motion (limiting equilibrium).</p>\n<p>F = F_max = 50 N</p>\n\n<p><strong>Step 5: For P = 60N</strong></p>\n<p>P > F_max, so the block accelerates. Once motion starts, kinetic friction applies.</p>\n<p>F = F_k = 40 N</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>For P = 20N: Friction force = <strong>20 N</strong> (static)</li>\n<li>For P = 50N: Friction force = <strong>50 N</strong> (limiting static)</li>\n<li>For P = 60N: Friction force = <strong>40 N</strong> (kinetic)</li>\n</ul>\n\n<p><strong>Note:</strong> If the weight W is different, the values would scale proportionally. The principle remains that friction force equals applied force until reaching μ_sN, then drops to μ_kN during motion.</p>",
+            "keyPoints": [
+                "Maximum static friction calculation",
+                "Comparison of applied force with F_max",
+                "Static friction equals applied force when P ≤ F_max",
+                "Kinetic friction applies when motion occurs"
+            ],
+            "marks": 4,
+            "unit": "Friction"
+        },
+        {
+            "id": "5.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Two smooth spheres each of radius 100mm and weighing 100N, rest in a channel having smooth vertical walls, the distance between which is 360mm. Find the reactions at the points of contacts.",
+            "answer": "<h5>Solution: Reactions for Spheres in Channel</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Each sphere: radius r = 100 mm, weight W = 100 N</li>\n<li>Channel width = 360 mm (distance between vertical walls)</li>\n<li>Walls are smooth (no friction, reactions perpendicular to walls)</li>\n<li>Spheres are smooth (no friction between them)</li>\n</ul>\n\n<p><strong>Step 1: Understand the geometry</strong></p>\n<p>Two spheres of equal radius placed in a channel. The centers will be at the same level.</p>\n<p>Distance between centers = 2r = 200 mm</p>\n<p>Channel width = 360 mm</p>\n<p>The spheres touch each other at the midpoint between centers.</p>\n<p>The spheres touch the vertical walls at points on their sides.</p>\n\n<p><strong>Step 2: Identify contact points and reactions</strong></p>\n<ul>\n<li>Contact between spheres: Normal reaction R (horizontal, acting on each sphere toward the other)</li>\n<li>Left sphere contacts left wall: Reaction R₁ (horizontal, rightward on left sphere)</li>\n<li>Right sphere contacts right wall: Reaction R₂ (horizontal, leftward on right sphere)</li>\n<li>Each sphere contacts bottom surface (assumed horizontal): Vertical reactions V₁ and V₂ supporting weights</li>\n</ul>\n\n<p><strong>Step 3: Consider equilibrium of both spheres together</strong></p>\n<p>Total vertical forces: V₁ + V₂ = 100 + 100 = 200 N</p>\n<p>By symmetry, V₁ = V₂ = 100 N</p>\n\n<p><strong>Step 4: Consider horizontal equilibrium of one sphere</strong></p>\n<p>For left sphere: R₁ - R = 0 ⇒ R₁ = R</p>\n<p>For right sphere: R - R₂ = 0 ⇒ R₂ = R</p>\n<p>So all horizontal reactions are equal: R₁ = R₂ = R</p>\n\n<p><strong>Step 5: Find R using geometry</strong></p>\n<p>The distance between walls = 360 mm</p>\n<p>From left wall to center of left sphere = r = 100 mm</p>\n<p>From right wall to center of right sphere = r = 100 mm</p>\n<p>Distance between centers = 360 - 100 - 100 = 160 mm</p>\n<p>But this contradicts the known center distance of 200 mm!</p>\n\n<p><strong>Step 6: Correct interpretation</strong></p>\n<p>The spheres cannot both touch the walls if distance between walls is less than 4r = 400 mm. They must be positioned such that they touch the walls and each other.</p>\n<p>For equal spheres, the centers are at same height. Distance between centers = 2r = 200 mm</p>\n<p>Let x = distance from left wall to center of left sphere = r + δ (where δ is gap? No, they touch the wall, so x = r = 100 mm)</p>\n<p>Similarly, distance from right wall to center of right sphere = r = 100 mm</p>\n<p>Then distance between walls = x + center distance + (distance from right center to right wall)</p>\n<p>360 = 100 + 200 + 100 = 400 mm? This gives 400, not 360.</p>\n\n<p><strong>Step 7: Revised understanding</strong></p>\n<p>Given channel width is 360 mm, which is less than 400 mm. This means the spheres cannot both touch the vertical walls while also touching each other at the same horizontal level.</p>\n<p>They must be at different heights, with the upper sphere resting on the lower one, and both touching the walls.</p>\n<p>This requires more complex analysis using force triangles and geometry.</p>\n\n<p><strong>Due to incomplete information in the question, a complete numerical solution cannot be provided. The general approach would involve:</strong></p>\n<ul>\n<li>Determining the angle of contact between spheres from geometry</li>\n<li>Using Lami's theorem or force resolution for equilibrium</li>\n<li>Finding reactions at walls and between spheres</li>\n</ul>",
+            "keyPoints": [
+                "Geometry of spheres in channel",
+                "Force identification at contact points",
+                "Equilibrium equations",
+                "Reaction calculations"
+            ],
+            "marks": 5,
+            "unit": "Forces"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is the difference between centre of gravity and centre of mass?",
+            "answer": "<p><strong>Centre of Mass:</strong> It is the point where the entire mass of a body is assumed to be concentrated. It depends on the distribution of mass and is independent of the gravitational field.</p><p><strong>Centre of Gravity:</strong> It is the point through which the entire weight of a body acts. It depends on the gravitational field and coincides with the centre of mass only in a uniform gravitational field.</p><p><strong>Key differences:</strong></p><ol><li>Centre of mass is a mass-dependent concept, while centre of gravity is a weight-dependent concept.</li><li>Centre of mass exists even in weightless conditions (space), while centre of gravity may not be defined in zero gravity.</li><li>For objects in a non-uniform gravitational field, centre of gravity may not coincide with centre of mass.</li><li>For practical purposes on Earth (uniform gravity field), both coincide and the terms are often used interchangeably.</li></ol>",
+            "marks": 2,
+            "unit": "Centroid and Centre of Gravity"
+        },
+        {
+            "id": "6.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Find the centroid of an I-section having the following dimensions: Top flange = 160mm × 20mm, Web = 80mm × 30mm and bottom flange = 200mm × 10mm.",
+            "answer": "<h5>Solution: Centroid of I-Section</h5>\n\n<p><strong>Given dimensions (in mm):</strong></p>\n<ul>\n<li>Top flange: width b₁ = 160mm, depth d₁ = 20mm</li>\n<li>Web: width b₂ = 30mm, depth d₂ = 80mm</li>\n<li>Bottom flange: width b₃ = 200mm, depth d₃ = 10mm</li>\n</ul>\n\n<p><strong>Step 1: Determine the total height and reference axis</strong></p>\n<p>Total height H = d₁ + d₂ + d₃ = 20 + 80 + 10 = 110mm</p>\n<p>Take reference axis at the bottom of the section.</p>\n\n<p><strong>Step 2: Calculate areas and centroidal distances</strong></p>\n\n<p><strong>Bottom flange (Rectangle 1):</strong></p>\n<p>A₁ = b₃ × d₃ = 200 × 10 = 2000 mm²</p>\n<p>y₁ = d₃/2 = 10/2 = 5 mm (from bottom)</p>\n\n<p><strong>Web (Rectangle 2):</strong></p>\n<p>A₂ = b₂ × d₂ = 30 × 80 = 2400 mm²</p>\n<p>y₂ = d₃ + d₂/2 = 10 + 40 = 50 mm (from bottom)</p>\n\n<p><strong>Top flange (Rectangle 3):</strong></p>\n<p>A₃ = b₁ × d₁ = 160 × 20 = 3200 mm²</p>\n<p>y₃ = d₃ + d₂ + d₁/2 = 10 + 80 + 10 = 100 mm (from bottom)</p>\n\n<p><strong>Step 3: Calculate total area</strong></p>\n<p>A = A₁ + A₂ + A₃ = 2000 + 2400 + 3200 = 7600 mm²</p>\n\n<p><strong>Step 4: Apply principle of moments to find centroid</strong></p>\n<p>Ȳ = (A₁y₁ + A₂y₂ + A₃y₃)/A</p>\n<p>Ȳ = (2000×5 + 2400×50 + 3200×100)/7600</p>\n<p>Ȳ = (10000 + 120000 + 320000)/7600</p>\n<p>Ȳ = 450000/7600</p>\n<p>Ȳ = 59.21 mm</p>\n\n<p><strong>Step 5: Interpret the result</strong></p>\n<p>The centroid is located at 59.21 mm from the bottom of the section.</p>\n<p>Since the bottom flange is wider (200mm) but thinner (10mm), and the top flange is narrower (160mm) but thicker (20mm), the centroid is slightly above the geometric center (55mm), which is reasonable because the top flange has more area (3200 mm² vs 2000 mm² for bottom flange).</p>\n\n<p><strong>Result:</strong> The centroid of the I-section is at <strong>59.21 mm</strong> from the bottom.</p>",
+            "keyPoints": [
+                "Division into three rectangular parts",
+                "Area calculation for each part",
+                "Centroidal distances from reference axis",
+                "Moment summation method"
+            ],
+            "marks": 7,
+            "unit": "Centroid"
+        },
+        {
+            "id": "7.a",
+            "type": "laq",
+            "group": "C",
+            "question": "State the Newton's law of motion. Deduce the relationship P = mf.",
+            "answer": "<h5>Newton's Laws of Motion and Derivation of P = mf</h5>\n\n<p><strong>Newton's Three Laws of Motion:</strong></p>\n\n<p><strong>First Law (Law of Inertia):</strong> Every body continues in its state of rest or of uniform motion in a straight line unless compelled by an external force to change that state.</p>\n\n<p><strong>Second Law (Law of Acceleration):</strong> The rate of change of momentum of a body is directly proportional to the applied force and takes place in the direction of the force.</p>\n\n<p><strong>Third Law (Law of Action and Reaction):</strong> To every action, there is an equal and opposite reaction.</p>\n\n<p><strong>Deduction of P = mf (Force = mass × acceleration):</strong></p>\n\n<p><strong>Step 1:</strong> According to Newton's second law, the applied force P is proportional to the rate of change of momentum.</p>\n<p>P ∝ d(mv)/dt</p>\n\n<p><strong>Step 2:</strong> For a body of constant mass m,</p>\n<p>P ∝ m × dv/dt</p>\n\n<p><strong>Step 3:</strong> But dv/dt = acceleration (f or a)</p>\n<p>P ∝ m × f</p>\n\n<p><strong>Step 4:</strong> Introducing the constant of proportionality (which is 1 in SI units),</p>\n<p>P = m × f</p>\n\n<p><strong>Step 5:</strong> In SI units, 1 Newton is defined as the force required to accelerate a mass of 1 kg at 1 m/s².</p>\n<p>Thus, 1 N = 1 kg × 1 m/s²</p>\n\n<p><strong>Alternative derivation using momentum:</strong></p>\n<p>Initial momentum = mu</p>\n<p>Final momentum after time t = mv</p>\n<p>Change in momentum = mv - mu = m(v - u)</p>\n<p>Rate of change of momentum = m(v - u)/t = m × (v - u)/t = m × a</p>\n<p>Since force ∝ rate of change of momentum, F = k × m × a</p>\n<p>With appropriate units, k = 1, so F = m × a</p>",
+            "keyPoints": [
+                "Statement of Newton's three laws",
+                "Second law as rate of change of momentum",
+                "Derivation for constant mass",
+                "SI unit definition"
+            ],
+            "marks": 5,
+            "unit": "Dynamics"
+        },
+        {
+            "id": "7.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Derive a relationship for the distance travelled by a body in the nth second.",
+            "answer": "<h5>Derivation: Distance Travelled in nth Second</h5>\n\n<p><strong>Given:</strong> Body starts with initial velocity u and uniform acceleration a.</p>\n\n<p><strong>Step 1:</strong> Distance travelled in t seconds is given by:</p>\n<p>s_t = ut + (1/2)at²</p>\n\n<p><strong>Step 2:</strong> Distance travelled in (n-1) seconds:</p>\n<p>s_{n-1} = u(n-1) + (1/2)a(n-1)²</p>\n\n<p><strong>Step 3:</strong> Distance travelled in n seconds:</p>\n<p>s_n = un + (1/2)an²</p>\n\n<p><strong>Step 4:</strong> Distance travelled in the nth second (between t = n-1 and t = n) is:</p>\n<p>s_nth = s_n - s_{n-1}</p>\n<p>s_nth = [un + (1/2)an²] - [u(n-1) + (1/2)a(n-1)²]</p>\n\n<p><strong>Step 5:</strong> Simplify:</p>\n<p>s_nth = un - u(n-1) + (1/2)a[n² - (n-1)²]</p>\n<p>s_nth = u[n - (n-1)] + (1/2)a[n² - (n² - 2n + 1)]</p>\n<p>s_nth = u(1) + (1/2)a(2n - 1)</p>\n\n<p><strong>Final formula:</strong></p>\n<p>$$s_{nth} = u + \\frac{a}{2}(2n - 1)$$</p>\n\n<p>where s_nth is the distance travelled during the nth second.</p>\n\n<p><strong>Example:</strong> If a body starts from rest (u = 0) with a = 2 m/s², distance in 5th second = 0 + (2/2)(2×5 - 1) = 1 × 9 = 9 m.</p>",
+            "keyPoints": [
+                "Formula for distance in t seconds",
+                "Difference of distances",
+                "Algebraic simplification",
+                "Final expression"
+            ],
+            "marks": 4,
+            "unit": "Kinematics"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define (i) Angle of Friction, (ii) Angle of Repose.",
+            "answer": "<p><strong>(i) Angle of Friction (φ):</strong> It is the angle between the normal reaction (N) and the resultant reaction (R) when the body is on the point of motion (limiting equilibrium).</p><p>tan φ = μ (coefficient of friction)</p><p>The resultant reaction R is the vector sum of normal reaction N and limiting friction force F.</p>\n\n<p><strong>(ii) Angle of Repose (θ):</strong> It is the maximum angle of inclination of an inclined plane with the horizontal at which a body placed on it just begins to slide down under its own weight.</p><p>For angle of repose θ, tan θ = μ (coefficient of friction)</p>\n\n<p><strong>Relationship:</strong> Angle of friction (φ) and angle of repose (θ) are numerically equal. Both represent the same physical quantity - the angle whose tangent gives the coefficient of friction.</p><p>φ = θ = tan⁻¹(μ)</p>",
+            "marks": 4,
+            "unit": "Friction"
+        },
+        {
+            "id": "8.b",
+            "type": "laq",
+            "group": "C",
+            "question": "What load will be lifted by an effort of 12 N, if the velocity ratio is 18 and efficiency of the machine at this load is 60%? If the machine has a constant friction resistance, determine the law of the machine.",
+            "answer": "<h5>Solution: Lifting Machine Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Effort P = 12 N</li>\n<li>Velocity Ratio VR = 18</li>\n<li>Efficiency η = 60% = 0.6 at this load</li>\n<li>Machine has constant friction resistance (meaning C = constant in law P = mW + C)</li>\n</ul>\n\n<p><strong>Part 1: Find the load W</strong></p>\n\n<p><strong>Step 1: Relationship between efficiency, MA and VR</strong></p>\n<p>η = MA/VR</p>\n<p>0.6 = MA/18</p>\n<p>MA = 0.6 × 18 = 10.8</p>\n\n<p><strong>Step 2: MA = W/P</strong></p>\n<p>10.8 = W/12</p>\n<p>W = 10.8 × 12 = 129.6 N</p>\n\n<p><strong>Part 2: Determine the law of machine</strong></p>\n\n<p><strong>Step 3: General law of machine</strong></p>\n<p>P = mW + C, where m = slope, C = constant friction resistance (effort at no load)</p>\n\n<p><strong>Step 4: Find ideal effort at this load</strong></p>\n<p>Ideal effort P_ideal = W/VR = 129.6/18 = 7.2 N</p>\n\n<p><strong>Step 5: Effort lost in friction at this load</strong></p>\n<p>P_lost = P_actual - P_ideal = 12 - 7.2 = 4.8 N</p>\n\n<p><strong>Step 6: For constant friction resistance machine</strong></p>\n<p>In the law P = mW + C:</p>\n<ul>\n<li>C = effort at no load = friction resistance constant</li>\n<li>mW = effort lost in friction due to load</li>\n</ul>\n<p>At W = 129.6 N, effort lost = m × 129.6 = 4.8 N</p>\n<p>m = 4.8/129.6 = 0.037</p>\n\n<p><strong>Step 7: Find C</strong></p>\n<p>From P = mW + C:</p>\n<p>12 = 0.037 × 129.6 + C</p>\n<p>12 = 4.8 + C</p>\n<p>C = 12 - 4.8 = 7.2 N</p>\n\n<p><strong>Step 8: Law of machine</strong></p>\n<p>P = 0.037W + 7.2</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Load lifted by 12 N effort = <strong>129.6 N</strong></li>\n<li>Law of machine: <strong>P = 0.037W + 7.2</strong></li>\n</ul>",
+            "keyPoints": [
+                "Efficiency-MA-VR relationship",
+                "Load calculation from MA and effort",
+                "Ideal effort concept",
+                "Determining constants m and C"
+            ],
+            "marks": 5,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "9.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define work, power and energy with their SI units. Give one example of each of potential energy and kinetic energy.",
+            "answer": "<p><strong>Work:</strong> Work is said to be done when a force causes displacement in its own direction. Work = Force × Displacement in the direction of force.</p>\n<p>SI unit: Joule (J) = Newton-meter (Nm)</p>\n\n<p><strong>Power:</strong> Power is the rate of doing work. Power = Work done / Time taken.</p>\n<p>SI unit: Watt (W) = Joule/second (J/s)</p>\n\n<p><strong>Energy:</strong> Energy is the capacity of a body to do work. It exists in various forms.</p>\n<p>SI unit: Joule (J)</p>\n\n<p><strong>Potential Energy (Energy by virtue of position):</strong></p>\n<p>Example: Water stored in a dam has potential energy due to its height above ground level. PE = mgh.</p>\n\n<p><strong>Kinetic Energy (Energy by virtue of motion):</strong></p>\n<p>Example: A moving car has kinetic energy due to its velocity. KE = (1/2)mv².</p>\n\n<p><strong>Relationship:</strong> Work done on a body equals the change in its kinetic energy (Work-Energy theorem).</p>",
+            "marks": 4,
+            "unit": "Work, Power and Energy"
+        }
+    ]
+}

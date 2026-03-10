@@ -1,0 +1,789 @@
+{
+    "subject": "Fundamentals of Electrical and Electronics Engineering (FEEE)",
+    "examYear": "2022",
+    "totalMarks": 60,
+    "timeAllowed": "1.5 Hours",
+    "questions": [
+        {
+            "id": "1i",
+            "type": "mcq",
+            "group": "A",
+            "question": "Rectifier is used to convert",
+            "options": [
+                "DC signal to AC signal",
+                "AC signal to Pulsating DC signal",
+                "Reducing the amplitude of DC signal",
+                "Generation of AC signal"
+            ],
+            "correct": 1,
+            "marks": 1,
+            "explanation": "<p><strong>AC signal to Pulsating DC signal</strong> is correct. A rectifier converts alternating current (AC) to direct current (DC), but the output is pulsating DC which requires filtering for pure DC.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "1ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The current through a series RLC circuit under resonance condition will be",
+            "options": [
+                "V/R",
+                "V/Xc",
+                "V/XL",
+                "none of these"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>V/R</strong> is correct. At resonance, inductive reactance equals capacitive reactance ($X_L = X_C$), so impedance $Z = R$, and current $I = V/R$ (maximum).</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Transformer ratings are given in :",
+            "options": [
+                "kVA",
+                "HP",
+                "kVAR",
+                "kW"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>kVA</strong> is correct. Transformer rating is in kVA (apparent power) because losses depend on current (copper loss) and voltage (iron loss), independent of load power factor.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Two sinusoidal emfs are given as e1 = A sin(ωt + π/4) and e2 = B sin(ωt - π/6). The phase difference between the two quantities in degrees is",
+            "options": [
+                "15",
+                "45",
+                "75",
+                "30"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>75°</strong> is correct. Phase of e1 = +45°, phase of e2 = -30°. Phase difference = 45° - (-30°) = 45° + 30° = 75°.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1v",
+            "type": "mcq",
+            "group": "A",
+            "question": "For a DC voltage, an inductor",
+            "options": [
+                "is virtually a short circuit.",
+                "is an open circuit.",
+                "Depends on polarity.",
+                "Depends on voltage value."
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Is virtually a short circuit</strong> is correct. For DC, frequency f = 0, so inductive reactance $X_L = 2\\pi fL = 0$. Hence inductor acts as short circuit under steady state DC.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "The flux in transformer core",
+            "options": [
+                "increases with load,",
+                "decreases with load,",
+                "remains constant irrespective of load,",
+                "none of the above."
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Remains constant irrespective of load</strong> is correct. Flux in transformer core depends on applied voltage and frequency ($\\phi = V/(4.44fN)$), not on load current.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The number of valence electrons in the outermost shell of semiconductor are",
+            "options": [
+                "6",
+                "4",
+                "6",
+                "7"
+            ],
+            "correct": 1,
+            "marks": 1,
+            "explanation": "<p><strong>4</strong> is correct. Semiconductor elements like Silicon and Germanium have 4 valence electrons in their outermost shell (Group IV elements).</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "1viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The potential barrier of a silicon diode is",
+            "options": [
+                "0.3 V",
+                "0.7 V",
+                "1 V",
+                "5V"
+            ],
+            "correct": 1,
+            "marks": 1,
+            "explanation": "<p><strong>0.7 V</strong> is correct. Silicon diode has a forward voltage drop of approximately 0.7 V, while Germanium diode has about 0.3 V.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "1ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following does not change in a transformer?",
+            "options": [
+                "Current",
+                "Voltage",
+                "Frequency",
+                "All of the above."
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Frequency</strong> is correct. Transformer works on mutual induction and frequency remains same in primary and secondary. Voltage and current change based on turns ratio.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1x",
+            "type": "mcq",
+            "group": "A",
+            "question": "When two input of a NAND gate is high, the output of the gate will be",
+            "options": [
+                "High",
+                "Low",
+                "No change",
+                "Undefined"
+            ],
+            "correct": 1,
+            "marks": 1,
+            "explanation": "<p><strong>Low</strong> is correct. NAND gate output = (A·B)'. When both inputs are HIGH (1), A·B = 1, so output = 0 (LOW).</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "1xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "In an auto-transformer, power is transferred through",
+            "options": [
+                "Conduction process only",
+                "Induction process only",
+                "Both conduction and induction processes",
+                "Mutual coupling."
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Both conduction and induction processes</strong> is correct. In autotransformer, part of power transfers conductively (direct connection) and part inductively (magnetic coupling).</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The number of flip flops required in a decade counter is",
+            "options": [
+                "2",
+                "3",
+                "4",
+                "10"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>4</strong> is correct. Decade counter counts from 0 to 9 (10 states). 4 flip-flops provide 16 states (2⁴), so 4 are needed to cover 10 states.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "1xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The maximum possible number of states in a ripple counter with 5 flip-flops is",
+            "options": [
+                "32",
+                "15",
+                "10",
+                "5"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>32</strong> is correct. With n flip-flops, maximum number of states = 2ⁿ. For n=5, maximum states = 2⁵ = 32.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "1xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "An ideal OP-AMP has the following characteristics- (Rin = input resistance, A = open loop gain, Rout = output resistance)",
+            "options": [
+                "Rin = ∞, A = ∞ and Rout = 0",
+                "Rin = 0, A = ∞ and Rout = 0",
+                "Rin = ∞, A = 0 and Rout = ∞",
+                "Rin = 0, A = ∞ and Rout = ∞"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Rin = ∞, A = ∞ and Rout = 0</strong> is correct. Ideal op-amp has infinite input impedance, infinite open-loop gain, and zero output impedance.</p>",
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "1xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Ā + B̅ is equivalent to",
+            "options": [
+                "A + B",
+                "A.B",
+                "Ā.B̅",
+                "Ā + B̅"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Ā.B̅</strong> is correct. By De Morgan's theorem, $\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$. The given expression $\\overline{A} + \\overline{B}$ is actually equivalent to $\\overline{A \\cdot B}$.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "2i",
+            "type": "gapfill",
+            "group": "A",
+            "question": "FET is a ________ controlled device",
+            "answer": "voltage",
+            "acceptableAnswers": ["voltage", "Voltage"],
+            "marks": 1,
+            "explanation": "<p><strong>Voltage</strong> is correct. FET (Field Effect Transistor) is a voltage-controlled device where output current is controlled by input voltage, unlike BJT which is current-controlled.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "2ii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Transformer cores are laminated in order to ________",
+            "answer": "reduce eddy current loss",
+            "acceptableAnswers": ["reduce eddy current loss", "minimize eddy currents", "reduce eddy currents"],
+            "marks": 1,
+            "explanation": "<p><strong>Reduce eddy current loss</strong> is correct. Lamination increases resistance, reducing eddy currents and associated I²R losses in the core.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "2iii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The number of junctions in an NPN transistor are ________",
+            "answer": "2",
+            "acceptableAnswers": ["2", "two"],
+            "marks": 1,
+            "explanation": "<p><strong>2</strong> is correct. A transistor has two PN junctions: emitter-base junction and collector-base junction.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "2iv",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Fleming's Left hand rule gives the direction of ________",
+            "answer": "force/motion",
+            "acceptableAnswers": ["force", "motion", "force/motion"],
+            "marks": 1,
+            "explanation": "<p><strong>Force/Motion</strong> is correct. Fleming's left hand rule gives direction of force on a current-carrying conductor in magnetic field (motor action).</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "2v",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Conductance in Electric circuit is analogous to ________ in Magnetic Circuit.",
+            "answer": "permeance",
+            "acceptableAnswers": ["permeance", "Permeance"],
+            "marks": 1,
+            "explanation": "<p><strong>Permeance</strong> is correct. Electric conductance (G = 1/R) is analogous to magnetic permeance (P = 1/reluctance).</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "2vi",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The CMRR of an OP-Amp is the ratio of ________",
+            "answer": "differential gain to common mode gain",
+            "acceptableAnswers": ["differential gain to common mode gain", "Ad/Ac"],
+            "marks": 1,
+            "explanation": "<p><strong>Differential gain to common mode gain</strong> is correct. CMRR = |Ad/Ac|, indicating ability to reject common-mode signals.</p>",
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "2vii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The majority charge carrier in n-type material is ________",
+            "answer": "electrons",
+            "acceptableAnswers": ["electrons", "Electrons", "free electrons"],
+            "marks": 1,
+            "explanation": "<p><strong>Electrons</strong> is correct. In n-type semiconductor, pentavalent impurities donate excess electrons, making electrons majority carriers.</p>",
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "2viii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Weber is the unit of ________",
+            "answer": "magnetic flux",
+            "acceptableAnswers": ["magnetic flux", "flux"],
+            "marks": 1,
+            "explanation": "<p><strong>Magnetic flux</strong> is correct. Weber (Wb) is the SI unit of magnetic flux. 1 Wb = 1 V·s.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "2ix",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Energy is stored by the capacitor in the form of ________",
+            "answer": "electric field",
+            "acceptableAnswers": ["electric field", "electrostatic field"],
+            "marks": 1,
+            "explanation": "<p><strong>Electric field</strong> is correct. Capacitor stores energy in electrostatic field between plates: $E = \\frac{1}{2}CV^2$.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "2x",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The time constant of a series R-C circuit is given by ________",
+            "answer": "RC",
+            "acceptableAnswers": ["RC", "R×C"],
+            "marks": 1,
+            "explanation": "<p><strong>RC</strong> is correct. Time constant τ = R × C seconds, time for capacitor to charge to 63.2% of final voltage.</p>",
+            "unit": "Network Theory"
+        },
+        {
+            "id": "2xi",
+            "type": "gapfill",
+            "group": "A",
+            "question": "If two capacitance of 10μF & 15μF are connected in parallel then the equivalent capacitance will be ________ μF",
+            "answer": "25",
+            "acceptableAnswers": ["25", "25μF"],
+            "marks": 1,
+            "explanation": "<p><strong>25 μF</strong> is correct. For parallel capacitors, $C_{eq} = C_1 + C_2 = 10 + 15 = 25\\mu F$.</p>",
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "2xii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The output of AND gate will be HIGH only when both the input is ________",
+            "answer": "HIGH",
+            "acceptableAnswers": ["HIGH", "high", "1", "logic 1"],
+            "marks": 1,
+            "explanation": "<p><strong>HIGH</strong> is correct. AND gate output is 1 (HIGH) only when all inputs are 1 (HIGH).</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "2xiii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The full form of TTL is ________",
+            "answer": "Transistor-Transistor Logic",
+            "acceptableAnswers": ["Transistor-Transistor Logic", "TTL"],
+            "marks": 1,
+            "explanation": "<p><strong>Transistor-Transistor Logic</strong> is correct. TTL is a logic family using bipolar transistors for digital circuits.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "2xiv",
+            "type": "gapfill",
+            "group": "A",
+            "question": "A motor converts electrical energy into ________ energy.",
+            "answer": "mechanical",
+            "acceptableAnswers": ["mechanical", "Mechanical"],
+            "marks": 1,
+            "explanation": "<p><strong>Mechanical</strong> is correct. Motor converts electrical energy to mechanical energy (rotation), opposite of generator.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3i",
+            "type": "saq",
+            "group": "A",
+            "question": "Give two examples of insulating material.",
+            "answer": "<p><strong>Insulating materials:</strong> Examples include:</p><ul><li>Glass</li><li>Mica</li><li>Rubber</li><li>PVC (Polyvinyl Chloride)</li><li>Porcelain</li></ul><p>These materials have very high resistance and prevent current flow.</p>",
+            "marks": 1,
+            "unit": "Materials"
+        },
+        {
+            "id": "3ii",
+            "type": "saq",
+            "group": "A",
+            "question": "What is the frequency of a D.C signal?",
+            "answer": "<p><strong>Zero (0 Hz).</strong> DC signal has constant magnitude and direction, no periodic variation, so frequency = 0 Hz.</p>",
+            "marks": 1,
+            "unit": "Basic Concepts"
+        },
+        {
+            "id": "3iii",
+            "type": "saq",
+            "group": "A",
+            "question": "Define the term form factor.",
+            "answer": "<p><strong>Form Factor:</strong> It is the ratio of RMS value to average value of an alternating quantity.</p><p>Form Factor = RMS Value / Average Value. For sine wave, form factor = 1.11.</p>",
+            "marks": 1,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "3iv",
+            "type": "saq",
+            "group": "A",
+            "question": "Calculate the time period of a periodic signal whose frequency is 60Hz.",
+            "answer": "<p><strong>Time period T = 1/f</strong></p><p>T = 1/60 = 0.01667 seconds = 16.67 milliseconds</p>",
+            "marks": 1,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "3v",
+            "type": "saq",
+            "group": "A",
+            "question": "Name the two input terminals of OP-AMP?",
+            "answer": "<p><strong>Two input terminals of op-amp:</strong></p><ul><li>Inverting input (-)</li><li>Non-inverting input (+)</li></ul>",
+            "marks": 1,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "3vi",
+            "type": "saq",
+            "group": "A",
+            "question": "What is a dependent Source?",
+            "answer": "<p><strong>Dependent Source:</strong> A voltage or current source whose value depends on another voltage or current elsewhere in the circuit. Also called controlled source.</p><p>Types: VCVS, VCCS, CCVS, CCCS.</p>",
+            "marks": 1,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "3vii",
+            "type": "saq",
+            "group": "A",
+            "question": "Draw the symbol of X-OR Gate.",
+            "answer": "<p><strong>XOR Gate Symbol:</strong> Standard symbol is similar to OR gate with an additional curved line on input side.</p><p>Boolean expression: Y = A ⊕ B = A·B̅ + Ā·B</p><p>Truth table: Output HIGH when inputs are different (0,1 or 1,0).</p>",
+            "marks": 1,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "3viii",
+            "type": "saq",
+            "group": "A",
+            "question": "What is the unit of inductance?",
+            "answer": "<p><strong>Henry (H)</strong> is the SI unit of inductance.</p><p>1 Henry = 1 Weber per ampere (1 H = 1 Wb/A).</p>",
+            "marks": 1,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3ix",
+            "type": "saq",
+            "group": "A",
+            "question": "Why is doping done on Semiconductor?",
+            "answer": "<p><strong>Doping</strong> is done to increase the conductivity of intrinsic semiconductors by increasing the number of charge carriers (electrons or holes).</p><p>It also creates n-type and p-type materials for device fabrication.</p>",
+            "marks": 1,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "3x",
+            "type": "saq",
+            "group": "A",
+            "question": "Name any two types of Flip-Flop.",
+            "answer": "<p><strong>Types of flip-flops:</strong></p><ul><li>SR Flip-Flop</li><li>JK Flip-Flop</li><li>D Flip-Flop</li><li>T Flip-Flop</li></ul>",
+            "marks": 1,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "3xi",
+            "type": "saq",
+            "group": "A",
+            "question": "Name one doping material for creation of N-Type Semiconductor.",
+            "answer": "<p><strong>Pentavalent impurities</strong> for N-type semiconductor:</p><ul><li>Phosphorus (P)</li><li>Arsenic (As)</li><li>Antimony (Sb)</li></ul>",
+            "marks": 1,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "3xii",
+            "type": "saq",
+            "group": "A",
+            "question": "What are the types of Rectifier available?",
+            "answer": "<p><strong>Types of rectifiers:</strong></p><ul><li>Half-wave rectifier</li><li>Full-wave rectifier (center-tapped)</li><li>Bridge rectifier</li></ul>",
+            "marks": 1,
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "3xiii",
+            "type": "saq",
+            "group": "A",
+            "question": "On which principle the transformer works?",
+            "answer": "<p><strong>Mutual Induction</strong> is the working principle of transformer. When AC flows through primary, changing flux links with secondary, inducing emf.</p>",
+            "marks": 1,
+            "unit": "Transformer"
+        },
+        {
+            "id": "3xiv",
+            "type": "saq",
+            "group": "A",
+            "question": "What is the unit of reactive Power?",
+            "answer": "<p><strong>VAR (Volt-Ampere Reactive)</strong> is the unit of reactive power. Also measured in kVAR, MVAR.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "3xv",
+            "type": "saq",
+            "group": "A",
+            "question": "What type of DC Motor used in traction?",
+            "answer": "<p><strong>DC Series Motor</strong> is used in traction applications (electric trains, cranes, hoists) due to high starting torque.</p>",
+            "marks": 1,
+            "unit": "DC Machines"
+        },
+        {
+            "id": "4i",
+            "type": "saq",
+            "group": "B",
+            "question": "Define the term Semiconductor.",
+            "answer": "<p><strong>Semiconductor:</strong> A material whose electrical conductivity lies between conductor and insulator. Conductivity increases with temperature (negative temperature coefficient).</p><p>Examples: Silicon, Germanium. Valence electrons = 4. Energy gap ≈ 1 eV.</p>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "4ii",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the symbol of PNP transistor with proper labeling of its terminals.",
+            "answer": "<p><strong>PNP Transistor Symbol:</strong></p><p>Arrow on emitter points inward (toward base).</p><p>Terminals: Emitter (E), Base (B), Collector (C).</p><p>In PNP, emitter arrow points from emitter to base (P→N).</p>",
+            "marks": 2,
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "4iii",
+            "type": "saq",
+            "group": "B",
+            "question": "Define Lenz's Law?",
+            "answer": "<p><strong>Lenz's Law:</strong> The direction of induced emf is always such that it opposes the cause producing it.</p><p>Mathematically, $e = -\\frac{d\\phi}{dt}$, where negative sign indicates opposition.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4iv",
+            "type": "saq",
+            "group": "B",
+            "question": "What is an ideal current source?",
+            "answer": "<p><strong>Ideal current source:</strong> A source that delivers constant current regardless of load resistance. It has infinite internal resistance.</p><p>Practical current source has high but finite internal resistance in parallel.</p>",
+            "marks": 2,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "4v",
+            "type": "saq",
+            "group": "B",
+            "question": "What is mutual inductance?",
+            "answer": "<p><strong>Mutual inductance (M):</strong> The property of two coils due to which changing current in one coil induces emf in the other coil.</p><p>$M = \\frac{N_2\\phi_{12}}{I_1}$ henry. Unit: Henry (H).</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4vi",
+            "type": "saq",
+            "group": "B",
+            "question": "State Fleming's Right hand Rule?",
+            "answer": "<p><strong>Fleming's Right Hand Rule:</strong> Used for generators. If thumb, forefinger, and middle finger are mutually perpendicular:</p><ul><li>Forefinger: Magnetic field direction</li><li>Thumb: Motion of conductor</li><li>Middle finger: Induced emf/current direction</li></ul>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4vii",
+            "type": "saq",
+            "group": "B",
+            "question": "A 250V bulb passes a current of 0.3A. Calculate the power consumed by the lamp.",
+            "answer": "<p><strong>Given:</strong> V = 250V, I = 0.3A</p><p>Power P = V × I = 250 × 0.3 = 75 watts</p><p>Lamp consumes 75 W of power.</p>",
+            "marks": 2,
+            "unit": "Basic Concepts"
+        },
+        {
+            "id": "4viii",
+            "type": "saq",
+            "group": "B",
+            "question": "Define the term Flip Flop?",
+            "answer": "<p><strong>Flip-Flop:</strong> A sequential digital circuit that can store one bit of binary information. It is a bistable multivibrator having two stable states (0 and 1).</p><p>Types: SR, JK, D, T flip-flops.</p>",
+            "marks": 2,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "4ix",
+            "type": "saq",
+            "group": "B",
+            "question": "Define the term Virtual Ground.",
+            "answer": "<p><strong>Virtual Ground:</strong> In an op-amp with negative feedback, the inverting terminal is at the same potential as non-inverting terminal (if non-inverting is grounded, inverting is virtually grounded).</p><p>No current flows into op-amp, but voltage at inverting terminal ≈ 0V.</p>",
+            "marks": 2,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "4x",
+            "type": "saq",
+            "group": "B",
+            "question": "Define the term Universal Gate.",
+            "answer": "<p><strong>Universal Gate:</strong> A gate that can implement any logic function (AND, OR, NOT, XOR) using only that gate type.</p><p>NAND and NOR gates are universal gates.</p>",
+            "marks": 2,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "5ia",
+            "type": "saq",
+            "group": "C",
+            "question": "Draw the load current vs Load voltage curve of an ideal voltage source.",
+            "answer": "<p><strong>Ideal Voltage Source Characteristic:</strong></p><p>Load voltage (V) vs Load current (I) curve is a horizontal straight line parallel to current axis.</p><p>Voltage remains constant (V = V_s) for all load currents. Internal resistance = 0.</p>",
+            "marks": 2,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "5ib",
+            "type": "saq",
+            "group": "C",
+            "question": "Using Source transformation principle find out the current through the resistance R1.",
+            "answer": "<p><em>(Note: Since Fig. 5(i)b is not available, general approach is provided.)</em></p><p><strong>Source Transformation:</strong></p><ul><li>Convert voltage sources in series with resistors to equivalent current sources with parallel resistors: $I = V/R$, $R$ same</li><li>Combine parallel resistors and current sources</li><li>Apply current divider rule to find current through R1</li></ul>",
+            "marks": 4,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "5iia",
+            "type": "saq",
+            "group": "C",
+            "question": "State Faraday's Laws of Electromagnetic Induction?",
+            "answer": "<p><strong>Faraday's Laws:</strong></p><p><strong>First Law:</strong> Whenever magnetic flux linked with a circuit changes, an emf is induced.</p><p><strong>Second Law:</strong> Induced emf magnitude is directly proportional to rate of change of flux linkage.</p><p>$$e = -N\\frac{d\\phi}{dt}$$</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "5iib",
+            "type": "saq",
+            "group": "C",
+            "question": "Derive the expression for the energy stored in the magnetic field of an inductor.",
+            "answer": "<p><strong>Energy stored in inductor:</strong></p><p>Instantaneous voltage across inductor: $v = L\\frac{di}{dt}$</p><p>Power: $p = vi = Li\\frac{di}{dt}$</p><p>Energy: $W = \\int p\\,dt = \\int Li\\,di = L\\int_0^I i\\,di$</p><p>$$W = \\frac{1}{2}LI^2$$ joules</p><p>Energy is stored in magnetic field.</p>",
+            "marks": 4,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "5iii",
+            "type": "laq",
+            "group": "C",
+            "question": "A rectangular shape iron core has an air gap of 0.01cm. The mean length of the flux path through iron is 39.99cm. The relative permeability of iron is 2000. The coil has 1000 turns. The cross-sectional area of the core is 9cm². Calculate the current required to produce a flux of 1mWb in the core.",
+            "answer": "<h5>Magnetic Circuit Calculation</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Air gap length $l_g = 0.01\\text{ cm} = 0.0001\\text{ m}$</li>\n<li>Iron path length $l_i = 39.99\\text{ cm} = 0.3999\\text{ m}$</li>\n<li>Relative permeability $\\mu_r = 2000$</li>\n<li>Turns $N = 1000$</li>\n<li>Area $A = 9\\text{ cm}^2 = 9 \\times 10^{-4}\\text{ m}^2$</li>\n<li>Flux $\\phi = 1\\text{ mWb} = 1 \\times 10^{-3}\\text{ Wb}$</li>\n<li>$\\mu_0 = 4\\pi \\times 10^{-7}\\text{ H/m}$</li>\n</ul>\n\n<p><strong>Step 1: Calculate flux density B</strong></p>\n<p>$$B = \\frac{\\phi}{A} = \\frac{1 \\times 10^{-3}}{9 \\times 10^{-4}} = 1.111\\text{ T}$$</p>\n\n<p><strong>Step 2: Calculate magnetizing force (H) in iron and air gap</strong></p>\n<p>For iron: $H_i = \\frac{B}{\\mu_0 \\mu_r} = \\frac{1.111}{4\\pi \\times 10^{-7} \\times 2000}$</p>\n<p>$H_i = \\frac{1.111}{2.513 \\times 10^{-3}} = 442.1\\text{ AT/m}$</p>\n\n<p>For air gap: $H_g = \\frac{B}{\\mu_0} = \\frac{1.111}{4\\pi \\times 10^{-7}}$</p>\n<p>$H_g = \\frac{1.111}{1.257 \\times 10^{-6}} = 884,000\\text{ AT/m}$</p>\n\n<p><strong>Step 3: Calculate total mmf</strong></p>\n<p>$mmf = H_i l_i + H_g l_g$</p>\n<p>$mmf = (442.1 \\times 0.3999) + (884,000 \\times 0.0001)$</p>\n<p>$mmf = 176.8 + 88.4 = 265.2\\text{ AT}$</p>\n\n<p><strong>Step 4: Calculate current</strong></p>\n<p>$I = \\frac{mmf}{N} = \\frac{265.2}{1000} = 0.2652\\text{ A}$</p>\n\n<p><strong>Answer:</strong> Current required = 0.265 A or 265 mA</p>",
+            "keyPoints": [
+                "Convert all units to SI",
+                "Calculate B = φ/A",
+                "Find H in iron and air gap separately",
+                "mmf = Hili + Hglg",
+                "I = mmf/N"
+            ],
+            "marks": 6,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "6i",
+            "type": "laq",
+            "group": "C",
+            "question": "A R-L-C series circuit comprises of resistance of 15Ω, inductance 0.15H and capacitance of 100μF is connected across a 230V 50Hz supply. Calculate current, power factor and power consumed by the circuit.",
+            "answer": "<h5>Series RLC Circuit Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>R = 15 Ω</li>\n<li>L = 0.15 H</li>\n<li>C = 100 μF = 100 × 10⁻⁶ F</li>\n<li>V = 230 V</li>\n<li>f = 50 Hz</li>\n</ul>\n\n<p><strong>Step 1: Calculate inductive reactance XL</strong></p>\n<p>$X_L = 2\\pi fL = 2\\pi \\times 50 \\times 0.15$</p>\n<p>$X_L = 314.16 \\times 0.15 = 47.124\\text{ Ω}$</p>\n\n<p><strong>Step 2: Calculate capacitive reactance XC</strong></p>\n<p>$X_C = \\frac{1}{2\\pi fC} = \\frac{1}{2\\pi \\times 50 \\times 100 \\times 10^{-6}}$</p>\n<p>$X_C = \\frac{1}{0.031416} = 31.83\\text{ Ω}$</p>\n\n<p><strong>Step 3: Calculate net reactance X and impedance Z</strong></p>\n<p>$X = X_L - X_C = 47.124 - 31.83 = 15.294\\text{ Ω}$ (inductive)</p>\n<p>$Z = \\sqrt{R^2 + X^2} = \\sqrt{15^2 + 15.294^2}$</p>\n<p>$Z = \\sqrt{225 + 233.9} = \\sqrt{458.9} = 21.42\\text{ Ω}$</p>\n\n<p><strong>Step 4: Calculate current I</strong></p>\n<p>$I = \\frac{V}{Z} = \\frac{230}{21.42} = 10.74\\text{ A}$</p>\n\n<p><strong>Step 5: Calculate power factor</strong></p>\n<p>$\\cos\\phi = \\frac{R}{Z} = \\frac{15}{21.42} = 0.7$ lagging (since XL > XC)</p>\n\n<p><strong>Step 6: Calculate power consumed P</strong></p>\n<p>$P = VI\\cos\\phi = 230 \\times 10.74 \\times 0.7$</p>\n<p>$P = 1729.14\\text{ W}$</p>\n<p>$P \\approx 1.73\\text{ kW}$</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Current I = 10.74 A</li>\n<li>Power factor = 0.7 lagging</li>\n<li>Power consumed = 1.73 kW</li>\n</ul>",
+            "keyPoints": [
+                "Calculate XL = 2πfL",
+                "Calculate XC = 1/(2πfC)",
+                "Find net reactance X = |XL - XC|",
+                "Impedance Z = √(R² + X²)",
+                "I = V/Z, cos φ = R/Z, P = VI cos φ"
+            ],
+            "marks": 6,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6iia",
+            "type": "saq",
+            "group": "C",
+            "question": "Show that the current leads the voltage in phase by π/2 in an a.c. circuit containing an ideal capacitor.",
+            "answer": "<p><strong>Pure Capacitive Circuit:</strong></p>\n<p>Applied voltage: $v = V_m\\sin\\omega t$</p>\n<p>Charge: $q = Cv = CV_m\\sin\\omega t$</p>\n<p>Current: $i = \\frac{dq}{dt} = \\frac{d}{dt}(CV_m\\sin\\omega t)$</p>\n<p>$i = \\omega C V_m\\cos\\omega t = \\omega C V_m\\sin(\\omega t + 90°)$</p>\n<p>$i = I_m\\sin(\\omega t + \\pi/2)$ where $I_m = \\omega C V_m$</p>\n<p>Thus, current leads voltage by $\\pi/2$ (90°).</p>",
+            "marks": 3,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6iib",
+            "type": "saq",
+            "group": "C",
+            "question": "Draw STAR & DELTA connections. Also write voltage and current relations for both types.",
+            "answer": "<p><strong>Star (Y) Connection:</strong></p><ul><li>Line voltage $V_L = \\sqrt{3} V_{ph}$</li><li>Line current $I_L = I_{ph}$</li></ul><p><strong>Delta (Δ) Connection:</strong></p><ul><li>Line voltage $V_L = V_{ph}$</li><li>Line current $I_L = \\sqrt{3} I_{ph}$</li></ul><p>Power in both: $P = \\sqrt{3}V_LI_L\\cos\\phi$</p>",
+            "marks": 3,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6iiia",
+            "type": "laq",
+            "group": "C",
+            "question": "A 30 KVA single phase transformer has 500 primary turns and 30 secondary turns. The primary is connected to a 3300V, 50 Hz single phase supply. Calculate i) the maximum flux in the core; ii) secondary e.m.f; iii) primary and secondary full load current.",
+            "answer": "<h5>Transformer Calculations</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Rating S = 30 kVA = 30,000 VA</li>\n<li>Primary turns N₁ = 500</li>\n<li>Secondary turns N₂ = 30</li>\n<li>Primary voltage V₁ = 3300 V</li>\n<li>Frequency f = 50 Hz</li>\n</ul>\n\n<p><strong>i) Maximum flux in core (φm):</strong></p>\n<p>EMF equation: $V_1 = 4.44 f N_1 \\phi_m$</p>\n<p>$\\phi_m = \\frac{V_1}{4.44 f N_1} = \\frac{3300}{4.44 \\times 50 \\times 500}$</p>\n<p>$\\phi_m = \\frac{3300}{111,000} = 0.02973\\text{ Wb}$</p>\n<p>$\\phi_m = 29.73\\text{ mWb}$</p>\n\n<p><strong>ii) Secondary emf (E₂):</strong></p>\n<p>Using turns ratio: $\\frac{E_2}{V_1} = \\frac{N_2}{N_1}$</p>\n<p>$E_2 = V_1 \\times \\frac{N_2}{N_1} = 3300 \\times \\frac{30}{500}$</p>\n<p>$E_2 = 3300 \\times 0.06 = 198\\text{ V}$</p>\n\n<p><strong>iii) Primary and secondary full load currents:</strong></p>\n<p>Primary current: $I_1 = \\frac{S}{V_1} = \\frac{30,000}{3300} = 9.09\\text{ A}$</p>\n<p>Secondary current: $I_2 = \\frac{S}{E_2} = \\frac{30,000}{198} = 151.52\\text{ A}$</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Maximum flux φm = 29.73 mWb</li>\n<li>Secondary emf E₂ = 198 V</li>\n<li>Primary current I₁ = 9.09 A</li>\n<li>Secondary current I₂ = 151.52 A</li>\n</ul>",
+            "keyPoints": [
+                "Use EMF equation for flux",
+                "Turns ratio for secondary voltage",
+                "kVA rating for currents"
+            ],
+            "marks": 4,
+            "unit": "Transformer"
+        },
+        {
+            "id": "6iiib",
+            "type": "saq",
+            "group": "C",
+            "question": "Name different types of DC motors.",
+            "answer": "<p><strong>Types of DC Motors:</strong></p><ul><li>DC Series Motor</li><li>DC Shunt Motor</li><li>DC Compound Motor (Cumulative and Differential)</li><li>Permanent Magnet DC Motor</li><li>Separately Excited DC Motor</li></ul>",
+            "marks": 2,
+            "unit": "DC Machines"
+        },
+        {
+            "id": "7i",
+            "type": "laq",
+            "group": "C",
+            "question": "With respect to Energy band diagram differentiate between Conductors, Semiconductor & Insulator.",
+            "answer": "<h5>Energy Band Diagram Comparison</h5>\n\n<p><strong>Energy Band Theory:</strong> Materials are classified based on energy bands - Valence band (filled with electrons) and Conduction band (empty/partially filled), separated by forbidden energy gap.</p>\n\n<table>\n<tr><th>Property</th><th>Conductor</th><th>Semiconductor</th><th>Insulator</th></tr>\n\n<tr><td><strong>Band Structure</strong></td>\n<td>Valence and conduction bands overlap OR partially filled conduction band</td>\n<td>Small forbidden gap between valence and conduction bands</td>\n<td>Large forbidden gap between valence and conduction bands</td></tr>\n\n<tr><td><strong>Energy Gap (Eg)</strong></td>\n<td>No gap (0 eV) or overlapping</td>\n<td>Small: 0.7 eV (Ge) to 1.1 eV (Si)</td>\n<td>Large: > 3 eV to 6 eV</td></tr>\n\n<tr><td><strong>Conduction Band</strong></td>\n<td>Partially filled or overlapping with valence band</td>\n<td>Empty at 0K, partially filled at room temp</td>\n<td>Empty at room temperature</td></tr>\n\n<tr><td><strong>Valence Band</strong></td>\n<td>Partially filled OR fully filled but overlapping</td>\n<td>Fully filled at 0K</td>\n<td>Fully filled</td></tr>\n\n<tr><td><strong>Electron Availability</strong></td>\n<td>Large number of free electrons</td>\n<td>Few electrons jump to conduction band at room temp</td>\n<td>Negligible free electrons</td></tr>\n\n<tr><td><strong>Conductivity</strong></td>\n<td>Very high (10⁷ S/m)</td>\n<td>Moderate (10⁻⁶ to 10⁴ S/m)</td>\n<td>Very low (< 10⁻¹² S/m)</td></tr>\n\n<tr><td><strong>Temperature Effect</strong></td>\n<td>Conductivity decreases with temperature</td>\n<td>Conductivity increases with temperature</td>\n<td>Remains insulator at normal temps</td></tr>\n\n<tr><td><strong>Examples</strong></td>\n<td>Copper, Aluminum, Silver</td>\n<td>Silicon, Germanium</td>\n<td>Glass, Rubber, Mica</td></tr>\n</table>\n\n<p><em>Diagram reference:</em> In conductors, bands overlap. In semiconductors, small energy gap (≈1 eV). In insulators, large energy gap (>3 eV).</p>",
+            "keyPoints": [
+                "Energy gap comparison",
+                "Band structure at 0K and room temperature",
+                "Conduction mechanism",
+                "Examples"
+            ],
+            "marks": 6,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "7ii",
+            "type": "laq",
+            "group": "C",
+            "question": "Draw the circuit diagram of an inverting amplifier & Derive the expression for output voltage.",
+            "answer": "<h5>Inverting Amplifier using Op-Amp</h5>\n\n<p><em>Circuit Diagram:</em> Input signal applied to inverting (-) terminal through resistor R₁. Non-inverting (+) terminal grounded. Feedback resistor Rf connected between output and inverting terminal.</p>\n\n<p><strong>Assumptions for ideal op-amp:</strong></p>\n<ul>\n<li>Open-loop gain A = ∞</li>\n<li>Input impedance Rin = ∞ (no input current)</li>\n<li>Virtual short: V₁ = V₂ = 0V (since V₂ grounded)</li>\n</ul>\n\n<p><strong>Derivation:</strong></p>\n\n<p><strong>Step 1:</strong> Due to virtual ground, voltage at inverting terminal V₁ = 0V.</p>\n\n<p><strong>Step 2:</strong> Current through R₁:</p>\n<p>$$I_1 = \\frac{V_{in} - V_1}{R_1} = \\frac{V_{in} - 0}{R_1} = \\frac{V_{in}}{R_1}$$</p>\n\n<p><strong>Step 3:</strong> Since no current enters op-amp (ideal), same current flows through Rf:</p>\n<p>$$I_f = I_1 = \\frac{V_{in}}{R_1}$$</p>\n\n<p><strong>Step 4:</strong> Voltage across Rf:</p>\n<p>$$V_1 - V_{out} = I_f R_f$$</p>\n<p>$$0 - V_{out} = \\frac{V_{in}}{R_1} \\times R_f$$</p>\n\n<p><strong>Step 5:</strong> Therefore:</p>\n<p>$$V_{out} = -\\frac{R_f}{R_1} V_{in}$$</p>\n\n<p><strong>Voltage Gain:</strong></p>\n<p>$$A_v = \\frac{V_{out}}{V_{in}} = -\\frac{R_f}{R_1}$$</p>\n\n<p><strong>Key Points:</strong></p>\n<ul>\n<li>Negative sign indicates 180° phase shift between input and output</li>\n<li>Gain depends only on external resistors Rf and R₁</li>\n<li>Input impedance = R₁ (since inverting terminal is virtual ground)</li>\n<li>Output impedance is very low (ideally zero)</li>\n</ul>",
+            "keyPoints": [
+                "Virtual ground concept",
+                "Same current through R₁ and Rf",
+                "Gain = -Rf/R₁",
+                "Phase inversion"
+            ],
+            "marks": 6,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "7iiia",
+            "type": "saq",
+            "group": "C",
+            "question": "State the two laws De Morgan's Theorem along with the truth table.",
+            "answer": "<p><strong>De Morgan's Theorems:</strong></p>\n\n<p><strong>Theorem 1:</strong> The complement of a product (AND) equals the sum (OR) of complements.</p>\n<p>$$\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$$</p>\n\n<p><strong>Truth Table for Theorem 1:</strong></p>\n<table>\n<tr><th>A</th><th>B</th><th>A·B</th><th>Ā+B̅</th><th>Ā+B̅</th></tr>\n<tr><td>0</td><td>0</td><td>1</td><td>1+1=1</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>1</td><td>1+0=1</td><td>1</td></tr>\n<tr><td>1</td><td>0</td><td>1</td><td>0+1=1</td><td>1</td></tr>\n<tr><td>1</td><td>1</td><td>0</td><td>0+0=0</td><td>0</td></tr>\n</table>\n\n<p><strong>Theorem 2:</strong> The complement of a sum (OR) equals the product (AND) of complements.</p>\n<p>$$\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$$</p>\n\n<p><strong>Truth Table for Theorem 2:</strong></p>\n<table>\n<tr><th>A</th><th>B</th><th>A+B</th><th>Ā·B̅</th><th>Ā·B̅</th></tr>\n<tr><td>0</td><td>0</td><td>1</td><td>1·1=1</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>0</td><td>1·0=0</td><td>0</td></tr>\n<tr><td>1</td><td>0</td><td>0</td><td>0·1=0</td><td>0</td></tr>\n<tr><td>1</td><td>1</td><td>0</td><td>0·0=0</td><td>0</td></tr>\n</table>",
+            "marks": 3,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "7iiib",
+            "type": "laq",
+            "group": "C",
+            "question": "Simplify the expression using Boolean algebra and realize the same by using logic gates. Y = (A + B̅ + C̅) · (A + B̅C)",
+            "answer": "<h5>Boolean Expression Simplification</h5>\n\n<p><strong>Given:</strong> $Y = (A + \\overline{B} + \\overline{C}) \\cdot (A + \\overline{B}C)$</p>\n\n<p><strong>Step 1: Apply Distributive Law</strong></p>\n<p>Let $X = A + \\overline{B}$</p>\n<p>$Y = (X + \\overline{C}) \\cdot (X + C)$ because $\\overline{B}C = C$ when $\\overline{B}=1$? Wait, careful:</p>\n<p>Actually, $\\overline{B}C$ means (NOT B) AND C, not simply C. So we cannot simplify that way.</p>\n\n<p><strong>Step 2: Expand using distributive law</strong></p>\n<p>$Y = (A + \\overline{B} + \\overline{C}) \\cdot (A + \\overline{B}C)$</p>\n<p>$Y = A\\cdot A + A\\cdot(\\overline{B}C) + \\overline{B}\\cdot A + \\overline{B}\\cdot(\\overline{B}C) + \\overline{C}\\cdot A + \\overline{C}\\cdot(\\overline{B}C)$</p>\n\n<p><strong>Step 3: Simplify each term</strong></p>\n<ul>\n<li>$A\\cdot A = A$</li>\n<li>$A\\cdot(\\overline{B}C) = A\\overline{B}C$</li>\n<li>$\\overline{B}\\cdot A = A\\overline{B}$</li>\n<li>$\\overline{B}\\cdot(\\overline{B}C) = \\overline{B}\\overline{B}C = \\overline{B}C$ (since $\\overline{B}\\cdot\\overline{B} = \\overline{B}$)</li>\n<li>$\\overline{C}\\cdot A = A\\overline{C}$</li>\n<li>$\\overline{C}\\cdot(\\overline{B}C) = \\overline{B}(\\overline{C}\\cdot C) = \\overline{B}\\cdot 0 = 0$</li>\n</ul>\n\n<p><strong>Step 4: Combine terms</strong></p>\n<p>$Y = A + A\\overline{B}C + A\\overline{B} + \\overline{B}C + A\\overline{C}$</p>\n\n<p><strong>Step 5: Apply absorption and redundancy</strong></p>\n<p>$A + A\\overline{B} = A$ (absorption)</p>\n<p>$A + A\\overline{C} = A$ (absorption)</p>\n<p>$A + A\\overline{B}C = A$ (absorption)</p>\n<p>So $Y = A + \\overline{B}C$</p>\n\n<p><strong>Simplified Expression:</strong></p>\n<p>$$\\boxed{Y = A + \\overline{B}C}$$</p>\n\n<p><strong>Logic Gate Realization:</strong></p>\n<p>To implement $Y = A + \\overline{B}C$:</p>\n<ul>\n<li>Take input B through a NOT gate to get $\\overline{B}$</li>\n<li>Apply $\\overline{B}$ and C to an AND gate to get $\\overline{B}C$</li>\n<li>Apply A and output of AND gate to an OR gate to get final Y</li>\n</ul>\n\n<p><strong>Truth Table verification:</strong></p>\n<table>\n<tr><th>A</th><th>B</th><th>C</th><th>B̅</th><th>B̅C</th><th>A+B̅C</th></tr>\n<tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>\n<tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n<tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>\n<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>\n<tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>\n<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>\n</table>",
+            "keyPoints": [
+                "Apply Boolean algebra laws",
+                "Use absorption theorem",
+                "Final expression A + B̅C",
+                "Realize with NOT, AND, OR gates"
+            ],
+            "marks": 3,
+            "unit": "Digital Electronics"
+        }
+    ]
+}

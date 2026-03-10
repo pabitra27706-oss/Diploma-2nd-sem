@@ -1,0 +1,517 @@
+{
+    "subject": "Introduction to IT Systems",
+    "year": 2024,
+    "totalMarks": 60,
+    "timeAllowed": "2.5 Hours",
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "The number of steps on algorithm should be",
+            "options": [
+                "Finite",
+                "Infinite",
+                "Fixed",
+                "Floating"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Finite</strong> is correct because an algorithm must terminate after a finite number of steps. If an algorithm has infinite steps, it would never complete, violating the basic definition of an algorithm which requires termination.</p>",
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Minimum number of bits required to represent 15 different characters individually:",
+            "options": [
+                "15",
+                "4",
+                "5",
+                "3"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>4</strong> is correct because with n bits, we can represent 2ⁿ different characters. 2³ = 8 (insufficient for 15), 2⁴ = 16 (sufficient for 15). Therefore, minimum 4 bits are needed.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following memory is used to design BIOS?",
+            "options": [
+                "RAM",
+                "ROM",
+                "Cache",
+                "Virtual Memory"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>ROM (Read Only Memory)</strong> is correct because BIOS (Basic Input/Output System) is stored in ROM to ensure it remains permanently available and is not erased when power is turned off. ROM is non-volatile memory.</p>",
+            "unit": "Computer Hardware"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Logical operations are performed in computer using",
+            "options": [
+                "Memory Unit",
+                "ALU",
+                "CD",
+                "ROM"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>ALU (Arithmetic Logic Unit)</strong> is correct because ALU is the component of CPU that performs all arithmetic and logical operations like AND, OR, NOT, comparisons, and bitwise operations.</p>",
+            "unit": "Computer Architecture"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "Equivalent Binary representation of the Gray code 0111 is",
+            "options": [
+                "0101",
+                "1000",
+                "1010",
+                "1111"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>0101</strong> is correct because Gray to binary conversion: MSB same (0), next bit: previous binary (0) XOR current Gray (1) = 1, next: previous binary (1) XOR current Gray (1) = 0, next: previous binary (0) XOR current Gray (1) = 1. Result: 0101.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Best choice of the tools to create dynamic web page",
+            "options": [
+                "CSS",
+                "JavaScript",
+                "Java",
+                "paint"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>JavaScript</strong> is correct because JavaScript is a client-side scripting language specifically designed to create dynamic, interactive web pages by manipulating HTML and CSS in real-time.</p>",
+            "unit": "Web Technology"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Best choice of the tools to introduce different style in a web page",
+            "options": [
+                "CSS",
+                "JavaScript",
+                "Java",
+                "Power point"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>CSS (Cascading Style Sheets)</strong> is correct because CSS is specifically designed to control the presentation, layout, and styling of web pages including colors, fonts, spacing, and responsive design.</p>",
+            "unit": "CSS"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Operating Systems used in the computer system for",
+            "options": [
+                "File management",
+                "Process management",
+                "Device management",
+                "All of these"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>All of these</strong> is correct because operating system performs multiple functions including file management (organizing files), process management (CPU scheduling), and device management (controlling I/O devices).</p>",
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Free and efficient operating system is",
+            "options": [
+                "UNIX",
+                "Windows",
+                "MAC",
+                "None of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>UNIX</strong> is correct because many UNIX variants like Linux are free and open-source operating systems known for efficiency, stability, and performance in servers and embedded systems.</p>",
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "DNS is",
+            "options": [
+                "Horizontal naming system",
+                "Vertical naming system",
+                "client server system"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>client server system</strong> is correct because DNS (Domain Name System) operates on client-server architecture where clients (browsers) send queries to DNS servers to resolve domain names to IP addresses.</p>",
+            "unit": "Computer Networks"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "A simple tool that helps you create, organize, and analyze data.",
+            "options": [
+                "Browser",
+                "Web viewer",
+                "Spreadsheet",
+                "Web server"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Spreadsheet</strong> is correct because spreadsheet applications like Microsoft Excel or Google Sheets are designed to create, organize, analyze, and manipulate data in tabular format with formulas and functions.</p>",
+            "unit": "Application Software"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The result of the expression 29 + 1 = (in binary)",
+            "options": [
+                "11101",
+                "11110",
+                "11000",
+                "10001"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>11110</strong> is correct because 29 + 1 = 30 in decimal. 30 in binary is 11110 (16+8+4+2 = 30).</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Example of Universal Gate",
+            "options": [
+                "NAND",
+                "XOR",
+                "OR",
+                "AND"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>NAND</strong> is correct because NAND and NOR are universal gates. Any Boolean function can be implemented using only NAND gates or only NOR gates.</p>",
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is used for connecting computers in a large area such as country, continent etc",
+            "options": [
+                "LAN",
+                "WAN",
+                "MAN",
+                "PAN"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>WAN (Wide Area Network)</strong> is correct because WAN spans large geographical areas like countries or continents. LAN is for local areas, MAN for metropolitan areas, PAN for personal devices.</p>",
+            "unit": "Computer Networks"
+        },
+        {
+            "id": "1.xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following not a browser?",
+            "options": [
+                "Safari",
+                "Android",
+                "Chrome",
+                "Edge"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Android</strong> is correct because Android is an operating system for mobile devices, not a web browser. Safari, Chrome, and Edge are all web browsers.</p>",
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "2.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Define algorithm with a suitable example.",
+            "answer": "<p><strong>Algorithm:</strong> An algorithm is a step-by-step, finite, and unambiguous sequence of instructions to solve a specific problem. It must have well-defined inputs and outputs and terminate after finite steps.</p><p><strong>Characteristics:</strong> Finiteness, definiteness, input, output, effectiveness.</p><p><strong>Example: Algorithm to find the sum of first n natural numbers</strong></p><p>Step 1: Start<br>Step 2: Input a positive integer n<br>Step 3: Initialize sum = 0 and counter i = 1<br>Step 4: Repeat steps 5-6 while i ≤ n<br>Step 5: sum = sum + i<br>Step 6: i = i + 1<br>Step 7: Output sum<br>Step 8: Stop</p><p><strong>Alternative formula-based algorithm:</strong><br>Step 1: Start<br>Step 2: Input n<br>Step 3: Calculate sum = n × (n + 1) / 2<br>Step 4: Output sum<br>Step 5: Stop</p>",
+            "marks": 2,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "2.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Write the advantages of using flow chart.",
+            "answer": "<p><strong>Advantages of Flowcharts:</strong></p><ul><li><strong>Clear Communication:</strong> Provides visual representation of program logic, making it easier to understand and communicate</li><li><strong>Efficient Debugging:</strong> Helps identify logical errors and bugs before coding</li><li><strong>Effective Documentation:</strong> Serves as program documentation for future reference and maintenance</li><li><strong>Easy to Understand:</strong> Non-programmers can understand the logic through symbols and arrows</li><li><strong>Code Generation:</strong> Facilitates writing code by providing clear step-by-step logic</li><li><strong>Testing and Debugging:</strong> Makes it easier to trace program flow and identify problem areas</li><li><strong>System Analysis:</strong> Helps in analyzing and designing system workflows</li><li><strong>Standardization:</strong> Uses standardized symbols, making it universally understandable</li><li><strong>Modular Approach:</strong> Helps in breaking complex problems into smaller modules</li><li><strong>Time and Cost Saving:</strong> Reduces development time by identifying issues early</li></ul>",
+            "marks": 2,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "2.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Draw a flow chart to calculate the factorial of an integer.",
+            "answer": "<p><strong>Flowchart to Calculate Factorial of n (n!):</strong></p><pre><code>    [Start]\n       |\n       V\n[Input n (positive integer)]\n       |\n       V\n[Initialize fact = 1, i = 1]\n       |\n       V\n   < i ≤ n? >\n     /     \\\n   Yes      No\n    |         |\n    V         V\n[fact = fact × i] [Output fact]\n    |              |\n    V              V\n[i = i + 1]      [Stop]\n    |\n    ----→ (loop back to condition)</code></pre><p><strong>Algorithm for Factorial:</strong></p><p>Step 1: Start<br>Step 2: Input a positive integer n<br>Step 3: Initialize fact = 1, i = 1<br>Step 4: If i ≤ n, go to step 5, else go to step 7<br>Step 5: fact = fact × i<br>Step 6: i = i + 1, go to step 4<br>Step 7: Output fact<br>Step 8: Stop</p><p><strong>Example:</strong> For n = 5, factorial = 5 × 4 × 3 × 2 × 1 = 120</p>",
+            "marks": 4,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "3.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Explain the advantages of multi-user and multitasking OS.",
+            "answer": "<p><strong>Advantages of Multi-user Operating System:</strong></p><ul><li><strong>Resource Sharing:</strong> Multiple users can share hardware resources (CPU, memory, printers) reducing cost</li><li><strong>Centralized Management:</strong> Easy administration and updates from central server</li><li><strong>Data Sharing:</strong> Users can share files and databases easily</li><li><strong>Cost Effective:</strong> Single system serves many users, reducing per-user cost</li><li><strong>Remote Access:</strong> Users can access system from different locations</li><li><strong>Examples:</strong> UNIX, Linux, Windows Server</li></ul><p><strong>Advantages of Multitasking Operating System:</strong></p><ul><li><strong>Improved Productivity:</strong> Users can run multiple applications simultaneously (e.g., browsing while editing documents)</li><li><strong>Efficient CPU Utilization:</strong> CPU stays busy by switching between tasks when one task waits for I/O</li><li><strong>Better Response Time:</strong> Users get quick response from interactive applications</li><li><strong>Background Processing:</strong> Tasks like printing, downloading can run in background</li><li><strong>Resource Optimization:</strong> Better utilization of system resources</li><li><strong>Time Sharing:</strong> Each task gets CPU time quantum, providing illusion of parallel execution</li><li><strong>Examples:</strong> Windows, macOS, Linux with GUI</li></ul><p>Modern operating systems combine both features, allowing multiple users to run multiple tasks simultaneously.</p>",
+            "marks": 2,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "3.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Write down the differences between system software and application software.",
+            "answer": "<p><strong>Differences between System Software and Application Software:</strong></p><table border='1' cellpadding='5'><tr><th>System Software</th><th>Application Software</th></tr><tr><td>Runs and manages computer hardware and provides platform for applications</td><td>Performs specific user tasks and functions</td></tr><tr><td>Examples: Operating Systems (Windows, Linux), Device Drivers, Compilers</td><td>Examples: MS Word, Excel, Chrome, Games, Photoshop</td></tr><tr><td>Written in low-level languages (C, Assembly)</td><td>Written in high-level languages (Java, Python, C++)</td></tr><tr><td>Executes independently and runs in background</td><td>Executes on user request and runs in foreground</td></tr><tr><td>General purpose - manages system resources</td><td>Specific purpose - designed for particular tasks</td></tr><tr><td>Starts when computer boots and runs until shutdown</td><td>Starts when user launches and stops when closed</td></tr><tr><td>Essential for computer operation</td><td>Not essential - user can choose to install</td></tr><tr><td>Hardware dependent</td><td>Hardware independent (runs on OS)</td></tr><tr><td>Examples: BIOS, assemblers, linkers</td><td>Examples: Database software, media players</td></tr></table>",
+            "marks": 2,
+            "unit": "Software Engineering"
+        },
+        {
+            "id": "3.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Describe the general architecture of an operating system.",
+            "answer": "<p><strong>General Architecture of an Operating System:</strong></p><p>The operating system architecture consists of multiple layers that work together to manage hardware and provide services to users.</p><p><strong>1. Hardware Layer:</strong> Physical components - CPU, memory, I/O devices, storage</p><p><strong>2. Kernel (Core Layer):</strong> The central component that manages system resources</p><ul><li>Process Management: Creates, schedules, terminates processes</li><li>Memory Management: Allocates and deallocates memory</li><li>Device Management: Controls I/O devices through drivers</li><li>File System Management: Organizes files and directories</li></ul><p><strong>3. System Call Interface:</strong> Bridge between kernel and user programs - provides API for applications to request OS services</p><p><strong>4. Shell/Command Interpreter:</strong> User interface (CLI or GUI) that accepts user commands</p><ul><li>CLI: Command-line interface (bash, cmd)</li><li>GUI: Graphical user interface (Windows Explorer, GNOME)</li></ul><p><strong>5. System Programs/Utilities:</strong> Built-in tools for system maintenance (file managers, disk utilities, editors)</p><p><strong>6. Application Layer:</strong> User-installed programs that run on top of OS</p><p><strong>Architecture Models:</strong></p><ul><li><strong>Monolithic Kernel:</strong> All OS services in kernel space (Linux)</li><li><strong>Microkernel:</strong> Minimal kernel, services in user space (QNX)</li><li><strong>Hybrid Kernel:</strong> Combines both approaches (Windows NT)</li></ul>",
+            "marks": 4,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "4.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Why computer security is important?",
+            "answer": "<p><strong>Importance of Computer Security:</strong></p><ul><li><strong>Protect Sensitive Data:</strong> Safeguards personal, financial, and business information from unauthorized access and theft</li><li><strong>Prevent Financial Loss:</strong> Stops cyber criminals from stealing money, conducting fraud, or ransomware attacks</li><li><strong>Maintain Privacy:</strong> Ensures personal communications, photos, and documents remain private</li><li><strong>Prevent Identity Theft:</strong> Stops criminals from stealing personal information to impersonate users</li><li><strong>Ensure System Integrity:</strong> Prevents unauthorized modification of data and system files</li><li><strong>Maintain Availability:</strong> Protects against DoS attacks that make systems unavailable</li><li><strong>Protect National Security:</strong> Critical infrastructure (power grids, defense systems) need protection</li><li><strong>Legal Compliance:</strong> Many regulations (GDPR, HIPAA) require data protection</li><li><strong>Business Continuity:</strong> Prevents disruptions that could halt business operations</li><li><strong>Reputation Protection:</strong> Data breaches damage organization reputation and customer trust</li><li><strong>Intellectual Property Protection:</strong> Safeguards trade secrets and proprietary information</li></ul>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "4.b",
+            "type": "laq",
+            "group": "B",
+            "question": "What is cyber stalking?",
+            "answer": "<p><strong>Cyber Stalking:</strong> The use of internet, email, or electronic communication to repeatedly harass, threaten, or intimidate someone. It is a form of cyber crime that can cause psychological trauma and fear.</p><p><strong>Forms of Cyber Stalking:</strong></p><ul><li>Sending threatening or unwanted emails/messages repeatedly</li><li>Monitoring victim's online activities without consent</li><li>Tracking victim's location through GPS or social media</li><li>Creating fake profiles to contact or defame victim</li><li>Posting personal information (doxing) to encourage harassment</li><li>Impersonating victim online</li><li>Spreading rumors or false information</li><li>Cyber bullying through social media platforms</li></ul><p><strong>Legal Aspects:</strong> Most countries have laws against cyber stalking. In India, it is punishable under IT Act and IPC.</p><p><strong>Prevention:</strong> Use privacy settings, avoid sharing personal information, block harassers, document evidence, report to authorities.</p>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "4.c",
+            "type": "laq",
+            "group": "B",
+            "question": "What is computer hacking?",
+            "answer": "<p><strong>Computer Hacking:</strong> The act of gaining unauthorized access to computer systems, networks, or digital devices to exploit, modify, steal information, or disrupt operations.</p><p><strong>Types of Hackers:</strong></p><ul><li><strong>White Hat Hackers:</strong> Ethical hackers who hack with permission to find vulnerabilities and improve security. They work for organizations as security professionals.</li><li><strong>Black Hat Hackers:</strong> Malicious hackers who break into systems illegally for personal gain, data theft, financial fraud, or damage.</li><li><strong>Grey Hat Hackers:</strong> Between white and black - may hack without permission but not for malicious purposes, sometimes disclosing vulnerabilities publicly.</li><li><strong>Script Kiddies:</strong> Inexperienced hackers using pre-written scripts and tools without deep understanding.</li><li><strong>Hacktivists:</strong> Hackers motivated by political or social causes, often defacing websites or leaking information.</li></ul><p><strong>Common Hacking Techniques:</strong> Phishing, social engineering, password cracking, SQL injection, malware, man-in-the-middle attacks.</p>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "4.d",
+            "type": "laq",
+            "group": "B",
+            "question": "Can you protect your personal computer from being hacked? How?",
+            "answer": "<p><strong>Yes, personal computers can be protected from hacking through multiple measures:</strong></p><p><strong>1. Software Protection:</strong></p><ul><li>Install and update antivirus/anti-malware software</li><li>Enable firewall to monitor network traffic</li><li>Keep operating system and applications updated with security patches</li><li>Use anti-spyware tools</li></ul><p><strong>2. Strong Authentication:</strong></p><ul><li>Use strong, unique passwords for different accounts</li><li>Enable two-factor authentication (2FA) where possible</li><li>Use password manager to store complex passwords</li><li>Biometric authentication (fingerprint, face recognition)</li></ul><p><strong>3. Safe Browsing Habits:</strong></p><ul><li>Don't click suspicious links or email attachments</li><li>Avoid downloading from untrusted sources</li><li>Verify website authenticity (look for HTTPS)</li><li>Be cautious with pop-ups and ads</li></ul><p><strong>4. Network Security:</strong></p><ul><li>Use secure Wi-Fi with WPA2/WPA3 encryption</li><li>Change default router passwords</li><li>Use VPN on public networks</li><li>Disable unnecessary network services</li></ul><p><strong>5. Data Protection:</strong></p><ul><li>Regular backups of important data</li><li>Encrypt sensitive files</li><li>Use secure cloud storage with encryption</li><li>Shred files permanently before disposal</li></ul><p><strong>6. Physical Security:</strong></p><ul><li>Lock computer when not in use</li><li>Use BIOS password</li><li>Secure physical access to device</li></ul>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "5.a",
+            "type": "laq",
+            "group": "B",
+            "question": "What is CSS?",
+            "answer": "<p><strong>CSS (Cascading Style Sheets):</strong> A stylesheet language used to describe the presentation and formatting of HTML documents. It controls how web pages look - including layout, colors, fonts, spacing, and responsive design.</p><p><strong>Key Features:</strong></p><ul><li>Separates content (HTML) from presentation (CSS)</li><li>Provides consistent styling across multiple pages</li><li>Enables responsive design for different devices</li><li>Supports animations and transitions</li><li>Allows different style rules for different media (screen, print)</li></ul><p><strong>Basic Syntax:</strong> selector { property: value; }<br>Example: h1 { color: blue; font-size: 24px; }</p><p><strong>CSS Versions:</strong> CSS1 (1996), CSS2 (1998), CSS3 (modules from 1999 onwards)</p>",
+            "marks": 1,
+            "unit": "CSS"
+        },
+        {
+            "id": "5.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Identify the ways to integrate CSS on a web page.",
+            "answer": "<p><strong>Three ways to integrate CSS in HTML:</strong></p><p><strong>1. Inline CSS:</strong> Using style attribute directly within HTML elements.<br><code>&lt;h1 style=\"color: blue; text-align: center;\"&gt;Hello World&lt;/h1&gt;</code><br>Pros: Quick for single element styling<br>Cons: Mixes content with presentation, difficult to maintain</p><p><strong>2. Internal/Embedded CSS:</strong> Using &lt;style&gt; tag in head section.<br><code>&lt;head&gt;<br>    &lt;style&gt;<br>        h1 { color: blue; text-align: center; }<br>        p { font-size: 16px; }<br>    &lt;/style&gt;<br>&lt;/head&gt;</code><br>Pros: Styles affect entire page, better organization<br>Cons: Cannot be reused across multiple pages</p><p><strong>3. External CSS:</strong> Linking to external .css file.<br><code>&lt;head&gt;<br>    &lt;link rel=\"stylesheet\" href=\"styles.css\"&gt;<br>&lt;/head&gt;</code><br>styles.css file:<br><code>h1 { color: blue; text-align: center; }<br>p { font-size: 16px; }</code><br>Pros: Reusable across multiple pages, cached by browser, best for maintenance<br>Cons: Additional HTTP request (but cached)</p><p><strong>Priority Order:</strong> Inline > Internal > External (cascading nature)</p>",
+            "marks": 3,
+            "unit": "CSS"
+        },
+        {
+            "id": "5.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Explain the differences between <picture> tag and <img> tag used in HTML.",
+            "answer": "<p><strong>Differences between &lt;picture&gt; and &lt;img&gt; tags:</strong></p><table border='1' cellpadding='5'><tr><th>&lt;img&gt; tag</th><th>&lt;picture&gt; tag</th></tr><tr><td>Single image source specified</td><td>Multiple image sources for different conditions</td></tr><tr><td>No media query support</td><td>Supports media queries for responsive images</td></tr><tr><td>Simple syntax: &lt;img src=\"image.jpg\" alt=\"description\"&gt;</td><td>Complex syntax with multiple &lt;source&gt; elements</td></tr><tr><td>Same image displayed on all devices</td><td>Different images for different screen sizes/resolutions</td></tr><tr><td>No support for art direction (cropping different images)</td><td>Supports art direction - different crops for different screens</td></tr><tr><td>Browser always downloads the specified image</td><td>Browser selects best source based on conditions</td></tr><tr><td>Limited to one image format</td><td>Can provide multiple formats (WebP, JPEG, PNG) for browser compatibility</td></tr><tr><td>Example:<br>&lt;img src=\"photo.jpg\" alt=\"My photo\"&gt;</td><td>Example:<br>&lt;picture&gt;<br>  &lt;source media=\"(min-width:800px)\" srcset=\"large.jpg\"&gt;<br>  &lt;source media=\"(min-width:400px)\" srcset=\"medium.jpg\"&gt;<br>  &lt;img src=\"small.jpg\" alt=\"My photo\"&gt;<br>&lt;/picture&gt;</td></tr></table><p><strong>When to use:</strong> Use &lt;img&gt; for simple images, &lt;picture&gt; for responsive design with art direction or multiple format support.</p>",
+            "marks": 4,
+            "unit": "HTML"
+        },
+        {
+            "id": "6.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Explain the utility of JavaScript.",
+            "answer": "<p><strong>Utility of JavaScript:</strong></p><p><strong>1. Client-side Interactivity:</strong> Creates dynamic and interactive web pages</p><ul><li>Form validation before submission</li><li>Interactive elements like dropdowns, sliders, tabs</li><li>Real-time content updates without page reload</li><li>Animations and visual effects</li></ul><p><strong>2. DOM Manipulation:</strong> Dynamically modify HTML and CSS</p><ul><li>Add/remove elements from page</li><li>Change styles based on user interaction</li><li>Respond to events (clicks, keypress, mouse movements)</li></ul><p><strong>3. Web Applications:</strong> Build complex web applications</p><ul><li>Single Page Applications (SPA) with frameworks</li><li>Real-time applications (chat, collaborative tools)</li><li>Browser-based games</li></ul><p><strong>4. Server-side Development:</strong> Using Node.js</p><ul><li>Build full-stack applications with JavaScript</li><li>Create REST APIs</li><li>Real-time server applications</li></ul><p><strong>5. Mobile App Development:</strong> Using React Native, Ionic</p><p><strong>6. Desktop Applications:</strong> Using Electron (VS Code, Slack)</p><p><strong>7. Browser APIs:</strong> Access device features</p><ul><li>Geolocation, Camera, Microphone</li><li>Local storage, IndexedDB</li><li>Canvas for graphics</li></ul><p><strong>8. Asynchronous Programming:</strong> Handle async operations (AJAX, Fetch API)</p><p><strong>Advantages:</strong> Universal browser support, easy to learn, large ecosystem, event-driven, non-blocking I/O.</p>",
+            "marks": 2,
+            "unit": "JavaScript"
+        },
+        {
+            "id": "6.b",
+            "type": "laq",
+            "group": "B",
+            "question": "What are the key difference between java and JavaScript?",
+            "answer": "<p><strong>Key Differences between Java and JavaScript:</strong></p><table border='1' cellpadding='5'><tr><th>Java</th><th>JavaScript</th></tr><tr><td>Object-oriented programming language</td><td>Scripting language/prototype-based</td></tr><tr><td>Compiled language (bytecode)</td><td>Interpreted language (just-in-time compiled)</td></tr><tr><td>Strongly typed - variables must declare type</td><td>Loosely typed/dynamic typing</td></tr><tr><td>Runs on Java Virtual Machine (JVM)</td><td>Runs in browser or Node.js engine</td></tr><tr><td>Class-based inheritance</td><td>Prototype-based inheritance</td></tr><tr><td>Multi-threaded</td><td>Single-threaded with event loop</td></tr><tr><td>Used for: enterprise apps, Android, backend</td><td>Used for: web interactivity, frontend, Node.js</td></tr><tr><td>File extension: .java</td><td>File extension: .js</td></tr><tr><td>Code must be in classes</td><td>Code can be written directly in functions</td></tr><tr><td>Static - requires main() method</td><td>Dynamic - executes line by line</td></tr><tr><td>Example: int x = 10; String s = \"Hello\";</td><td>Example: let x = 10; let s = \"Hello\";</td></tr><tr><td>Developed by Sun Microsystems (now Oracle)</td><td>Developed by Netscape (Brendan Eich)</td></tr></table><p><strong>Similarities:</strong> Both have C-like syntax, support object-oriented programming, and are used in web development (Java backend, JavaScript frontend).</p>",
+            "marks": 2,
+            "unit": "Programming Languages"
+        },
+        {
+            "id": "6.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Differentiate between an ordered list and an unordered list used in HTML with proper example.",
+            "answer": "<p><strong>Difference between Ordered List and Unordered List in HTML:</strong></p><table border='1' cellpadding='5'><tr><th>Ordered List (&lt;ol&gt;)</th><th>Unordered List (&lt;ul&gt;)</th></tr><tr><td>Displays items with numbers or letters (sequential order)</td><td>Displays items with bullets (no specific order)</td></tr><tr><td>Use &lt;ol&gt; tag with &lt;li&gt; (list item) tags</td><td>Use &lt;ul&gt; tag with &lt;li&gt; (list item) tags</td></tr><tr><td>Attributes: type (1, A, a, I, i), start, reversed</td><td>Attributes: type (disc, circle, square)</td></tr><tr><td>Used for steps, rankings, instructions, top 10 lists</td><td>Used for navigation menus, feature lists, bullet points</td></tr><tr><td><strong>Example:</strong><br>&lt;ol type=\"1\"&gt;<br>  &lt;li&gt;First item&lt;/li&gt;<br>  &lt;li&gt;Second item&lt;/li&gt;<br>  &lt;li&gt;Third item&lt;/li&gt;<br>&lt;/ol&gt;</td><td><strong>Example:</strong><br>&lt;ul type=\"disc\"&gt;<br>  &lt;li&gt;Apple&lt;/li&gt;<br>  &lt;li&gt;Banana&lt;/li&gt;<br>  &lt;li&gt;Orange&lt;/li&gt;<br>&lt;/ul&gt;</td></tr><tr><td><strong>Output:</strong><br>1. First item<br>2. Second item<br>3. Third item</td><td><strong>Output:</strong><br>• Apple<br>• Banana<br>• Orange</td></tr><tr><td>Can nest lists within lists (sub-items)</td><td>Can nest lists within lists</td></tr></table><p><strong>Nested List Example (combining both):</strong></p><pre><code>&lt;ol&gt;<br>  &lt;li&gt;Chapter 1<br>    &lt;ul&gt;<br>      &lt;li&gt;Introduction&lt;/li&gt;<br>      &lt;li&gt;Basics&lt;/li&gt;<br>    &lt;/ul&gt;<br>  &lt;/li&gt;<br>  &lt;li&gt;Chapter 2&lt;/li&gt;<br>&lt;/ol&gt;</code></pre>",
+            "marks": 4,
+            "unit": "HTML"
+        },
+        {
+            "id": "7.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Draw the block diagram of a digital computer specifying all parts of it.",
+            "answer": "<p><strong>Block Diagram of Digital Computer:</strong></p><pre><code>    ┌─────────────────────────────────────────────────┐\n    │                                                 │\n    │  ┌──────────┐      ┌──────────┐                │\n    │  │   Input  │──────│           │                │\n    │  │  Device  │      │           │                │\n    │  └──────────┘      │    CPU    │                │\n    │         │          │           │                │\n    │         │          │ ┌───────┐ │   ┌──────────┐ │\n    │         └─────────▶│ │  ALU  │ │──▶│  Output  │ │\n    │                    │ └───────┘ │   │  Device  │ │\n    │  ┌──────────┐      │ ┌───────┐ │   └──────────┘ │\n    │  │  Memory  │◀────▶│ │  CU   │ │                │\n    │  │  Unit    │      │ └───────┘ │                │\n    │  └──────────┘      └───────────┘                │\n    │         │                                        │\n    │         │                                        │\n    │  ┌──────────┐                                    │\n    │  │ Storage  │                                    │\n    │  │  Device  │                                    │\n    │  └──────────┘                                    │\n    └─────────────────────────────────────────────────┘</code></pre><p><strong>Components of Digital Computer:</strong></p><p><strong>1. Input Unit:</strong> Accepts data and instructions from user</p><ul><li>Devices: Keyboard, Mouse, Scanner, Microphone</li></ul><p><strong>2. Output Unit:</strong> Displays results to user</p><ul><li>Devices: Monitor, Printer, Speaker, Projector</li></ul><p><strong>3. CPU (Central Processing Unit):</strong> Brain of computer</p><ul><li><strong>ALU (Arithmetic Logic Unit):</strong> Performs arithmetic and logical operations</li><li><strong>CU (Control Unit):</strong> Controls and coordinates all activities</li><li><strong>Registers:</strong> Temporary high-speed storage</li></ul><p><strong>4. Memory Unit:</strong> Stores data and instructions</p><ul><li><strong>Primary Memory:</strong> RAM (volatile), ROM (non-volatile)</li><li><strong>Cache Memory:</strong> High-speed memory between CPU and RAM</li></ul><p><strong>5. Storage Unit (Secondary Memory):</strong> Permanent storage</p><ul><li>Devices: Hard Disk, SSD, USB Drive, CD/DVD</li></ul><p><strong>Data Flow:</strong> Input → Memory → CPU → Memory → Output, with control signals from CU coordinating all operations.</p>",
+            "marks": 3,
+            "unit": "Computer Architecture"
+        },
+        {
+            "id": "7.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Define ROM, PROM, EPROM and EEPROM.",
+            "answer": "<p><strong>Types of Read-Only Memory (ROM):</strong></p><p><strong>1. ROM (Read Only Memory):</strong></p><ul><li>Non-volatile memory where data is permanently stored during manufacturing</li><li>Cannot be modified or erased by user</li><li>Used for BIOS, firmware, boot programs</li><li>Data retention is permanent</li></ul><p><strong>2. PROM (Programmable Read Only Memory):</strong></p><ul><li>Blank ROM that can be programmed once by user using special device (PROM programmer)</li><li>After programming, data cannot be changed</li><li>Uses fuses that are blown during programming</li><li>Cost-effective for small production runs</li></ul><p><strong>3. EPROM (Erasable Programmable Read Only Memory):</strong></p><ul><li>Can be programmed multiple times</li><li>Erasure is done by exposing chip to strong ultraviolet (UV) light through quartz window</li><li>Entire chip is erased at once</li><li>Requires special programmer for writing</li><li>Used in development and prototyping</li></ul><p><strong>4. EEPROM (Electrically Erasable Programmable Read Only Memory):</strong></p><ul><li>Can be erased and reprogrammed electrically, byte by byte</li><li>No UV light needed - erased in-circuit</li><li>More flexible than EPROM</li><li>Slower than RAM but faster than EPROM</li><li>Used in modern BIOS, microcontroller firmware</li><li>Flash memory is a type of EEPROM</li></ul><p><strong>Comparison Table:</strong></p><table border='1'><tr><th>Type</th><th>Programming</th><th>Erasure</th><th>Reusability</th></tr><tr><td>ROM</td><td>Manufacturing</td><td>Not possible</td><td>None</td></tr><tr><td>PROM</td><td>Once by user</td><td>Not possible</td><td>None</td></tr><tr><td>EPROM</td><td>Multiple times</td><td>UV light (whole chip)</td><td>Limited cycles</td></tr><tr><td>EEPROM</td><td>Multiple times</td><td>Electrical (byte-wise)</td><td>Many cycles</td></tr></table>",
+            "marks": 4,
+            "unit": "Computer Memory"
+        },
+        {
+            "id": "7.c",
+            "type": "laq",
+            "group": "B",
+            "question": "What is Booting?",
+            "answer": "<p><strong>Booting:</strong> The process of starting a computer, where the system loads the operating system into main memory from secondary storage. It begins when computer is powered on and ends when OS is ready for user interaction.</p><p><strong>Types of Booting:</strong></p><p><strong>1. Cold Booting (Hard Boot):</strong></p><ul><li>Starting computer from completely powered off state</li><li>Power supply initializes, POST runs, OS loads</li><li>Performed by pressing power button</li></ul><p><strong>2. Warm Booting (Soft Boot):</strong></p><ul><li>Restarting computer without turning off power</li><li>Using restart option or Ctrl+Alt+Del</li><li>Skips some hardware checks, faster than cold boot</li></ul><p><strong>Booting Process Steps:</strong></p><p>Step 1: Power supply sends signal to CPU<br>Step 2: CPU executes BIOS/POST (Power-On Self-Test) from ROM<br>Step 3: POST checks hardware (RAM, drives, keyboard)<br>Step 4: BIOS locates boot device (HDD, SSD, USB)<br>Step 5: BIOS loads bootloader from MBR/GPT<br>Step 6: Bootloader loads OS kernel into memory<br>Step 7: OS initializes drivers and services<br>Step 8: User interface (GUI/CLI) appears</p><p><strong>Boot Devices:</strong> Hard disk, SSD, USB drive, CD/DVD, Network</p>",
+            "marks": 1,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "8.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Why we use web browser?",
+            "answer": "<p><strong>Web Browser:</strong> A software application used to access and view websites on the internet. It retrieves, presents, and navigates information resources on the World Wide Web.</p><p><strong>Reasons to use web browser:</strong></p><p><strong>1. Access Websites:</strong> View web pages, read articles, watch videos, listen to music, play online games</p><p><strong>2. Information Retrieval:</strong> Search for information using search engines (Google, Bing), access educational resources, research materials</p><p><strong>3. Communication:</strong> Access email (Gmail, Outlook), social media (Facebook, Twitter), messaging platforms (WhatsApp Web), video conferencing (Zoom, Meet)</p><p><strong>4. Online Services:</strong> Internet banking, online shopping, bill payments, ticket booking, government services</p><p><strong>5. Entertainment:</strong> Stream movies/shows (Netflix, YouTube), listen to music (Spotify), read e-books</p><p><strong>6. Downloads:</strong> Download software, documents, media files</p><p><strong>7. Web Applications:</strong> Use online tools (Google Docs, Office 365), project management (Trello), cloud storage (Google Drive)</p><p><strong>8. Security Features:</strong> Safe browsing protection, password management, private browsing mode</p><p><strong>9. Developer Tools:</strong> Inspect elements, debug code, test responsive designs</p><p><strong>Examples:</strong> Chrome, Firefox, Safari, Edge, Opera</p>",
+            "marks": 2,
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "8.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Why are search engines important?",
+            "answer": "<p><strong>Importance of Search Engines:</strong></p><p><strong>1. Information Access:</strong> Provide quick access to vast amounts of information on any topic - educational, professional, personal</p><p><strong>2. Time Efficiency:</strong> Find relevant information in seconds instead of manually browsing websites</p><p><strong>3. Navigation:</strong> Help users find specific websites without knowing their URLs</p><p><strong>4. Research Tool:</strong> Essential for students, researchers, professionals to find academic papers, articles, and data</p><p><strong>5. Business Discovery:</strong> Help users find local businesses, services, products, and reviews</p><p><strong>6. E-commerce:</strong> Enable product comparison, price checking, finding best deals online</p><p><strong>7. News and Updates:</strong> Provide latest news, current events, and real-time information</p><p><strong>8. Learning Resource:</strong> Access tutorials, how-to guides, educational content, online courses</p><p><strong>9. Troubleshooting:</strong> Find solutions to technical problems, error messages, software issues</p><p><strong>10. Job Search:</strong> Find job openings, career opportunities, company information</p><p><strong>11. Health Information:</strong> Access medical information, symptoms, treatments (with caution)</p><p><strong>12. Entertainment:</strong> Find movies, music, games, events, and recreational activities</p><p><strong>Examples:</strong> Google, Bing, Yahoo, DuckDuckGo, Baidu</p>",
+            "marks": 2,
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "8.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Write down the full form of e-mail and www.",
+            "answer": "<p><strong>E-mail:</strong> <strong>Electronic Mail</strong></p><p>A method of exchanging digital messages between people using electronic devices. It allows sending text, files, images across internet or computer networks.</p><p><strong>WWW:</strong> <strong>World Wide Web</strong></p><p>An information system where documents and resources are identified by URLs, interlinked by hyperlinks, and accessible via the internet. It was invented by Tim Berners-Lee in 1989.</p><p><strong>Difference:</strong> Internet is the network infrastructure, WWW is the service that runs on it containing web pages and websites.</p>",
+            "marks": 2,
+            "unit": "Internet Basics"
+        },
+        {
+            "id": "8.d",
+            "type": "laq",
+            "group": "B",
+            "question": "Write down the objectives of Digital India.",
+            "answer": "<p><strong>Digital India Programme:</strong> A flagship initiative of Government of India launched in 2015 to transform India into a digitally empowered society and knowledge economy.</p><p><strong>Main Objectives:</strong></p><p><strong>1. Digital Infrastructure as Core Utility:</strong></p><ul><li>High-speed internet connectivity to all villages (BharatNet)</li><li>Universal digital identity (Aadhaar) for all citizens</li><li>Mobile phone and bank account for every citizen</li><li>Public cloud infrastructure and secure cyber space</li></ul><p><strong>2. Governance and Services on Demand:</strong></p><ul><li>All government services available online (DigiLocker, e-Hospitals)</li><li>Digital lockers for citizen documents</li><li>Online bill payments, tax filing, certificate applications</li><li>Real-time grievance redressal</li></ul><p><strong>3. Digital Empowerment of Citizens:</strong></p><ul><li>Universal digital literacy</li><li>All digital resources accessible in Indian languages</li><li>Collaborative digital platforms for participation</li><li>No need for physical submission of documents</li></ul><p><strong>Key Initiatives:</strong></p><ul><li>BharatNet - connecting rural areas</li><li>Common Service Centers (CSC) - service delivery points</li><li>DigiLocker - digital document wallet</li><li>UMANG - unified mobile app for government services</li><li>e-Hospital, e-Sign, e-District</li><li>BHIM (Bharat Interface for Money) - UPI payments</li><li>National Digital Health Mission</li></ul><p><strong>Vision Areas:</strong> Digital infrastructure, digital services, digital literacy, digital payments, digital manufacturing.</p>",
+            "marks": 2,
+            "unit": "Current Affairs"
+        },
+        {
+            "id": "9.a",
+            "type": "laq",
+            "group": "B",
+            "question": "State and prove the De-Morgan's Law in Boolean algebra.",
+            "answer": "<p><strong>De Morgan's Laws in Boolean Algebra:</strong></p><p><strong>Theorem 1:</strong> The complement of a product (AND) equals the sum (OR) of complements.</p><p>$$\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$$</p><p><strong>Theorem 2:</strong> The complement of a sum (OR) equals the product (AND) of complements.</p><p>$$\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$$</p><p><strong>Proof using Truth Table for Theorem 1:</strong></p><table border='1' cellpadding='5'><tr><th>A</th><th>B</th><th>A·B</th><th>Ā·B</th><th>Ā + B̄</th></tr><tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1+1=1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1+0=1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0+1=1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0+0=0</td></tr></table><p>The columns for Ā·B and Ā + B̄ match, proving the theorem.</p><p><strong>Proof using Boolean Algebra:</strong></p><p><strong>Theorem 1:</strong> (A·B)' = A' + B'</p><p>Let X = A·B, Y = A' + B'</p><p>Show X·Y = 0 and X + Y = 1</p><p>(A·B)·(A' + B') = (A·B·A') + (A·B·B') = 0 + 0 = 0</p><p>(A·B) + (A' + B') = (A + A' + B')·(B + A' + B') = (1 + B')·(1 + A') = 1·1 = 1</p><p>Therefore, X' = Y, proving (A·B)' = A' + B'</p><p><strong>Extended Form for multiple variables:</strong></p><p>$$\\overline{A \\cdot B \\cdot C} = \\overline{A} + \\overline{B} + \\overline{C}$$<br>$$\\overline{A + B + C} = \\overline{A} \\cdot \\overline{B} \\cdot \\overline{C}$$</p><p><strong>Applications:</strong> Digital circuit simplification, NAND/NOR gate implementation, logic design.</p>",
+            "marks": 4,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "9.b",
+            "type": "laq",
+            "group": "B",
+            "question": "Convert (10110)₂ to its equivalent gray code.",
+            "answer": "<p><strong>Binary to Gray Code Conversion:</strong></p><p><strong>Rule:</strong> The MSB of Gray code is same as MSB of binary. For subsequent bits, Gray code bit = previous binary bit XOR current binary bit.</p><p><strong>Given binary number:</strong> 1 0 1 1 0</p><p><strong>Step-by-step conversion:</strong></p><p>Bit 1 (MSB): Gray = Binary MSB = <strong>1</strong></p><p>Bit 2: Binary bit1 XOR binary bit2 = 1 XOR 0 = <strong>1</strong></p><p>Bit 3: Binary bit2 XOR binary bit3 = 0 XOR 1 = <strong>1</strong></p><p>Bit 4: Binary bit3 XOR binary bit4 = 1 XOR 1 = <strong>0</strong></p><p>Bit 5: Binary bit4 XOR binary bit5 = 1 XOR 0 = <strong>1</strong></p><p><strong>Gray code:</strong> 1 1 1 0 1</p><p>Therefore, (10110)₂ = <strong>(11101)Gray</strong></p><p><strong>Verification Table:</strong></p><table border='1'><tr><th>Binary</th><th>Gray</th></tr><tr><td>10110 (22)</td><td>11101</td></tr><tr><td>10111 (23)</td><td>11100</td></tr></table><p>Notice that successive Gray codes differ by only one bit.</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "9.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Represent (5)₁₀ using 2-4-2-1 BCD code.",
+            "answer": "<p><strong>2-4-2-1 BCD Code (Aiken Code):</strong></p><p>This is a weighted code where each digit position has weights: 2, 4, 2, 1 from left to right. It is a self-complementing code.</p><p><strong>Weight Assignment:</strong></p><ul><li>Bit 1 (MSB): weight 2</li><li>Bit 2: weight 4</li><li>Bit 3: weight 2</li><li>Bit 4 (LSB): weight 1</li></ul><p><strong>Finding 2-4-2-1 code for (5)₁₀:</strong></p><p>We need to find 4 bits (b₁ b₂ b₃ b₄) such that:<br>2×b₁ + 4×b₂ + 2×b₃ + 1×b₄ = 5</p><p>Try different combinations:</p><p><strong>Option 1:</strong> 0 1 0 1 = 0×2 + 1×4 + 0×2 + 1×1 = 4 + 1 = 5 ✓</p><p><strong>Option 2:</strong> 0 1 1 1 = 0×2 + 1×4 + 1×2 + 1×1 = 4 + 2 + 1 = 7 (too high)</p><p><strong>Option 3:</strong> 1 0 0 1 = 1×2 + 0×4 + 0×2 + 1×1 = 2 + 1 = 3 (too low)</p><p><strong>Option 4:</strong> 1 0 1 1 = 1×2 + 0×4 + 1×2 + 1×1 = 2 + 2 + 1 = 5 ✓</p><p>There are two valid representations in 2-4-2-1 code for 5:</p><ul><li><strong>0101</strong> (using 4 + 1)</li><li><strong>1011</strong> (using 2 + 2 + 1)</li></ul><p>Both are acceptable, but typically the representation with fewer 1's or standard convention may be used.</p><p><strong>Answer:</strong> (5)₁₀ = <strong>(0101)₂₋₄₂₁</strong> or <strong>(1011)₂₋₄₂₁</strong></p><p><strong>Properties:</strong> The 2-4-2-1 code is self-complementing - 9's complement is obtained by inverting bits.</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "10.a",
+            "type": "laq",
+            "group": "B",
+            "question": "Define universal gates. Why those gates are termed as universal gates?",
+            "answer": "<p><strong>Universal Gates:</strong> NAND gate and NOR gate are called universal gates.</p><p><strong>Definition:</strong> Universal gates are logic gates that can be used to implement any Boolean function without needing any other gate types. Any digital circuit can be constructed using only NAND gates or only NOR gates.</p><p><strong>Why they are called Universal:</strong></p><p><strong>1. Completeness:</strong> NAND and NOR gates are functionally complete - they can generate all basic logic functions (AND, OR, NOT, XOR, XNOR).</p><p><strong>2. Implementation of NOT gate:</strong></p><ul><li>Using NAND: Connect both inputs together (Y = A·A = A)</li><li>Using NOR: Connect both inputs together (Y = A+A = A)</li></ul><p><strong>3. Implementation of AND gate:</strong></p><ul><li>Using NAND: NOT of NAND (two NAND gates in series)</li><li>Using NOR: Invert inputs then NOR (DeMorgan's theorem)</li></ul><p><strong>4. Implementation of OR gate:</strong></p><ul><li>Using NAND: Invert inputs then NAND</li><li>Using NOR: NOT of NOR (two NOR gates in series)</li></ul><p><strong>5. Manufacturing Advantage:</strong> ICs can be manufactured using only one type of gate, reducing complexity and cost.</p><p><strong>6. Flexibility:</strong> Any complex Boolean expression can be realized using only universal gates.</p><p><strong>Examples:</strong></p><ul><li>NAND as AND: (A·B) = (A NAND B) NAND (A NAND B)</li><li>NOR as OR: (A+B) = (A NOR B) NOR (A NOR B)</li></ul>",
+            "marks": 2,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "10.b.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Convert (175.25)₁₀ = (?)₂",
+            "answer": "<p><strong>Converting (175.25)₁₀ to Binary:</strong></p><p><strong>Integer part (175)₁₀:</strong><br>175 ÷ 2 = 87 remainder 1<br>87 ÷ 2 = 43 remainder 1<br>43 ÷ 2 = 21 remainder 1<br>21 ÷ 2 = 10 remainder 1<br>10 ÷ 2 = 5 remainder 0<br>5 ÷ 2 = 2 remainder 1<br>2 ÷ 2 = 1 remainder 0<br>1 ÷ 2 = 0 remainder 1</p><p>Reading remainders from bottom to top: 175₁₀ = 10101111₂</p><p><strong>Fractional part (0.25)₁₀:</strong><br>0.25 × 2 = 0.50 → integer part 0<br>0.50 × 2 = 1.00 → integer part 1 (fraction becomes 0, stop)</p><p>Reading integer parts from top to bottom: 0.25₁₀ = 0.01₂</p><p><strong>Combining:</strong> 175.25₁₀ = 10101111.01₂</p><p><strong>Verification:</strong><br>10101111₂ = 128 + 32 + 8 + 4 + 2 + 1 = 175<br>0.01₂ = 0×½ + 1×¼ = 0.25 ✓</p><p>Therefore, <strong>(175.25)₁₀ = (10101111.01)₂</strong></p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "10.b.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Convert (1011.101)₂ = (?)₁₀",
+            "answer": "<p><strong>Converting (1011.101)₂ to Decimal:</strong></p><p><strong>Integer part (1011)₂:</strong><br>1×2³ + 0×2² + 1×2¹ + 1×2⁰<br>= 1×8 + 0×4 + 1×2 + 1×1<br>= 8 + 0 + 2 + 1 = 11</p><p><strong>Fractional part (0.101)₂:</strong><br>1×2⁻¹ + 0×2⁻² + 1×2⁻³<br>= 1×½ + 0×¼ + 1×⅛<br>= 0.5 + 0 + 0.125 = 0.625</p><p><strong>Combining:</strong> 11 + 0.625 = 11.625</p><p>Therefore, <strong>(1011.101)₂ = (11.625)₁₀</strong></p><p><strong>Verification using alternative method:</strong><br>1011.101₂ = (1×2³)+(0×2²)+(1×2¹)+(1×2⁰)+(1×2⁻¹)+(0×2⁻²)+(1×2⁻³)<br>= 8 + 0 + 2 + 1 + 0.5 + 0 + 0.125 = 11.625 ✓</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "10.c",
+            "type": "laq",
+            "group": "B",
+            "question": "Represent (-14)₁₀ in 2's complement form using 8-bits representation.",
+            "answer": "<p><strong>Representing (-14)₁₀ in 8-bit 2's complement:</strong></p><p><strong>Step 1: Find binary representation of +14 in 8 bits</strong><br>14 in binary: 1110<br>8-bit representation: 00001110</p><p><strong>Step 2: Find 1's complement (invert all bits)</strong><br>00001110 → 11110001</p><p><strong>Step 3: Add 1 to get 2's complement</strong><br>11110001 + 00000001 = 11110010</p><p><strong>Therefore, (-14)₁₀ in 8-bit 2's complement = 11110010</strong></p><p><strong>Verification:</strong></p><p>Method 1: Add +14 and -14 should give 0<br>00001110 (+14)<br>11110010 (-14)<br>---------<br>100000000 (9 bits) - discard carry beyond 8 bits = 00000000 ✓</p><p>Method 2: Convert back to decimal<br>11110010 (2's complement)<br>First bit is 1, so it's negative<br>Take 2's complement again: 00001101 + 1 = 00001110 = 14<br>So original number is -14 ✓</p><p><strong>Range of 8-bit 2's complement:</strong> -128 to +127</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        }
+    ]
+}

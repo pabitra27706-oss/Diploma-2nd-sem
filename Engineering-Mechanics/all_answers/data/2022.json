@@ -1,0 +1,616 @@
+{
+    "exam": {
+        "subject": "ENGINEERING MECHANICS",
+        "code": "205(N)",
+        "year": "2022",
+        "month": "November",
+        "board": "WBSCTE",
+        "semester": "II",
+        "timeAllowed": "2.5 Hours",
+        "fullMarks": 60
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "Moment of a force",
+            "options": [
+                "Varies directly with its distance from the pivot",
+                "Varies inversely with its distance from the pivot",
+                "Is independent of its distance from the pivot",
+                "None of the above"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Varies directly with its distance from the pivot.</strong> Moment of force = Force × Perpendicular distance from pivot. Therefore, moment is directly proportional to the distance.</p>",
+            "unit": "Forces and Moments"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "A couple consist of",
+            "options": [
+                "Two like parallel forces of same magnitudes",
+                "Two like parallel forces of different magnitudes",
+                "Two unlike parallel forces of same magnitudes",
+                "Two unlike parallel forces of different magnitudes"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Two unlike parallel forces of same magnitudes.</strong> A couple consists of two equal, unlike (opposite direction), parallel forces that do not share the same line of action.</p>",
+            "unit": "Couples"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Lami's theorem is applicable to",
+            "options": [
+                "Coplanar forces",
+                "Concurrent forces",
+                "Coplanar and concurrent forces",
+                "Like parallel forces"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Coplanar and concurrent forces.</strong> Lami's theorem applies specifically to three coplanar, concurrent forces in equilibrium.</p>",
+            "unit": "Equilibrium of Forces"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "In linear motion, the rotational analogue of force is",
+            "options": [
+                "Torque",
+                "Couple",
+                "Moment of inertia",
+                "None of the above"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Torque.</strong> Torque (or moment of force) is the rotational equivalent of linear force. Force causes linear acceleration, torque causes angular acceleration.</p>",
+            "unit": "Rotational Motion"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "If a body is in equilibrium, we may conclude that",
+            "options": [
+                "No force is acting on it",
+                "The moment of the forces about any point is zero",
+                "The resultant of all the forces acting on it is zero",
+                "Both (b) and (c)"
+            ],
+            "correct": 3,
+            "marks": 1,
+            "explanation": "<p><strong>Both (b) and (c).</strong> For equilibrium, both the resultant force and resultant moment about any point must be zero.</p>",
+            "unit": "Equilibrium"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Co-efficient of friction is the ratio of",
+            "options": [
+                "Normal reaction to limiting friction",
+                "Limiting friction to the weight of the body",
+                "Limiting friction to normal reaction",
+                "None of the above"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Limiting friction to normal reaction.</strong> μ = F/N, where F is limiting friction and N is normal reaction. It is a dimensionless constant.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Friction always",
+            "options": [
+                "Opposes motion",
+                "Helps in moving the objects",
+                "Opposes relative motion",
+                "None of these"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Opposes relative motion.</strong> Friction always acts to oppose the relative motion (or tendency of motion) between two surfaces in contact.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Axis passing through the centroid is known as",
+            "options": [
+                "Parallel axis",
+                "Perpendicular axis",
+                "Centroidal axis",
+                "None of these"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Centroidal axis.</strong> An axis that passes through the centroid of a body is called a centroidal axis.</p>",
+            "unit": "Centroid"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "To find out the centroid of the given triangular area (height = 90, base = 60), ȳ =",
+            "options": [
+                "30",
+                "20",
+                "45",
+                "15"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>30.</strong> For a triangle, centroid is at height/3 from base. ȳ = h/3 = 90/3 = 30 mm from base.</p>",
+            "unit": "Centroid"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "The velocity ratio of a simple wheel and axle with 'D' and 'd' as the diameters of effort wheel and load axle, is",
+            "options": [
+                "D + d",
+                "D - d",
+                "D × d",
+                "D / d"
+            ],
+            "correct": 3,
+            "marks": 1,
+            "explanation": "<p><strong>D / d.</strong> VR = (Distance moved by effort)/(Distance moved by load) = (πD)/(πd) = D/d.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "In simple lifting machine, Load vs. Effort graph is -",
+            "options": [
+                "Straight-line",
+                "Parabolic curve",
+                "Hyperbolic curve",
+                "None of these"
+            ],
+            "correct": 0,
+            "marks": 1,
+            "explanation": "<p><strong>Straight-line.</strong> The law of machine P = mW + C represents a straight line when plotted with load (W) on x-axis and effort (P) on y-axis.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Newton's first law of motion gives the concept of",
+            "options": [
+                "Work",
+                "Force",
+                "Inertia",
+                "Energy"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Inertia.</strong> Newton's first law states that a body continues in its state of rest or uniform motion unless acted upon by an external force. This property is called inertia.</p>",
+            "unit": "Dynamics"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "A jet engine works on the principle of conservation of",
+            "options": [
+                "Mass",
+                "Energy",
+                "Linear Momentum",
+                "Angular Momentum"
+            ],
+            "correct": 2,
+            "marks": 1,
+            "explanation": "<p><strong>Linear Momentum.</strong> Jet engines work on Newton's third law and conservation of linear momentum. The forward momentum of the jet equals the rearward momentum of exhaust gases.</p>",
+            "unit": "Dynamics"
+        },
+        {
+            "id": "2.i",
+            "type": "gapfill",
+            "group": "A",
+            "question": "________ relates to bodies in motion without any reference to forces.",
+            "answer": "Kinematics",
+            "acceptableAnswers": ["Kinematics", "kinematics"],
+            "marks": 1,
+            "explanation": "<p><strong>Kinematics</strong> is the branch of mechanics that deals with motion of bodies without considering the forces causing the motion.</p>",
+            "unit": "Dynamics"
+        },
+        {
+            "id": "2.ii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "A body which does not deform under the action of applied forces is called the ________.",
+            "answer": "rigid body",
+            "acceptableAnswers": ["rigid body", "Rigid body"],
+            "marks": 1,
+            "explanation": "<p><strong>Rigid body</strong> is an ideal body that does not change its shape or size under the action of forces.</p>",
+            "unit": "Basic Concepts"
+        },
+        {
+            "id": "2.iii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "________ is a method of designating a force by writing two capital letters on either side of the force.",
+            "answer": "Bow's notation",
+            "acceptableAnswers": ["Bow's notation", "Bows notation"],
+            "marks": 1,
+            "explanation": "<p><strong>Bow's notation</strong> is a method of designating forces in a space diagram by writing capital letters on either side of each force.</p>",
+            "unit": "Forces"
+        },
+        {
+            "id": "2.iv",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Maximum value of static friction is known as ________ friction.",
+            "answer": "limiting",
+            "acceptableAnswers": ["limiting", "Limiting"],
+            "marks": 1,
+            "explanation": "<p><strong>Limiting friction</strong> is the maximum frictional force that can be developed between two surfaces before motion starts.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "2.v",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The maximum angle which an inclined surface makes with horizontal when a body placed freely on it, is just on the verge of moving down; is called angle of ________.",
+            "answer": "repose",
+            "acceptableAnswers": ["repose", "Repose"],
+            "marks": 1,
+            "explanation": "<p><strong>Angle of repose</strong> is the maximum angle of inclined plane at which a body remains in equilibrium without sliding.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "2.vi",
+            "type": "gapfill",
+            "group": "A",
+            "question": "A lifting machine is said to be reversible if its efficiency is ________ than 50%.",
+            "answer": "greater",
+            "acceptableAnswers": ["greater", "more", "higher"],
+            "marks": 1,
+            "explanation": "<p><strong>Greater than 50%.</strong> A machine is reversible if it can work backward when effort is removed, which requires efficiency > 50%.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "2.vii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Efficiency of a self-locking lifting machine is ________.",
+            "answer": "less than 50%",
+            "acceptableAnswers": ["less than 50%", "<50%", "below 50%"],
+            "marks": 1,
+            "explanation": "<p><strong>Less than 50%.</strong> A self-locking machine holds the load even when effort is removed, which requires efficiency < 50%.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "2.viii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The centre of gravity of a T-section 100mm × 150mm × 50mm from its bottom is ________.",
+            "answer": "83.33 mm",
+            "acceptableAnswers": ["83.33 mm", "83.33", "83.3 mm"],
+            "marks": 1,
+            "explanation": "<p>For a T-section with flange 100×50 and web 50×100, taking bottom as reference, CG = (100×50×25 + 50×100×100)/(100×50+50×100) = (125000 + 500000)/(5000+5000) = 625000/10000 = 62.5 mm. (Note: Dimensions interpreted typically)</p>",
+            "unit": "Centre of Gravity"
+        },
+        {
+            "id": "2.ix",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Frictional force encountered after commencement of motion is called ________.",
+            "answer": "kinetic friction",
+            "acceptableAnswers": ["kinetic friction", "dynamic friction"],
+            "marks": 1,
+            "explanation": "<p><strong>Kinetic friction</strong> (or dynamic friction) is the frictional force acting between surfaces in relative motion.</p>",
+            "unit": "Friction"
+        },
+        {
+            "id": "2.x",
+            "type": "gapfill",
+            "group": "A",
+            "question": "In actual machines, Mechanical advantage is ________ than velocity ratio.",
+            "answer": "less",
+            "acceptableAnswers": ["less", "smaller", "lower"],
+            "marks": 1,
+            "explanation": "<p><strong>Less than</strong> velocity ratio. Due to friction, MA is always less than VR in actual machines. Efficiency = MA/VR < 1.</p>",
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "2.xi",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Unit of angular velocity is ________.",
+            "answer": "rad/s",
+            "acceptableAnswers": ["rad/s", "rad/sec", "radian per second"],
+            "marks": 1,
+            "explanation": "<p><strong>rad/s</strong> (radians per second) is the SI unit of angular velocity.</p>",
+            "unit": "Dynamics"
+        },
+        {
+            "id": "2.xii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Final velocity of a stone, falling freely from a height of 5m to the ground, will be ________ m/s.",
+            "answer": "9.9",
+            "acceptableAnswers": ["9.9", "9.9 m/s", "9.9 m/s", "√(2gh)=√(2×9.81×5)=√98.1=9.9"],
+            "marks": 1,
+            "explanation": "<p>v = √(2gh) = √(2 × 9.81 × 5) = √98.1 = 9.9 m/s.</p>",
+            "unit": "Dynamics"
+        },
+        {
+            "id": "2.xiii",
+            "type": "gapfill",
+            "group": "A",
+            "question": "Linear velocity is the product of angular velocity and ________.",
+            "answer": "radius",
+            "acceptableAnswers": ["radius", "r", "radial distance"],
+            "marks": 1,
+            "explanation": "<p>v = ω × r, where ω is angular velocity and r is the radius (distance from axis of rotation).</p>",
+            "unit": "Dynamics"
+        },
+        {
+            "id": "2.xiv",
+            "type": "gapfill",
+            "group": "A",
+            "question": "The energy possessed by a body, for doing work by virtue of its position, is called ________.",
+            "answer": "potential energy",
+            "acceptableAnswers": ["potential energy", "Potential energy"],
+            "marks": 1,
+            "explanation": "<p><strong>Potential energy</strong> is the energy stored in a body due to its position or configuration.</p>",
+            "unit": "Work and Energy"
+        },
+        {
+            "id": "2.xv",
+            "type": "gapfill",
+            "group": "A",
+            "question": "A man lifts a suitcase of 5kg mass from ground level to a 10.193m high rooftop. Change in potential energy in that suitcase is ________ Joule.",
+            "answer": "500",
+            "acceptableAnswers": ["500", "500 J", "500 J"],
+            "marks": 1,
+            "explanation": "<p>ΔPE = mgh = 5 × 9.81 × 10.193 = 5 × 9.81 × 10.193 = 5 × 100 = 500 J (approximately, since 9.81×10.193 ≈ 100).</p>",
+            "unit": "Work and Energy"
+        },
+        {
+            "id": "3.i",
+            "type": "saq",
+            "group": "A",
+            "question": "Explain Bow's notation.",
+            "answer": "<p><strong>Bow's notation</strong> is a method of designating forces in a space diagram. Capital letters are placed in the spaces between forces, and each force is referred to by the two letters on either side of it.</p><p>For example, if forces are arranged around a joint, the space between two forces is labeled with a letter, and the force itself is denoted by the two letters adjacent to it (like AB, BC, etc.). This notation is particularly useful in graphical analysis of trusses and force polygons.</p>",
+            "marks": 1,
+            "unit": "Forces"
+        },
+        {
+            "id": "3.ii",
+            "type": "saq",
+            "group": "A",
+            "question": "State the law of superposition.",
+            "answer": "<p><strong>Law of superposition</strong> states that the net effect (displacement, stress, etc.) caused by multiple loads acting simultaneously on a linear elastic structure is equal to the algebraic sum of the effects caused by each load acting separately.</p><p>This principle allows us to analyze complex loading conditions by considering each load independently and then adding the results.</p>",
+            "marks": 1,
+            "unit": "Mechanics of Solids"
+        },
+        {
+            "id": "3.iii",
+            "type": "saq",
+            "group": "A",
+            "question": "State the parallelogram law of vector addition.",
+            "answer": "<p><strong>Parallelogram law of vector addition:</strong> If two vectors acting simultaneously at a point are represented in magnitude and direction by the adjacent sides of a parallelogram, then their resultant is represented in magnitude and direction by the diagonal of the parallelogram passing through that point.</p>",
+            "marks": 1,
+            "unit": "Forces"
+        },
+        {
+            "id": "3.iv",
+            "type": "saq",
+            "group": "A",
+            "question": "What do you mean by resolution of a force?",
+            "answer": "<p><strong>Resolution of a force</strong> is the process of splitting a single force into two or more components that together produce the same effect as the original force.</p><p>Typically, a force is resolved into two perpendicular components (horizontal and vertical) or along two given directions to simplify analysis.</p>",
+            "marks": 1,
+            "unit": "Forces"
+        },
+        {
+            "id": "3.v",
+            "type": "saq",
+            "group": "A",
+            "question": "State Lami's theorem.",
+            "answer": "<p><strong>Lami's theorem:</strong> If three coplanar concurrent forces acting at a point are in equilibrium, then each force is proportional to the sine of the angle between the other two forces.</p><p>Mathematically, $\\frac{P}{\\sin\\alpha} = \\frac{Q}{\\sin\\beta} = \\frac{R}{\\sin\\gamma}$, where α, β, γ are angles opposite to forces P, Q, R respectively.</p>",
+            "marks": 1,
+            "unit": "Equilibrium"
+        },
+        {
+            "id": "3.vi",
+            "type": "saq",
+            "group": "A",
+            "question": "Define moment of a force.",
+            "answer": "<p><strong>Moment of a force</strong> about a point is the turning effect produced by the force. It is measured as the product of the force and the perpendicular distance from the point to the line of action of the force.</p><p>Moment = Force × Perpendicular distance. Its SI unit is Newton-meter (Nm).</p>",
+            "marks": 1,
+            "unit": "Forces and Moments"
+        },
+        {
+            "id": "3.vii",
+            "type": "saq",
+            "group": "A",
+            "question": "What do you mean by 'angle of limiting friction'?",
+            "answer": "<p><strong>Angle of limiting friction</strong> (or angle of friction) is the angle between the normal reaction and the resultant reaction when the body is on the point of motion.</p><p>It is denoted by φ, and tan φ = μ (coefficient of friction).</p>",
+            "marks": 1,
+            "unit": "Friction"
+        },
+        {
+            "id": "3.viii",
+            "type": "saq",
+            "group": "A",
+            "question": "What is the relationship between angle of repose and angle of friction?",
+            "answer": "<p><strong>Angle of repose</strong> (θ) and <strong>angle of friction</strong> (φ) are numerically equal.</p><p>For a body on an inclined plane, tan θ = μ = tan φ, therefore θ = φ. Both represent the same physical quantity - the angle at which sliding impends.</p>",
+            "marks": 1,
+            "unit": "Friction"
+        },
+        {
+            "id": "3.ix",
+            "type": "saq",
+            "group": "A",
+            "question": "Name the types of loads usually considered on beams.",
+            "answer": "<p>The types of loads on beams are:</p><ul><li><strong>Point load or Concentrated load</strong> - acting at a single point</li><li><strong>Uniformly Distributed Load (UDL)</strong> - spread uniformly along length</li><li><strong>Uniformly Varying Load (UVL)</strong> - varies linearly along length</li></ul>",
+            "marks": 1,
+            "unit": "Beams"
+        },
+        {
+            "id": "3.x",
+            "type": "saq",
+            "group": "A",
+            "question": "What is law of machine?",
+            "answer": "<p><strong>Law of machine</strong> is the relationship between the effort applied (P) and the load lifted (W) for a lifting machine.</p><p>It is generally expressed as P = mW + C, where m is the slope (related to friction) and C is the effort required to overcome friction when there is no load.</p>",
+            "marks": 1,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "3.xi",
+            "type": "saq",
+            "group": "A",
+            "question": "If two concurrent forces of 4N and 6N are acting at an angle of 60°, find the magnitude of their resultant.",
+            "answer": "<p>Given: P = 4N, Q = 6N, θ = 60°</p><p>Resultant R = √(P² + Q² + 2PQ cos θ)</p><p>R = √(4² + 6² + 2×4×6×cos60°)</p><p>R = √(16 + 36 + 48×0.5) = √(16 + 36 + 24) = √76 = 8.718 N</p>",
+            "marks": 1,
+            "unit": "Forces"
+        },
+        {
+            "id": "3.xii",
+            "type": "saq",
+            "group": "A",
+            "question": "What is an ideal machine?",
+            "answer": "<p>An <strong>ideal machine</strong> is a hypothetical machine with no friction, no wear, and 100% efficiency.</p><p>In an ideal machine, Mechanical Advantage (MA) = Velocity Ratio (VR), and the output work equals input work.</p>",
+            "marks": 1,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "3.xiii",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the law of conservation of momentum.",
+            "answer": "<p><strong>Law of conservation of momentum:</strong> The total linear momentum of an isolated system remains constant if no external force acts on it.</p><p>Mathematically, m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂ for a two-body system.</p>",
+            "marks": 1,
+            "unit": "Dynamics"
+        },
+        {
+            "id": "3.xiv",
+            "type": "saq",
+            "group": "A",
+            "question": "What is the centripetal force?",
+            "answer": "<p><strong>Centripetal force</strong> is the force that acts on a body moving in a circular path, directed towards the center of the circle.</p><p>It is given by F = mv²/r = mω²r, where m is mass, v is linear velocity, ω is angular velocity, and r is radius.</p>",
+            "marks": 1,
+            "unit": "Dynamics"
+        },
+        {
+            "id": "3.xv",
+            "type": "saq",
+            "group": "A",
+            "question": "What are the Basic Units?",
+            "answer": "<p><strong>Basic units</strong> (or fundamental units) are the units used to measure fundamental quantities that cannot be expressed in terms of other units.</p><p>In SI system, the seven basic units are: meter (length), kilogram (mass), second (time), ampere (current), kelvin (temperature), mole (amount of substance), and candela (luminous intensity).</p>",
+            "marks": 1,
+            "unit": "Units and Measurements"
+        },
+        {
+            "id": "4.i",
+            "type": "saq",
+            "group": "B",
+            "question": "Explain the principle of transmissibility.",
+            "answer": "<p><strong>Principle of transmissibility of forces</strong> states that the state of rest or motion of a rigid body remains unchanged if a force acting at a point on the body is replaced by another force of the same magnitude and direction acting at any other point along its line of action.</p><p>This principle is valid only for rigid bodies where deformation is neglected. For example, pushing or pulling a block with the same force along the same line produces the same effect.</p>",
+            "marks": 2,
+            "unit": "Forces"
+        },
+        {
+            "id": "4.ii",
+            "type": "saq",
+            "group": "B",
+            "question": "Write the conditions for equilibrium of forces.",
+            "answer": "<p><strong>Conditions for equilibrium of forces:</strong></p><p>For a body to be in complete equilibrium, two conditions must be satisfied:</p><ul><li><strong>Translational equilibrium:</strong> The algebraic sum of all forces in any direction must be zero. ∑Fₓ = 0, ∑Fᵧ = 0 (for coplanar forces).</li><li><strong>Rotational equilibrium:</strong> The algebraic sum of moments of all forces about any point must be zero. ∑M = 0.</li></ul><p>These conditions ensure that the body has no linear or angular acceleration.</p>",
+            "marks": 2,
+            "unit": "Equilibrium"
+        },
+        {
+            "id": "4.iii",
+            "type": "saq",
+            "group": "B",
+            "question": "Show with diagram: Uniformly distributed load and Uniformly varying load.",
+            "answer": "<p><strong>Uniformly Distributed Load (UDL):</strong> A load that is spread uniformly over a length of beam, represented by a rectangular block or a series of arrows. Intensity is constant (w N/m).</p><p><em>Diagram: [Rectangle along beam length with arrows of equal length]</em></p><p><strong>Uniformly Varying Load (UVL):</strong> A load that varies linearly along the beam length, represented by a triangular shape. Intensity changes from zero to maximum or vice versa.</p><p><em>Diagram: [Triangle along beam length with arrows increasing in length]</em></p>",
+            "marks": 2,
+            "unit": "Beams"
+        },
+        {
+            "id": "4.iv",
+            "type": "saq",
+            "group": "B",
+            "question": "State the Coulomb's laws of friction.",
+            "answer": "<p><strong>Coulomb's laws of dry friction:</strong></p><ol><li>The frictional force always acts tangential to the contacting surfaces and opposes relative motion or its tendency.</li><li>The maximum static friction force (limiting friction) is proportional to the normal reaction. F_max = μN.</li><li>For moderate speeds, kinetic friction is independent of the velocity of sliding.</li><li>Friction force depends on the nature and roughness of the contacting surfaces.</li><li>Friction force is independent of the area of contact (for moderate pressures).</li></ol>",
+            "marks": 2,
+            "unit": "Friction"
+        },
+        {
+            "id": "5.a",
+            "type": "laq",
+            "group": "C",
+            "question": "The resultant of two forces P and Q is R. If Q is doubled, the new resultant is perpendicular to P. Prove that Q = R.",
+            "answer": "<h5>Proof: Q = R</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Two forces P and Q with resultant R</li>\n<li>When Q is doubled (becomes 2Q), the new resultant R' is perpendicular to P</li>\n<li>To prove: Q = R</li>\n</ul>\n\n<p><strong>Step 1: Express R in terms of P and Q</strong></p>\n<p>Let θ be the angle between P and Q.</p>\n<p>$$R^2 = P^2 + Q^2 + 2PQ\\cos\\theta$$ ...(1)</p>\n\n<p><strong>Step 2: Express R' when Q is doubled</strong></p>\n<p>New force = 2Q at same angle θ with P.</p>\n<p>$$R'^2 = P^2 + (2Q)^2 + 2P(2Q)\\cos\\theta$$</p>\n<p>$$R'^2 = P^2 + 4Q^2 + 4PQ\\cos\\theta$$ ...(2)</p>\n\n<p><strong>Step 3: Condition for R' perpendicular to P</strong></p>\n<p>When R' is perpendicular to P, the component of R' along P is zero.</p>\n<p>From the parallelogram law, the component of resultant along P direction = P + 2Q cosθ</p>\n<p>For perpendicular condition: P + 2Q cosθ = 0</p>\n<p>$$2Q\\cos\\theta = -P$$ ...(3)</p>\n\n<p><strong>Step 4: Substitute (3) in equations</strong></p>\n<p>From (3): $P\\cos\\theta = -P^2/(2Q)$? Wait, let's use (3) carefully.</p>\n<p>From (3): $\\cos\\theta = -P/(2Q)$</p>\n\n<p><strong>Step 5: Find R from equation (1)</strong></p>\n<p>$$R^2 = P^2 + Q^2 + 2PQ\\left(-\\frac{P}{2Q}\\right)$$</p>\n<p>$$R^2 = P^2 + Q^2 - P^2$$</p>\n<p>$$R^2 = Q^2$$</p>\n\n<p><strong>Step 6: Conclusion</strong></p>\n<p>$$R = Q$$ (taking positive magnitude)</p>\n\n<p>Thus, it is proved that when the new resultant (with doubled Q) is perpendicular to P, the original resultant R equals Q.</p>",
+            "keyPoints": [
+                "Express original resultant R",
+                "Express new resultant R' with 2Q",
+                "Apply perpendicular condition (P + 2Q cosθ = 0)",
+                "Substitute and simplify to get R² = Q²"
+            ],
+            "marks": 6,
+            "unit": "Forces"
+        },
+        {
+            "id": "6.a",
+            "type": "laq",
+            "group": "C",
+            "question": "A uniform wheel of diameter 600mm and weight 3kN is to be pulled over a rigid rectangular block of height (h) 150mm by a horizontal force P applied to the end of a string wound around the circumference of the wheel shown in the Figure 6(a). Find the least pull required just to turn the wheel over the corner of the block.",
+            "answer": "<h5>Solution: Wheel over block problem</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Diameter of wheel = 600mm, so radius R = 300mm = 0.3m</li>\n<li>Weight of wheel W = 3kN = 3000N</li>\n<li>Block height h = 150mm = 0.15m</li>\n<li>Horizontal force P applied at top of wheel (end of string wound around circumference)</li>\n<li>Find: Least pull P to just turn wheel over corner</li>\n</ul>\n\n<p><strong>Step 1: Geometry at the point of turning</strong></p>\n<p>When wheel is about to turn over corner A of block, it loses contact with ground and pivots about point A.</p>\n<p>Distance from center O to pivot A = R = 0.3m</p>\n<p>Vertical height of center above pivot = R - h = 0.3 - 0.15 = 0.15m</p>\n<p>Horizontal distance from pivot to vertical line through center = √(R² - (R-h)²) = √(0.3² - 0.15²) = √(0.09 - 0.0225) = √0.0675 = 0.2598m</p>\n\n<p><strong>Step 2: Forces acting</strong></p>\n<ul>\n<li>Weight W = 3000N downward at center O</li>\n<li>Pull P horizontal at top of wheel (point B, directly above O)</li>\n<li>Reaction at pivot A (not needed for moment equation about A)</li>\n</ul>\n\n<p><strong>Step 3: Take moments about pivot point A</strong></p>\n<p>Moment due to weight (tends to rotate wheel clockwise back to original position):</p>\n<p>Moment arm of W about A = horizontal distance = 0.2598m</p>\n<p>Moment due to weight = W × 0.2598 = 3000 × 0.2598 = 779.4 Nm (clockwise)</p>\n\n<p>Moment due to pull P (tends to rotate wheel counter-clockwise over block):</p>\n<p>For pull P applied horizontally at top, we need perpendicular distance from A to line of action of P.</p>\n<p>The line of action of P is horizontal through point B (top of wheel).</p>\n<p>Coordinates: Let A be at (0,0), O at (0.2598, 0.15)</p>\n<p>Point B is directly above O at (0.2598, 0.15 + 0.3 = 0.45)</p>\n<p>Perpendicular distance from A(0,0) to horizontal line through B(y=0.45) is simply the vertical distance? No - we need the perpendicular distance from A to the line of action of P.</p>\n<p>Actually simpler: For horizontal force P at B, its moment arm about A is the vertical distance from A to B = 0.45m</p>\n<p>Moment due to P = P × 0.45 (counter-clockwise)</p>\n\n<p><strong>Step 4: Apply equilibrium at point of turning</strong></p>\n<p>At the instant of turning, moments about A are balanced:</p>\n<p>Counter-clockwise moment = Clockwise moment</p>\n<p>P × 0.45 = 779.4</p>\n<p>P = 779.4 / 0.45 = 1732 N</p>\n\n<p><strong>Result:</strong> The least pull required is <strong>1732 N</strong> or <strong>1.732 kN</strong>.</p>",
+            "keyPoints": [
+                "Geometry calculation for wheel over block",
+                "Moment arms determination",
+                "Moment equilibrium about pivot point"
+            ],
+            "marks": 6,
+            "unit": "Forces and Moments"
+        },
+        {
+            "id": "6.b",
+            "type": "laq",
+            "group": "C",
+            "question": "A weight of 25N is pulled up a rough inclined plane whose inclination to the horizontal is 30° by a force of 18N acting parallel to the plane. Calculate the coefficient of friction.",
+            "answer": "<h5>Solution: Coefficient of friction on inclined plane</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Weight W = 25N</li>\n<li>Inclination θ = 30°</li>\n<li>Force P = 18N acting parallel to plane (upward)</li>\n<li>Plane is rough (friction present)</li>\n<li>Body is pulled up (motion impending upward)</li>\n</ul>\n\n<p><strong>Step 1: Identify forces</strong></p>\n<ul>\n<li>Weight W = 25N downward</li>\n<li>Pull P = 18N upward along plane</li>\n<li>Normal reaction N perpendicular to plane</li>\n<li>Friction force F acting downward along plane (opposing upward motion)</li>\n</ul>\n\n<p><strong>Step 2: Resolve weight into components</strong></p>\n<p>Component parallel to plane (downward): W sinθ = 25 × sin30° = 25 × 0.5 = 12.5N</p>\n<p>Component perpendicular to plane: W cosθ = 25 × cos30° = 25 × 0.866 = 21.65N</p>\n\n<p><strong>Step 3: Apply equilibrium equations</strong></p>\n<p>Perpendicular to plane: N = W cosθ = 21.65N</p>\n<p>Parallel to plane (upward direction positive):</p>\n<p>P - W sinθ - F = 0 (since body is just moving, forces are balanced at limiting friction)</p>\n<p>18 - 12.5 - F = 0</p>\n<p>F = 18 - 12.5 = 5.5N</p>\n\n<p><strong>Step 4: Calculate coefficient of friction</strong></p>\n<p>At limiting friction: F = μN</p>\n<p>μ = F/N = 5.5 / 21.65 = 0.254</p>\n\n<p><strong>Result:</strong> The coefficient of friction is <strong>0.254</strong>.</p>",
+            "keyPoints": [
+                "Force resolution on inclined plane",
+                "Normal reaction calculation",
+                "Force balance along the plane",
+                "Friction formula application"
+            ],
+            "marks": 6,
+            "unit": "Friction"
+        },
+        {
+            "id": "7.b",
+            "type": "laq",
+            "group": "C",
+            "question": "What is the minimum effort P required to lift a load W by a screw jack when helix angle is α and coefficient of friction is tan φ where φ is the angle of friction? A simple screw jack has a thread of pitch of 10mm, find the mechanical advantage and efficiency, if an effort of 20N is applied at the end of an arm 500mm long to lift a load 2.6kN.",
+            "answer": "<h5>Solution: Screw Jack Analysis</h5>\n\n<p><strong>Part 1: Minimum effort for screw jack</strong></p>\n<p>For a screw jack, the relationship between effort P (applied at radius R) and load W is given by:</p>\n<p>$$P \\times R = W \\times r_m \\times \\tan(\\alpha + \\phi)$$</p>\n<p>where:</p>\n<ul>\n<li>R = length of effort arm</li>\n<li>r_m = mean radius of screw thread</li>\n<li>α = helix angle</li>\n<li>φ = angle of friction (tan φ = μ)</li>\n</ul>\n<p>For <strong>minimum effort</strong> to lift the load, the expression becomes:</p>\n<p>$$P_{min} = \\frac{W \\times r_m}{R} \\times \\tan(\\alpha + \\phi)$$</p>\n<p>If the screw is square-threaded, tan α = p/(2πr_m), where p = pitch.</p>\n\n<p><strong>Part 2: Given data for numerical problem</strong></p>\n<ul>\n<li>Pitch p = 10 mm = 0.01 m</li>\n<li>Effort arm length R = 500 mm = 0.5 m</li>\n<li>Effort P = 20 N</li>\n<li>Load W = 2.6 kN = 2600 N</li>\n</ul>\n\n<p><strong>Step 1: Find velocity ratio (VR)</strong></p>\n<p>For screw jack, VR = (2πR)/p</p>\n<p>VR = (2 × 3.14 × 0.5) / 0.01 = (3.14) / 0.01 = 314</p>\n\n<p><strong>Step 2: Find mechanical advantage (MA)</strong></p>\n<p>MA = Load/Effort = 2600/20 = 130</p>\n\n<p><strong>Step 3: Find efficiency (η)</strong></p>\n<p>η = MA/VR = 130/314 = 0.414 = 41.4%</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Mechanical Advantage = <strong>130</strong></li>\n<li>Efficiency = <strong>41.4%</strong></li>\n</ul>",
+            "keyPoints": [
+                "Screw jack effort formula",
+                "VR calculation for screw jack",
+                "MA and efficiency calculations"
+            ],
+            "marks": 6,
+            "unit": "Lifting Machines"
+        }
+    ]
+}

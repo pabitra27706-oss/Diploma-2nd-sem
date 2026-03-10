@@ -1,0 +1,442 @@
+{
+    "subject": "Fundamentals of Electrical and Electronics Engineering (FEEE)",
+    "examYear": "2024",
+    "totalMarks": 60,
+    "timeAllowed": "2.5 Hours",
+    "questions": [
+        {
+            "id": "1i",
+            "type": "mcq",
+            "group": "A",
+            "question": "An ideal current source has",
+            "options": [
+                "zero internal resistance",
+                "infinite internal resistance",
+                "low value of voltage",
+                "large value of current"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Infinite internal resistance</strong> is correct. An ideal current source maintains constant current regardless of load resistance, which requires infinite internal resistance so that all current flows through the load. If internal resistance were finite, current would divide between internal resistance and load.</p>",
+            "unit": "Network Theory"
+        },
+        {
+            "id": "1ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The resistance of a conductor increases if its",
+            "options": [
+                "length increases",
+                "area of cross-section increases",
+                "length as well as area of cross-section increases",
+                "value of specific resistance is kept constant"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Length increases</strong> is correct. Resistance $R = \\rho \\frac{l}{A}$. Resistance is directly proportional to length (l) and inversely proportional to area (A). So increasing length increases resistance, while increasing area decreases resistance.</p>",
+            "unit": "Basic Concepts"
+        },
+        {
+            "id": "1iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Energy stored by a coil is doubled when its current is increased by _____ percent",
+            "options": [
+                "25",
+                "50.5",
+                "41.4",
+                "100"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>41.4%</strong> is correct. Energy stored in inductor: $W = \\frac{1}{2}LI^2$. For energy to double: $2W = \\frac{1}{2}L(I')^2$. Dividing: $\\frac{2W}{W} = \\frac{(I')^2}{I^2} \\Rightarrow 2 = \\left(\\frac{I'}{I}\\right)^2 \\Rightarrow \\frac{I'}{I} = \\sqrt{2} = 1.414$. Percentage increase = $(1.414 - 1) \\times 100\\% = 41.4\\%$.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "A coil with 500 turns carries a current of 2 A. The value of MMF of the coil is",
+            "options": [
+                "20 AT",
+                "200 AT",
+                "1000 AT",
+                "55 AT"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>1000 AT</strong> is correct. Magnetomotive force (MMF) = $N \\times I = 500 \\times 2 = 1000$ ampere-turns. MMF is the driving force for magnetic flux in a magnetic circuit.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1v",
+            "type": "mcq",
+            "group": "A",
+            "question": "Inductive reactance of a coil of inductance 0.2 H at 50 Hz is",
+            "options": [
+                "62.8 Ω",
+                "628 Ω",
+                "0.2 Ω",
+                "10 Ω"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>62.8 Ω</strong> is correct. Inductive reactance $X_L = 2\\pi fL = 2\\pi \\times 50 \\times 0.2 = 314.16 \\times 0.2 = 62.832 \\approx 62.8\\Omega$.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "The power factor of a purely resistive circuit is",
+            "options": [
+                "zero",
+                "unity",
+                "lagging",
+                "leading"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Unity</strong> is correct. In a purely resistive circuit, voltage and current are in phase ($\\phi = 0°$), so power factor $\\cos\\phi = \\cos 0° = 1$ (unity).</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "A sinusoidal voltage is represented by v = 141.4 sin (314t + π/2). Its rms value of voltage is",
+            "options": [
+                "141.4 V",
+                "100 V",
+                "87.92 V",
+                "200 V"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>100 V</strong> is correct. Peak voltage $V_m = 141.4$ V. For sinusoidal waveform, $V_{rms} = \\frac{V_m}{\\sqrt{2}} = \\frac{141.4}{1.414} = 100$ V.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Voltage per turn in both primary and secondary windings of a transformer is",
+            "options": [
+                "high in high voltage winding",
+                "low in low voltage winding",
+                "same",
+                "can't be determined"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Same</strong> is correct. In a transformer, induced emf per turn is constant because same mutual flux links both windings: $\\frac{E_1}{N_1} = \\frac{E_2}{N_2} = 4.44f\\phi_m$.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Transformer rating are given in",
+            "options": [
+                "KVA",
+                "HP",
+                "KVAR",
+                "kW"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>KVA</strong> is correct. Transformer rating is in kVA (apparent power) because copper losses depend on current, iron losses depend on voltage, and these are independent of load power factor. kW rating would vary with power factor.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1x",
+            "type": "mcq",
+            "group": "A",
+            "question": "A transformer transforms",
+            "options": [
+                "Power",
+                "Voltage",
+                "current",
+                "frequency"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Voltage</strong> is correct. Transformer transforms voltage and current levels but power (minus losses) and frequency remain same. It steps up/down voltage while correspondingly stepping down/up current.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "When PN junction diode is in forward bias, by increasing the battery voltage",
+            "options": [
+                "Circuit resistance increases",
+                "Current through P-N junction increases",
+                "Current through P-N junction decreases",
+                "None of the above happens"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Current through P-N junction increases</strong> is correct. In forward bias, increasing voltage reduces barrier potential, allowing more majority carriers to cross the junction, so current increases exponentially according to diode equation $I = I_0(e^{V/\\eta V_T} - 1)$.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "1xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "An ideal OPAMP is an ideal",
+            "options": [
+                "current controlled current source",
+                "current controlled voltage source",
+                "voltage controlled voltage source",
+                "voltage controlled current source"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Voltage controlled voltage source (VCVS)</strong> is correct. Op-amp output voltage is controlled by differential input voltage ($V_{out} = A(V_+ - V_-)$). It has high input impedance and low output impedance, ideal VCVS characteristics.</p>",
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "1xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "When the two input of a NAND gate is high, the output of the gate will be",
+            "options": [
+                "high",
+                "low",
+                "toggle between high & low",
+                "none of the above"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Low</strong> is correct. NAND gate output = (A·B)'. When both inputs are HIGH (1), A·B = 1, so output = 0 (LOW). This is the complement of AND gate.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "1xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "A diode is a/an",
+            "options": [
+                "bidirectional device",
+                "unidirectional device",
+                "both (a) and (b)",
+                "none of the above"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Unidirectional device</strong> is correct. Diode allows current to flow only in one direction (forward bias) and blocks current in reverse bias (except leakage current), making it unidirectional.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "1xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of these sets of logic gates are known as universal gates?",
+            "options": [
+                "XOR, NAND, OR",
+                "OR, NOT, XOR",
+                "NOR, NAND, XNOR",
+                "NOR, NAND"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>NOR, NAND</strong> is correct. NAND and NOR are universal gates because any logic function (AND, OR, NOT, XOR, XNOR) can be implemented using only NAND gates or only NOR gates. They are functionally complete.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "2a",
+            "type": "saq",
+            "group": "B",
+            "question": "Write the unit of resistivity. Name the factors affecting the resistance of a conductor.",
+            "answer": "<p><strong>Unit of resistivity:</strong> Ohm-meter ($\\Omega$·m).</p><p><strong>Factors affecting resistance of a conductor:</strong></p><ul><li><strong>Length (l):</strong> Resistance $R \\propto l$ (directly proportional)</li><li><strong>Cross-sectional area (A):</strong> Resistance $R \\propto \\frac{1}{A}$ (inversely proportional)</li><li><strong>Material (resistivity ρ):</strong> Different materials have different resistivities</li><li><strong>Temperature:</strong> Resistance increases with temperature for conductors</li></ul><p>Formula: $R = \\rho \\frac{l}{A}$</p>",
+            "marks": 3,
+            "unit": "Basic Concepts"
+        },
+        {
+            "id": "2b",
+            "type": "saq",
+            "group": "B",
+            "question": "Using source transformation, find out the current through the resistance R in the figure below.",
+            "answer": "<p><em>(Note: Since Fig. 2(b) is not available, general approach is provided.)</em></p><p><strong>Source Transformation Method:</strong></p><ul><li>Identify voltage sources in series with resistors and convert to equivalent current sources with parallel resistors: $I = V/R$, resistance remains same R in parallel.</li><li>Combine parallel resistors using $\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ...$</li><li>Combine current sources algebraically (same direction add, opposite subtract).</li><li>If needed, convert back to voltage source: $V = I \\times R_{eq}$ in series with $R_{eq}$.</li><li>Apply Ohm's law or current divider rule to find current through resistance R.</li></ul>",
+            "marks": 5,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "3a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define Magnetic Flux Density and MMF.",
+            "answer": "<p><strong>Magnetic Flux Density (B):</strong> It is the amount of magnetic flux passing through a unit area taken perpendicular to the direction of flux.</p><p>$B = \\frac{\\phi}{A}$ where φ = magnetic flux in weber, A = area in m². Unit: Tesla (T) or Wb/m².</p><p><strong>Magnetomotive Force (MMF):</strong> It is the driving force that produces magnetic flux in a magnetic circuit. It is analogous to EMF in electric circuit.</p><p>$MMF = N \\times I$ where N = number of turns, I = current in amperes. Unit: Ampere-turns (AT).</p>",
+            "marks": 5,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3b",
+            "type": "saq",
+            "group": "B",
+            "question": "State Faraday's Laws of Electromagnetic Induction.",
+            "answer": "<p><strong>Faraday's Laws of Electromagnetic Induction:</strong></p><p><strong>First Law:</strong> Whenever the magnetic flux linked with a circuit changes, an electromotive force (emf) is induced in the circuit.</p><p><strong>Second Law:</strong> The magnitude of induced emf is directly proportional to the rate of change of flux linkage.</p><p>Mathematically, $e = -N\\frac{d\\phi}{dt}$ where:</p><ul><li>e = induced emf (volts)</li><li>N = number of turns</li><li>$\\frac{d\\phi}{dt}$ = rate of change of flux (Wb/s)</li><li>Negative sign indicates Lenz's law (opposition to cause)</li></ul>",
+            "marks": 3,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4a",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw and explain hysteresis loop for magnetic material.",
+            "answer": "<p><strong>Hysteresis Loop (B-H Curve):</strong></p><p>When a magnetic material is subjected to cyclic magnetization, the flux density B lags behind the magnetizing force H, forming a closed loop called hysteresis loop.</p><p><strong>Explanation:</strong></p><ul><li>Starting from unmagnetized state (O), as H increases, B increases along OA to saturation (A).</li><li>When H decreases, B decreases but follows a different path AB (not retrace OA).</li><li>At H = 0, B = +B<sub>r</sub> (retentivity/residual magnetism).</li><li>Reverse H applied to bring B to zero: H = -H<sub>c</sub> (coercivity).</li><li>Further increase in reverse H saturates in opposite direction (C).</li><li>When H cycles back, curve completes the loop.</li></ul><p><strong>Important Points:</strong></p><ul><li>Area of hysteresis loop represents energy loss per cycle per unit volume.</li><li>Soft magnetic materials have narrow loop (low loss).</li><li>Hard magnetic materials have wide loop (high retentivity).</li></ul>",
+            "marks": 6,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4b",
+            "type": "saq",
+            "group": "B",
+            "question": "Discuss the causes of hysteresis loss.",
+            "answer": "<p><strong>Hysteresis Loss:</strong> Energy loss that occurs in magnetic materials due to repeated magnetization and demagnetization.</p><p><strong>Causes:</strong></p><ul><li><strong>Domain Wall Movement:</strong> During magnetization, magnetic domains rotate and align with applied field. This requires energy to overcome friction.</li><li><strong>Molecular Friction:</strong> Internal friction between molecules during domain realignment produces heat.</li><li><strong>Retentivity:</strong> Energy required to demagnetize the material (to overcome residual magnetism).</li><li><strong>Lagging of B behind H:</strong> Due to this lag, some energy is dissipated as heat in each cycle.</li></ul><p>Hysteresis loss is given by Steinmetz formula: $P_h = \\eta f B_m^{1.6} V$ watts, where η = hysteresis coefficient, f = frequency, B<sub>m</sub> = maximum flux density, V = volume.</p><p>It is minimized by using materials with narrow hysteresis loop (e.g., silicon steel in transformers).</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "5a",
+            "type": "saq",
+            "group": "B",
+            "question": "For sinusoidally varying alternating quantity, state the relation between (i) rms value and maximum value. (ii) average value and maximum value.",
+            "answer": "<p>For a sinusoidal alternating quantity:</p><p><strong>(i) RMS value and maximum value:</strong></p><p>$V_{rms} = \\frac{V_m}{\\sqrt{2}} = 0.707 V_m$</p><p>$I_{rms} = \\frac{I_m}{\\sqrt{2}} = 0.707 I_m$</p><p><strong>(ii) Average value and maximum value:</strong></p><p>For half-cycle: $V_{avg} = \\frac{2V_m}{\\pi} = 0.637 V_m$</p><p>$I_{avg} = \\frac{2I_m}{\\pi} = 0.637 I_m$</p><p>For full cycle, average value = 0 for symmetrical AC.</p>",
+            "marks": 2,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "5b",
+            "type": "saq",
+            "group": "B",
+            "question": "Show that current in a pure inductive circuit lags the voltage by 90 degree.",
+            "answer": "<p><strong>Pure Inductive Circuit:</strong></p><p>Applied voltage: $v = V_m\\sin\\omega t$</p><p>For inductor, $v = L\\frac{di}{dt}$</p><p>$\\frac{di}{dt} = \\frac{v}{L} = \\frac{V_m}{L}\\sin\\omega t$</p><p>Integrating both sides:</p><p>$i = \\int \\frac{V_m}{L}\\sin\\omega t\\, dt = \\frac{V_m}{\\omega L}(-\\cos\\omega t) + C$</p><p>For AC steady state, C = 0, and $-\\cos\\omega t = \\sin(\\omega t - 90°)$</p><p>$i = \\frac{V_m}{\\omega L}\\sin(\\omega t - 90°) = I_m\\sin(\\omega t - 90°)$</p><p>Thus, current lags voltage by 90° (or $\\pi/2$ radians).</p><p>Inductive reactance $X_L = \\omega L = 2\\pi fL$.</p>",
+            "marks": 4,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "5c",
+            "type": "saq",
+            "group": "B",
+            "question": "Define active power and reactive power.",
+            "answer": "<p><strong>Active Power (True Power):</strong> The power that is actually consumed in an AC circuit and converted to useful work (heat, light, mechanical energy).</p><p>$P = VI\\cos\\phi$ watts (W)</p><p><strong>Reactive Power:</strong> The power that oscillates between source and load (inductor/capacitor) and does no useful work. It is required to maintain magnetic and electric fields.</p><p>$Q = VI\\sin\\phi$ volt-ampere reactive (VAR)</p><p><strong>Apparent Power:</strong> $S = VI$ volt-ampere (VA)</p><p>Relation: $S = \\sqrt{P^2 + Q^2}$ and power factor $\\cos\\phi = P/S$.</p>",
+            "marks": 2,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6",
+            "type": "laq",
+            "group": "B",
+            "question": "A coil of resistance 20Ω and inductance 100 mH is connected in series with a capacitance of 40 μF across 100 V, 50 Hz AC supply. Calculate (i) the magnitude of current, (ii) power factor, (iii) phase angle between voltage and current, (iv) voltage across each element.",
+            "answer": "<h5>Series RLC Circuit Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>R = 20 Ω</li>\n<li>L = 100 mH = 0.1 H</li>\n<li>C = 40 μF = 40 × 10⁻⁶ F</li>\n<li>V = 100 V</li>\n<li>f = 50 Hz</li>\n</ul>\n\n<p><strong>Step 1: Calculate inductive reactance XL</strong></p>\n<p>$X_L = 2\\pi fL = 2\\pi \\times 50 \\times 0.1$</p>\n<p>$X_L = 314.16 \\times 0.1 = 31.416\\text{ Ω}$</p>\n\n<p><strong>Step 2: Calculate capacitive reactance XC</strong></p>\n<p>$X_C = \\frac{1}{2\\pi fC} = \\frac{1}{2\\pi \\times 50 \\times 40 \\times 10^{-6}}$</p>\n<p>$X_C = \\frac{1}{0.012566} = 79.577\\text{ Ω}$</p>\n\n<p><strong>Step 3: Calculate net reactance X and impedance Z</strong></p>\n<p>$X = X_L - X_C = 31.416 - 79.577 = -48.161\\text{ Ω}$ (capacitive, negative sign indicates capacitive reactance dominates)</p>\n<p>$Z = \\sqrt{R^2 + X^2} = \\sqrt{20^2 + (-48.161)^2}$</p>\n<p>$Z = \\sqrt{400 + 2319.48} = \\sqrt{2719.48} = 52.15\\text{ Ω}$</p>\n\n<p><strong>(i) Magnitude of current I:</strong></p>\n<p>$I = \\frac{V}{Z} = \\frac{100}{52.15} = 1.918\\text{ A}$</p>\n\n<p><strong>(ii) Power factor:</strong></p>\n<p>$\\cos\\phi = \\frac{R}{Z} = \\frac{20}{52.15} = 0.3836$ leading (since X is negative, circuit is capacitive, current leads voltage)</p>\n\n<p><strong>(iii) Phase angle:</strong></p>\n<p>$\\phi = \\cos^{-1}(0.3836) = 67.45°$</p>\n<p>Since X is negative, current leads voltage by 67.45°.</p>\n\n<p><strong>(iv) Voltage across each element:</strong></p>\n<p>Voltage across resistor: $V_R = I \\times R = 1.918 \\times 20 = 38.36\\text{ V}$</p>\n<p>Voltage across inductor: $V_L = I \\times X_L = 1.918 \\times 31.416 = 60.26\\text{ V}$</p>\n<p>Voltage across capacitor: $V_C = I \\times X_C = 1.918 \\times 79.577 = 152.63\\text{ V}$</p>\n\n<p><strong>Verification:</strong> $V = \\sqrt{V_R^2 + (V_L - V_C)^2} = \\sqrt{38.36^2 + (60.26 - 152.63)^2} = \\sqrt{1471.5 + (-92.37)^2} = \\sqrt{1471.5 + 8532.2} = \\sqrt{10003.7} = 100.02\\text{ V}$ ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Current I = 1.918 A</li>\n<li>Power factor = 0.3836 leading</li>\n<li>Phase angle = 67.45° (current leads voltage)</li>\n<li>V<sub>R</sub> = 38.36 V, V<sub>L</sub> = 60.26 V, V<sub>C</sub> = 152.63 V</li>\n</ul>",
+            "keyPoints": [
+                "Calculate XL = 2πfL",
+                "Calculate XC = 1/(2πfC)",
+                "Z = √(R² + (XL-XC)²)",
+                "I = V/Z",
+                "cos φ = R/Z",
+                "Phase angle φ = cos⁻¹(R/Z)",
+                "VR = IR, VL = IXL, VC = IXC"
+            ],
+            "marks": 8,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "7a",
+            "type": "saq",
+            "group": "B",
+            "question": "Derive the emf equation of a transformer.",
+            "answer": "<h5>EMF Equation of Transformer</h5>\n\n<p>Let,</p>\n<ul>\n<li>N₁ = Number of turns in primary winding</li>\n<li>N₂ = Number of turns in secondary winding</li>\n<li>φ<sub>m</sub> = Maximum flux in core (Wb)</li>\n<li>f = Frequency of AC supply (Hz)</li>\n</ul>\n\n<p><strong>Step 1:</strong> Flux varies sinusoidally: φ = φ<sub>m</sub> sin ωt</p>\n\n<p><strong>Step 2:</strong> Instantaneous emf induced per turn:</p>\n<p>$e = -\\frac{d\\phi}{dt} = -\\frac{d}{dt}(\\phi_m \\sin \\omega t)$</p>\n<p>$e = -\\omega \\phi_m \\cos \\omega t$</p>\n\n<p><strong>Step 3:</strong> Maximum value of induced emf per turn:</p>\n<p>$E_{m/turn} = \\omega \\phi_m = 2\\pi f \\phi_m$</p>\n\n<p><strong>Step 4:</strong> RMS value of induced emf per turn:</p>\n<p>$E_{rms/turn} = \\frac{E_{m/turn}}{\\sqrt{2}} = \\frac{2\\pi f \\phi_m}{\\sqrt{2}} = 4.44 f \\phi_m$</p>\n\n<p><strong>Step 5:</strong> For primary winding with N₁ turns:</p>\n<p>$E_1 = 4.44 f N_1 \\phi_m$ volts</p>\n\n<p><strong>Step 6:</strong> For secondary winding with N₂ turns:</p>\n<p>$E_2 = 4.44 f N_2 \\phi_m$ volts</p>\n\n<p><strong>Final EMF Equations:</strong></p>\n<p>$$E_1 = 4.44 f N_1 \\phi_m$$</p>\n<p>$$E_2 = 4.44 f N_2 \\phi_m$$</p>\n\n<p>Taking ratio: $\\frac{E_1}{E_2} = \\frac{N_1}{N_2} = K$ (transformation ratio)</p>",
+            "keyPoints": [
+                "Flux φ = φm sin ωt",
+                "e = -dφ/dt",
+                "Em/turn = 2πf φm",
+                "Erms/turn = 4.44f φm",
+                "Multiply by turns"
+            ],
+            "marks": 4,
+            "unit": "Transformer"
+        },
+        {
+            "id": "7b",
+            "type": "laq",
+            "group": "B",
+            "question": "A single phase transformer is required to step down the voltage from 1100 V to 400 V at 50 Hz. The core has a cross-sectional area of 25 cm² and the maximum flux density is 5 Wb/m². Determine the number of turns of the primary and secondary windings.",
+            "answer": "<h5>Transformer Turns Calculation</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Primary voltage V₁ = 1100 V</li>\n<li>Secondary voltage V₂ = 400 V</li>\n<li>Frequency f = 50 Hz</li>\n<li>Core area A = 25 cm² = 25 × 10⁻⁴ = 0.0025 m²</li>\n<li>Maximum flux density B<sub>m</sub> = 5 Wb/m²</li>\n</ul>\n\n<p><strong>Step 1: Calculate maximum flux φ<sub>m</sub></strong></p>\n<p>$\\phi_m = B_m \\times A = 5 \\times 0.0025 = 0.0125\\text{ Wb}$</p>\n\n<p><strong>Step 2: Use EMF equation to find primary turns N₁</strong></p>\n<p>$E_1 = 4.44 f N_1 \\phi_m$</p>\n<p>$1100 = 4.44 \\times 50 \\times N_1 \\times 0.0125$</p>\n<p>$1100 = 4.44 \\times 50 \\times 0.0125 \\times N_1$</p>\n<p>$1100 = 4.44 \\times 0.625 \\times N_1$</p>\n<p>$1100 = 2.775 \\times N_1$</p>\n<p>$N_1 = \\frac{1100}{2.775} = 396.4 \\approx 397\\text{ turns}$</p>\n\n<p><strong>Step 3: Calculate secondary turns N₂ using turns ratio</strong></p>\n<p>$\\frac{N_2}{N_1} = \\frac{V_2}{V_1}$</p>\n<p>$N_2 = N_1 \\times \\frac{V_2}{V_1} = 397 \\times \\frac{400}{1100}$</p>\n<p>$N_2 = 397 \\times 0.3636 = 144.3 \\approx 144\\text{ turns}$</p>\n\n<p><strong>Step 4: Verification using EMF equation for secondary</strong></p>\n<p>$E_2 = 4.44 f N_2 \\phi_m = 4.44 \\times 50 \\times 144 \\times 0.0125$</p>\n<p>$E_2 = 4.44 \\times 50 \\times 1.8 = 4.44 \\times 90 = 399.6\\text{ V} \\approx 400\\text{ V}$ ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Primary turns N₁ = 397 turns</li>\n<li>Secondary turns N₂ = 144 turns</li>\n</ul>",
+            "keyPoints": [
+                "φm = Bm × A",
+                "EMF equation: E = 4.44 f N φm",
+                "Turns ratio: N2/N1 = V2/V1"
+            ],
+            "marks": 4,
+            "unit": "Transformer"
+        },
+        {
+            "id": "8a",
+            "type": "laq",
+            "group": "B",
+            "question": "With respect to Energy band diagram differentiate between Conductors, Semiconductor & Insulator.",
+            "answer": "<h5>Energy Band Diagram Comparison</h5>\n\n<p><strong>Energy Band Theory:</strong> Materials are classified based on energy bands - Valence band (filled with electrons) and Conduction band (empty/partially filled), separated by forbidden energy gap.</p>\n\n<table>\n<tr><th>Property</th><th>Conductor</th><th>Semiconductor</th><th>Insulator</th></tr>\n\n<tr><td><strong>Band Structure</strong></td>\n<td>Valence and conduction bands overlap OR conduction band partially filled</td>\n<td>Small forbidden gap between valence and conduction bands</td>\n<td>Large forbidden gap between valence and conduction bands</td></tr>\n\n<tr><td><strong>Energy Gap (Eg)</strong></td>\n<td>No gap (0 eV) or overlapping</td>\n<td>Small: 0.7 eV (Ge) to 1.1 eV (Si)</td>\n<td>Large: > 3 eV to 6 eV</td></tr>\n\n<tr><td><strong>Conduction Band</strong></td>\n<td>Partially filled or overlapping with valence band</td>\n<td>Empty at 0K, partially filled at room temp</td>\n<td>Empty at room temperature</td></tr>\n\n<tr><td><strong>Valence Band</strong></td>\n<td>Partially filled OR fully filled but overlapping</td>\n<td>Fully filled at 0K</td>\n<td>Fully filled</td></tr>\n\n<tr><td><strong>Electron Availability</strong></td>\n<td>Large number of free electrons</td>\n<td>Few electrons jump to conduction band at room temp</td>\n<td>Negligible free electrons</td></tr>\n\n<tr><td><strong>Conductivity</strong></td>\n<td>Very high (10⁷ S/m)</td>\n<td>Moderate (10⁻⁶ to 10⁴ S/m)</td>\n<td>Very low (< 10⁻¹² S/m)</td></tr>\n\n<tr><td><strong>Temperature Effect</strong></td>\n<td>Conductivity decreases with temperature</td>\n<td>Conductivity increases with temperature</td>\n<td>Remains insulator at normal temps</td></tr>\n\n<tr><td><strong>Examples</strong></td>\n<td>Copper, Aluminum, Silver</td>\n<td>Silicon, Germanium</td>\n<td>Glass, Rubber, Mica</td></tr>\n</table>\n\n<p><em>Diagram reference:</em> In conductors, bands overlap. In semiconductors, small energy gap (≈1 eV). In insulators, large energy gap (>3 eV).</p>",
+            "keyPoints": [
+                "Energy gap comparison",
+                "Band structure at 0K and room temperature",
+                "Conduction mechanism",
+                "Examples"
+            ],
+            "marks": 6,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8b",
+            "type": "saq",
+            "group": "B",
+            "question": "Distinguish between an intrinsic and extrinsic semiconductor material.",
+            "answer": "<p><strong>Intrinsic vs Extrinsic Semiconductors:</strong></p>\n\n<table>\n<tr><th>Intrinsic Semiconductor</th><th>Extrinsic Semiconductor</th></tr>\n<tr><td>Pure semiconductor without any doping</td><td>Doped with impurities to modify conductivity</td></tr>\n<tr><td>Equal number of electrons and holes (n<sub>e</sub> = n<sub>h</sub>)</td><td>Unequal carriers (n<sub>e</sub> ≠ n<sub>h</sub>)</td></tr>\n<tr><td>Low electrical conductivity</td><td>High electrical conductivity</td></tr>\n<tr><td>Conductivity depends only on temperature</td><td>Conductivity depends on doping and temperature</td></tr>\n<tr><td>Fermi level lies in the middle of energy gap</td><td>Fermi level moves toward conduction band (n-type) or valence band (p-type)</td></tr>\n<tr><td>Examples: Pure Silicon (Si), Pure Germanium (Ge)</td><td>Examples: n-type Si (doped with P, As), p-type Si (doped with B, Al)</td></tr>\n<tr><td>Number of charge carriers ≈ 1.5 × 10¹⁶/m³ (for Si at 300K)</td><td>Number of charge carriers ≈ 10²⁰ to 10²⁴/m³</td></tr>\n</table>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9a",
+            "type": "laq",
+            "group": "B",
+            "question": "Draw the circuit diagram of an op-amp non-inverting amplifier and derive the expression for output voltage.",
+            "answer": "<h5>Non-Inverting Amplifier using Op-Amp</h5>\n\n<p><em>Circuit Diagram:</em> Input voltage V<sub>in</sub> applied to non-inverting (+) terminal. Feedback resistor R<sub>f</sub> connected between output and inverting (-) terminal. Resistor R₁ connected from inverting terminal to ground.</p>\n\n<p><strong>Assumptions for ideal op-amp:</strong></p>\n<ul>\n<li>Open-loop gain A = ∞</li>\n<li>Input impedance R<sub>in</sub> = ∞ (no input current)</li>\n<li>Virtual short: V<sub>1</sub> = V<sub>2</sub> (voltage at inverting = voltage at non-inverting)</li>\n</ul>\n\n<p><strong>Derivation:</strong></p>\n\n<p><strong>Step 1:</strong> Due to virtual short, voltage at inverting terminal V<sub>1</sub> = V<sub>in</sub>.</p>\n\n<p><strong>Step 2:</strong> Current through R₁:</p>\n<p>$$I_1 = \\frac{V_1 - 0}{R_1} = \\frac{V_{in}}{R_1}$$</p>\n\n<p><strong>Step 3:</strong> Since no current enters op-amp (ideal), same current flows through R<sub>f</sub>:</p>\n<p>$$I_f = I_1 = \\frac{V_{in}}{R_1}$$</p>\n\n<p><strong>Step 4:</strong> Voltage across R<sub>f</sub>:</p>\n<p>$$V_{out} - V_1 = I_f R_f$$</p>\n<p>$$V_{out} - V_{in} = \\frac{V_{in}}{R_1} \\times R_f$$</p>\n\n<p><strong>Step 5:</strong> Therefore:</p>\n<p>$$V_{out} = V_{in} + \\frac{R_f}{R_1} V_{in}$$</p>\n<p>$$V_{out} = V_{in} \\left(1 + \\frac{R_f}{R_1}\\right)$$</p>\n\n<p><strong>Voltage Gain:</strong></p>\n<p>$$A_v = \\frac{V_{out}}{V_{in}} = 1 + \\frac{R_f}{R_1}$$</p>\n\n<p><strong>Key Points:</strong></p>\n<ul>\n<li>Gain is positive (no phase inversion)</li>\n<li>Gain ≥ 1</li>\n<li>Input impedance is very high (ideally infinite)</li>\n<li>Gain depends only on external resistors</li>\n</ul>",
+            "keyPoints": [
+                "Virtual short: V₁ = V₂ = Vin",
+                "Current through R₁ and Rf same",
+                "Gain = 1 + Rf/R₁"
+            ],
+            "marks": 5,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "9b",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the pin diagram of IC 741 OPAMP.",
+            "answer": "<p><strong>IC 741 Op-Amp Pin Diagram (8-pin DIP):</strong></p>\n\n<table>\n<tr><th>Pin No.</th><th>Pin Name</th><th>Function</th></tr>\n<tr><td>1</td><td>Offset Null</td><td>Used to nullify offset voltage; connect potentiometer between pin 1 and pin 5</td></tr>\n<tr><td>2</td><td>Inverting Input (-)</td><td>Input terminal where output is 180° out of phase</td></tr>\n<tr><td>3</td><td>Non-Inverting Input (+)</td><td>Input terminal where output is in phase</td></tr>\n<tr><td>4</td><td>V- (Negative Supply)</td><td>Connected to negative supply voltage (-Vcc)</td></tr>\n<tr><td>5</td><td>Offset Null</td><td>Second offset null terminal</td></tr>\n<tr><td>6</td><td>Output</td><td>Amplified output voltage terminal</td></tr>\n<tr><td>7</td><td>V+ (Positive Supply)</td><td>Connected to positive supply voltage (+Vcc)</td></tr>\n<tr><td>8</td><td>NC (No Connection)</td><td>Not internally connected</td></tr>\n</table>\n\n<p><em>Note:</em> Pins are numbered counterclockwise starting from pin 1 (marked by dot or notch) when viewing from top.</p>",
+            "marks": 1,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "10a",
+            "type": "saq",
+            "group": "B",
+            "question": "State De-Morgan's Theorem.",
+            "answer": "<p><strong>De Morgan's Theorems:</strong></p>\n\n<p><strong>Theorem 1 (Product complement):</strong> The complement of a product (AND) of variables is equal to the sum (OR) of their complements.</p>\n<p>$$\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$$</p>\n<p>In Boolean algebra: (AB)' = A' + B'</p>\n\n<p><strong>Theorem 2 (Sum complement):</strong> The complement of a sum (OR) of variables is equal to the product (AND) of their complements.</p>\n<p>$$\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$$</p>\n<p>In Boolean algebra: (A + B)' = A' · B'</p>\n\n<p>These theorems can be extended to multiple variables:</p>\n<p>$$\\overline{A \\cdot B \\cdot C \\cdot ...} = \\overline{A} + \\overline{B} + \\overline{C} + ...$$</p>\n<p>$$\\overline{A + B + C + ...} = \\overline{A} \\cdot \\overline{B} \\cdot \\overline{C} \\cdot ...$$</p>",
+            "marks": 2,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "10b",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the logic symbol and truth table of a 2-input NAND gate and EX-OR gate.",
+            "answer": "<p><strong>1. 2-Input NAND Gate:</strong></p>\n<p><em>Logic Symbol:</em> AND gate symbol with a small circle (bubble) at the output.</p>\n<p>Boolean expression: $Y = \\overline{A \\cdot B}$</p>\n\n<p><strong>Truth Table:</strong></p>\n<table>\n<tr><th>A</th><th>B</th><th>A·B</th><th>Y = (A·B)'</th></tr>\n<tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>\n<tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>\n</table>\n\n<p><strong>2. 2-Input EX-OR (XOR) Gate:</strong></p>\n<p><em>Logic Symbol:</em> OR gate with additional curved line on input side.</p>\n<p>Boolean expression: $Y = A \\oplus B = A\\overline{B} + \\overline{A}B$</p>\n\n<p><strong>Truth Table:</strong></p>\n<table>\n<tr><th>A</th><th>B</th><th>Y = A⊕B</th></tr>\n<tr><td>0</td><td>0</td><td>0</td></tr>\n<tr><td>0</td><td>1</td><td>1</td></tr>\n<tr><td>1</td><td>0</td><td>1</td></tr>\n<tr><td>1</td><td>1</td><td>0</td></tr>\n</table>\n\n<p>XOR output is HIGH (1) when inputs are different, LOW (0) when inputs are same.</p>",
+            "marks": 6,
+            "unit": "Digital Electronics"
+        }
+    ]
+}

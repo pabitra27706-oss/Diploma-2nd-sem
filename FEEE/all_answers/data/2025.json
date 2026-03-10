@@ -1,0 +1,481 @@
+{
+    "subject": "Fundamentals of Electrical and Electronics Engineering (FEEE)",
+    "examYear": "2025",
+    "totalMarks": 60,
+    "timeAllowed": "2.5 Hours",
+    "questions": [
+        {
+            "id": "1i",
+            "type": "mcq",
+            "group": "A",
+            "question": "A wire has resistance of 16Ω. It is bent in the form of a circle. Resistance between two points on any diameter of the circle is",
+            "options": [
+                "32Ω",
+                "16Ω",
+                "8Ω",
+                "4Ω"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>4Ω</strong> is correct. Total resistance of wire = 16Ω. When bent into a circle, the wire is divided into two equal halves along any diameter, each half having resistance = 8Ω. These two halves are connected in parallel between the two diametrically opposite points. Equivalent resistance = (8 × 8)/(8 + 8) = 64/16 = 4Ω.</p>",
+            "unit": "Network Theory"
+        },
+        {
+            "id": "1ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If 110V is applied across 220V, 100W bulb, the power consumed by it will be",
+            "options": [
+                "100W",
+                "50W",
+                "25W",
+                "12.5W"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>25W</strong> is correct. Bulb resistance: $R = \\frac{V^2}{P} = \\frac{220^2}{100} = \\frac{48400}{100} = 484\\Omega$. When connected to 110V, power $P = \\frac{V^2}{R} = \\frac{110^2}{484} = \\frac{12100}{484} = 25W$. Power is proportional to square of voltage.</p>",
+            "unit": "Basic Concepts"
+        },
+        {
+            "id": "1iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Two resistances of 20Ω and 30Ω are connected in parallel across 120V supply. Then the currents through resistances will be",
+            "options": [
+                "4A and 6A",
+                "6A and 4A",
+                "2A and 8A",
+                "8A and 5A"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>6A and 4A</strong> is correct. In parallel, voltage across each resistor = 120V. Current through 20Ω: $I_1 = V/R_1 = 120/20 = 6A$. Current through 30Ω: $I_2 = V/R_2 = 120/30 = 4A$.</p>",
+            "unit": "Network Theory"
+        },
+        {
+            "id": "1iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is a correct representation of peak value in an AC Circuit?",
+            "options": [
+                "RMS value/Peak factor",
+                "RMS value × Form factor",
+                "RMS value / Form factor",
+                "RMS value × Peak factor"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>RMS value × Peak factor</strong> is correct. Peak factor = Maximum value / RMS value. Therefore, Maximum value = RMS value × Peak factor. For sine wave, Peak factor = √2 = 1.414.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1v",
+            "type": "mcq",
+            "group": "A",
+            "question": "A magnetic circuit requires 800 AT to produce certain amount of magnetic flux. If the magnetizing coil of 100 turns has 5Ω resistance, the voltage to be applied to the exciting coil must be",
+            "options": [
+                "40V",
+                "20V",
+                "10V",
+                "5V"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>40V</strong> is correct. MMF = NI = 800 AT. Given N = 100 turns, so $I = \\frac{MMF}{N} = \\frac{800}{100} = 8A$. Coil resistance R = 5Ω. Voltage $V = I \\times R = 8 \\times 5 = 40V$.</p>",
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "If the supply frequency increases, the value of inductive reactance",
+            "options": [
+                "decreases",
+                "increases",
+                "does not change",
+                "becomes zero"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Increases</strong> is correct. Inductive reactance $X_L = 2\\pi f L$. It is directly proportional to frequency (f). So as frequency increases, $X_L$ increases.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Potential barrier at a p-n junction is established due to",
+            "options": [
+                "majority carriers",
+                "minority carriers",
+                "both (a) and (b)",
+                "donor and acceptor ions"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Donor and acceptor ions</strong> is correct. When p and n materials are joined, majority carriers diffuse across junction, leaving behind immobile donor ions (positive in n-side) and acceptor ions (negative in p-side). These ions create an electric field and potential barrier that prevents further diffusion.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "1viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The advantage of star-connected AC supply system is that",
+            "options": [
+                "line current is equal to phase current",
+                "it is a simple arrangement",
+                "voltages at two levels can be used",
+                "phase sequence can easily be changed"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Voltages at two levels can be used</strong> is correct. In star connection, two voltages are available: phase voltage ($V_{ph}$) and line voltage ($V_L = \\sqrt{3}V_{ph}$). This allows both 230V and 400V supplies from same system.</p>",
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Transformer core is assembled with laminated sheet so as to",
+            "options": [
+                "reduce hysteresis loss",
+                "eddy current loss",
+                "reduce copper loss",
+                "ensure good magnetic coupling between the windings"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Eddy current loss</strong> is correct. Lamination increases resistance of core, reducing eddy currents and associated I²R losses. Hysteresis loss is reduced by using silicon steel, not lamination.</p>",
+            "unit": "Transformer"
+        },
+        {
+            "id": "1x",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following dc motor is used in Railway Electric Traction?",
+            "options": [
+                "dc shunt motor",
+                "dc series motor",
+                "dc compound motor",
+                "separately excited dc motor"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>DC series motor</strong> is correct. DC series motor provides high starting torque and variable speed characteristic, making it ideal for traction applications like railways, cranes, and hoists.</p>",
+            "unit": "DC Machines"
+        },
+        {
+            "id": "1xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "In common emitter configuration, BJT acts as a",
+            "options": [
+                "voltage controlled voltage source",
+                "current controlled voltage source",
+                "voltage controlled current source",
+                "current controlled current source"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Current controlled current source</strong> is correct. In BJT, output current (collector current $I_C$) is controlled by input current (base current $I_B$). $I_C = \\beta I_B$, making it a current-controlled current source.</p>",
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "1xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "CMRR for an OP-AMP should be",
+            "options": [
+                "as large as possible",
+                "close to zero",
+                "close to unity",
+                "as small as possible"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>As large as possible</strong> is correct. Common Mode Rejection Ratio (CMRR) = $|A_d/A_c|$. High CMRR means op-amp amplifies differential signals well while rejecting common-mode noise, which is desirable.</p>",
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "1xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If two inputs of a NOR gate is tied up, it will act as a",
+            "options": [
+                "NOT gate",
+                "OR gate",
+                "NAND gate",
+                "Ex-NOR gate"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>NOT gate</strong> is correct. When both inputs of NOR gate are tied together, $Y = \\overline{A + A} = \\overline{A}$. This is the NOT (inverter) operation.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "1xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "A bulb in a staircase has two switches, one switch being at the ground floor and the other at the first floor. The bulb can be turned on and off by any one of the switches. The logic of switching of the bulb resembles",
+            "options": [
+                "An AND gate",
+                "An OR gate",
+                "an XOR gate",
+                "A NAND gate"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>An XOR gate</strong> is correct. Staircase wiring uses two-way switches where bulb state toggles whenever either switch is changed. This is XOR logic: output changes when inputs are different. Truth table matches XOR: (0,0)→OFF, (0,1)→ON, (1,0)→ON, (1,1)→OFF.</p>",
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "2a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is a parallel circuit?",
+            "answer": "<p><strong>Parallel Circuit:</strong> A circuit in which two or more components are connected across the same voltage source, providing multiple paths for current flow.</p><p>Characteristics:</p><ul><li>Voltage across each component is same</li><li>Total current is sum of branch currents: $I_T = I_1 + I_2 + I_3 + ...$</li><li>Equivalent resistance: $\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} + ...$</li><li>If one component fails, others continue to work</li></ul>",
+            "marks": 2,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "2b",
+            "type": "saq",
+            "group": "B",
+            "question": "Why all electrical equipments are connected in parallel to the supply?",
+            "answer": "<p><strong>Reasons for parallel connection:</strong></p><ul><li><strong>Same voltage:</strong> All equipment receive the rated supply voltage.</li><li><strong>Independent operation:</strong> Each equipment can be switched ON/OFF independently without affecting others.</li><li><strong>Equal voltage distribution:</strong> Voltage across each device remains constant regardless of other loads.</li><li><strong>Reliability:</strong> If one equipment fails, others continue to function.</li><li><strong>Ease of expansion:</strong> New equipment can be added without disturbing existing connections.</li></ul><p>In series connection, voltage divides and failure of one device breaks the entire circuit.</p>",
+            "marks": 2,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "2c",
+            "type": "laq",
+            "group": "B",
+            "question": "A resistor of 6Ω is connected in series with a parallel combination of 15Ω and 10Ω resistors. The whole circuit is connected across a 30V supply. Determine current flowing through 15Ω resistor.",
+            "answer": "<h5>Circuit Analysis</h5>\n\n<p><strong>Given:</strong> Series resistor R₃ = 6Ω. Parallel resistors: R₁ = 15Ω, R₂ = 10Ω. Supply voltage V = 30V.</p>\n\n<p><strong>Step 1: Calculate equivalent resistance of parallel combination</strong></p>\n<p>$\\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2} = \\frac{1}{15} + \\frac{1}{10} = \\frac{2 + 3}{30} = \\frac{5}{30} = \\frac{1}{6}$</p>\n<p>$R_p = 6\\Omega$</p>\n\n<p><strong>Step 2: Calculate total equivalent resistance</strong></p>\n<p>$R_T = R_3 + R_p = 6 + 6 = 12\\Omega$</p>\n\n<p><strong>Step 3: Calculate total current</strong></p>\n<p>$I_T = \\frac{V}{R_T} = \\frac{30}{12} = 2.5A$</p>\n\n<p><strong>Step 4: Calculate voltage across parallel combination</strong></p>\n<p>$V_p = I_T \\times R_p = 2.5 \\times 6 = 15V$</p>\n\n<p><strong>Step 5: Calculate current through 15Ω resistor</strong></p>\n<p>In parallel, voltage across each resistor is same (15V).</p>\n<p>$I_{15} = \\frac{V_p}{R_1} = \\frac{15}{15} = 1A$</p>\n\n<p><strong>Verification:</strong> Current through 10Ω resistor $I_{10} = 15/10 = 1.5A$. Total parallel current $I_p = 1 + 1.5 = 2.5A = I_T$ ✓</p>\n\n<p><strong>Answer:</strong> Current through 15Ω resistor = 1A</p>",
+            "keyPoints": [
+                "Find parallel equivalent resistance",
+                "Calculate total resistance",
+                "Find total current",
+                "Voltage across parallel branch",
+                "Current through 15Ω using Ohm's law"
+            ],
+            "marks": 4,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "3a",
+            "type": "saq",
+            "group": "B",
+            "question": "With neat diagrams state Fleming's Left Hand Rule.",
+            "answer": "<p><strong>Fleming's Left Hand Rule:</strong></p><p><em>Diagram:</em> Left hand with thumb, forefinger, and middle finger stretched mutually perpendicular to each other.</p><p><strong>Rule:</strong> If the forefinger points in the direction of magnetic field (North to South), and the middle finger points in the direction of current (conventional current, + to -), then the thumb gives the direction of force/motion on the conductor.</p><p><strong>Application:</strong> Used to determine direction of rotation of motor armature/rotor (motor action).</p><p><strong>Memory aid:</strong> FBI - Force (thumb), Field (forefinger), Current (middle finger).</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3b",
+            "type": "saq",
+            "group": "B",
+            "question": "What is dynamically induced emf?",
+            "answer": "<p><strong>Dynamically induced emf:</strong> The emf induced in a conductor due to its relative motion in a magnetic field.</p><p>When a conductor moves cutting magnetic flux lines, an emf is induced across its ends.</p><p>Magnitude: $e = Blv$ volts, where:</p><ul><li>B = magnetic flux density (T)</li><li>l = length of conductor (m)</li><li>v = velocity of conductor (m/s)</li></ul><p>Examples: Generators, dynamos. This is based on Faraday's law where change in flux linkage occurs due to motion.</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3c",
+            "type": "laq",
+            "group": "B",
+            "question": "An iron ring or toroid 0.2m in diameter and 10 sq cm cross-sectional area of the core is wound with 250 turns of wire. If the flux density in the core is to be 1 T and relative permeability of iron is 500, what is the exciting current required to be passed in the winding? Further, determine the self-inductance.",
+            "answer": "<h5>Magnetic Circuit Calculation</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Diameter d = 0.2 m, so mean length $l = \\pi d = \\pi \\times 0.2 = 0.628$ m</li>\n<li>Cross-sectional area A = 10 cm² = 10 × 10⁻⁴ = 0.001 m²</li>\n<li>Number of turns N = 250</li>\n<li>Flux density B = 1 T</li>\n<li>Relative permeability μ<sub>r</sub> = 500</li>\n<li>μ<sub>0</sub> = 4π × 10⁻⁷ H/m</li>\n</ul>\n\n<p><strong>Step 1: Calculate flux φ</strong></p>\n<p>$\\phi = B \\times A = 1 \\times 0.001 = 0.001\\text{ Wb} = 1\\text{ mWb}$</p>\n\n<p><strong>Step 2: Calculate magnetizing force H</strong></p>\n<p>$H = \\frac{B}{\\mu_0 \\mu_r} = \\frac{1}{4\\pi \\times 10^{-7} \\times 500}$</p>\n<p>$H = \\frac{1}{6.283 \\times 10^{-4}} = 1591.55\\text{ AT/m}$</p>\n\n<p><strong>Step 3: Calculate MMF required</strong></p>\n<p>$MMF = H \\times l = 1591.55 \\times 0.628 = 999.5\\text{ AT}$</p>\n\n<p><strong>Step 4: Calculate exciting current I</strong></p>\n<p>$I = \\frac{MMF}{N} = \\frac{999.5}{250} = 3.998 \\approx 4\\text{ A}$</p>\n\n<p><strong>Step 5: Calculate self-inductance L</strong></p>\n<p>Method 1: $L = \\frac{N\\phi}{I} = \\frac{250 \\times 0.001}{4} = \\frac{0.25}{4} = 0.0625\\text{ H} = 62.5\\text{ mH}$</p>\n<p>Method 2: $L = \\frac{N^2}{\\text{Reluctance}}$, where Reluctance $S = \\frac{l}{\\mu_0 \\mu_r A} = \\frac{0.628}{4\\pi \\times 10^{-7} \\times 500 \\times 0.001} = \\frac{0.628}{6.283 \\times 10^{-7}} = 10^6\\text{ AT/Wb}$</p>\n<p>$L = \\frac{250^2}{10^6} = \\frac{62500}{10^6} = 0.0625\\text{ H}$ ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Exciting current I = 4 A</li>\n<li>Self-inductance L = 62.5 mH</li>\n</ul>",
+            "keyPoints": [
+                "Mean length l = πd",
+                "H = B/(μ₀μᵣ)",
+                "MMF = H × l",
+                "I = MMF/N",
+                "L = Nφ/I"
+            ],
+            "marks": 4,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define (i) cycle, (ii) frequency, (iii) form factor of a sinusoidally varying quantity and state their units (if any).",
+            "answer": "<p><strong>(i) Cycle:</strong> One complete set of positive and negative values of an alternating quantity. It includes one complete wave from zero to positive maximum, back to zero, to negative maximum, and return to zero.</p><p>Unit: No unit (just count of cycles).</p>\n\n<p><strong>(ii) Frequency (f):</strong> Number of cycles completed per second by an alternating quantity.</p><p>Unit: Hertz (Hz). $f = \\frac{1}{T}$ where T is time period.</p>\n\n<p><strong>(iii) Form Factor:</strong> Ratio of RMS value to average value of an alternating quantity over one half cycle.</p><p>Form Factor $= \\frac{\\text{RMS value}}{\\text{Average value}}$</p><p>For sinusoidal waveform: Form factor $= \\frac{0.707V_m}{0.637V_m} = 1.11$</p><p>Unit: No unit (ratio).</p>",
+            "marks": 3,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "4b",
+            "type": "laq",
+            "group": "B",
+            "question": "A coil of resistance 10Ω and inductance 0.1H is connected in series with a capacitor 10μF. This whole combination is connected with 240V, 50Hz supply. Calculate (i) impedance, (ii) current, (iii) angle of phase difference, (iv) power factor and (v) consumed power.",
+            "answer": "<h5>Series RLC Circuit Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>R = 10 Ω</li>\n<li>L = 0.1 H</li>\n<li>C = 10 μF = 10 × 10⁻⁶ F</li>\n<li>V = 240 V</li>\n<li>f = 50 Hz</li>\n</ul>\n\n<p><strong>Step 1: Calculate inductive reactance XL</strong></p>\n<p>$X_L = 2\\pi fL = 2\\pi \\times 50 \\times 0.1$</p>\n<p>$X_L = 314.16 \\times 0.1 = 31.416\\text{ Ω}$</p>\n\n<p><strong>Step 2: Calculate capacitive reactance XC</strong></p>\n<p>$X_C = \\frac{1}{2\\pi fC} = \\frac{1}{2\\pi \\times 50 \\times 10 \\times 10^{-6}}$</p>\n<p>$X_C = \\frac{1}{0.0031416} = 318.31\\text{ Ω}$</p>\n\n<p><strong>Step 3: Calculate net reactance X and impedance Z</strong></p>\n<p>$X = X_L - X_C = 31.416 - 318.31 = -286.894\\text{ Ω}$ (capacitive)</p>\n<p>$Z = \\sqrt{R^2 + X^2} = \\sqrt{10^2 + (-286.894)^2}$</p>\n<p>$Z = \\sqrt{100 + 82308.5} = \\sqrt{82408.5} = 287.07\\text{ Ω}$</p>\n\n<p><strong>(i) Impedance Z = 287.07 Ω</strong></p>\n\n<p><strong>(ii) Current I:</strong></p>\n<p>$I = \\frac{V}{Z} = \\frac{240}{287.07} = 0.836\\text{ A}$</p>\n\n<p><strong>(iii) Angle of phase difference:</strong></p>\n<p>$\\phi = \\tan^{-1}\\left(\\frac{X}{R}\\right) = \\tan^{-1}\\left(\\frac{-286.894}{10}\\right) = \\tan^{-1}(-28.6894)$</p>\n<p>$\\phi = -87.99° \\approx -88°$</p>\n<p>Negative angle means current leads voltage by 88° (capacitive circuit).</p>\n\n<p><strong>(iv) Power factor:</strong></p>\n<p>$\\cos\\phi = \\cos(88°) = 0.0349$ leading</p>\n\n<p><strong>(v) Consumed power:</strong></p>\n<p>$P = VI\\cos\\phi = 240 \\times 0.836 \\times 0.0349$</p>\n<p>$P = 240 \\times 0.02918 = 7.0\\text{ W}$</p>\n\n<p>Alternatively, $P = I^2R = (0.836)^2 \\times 10 = 0.699 \\times 10 = 6.99\\text{ W}$ ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Impedance Z = 287.07 Ω</li>\n<li>Current I = 0.836 A</li>\n<li>Phase angle φ = -88° (current leads voltage by 88°)</li>\n<li>Power factor = 0.0349 leading</li>\n<li>Power consumed P = 7 W</li>\n</ul>",
+            "keyPoints": [
+                "XL = 2πfL",
+                "XC = 1/(2πfC)",
+                "Z = √(R² + (XL-XC)²)",
+                "I = V/Z",
+                "φ = tan⁻¹(X/R)",
+                "cos φ = R/Z",
+                "P = VI cos φ = I²R"
+            ],
+            "marks": 5,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "5a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define power factor. What is the range of power factor?",
+            "answer": "<p><strong>Power Factor:</strong> It is the cosine of the phase angle (φ) between voltage and current in an AC circuit. It indicates the fraction of apparent power that is real (active) power.</p><p>Power Factor $= \\cos\\phi = \\frac{\\text{Active Power (P)}}{\\text{Apparent Power (S)}}$</p>\n<p><strong>Range of power factor:</strong></p><ul><li>For purely resistive load: cos φ = 1 (unity)</li><li>For purely inductive or capacitive load: cos φ = 0</li><li>For practical loads: 0 ≤ cos φ ≤ 1</li><li>Power factor can be lagging (inductive load) or leading (capacitive load)</li></ul><p>Power factor is always between 0 and 1 (inclusive).</p>",
+            "marks": 2,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "5b",
+            "type": "laq",
+            "group": "B",
+            "question": "In an AC circuit current i = 20 cos(2t - 30°) and applied voltage v = 200 cos(2t + 30°). Calculate (i) the impedance, (ii) the resistance, (iii) the reactance, (iv) the power factor, (v) the phase angle between voltage and current and (vi) the power absorbed.",
+            "answer": "<h5>AC Circuit Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Current: $i = 20 \\cos(2t - 30°)$ A</li>\n<li>Voltage: $v = 200 \\cos(2t + 30°)$ V</li>\n</ul>\n\n<p><strong>Step 1: Identify peak values and phase angles</strong></p>\n<p>$I_m = 20$ A, $\\theta_i = -30°$</p>\n<p>$V_m = 200$ V, $\\theta_v = +30°$</p>\n\n<p><strong>Step 2: Calculate RMS values</strong></p>\n<p>$I_{rms} = \\frac{I_m}{\\sqrt{2}} = \\frac{20}{1.414} = 14.14\\text{ A}$</p>\n<p>$V_{rms} = \\frac{V_m}{\\sqrt{2}} = \\frac{200}{1.414} = 141.4\\text{ V}$</p>\n\n<p><strong>(i) Impedance Z:</strong></p>\n<p>$Z = \\frac{V_{rms}}{I_{rms}} = \\frac{141.4}{14.14} = 10\\text{ Ω}$</p>\n\n<p><strong>(v) Phase angle between voltage and current:</strong></p>\n<p>$\\phi = \\theta_v - \\theta_i = 30° - (-30°) = 60°$</p>\n<p>Voltage leads current by 60°, so circuit is inductive.</p>\n\n<p><strong>(iv) Power factor:</strong></p>\n<p>$\\cos\\phi = \\cos 60° = 0.5$ lagging (since voltage leads current)</p>\n\n<p><strong>(ii) Resistance R:</strong></p>\n<p>$R = Z \\cos\\phi = 10 \\times 0.5 = 5\\text{ Ω}$</p>\n\n<p><strong>(iii) Reactance X:</strong></p>\n<p>$X = Z \\sin\\phi = 10 \\times \\sin 60° = 10 \\times 0.866 = 8.66\\text{ Ω}$ (inductive)</p>\n\n<p><strong>(vi) Power absorbed:</strong></p>\n<p>$P = V_{rms} I_{rms} \\cos\\phi = 141.4 \\times 14.14 \\times 0.5$</p>\n<p>$P = 141.4 \\times 7.07 = 1000\\text{ W}$</p>\n<p>Alternatively, $P = I_{rms}^2 R = (14.14)^2 \\times 5 = 200 \\times 5 = 1000\\text{ W}$ ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Impedance Z = 10 Ω</li>\n<li>Resistance R = 5 Ω</li>\n<li>Reactance X = 8.66 Ω (inductive)</li>\n<li>Power factor = 0.5 lagging</li>\n<li>Phase angle φ = 60° (voltage leads current)</li>\n<li>Power absorbed P = 1000 W = 1 kW</li>\n</ul>",
+            "keyPoints": [
+                "Find phase difference φ = θv - θi",
+                "Z = Vrms/Irms",
+                "R = Z cos φ",
+                "X = Z sin φ",
+                "P = Vrms Irms cos φ"
+            ],
+            "marks": 6,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6a",
+            "type": "laq",
+            "group": "B",
+            "question": "With neat waveforms of sinusoidal supply voltage, circuit current and instantaneous power, show that average power consumed by a purely inductive circuit is zero.",
+            "answer": "<h5>Power in Pure Inductive Circuit</h5>\n\n<p><strong>Waveforms:</strong></p>\n<p><em>Voltage waveform:</em> $v = V_m\\sin\\omega t$</p>\n<p><em>Current waveform:</em> $i = I_m\\sin(\\omega t - 90°)$ (current lags voltage by 90°)</p>\n\n<p><strong>Instantaneous power:</strong></p>\n<p>$p = v \\times i = V_m\\sin\\omega t \\times I_m\\sin(\\omega t - 90°)$</p>\n<p>$\\sin(\\omega t - 90°) = -\\cos\\omega t$</p>\n<p>$p = -V_m I_m \\sin\\omega t \\cos\\omega t$</p>\n<p>$p = -\\frac{V_m I_m}{2} \\sin 2\\omega t$</p>\n\n<p><strong>Waveform characteristics:</strong></p>\n<ul>\n<li>Instantaneous power is a sine wave of twice the supply frequency.</li>\n<li>It is positive for half cycle and negative for next half cycle.</li>\n<li>Area under positive half cycle equals area under negative half cycle.</li>\n</ul>\n\n<p><strong>Average power:</strong></p>\n<p>$P_{avg} = \\frac{1}{T} \\int_0^T p \\, dt = \\frac{1}{T} \\int_0^T -\\frac{V_m I_m}{2} \\sin 2\\omega t \\, dt$</p>\n<p>Over a complete cycle, integral of sin 2ωt = 0.</p>\n<p>Therefore, $P_{avg} = 0$</p>\n\n<p><strong>Explanation:</strong></p>\n<p>In a purely inductive circuit, energy is alternately stored in magnetic field (when current increases) and returned to source (when current decreases). No energy is dissipated; hence average power is zero.</p>\n\n<p><em>Diagram reference:</em> Show voltage and current waveforms (90° phase shift) and instantaneous power waveform (sinusoidal at twice frequency with equal positive and negative areas).</p>",
+            "keyPoints": [
+                "Current lags voltage by 90°",
+                "p = - (VmIm/2) sin 2ωt",
+                "Equal positive and negative areas",
+                "Average power = 0"
+            ],
+            "marks": 4,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6b",
+            "type": "saq",
+            "group": "B",
+            "question": "What do you understand by the term 3-phase balanced AC supply?",
+            "answer": "<p><strong>3-Phase Balanced AC Supply:</strong> A system of three AC voltages having:</p><ul><li><strong>Same magnitude:</strong> All three phase voltages are equal in amplitude: $V_R = V_Y = V_B$</li><li><strong>Same frequency:</strong> All three phases have identical frequency</li><li><strong>Phase difference:</strong> Voltages are displaced from each other by 120° electrical</li><li><strong>Phase sequence:</strong> The order in which voltages reach their maximum (RYB or RBY)</li></ul><p>In balanced system, $V_R + V_Y + V_B = 0$ (phasor sum is zero).</p><p>For star connection: $V_L = \\sqrt{3}V_{ph}$, $I_L = I_{ph}$</p><p>For delta connection: $V_L = V_{ph}$, $I_L = \\sqrt{3}I_{ph}$</p><p>Total power: $P = \\sqrt{3}V_LI_L\\cos\\phi$</p>",
+            "marks": 2,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "6c",
+            "type": "saq",
+            "group": "B",
+            "question": "A three-phase, star-connected AC motor draws 5.6 kW when the line voltage is 220 V and the line current is 18.2 A. Determine the power factor of the motor.",
+            "answer": "<p><strong>Given:</strong></p><ul><li>Power P = 5.6 kW = 5600 W</li><li>Line voltage V<sub>L</sub> = 220 V</li><li>Line current I<sub>L</sub> = 18.2 A</li><li>Star-connected motor</li></ul>\n\n<p><strong>Formula for 3-phase power:</strong></p>\n<p>$P = \\sqrt{3} V_L I_L \\cos\\phi$</p>\n\n<p><strong>Calculate power factor:</strong></p>\n<p>$\\cos\\phi = \\frac{P}{\\sqrt{3} V_L I_L}$</p>\n<p>$\\cos\\phi = \\frac{5600}{1.732 \\times 220 \\times 18.2}$</p>\n<p>$\\cos\\phi = \\frac{5600}{1.732 \\times 4004}$</p>\n<p>$\\cos\\phi = \\frac{5600}{6935}$</p>\n<p>$\\cos\\phi = 0.807$ lagging (since motor is inductive load)</p>\n\n<p><strong>Answer:</strong> Power factor = 0.807 lagging</p>",
+            "marks": 2,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "7a",
+            "type": "saq",
+            "group": "B",
+            "question": "Why does a transformer has iron core?",
+            "answer": "<p><strong>Reasons for iron core in transformer:</strong></p><ul><li><strong>Increase flux linkage:</strong> Iron has high permeability (μ<sub>r</sub> >> 1), which provides a low reluctance path for magnetic flux, ensuring maximum flux linkage between primary and secondary.</li><li><strong>Concentrate magnetic flux:</strong> Iron core confines the magnetic flux to a defined path, improving coupling coefficient (k ≈ 1).</li><li><strong>Reduce magnetizing current:</strong> High permeability reduces the magnetizing current required to establish the flux.</li><li><strong>Increase inductance:</strong> Iron core increases the inductance of windings, improving transformer action.</li></ul><p>Without iron core (air core), flux would spread widely, resulting in poor coupling and large magnetizing current.</p>",
+            "marks": 2,
+            "unit": "Transformer"
+        },
+        {
+            "id": "7b",
+            "type": "saq",
+            "group": "B",
+            "question": "Among all electrical machines, efficiency of transformers is maximum. Why?",
+            "answer": "<p><strong>Reasons for highest efficiency of transformers:</strong></p><ul><li><strong>No moving parts:</strong> Transformers are static devices, so there are no friction or windage losses.</li><li><strong>Simple construction:</strong> Only two losses exist: core loss (constant) and copper loss (variable with load).</li><li><strong>High quality materials:</strong> Use of high-grade silicon steel reduces hysteresis loss; lamination reduces eddy current loss.</li><li><strong>Optimal design:</strong> Transformers are designed to operate near maximum efficiency at normal load (where copper loss = core loss).</li><li><strong>Efficiency can reach 98-99%</strong> for large power transformers, compared to 85-95% for rotating machines.</li></ul>",
+            "marks": 2,
+            "unit": "Transformer"
+        },
+        {
+            "id": "7c",
+            "type": "laq",
+            "group": "B",
+            "question": "A single phase, 50 Hz, transformer has 50 and 250 turns on low voltage and high voltage windings respectively. If low voltage winding is connected to 230 V, 50 Hz AC supply, calculate (i) peak value of flux and (ii) flux density in the core with net cross-sectional area 250 sq cm. (iii) Also determine the low voltage winding current when current in the other winding is 100 A.",
+            "answer": "<h5>Transformer Calculations</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Low voltage (LV) turns N₁ = 50</li>\n<li>High voltage (HV) turns N₂ = 250</li>\n<li>LV voltage V₁ = 230 V</li>\n<li>Frequency f = 50 Hz</li>\n<li>Core area A = 250 cm² = 250 × 10⁻⁴ = 0.025 m²</li>\n<li>HV current I₂ = 100 A (given)</li>\n</ul>\n\n<p><strong>(i) Peak value of flux φ<sub>m</sub>:</strong></p>\n<p>Using EMF equation: $V_1 = 4.44 f N_1 \\phi_m$</p>\n<p>$\\phi_m = \\frac{V_1}{4.44 f N_1} = \\frac{230}{4.44 \\times 50 \\times 50}$</p>\n<p>$\\phi_m = \\frac{230}{4.44 \\times 2500} = \\frac{230}{11100} = 0.02072\\text{ Wb}$</p>\n<p>$\\phi_m = 20.72\\text{ mWb}$</p>\n\n<p><strong>(ii) Flux density B<sub>m</sub>:</strong></p>\n<p>$B_m = \\frac{\\phi_m}{A} = \\frac{0.02072}{0.025} = 0.8288\\text{ T}$</p>\n\n<p><strong>(iii) LV winding current I₁ when HV current I₂ = 100 A:</strong></p>\n<p>For an ideal transformer, $\\frac{I_1}{I_2} = \\frac{N_2}{N_1}$</p>\n<p>$I_1 = I_2 \\times \\frac{N_2}{N_1} = 100 \\times \\frac{250}{50} = 100 \\times 5 = 500\\text{ A}$</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Peak flux φ<sub>m</sub> = 20.72 mWb</li>\n<li>Flux density B<sub>m</sub> = 0.829 T</li>\n<li>LV current I₁ = 500 A (when HV current is 100 A)</li>\n</ul>",
+            "keyPoints": [
+                "EMF equation: V = 4.44 f N φm",
+                "φm = V/(4.44 f N)",
+                "Bm = φm/A",
+                "Current ratio: I₁/I₂ = N₂/N₁"
+            ],
+            "marks": 4,
+            "unit": "Transformer"
+        },
+        {
+            "id": "8a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is an ideal diode? Draw its V-I characteristic.",
+            "answer": "<p><strong>Ideal Diode:</strong> A theoretical diode that acts as a perfect switch with:</p><ul><li><strong>Zero forward resistance:</strong> When forward biased, it conducts instantly with zero voltage drop.</li><li><strong>Infinite reverse resistance:</strong> When reverse biased, it blocks all current (zero leakage).</li><li><strong>No breakdown:</strong> Can withstand any reverse voltage without breakdown.</li></ul>\n\n<p><strong>V-I Characteristics:</strong></p>\n<p><em>Forward bias region:</em> Vertical line along current axis at V = 0 (current increases instantly at 0V).</p>\n<p><em>Reverse bias region:</em> Horizontal line along voltage axis at I = 0 (zero current for all reverse voltages).</p>\n<p>The characteristic looks like an inverted L-shape.</p>",
+            "marks": 3,
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "8b",
+            "type": "saq",
+            "group": "B",
+            "question": "Neatly draw forward and reversed biased characteristics of a practical diode.",
+            "answer": "<p><strong>Practical Diode V-I Characteristics:</strong></p>\n\n<p><strong>Forward Bias Region:</strong></p><ul><li>Cut-in voltage: 0.3V for Ge, 0.7V for Si</li><li>Below cut-in, very small current flows</li><li>After cut-in, current rises exponentially</li><li>Forward voltage drop remains nearly constant (≈0.7V for Si) at rated current</li></ul>\n\n<p><strong>Reverse Bias Region:</strong></p><ul><li>Very small reverse saturation current (I₀) flows (μA for Si, mA for Ge)</li><li>Current almost constant with voltage until breakdown</li><li>At breakdown voltage (V<sub>BR</sub>), current increases sharply (avalanche or Zener breakdown)</li></ul>\n\n<p><em>Diagram:</em> Show forward characteristic with exponential rise after cut-in, reverse characteristic with small constant current until breakdown knee.</p>",
+            "marks": 3,
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "8c",
+            "type": "saq",
+            "group": "B",
+            "question": "Why silicon is preferred over germanium while fabricating semiconductor devices.",
+            "answer": "<p><strong>Reasons for preferring Silicon over Germanium:</strong></p><ul><li><strong>Higher temperature stability:</strong> Si has larger energy gap (1.1 eV) compared to Ge (0.7 eV). Si devices can operate up to 200°C, while Ge devices are limited to about 70°C.</li><li><strong>Lower reverse current:</strong> Si has much smaller reverse saturation current (nA range) compared to Ge (μA range).</li><li><strong>Higher breakdown voltage:</strong> Si devices can withstand higher reverse voltages.</li><li><strong>Easier fabrication:</strong> Silicon dioxide (SiO₂) forms naturally on Si surface, providing excellent insulation for IC fabrication (MOS technology).</li><li><strong>Abundance:</strong> Silicon is the second most abundant element in earth's crust, making it cheaper.</li></ul>",
+            "marks": 2,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "9a",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the pin diagram of OP AMP IC 741 and label each pin.",
+            "answer": "<p><strong>IC 741 Op-Amp Pin Diagram (8-pin DIP):</strong></p>\n\n<table>\n<tr><th>Pin No.</th><th>Pin Name</th><th>Function</th></tr>\n<tr><td>1</td><td>Offset Null</td><td>Used to nullify offset voltage; connect potentiometer between pin 1 and pin 5</td></tr>\n<tr><td>2</td><td>Inverting Input (-)</td><td>Input terminal where output is 180° out of phase</td></tr>\n<tr><td>3</td><td>Non-Inverting Input (+)</td><td>Input terminal where output is in phase</td></tr>\n<tr><td>4</td><td>V- (Negative Supply)</td><td>Connected to negative supply voltage (-Vcc), typically -15V</td></tr>\n<tr><td>5</td><td>Offset Null</td><td>Second offset null terminal</td></tr>\n<tr><td>6</td><td>Output</td><td>Amplified output voltage terminal</td></tr>\n<tr><td>7</td><td>V+ (Positive Supply)</td><td>Connected to positive supply voltage (+Vcc), typically +15V</td></tr>\n<tr><td>8</td><td>NC (No Connection)</td><td>Not internally connected</td></tr>\n</table>\n\n<p><em>Note:</em> Pins are numbered counterclockwise starting from pin 1 (marked by dot or notch) when viewing from top.</p>",
+            "marks": 4,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "9b",
+            "type": "saq",
+            "group": "B",
+            "question": "Write down the features of an ideal OP AMP.",
+            "answer": "<p><strong>Features of Ideal Op-Amp:</strong></p><ul><li><strong>Infinite open-loop gain (A = ∞):</strong> Amplifies even very small input signals.</li><li><strong>Infinite input impedance (R<sub>in</sub> = ∞):</strong> Draws no current from input source (no loading effect).</li><li><strong>Zero output impedance (R<sub>out</sub> = 0):</strong> Can deliver any current to load without voltage drop.</li><li><strong>Infinite bandwidth:</strong> Amplifies all frequencies equally without gain reduction.</li><li><strong>Zero offset voltage:</strong> Output is zero when input is zero.</li><li><strong>Infinite CMRR:</strong> Rejects all common-mode signals completely.</li><li><strong>Infinite slew rate:</strong> Output changes instantly with input changes.</li></ul><p>Practical op-amps approach these ideals with very high (but finite) values.</p>",
+            "marks": 4,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "10a",
+            "type": "saq",
+            "group": "B",
+            "question": "Give the logic symbol, Boolean expression and truth table of (i) two input NAND gate and (ii) two input EX NOR gate.",
+            "answer": "<p><strong>(i) 2-Input NAND Gate:</strong></p>\n<p><em>Logic Symbol:</em> AND gate symbol with a small circle (bubble) at the output.</p>\n<p><em>Boolean Expression:</em> $Y = \\overline{A \\cdot B}$</p>\n<p><strong>Truth Table:</strong></p>\n<table>\n<tr><th>A</th><th>B</th><th>A·B</th><th>Y = (A·B)'</th></tr>\n<tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>\n<tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>\n</table>\n\n<p><strong>(ii) 2-Input EX-NOR Gate:</strong></p>\n<p><em>Logic Symbol:</em> XOR gate symbol with a small circle (bubble) at the output.</p>\n<p><em>Boolean Expression:</em> $Y = A \\odot B = A \\cdot B + \\overline{A} \\cdot \\overline{B}$</p>\n<p><strong>Truth Table:</strong></p>\n<table>\n<tr><th>A</th><th>B</th><th>Y = A⊙B</th></tr>\n<tr><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>0</td></tr>\n<tr><td>1</td><td>0</td><td>0</td></tr>\n<tr><td>1</td><td>1</td><td>1</td></tr>\n</table>\n<p>EX-NOR output is HIGH (1) when inputs are same, LOW (0) when inputs are different (complement of XOR).</p>",
+            "marks": 6,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "10b",
+            "type": "saq",
+            "group": "B",
+            "question": "Explain the phrase - 'NAND and NOR gates are called universal gates'.",
+            "answer": "<p><strong>Universal Gates:</strong> NAND and NOR gates are called universal gates because any logic function (AND, OR, NOT, XOR, XNOR) can be implemented using only NAND gates or only NOR gates.</p>\n\n<p><strong>Examples using only NAND gates:</strong></p>\n<ul>\n<li><strong>NOT gate:</strong> Connect both inputs together: $Y = \\overline{A \\cdot A} = \\overline{A}$</li>\n<li><strong>AND gate:</strong> NAND followed by NOT (using another NAND as inverter): $Y = \\overline{\\overline{A \\cdot B}} = A \\cdot B$</li>\n<li><strong>OR gate:</strong> $Y = \\overline{\\overline{A} \\cdot \\overline{B}} = A + B$ (using De Morgan's theorem)</li>\n</ul>\n\n<p><strong>Similarly with NOR gates:</strong></p>\n<ul>\n<li><strong>NOT:</strong> $Y = \\overline{A + A} = \\overline{A}$</li>\n<li><strong>OR:</strong> NOR followed by NOT: $Y = \\overline{\\overline{A + B}} = A + B$</li>\n<li><strong>AND:</strong> $Y = \\overline{\\overline{A} + \\overline{B}} = A \\cdot B$</li>\n</ul>\n\n<p>This property makes NAND and NOR gates essential in digital circuit design, as any complex circuit can be built using only one type of gate.</p>",
+            "marks": 2,
+            "unit": "Digital Electronics"
+        }
+    ]
+}

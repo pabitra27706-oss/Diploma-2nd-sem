@@ -1,0 +1,224 @@
+{
+    "exam": {
+        "subject": "ENGINEERING MECHANICS",
+        "year": "2024",
+        "board": "WBSCTE",
+        "semester": "II",
+        "timeAllowed": "3 Hours",
+        "fullMarks": 70,
+        "instructions": "Answer any five questions from Question No. 1"
+    },
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "saq",
+            "group": "A",
+            "question": "State and explain Lami's theorem.",
+            "answer": "<p><strong>Lami's Theorem:</strong> If three coplanar concurrent forces acting at a point are in equilibrium, then each force is proportional to the sine of the angle between the other two forces.</p><p><strong>Mathematical expression:</strong></p><p>$$\\frac{P}{\\sin\\alpha} = \\frac{Q}{\\sin\\beta} = \\frac{R}{\\sin\\gamma}$$</p><p>where P, Q, R are three forces and α, β, γ are the angles opposite to these forces respectively (angles between the other two forces).</p><p><strong>Explanation:</strong> Consider three forces P, Q, R acting at a point O in equilibrium. Draw a triangle of forces where sides represent the forces. By applying the law of sines to this triangle, we get the above relationship.</p><p><strong>Conditions for application:</strong></p><ul><li>Exactly three forces act at a point</li><li>Forces are coplanar and concurrent</li><li>The system is in equilibrium</li></ul><p>Lami's theorem is particularly useful for solving problems with three concurrent forces in equilibrium, such as problems involving strings, springs, or forces on a particle.</p>",
+            "marks": 3,
+            "unit": "Equilibrium of Forces"
+        },
+        {
+            "id": "1.ii",
+            "type": "saq",
+            "group": "A",
+            "question": "Find the tension in the wires supporting an electric fixture.",
+            "answer": "<p><strong>Standard solution approach for tension in wires:</strong></p><p>Consider an electric fixture of weight W suspended by two wires making angles θ₁ and θ₂ with the horizontal.</p><p><strong>Step 1:</strong> Let tensions in the wires be T₁ and T₂.</p><p><strong>Step 2:</strong> Resolve forces horizontally:</p><p>T₁ cos θ₁ = T₂ cos θ₂</p><p><strong>Step 3:</strong> Resolve forces vertically:</p><p>T₁ sin θ₁ + T₂ sin θ₂ = W</p><p><strong>Step 4:</strong> Solve the two equations simultaneously:</p><p>From horizontal: T₂ = T₁ (cos θ₁/cos θ₂)</p><p>Substitute in vertical: T₁ sin θ₁ + T₁ (cos θ₁/cos θ₂) sin θ₂ = W</p><p>T₁ [sin θ₁ + cos θ₁ tan θ₂] = W</p><p>T₁ = W / [sin θ₁ + cos θ₁ tan θ₂]</p><p>Then T₂ = T₁ (cos θ₁/cos θ₂)</p><p><strong>Example:</strong> For W = 100N, θ₁ = 30°, θ₂ = 60°:</p><p>T₁ = 100 / [sin30° + cos30° × tan60°] = 100 / [0.5 + 0.866 × 1.732] = 100 / [0.5 + 1.5] = 100/2 = 50N</p><p>T₂ = 50 × (cos30°/cos60°) = 50 × (0.866/0.5) = 50 × 1.732 = 86.6N</p>",
+            "marks": 3,
+            "unit": "Forces"
+        },
+        {
+            "id": "1.iii",
+            "type": "saq",
+            "group": "A",
+            "question": "Define mechanical advantage, velocity ratio and efficiency of a machine.",
+            "answer": "<p><strong>Mechanical Advantage (MA):</strong> It is the ratio of the load lifted (W) to the effort applied (P). MA = Load/Effort = W/P. It represents the factor by which a machine multiplies the input force.</p><p><strong>Velocity Ratio (VR):</strong> It is the ratio of the distance moved by the effort (d_e) to the distance moved by the load (d_l) in the same time interval. VR = d_e/d_l. It depends on the geometry of the machine.</p><p><strong>Efficiency (η):</strong> It is the ratio of output work to input work, expressed as percentage. η = (Work output/Work input) × 100% = (MA/VR) × 100%.</p><p><strong>Relationship:</strong> For an ideal machine (no friction), MA = VR and η = 100%. In actual machines, due to friction, MA < VR and η < 100%.</p>",
+            "marks": 3,
+            "unit": "Simple Lifting Machines"
+        },
+        {
+            "id": "1.iv",
+            "type": "saq",
+            "group": "A",
+            "question": "What is friction? Define coefficient of friction and angle of repose.",
+            "answer": "<p><strong>Friction:</strong> Friction is the resisting force that opposes relative motion between two surfaces in contact. It acts tangential to the contacting surfaces.</p><p><strong>Coefficient of Friction (μ):</strong> It is the ratio of limiting friction (F) to the normal reaction (N) between two surfaces. μ = F/N. It is a dimensionless quantity that depends on the nature and roughness of the surfaces.</p><p><strong>Angle of Repose (θ):</strong> It is the maximum angle of inclination of an inclined plane with the horizontal at which a body placed on it just begins to slide down under its own weight.</p><p><strong>Relationship:</strong> tan θ = μ. The angle of repose is numerically equal to the angle of friction (φ).</p><p><strong>Types of friction:</strong> Static friction (before motion starts), limiting friction (maximum static friction), and kinetic/dynamic friction (during motion).</p>",
+            "marks": 3,
+            "unit": "Friction"
+        },
+        {
+            "id": "1.v",
+            "type": "saq",
+            "group": "A",
+            "question": "Write the mathematical expression of potential energy and kinetic energy.",
+            "answer": "<p><strong>Potential Energy (PE):</strong> It is the energy possessed by a body by virtue of its position or configuration.</p><p><strong>Mathematical expression:</strong> PE = mgh</p><p>where m = mass of the body (kg), g = acceleration due to gravity (9.81 m/s²), h = height above reference level (m).</p><p><strong>Kinetic Energy (KE):</strong> It is the energy possessed by a body by virtue of its motion.</p><p><strong>Mathematical expression:</strong> KE = ½ mv²</p><p>where m = mass of the body (kg), v = velocity of the body (m/s).</p><p><strong>SI units:</strong> Both are measured in Joules (J).</p><p><strong>Work-Energy Theorem:</strong> Work done on a body equals the change in its kinetic energy. W = ΔKE = ½ m(v² - u²).</p>",
+            "marks": 3,
+            "unit": "Work, Power and Energy"
+        },
+        {
+            "id": "1.vi",
+            "type": "saq",
+            "group": "A",
+            "question": "State the units of angular velocity, angular acceleration and angular displacement.",
+            "answer": "<p><strong>Angular Displacement (θ):</strong> It is the angle through which a body rotates about a fixed axis.</p><p>SI unit: <strong>radian (rad)</strong></p><p>Other units: degree, revolution (1 rev = 2π rad)</p><p><strong>Angular Velocity (ω):</strong> It is the rate of change of angular displacement. ω = dθ/dt</p><p>SI unit: <strong>radian per second (rad/s)</strong></p><p>Other units: revolutions per minute (rpm), revolutions per second (rps)</p><p><strong>Angular Acceleration (α):</strong> It is the rate of change of angular velocity. α = dω/dt</p><p>SI unit: <strong>radian per second squared (rad/s²)</strong></p><p><strong>Relationships with linear quantities:</strong></p><p>v = ωr (linear velocity)</p><p>a = αr (linear acceleration)</p><p>s = θr (linear displacement)</p>",
+            "marks": 3,
+            "unit": "Rotational Motion"
+        },
+        {
+            "id": "1.vii",
+            "type": "saq",
+            "group": "A",
+            "question": "What are the advantages of a lifting machine?",
+            "answer": "<p><strong>Advantages of lifting machines:</strong></p><ol><li><strong>Force multiplication:</strong> They allow heavy loads to be lifted with comparatively smaller efforts (Mechanical Advantage).</li><li><strong>Direction change:</strong> They can change the direction of applied force for convenience.</li><li><strong>Speed control:</strong> They can convert fast small movements into slow large movements of load (Velocity Ratio).</li><li><strong>Precision positioning:</strong> They enable accurate placement of heavy loads.</li><li><strong>Safety:</strong> Self-locking machines (efficiency < 50%) hold the load even when effort is removed.</li><li><strong>Versatility:</strong> Different types (screw jack, wheel and axle, pulley systems) suit different applications.</li><li><strong>Energy efficiency:</strong> Well-designed machines minimize energy losses due to friction.</li><li><strong>Human capability enhancement:</strong> They enable humans to move loads far beyond their physical strength.</li></ol>",
+            "marks": 3,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "1.viii",
+            "type": "saq",
+            "group": "A",
+            "question": "Draw the sketches of different types of supports in beams.",
+            "answer": "<p><strong>Different types of supports in beams:</strong></p><p><strong>1. Simple Support (Roller Support):</strong></p><p><em>Sketch:</em> A roller symbol (circle with two small lines below) at the beam end. Permits rotation and horizontal movement. Provides vertical reaction only.</p><p><strong>2. Hinged Support (Pin Support):</strong></p><p><em>Sketch:</em> A triangle with a pin symbol (circle with cross) at the apex. Permits rotation but no translation. Provides both vertical and horizontal reactions.</p><p><strong>3. Fixed Support (Built-in Support):</strong></p><p><em>Sketch:</em> Beam embedded into a wall with hatch lines. Prevents both rotation and translation. Provides vertical reaction, horizontal reaction, and moment.</p><p><strong>4. Guided Support:</strong></p><p><em>Sketch:</em> Roller guides on both sides of beam. Permits vertical movement but prevents rotation and horizontal movement.</p><p><strong>Representation in diagrams:</strong></p><p>Roller: ○ or ◯ with lines below</p><p>Hinge: △ with pin at apex or ◯ with cross</p><p>Fixed: 〓 with hatch lines in wall</p>",
+            "marks": 3,
+            "unit": "Beams and Supports"
+        },
+        {
+            "id": "2",
+            "type": "laq",
+            "group": "B",
+            "question": "The following forces act at a point: 20N inclined at 30° towards north of east, 25N towards north, 30N towards north of west, and 15N inclined at 40° towards south of west. Find the magnitude and direction of the resultant of the force system.",
+            "answer": "<h5>Solution: Resultant of Coplanar Concurrent Forces</h5>\n\n<p><strong>Given forces:</strong></p>\n<ul>\n<li>F₁ = 20N at 30° north of east (angle from positive x-axis = 30°)</li>\n<li>F₂ = 25N towards north (angle = 90°)</li>\n<li>F₃ = 30N towards north of west (angle from positive x-axis = 180° - ? Actually north of west means angle = 90° + 90°? Let's define properly)</li>\n<li>F₄ = 15N at 40° south of west (angle from positive x-axis = 180° + 40° = 220° or 180° - 40°? South of west means 180° + 40° = 220° from positive x-axis, or -140°)</li>\n</ul>\n\n<p><strong>Step 1: Establish coordinate system</strong></p>\n<p>Let east be positive x-axis, north be positive y-axis.</p>\n\n<p><strong>Step 2: Resolve each force into x and y components</strong></p>\n\n<p><strong>Force F₁ = 20N at 30° north of east:</strong></p>\n<p>θ₁ = 30° (from positive x-axis)</p>\n<p>F₁ₓ = 20 cos30° = 20 × 0.866 = 17.32 N</p>\n<p>F₁ᵧ = 20 sin30° = 20 × 0.5 = 10 N</p>\n\n<p><strong>Force F₂ = 25N towards north:</strong></p>\n<p>θ₂ = 90°</p>\n<p>F₂ₓ = 25 cos90° = 25 × 0 = 0 N</p>\n<p>F₂ᵧ = 25 sin90° = 25 × 1 = 25 N</p>\n\n<p><strong>Force F₃ = 30N towards north of west:</strong></p>\n<p>North of west means from west towards north, so angle from positive x-axis = 180° - ? Actually from west (negative x-axis) going north, so the direction is in the second quadrant.</p>\n<p>Let's assume \"north of west\" means the force is inclined at some angle from the west direction toward north. Without specific angle, typical problems take \"north of west\" as directly west? That would be 180°.</p>\n<p>Since angle not specified, assuming \"towards north of west\" means directly west? That would be contradictory.</p>\n<p>For solution purposes, let's assume \"north of west\" means at 90° from west toward north, which is actually northwest direction at 135° from positive x-axis.</p>\n<p>So θ₃ = 135°</p>\n<p>F₃ₓ = 30 cos135° = 30 × (-0.7071) = -21.21 N</p>\n<p>F₃ᵧ = 30 sin135° = 30 × 0.7071 = 21.21 N</p>\n\n<p><strong>Force F₄ = 15N at 40° south of west:</strong></p>\n<p>South of west means from west (180°) towards south (270°), so angle = 180° + 40° = 220°</p>\n<p>θ₄ = 220°</p>\n<p>F₄ₓ = 15 cos220° = 15 × cos(220°) = 15 × (-0.766) = -11.49 N</p>\n<p>F₄ᵧ = 15 sin220° = 15 × (-0.6428) = -9.64 N</p>\n\n<p><strong>Step 3: Sum the components</strong></p>\n<p>ΣFₓ = F₁ₓ + F₂ₓ + F₃ₓ + F₄ₓ = 17.32 + 0 + (-21.21) + (-11.49) = -15.38 N</p>\n<p>ΣFᵧ = F₁ᵧ + F₂ᵧ + F₃ᵧ + F₄ᵧ = 10 + 25 + 21.21 + (-9.64) = 46.57 N</p>\n\n<p><strong>Step 4: Calculate resultant magnitude</strong></p>\n<p>R = √(ΣFₓ² + ΣFᵧ²) = √((-15.38)² + (46.57)²) = √(236.54 + 2168.76) = √2405.3 = 49.05 N</p>\n\n<p><strong>Step 5: Calculate direction</strong></p>\n<p>θ = tan⁻¹(ΣFᵧ/|ΣFₓ|) but careful with quadrant</p>\n<p>Since ΣFₓ is negative and ΣFᵧ is positive, the resultant lies in the second quadrant.</p>\n<p>Reference angle α = tan⁻¹(46.57/15.38) = tan⁻¹(3.028) = 71.7°</p>\n<p>Direction from positive x-axis = 180° - 71.7° = 108.3°</p>\n<p>This means the resultant is directed at 108.3° from east, i.e., 18.3° north of west.</p>\n\n<p><strong>Result:</strong></p>\n<ul>\n<li>Magnitude of resultant = <strong>49.05 N</strong></li>\n<li>Direction = <strong>108.3° from positive x-axis</strong> (or 18.3° north of west)</li>\n</ul>",
+            "keyPoints": [
+                "Resolution of each force into components",
+                "Sign convention based on direction",
+                "Summation of x and y components",
+                "Resultant magnitude using Pythagoras theorem",
+                "Quadrant determination for angle"
+            ],
+            "marks": 8,
+            "unit": "Forces"
+        },
+        {
+            "id": "3",
+            "type": "laq",
+            "group": "B",
+            "question": "Write the general expression of Mechanical Advantage (MA) & Velocity Ratio (VR) of simple lifting machine. Deduce the condition of reversibility of a machine. What do you mean by non-reversible or self-locking machine?",
+            "answer": "<h5>Lifting Machine: MA, VR, and Reversibility</h5>\n\n<p><strong>General Expressions:</strong></p>\n\n<p><strong>Mechanical Advantage (MA):</strong></p>\n<p>MA = Load lifted (W) / Effort applied (P)</p>\n<p>MA = W/P</p>\n<p>For an actual machine, MA varies with load according to the law of machine: P = mW + C, so MA = W/(mW + C)</p>\n\n<p><strong>Velocity Ratio (VR):</strong></p>\n<p>VR = Distance moved by effort / Distance moved by load</p>\n<p>VR = d_e / d_l</p>\n<p>VR depends only on the geometry of the machine and remains constant for a given machine.</p>\n\n<p><strong>Relationship:</strong> Efficiency η = MA/VR = (W/P) / (d_e/d_l) = (W × d_l)/(P × d_e) = Work output/Work input</p>\n\n<p><strong>Condition for Reversibility:</strong></p>\n\n<p>A machine is said to be <strong>reversible</strong> if the load can move downward on its own when the effort is removed.</p>\n\n<p>Consider the machine lifting a load W with effort P. When effort is removed, the load tends to descend. The descending motion is opposed by friction.</p>\n\n<p>For the load to descend (machine to reverse), the load W must be able to overcome the frictional resistance. This happens when the efficiency of the machine is greater than 50%.</p>\n\n<p><strong>Derivation of condition:</strong></p>\n<p>In lifting: P = mW + C</p>\n<p>When effort is removed (P = 0), for the machine to reverse, the load W should be able to overcome friction:</p>\n<p>For descending, the effort required (which would be negative if machine reverses) can be expressed as P_desc = mW - C</p>\n<p>For reversibility, P_desc should be negative, meaning mW < C</p>\n<p>From efficiency consideration: Maximum efficiency η_max = 1/mVR</p>\n<p>For reversibility, η_max > 0.5 ⇒ 1/mVR > 0.5 ⇒ mVR < 2</p>\n<p>Since VR is constant, this gives condition on m.</p>\n\n<p><strong>Practical condition:</strong> A machine is reversible if its efficiency is greater than 50%.</p>\n\n<p><strong>Non-reversible or Self-locking Machine:</strong></p>\n\n<p>A <strong>non-reversible machine</strong> (also called <strong>self-locking machine</strong>) is one in which the load remains stationary even when the effort is removed. The load cannot cause the machine to reverse.</p>\n\n<p><strong>Characteristics:</strong></p>\n<ul>\n<li>Efficiency ≤ 50%</li>\n<li>The load stays in position without any braking mechanism</li>\n<li>Example: Screw jack (typically efficiency 30-40%)</li>\n<li>Advantage: Safety in lifting applications - load won't fall if effort is released</li>\n<li>Disadvantage: Cannot be used for reverse motion applications</li>\n</ul>\n\n<p><strong>Condition for self-locking:</strong> η ≤ 50%</p>\n\n<p>In terms of law of machine: mVR ≥ 2 for self-locking condition.</p>",
+            "keyPoints": [
+                "MA and VR definitions and expressions",
+                "Efficiency relationship",
+                "Reversibility condition derivation",
+                "Self-locking machine characteristics"
+            ],
+            "marks": 6,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "4",
+            "type": "laq",
+            "group": "B",
+            "question": "A body is resting on rough horizontal plane. It requires a pull of 170 Newtons inclined at 27° to the plane just to move it, while a push of 190 Newtons inclined at 27° to the plane just to move it. Determine weight of the body and the coefficient of friction.",
+            "answer": "<h5>Solution: Finding Weight and Coefficient of Friction</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Pull P₁ = 170N at 27° to horizontal</li>\n<li>Push P₂ = 190N at 27° to horizontal</li>\n<li>Body on rough horizontal plane</li>\n<li>Both forces just move the body (limiting friction)</li>\n</ul>\n\n<p><strong>Step 1: Case 1 - Pull applied at angle θ</strong></p>\n<p>Resolving forces for pull case:</p>\n<p>Horizontal: P₁cosθ = μN₁ ...(1)</p>\n<p>Vertical: N₁ + P₁sinθ = W ...(2)</p>\n<p>From (2): N₁ = W - P₁sinθ</p>\n<p>Substitute in (1):</p>\n<p>P₁cosθ = μ(W - P₁sinθ)</p>\n<p>170 × cos27° = μ(W - 170 × sin27°)</p>\n<p>cos27° = 0.891, sin27° = 0.454</p>\n<p>170 × 0.891 = μ(W - 170 × 0.454)</p>\n<p>151.47 = μ(W - 77.18) ...(3)</p>\n\n<p><strong>Step 2: Case 2 - Push applied at angle θ</strong></p>\n<p>Resolving forces for push case:</p>\n<p>Horizontal: P₂cosθ = μN₂ ...(4)</p>\n<p>Vertical: N₂ = W + P₂sinθ ...(5)</p>\n<p>From (5): N₂ = W + P₂sinθ</p>\n<p>Substitute in (4):</p>\n<p>P₂cosθ = μ(W + P₂sinθ)</p>\n<p>190 × cos27° = μ(W + 190 × sin27°)</p>\n<p>190 × 0.891 = μ(W + 190 × 0.454)</p>\n<p>169.29 = μ(W + 86.26) ...(6)</p>\n\n<p><strong>Step 3: Solve equations (3) and (6)</strong></p>\n<p>From (3): μ = 151.47/(W - 77.18)</p>\n<p>From (6): μ = 169.29/(W + 86.26)</p>\n<p>Equating:</p>\n<p>151.47/(W - 77.18) = 169.29/(W + 86.26)</p>\n<p>151.47(W + 86.26) = 169.29(W - 77.18)</p>\n<p>151.47W + 151.47 × 86.26 = 169.29W - 169.29 × 77.18</p>\n<p>151.47W + 13066.5 = 169.29W - 13066.5</p>\n<p>151.47W + 13066.5 + 13066.5 = 169.29W</p>\n<p>151.47W + 26133 = 169.29W</p>\n<p>26133 = 169.29W - 151.47W = 17.82W</p>\n<p>W = 26133/17.82 = 1466.5 N</p>\n\n<p><strong>Step 4: Find coefficient of friction</strong></p>\n<p>μ = 151.47/(W - 77.18) = 151.47/(1466.5 - 77.18)</p>\n<p>μ = 151.47/1389.32 = 0.109</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Weight of body W = <strong>1466.5 N</strong></li>\n<li>Coefficient of friction μ = <strong>0.109</strong></li>\n</ul>\n\n<p><strong>Verification:</strong> Using push case: μ = 169.29/(1466.5 + 86.26) = 169.29/1552.76 = 0.109 ✓</p>",
+            "keyPoints": [
+                "Force resolution for pull and push cases",
+                "Normal reaction differs in pull vs push",
+                "Equilibrium equations for both cases",
+                "Solving simultaneous equations"
+            ],
+            "marks": 6,
+            "unit": "Friction"
+        },
+        {
+            "id": "5",
+            "type": "laq",
+            "group": "B",
+            "question": "A particle is projected at an angle 45° with the horizontal with velocity of projection 150 m/s. Determine: (i) the maximum height attained by the projectile, (ii) the horizontal range of projectile, (iii) time of flight.",
+            "answer": "<h5>Solution: Projectile Motion Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Angle of projection θ = 45°</li>\n<li>Initial velocity u = 150 m/s</li>\n<li>Acceleration due to gravity g = 9.81 m/s²</li>\n</ul>\n\n<p><strong>Step 1: Resolve initial velocity into components</strong></p>\n<p>Horizontal component: uₓ = u cosθ = 150 × cos45° = 150 × 0.7071 = 106.07 m/s</p>\n<p>Vertical component: uᵧ = u sinθ = 150 × sin45° = 150 × 0.7071 = 106.07 m/s</p>\n\n<p><strong>Step 2: Calculate maximum height (H)</strong></p>\n<p>At maximum height, vertical velocity becomes zero.</p>\n<p>Using vᵧ² = uᵧ² - 2gH</p>\n<p>0 = (106.07)² - 2 × 9.81 × H</p>\n<p>2 × 9.81 × H = 11250</p>\n<p>19.62H = 11250</p>\n<p>H = 11250/19.62 = 573.4 m</p>\n\n<p><strong>Step 3: Calculate time of flight (T)</strong></p>\n<p>Time to reach maximum height: t = uᵧ/g = 106.07/9.81 = 10.81 s</p>\n<p>Total time of flight T = 2t = 2 × 10.81 = 21.62 s</p>\n<p>Alternative formula: T = 2u sinθ/g = 2 × 150 × sin45°/9.81 = 2 × 150 × 0.7071/9.81 = 212.13/9.81 = 21.62 s</p>\n\n<p><strong>Step 4: Calculate horizontal range (R)</strong></p>\n<p>Range R = uₓ × T = 106.07 × 21.62 = 2293.2 m</p>\n<p>Alternative formula: R = (u² sin2θ)/g = (150² × sin90°)/9.81 = (22500 × 1)/9.81 = 2293.6 m (slight difference due to rounding)</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Maximum height = <strong>573.4 m</strong></li>\n<li>Horizontal range = <strong>2293.6 m</strong></li>\n<li>Time of flight = <strong>21.62 s</strong></li>\n</ul>\n\n<p><strong>Note:</strong> Maximum range for a given velocity occurs at θ = 45°, so this is the maximum possible range with u = 150 m/s.</p>",
+            "keyPoints": [
+                "Resolution of initial velocity",
+                "Maximum height formula application",
+                "Time of flight calculation",
+                "Range formula application"
+            ],
+            "marks": 5,
+            "unit": "Projectile Motion"
+        },
+        {
+            "id": "6",
+            "type": "laq",
+            "group": "B",
+            "question": "A body moving with uniform acceleration covers 20 m in 4 second and 30 m in 8 second. Find (i) the initial velocity and (ii) the acceleration of the body.",
+            "answer": "<h5>Solution: Kinematics with Uniform Acceleration</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Distance covered in first 4 seconds: s₄ = 20 m, time t₁ = 4 s</li>\n<li>Distance covered in first 8 seconds: s₈ = 30 m, time t₂ = 8 s</li>\n<li>Body starts with initial velocity u and uniform acceleration a</li>\n</ul>\n\n<p><strong>Step 1: Apply equation of motion for distance in t seconds</strong></p>\n<p>s = ut + ½at²</p>\n\n<p><strong>Step 2: Form equations for given data</strong></p>\n<p>For t = 4 s: 20 = u × 4 + ½ × a × 4²</p>\n<p>20 = 4u + ½ × a × 16</p>\n<p>20 = 4u + 8a ...(1)</p>\n\n<p>For t = 8 s: 30 = u × 8 + ½ × a × 8²</p>\n<p>30 = 8u + ½ × a × 64</p>\n<p>30 = 8u + 32a ...(2)</p>\n\n<p><strong>Step 3: Solve equations simultaneously</strong></p>\n<p>Multiply equation (1) by 2: 40 = 8u + 16a ...(3)</p>\n<p>Subtract equation (3) from equation (2):</p>\n<p>30 - 40 = (8u + 32a) - (8u + 16a)</p>\n<p>-10 = 16a</p>\n<p>a = -10/16 = -0.625 m/s²</p>\n\n<p><strong>Step 4: Find initial velocity u</strong></p>\n<p>Substitute a = -0.625 in equation (1):</p>\n<p>20 = 4u + 8(-0.625)</p>\n<p>20 = 4u - 5</p>\n<p>4u = 20 + 5 = 25</p>\n<p>u = 25/4 = 6.25 m/s</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Initial velocity u = <strong>6.25 m/s</strong></li>\n<li>Acceleration a = <strong>-0.625 m/s²</strong> (negative indicates deceleration)</li>\n</ul>\n\n<p><strong>Verification:</strong></p>\n<p>Distance in 4 s: s = 6.25×4 + ½×(-0.625)×16 = 25 - 5 = 20 m ✓</p>\n<p>Distance in 8 s: s = 6.25×8 + ½×(-0.625)×64 = 50 - 20 = 30 m ✓</p>",
+            "keyPoints": [
+                "Equation of motion for distance",
+                "Forming equations from given data",
+                "Solving simultaneous equations",
+                "Interpretation of negative acceleration"
+            ],
+            "marks": 5,
+            "unit": "Kinematics"
+        },
+        {
+            "id": "7",
+            "type": "saq",
+            "group": "A",
+            "question": "Define work, power and energy. Mention the SI units of them. Give one example of each.",
+            "answer": "<p><strong>Work:</strong> Work is said to be done when a force causes displacement in its own direction. Work = Force × Displacement in the direction of force.</p>\n<p><strong>SI unit:</strong> Joule (J) = Newton-meter (Nm)</p>\n<p><strong>Example:</strong> Pushing a box horizontally on a floor - work is done against friction.</p>\n\n<p><strong>Power:</strong> Power is the rate of doing work. Power = Work done / Time taken.</p>\n<p><strong>SI unit:</strong> Watt (W) = Joule/second (J/s)</p>\n<p><strong>Example:</strong> A motor lifting a load - its power rating indicates how fast it can do work.</p>\n\n<p><strong>Energy:</strong> Energy is the capacity of a body to do work. It exists in various forms.</p>\n<p><strong>SI unit:</strong> Joule (J)</p>\n<p><strong>Example:</strong> A raised hammer has potential energy; a moving bullet has kinetic energy.</p>\n\n<p><strong>Types of energy:</strong></p>\n<ul>\n<li>Potential Energy (PE = mgh) - Energy by virtue of position</li>\n<li>Kinetic Energy (KE = ½mv²) - Energy by virtue of motion</li>\n</ul>\n\n<p><strong>Work-Energy Theorem:</strong> Work done on a body equals the change in its kinetic energy.</p>",
+            "marks": 4,
+            "unit": "Work, Power and Energy"
+        },
+        {
+            "id": "8",
+            "type": "laq",
+            "group": "C",
+            "question": "A simply supported beam of length 6 m carries two point loads of 24 kN each at 2 m and 4 m from left support, and a uniformly distributed load of 12 kN/m over the entire span. Determine the reactions at the supports.",
+            "answer": "<h5>Solution: Reactions for Simply Supported Beam</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Beam span L = 6 m</li>\n<li>Point loads: P₁ = 24 kN at 2 m from left support A</li>\n<li>P₂ = 24 kN at 4 m from left support A</li>\n<li>UDL of w = 12 kN/m over entire span (6 m)</li>\n<li>Supports: Left support A (reaction R_A upward), Right support B (reaction R_B upward)</li>\n</ul>\n\n<p><strong>Step 1: Calculate total load from UDL</strong></p>\n<p>Total UDL load = w × L = 12 × 6 = 72 kN</p>\n<p>This UDL acts at the center of the beam (at 3 m from A)</p>\n\n<p><strong>Step 2: Total vertical load on beam</strong></p>\n<p>ΣW = P₁ + P₂ + UDL total = 24 + 24 + 72 = 120 kN</p>\n\n<p><strong>Step 3: Apply moment equilibrium about support A</strong></p>\n<p>Taking clockwise moments as positive:</p>\n<p>Moment due to P₁ = 24 × 2 = 48 kNm (clockwise)</p>\n<p>Moment due to P₂ = 24 × 4 = 96 kNm (clockwise)</p>\n<p>Moment due to UDL = 72 × 3 = 216 kNm (clockwise)</p>\n<p>Total clockwise moment = 48 + 96 + 216 = 360 kNm</p>\n\n<p>Counter-clockwise moment due to R_B at distance 6 m:</p>\n<p>R_B × 6 (counter-clockwise)</p>\n\n<p>For equilibrium: Clockwise moments = Counter-clockwise moments</p>\n<p>R_B × 6 = 360</p>\n<p>R_B = 360/6 = 60 kN</p>\n\n<p><strong>Step 4: Apply vertical force equilibrium</strong></p>\n<p>ΣFᵥ = 0: R_A + R_B - 120 = 0</p>\n<p>R_A + 60 - 120 = 0</p>\n<p>R_A = 120 - 60 = 60 kN</p>\n\n<p><strong>Step 5: Verification by taking moments about B</strong></p>\n<p>Moments about B (clockwise positive):</p>\n<p>Due to P₁ at 4 m from B (6-2=4m): 24 × 4 = 96 kNm (counter-clockwise, negative)</p>\n<p>Due to P₂ at 2 m from B (6-4=2m): 24 × 2 = 48 kNm (counter-clockwise, negative)</p>\n<p>Due to UDL at 3 m from B (center): 72 × 3 = 216 kNm (counter-clockwise, negative)</p>\n<p>Total load moment = -(96 + 48 + 216) = -360 kNm</p>\n<p>Due to R_A at 6 m from B: 60 × 6 = 360 kNm (clockwise)</p>\n<p>Sum = 360 - 360 = 0 ✓</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Reaction at support A, R_A = <strong>60 kN</strong> (upward)</li>\n<li>Reaction at support B, R_B = <strong>60 kN</strong> (upward)</li>\n</ul>\n\n<p><strong>Note:</strong> Due to symmetry of loading (point loads symmetric and UDL uniform), both reactions are equal.</p>",
+            "keyPoints": [
+                "Total UDL load calculation",
+                "Moment equilibrium about one support",
+                "Vertical force equilibrium",
+                "Verification using other support"
+            ],
+            "marks": 8,
+            "unit": "Beams"
+        },
+        {
+            "id": "9",
+            "type": "laq",
+            "group": "C",
+            "question": "Write the expression of VR of a simple screw jack. The efficiency of a lifting machine is 80% when an effort of 50 N is required to lift a load of 1 kN. Find the mechanical advantage and velocity ratio of the machine.",
+            "answer": "<h5>Solution: Screw Jack VR and Lifting Machine Parameters</h5>\n\n<p><strong>Part 1: VR of a simple screw jack</strong></p>\n\n<p>For a simple screw jack:</p>\n<p>VR = (Distance moved by effort) / (Distance moved by load)</p>\n<p>In one complete revolution of the effort arm:</p>\n<ul>\n<li>Distance moved by effort = 2πR, where R is the length of the effort arm (radius at which effort is applied)</li>\n<li>Distance moved by load = pitch (p) of the screw (vertical lift per revolution)</li>\n</ul>\n<p>Therefore, VR = (2πR) / p</p>\n\n<p>If the screw has multiple starts, VR = (2πR) / (n × p) where n is the number of starts.</p>\n\n<p><strong>Part 2: Given data for numerical problem</strong></p>\n<ul>\n<li>Efficiency η = 80% = 0.8</li>\n<li>Effort P = 50 N</li>\n<li>Load W = 1 kN = 1000 N</li>\n</ul>\n\n<p><strong>Step 1: Find Mechanical Advantage (MA)</strong></p>\n<p>MA = W/P = 1000/50 = 20</p>\n\n<p><strong>Step 2: Use efficiency formula to find VR</strong></p>\n<p>η = MA/VR</p>\n<p>0.8 = 20/VR</p>\n<p>VR = 20/0.8 = 25</p>\n\n<p><strong>Step 3: Verify relationships</strong></p>\n<p>Ideal effort (if no friction) = W/VR = 1000/25 = 40 N</p>\n<p>Effort lost in friction = Actual effort - Ideal effort = 50 - 40 = 10 N</p>\n<p>This is consistent with the machine having 80% efficiency.</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Mechanical Advantage = <strong>20</strong></li>\n<li>Velocity Ratio = <strong>25</strong></li>\n</ul>\n\n<p><strong>Note:</strong> The VR of 25 means that for every 25 units of effort movement, the load moves 1 unit. With MA = 20, the machine multiplies force by 20 times but with 80% efficiency due to friction losses.</p>",
+            "keyPoints": [
+                "VR expression for screw jack",
+                "MA calculation from load and effort",
+                "Efficiency-MA-VR relationship",
+                "Verification using ideal effort concept"
+            ],
+            "marks": 6,
+            "unit": "Lifting Machines"
+        },
+        {
+            "id": "10.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Differentiate between centroid and centre of gravity.",
+            "answer": "<p><strong>Centroid vs Centre of Gravity: Key Differences</strong></p>\n\n<table border=\"1\" cellpadding=\"5\">\n<tr>\n<th>Centroid</th>\n<th>Centre of Gravity</th>\n</tr>\n<tr>\n<td>It is the geometric center of a plane figure or solid.</td>\n<td>It is the point through which the entire weight of a body acts.</td>\n</tr>\n<tr>\n<td>Depends only on the shape and dimensions of the body.</td>\n<td>Depends on the distribution of mass/weight.</td>\n</tr>\n<tr>\n<td>Applicable to areas, lines, and volumes regardless of material.</td>\n<td>Applicable to actual bodies with weight.</td>\n</tr>\n<tr>\n<td>Exists even in weightless conditions.</td>\n<td>May not be defined in zero gravity.</td>\n</tr>\n<tr>\n<td>Calculated using geometric properties (first moment of area).</td>\n<td>Calculated using weight distribution (first moment of weight).</td>\n</tr>\n<tr>\n<td>For uniform bodies, centroid coincides with centre of gravity.</td>\n<td>For non-uniform bodies, may differ from centroid.</td>\n</tr>\n</table>\n\n<p><strong>Similarity:</strong> For bodies with uniform density in a uniform gravitational field, both coincide and the terms are often used interchangeably in engineering practice.</p>",
+            "marks": 2,
+            "unit": "Centroid and Centre of Gravity"
+        },
+        {
+            "id": "10.b",
+            "type": "laq",
+            "group": "C",
+            "question": "Locate the centroid of an I-section having top flange 160mm × 20mm, web 80mm × 30mm, and bottom flange 200mm × 10mm.",
+            "answer": "<h5>Solution: Centroid of I-Section</h5>\n\n<p><strong>Given dimensions (in mm):</strong></p>\n<ul>\n<li>Top flange: width b₁ = 160mm, depth d₁ = 20mm</li>\n<li>Web: width b₂ = 30mm, depth d₂ = 80mm</li>\n<li>Bottom flange: width b₃ = 200mm, depth d₃ = 10mm</li>\n</ul>\n\n<p><strong>Step 1: Determine the total height and reference axis</strong></p>\n<p>Total height H = d₁ + d₂ + d₃ = 20 + 80 + 10 = 110mm</p>\n<p>Take reference axis at the bottom of the section.</p>\n\n<p><strong>Step 2: Calculate areas and centroidal distances</strong></p>\n\n<p><strong>Bottom flange (Rectangle 1):</strong></p>\n<p>A₁ = b₃ × d₃ = 200 × 10 = 2000 mm²</p>\n<p>y₁ = d₃/2 = 10/2 = 5 mm (from bottom)</p>\n\n<p><strong>Web (Rectangle 2):</strong></p>\n<p>A₂ = b₂ × d₂ = 30 × 80 = 2400 mm²</p>\n<p>y₂ = d₃ + d₂/2 = 10 + 40 = 50 mm (from bottom)</p>\n\n<p><strong>Top flange (Rectangle 3):</strong></p>\n<p>A₃ = b₁ × d₁ = 160 × 20 = 3200 mm²</p>\n<p>y₃ = d₃ + d₂ + d₁/2 = 10 + 80 + 10 = 100 mm (from bottom)</p>\n\n<p><strong>Step 3: Calculate total area</strong></p>\n<p>A = A₁ + A₂ + A₃ = 2000 + 2400 + 3200 = 7600 mm²</p>\n\n<p><strong>Step 4: Apply principle of moments to find centroid</strong></p>\n<p>Ȳ = (A₁y₁ + A₂y₂ + A₃y₃) / A</p>\n<p>Ȳ = (2000×5 + 2400×50 + 3200×100) / 7600</p>\n<p>Ȳ = (10000 + 120000 + 320000) / 7600</p>\n<p>Ȳ = 450000 / 7600</p>\n<p>Ȳ = 59.21 mm</p>\n\n<p><strong>Step 5: Interpret the result</strong></p>\n<p>The centroid is located at 59.21 mm from the bottom of the section.</p>\n<p>Since the geometric center (mid-height) is at 55 mm, the centroid is slightly above the center because the top flange has larger area (3200 mm²) compared to bottom flange (2000 mm²), pulling the centroid upward.</p>\n\n<p><strong>Result:</strong> The centroid of the I-section is at <strong>59.21 mm</strong> from the bottom.</p>\n\n<p><strong>Alternative calculation from top:</strong> Distance from top = 110 - 59.21 = 50.79 mm</p>",
+            "keyPoints": [
+                "Division into three rectangular parts",
+                "Area calculation for each part",
+                "Centroidal distances from reference axis",
+                "Moment summation method"
+            ],
+            "marks": 6,
+            "unit": "Centroid"
+        }
+    ]
+}

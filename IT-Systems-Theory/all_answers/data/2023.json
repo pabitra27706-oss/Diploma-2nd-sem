@@ -1,0 +1,269 @@
+{
+    "subject": "Introduction to IT Systems",
+    "year": 2023,
+    "totalMarks": 60,
+    "timeAllowed": "2.5 Hours",
+    "questions": [
+        {
+            "id": "1.a",
+            "type": "saq",
+            "group": "A",
+            "question": "How may type of Software? Give some example.",
+            "answer": "<p><strong>Software is primarily classified into two main types:</strong></p><p><strong>1. System Software:</strong> Software that manages and controls computer hardware and provides platform for applications.<br>Examples: Operating Systems (Windows, Linux), Device Drivers, Compilers, Utilities</p><p><strong>2. Application Software:</strong> Software designed for specific user tasks.<br>Examples: Word processors (MS Word), Spreadsheets (Excel), Web browsers (Chrome), Games</p><p><strong>3. Programming Software:</strong> Tools for developers.<br>Examples: IDEs (Visual Studio), Code editors</p>",
+            "marks": 1.8,
+            "unit": "Software Engineering"
+        },
+        {
+            "id": "1.b",
+            "type": "saq",
+            "group": "A",
+            "question": "What is meant by a cache memory? Explain.",
+            "answer": "<p><strong>Cache Memory</strong> is a small, high-speed volatile memory located between CPU and main memory (RAM). It stores frequently accessed data and instructions for quick retrieval.</p><p><strong>Characteristics:</strong></p><ul><li>Faster than RAM but more expensive</li><li>Smaller capacity (KB to MB)</li><li>Stores copies of frequently used data</li><li>Reduces average time to access data</li><li>Operates at CPU speed</li></ul><p><strong>Levels:</strong> L1 (inside CPU), L2, and L3 caches improve system performance by reducing CPU wait time for data from main memory.</p>",
+            "marks": 1.8,
+            "unit": "Computer Architecture"
+        },
+        {
+            "id": "1.c",
+            "type": "saq",
+            "group": "A",
+            "question": "What are the characteristics of computers?",
+            "answer": "<p><strong>Characteristics of Computers:</strong></p><ul><li><strong>Speed:</strong> Computers process millions of instructions per second</li><li><strong>Accuracy:</strong> Provide consistent, error-free results (if input is correct)</li><li><strong>Storage:</strong> Can store vast amounts of data permanently</li><li><strong>Diligence:</strong> Work without fatigue or loss of concentration</li><li><strong>Versatility:</strong> Perform different types of tasks</li><li><strong>Automation:</strong> Execute tasks automatically without human intervention</li><li><strong>Reliability:</strong> Provide consistent output over time</li><li><strong>No IQ:</strong> Cannot think or make decisions independently</li><li><strong>No feelings:</strong> Do not have emotions or intuition</li></ul>",
+            "marks": 1.8,
+            "unit": "Computer Fundamentals"
+        },
+        {
+            "id": "1.d",
+            "type": "saq",
+            "group": "A",
+            "question": "Give some importance functions of Operating System.",
+            "answer": "<p><strong>Important Functions of Operating System:</strong></p><ul><li><strong>Process Management:</strong> Creates, schedules, and terminates processes; manages CPU time sharing</li><li><strong>Memory Management:</strong> Allocates and deallocates memory space to programs</li><li><strong>File Management:</strong> Creates, deletes, organizes files and directories</li><li><strong>Device Management:</strong> Manages I/O devices through device drivers</li><li><strong>Security:</strong> Protects system from unauthorized access</li><li><strong>Error Handling:</strong> Detects and handles hardware/software errors</li><li><strong>User Interface:</strong> Provides CLI or GUI for user interaction</li><li><strong>Resource Allocation:</strong> Manages all hardware resources efficiently</li></ul>",
+            "marks": 1.8,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.e",
+            "type": "saq",
+            "group": "A",
+            "question": "What is cyber stalking? What is Spam?",
+            "answer": "<p><strong>Cyber Stalking:</strong> The use of internet or electronic means to repeatedly harass, threaten, or intimidate someone. It includes unwanted messages, monitoring activities, identity theft, and online tracking with malicious intent.</p><p><strong>Spam:</strong> Unsolicited bulk messages sent electronically, typically via email. Spam includes commercial advertisements, phishing attempts, and malicious links. It clogs inboxes, wastes resources, and may carry malware.</p><p>Both are cyber crimes with legal consequences in many jurisdictions.</p>",
+            "marks": 1.8,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "1.f",
+            "type": "saq",
+            "group": "A",
+            "question": "How many ways you can apply CSS to an HTML document?",
+            "answer": "<p><strong>Three ways to apply CSS to HTML:</strong></p><p><strong>1. Inline CSS:</strong> Using style attribute within HTML elements.<br><code>&lt;h1 style=\"color:blue;\"&gt;Hello&lt;/h1&gt;</code></p><p><strong>2. Internal CSS:</strong> Using &lt;style&gt; tag in head section.<br><code>&lt;style&gt; h1 {color: blue;} &lt;/style&gt;</code></p><p><strong>3. External CSS:</strong> Linking to external .css file.<br><code>&lt;link rel=\"stylesheet\" href=\"style.css\"&gt;</code></p><p>External CSS is preferred for reusability and maintainability.</p>",
+            "marks": 1.8,
+            "unit": "CSS"
+        },
+        {
+            "id": "1.g",
+            "type": "saq",
+            "group": "A",
+            "question": "Explain De Morgan's Theorem.",
+            "answer": "<p><strong>De Morgan's Theorem</strong> provides rules for simplifying Boolean expressions:</p><p><strong>Theorem 1:</strong> The complement of a product is equal to the sum of complements.<br>$$\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$$</p><p><strong>Theorem 2:</strong> The complement of a sum is equal to the product of complements.<br>$$\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$$</p><p><strong>Extended form for multiple variables:</strong><br>$$\\overline{A \\cdot B \\cdot C} = \\overline{A} + \\overline{B} + \\overline{C}$$<br>$$\\overline{A + B + C} = \\overline{A} \\cdot \\overline{B} \\cdot \\overline{C}$$</p><p><strong>Example:</strong> NAND gate (A·B)' = A' + B' (OR with inverted inputs)</p>",
+            "marks": 1.8,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "2.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Prove: ABC + ABC + ABC + ABC = C",
+            "answer": "<p><strong>Proof:</strong> Given expression: $\\overline{A}\\overline{B}C + \\overline{A}B\\overline{C} + A\\overline{B}\\overline{C} + AB\\overline{C}$</p><p>Step 1: Group terms with $\\overline{C}$:<br>$\\overline{A}B\\overline{C} + A\\overline{B}\\overline{C} + AB\\overline{C}$</p><p>Step 2: Factor $\\overline{C}$:<br>$\\overline{C}(\\overline{A}B + A\\overline{B} + AB)$</p><p>Step 3: Simplify $(\\overline{A}B + A\\overline{B} + AB)$:<br>Using Boolean algebra, $AB + A\\overline{B} = A(B + \\overline{B}) = A$<br>So $\\overline{A}B + A = A + B$ (by absorption law)</p><p>Step 4: Expression becomes: $\\overline{C}(A + B) + \\overline{A}\\overline{B}C$</p><p>Step 5: Expand: $A\\overline{C} + B\\overline{C} + \\overline{A}\\overline{B}C$</p><p>Step 6: Using consensus theorem, $A\\overline{C} + \\overline{A}\\overline{B}C = A\\overline{C} + \\overline{A}C$ when B is considered</p><p>Step 7: This simplifies to C</p><p>Therefore: $\\overline{A}\\overline{B}C + \\overline{A}B\\overline{C} + A\\overline{B}\\overline{C} + AB\\overline{C} = C$</p><p><strong>Verification using truth table:</strong> All four terms cover cases where exactly one variable is different, resulting in C.</p>",
+            "marks": 3,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "2.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "What is the difference between Batch Processing System and Realtime Processing System?",
+            "answer": "<p><strong>Batch Processing System vs Real-time Processing System:</strong></p><table border='1' cellpadding='5'><tr><th>Batch Processing System</th><th>Real-time Processing System</th></tr><tr><td>Jobs with similar needs are grouped and executed together without user interaction</td><td>Processes data immediately as it arrives, providing instant response</td></tr><tr><td>No direct interaction between user and computer during execution</td><td>Continuous interaction with users/devices</td></tr><tr><td>Higher latency - results available after complete processing</td><td>Very low latency - immediate response required</td></tr><tr><td>Examples: Payroll processing, bank statement generation, billing systems</td><td>Examples: Air traffic control, medical monitoring, industrial process control</td></tr><tr><td>Less complex scheduling</td><td>Complex priority-based scheduling</td></tr><tr><td>Optimized for throughput</td><td>Optimized for response time</td></tr><tr><td>Time delay acceptable</td><td>Time delay critical - must meet deadlines</td></tr><tr><td>Uses FIFO scheduling typically</td><td>Uses priority-based scheduling</td></tr></table>",
+            "marks": 4,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "2.iii",
+            "type": "laq",
+            "group": "B",
+            "question": "Convert Binary to Gray Code: (1101101)₂ = (?)Gray",
+            "answer": "<p><strong>Binary to Gray Code Conversion:</strong></p><p><strong>Method:</strong> The MSB of Gray code is same as MSB of binary. For subsequent bits, Gray code bit = previous binary bit XOR current binary bit.</p><p><strong>Given binary:</strong> 1 1 0 1 1 0 1</p><p><strong>Step-by-step conversion:</strong><br>Bit 1 (MSB): Gray = Binary MSB = 1<br>Bit 2: 1 XOR 1 = 0<br>Bit 3: 1 XOR 0 = 1<br>Bit 4: 0 XOR 1 = 1<br>Bit 5: 1 XOR 1 = 0<br>Bit 6: 1 XOR 0 = 1<br>Bit 7: 0 XOR 1 = 1</p><p><strong>Gray code:</strong> 1 0 1 1 0 1 1</p><p>Therefore, $(1101101)_2 = (1011011)_{\\text{Gray}}$</p><p><strong>Verification:</strong> In Gray code, successive numbers differ by only one bit. Converting back: Gray to binary also possible using similar method.</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "3.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Write down the various formatting tags in HTML.",
+            "answer": "<p><strong>HTML Formatting Tags:</strong></p><table border='1' cellpadding='5'><tr><th>Tag</th><th>Description</th><th>Example</th></tr><tr><td>&lt;b&gt; or &lt;strong&gt;</td><td>Bold text</td><td>&lt;b&gt;Bold&lt;/b&gt;</td></tr><tr><td>&lt;i&gt; or &lt;em&gt;</td><td>Italic text</td><td>&lt;i&gt;Italic&lt;/i&gt;</td></tr><tr><td>&lt;u&gt;</td><td>Underlined text</td><td>&lt;u&gt;Underline&lt;/u&gt;</td></tr><tr><td>&lt;mark&gt;</td><td>Highlighted text</td><td>&lt;mark&gt;Highlight&lt;/mark&gt;</td></tr><tr><td>&lt;small&gt;</td><td>Smaller text</td><td>&lt;small&gt;Small&lt;/small&gt;</td></tr><tr><td>&lt;del&gt;</td><td>Deleted/strikethrough text</td><td>&lt;del&gt;Deleted&lt;/del&gt;</td></tr><tr><td>&lt;ins&gt;</td><td>Inserted text</td><td>&lt;ins&gt;Inserted&lt;/ins&gt;</td></tr><tr><td>&lt;sub&gt;</td><td>Subscript text</td><td>H&lt;sub&gt;2&lt;/sub&gt;O</td></tr><tr><td>&lt;sup&gt;</td><td>Superscript text</td><td>10&lt;sup&gt;th&lt;/sup&gt;</td></tr><tr><td>&lt;big&gt;</td><td>Bigger text (obsolete in HTML5)</td><td>&lt;big&gt;Big&lt;/big&gt;</td></tr><tr><td>&lt;tt&gt;</td><td>Teletype/monospace text</td><td>&lt;tt&gt;Monospace&lt;/tt&gt;</td></tr><tr><td>&lt;pre&gt;</td><td>Preformatted text</td><td>&lt;pre&gt;  Preserves spaces&lt;/pre&gt;</td></tr></table><p>These tags help in text presentation and semantic emphasis in web pages.</p>",
+            "marks": 4,
+            "unit": "HTML"
+        },
+        {
+            "id": "3.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Write an HTML code to display in Web Browser following table: MATH 80, 90, 95; PHYSICS 65, 78, 89; IT 76, 70, -",
+            "answer": "<pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Student Marks Table&lt;/title&gt;\n    &lt;style&gt;\n        table { border-collapse: collapse; width: 50%; }\n        th, td { border: 1px solid black; padding: 8px; text-align: center; }\n        th { background-color: #f2f2f2; }\n    &lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;h2&gt;Student Marks&lt;/h2&gt;\n    &lt;table&gt;\n        &lt;tr&gt;\n            &lt;th&gt;Subject&lt;/th&gt;\n            &lt;th&gt;Student 1&lt;/th&gt;\n            &lt;th&gt;Student 2&lt;/th&gt;\n            &lt;th&gt;Student 3&lt;/th&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;th&gt;MATH&lt;/th&gt;\n            &lt;td&gt;80&lt;/td&gt;\n            &lt;td&gt;90&lt;/td&gt;\n            &lt;td&gt;95&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;th&gt;PHYSICS&lt;/th&gt;\n            &lt;td&gt;65&lt;/td&gt;\n            &lt;td&gt;78&lt;/td&gt;\n            &lt;td&gt;89&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;th&gt;IT&lt;/th&gt;\n            &lt;td&gt;76&lt;/td&gt;\n            &lt;td&gt;70&lt;/td&gt;\n            &lt;td&gt;-&lt;/td&gt;\n        &lt;/tr&gt;\n    &lt;/table&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><p>This creates a table with subjects in rows and students in columns, displaying the marks as specified.</p>",
+            "marks": 5,
+            "unit": "HTML"
+        },
+        {
+            "id": "4.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Draw a flow Chart to find out Largest number of three given number.",
+            "answer": "<p><strong>Flowchart to Find Largest of Three Numbers:</strong></p><pre><code>    [Start]\n       |\n       V\n[Input A, B, C]\n       |\n       V\n   <Is A > B?>\n     /     \\\n   Yes      No\n    |         |\n    V         V\n<Is A > C?> <Is B > C?>\n  /    \\      /    \\\nYes    No    Yes    No\n |      |     |      |\n V      V     V      V\n[A is ][C is ][B is ][C is]\nlargest]largest]largest]largest]\n   |      |      |      |\n   --------+------+------\n           V\n    [Print Largest]\n           |\n           V\n        [Stop]</code></pre><p><strong>Algorithm:</strong></p><p>Step 1: Start<br>Step 2: Input three numbers A, B, C<br>Step 3: If A > B, go to step 4, else go to step 5<br>Step 4: If A > C, print A is largest, else print C is largest<br>Step 5: If B > C, print B is largest, else print C is largest<br>Step 6: Stop</p>",
+            "marks": 3,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "4.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Algorithm & Flowchart to convert temperature from Celsius to Fahrenheit.",
+            "answer": "<p><strong>Algorithm: Celsius to Fahrenheit Conversion</strong></p><p>Step 1: Start<br>Step 2: Input temperature in Celsius (C)<br>Step 3: Calculate F = (C × 9/5) + 32<br>Step 4: Output temperature in Fahrenheit (F)<br>Step 5: Stop</p><p><strong>Flowchart:</strong></p><pre><code>    [Start]\n       |\n       V\n[Input Celsius (C)]\n       |\n       V\n[Calculate F = (C × 9/5) + 32]\n       |\n       V\n[Output Fahrenheit (F)]\n       |\n       V\n    [Stop]</code></pre><p><strong>Explanation:</strong> The formula F = (C × 9/5) + 32 converts Celsius to Fahrenheit. For example, 0°C = 32°F, 100°C = 212°F.</p><p><strong>Alternative representation using decision:</strong> Check if input is valid (numeric, within reasonable range) before conversion.</p>",
+            "marks": 4,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "4.iii",
+            "type": "laq",
+            "group": "B",
+            "question": "Distinguish between loop and branching statements.",
+            "answer": "<p><strong>Difference between Loop and Branching Statements:</strong></p><table border='1' cellpadding='5'><tr><th>Loop Statements</th><th>Branching Statements</th></tr><tr><td>Execute a block of code repeatedly based on condition</td><td>Select one path among multiple based on condition</td></tr><tr><td>Examples: for, while, do-while loops</td><td>Examples: if, if-else, switch, conditional operator</td></tr><tr><td>Code executes multiple times (iterations)</td><td>Code executes only once per decision</td></tr><tr><td>Requires loop variable and condition to terminate</td><td>No iteration - just selection</td></tr><tr><td>Used for repetitive tasks like processing arrays</td><td>Used for decision making and flow control</td></tr><tr><td>Can cause infinite loops if condition never false</td><td>No risk of infinite execution</td></tr><tr><td>for(i=0; i&lt;5; i++) { sum += i; }</td><td>if(x &gt; 0) { positive++; } else { negative++; }</td></tr><tr><td>Always has a loop body that repeats</td><td>Has different paths/blocks of code</td></tr></table>",
+            "marks": 2,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "5.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Name some CSS style components.",
+            "answer": "<p><strong>CSS Style Components (Properties and Selectors):</strong></p><p><strong>1. Selectors:</strong></p><ul><li>Element selector: p { }</li><li>Class selector: .classname { }</li><li>ID selector: #idname { }</li><li>Universal selector: * { }</li><li>Attribute selector: [type=\"text\"] { }</li></ul><p><strong>2. Text and Font Properties:</strong></p><ul><li>color, font-family, font-size, font-weight</li><li>text-align, text-decoration, text-transform</li><li>line-height, letter-spacing, word-spacing</li></ul><p><strong>3. Box Model Properties:</strong></p><ul><li>margin, padding, border, width, height</li><li>box-sizing, display, float, position</li></ul><p><strong>4. Background Properties:</strong></p><ul><li>background-color, background-image</li><li>background-repeat, background-position</li><li>background-size, background-attachment</li></ul><p><strong>5. Layout Properties:</strong></p><ul><li>display (block, inline, flex, grid)</li><li>position (static, relative, absolute, fixed)</li><li>flexbox properties (flex-direction, justify-content)</li><li>grid properties (grid-template-columns, gap)</li></ul><p><strong>6. Animation and Transition:</strong></p><ul><li>transition, transform, animation</li><li>opacity, visibility, z-index</li></ul>",
+            "marks": 4,
+            "unit": "CSS"
+        },
+        {
+            "id": "5.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Design a HTML page with JavaScript to calculate sum of n natural numbers.",
+            "answer": "<pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Sum of N Natural Numbers&lt;/title&gt;\n    &lt;style&gt;\n        body { font-family: Arial; margin: 50px; }\n        .container { max-width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }\n        input, button { padding: 8px; margin: 5px 0; width: 100%; }\n        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }\n        button:hover { background-color: #45a049; }\n        .result { margin-top: 20px; font-weight: bold; }\n    &lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;div class=\"container\"&gt;\n        &lt;h2&gt;Sum of N Natural Numbers&lt;/h2&gt;\n        &lt;p&gt;Formula: Sum = n(n+1)/2&lt;/p&gt;\n        \n        &lt;label for=\"number\"&gt;Enter a positive integer (n):&lt;/label&gt;\n        &lt;input type=\"number\" id=\"number\" min=\"1\" value=\"10\"&gt;\n        \n        &lt;button onclick=\"calculateSum()\"&gt;Calculate Sum&lt;/button&gt;\n        \n        &lt;div class=\"result\" id=\"result\"&gt;&lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;script&gt;\n        function calculateSum() {\n            // Get input value\n            let n = document.getElementById('number').value;\n            \n            // Validate input\n            if (n === '' || n &lt;= 0) {\n                document.getElementById('result').innerHTML = 'Please enter a positive integer.';\n                return;\n            }\n            \n            n = parseInt(n);\n            \n            // Method 1: Using formula\n            let sumFormula = n * (n + 1) / 2;\n            \n            // Method 2: Using loop (for demonstration)\n            let sumLoop = 0;\n            for (let i = 1; i &lt;= n; i++) {\n                sumLoop += i;\n            }\n            \n            // Display results\n            document.getElementById('result').innerHTML = \n                '&lt;p&gt;Number (n): ' + n + '&lt;/p&gt;' +\n                '&lt;p&gt;Sum using formula: ' + sumFormula + '&lt;/p&gt;' +\n                '&lt;p&gt;Sum using loop: ' + sumLoop + '&lt;/p&gt;';\n        }\n        \n        // Calculate on page load with default value\n        window.onload = function() {\n            calculateSum();\n        };\n    &lt;/script&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre><p>This HTML page includes:</p><ul><li>Input field for n</li><li>Button to trigger calculation</li><li>JavaScript function using both formula and loop methods</li><li>CSS styling for better appearance</li><li>Input validation</li></ul>",
+            "marks": 5,
+            "unit": "JavaScript"
+        },
+        {
+            "id": "6.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Draw the logic diagram of an Ex-NOR gate and discuss its operation.",
+            "answer": "<p><strong>EX-NOR (Exclusive-NOR) Gate:</strong></p><p><strong>Logic Symbol:</strong> EX-NOR gate symbol is an EX-OR gate with a bubble (circle) at the output, or an OR gate with inverted inputs.</p><p><em>Refer to diagram in textbook - symbol resembles XOR gate with a small circle at output.</em></p><p><strong>Truth Table:</strong></p><table border='1' cellpadding='5'><tr><th>A</th><th>B</th><th>Y (EX-NOR)</th></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table><p><strong>Boolean Expression:</strong> Y = A ⊙ B = A·B + A'·B' = (A ⊕ B)'</p><p><strong>Operation:</strong> EX-NOR gate outputs HIGH (1) when both inputs are equal (both 0 or both 1). It outputs LOW (0) when inputs are different. It is the complement of EX-OR gate.</p><p><strong>Applications:</strong></p><ul><li>Equality comparators in digital systems</li><li>Parity checkers and generators</li><li>Arithmetic circuits</li><li>Error detection circuits</li></ul><p><strong>Implementation using basic gates:</strong> EX-NOR = (A AND B) OR (NOT A AND NOT B)</p>",
+            "marks": 3,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "6.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Simplify the Boolean expression: (X + Y)(X + Y)(X + Z)",
+            "answer": "<p><strong>Simplification:</strong> Given expression: $(X + Y)(X + \\overline{Y})(\\overline{X} + Z)$</p><p>Step 1: First multiply $(X + Y)(X + \\overline{Y})$:<br>$(X + Y)(X + \\overline{Y}) = X·X + X·\\overline{Y} + X·Y + Y·\\overline{Y}$<br>$= X + X\\overline{Y} + XY + 0$ (since $Y·\\overline{Y} = 0$)<br>$= X(1 + \\overline{Y} + Y) = X·1 = X$</p><p>Step 2: Now we have $X(\\overline{X} + Z)$:<br>$X(\\overline{X} + Z) = X·\\overline{X} + X·Z$<br>$= 0 + XZ = XZ$</p><p>Therefore, $(X + Y)(X + \\overline{Y})(\\overline{X} + Z) = \\boxed{XZ}$</p><p><strong>Verification using Boolean algebra laws:</strong></p><ul><li>Used distributive law: $(A+B)(A+C) = A + BC$ (first step could also use this directly)</li><li>Used complement law: $Y·\\overline{Y} = 0$</li><li>Used identity law: $X·1 = X$</li><li>Used complement law: $X·\\overline{X} = 0$</li></ul><p><strong>Truth table verification:</strong> The expression equals 1 only when X=1 and Z=1, regardless of Y.</p>",
+            "marks": 4,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "6.iii",
+            "type": "laq",
+            "group": "B",
+            "question": "Draw the logic diagram the Boolean expression: AB + ABC + ABC + AC",
+            "answer": "<p><strong>Logic Diagram for: AB + ABC + ABC + AC</strong></p><p>First, simplify the expression (optional but recommended for simpler circuit):</p><p>$AB + A\\overline{B}C + \\overline{A}B\\overline{C} + A\\overline{C}$</p><p>Group terms: $AB + A\\overline{C} + A\\overline{B}C + \\overline{A}B\\overline{C}$</p><p><strong>Logic Diagram Components:</strong></p><p><em>Refer to diagram in textbook - should include:</em></p><p><strong>Inputs:</strong> A, B, C and their complements (using NOT gates)</p><p><strong>AND gates:</strong></p><ul><li>AND1: A and B (for term AB)</li><li>AND2: A and NOT C (for term A·C')</li><li>AND3: A, NOT B, and C (for term A·B'·C)</li><li>AND4: NOT A, B, and NOT C (for term A'·B·C')</li></ul><p><strong>OR gate:</strong> 4-input OR gate combining outputs of all AND gates</p><p><strong>NOT gates:</strong> Three NOT gates for complements of A, B, C</p><p><strong>Final Output:</strong> OR gate output gives the result</p><p><strong>Simplified version (after Boolean simplification):</strong></p><p>Using Boolean algebra, this expression simplifies to: $A + B\\overline{C}$ (or similar simplified form)</p><p>Simplified circuit would need only: A OR (B AND NOT C)</p>",
+            "marks": 2,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "7.i",
+            "type": "laq",
+            "group": "B",
+            "question": "What is a Malware and types of Malwares?",
+            "answer": "<p><strong>Malware (Malicious Software):</strong> Any software intentionally designed to cause damage, disrupt operations, steal data, or gain unauthorized access to computer systems.</p><p><strong>Types of Malware:</strong></p><p><strong>1. Virus:</strong> Self-replicating code that attaches to clean files and spreads when infected files are executed. Requires user action to spread.</p><p><strong>2. Worm:</strong> Self-replicating malware that spreads independently across networks without user intervention, exploiting vulnerabilities.</p><p><strong>3. Trojan Horse:</strong> Disguises as legitimate software but performs malicious actions like stealing data or creating backdoors.</p><p><strong>4. Ransomware:</strong> Encrypts user data and demands payment for decryption key. Example: WannaCry.</p><p><strong>5. Spyware:</strong> Secretly monitors user activity, collects personal information, and sends it to attackers.</p><p><strong>6. Adware:</strong> Displays unwanted advertisements, often redirects browsers to ad sites.</p><p><strong>7. Rootkit:</strong> Hides deep in operating system to conceal malicious activities from detection tools.</p><p><strong>8. Keylogger:</strong> Records keystrokes to steal passwords and sensitive information.</p><p><strong>9. Botnet:</strong> Network of infected computers controlled remotely for coordinated attacks (DDoS).</p><p><strong>10. Logic Bomb:</strong> Malicious code triggered by specific conditions (date, event).</p>",
+            "marks": 3,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "7.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "What is DoS Attack? What are the security measures against DoS attack?",
+            "answer": "<p><strong>DoS (Denial of Service) Attack:</strong> A cyber attack where malicious actors flood a target system, server, or network with excessive traffic or requests to overwhelm its resources, making it unavailable to legitimate users.</p><p><strong>DDoS (Distributed Denial of Service):</strong> Multiple compromised systems (botnet) attack simultaneously from different locations.</p><p><strong>Types of DoS Attacks:</strong></p><ul><li>Volume-based attacks (flood with traffic)</li><li>Protocol attacks (exploit protocol weaknesses)</li><li>Application layer attacks (target applications)</li></ul><p><strong>Security Measures against DoS Attacks:</strong></p><p><strong>1. Firewall Configuration:</strong> Set up rules to filter malicious traffic, block suspicious IPs.</p><p><strong>2. Intrusion Detection/Prevention Systems (IDS/IPS):</strong> Monitor network traffic and block attack patterns.</p><p><strong>3. Load Balancers:</strong> Distribute traffic across multiple servers to prevent overload.</p><p><strong>4. Rate Limiting:</strong> Restrict number of requests from single IP address.</p><p><strong>5. Anycast Network Distribution:</strong> Distribute traffic across multiple data centers.</p><p><strong>6. Cloud-based Protection Services:</strong> Use services like Cloudflare, Akamai that absorb attack traffic.</p><p><strong>7. Keep Systems Updated:</strong> Patch vulnerabilities that attackers exploit.</p><p><strong>8. Network Monitoring:</strong> Real-time traffic analysis to detect anomalies early.</p><p><strong>9. Redundancy:</strong> Have backup servers and bandwidth capacity.</p><p><strong>10. Blackholing/Sinkholing:</strong> Route attack traffic to null interface.</p>",
+            "marks": 4,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "7.iii",
+            "type": "laq",
+            "group": "B",
+            "question": "What is Computer Hacking?",
+            "answer": "<p><strong>Computer Hacking:</strong> The act of gaining unauthorized access to computer systems, networks, or digital devices to exploit, modify, or steal information.</p><p><strong>Types of Hackers:</strong></p><p><strong>1. White Hat Hackers (Ethical Hackers):</strong> Authorized professionals who hack to find vulnerabilities and improve security. They work with organizations to fix weaknesses.</p><p><strong>2. Black Hat Hackers (Crackers):</strong> Unauthorized individuals who hack maliciously for personal gain, data theft, or damage.</p><p><strong>3. Grey Hat Hackers:</strong> Between white and black - may hack without permission but not for malicious purposes, sometimes disclosing vulnerabilities publicly.</p><p><strong>Common Hacking Techniques:</strong></p><ul><li>Phishing - tricking users into revealing credentials</li><li>Social engineering - manipulating people</li><li>Password cracking - brute force, dictionary attacks</li><li>SQL injection - exploiting database vulnerabilities</li><li>Man-in-the-middle attacks - intercepting communications</li></ul>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "8.i",
+            "type": "laq",
+            "group": "B",
+            "question": "Convert: (27.23)₁₀ = (?)₂ and (542)₈ = (?)₁₆",
+            "answer": "<p><strong>Part 1: (27.23)₁₀ to Binary</strong></p><p><strong>Integer part (27)₁₀:</strong><br>27 ÷ 2 = 13 remainder 1<br>13 ÷ 2 = 6 remainder 1<br>6 ÷ 2 = 3 remainder 0<br>3 ÷ 2 = 1 remainder 1<br>1 ÷ 2 = 0 remainder 1<br>Reading upward: 27₁₀ = 11011₂</p><p><strong>Fractional part (0.23)₁₀:</strong><br>0.23 × 2 = 0.46 → 0<br>0.46 × 2 = 0.92 → 0<br>0.92 × 2 = 1.84 → 1 (carry 0.84)<br>0.84 × 2 = 1.68 → 1 (carry 0.68)<br>0.68 × 2 = 1.36 → 1 (carry 0.36)<br>... continue as needed</p><p>0.23₁₀ ≈ 00111...₂ (up to 5 bits)</p><p>Therefore, (27.23)₁₀ ≈ <strong>(11011.00111)₂</strong></p><p><strong>Part 2: (542)₈ to Hexadecimal</strong></p><p><strong>Method: Octal → Binary → Hexadecimal</strong></p><p>Step 1: Convert octal to binary (each octal digit to 3 bits)<br>5₈ = 101₂<br>4₈ = 100₂<br>2₈ = 010₂</p><p>(542)₈ = 101 100 010₂ = 101100010₂</p><p>Step 2: Group binary into 4-bit groups (from right)<br>0001 0110 0010₂ (adding leading zeros)</p><p>Step 3: Convert each 4-bit group to hexadecimal<br>0001₂ = 1₁₆<br>0110₂ = 6₁₆<br>0010₂ = 2₁₆</p><p>Therefore, (542)₈ = <strong>(162)₁₆</strong></p><p><strong>Verification:</strong> (542)₈ = 5×8² + 4×8¹ + 2×8⁰ = 320 + 32 + 2 = 354₁₀<br>354₁₀ to hex: 354 ÷ 16 = 22 remainder 2, 22 ÷ 16 = 1 remainder 6, 1 ÷ 16 = 0 remainder 1 → 162₁₆ ✓</p>",
+            "marks": 4,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "8.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Write the main difference between Multitasking and Multiprogramming.",
+            "answer": "<p><strong>Difference between Multitasking and Multiprogramming:</strong></p><table border='1' cellpadding='5'><tr><th>Multiprogramming</th><th>Multitasking</th></tr><tr><td>Multiple programs reside in memory simultaneously, CPU executes one while others wait for I/O</td><td>Multiple tasks share CPU time, switching rapidly between them</td></tr><tr><td>Aims to maximize CPU utilization by keeping CPU busy</td><td>Aims to provide responsive user experience and quick response time</td></tr><tr><td>Concept originated in batch processing systems</td><td>Concept used in time-sharing and interactive systems</td></tr><tr><td>Switching occurs when current job performs I/O or completes</td><td>Switching occurs based on time quantum (preemptive) or events</td></tr><tr><td>No user interaction during execution</td><td>User interacts with multiple applications simultaneously</td></tr><tr><td>Focuses on throughput (jobs per unit time)</td><td>Focuses on response time and user experience</td></tr><tr><td>Example: Early batch systems running multiple jobs</td><td>Example: Modern OS where you browse web while listening to music</td></tr><tr><td>CPU idle time reduced by overlapping I/O with computation</td><td>CPU time divided among active processes</td></tr></table><p><strong>Key Distinction:</strong> Multiprogramming is about keeping CPU busy, while multitasking is about sharing CPU among tasks for interactive response.</p>",
+            "marks": 3,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "8.iii",
+            "type": "laq",
+            "group": "B",
+            "question": "What are ASCII and EBCDIC Codes?",
+            "answer": "<p><strong>ASCII (American Standard Code for Information Interchange):</strong></p><ul><li>7-bit character encoding standard (extended to 8-bit)</li><li>Represents 128 characters (0-127): letters, digits, symbols, control characters</li><li>Most widely used in computers, communications, and internet</li><li>Example: 'A' = 65 (1000001₂), 'a' = 97, '0' = 48</li><li>Developed by ANSI, adopted by ISO as ISO-646</li></ul><p><strong>EBCDIC (Extended Binary Coded Decimal Interchange Code):</strong></p><ul><li>8-bit character encoding developed by IBM</li><li>Used primarily in IBM mainframes and midrange systems</li><li>Represents 256 characters (0-255)</li><li>Not compatible with ASCII - different binary values for same characters</li><li>Example: 'A' = 193 (11000001₂) in EBCDIC vs 65 in ASCII</li><li>Still used in legacy IBM systems</li></ul><p><strong>Comparison:</strong> ASCII is standard for modern computing; EBCDIC is IBM-specific. Conversion between them requires mapping tables.</p>",
+            "marks": 2,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "9.i.a",
+            "type": "laq",
+            "group": "B",
+            "question": "State the difference between HDD and SSD memory",
+            "answer": "<p><strong>HDD (Hard Disk Drive) vs SSD (Solid State Drive) Differences:</strong></p><table border='1' cellpadding='5'><tr><th>Parameter</th><th>HDD</th><th>SSD</th></tr><tr><td>Technology</td><td>Magnetic storage with spinning platters and moving read/write heads</td><td>Flash memory (NAND) with no moving parts</td></tr><tr><td>Speed</td><td>Slower (80-160 MB/s), access time 5-15ms</td><td>Faster (500-3500 MB/s), access time 0.1ms</td></tr><tr><td>Durability</td><td>Less durable - sensitive to shock and vibration</td><td>More durable - no moving parts, resistant to shock</td></tr><tr><td>Noise</td><td>Produces noise from spinning disks and head movement</td><td>Silent operation</td></tr><tr><td>Power consumption</td><td>Higher (6-7W)</td><td>Lower (2-3W), better battery life</td></tr><tr><td>Weight</td><td>Heavier</td><td>Lighter</td></tr><tr><td>Capacity</td><td>Higher capacity available (up to 20TB+)</td><td>Lower capacity per cost</td></tr><tr><td>Cost per GB</td><td>Lower (cheaper)</td><td>Higher (expensive)</td></tr><tr><td>Fragmentation</td><td>Performance degrades with fragmentation</td><td>No impact from fragmentation</td></tr><tr><td>Boot time</td><td>Slower (30-60 seconds)</td><td>Faster (10-15 seconds)</td></tr><tr><td>Lifespan</td><td>Limited by mechanical wear</td><td>Limited by write cycles</td></tr></table>",
+            "marks": 4,
+            "unit": "Computer Hardware"
+        },
+        {
+            "id": "9.i.b",
+            "type": "laq",
+            "group": "B",
+            "question": "State the difference between DRAM and SRAM",
+            "answer": "<p><strong>DRAM (Dynamic RAM) vs SRAM (Static RAM) Differences:</strong></p><table border='1' cellpadding='5'><tr><th>Parameter</th><th>SRAM</th><th>DRAM</th></tr><tr><td>Storage Technology</td><td>Uses flip-flops (transistors) to store each bit</td><td>Uses capacitors to store each bit</td></tr><tr><td>Refresh Requirement</td><td>No refresh needed - retains data as long as power is on</td><td>Requires periodic refresh (every few ms) as capacitors discharge</td></tr><tr><td>Speed</td><td>Very fast (access time 1-10 ns)</td><td>Slower (access time 30-70 ns)</td></tr><tr><td>Density</td><td>Low density - more transistors per bit</td><td>High density - simpler cell structure</td></tr><tr><td>Cost</td><td>Expensive (6 transistors per cell)</td><td>Cheaper (1 transistor + capacitor per cell)</td></tr><tr><td>Power Consumption</td><td>Higher power consumption but lower standby power</td><td>Lower active power but needs refresh power</td></tr><tr><td>Usage</td><td>Cache memory (L1, L2, L3)</td><td>Main memory (RAM)</td></tr><tr><td>Volatility</td><td>Volatile - loses data without power</td><td>Volatile - loses data without power</td></tr><tr><td>Complexity</td><td>More complex circuitry</td><td>Simpler circuitry</td></tr><tr><td>Size</td><td>Larger physical size per bit</td><td>Smaller physical size per bit</td></tr></table>",
+            "marks": 4,
+            "unit": "Computer Memory"
+        },
+        {
+            "id": "9.ii",
+            "type": "laq",
+            "group": "B",
+            "question": "Name the gates that are used as universal gates.",
+            "answer": "<p><strong>Universal Gates:</strong></p><p><strong>NAND Gate</strong> and <strong>NOR Gate</strong> are called universal gates.</p><p><strong>Why they are called universal:</strong></p><ul><li>Any logic gate (AND, OR, NOT, XOR, XNOR) can be implemented using only NAND gates</li><li>Similarly, any logic gate can be implemented using only NOR gates</li><li>This simplifies IC manufacturing as only one type of gate needs to be fabricated</li></ul><p><strong>Example - Implementing basic gates using NAND:</strong></p><ul><li>NOT gate: Connect both inputs of NAND together</li><li>AND gate: Two NAND gates in series</li><li>OR gate: Invert inputs using NAND NOT, then feed to another NAND</li></ul><p><strong>Example - Implementing basic gates using NOR:</strong></p><ul><li>NOT gate: Connect both inputs of NOR together</li><li>OR gate: Two NOR gates in series</li><li>AND gate: Invert inputs using NOR NOT, then feed to another NOR</li></ul>",
+            "marks": 1,
+            "unit": "Digital Logic"
+        }
+    ]
+}

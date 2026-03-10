@@ -1,0 +1,281 @@
+{
+    "subject": "Fundamentals of Electrical and Electronics Engineering (FEEE)",
+    "examYear": "2023",
+    "totalMarks": 60,
+    "timeAllowed": "2.5 Hours",
+    "questions": [
+        {
+            "id": "1a",
+            "type": "saq",
+            "group": "A",
+            "question": "What do you mean by capacitance of a capacitor? What is its unit?",
+            "answer": "<p><strong>Capacitance</strong> is the property of a capacitor to store electric charge. It is defined as the ratio of charge stored (Q) to the voltage applied (V) across its plates.</p><p>Mathematically, $C = \\frac{Q}{V}$</p><p>The SI unit of capacitance is <strong>Farad (F)</strong>. Smaller units are microfarad ($\\mu F$), nanofarad (nF), and picofarad (pF).</p>",
+            "marks": 2,
+            "unit": "Electrostatics"
+        },
+        {
+            "id": "1b",
+            "type": "saq",
+            "group": "A",
+            "question": "State Fleming's left hand rule and its application.",
+            "answer": "<p><strong>Fleming's Left Hand Rule:</strong> Stretch the thumb, forefinger, and middle finger of left hand mutually perpendicular. If forefinger indicates magnetic field direction and middle finger indicates current direction, then thumb gives direction of force/motion.</p><p><strong>Application:</strong> Used to determine direction of rotation of motor armature/rotor (motor action).</p>",
+            "marks": 2,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "1c",
+            "type": "saq",
+            "group": "A",
+            "question": "What is power factor? Write the value of power factor for purely resistive circuit.",
+            "answer": "<p><strong>Power factor</strong> is the cosine of the phase angle between voltage and current in an AC circuit. It indicates the fraction of apparent power that is real power.</p><p>Power factor = $\\cos\\phi = \\frac{\\text{Active Power (P)}}{\\text{Apparent Power (S)}}$</p><p>For a <strong>purely resistive circuit</strong>, voltage and current are in phase ($\\phi = 0°$), so power factor = 1 (unity).</p>",
+            "marks": 2,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "1d",
+            "type": "saq",
+            "group": "A",
+            "question": "What do you mean by voltage transformation ratio of a transformer?",
+            "answer": "<p><strong>Voltage transformation ratio (K)</strong> is the ratio of secondary voltage to primary voltage in a transformer.</p><p>$K = \\frac{V_2}{V_1} = \\frac{N_2}{N_1}$</p><p>If K > 1, it's a step-up transformer; if K < 1, it's a step-down transformer.</p>",
+            "marks": 2,
+            "unit": "Transformer"
+        },
+        {
+            "id": "1e",
+            "type": "saq",
+            "group": "A",
+            "question": "Draw the symbols of PNP and NPN transistor with proper notation.",
+            "answer": "<p><strong>NPN Transistor Symbol:</strong> Arrow on emitter points outward (away from base). Terminals: Emitter (E), Base (B), Collector (C).</p><p><strong>PNP Transistor Symbol:</strong> Arrow on emitter points inward (toward base). Terminals: Emitter (E), Base (B), Collector (C).</p><p>The arrow direction indicates conventional current flow (from P to N).</p>",
+            "marks": 2,
+            "unit": "Semiconductor Devices"
+        },
+        {
+            "id": "1f",
+            "type": "saq",
+            "group": "A",
+            "question": "Draw the pin diagram of IC741 op-amp with proper leveling. What is virtual ground?",
+            "answer": "<p><strong>IC 741 Pin Diagram (8-pin DIP):</strong></p><ul><li>Pin 1: Offset Null</li><li>Pin 2: Inverting Input (-)</li><li>Pin 3: Non-Inverting Input (+)</li><li>Pin 4: V- (Negative Supply)</li><li>Pin 5: Offset Null</li><li>Pin 6: Output</li><li>Pin 7: V+ (Positive Supply)</li><li>Pin 8: NC (No Connection)</li></ul><p><strong>Virtual Ground:</strong> In an op-amp with negative feedback, the inverting terminal is at the same potential as the non-inverting terminal. If non-inverting is grounded, inverting terminal is virtually grounded (0V) but no current flows into it.</p>",
+            "marks": 2,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "1g",
+            "type": "saq",
+            "group": "A",
+            "question": "What is the full form of SOP and POS form of logic gates? Draw the symbol of two input Ex-NOR gate.",
+            "answer": "<p><strong>SOP:</strong> Sum of Products - ORing of ANDed terms (e.g., $Y = AB + BC$)</p><p><strong>POS:</strong> Product of Sums - ANDing of ORed terms (e.g., $Y = (A+B)(B+C)$)</p><p><strong>EX-NOR Gate Symbol:</strong> XOR gate symbol with a small circle (bubble) at output. Two-input EX-NOR gives HIGH when both inputs are same (both 0 or both 1).</p><p>Boolean expression: $Y = A \\odot B = A \\cdot B + \\overline{A} \\cdot \\overline{B}$</p>",
+            "marks": 2,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "2a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define ideal current source and ideal voltage source with proper symbol.",
+            "answer": "<p><strong>Ideal Voltage Source:</strong> A source that maintains constant voltage across its terminals regardless of load current. It has zero internal resistance. Symbol: Circle with + and - signs indicating polarity.</p><p><strong>Ideal Current Source:</strong> A source that delivers constant current through its terminals regardless of load voltage. It has infinite internal resistance. Symbol: Circle with arrow indicating current direction.</p>",
+            "marks": 2,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "2b",
+            "type": "saq",
+            "group": "B",
+            "question": "What are active and passive components? Give examples for each.",
+            "answer": "<p><strong>Active Components:</strong> Components that can amplify power or provide gain. They require external power source to operate.</p><p>Examples: Transistors, Diodes, Op-amps, ICs, SCR.</p><p><strong>Passive Components:</strong> Components that cannot amplify power; they either store or dissipate energy.</p><p>Examples: Resistors, Capacitors, Inductors, Transformers.</p>",
+            "marks": 3,
+            "unit": "Basic Electronics"
+        },
+        {
+            "id": "2c",
+            "type": "saq",
+            "group": "B",
+            "question": "How can you convert a voltage source into current source and vice-versa?",
+            "answer": "<p><strong>Source Transformation Principle:</strong></p><p><strong>Voltage to Current Source:</strong> A voltage source V with series resistance R can be converted to a current source I = V/R with parallel resistance R (same R).</p><p><strong>Current to Voltage Source:</strong> A current source I with parallel resistance R can be converted to a voltage source V = I × R with series resistance R (same R).</p><p>The transformation maintains identical terminal behavior for any external load.</p>",
+            "marks": 4,
+            "unit": "Network Theory"
+        },
+        {
+            "id": "3a",
+            "type": "saq",
+            "group": "B",
+            "question": "State and explain Faraday's Laws of Electromagnetic Induction.",
+            "answer": "<p><strong>Faraday's Laws of Electromagnetic Induction:</strong></p><p><strong>First Law:</strong> Whenever the magnetic flux linked with a circuit changes, an electromotive force (emf) is induced in the circuit.</p><p><strong>Second Law:</strong> The magnitude of induced emf is directly proportional to the rate of change of flux linkage.</p><p>Mathematically, $e = -N\\frac{d\\phi}{dt}$</p><p>where N = number of turns, $\\frac{d\\phi}{dt}$ = rate of change of flux, and negative sign indicates Lenz's law (opposition to cause).</p>",
+            "marks": 4,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3b",
+            "type": "saq",
+            "group": "B",
+            "question": "Write down the similarities between magnetic & electric circuit.",
+            "answer": "<p><strong>Similarities between Electric and Magnetic Circuits:</strong></p><table><tr><th>Electric Circuit</th><th>Magnetic Circuit</th></tr><tr><td>EMF (V) drives current</td><td>MMF (NI) drives flux</td></tr><tr><td>Current (I) flows</td><td>Flux (φ) flows</td></tr><tr><td>Resistance (R) opposes current</td><td>Reluctance (S) opposes flux</td></tr><tr><td>Ohm's law: V = IR</td><td>Ohm's law: MMF = φ × S</td></tr><tr><td>Conductance G = 1/R</td><td>Permeance P = 1/S</td></tr><tr><td>Kirchhoff's laws apply</td><td>Analogous laws apply</td></tr></table>",
+            "marks": 4,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "3c",
+            "type": "saq",
+            "group": "B",
+            "question": "What do you mean by permeability?",
+            "answer": "<p><strong>Permeability ($\\mu$):</strong> It is the property of a material that indicates how easily magnetic flux can pass through it.</p><p>It is defined as the ratio of magnetic flux density (B) to magnetic field strength (H):</p><p>$\\mu = \\frac{B}{H}$</p><p><strong>Absolute permeability</strong> $\\mu = \\mu_0 \\mu_r$, where $\\mu_0 = 4\\pi \\times 10^{-7}$ H/m (permeability of free space) and $\\mu_r$ is relative permeability.</p>",
+            "marks": 1,
+            "unit": "Electromagnetism"
+        },
+        {
+            "id": "4a",
+            "type": "saq",
+            "group": "B",
+            "question": "Define (any four): i) RMS value ii) Frequency iii) Flux density iv) Form factor v) MMF vi) Reluctance vii) Hysteresis loss",
+            "answer": "<p><strong>i) RMS Value:</strong> The root mean square value of AC is the equivalent DC value that produces same heating effect. For sine wave, $V_{rms} = V_m/\\sqrt{2}$.</p><p><strong>ii) Frequency:</strong> Number of cycles completed per second by an AC waveform. Unit: Hertz (Hz).</p><p><strong>iii) Flux Density (B):</strong> Magnetic flux per unit area, $B = \\phi/A$. Unit: Tesla (T) or Wb/m².</p><p><strong>iv) Form Factor:</strong> Ratio of RMS value to average value. For sine wave, form factor = 1.11.</p><p><strong>v) MMF:</strong> Magnetomotive force = NI (ampere-turns), drives flux in magnetic circuit.</p><p><strong>vi) Reluctance (S):</strong> Opposition to magnetic flux, $S = l/(\\mu A)$. Unit: AT/Wb.</p><p><strong>vii) Hysteresis Loss:</strong> Power loss due to repeated magnetization and demagnetization of ferromagnetic material. $P_h \\propto f B_m^{1.6}$.</p>",
+            "marks": 4,
+            "unit": "Multiple Units"
+        },
+        {
+            "id": "4b",
+            "type": "laq",
+            "group": "B",
+            "question": "A series RLC circuit having resistance of 10Ω, inductance of 0.1H and capacitance of 150μF are connected in series across 230V, 50Hz AC supply. Calculate: i) Impedance ii) current, iii) power factor, iv) Active power",
+            "answer": "<h5>Series RLC Circuit Analysis</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>R = 10 Ω</li>\n<li>L = 0.1 H</li>\n<li>C = 150 μF = 150 × 10⁻⁶ F</li>\n<li>V = 230 V</li>\n<li>f = 50 Hz</li>\n</ul>\n\n<p><strong>Step 1: Calculate inductive reactance XL</strong></p>\n<p>$X_L = 2\\pi fL = 2\\pi \\times 50 \\times 0.1$</p>\n<p>$X_L = 314.16 \\times 0.1 = 31.416\\text{ Ω}$</p>\n\n<p><strong>Step 2: Calculate capacitive reactance XC</strong></p>\n<p>$X_C = \\frac{1}{2\\pi fC} = \\frac{1}{2\\pi \\times 50 \\times 150 \\times 10^{-6}}$</p>\n<p>$X_C = \\frac{1}{0.047124} = 21.22\\text{ Ω}$</p>\n\n<p><strong>Step 3: Calculate net reactance X and impedance Z</strong></p>\n<p>$X = X_L - X_C = 31.416 - 21.22 = 10.196\\text{ Ω}$ (inductive)</p>\n<p>$Z = \\sqrt{R^2 + X^2} = \\sqrt{10^2 + 10.196^2}$</p>\n<p>$Z = \\sqrt{100 + 103.96} = \\sqrt{203.96} = 14.28\\text{ Ω}$</p>\n\n<p><strong>Step 4: Calculate current I</strong></p>\n<p>$I = \\frac{V}{Z} = \\frac{230}{14.28} = 16.11\\text{ A}$</p>\n\n<p><strong>Step 5: Calculate power factor</strong></p>\n<p>$\\cos\\phi = \\frac{R}{Z} = \\frac{10}{14.28} = 0.7$ lagging (since XL > XC)</p>\n\n<p><strong>Step 6: Calculate active power P</strong></p>\n<p>$P = VI\\cos\\phi = 230 \\times 16.11 \\times 0.7$</p>\n<p>$P = 2593.71\\text{ W}$</p>\n<p>$P \\approx 2.59\\text{ kW}$</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Impedance Z = 14.28 Ω</li>\n<li>Current I = 16.11 A</li>\n<li>Power factor = 0.7 lagging</li>\n<li>Active power P = 2.59 kW</li>\n</ul>",
+            "keyPoints": [
+                "XL = 2πfL",
+                "XC = 1/(2πfC)",
+                "Z = √(R² + (XL-XC)²)",
+                "I = V/Z",
+                "cos φ = R/Z",
+                "P = VI cos φ"
+            ],
+            "marks": 9,
+            "unit": "AC Circuits"
+        },
+        {
+            "id": "5a",
+            "type": "saq",
+            "group": "C",
+            "question": "Write down the working principle of two winding transformer.",
+            "answer": "<p><strong>Working Principle of Two-Winding Transformer:</strong></p><p>Transformer works on the principle of <strong>mutual induction</strong>.</p><p>When AC supply is given to primary winding, alternating current produces alternating flux in the core. This changing flux links with secondary winding and induces emf in it (Faraday's law).</p><p>The induced emf is given by $E = 4.44 fN\\phi_m$.</p><p>Frequency remains same, while voltage and current change according to turns ratio: $\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$ and $\\frac{I_2}{I_1} = \\frac{N_1}{N_2}$.</p>",
+            "marks": 2,
+            "unit": "Transformer"
+        },
+        {
+            "id": "5b",
+            "type": "laq",
+            "group": "C",
+            "question": "A 100 KVA single phase transformer has 300 turns in primary side and 30 turns in secondary side. The primary is connected to a 11kV, 50Hz AC supply. Calculate: i) secondary emf, ii) primary and secondary full load current and iii) maximum flux in the core.",
+            "answer": "<h5>Transformer Calculations</h5>\n\n<p><strong>Given:</strong></p>\n<ul>\n<li>Rating S = 100 kVA = 100,000 VA</li>\n<li>Primary turns N₁ = 300</li>\n<li>Secondary turns N₂ = 30</li>\n<li>Primary voltage V₁ = 11 kV = 11,000 V</li>\n<li>Frequency f = 50 Hz</li>\n</ul>\n\n<p><strong>i) Secondary emf (E₂):</strong></p>\n<p>Using turns ratio: $\\frac{E_2}{V_1} = \\frac{N_2}{N_1}$</p>\n<p>$E_2 = V_1 \\times \\frac{N_2}{N_1} = 11000 \\times \\frac{30}{300}$</p>\n<p>$E_2 = 11000 \\times 0.1 = 1100\\text{ V}$</p>\n\n<p><strong>ii) Primary and secondary full load currents:</strong></p>\n<p>Primary current: $I_1 = \\frac{S}{V_1} = \\frac{100,000}{11,000} = 9.09\\text{ A}$</p>\n<p>Secondary current: $I_2 = \\frac{S}{E_2} = \\frac{100,000}{1100} = 90.91\\text{ A}$</p>\n\n<p><strong>iii) Maximum flux in core (φm):</strong></p>\n<p>EMF equation: $V_1 = 4.44 f N_1 \\phi_m$</p>\n<p>$\\phi_m = \\frac{V_1}{4.44 f N_1} = \\frac{11000}{4.44 \\times 50 \\times 300}$</p>\n<p>$\\phi_m = \\frac{11000}{66,600} = 0.1652\\text{ Wb}$</p>\n<p>$\\phi_m = 165.2\\text{ mWb}$</p>\n\n<p><strong>Results:</strong></p>\n<ul>\n<li>Secondary emf E₂ = 1100 V</li>\n<li>Primary current I₁ = 9.09 A</li>\n<li>Secondary current I₂ = 90.91 A</li>\n<li>Maximum flux φm = 165.2 mWb</li>\n</ul>",
+            "keyPoints": [
+                "Turns ratio for secondary voltage",
+                "kVA rating for currents",
+                "EMF equation for flux"
+            ],
+            "marks": 4,
+            "unit": "Transformer"
+        },
+        {
+            "id": "5c",
+            "type": "saq",
+            "group": "C",
+            "question": "Write four main parts of DC motor.",
+            "answer": "<p><strong>Four Main Parts of DC Motor:</strong></p><ol><li><strong>Stator (Field Magnet):</strong> Provides magnetic field, can be permanent magnet or electromagnet.</li><li><strong>Rotor (Armature):</strong> Rotating part that carries current and experiences force.</li><li><strong>Commutator:</strong> Converts AC induced in armature to DC in external circuit or vice versa.</li><li><strong>Brushes:</strong> Carbon blocks that make sliding contact with commutator.</li></ol><p>Other parts: Bearings, Shaft, Yoke, Pole pieces.</p>",
+            "marks": 2,
+            "unit": "DC Machines"
+        },
+        {
+            "id": "5d",
+            "type": "saq",
+            "group": "C",
+            "question": "Give the applications of DC series motor.",
+            "answer": "<p><strong>Applications of DC Series Motor:</strong></p><ul><li>Electric traction (trains, trams, metros)</li><li>Cranes and hoists</li><li>Elevators and lifts</li><li>Conveyors</li><li>Electric vehicles</li></ul><p>Reason: High starting torque and variable speed characteristics.</p>",
+            "marks": 1,
+            "unit": "DC Machines"
+        },
+        {
+            "id": "6a",
+            "type": "saq",
+            "group": "C",
+            "question": "State and explain De-Morgan's theorem.",
+            "answer": "<p><strong>De Morgan's Theorems:</strong></p>\n\n<p><strong>Theorem 1:</strong> The complement of a product (AND) of variables is equal to the sum (OR) of their complements.</p>\n<p>$$\\overline{A \\cdot B} = \\overline{A} + \\overline{B}$$</p>\n<p>This means NAND gate is equivalent to bubbled OR gate.</p>\n\n<p><strong>Theorem 2:</strong> The complement of a sum (OR) of variables is equal to the product (AND) of their complements.</p>\n<p>$$\\overline{A + B} = \\overline{A} \\cdot \\overline{B}$$</p>\n<p>This means NOR gate is equivalent to bubbled AND gate.</p>\n\n<p>These theorems are useful in simplifying Boolean expressions and implementing logic circuits using only NAND or NOR gates.</p>",
+            "marks": 4,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "6b",
+            "type": "saq",
+            "group": "C",
+            "question": "Draw the NOR gate and write down its truth table.",
+            "answer": "<p><strong>NOR Gate:</strong> NOR gate is the combination of OR gate followed by NOT gate (inverter). Output is HIGH only when all inputs are LOW.</p>\n\n<p><strong>Truth Table (2-input NOR gate):</strong></p>\n<table>\n<tr><th>Input A</th><th>Input B</th><th>Output Y = (A+B)'</th></tr>\n<tr><td>0</td><td>0</td><td>1</td></tr>\n<tr><td>0</td><td>1</td><td>0</td></tr>\n<tr><td>1</td><td>0</td><td>0</td></tr>\n<tr><td>1</td><td>1</td><td>0</td></tr>\n</table>\n\n<p><strong>Boolean Expression:</strong> $Y = \\overline{A + B}$</p>\n<p>NOR gate is a universal gate.</p>",
+            "marks": 3,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "6c",
+            "type": "saq",
+            "group": "C",
+            "question": "What are universal logic gates? Gives examples.",
+            "answer": "<p><strong>Universal Logic Gates:</strong> Logic gates that can be used to implement any Boolean function without needing any other gate type. They are functionally complete.</p>\n<p><strong>Examples:</strong></p><ul><li><strong>NAND gate</strong> - can implement AND, OR, NOT, XOR, XNOR</li><li><strong>NOR gate</strong> - can implement AND, OR, NOT, XOR, XNOR</li></ul><p>Using only NAND gates or only NOR gates, any digital circuit can be built.</p>",
+            "marks": 2,
+            "unit": "Digital Electronics"
+        },
+        {
+            "id": "7a",
+            "type": "saq",
+            "group": "C",
+            "question": "What are the characteristics of an ideal OP-AMP?",
+            "answer": "<p><strong>Characteristics of Ideal Op-Amp:</strong></p><ul><li>Infinite open-loop gain (A = ∞)</li><li>Infinite input impedance (R<sub>in</sub> = ∞) - draws no input current</li><li>Zero output impedance (R<sub>out</sub> = 0) - can drive any load</li><li>Infinite bandwidth - amplifies all frequencies equally</li><li>Zero offset voltage - output zero when input zero</li><li>Infinite CMRR - rejects common-mode signals completely</li><li>Slew rate = ∞ - instant response to input changes</li></ul>",
+            "marks": 2,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "7b",
+            "type": "laq",
+            "group": "C",
+            "question": "Draw the circuit diagram of an inverting amplifier and derive the expression for output voltage.",
+            "answer": "<h5>Inverting Amplifier using Op-Amp</h5>\n\n<p><em>Circuit Diagram:</em> Input voltage V<sub>in</sub> applied to inverting (-) terminal through resistor R₁. Non-inverting (+) terminal grounded. Feedback resistor R<sub>f</sub> connected between output and inverting terminal.</p>\n\n<p><strong>Assumptions for ideal op-amp:</strong></p>\n<ul>\n<li>Open-loop gain A = ∞</li>\n<li>Input impedance R<sub>in</sub> = ∞ (no input current)</li>\n<li>Virtual short: V<sub>1</sub> = V<sub>2</sub> = 0V (since V<sub>2</sub> grounded)</li>\n</ul>\n\n<p><strong>Derivation:</strong></p>\n\n<p><strong>Step 1:</strong> Due to virtual ground, voltage at inverting terminal V<sub>1</sub> = 0V.</p>\n\n<p><strong>Step 2:</strong> Current through R₁:</p>\n<p>$$I_1 = \\frac{V_{in} - V_1}{R_1} = \\frac{V_{in} - 0}{R_1} = \\frac{V_{in}}{R_1}$$</p>\n\n<p><strong>Step 3:</strong> Since no current enters op-amp (ideal), same current flows through R<sub>f</sub>:</p>\n<p>$$I_f = I_1 = \\frac{V_{in}}{R_1}$$</p>\n\n<p><strong>Step 4:</strong> Voltage across R<sub>f</sub>:</p>\n<p>$$V_1 - V_{out} = I_f R_f$$</p>\n<p>$$0 - V_{out} = \\frac{V_{in}}{R_1} \\times R_f$$</p>\n\n<p><strong>Step 5:</strong> Therefore:</p>\n<p>$$V_{out} = -\\frac{R_f}{R_1} V_{in}$$</p>\n\n<p><strong>Voltage Gain:</strong></p>\n<p>$$A_v = \\frac{V_{out}}{V_{in}} = -\\frac{R_f}{R_1}$$</p>\n\n<p><strong>Key Points:</strong></p>\n<ul>\n<li>Negative sign indicates 180° phase shift</li>\n<li>Gain depends only on external resistors</li>\n<li>Input impedance = R₁</li>\n</ul>",
+            "keyPoints": [
+                "Virtual ground concept",
+                "Current through R₁ and Rf same",
+                "Gain = -Rf/R₁"
+            ],
+            "marks": 4,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "7c",
+            "type": "saq",
+            "group": "C",
+            "question": "Explain the op-amp acts as a adder circuit.",
+            "answer": "<p><strong>Op-Amp as Adder (Summing Amplifier):</strong></p>\n<p>A summing amplifier uses inverting configuration with multiple input resistors connected to inverting terminal.</p>\n<p><strong>Circuit:</strong> Input voltages V₁, V₂, V₃ through resistors R₁, R₂, R₃ to inverting terminal. Feedback resistor R<sub>f</sub> from output to inverting terminal. Non-inverting grounded.</p>\n<p><strong>Derivation:</strong> Due to virtual ground, currents:</p>\n<p>$I_1 = \\frac{V_1}{R_1}$, $I_2 = \\frac{V_2}{R_2}$, $I_3 = \\frac{V_3}{R_3}$</p>\n<p>Total current $I_f = I_1 + I_2 + I_3$</p>\n<p>$V_{out} = -I_f R_f = -\\left(\\frac{V_1}{R_1} + \\frac{V_2}{R_2} + \\frac{V_3}{R_3}\\right) R_f$</p>\n<p>If $R_1 = R_2 = R_3 = R$, then $V_{out} = -\\frac{R_f}{R}(V_1 + V_2 + V_3)$</p>\n<p>Thus output is weighted sum of inputs.</p>",
+            "marks": 3,
+            "unit": "Operational Amplifier"
+        },
+        {
+            "id": "8a",
+            "type": "laq",
+            "group": "C",
+            "question": "Explain energy level diagram of insulator, conductor and semi-conductor.",
+            "answer": "<h5>Energy Band Diagrams</h5>\n\n<p><strong>Energy Band Theory:</strong> In solids, electrons occupy energy bands - Valence band (filled with electrons) and Conduction band (empty/partially filled), separated by forbidden energy gap (E<sub>g</sub>).</p>\n\n<p><strong>1. Conductors (Metals):</strong></p>\n<ul>\n<li>No energy gap or overlapping bands</li>\n<li>Valence and conduction bands overlap OR conduction band partially filled</li>\n<li>Electrons freely available for conduction even at low temperatures</li>\n<li>Examples: Copper, Aluminum, Silver</li>\n</ul>\n\n<p><strong>2. Semiconductors:</strong></p>\n<ul>\n<li>Small forbidden gap (E<sub>g</sub> ≈ 0.7 to 1.1 eV)</li>\n<li>At 0K: Valence band full, conduction band empty (behaves as insulator)</li>\n<li>At room temperature: Some electrons gain thermal energy, jump to conduction band, creating holes in valence band</li>\n<li>Conductivity increases with temperature</li>\n<li>Examples: Silicon (1.1 eV), Germanium (0.7 eV)</li>\n</ul>\n\n<p><strong>3. Insulators:</strong></p>\n<ul>\n<li>Large forbidden gap (E<sub>g</sub> > 3 eV to 6 eV)</li>\n<li>Valence band fully filled, conduction band empty</li>\n<li>Thermal energy at room temperature insufficient to move electrons to conduction band</li>\n<li>Extremely high resistance</li>\n<li>Examples: Glass, Mica, Rubber, PVC</li>\n</ul>\n\n<p><em>Diagram reference:</em> Conductors - overlapping bands; Semiconductors - small gap; Insulators - large gap.</p>",
+            "keyPoints": [
+                "Conductors: overlapping or no gap",
+                "Semiconductors: small gap (≈1 eV)",
+                "Insulators: large gap (>3 eV)",
+                "Effect of temperature"
+            ],
+            "marks": 4,
+            "unit": "Semiconductor Physics"
+        },
+        {
+            "id": "8b",
+            "type": "laq",
+            "group": "C",
+            "question": "Draw and explain the forward and reverse biased characteristics of P-N junction diode.",
+            "answer": "<h5>PN Junction Diode Characteristics</h5>\n\n<p><strong>Forward Bias:</strong> P-side connected to positive, N-side to negative of supply.</p>\n<ul>\n<li>Depletion region width decreases</li>\n<li>Barrier potential reduces (0.7V for Si, 0.3V for Ge)</li>\n<li>Current flows when applied voltage exceeds barrier potential</li>\n<li>Current increases exponentially with voltage</li>\n<li>Dynamic resistance is low</li>\n</ul>\n\n<p><strong>Reverse Bias:</strong> P-side connected to negative, N-side to positive.</p>\n<ul>\n<li>Depletion region width increases</li>\n<li>Barrier potential increases</li>\n<li>Only small reverse saturation current (I<sub>0</sub>) flows due to minority carriers</li>\n<li>Current independent of voltage until breakdown</li>\n<li>At breakdown voltage, current increases sharply (avalanche or Zener breakdown)</li>\n</ul>\n\n<p><strong>V-I Characteristics:</strong></p>\n<p><em>Forward Region:</em></p>\n<ul>\n<li>Cut-in voltage: 0.3V (Ge), 0.7V (Si)</li>\n<li>After cut-in, current rises exponentially</li>\n<li>Diode equation: $I = I_0(e^{V/\\eta V_T} - 1)$</li>\n</ul>\n\n<p><em>Reverse Region:</em></p>\n<ul>\n<li>Very small current (μA for Si, mA for Ge) up to breakdown</li>\n<li>At breakdown voltage V<sub>BR</sub>, current increases sharply</li>\n<li>Zener diodes operate in breakdown region for voltage regulation</li>\n</ul>\n\n<p><strong>Key Points:</strong></p>\n<ul>\n<li>Forward bias: Low resistance, high current</li>\n<li>Reverse bias: High resistance, negligible current</li>\n<li>Diode acts as unidirectional switch</li>\n</ul>",
+            "keyPoints": [
+                "Forward bias - current flows after cut-in",
+                "Reverse bias - only leakage current",
+                "Breakdown at high reverse voltage",
+                "V-I characteristic curve"
+            ],
+            "marks": 5,
+            "unit": "Semiconductor Devices"
+        }
+    ]
+}

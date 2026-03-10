@@ -1,0 +1,632 @@
+{
+    "subject": "Introduction to IT Systems",
+    "year": 2021,
+    "totalMarks": 60,
+    "timeAllowed": "1.5 Hours",
+    "questions": [
+        {
+            "id": "1.i",
+            "type": "mcq",
+            "group": "A",
+            "question": "A hard disc is divided into tracks, which are further sub divided into",
+            "options": [
+                "Clusters",
+                "Sectors",
+                "Vectors",
+                "Heads"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Sectors</strong> is correct because tracks on a hard disk are divided into sectors, which are the smallest storage units on a disk. Each sector typically stores 512 bytes of data. Clusters are groups of sectors.</p>",
+            "unit": "Computer Hardware"
+        },
+        {
+            "id": "1.ii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Binary equivalent of 97₁₀ is",
+            "options": [
+                "1100000",
+                "1100001",
+                "1100010",
+                "1100011"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>1100001</strong> is correct because 97 in binary is calculated as: 97 ÷ 2 = 48 remainder 1, 48 ÷ 2 = 24 remainder 0, 24 ÷ 2 = 12 remainder 0, 12 ÷ 2 = 6 remainder 0, 6 ÷ 2 = 3 remainder 0, 3 ÷ 2 = 1 remainder 1, 1 ÷ 2 = 0 remainder 1. Reading from bottom to top: 1100001.</p>",
+            "unit": "Number Systems"
+        },
+        {
+            "id": "1.iii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Portion of information processing cycle in which computer acquires data from some source is called",
+            "options": [
+                "Input",
+                "Output",
+                "Processing",
+                "Storage"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Input</strong> is correct because the information processing cycle consists of input, processing, output, and storage. Input is the stage where data is acquired from external sources like keyboard, mouse, or sensors.</p>",
+            "unit": "Computer Fundamentals"
+        },
+        {
+            "id": "1.iv",
+            "type": "mcq",
+            "group": "A",
+            "question": "The expression Y = (A + B)(B + C)(C + A) shows the ______ operation.",
+            "options": [
+                "AND",
+                "POS",
+                "SOP",
+                "NAND"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>POS (Product of Sums)</strong> is correct because the expression shows the product (AND) of sum terms (OR operations). Each term in parentheses is a sum term, and these terms are multiplied together, making it a Product of Sums representation.</p>",
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "1.v",
+            "type": "mcq",
+            "group": "A",
+            "question": "Type of software used to create slideshow is",
+            "options": [
+                "Web design software",
+                "Presentation software",
+                "Word-processing software",
+                "Spreadsheet software"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Presentation software</strong> is correct because applications like Microsoft PowerPoint, Google Slides, or LibreOffice Impress are specifically designed to create slideshows for presentations.</p>",
+            "unit": "Application Software"
+        },
+        {
+            "id": "1.vi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Smart phone is an example of",
+            "options": [
+                "Personal computer",
+                "Analog computer",
+                "Mainframe computer",
+                "Super computer"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Personal computer</strong> is correct because smartphones are essentially small, handheld personal computers that can perform computing tasks, run applications, and connect to networks.</p>",
+            "unit": "Computer Classification"
+        },
+        {
+            "id": "1.vii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Top listed super computer is",
+            "options": [
+                "Sunway tailhulight",
+                "Sequoia",
+                "Cori",
+                "Mira"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Sunway TaihuLight</strong> is correct because at the time this question was created, Sunway TaihuLight from China was the world's fastest supercomputer according to the TOP500 list.</p>",
+            "unit": "Supercomputers"
+        },
+        {
+            "id": "1.viii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is an example of a Real Time Operating System",
+            "options": [
+                "MAC",
+                "MS-DOS",
+                "Windows 10",
+                "Process Control"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Process Control</strong> is correct because real-time operating systems are used in applications like process control, medical imaging, robotics, and aircraft systems where response time is critical. MAC, MS-DOS, and Windows 10 are general-purpose OS.</p>",
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.ix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is not an operating system?",
+            "options": [
+                "Windows",
+                "Linux",
+                "Oracle",
+                "DOS"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Oracle</strong> is correct because Oracle is a database management system (DBMS), not an operating system. Windows, Linux, and DOS are all operating systems.</p>",
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "1.x",
+            "type": "mcq",
+            "group": "A",
+            "question": "A detailed flowchart is called",
+            "options": [
+                "Stack",
+                "Macro",
+                "Micro",
+                "Union"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Micro</strong> is correct because a detailed, step-by-step flowchart showing fine details is called a micro flowchart, while a high-level overview is called a macro flowchart.</p>",
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "1.xi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Flowcharts and algorithms are used for",
+            "options": [
+                "Better programming",
+                "Easy testing and debugging",
+                "Efficient coding",
+                "All of the above"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>All of the above</strong> is correct because flowcharts and algorithms help in better program planning, make testing and debugging easier by providing a clear logic flow, and lead to more efficient coding by reducing errors.</p>",
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "1.xii",
+            "type": "mcq",
+            "group": "A",
+            "question": "The operation represented by parallelogram",
+            "options": [
+                "Input/output",
+                "Assignment",
+                "Comparison",
+                "Condition"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Input/output</strong> is correct because in flowchart symbols, a parallelogram represents input/output operations, where data is read into the program or written out from it.</p>",
+            "unit": "Flowchart Symbols"
+        },
+        {
+            "id": "1.xiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is a pictorial representation of an algorithm?",
+            "options": [
+                "Pseudocode",
+                "Program",
+                "Flowchart",
+                "None"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Flowchart</strong> is correct because a flowchart uses graphical symbols to represent the steps of an algorithm, making it a pictorial representation. Pseudocode is a text-based representation.</p>",
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "1.xiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "<b> tag makes the enclosed text bold. What is other tag to make text bold?",
+            "options": [
+                "<strong>",
+                "<dar>",
+                "<black>",
+                "<emp>"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>&lt;strong&gt;</strong> is correct because in HTML, both &lt;b&gt; and &lt;strong&gt; tags make text bold. &lt;strong&gt; also adds semantic importance to the text.</p>",
+            "unit": "HTML"
+        },
+        {
+            "id": "1.xv",
+            "type": "mcq",
+            "group": "A",
+            "question": "All html tags are must be enclosed in",
+            "options": [
+                "? And !",
+                "<And>",
+                "{ And }",
+                "# And #"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>&lt;And&gt;</strong> is correct because HTML tags are enclosed in angle brackets: opening tag &lt;tagname&gt; and closing tag &lt;/tagname&gt;.</p>",
+            "unit": "HTML"
+        },
+        {
+            "id": "1.xvi",
+            "type": "mcq",
+            "group": "A",
+            "question": "CSS stands for",
+            "options": [
+                "Cascade style sheets",
+                "Color and style sheets",
+                "Cascading style sheets",
+                "None of the above"
+            ],
+            "correct": 2,
+            "marks": 2,
+            "explanation": "<p><strong>Cascading style sheets</strong> is correct. CSS is a stylesheet language used to describe the presentation of HTML documents.</p>",
+            "unit": "CSS"
+        },
+        {
+            "id": "1.xvii",
+            "type": "mcq",
+            "group": "A",
+            "question": "If we want define style for a unique element, then which css selector will we use?",
+            "options": [
+                "Id",
+                "text",
+                "class",
+                "name"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Id</strong> is correct because the id selector in CSS is used to style a unique element. Each id must be unique within a page. Class selectors are used for multiple elements.</p>",
+            "unit": "CSS"
+        },
+        {
+            "id": "1.xviii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Inside which HTML element do we put the JavaScript?",
+            "options": [
+                "<js>",
+                "<script>",
+                "<scripting>",
+                "<javascript>"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>&lt;script&gt;</strong> is correct because JavaScript code is placed inside the &lt;script&gt; element in HTML documents.</p>",
+            "unit": "JavaScript"
+        },
+        {
+            "id": "1.xix",
+            "type": "mcq",
+            "group": "A",
+            "question": "Tags and text that are not directly displayed on the page are written in ______ section.",
+            "options": [
+                "<html>",
+                "<head>",
+                "<title>",
+                "<body>"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>&lt;head&gt;</strong> is correct because the head section contains meta-information, links to stylesheets, scripts, and the title tag. Content in the head is not displayed on the page.</p>",
+            "unit": "HTML"
+        },
+        {
+            "id": "1.xx",
+            "type": "mcq",
+            "group": "A",
+            "question": "What will the following code return: Boolean (10 > 9)",
+            "options": [
+                "NaN",
+                "true",
+                "false"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>true</strong> is correct because 10 > 9 is a true statement, and the Boolean() function converts this to the boolean value true.</p>",
+            "unit": "JavaScript"
+        },
+        {
+            "id": "1.xxi",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following CSS property is used to set the blend mode for each background layer of an element?",
+            "options": [
+                "background-blend-mode property",
+                "background-collapse property",
+                "background-transform property",
+                "background-origin property"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>background-blend-mode property</strong> is correct because the background-blend-mode property in CSS defines how background images and colors blend with each other and with the element's content.</p>",
+            "unit": "CSS"
+        },
+        {
+            "id": "1.xxii",
+            "type": "mcq",
+            "group": "A",
+            "question": "In ethical hacking and cyber security, there are ______ types of scanning.",
+            "options": [
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>3</strong> is correct because scanning in ethical hacking is typically categorized into three types: Port scanning, Network scanning, and Vulnerability scanning.</p>",
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "1.xxiii",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following is a programs that copy themselves throughout a computer or network?",
+            "options": [
+                "Worms",
+                "Trojans",
+                "Viruses",
+                "All of these"
+            ],
+            "correct": 0,
+            "marks": 2,
+            "explanation": "<p><strong>Worms</strong> is correct because worms are malicious programs that self-replicate and spread independently across networks without needing to attach to host files.</p>",
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "1.xxiv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following port and IP address scanner famous among the users?",
+            "options": [
+                "Cain and Abel",
+                "Angry IP Scanner",
+                "Snort",
+                "Ettercap"
+            ],
+            "correct": 1,
+            "marks": 2,
+            "explanation": "<p><strong>Angry IP Scanner</strong> is correct because it's a popular, open-source, cross-platform network scanner that scans IP addresses and ports.</p>",
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "1.xxv",
+            "type": "mcq",
+            "group": "A",
+            "question": "Which of the following transmission directions listed is not a legitimate channel?",
+            "options": [
+                "Simplex",
+                "Half Duplex",
+                "Full Duplex",
+                "Double Duplex"
+            ],
+            "correct": 3,
+            "marks": 2,
+            "explanation": "<p><strong>Double Duplex</strong> is correct because the legitimate data transmission modes are Simplex (one direction only), Half Duplex (both directions but one at a time), and Full Duplex (both directions simultaneously). Double Duplex is not a standard term.</p>",
+            "unit": "Data Communication"
+        },
+        {
+            "id": "2.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the meant by 1's and 2's complements of a binary number? Add the following numbers using the 2's complement method: (i) -48 and +31 (ii) -64 and +46",
+            "answer": "<p><strong>1's Complement:</strong> The 1's complement of a binary number is obtained by changing all 0s to 1s and all 1s to 0s.</p><p><strong>2's Complement:</strong> The 2's complement of a binary number is obtained by adding 1 to the 1's complement.</p><p><strong>(i) -48 and +31:</strong><br>48 in binary: 110000 (6 bits)<br>1's complement of 48: 001111<br>2's complement (-48): 010000<br>31 in binary: 011111<br>Add: 010000 + 011111 = 101111 (carry 1 discarded)<br>Result: 101111 is negative, 2's complement: 010001 = -17</p><p><strong>(ii) -64 and +46:</strong><br>64 in binary: 1000000 (7 bits)<br>1's complement: 0111111<br>2's complement (-64): 1000000<br>46 in binary: 0101110<br>Add: 1000000 + 0101110 = 1101110 (carry 1 discarded)<br>Result: 1101110 is negative, 2's complement: 0010010 = -18</p>",
+            "marks": 4,
+            "unit": "Number Systems"
+        },
+        {
+            "id": "2.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Name the gates that are used as universal gates. Explain with example.",
+            "answer": "<p><strong>Universal gates</strong> are NAND and NOR gates. These gates are called universal because any logic gate (AND, OR, NOT, XOR, etc.) can be implemented using only NAND gates or only NOR gates.</p><p><strong>Example using NAND gate:</strong><br>NOT gate: Connect both inputs of NAND together.<br>AND gate: Connect two NAND gates in series (first NAND output to both inputs of second NAND).<br>OR gate: Invert inputs using NAND NOT, then feed to another NAND.</p><p><strong>Example using NOR gate:</strong><br>NOT gate: Connect both inputs of NOR together.<br>OR gate: Connect two NOR gates in series.<br>AND gate: Invert inputs using NOR NOT, then feed to another NOR.</p>",
+            "marks": 1,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "3.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is operating system?",
+            "answer": "<p><strong>Operating System (OS)</strong> is system software that acts as an interface between the user and computer hardware. It manages computer resources such as CPU, memory, disk drives, and I/O devices.</p><p>The OS provides a platform for application programs to run and handles tasks like process management, memory management, file system management, and security.</p>",
+            "marks": 3,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "3.b",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the basic services provided by the operating system? What is CPU and I/O bound jobs?",
+            "answer": "<p><strong>Basic services provided by OS:</strong></p><ul><li>Program execution - loading programs into memory and running them</li><li>I/O operations - managing input/output devices</li><li>File system manipulation - creating, deleting, reading, writing files</li><li>Communication - data transfer between processes</li><li>Error detection and handling</li><li>Resource allocation - allocating CPU time, memory space to processes</li><li>Protection and security</li></ul><p><strong>CPU bound jobs:</strong> Processes that spend most of their time using the CPU, performing computations, with few I/O operations.</p><p><strong>I/O bound jobs:</strong> Processes that spend more time performing I/O operations than using the CPU, often waiting for user input or disk operations.</p>",
+            "marks": 4,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "3.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the main advantages of algorithm? Write an algorithm that will read input temperature in Centigrade and convert to Fahrenheit. Draw a Flowchart that will reads two values and determines the largest value and prints the largest value.",
+            "answer": "<p><strong>Advantages of algorithms:</strong></p><ul><li>Clear and logical step-by-step problem solving</li><li>Independent of programming language</li><li>Easy to understand and communicate</li><li>Helps in debugging and testing</li><li>Provides reusability</li><li>Efficient coding and documentation</li></ul><p><strong>Algorithm: Centigrade to Fahrenheit Conversion</strong></p><p>Step 1: Start<br>Step 2: Input temperature in Centigrade (C)<br>Step 3: Calculate F = (C × 9/5) + 32<br>Step 4: Output Fahrenheit (F)<br>Step 5: Stop</p><p><strong>Flowchart: Find Largest of Two Numbers</strong></p><p><em>Refer to flowchart in textbook - symbols should include:</em><br>Start → Input A, B → Decision: A > B? → If Yes: Output A → End<br>                               → If No: Output B → End</p>",
+            "marks": 3,
+            "unit": "Programming Logic"
+        },
+        {
+            "id": "3.d",
+            "type": "saq",
+            "group": "B",
+            "question": "What is time sharing operating system?",
+            "answer": "<p><strong>Time Sharing Operating System</strong> is a type of OS where CPU time is shared among multiple users simultaneously. Each user gets a time slice or quantum of CPU time.</p><p>The OS switches rapidly between users, giving each user the illusion that they have dedicated access to the system. Examples include UNIX, Linux, and modern multi-user systems.</p><p>Key features: Interactive processing, quick response time, prevents monopoly of system resources by any single user.</p>",
+            "marks": 3,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "4.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is malicious software? Give example of malicious program.",
+            "answer": "<p><strong>Malicious software (Malware)</strong> is any software intentionally designed to cause damage to a computer system, server, network, or device. It disrupts operations, steals sensitive information, or gains unauthorized access.</p><p><strong>Examples of malicious programs:</strong> Viruses, worms, Trojan horses, ransomware, spyware, adware, and rootkits.</p><p><strong>Specific example:</strong> ILOVEYOU virus - a worm that spread via email attachments in 2000, overwriting files and stealing passwords.</p>",
+            "marks": 3,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "4.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Define a worm.",
+            "answer": "<p><strong>Worm</strong> is a type of malware that self-replicates and spreads independently across networks without needing to attach to host files or programs.</p><p>Unlike viruses, worms don't require user action to spread. They exploit vulnerabilities in operating systems or network services to propagate, consuming bandwidth and system resources.</p>",
+            "marks": 3,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "4.c",
+            "type": "saq",
+            "group": "B",
+            "question": "List some properties of virus.",
+            "answer": "<p><strong>Properties of viruses:</strong></p><ul><li><strong>Self-replication:</strong> Can copy themselves to other programs or files</li><li><strong>Host dependency:</strong> Need a host program to attach to</li><li><strong>Activation mechanism:</strong> Triggered by specific events (date, time, user action)</li><li><strong>Payload delivery:</strong> Carries malicious code that executes when activated</li><li><strong>Stealth:</strong> Attempts to hide from detection</li><li><strong>Polymorphism:</strong> Some change their code to avoid signature detection</li><li><strong>Latency:</strong> Can remain dormant before activating</li><li><strong>Transmission:</strong> Spreads through file sharing, downloads, email attachments</li></ul>",
+            "marks": 4,
+            "unit": "Cyber Security"
+        },
+        {
+            "id": "5.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Draw the logic diagram of an Ex-OR gate and discuss its operation.",
+            "answer": "<p><strong>EX-OR (Exclusive-OR) Gate Logic Diagram:</strong></p><p><em>Refer to diagram in textbook - symbol resembles OR gate with an additional curved line on input side.</em></p><p><strong>Truth Table:</strong><br>A  B  |  Y<br>0  0  |  0<br>0  1  |  1<br>1  0  |  1<br>1  1  |  0</p><p><strong>Operation:</strong> EX-OR gate outputs HIGH (1) only when an odd number of inputs are HIGH. For 2-input EX-OR, output is 1 when inputs are different, and 0 when inputs are same.</p><p>Boolean expression: Y = A ⊕ B = A'B + AB'</p>",
+            "marks": 2,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "5.b",
+            "type": "saq",
+            "group": "B",
+            "question": "What do you mean by client server architecture? Explain.",
+            "answer": "<p><strong>Client-Server Architecture</strong> is a distributed computing model where tasks are divided between service providers (servers) and service requesters (clients).</p><p><strong>Components:</strong></p><ul><li><strong>Client:</strong> User-facing device that requests services (web browser, email client)</li><li><strong>Server:</strong> Central computer that provides services (web server, database server)</li><li><strong>Network:</strong> Communication medium between client and server</li></ul><p><strong>Working:</strong> Client sends request to server, server processes the request and sends back the response. Servers are always on, handling multiple client requests simultaneously.</p><p><strong>Examples:</strong> Web browsing (browser client + web server), Email (Outlook client + mail server), Database applications.</p>",
+            "marks": 2,
+            "unit": "Computer Networks"
+        },
+        {
+            "id": "5.c",
+            "type": "saq",
+            "group": "B",
+            "question": "Prove that: ABC + ABC + ABC + ABC = C",
+            "answer": "<p><strong>Proof:</strong> Given expression: $\\overline{A}\\overline{B}C + \\overline{A}B\\overline{C} + A\\overline{B}\\overline{C} + AB\\overline{C}$</p><p>Step 1: Group terms with $\\overline{C}$:<br>$\\overline{A}B\\overline{C} + A\\overline{B}\\overline{C} + AB\\overline{C}$</p><p>Step 2: Factor $\\overline{C}$:<br>$\\overline{C}(\\overline{A}B + A\\overline{B} + AB)$</p><p>Step 3: Note that $\\overline{A}B + A\\overline{B} + AB = \\overline{A}B + A(\\overline{B} + B) = \\overline{A}B + A$</p><p>Step 4: $\\overline{A}B + A = A + B$ (by Boolean algebra)</p><p>Step 5: So expression becomes: $\\overline{C}(A + B) + \\overline{A}\\overline{B}C$</p><p>Step 6: This equals $A\\overline{C} + B\\overline{C} + \\overline{A}\\overline{B}C$</p><p>Step 7: Using consensus theorem, this simplifies to C</p><p>Therefore: $\\overline{A}\\overline{B}C + \\overline{A}B\\overline{C} + A\\overline{B}\\overline{C} + AB\\overline{C} = C$</p>",
+            "marks": 4,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "6.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is a gray code? Why is it important? Express the following number in Gray code form: (i) 15 (ii) 27",
+            "answer": "<p><strong>Gray Code</strong> is a binary numeral system where two successive values differ in only one bit (binary digit). It is also known as reflected binary code.</p><p><strong>Importance:</strong></p><ul><li>Reduces errors in digital communications and encoders</li><li>Used in Karnaugh maps for logic simplification</li><li>Essential in shaft encoders to prevent multiple bit changes</li><li>Minimizes switching noise in digital circuits</li></ul><p><strong>Conversion method:</strong> Gray code = Binary XOR (Binary shifted right by 1)</p><p><strong>(i) 15 in Gray code:</strong><br>15 in binary: 1111<br>Gray code: 1111 XOR 0111 = 1000</p><p><strong>(ii) 27 in Gray code:</strong><br>27 in binary: 11011<br>Gray code: 11011 XOR 01101 = 10110</p>",
+            "marks": 5,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "6.b",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the advantages of multiprocessor system?",
+            "answer": "<p><strong>Advantages of Multiprocessor Systems:</strong></p><ul><li><strong>Increased throughput:</strong> More tasks completed per unit time due to parallel processing</li><li><strong>Enhanced reliability:</strong> Failure of one processor doesn't stop the system (graceful degradation)</li><li><strong>Better performance:</strong> Complex tasks can be divided among processors</li><li><strong>Cost savings:</strong> Multiple processors can share peripherals and power supplies</li><li><strong>Scalability:</strong> Can add more processors to increase computing power</li><li><strong>Parallel processing:</strong> True parallel execution of multiple tasks</li><li><strong>Load sharing:</strong> Workload distributed evenly among processors</li><li><strong>Resource sharing:</strong> Memory and I/O devices can be shared efficiently</li></ul>",
+            "marks": 3,
+            "unit": "Computer Architecture"
+        },
+        {
+            "id": "7.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Write a program to create HTML table with the following output: Name | Department | Mobile Number | Rahul Das | DME | 9123443518 | Sanjib Paul | DCE | 8513546728 | Sibnath Dey | DSE | 9175354578",
+            "answer": "<pre><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Student Table&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;table border=\"1\"&gt;\n        &lt;tr&gt;\n            &lt;th&gt;Name&lt;/th&gt;\n            &lt;th&gt;Department&lt;/th&gt;\n            &lt;th&gt;Mobile Number&lt;/th&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;td&gt;Rahul Das&lt;/td&gt;\n            &lt;td&gt;DME&lt;/td&gt;\n            &lt;td&gt;9123443518&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;td&gt;Sanjib Paul&lt;/td&gt;\n            &lt;td&gt;DCE&lt;/td&gt;\n            &lt;td&gt;8513546728&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n            &lt;td&gt;Sibnath Dey&lt;/td&gt;\n            &lt;td&gt;DSE&lt;/td&gt;\n            &lt;td&gt;9175354578&lt;/td&gt;\n        &lt;/tr&gt;\n    &lt;/table&gt;\n&lt;/body&gt;\n&lt;/html&gt;</code></pre>",
+            "marks": 5,
+            "unit": "HTML"
+        },
+        {
+            "id": "7.b",
+            "type": "saq",
+            "group": "B",
+            "question": "What is a bootstrap program in OS? What is Batch Operating System?",
+            "answer": "<p><strong>Bootstrap Program:</strong> The bootstrap program (bootloader) is the first code executed when a computer starts. It initializes system components, performs hardware checks (POST), locates the operating system kernel, loads it into memory, and transfers control to the OS. It's stored in ROM or the first sector of boot disk.</p><p><strong>Batch Operating System:</strong> A batch OS processes jobs in groups (batches) without user interaction. Users submit jobs, and the OS executes them sequentially. There's no direct communication between user and computer during execution.</p><p><strong>Characteristics:</strong> No interaction during execution, suitable for repetitive tasks, jobs with similar needs are batched together, uses job scheduling.</p><p><strong>Examples:</strong> Early IBM mainframe systems like OS/360.</p>",
+            "marks": 5,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "8.a",
+            "type": "saq",
+            "group": "B",
+            "question": "What is the difference between static and dynamic web pages?",
+            "answer": "<p><strong>Static Web Pages:</strong></p><ul><li>Fixed content that doesn't change unless manually updated</li><li>Written in HTML, CSS, JavaScript</li><li>Same content displayed to all users</li><li>Faster to load, simpler to host</li><li>No server-side processing</li><li>Examples: Company brochures, portfolio sites</li></ul><p><strong>Dynamic Web Pages:</strong></p><ul><li>Content changes based on user interaction or data</li><li>Uses server-side scripting (PHP, ASP, JSP) and databases</li><li>Can display personalized content</li><li>Slower initially due to server processing</li><li>Content can be updated in real-time</li><li>Examples: E-commerce sites, social media, banking portals</li></ul><p><strong>Key Difference:</strong> Static pages are pre-built and served as-is, while dynamic pages are generated on-the-fly based on user requests and database content.</p>",
+            "marks": 3,
+            "unit": "Web Technology"
+        },
+        {
+            "id": "8.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Write a short note on Types of OS.",
+            "answer": "<p><strong>Types of Operating Systems:</strong></p><p><strong>1. Batch OS:</strong> Jobs with similar needs are grouped and executed without user interaction. Example: IBM OS/360.</p><p><strong>2. Time-Sharing OS:</strong> Multiple users share CPU time simultaneously. Example: UNIX, Linux.</p><p><strong>3. Distributed OS:</strong> Multiple interconnected computers appear as a single system. Example: LOCUS.</p><p><strong>4. Network OS:</strong> Runs on a server and manages network functions. Example: Windows Server, Novell NetWare.</p><p><strong>5. Real-Time OS (RTOS):</strong> Provides immediate response for critical applications. Example: VxWorks, QNX.</p><p><strong>6. Multiprocessor OS:</strong> Manages multiple processors in a single system. Example: Windows NT, Linux SMP.</p><p><strong>7. Mobile OS:</strong> Designed for smartphones and tablets. Example: Android, iOS.</p><p><strong>8. Embedded OS:</strong> Built into devices like washing machines, cars. Example: Embedded Linux.</p>",
+            "marks": 5,
+            "unit": "Operating Systems"
+        },
+        {
+            "id": "8.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What are the advantages of using JavaScript?",
+            "answer": "<p><strong>Advantages of JavaScript:</strong></p><ul><li><strong>Client-side execution:</strong> Reduces server load by processing on user's browser</li><li><strong>Interactive web pages:</strong> Creates dynamic content and responsive interfaces</li><li><strong>Easy to learn:</strong> Simple syntax similar to C and Java</li><li><strong>Fast performance:</strong> Executes quickly in browser</li><li><strong>Rich interfaces:</strong> Supports drag-drop, sliders, animations</li><li><strong>Event handling:</strong> Responds to user actions immediately</li><li><strong>Form validation:</strong> Validates user input before server submission</li><li><strong>Browser compatibility:</strong> Works on all modern browsers</li><li><strong>Frameworks and libraries:</strong> Extensive ecosystem (React, Angular, Vue)</li><li><strong>Versatility:</strong> Can be used for front-end and back-end (Node.js)</li></ul>",
+            "marks": 2,
+            "unit": "JavaScript"
+        },
+        {
+            "id": "9.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Write a JavaScript Program to Find HCF or GCD.",
+            "answer": "<pre><code>&lt;script&gt;\nfunction findGCD(a, b) {\n    // Using Euclidean algorithm\n    a = Math.abs(a);\n    b = Math.abs(b);\n    \n    while (b != 0) {\n        let temp = b;\n        b = a % b;\n        a = temp;\n    }\n    return a;\n}\n\n// Example usage\nlet num1 = 48;\nlet num2 = 18;\nlet gcd = findGCD(num1, num2);\nconsole.log(\"GCD of \" + num1 + \" and \" + num2 + \" is: \" + gcd);\n\ndocument.write(\"&lt;h3&gt;GCD/HCF Finder&lt;/h3&gt;\");\ndocument.write(\"GCD of \" + num1 + \" and \" + num2 + \" is: \" + gcd);\n&lt;/script&gt;</code></pre><p>This program uses the Euclidean algorithm to find the GCD by repeatedly replacing the larger number with the remainder when dividing by the smaller number until remainder becomes zero.</p>",
+            "marks": 5,
+            "unit": "JavaScript"
+        },
+        {
+            "id": "9.b",
+            "type": "saq",
+            "group": "B",
+            "question": "In how many ways a JavaScript code can be involved in an HTML file?",
+            "answer": "<p><strong>Three ways to include JavaScript in HTML:</strong></p><p><strong>1. Inline JavaScript:</strong> Using &lt;script&gt; tags directly in HTML</p><pre><code>&lt;script&gt;\n    alert('Hello World');\n&lt;/script&gt;</code></pre><p><strong>2. External JavaScript:</strong> Linking to external .js file</p><pre><code>&lt;script src=\"script.js\"&gt;&lt;/script&gt;</code></pre><p><strong>3. Inline event handlers:</strong> Within HTML elements (not recommended)</p><pre><code>&lt;button onclick=\"alert('Clicked!')\"&gt;Click Me&lt;/button&gt;</code></pre><p>External JavaScript is preferred for better organization, reusability, and caching.</p>",
+            "marks": 3,
+            "unit": "JavaScript"
+        },
+        {
+            "id": "9.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What is the difference between the operators == & ===",
+            "answer": "<p><strong>== (Equality Operator):</strong> Compares values after type conversion. It performs type coercion, meaning it converts operands to the same type before comparison.</p><pre><code>5 == \"5\"     // true (string converted to number)\n0 == false   // true (false converted to 0)\nnull == undefined // true</code></pre><p><strong>=== (Strict Equality Operator):</strong> Compares both value and type without type conversion. Returns true only if both value and type are identical.</p><pre><code>5 === \"5\"    // false (different types)\n0 === false  // false (different types)\nnull === undefined // false (different types)\n5 === 5      // true (same value and type)</code></pre><p><strong>Best practice:</strong> Use === to avoid unexpected type coercion errors.</p>",
+            "marks": 2,
+            "unit": "JavaScript"
+        },
+        {
+            "id": "10.a",
+            "type": "saq",
+            "group": "B",
+            "question": "Prove that: AB + AC + ABC(AB + C) = 1",
+            "answer": "<p><strong>Proof:</strong> Given expression: $AB + AC + ABC(AB + C)$</p><p>Step 1: Expand the last term:<br>$ABC(AB + C) = ABC \\cdot AB + ABC \\cdot C$</p><p>Step 2: Simplify:<br>$ABC \\cdot AB = AABBC = ABC$ (since AA = A, BB = B)<br>$ABC \\cdot C = ABCC = ABC$ (since CC = C)</p><p>Step 3: So $ABC(AB + C) = ABC + ABC = ABC$</p><p>Step 4: The expression becomes:<br>$AB + AC + ABC$</p><p>Step 5: Factor A:<br>$A(B + C + BC)$</p><p>Step 6: Using Boolean algebra, $B + C + BC = B + C$ (by absorption law)</p><p>Step 7: So we have $A(B + C)$</p><p>Step 8: This is not equal to 1 generally. There appears to be an error in the question or additional conditions are needed.</p><p>Note: For this to equal 1, we need $A=1$ and $(B+C)=1$, which is not always true. The given expression doesn't simplify to 1 universally.</p>",
+            "marks": 5,
+            "unit": "Digital Logic"
+        },
+        {
+            "id": "10.b",
+            "type": "saq",
+            "group": "B",
+            "question": "Write short note on type of software.",
+            "answer": "<p><strong>Types of Software:</strong></p><p><strong>1. System Software:</strong> Manages hardware and provides platform for applications.</p><ul><li>Operating Systems (Windows, Linux, macOS)</li><li>Device Drivers</li><li>Utilities (antivirus, disk tools)</li><li>Language Translators (compilers, interpreters)</li></ul><p><strong>2. Application Software:</strong> Performs specific tasks for users.</p><ul><li>Word processors (MS Word)</li><li>Spreadsheets (MS Excel)</li><li>Presentation software (PowerPoint)</li><li>Database software (Oracle, MySQL)</li><li>Web browsers (Chrome, Firefox)</li></ul><p><strong>3. Programming Software:</strong> Tools for developers.</p><ul><li>IDEs (Visual Studio, Eclipse)</li><li>Code editors (VS Code, Sublime)</li><li>Debuggers</li><li>Version control (Git)</li></ul><p><strong>4. Middleware:</strong> Connects different software components.</p><p><strong>5. Firmware:</strong> Software embedded in hardware devices.</p>",
+            "marks": 3,
+            "unit": "Software Engineering"
+        },
+        {
+            "id": "10.c",
+            "type": "saq",
+            "group": "B",
+            "question": "What is a denial of service attack?",
+            "answer": "<p><strong>Denial of Service (DoS) Attack</strong> is a cyber attack where malicious actors flood a target system, server, or network with excessive traffic or requests to overwhelm its resources, making it unavailable to legitimate users.</p><p><strong>Types:</strong></p><ul><li><strong>Volume-based attacks:</strong> Flood with massive traffic (ICMP floods, UDP floods)</li><li><strong>Protocol attacks:</strong> Exploit protocol weaknesses (SYN floods, Ping of Death)</li><li><strong>Application layer attacks:</strong> Target specific applications (HTTP floods)</li></ul><p><strong>DDoS (Distributed Denial of Service):</strong> Multiple compromised systems (botnet) attack simultaneously from different locations, making it harder to block.</p><p><strong>Impact:</strong> Service disruption, financial loss, reputation damage, and potential data breaches.</p><p><strong>Prevention:</strong> Firewalls, intrusion detection systems, traffic filtering, and cloud-based protection services.</p>",
+            "marks": 2,
+            "unit": "Cyber Security"
+        }
+    ]
+}
