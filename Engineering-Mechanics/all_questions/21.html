@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Engineering Mechanics · 2021 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .marks-info {
+            font-size: 1.1rem;
+            background: #f2f2f2;
+            padding: 8px 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2c3e50;
+            font-weight: 500;
+        }
+        /* font size control row */
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .sub-question {
+            margin: 12px 0 8px 35px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        @media (max-width:550px) {
+            .sub-question { margin-left: 20px; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 20px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>105(S)</span>
+        <span>ENGINEERING MECHANICS</span>
+    </div>
+    <div class="header-sub">
+        <span>Time Allowed: 3 Hours</span>
+        <span>Full Marks: 70</span>
+    </div>
+    <div class="marks-info">
+        ⚡ Answer to Question No.1 is compulsory and Answer any five questions from the rest.
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">A. State whether the following statements are True or False (any ten):</span>
+            <div style="margin:15px 0 20px 35px;">
+                <div><strong>10x1</strong></div>
+                <div style="margin-top:10px;">i) A roller support has reaction normal to the support plane.</div>
+                <div>ii) If the law of lifting machine is \(\mathrm{P} = 0.04\mathrm{W} + 20\) the maximum mechanical advantage is 25.</div>
+                <div>iii) If two equal forces each of magnitude P act at an angle \(\theta\) then their resultant will be \(\mathrm{P}\sqrt{2(1 - \cos\theta)}\)</div>
+                <div>iv) In SI, the unit of co- efficient of friction is \(\mathrm{Nm - 1}\)</div>
+                <div>v) Centroid of a triangular lamina lies at a point where its three medians meet.</div>
+                <div>vi) The normal force of an object lying on an inclined plane will be lesser than the normal force acting on it, when it rests horizontally.</div>
+                <div>vii) Mechanical advantage is the ability of a machine to multiply force.</div>
+                <div>viii) A body isolated from all other members which are connected to it is called Free body.</div>
+                <div>ix) In case of a lifting machine load vs. effort graph is a curve.</div>
+                <div>x) In locating centroid of a body, we apply principle of moments.</div>
+                <div>xi) The C.G. of a semicircle lies at a distance from its base measured along the vertical radius is \(4\pi /3\pi\)</div>
+                <div>xii) Rotational tendency of a force is called resultant.</div>
+            </div>
+        </div>
+
+        <div class="q">
+            <span class="q-text">B. Fill in the blanks (any ten):</span>
+            <div style="margin:15px 0 20px 35px;">
+                <div><strong>10x1</strong></div>
+                <div style="margin-top:10px;">i) The angle which an inclined surface makes with the horizontal when a body placed on it is on the point of moving down is known as _______________</div>
+                <div>ii) Instead of simple wheel and axle, differential wheel and axle gives _______________ V.R.</div>
+                <div>iii) In the equation \(\mathrm{P} = \mathrm{mW} + \mathrm{C}\) of a lifting machine, C' indicates the effort required to overcome friction under _______________</div>
+                <div>iv) The C.G. of an equilateral triangle with each side 'a' is at a distance _______________ from any of the three sides.</div>
+                <div>v) If the resultant of two forces P and Q (acting at an angle \(\theta\) ) makes an angle \(\alpha\) with P, then \(\tan \alpha =\) _______________</div>
+                <div>vi) If the arm of a couple is doubled, its moment will be _______________</div>
+                <div>vii) Maximum value of static friction is known as _______________</div>
+                <div>viii) The units which are used for measurement of fundamental quantities i.e. mass, length and time, are known as _______________</div>
+                <div>ix) The body which does not deform under the action of applied forces is known as _______________</div>
+                <div>x) If for a number of coplanar concurrent forces the force polygon is closed the forces are in _______________</div>
+                <div>xii) When frictional force (F) increases, the ratio between F and normal reaction (N) _______________</div>
+                <div>xiii) If efficiency of a lifting machine is kept constant, its velocity ratio is directly proportional to its _______________</div>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <hr>
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">a) State and explain Varignon's theorem.</span><br>
+            <span class="q-text">b) An oil drum of \(400\mathrm{mm}\) diameter and \(1.5\mathrm{m}\) long is to be rolled across a footstep of \(100\mathrm{mm}\) high. Find the minimum push required at the top of the drum. Take density of oil as \(1\mathrm{kg / litre}\) . Neglect weight of the drum.</span>
+            <div class="marks"><strong>4+6</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">A body resting on a rough horizontal plane, required a pull of 180N inclined at \(30^{\circ}\) to the plane just to move it. It was found that a push of 200N inclined at \(30^{\circ}\) to the plane just removed the body. Determine the weight of the body and the coefficient of friction.</span>
+            <div class="marks"><strong>10</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">a) Define centre of gravity and centroid.</span><br>
+            <span class="q-text">b) An I-section has the following dimensions in mm units:</span>
+            <div style="margin-left:35px; margin-top:5px; margin-bottom:5px;">
+                Bottom flange \(= 250\times 100\)<br>
+                Top flange \(= 150\times 50\)<br>
+                Web \(= 400\times 50\)
+            </div>
+            <span class="q-text">Determine mathematically the position of centre of gravity of the section.</span>
+            <div class="marks"><strong>4+6</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">An uniform ladder \(5\mathrm{m}\) long rests on a horizontal ground floor and leans against a smooth vertical wall at angle of \(60^{\circ}\) with the horizontal. The weight of the ladder is \(900\mathrm{N}\) acts at the middle. The ladder is at the point of sliding, when a man weighing \(750\mathrm{N}\) stands on a rung \(1.5\mathrm{m}\) from the bottom of the ladder. Calculate the coefficient of friction between the ladder and the floor.</span>
+            <div class="marks"><strong>10</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">a) Define velocity ratio, mechanical advantage and efficiency of a simple lifting machine.</span><br>
+            <span class="q-text">b) In a differential wheel and axle, the diameter of the effort wheel is \(40\mathrm{cm}\) . The radii of the axles are \(15\mathrm{cm}\) and \(10\mathrm{cm}\) respectively. Find the load which can be lifted by an effort of \(100\mathrm{N}\) , assuming the efficiency of the machine to be \(75\%\) .</span>
+            <div class="marks"><strong>4+6</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">In a simple machine, whose velocity ratio is 40, a load of \(1500\mathrm{N}\) is lifted by an effort of \(100\mathrm{N}\) and a load of \(2500\mathrm{N}\) is lifted by an effort of \(160\mathrm{N}\) . Find the law of machine. Also calculate the load that could be lifted by an effort of \(200\mathrm{N}\) .</span>
+            <div class="marks"><strong>10</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            <span class="q-text">a) Define and explain parallelogram law of forces.</span><br>
+            <span class="q-text">b) Two forces act an angle of \(120^{\circ}\) . The bigger force is of \(40\mathrm{N}\) and the resultant is perpendicular to the smaller one, find the smaller force.</span>
+            <div class="marks"><strong>4+6</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            <span class="q-text">a) State and explain Lami's theorem.</span><br>
+            <span class="q-text">b) Determine the horizontal force P to be applied to a block of weight \(450\mathrm{N}\) to hold it in position on a smooth inclined plane which makes an angle \(30^{\circ}\) with horizontal.</span>
+            <div class="marks"><strong>4+6</strong></div>
+        </div>
+
+        <!-- ========== QUESTION 10 ========== -->
+        <div class="q">
+            <span class="q-num">10.</span>
+            <span class="q-text">A simply supported beam AB of span \(4\mathrm{m}\) is carrying point loads of 5, 2 and \(3\mathrm{kN}\) at 1, 2 and \(3\mathrm{m}\) from the support A. Calculate the reactions at the supports A & B.</span>
+            <div class="marks"><strong>10</strong></div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            https://www.wbscetonline.com
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

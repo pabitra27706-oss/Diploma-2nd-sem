@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2nd Semester Study Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-bg">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+            <div class="floating-shape shape-5"></div>
+        </div>
+        <div class="welcome-content">
+            <div class="welcome-badge">Semester 2</div>
+            <div class="welcome-logo">📚</div>
+            <h1 class="welcome-title">Study Hub</h1>
+            <p class="welcome-subtitle">Your smart companion for 2nd semester preparation</p>
+            <div class="welcome-stats">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Subjects</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">32</div>
+                    <div class="stat-label">Units</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">PYQs</div>
+                </div>
+            </div>
+            <button class="start-btn" onclick="startApp()">
+                <span>Get Started</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            <p class="welcome-note">Tap to explore all study materials</p>
+        </div>
+    </div>
+    
+    <!-- Main App Container -->
+    <div class="container" id="appContainer" style="display: none;">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <!-- Header -->
+        <div class="header">
+            <button class="back-btn hidden" id="backBtn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-content">
+                <div class="title" id="screenTitle">Subjects</div>
+                <div class="breadcrumb" id="breadcrumb">Choose a subject to begin</div>
+            </div>
+            <button class="more-btn" onclick="openMorePanel()">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+        
+        <!-- Screen 1: Subjects -->
+        <div class="screen active" id="screen1">
+            <div class="subject-grid" id="subjectGrid"></div>
+        </div>
+        
+        <!-- Screen 2: Content Type -->
+        <div class="screen" id="screen2">
+            <div class="selected-banner" id="selectedSubjectBanner"></div>
+            <div class="content-grid" id="contentGrid"></div>
+        </div>
+        
+        <!-- Screen 3: Content Items -->
+        <div class="screen" id="screen3">
+            <div class="selected-banner" id="selectedInfoBanner"></div>
+            <div class="content-list" id="contentList"></div>
+        </div>
+        
+        <!-- More Panel Overlay -->
+        <div class="overlay" id="moreOverlay" onclick="closeMorePanel()"></div>
+        
+        <!-- More Panel -->
+        <div class="more-panel" id="morePanel">
+            <div class="panel-handle"></div>
+            <div class="panel-header">
+                <h3><i class="fas fa-info-circle"></i> More Options</h3>
+                <button class="close-btn" onclick="closeMorePanel()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="panel-content" id="morePanelContent"></div>
+        </div>
+        
+        <!-- Footer Navigation -->
+        <div class="footer" id="appFooter">
+            <button class="nav-btn active" id="navSubjects" onclick="navigateTo(1)">
+                <i class="fas fa-book-open"></i>
+                <span>Subjects</span>
+            </button>
+            <button class="nav-btn disabled" id="navType" onclick="navigateTo(2)">
+                <i class="fas fa-folder-open"></i>
+                <span>Type</span>
+            </button>
+            <button class="nav-btn disabled" id="navContent" onclick="navigateTo(3)">
+                <i class="fas fa-file-alt"></i>
+                <span>Content</span>
+            </button>
+            <button class="nav-btn" id="navHome" onclick="goHome()">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Engineering Mechanics · 2022 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .marks-info {
+            font-size: 1.1rem;
+            background: #f2f2f2;
+            padding: 8px 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2c3e50;
+            font-weight: 500;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            text-decoration: underline;
+        }
+        /* font size control row */
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 8px 0 4px 35px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .subquestion {
+            margin: 12px 0 8px 35px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        /* Compact image figure box */
+        .figure-box {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px dashed #999;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 300px;  /* Smaller image */
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .figure-caption {
+            margin-top: 5px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 20px; }
+            .subquestion { margin-left: 20px; }
+            .figure-box img { max-width: 100%; } /* Full width on mobile */
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+            .figure-box { border: none; background: none; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>205(N)</span>
+        <span>ENGINEERING MECHANICS</span>
+    </div>
+    <div class="header-sub">
+        <span>November 2022</span>
+        <span>Time Allowed: 2.5 Hours · Full Marks: 60</span>
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== GROUP A ========== -->
+        <div class="group-title">Group-A</div>
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Choose the correct alternatives (Answer any ten)</span>
+            <div class="marks">[1 × 10 = 10]</div>
+            
+            <div class="subquestion">i) Moment of a force</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Varies directly with its distance from the pivot</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Varies inversely with its distance from the pivot</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Is independent of its distance from the pivot</span>
+                <span class="opt"><span class="opt-marker">(d)</span> None of the above</span>
+            </div>
+
+            <div class="subquestion">ii) A couple consist of</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Two like parallel forces of same magnitudes</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Two like parallel forces of different magnitudes</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Two unlike parallel forces of same magnitudes</span>
+                <span class="opt"><span class="opt-marker">(d)</span> Two unlike parallel forces of different magnitudes</span>
+            </div>
+
+            <div class="subquestion">iii) Lami's theorem is applicable to</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Coplanar forces</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Concurrent forces</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Coplanar and concurrent forces</span>
+                <span class="opt"><span class="opt-marker">(d)</span> Like parallel forces</span>
+            </div>
+
+            <div class="subquestion">iv) In linear motion, the rotational analogue of force is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Torque</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Couple</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Moment of inertia</span>
+                <span class="opt"><span class="opt-marker">(d)</span> None of the above</span>
+            </div>
+
+            <div class="subquestion">v) If a body is in equilibrium, we may conclude that</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> No force is acting on it is zero</span>
+                <span class="opt"><span class="opt-marker">(b)</span> The moment of the forces about any point is zero</span>
+                <span class="opt"><span class="opt-marker">(c)</span> The resultant of all the forces acting on it is zero</span>
+                <span class="opt"><span class="opt-marker">(d)</span> Both (b) and (c)</span>
+            </div>
+
+            <div class="subquestion">vi) Co-efficient of friction is the ratio of</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Normal reaction to limiting friction</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Limiting friction to the weight of the body to be moved</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Limiting friction to normal reaction</span>
+                <span class="opt"><span class="opt-marker">(d)</span> None of the above</span>
+            </div>
+
+            <div class="subquestion">vii) Friction always</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Opposes motion</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Helps in moving the objects</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Opposes relative motion</span>
+                <span class="opt"><span class="opt-marker">(d)</span> None of these</span>
+            </div>
+
+            <div class="subquestion">viii) Axis passing through the centroid is known as</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Parallel axis</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Perpendicular axis</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Centroidal axis</span>
+                <span class="opt"><span class="opt-marker">(d)</span> None of these</span>
+            </div>
+
+            <div class="subquestion">ix) To find out the centroid of the given triangular area (height = 90, base = 60), \(\bar{y} =\)</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 30</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 20</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 45</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 15</span>
+            </div>
+
+            <div class="subquestion">x) The velocity ratio of a simple wheel and axle with 'D' and 'd' as the diameters of effort wheel and load axle, is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> \(D + d\)</span>
+                <span class="opt"><span class="opt-marker">(b)</span> \(D - d\)</span>
+                <span class="opt"><span class="opt-marker">(c)</span> \(D \times d\)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> \(D / d\)</span>
+            </div>
+
+            <div class="subquestion">xi) In simple lifting machine, Load vs. Effort graph is -</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Straight-line</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Parabolic curve</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Hyperbolic curve</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+            </div>
+
+            <div class="subquestion">xii) In a simple lifting machine, the following parameter remains constant -</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Efficiency</span>
+                <span class="opt"><span class="opt-marker">(b)</span> velocity ratio</span>
+                <span class="opt"><span class="opt-marker">(c)</span> mechanical advantage</span>
+                <span class="opt"><span class="opt-marker">(d)</span> All of these</span>
+            </div>
+
+            <div class="subquestion">xiii) Newton's first law of motion gives the concept of</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Work</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Force</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Inertia</span>
+                <span class="opt"><span class="opt-marker">(d)</span> Energy</span>
+            </div>
+
+            <div class="subquestion">xiv) A jet engine works on the principle of conservation of</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Mass</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Energy</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Linear Momentum</span>
+                <span class="opt"><span class="opt-marker">(d)</span> Angular Momentum</span>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">Fill in the blanks (Answer any ten)</span>
+            <div class="marks">[1×10=10]</div>
+            <div style="margin:15px 0 20px 35px;">
+                <div>i) _______________ relates to bodies in motion without any reference to forces.</div>
+                <div>ii) A body which does not deform under the action of applied forces is called the _______________</div>
+                <div>iii) _______________ is a method of designating a force by writing two capital letters on either side of the force.</div>
+                <div>iv) Maximum value of static friction is known as _______________ friction.</div>
+                <div>v) The maximum angle which an inclined surface makes with horizontal when a body placed freely on it, is just on the verge of moving down; is called angle of _______________</div>
+                <div>vi) A lifting machine is said to be reversible if its efficiency is _______________ than \(50\%\)</div>
+                <div>vii) Efficiency of a self-locking lifting machine is _______________</div>
+                <div>viii) The centre of gravity a \(T\)-section \(100\mathrm{mm}\times 150\mathrm{mm}\times 50\mathrm{mm}\) from its bottom is _______________</div>
+                <div>ix) Fictional force encountered after commencement of motion is called _______________</div>
+                <div>x) In actual machines, Mechanical advantage is _______________ than velocity ratio.</div>
+                <div>xi) Unit of angular velocity is _______________</div>
+                <div>xii) Final velocity of a stone, falling freely from a height of \(5\mathrm{m}\) to the ground, will be _______________ m/s.</div>
+                <div>xiii) Linear velocity is the product of angular velocity and _______________</div>
+                <div>xiv) The energy possessed by a body, for doing work by virtue of its position, is called _______________</div>
+                <div>xv) A man lifts a suitcase of \(5\mathrm{kg}\) mass from ground level to a \(10.193\mathrm{m}\) high rooftop. Change in potential energy in that suitcase is _______________ Joule.</div>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">Answer the following questions (Answer any ten)</span>
+            <div class="marks">[1×10=10]</div>
+            <div style="margin:15px 0 20px 35px;">
+                <div>i) Explain Bow's notation.</div>
+                <div>ii) State the law of superposition.</div>
+                <div>iii) State the parallelogram law of vector addition.</div>
+                <div>iv) What do you mean by resolution of a force?</div>
+                <div>v) State Lami's theorem.</div>
+                <div>vi) Define moment of a force.</div>
+                <div>vii) What do you mean by "angle of limiting friction"?</div>
+                <div>viii) What is the relationship between angle of repose and angle of friction?</div>
+                <div>ix) Name the types of loads usually considered on beams.</div>
+                <div>x) What is law of machine?</div>
+                <div>xi) If two concurrent forces of \(4\mathrm{N}\) and \(6\mathrm{N}\) are acting at an angle of \(60^{\circ}\), find the magnitude of their resultant.</div>
+                <div>xii) What is an ideal machine?</div>
+                <div>xiii) Write the law of conservation of momentum.</div>
+                <div>xiv) What is the centripetal force?</div>
+                <div>xv) What are the Basic Units?</div>
+                <div>xvi) What are the Basic Units?</div>
+            </div>
+        </div>
+
+        <!-- ========== GROUP B ========== -->
+        <hr>
+        <div class="group-title">Group-B</div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">Answer the following questions (Answer any six)</span>
+            <div style="margin:15px 0 20px 35px;">
+                <div>i) Explain the principle of transmissibility.</div>
+                <div>ii) Write the conditions for equilibrium of forces.</div>
+                <div>iii) Show with diagram: Uniformly distributed load and Uniformly varying load.</div>
+                <div>iv) State the Coulomb's laws of friction.</div>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">Answer any one of the following questions</span>
+            <div class="marks">[6×1=6]</div>
+            <div style="margin:15px 0 20px 35px;">
+                <div><strong>(a)</strong> The resultant of two forces \(P\) and \(Q\) is \(R\). If \(Q\) is doubled, the new resultant is perpendicular to \(P\). Prove that \(Q = R\).</div>
+                <div style="margin-top:10px;"><strong>(b)</strong> Four forces equal to \(P\), \(2P\), \(3P\) and \(4P\) are respectively acting along the four sides of a square \(ABCD\), taken in order. Find the magnitude, direction and position of the resultant force.</div>
+                <div style="margin-top:10px;"><strong>(c)</strong> A horizontal bridge \((AB)\) of \(18 \mathrm{~m}\) long weigh \(18 \mathrm{kN}\) and rest on two supports at its ends. What will be the pressure on each support when a lorry of weight \(5 \mathrm{kN}\) starting from \(A\) is two third of the way across the bridge?</div>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">Answer any one of the following questions</span>
+            <div style="margin:15px 0 20px 35px;">
+                <div><strong>(a)</strong> A uniform wheel of diameter \(600 \mathrm{~mm}\) and weight \(3 \mathrm{kN}\) is to be pulled over a rigid rectangular block of height \((h)\) \(150 \mathrm{~mm}\) by a horizontal force \(P\) applied to the end of a string wound around the circumference of the wheel shown in the Figure 6(a). Find the least pull required just to turn the wheel over the corner of the block.</div>
+                
+                <div class="figure-box">
+                    <img src="22/6a.jpg" alt="Figure 6(a) - Wheel over block" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Wheel of diameter 600mm being pulled over block of height 150mm]'">
+                    <div class="figure-caption">Fig. 6(a) - Wheel and block arrangement</div>
+                </div>
+                
+                <div style="margin-top:15px;"><strong>(b)</strong> A weight of \(25 \mathrm{~N}\) is pulled up a rough inclined plane whose inclination to the horizontal is \(30^{\circ}\) by a force of \(18 \mathrm{~N}\) acting parallel to the plane. Calculate the coefficient of friction.</div>
+                
+                <div style="margin-top:15px;"><strong>(c)</strong> Find out the reactions at supports by equations of statics for beam of Figure 6(c).</div>
+                
+                <div class="figure-box">
+                    <img src="22/6c.jpg" alt="Figure 6(c) - Beam diagram" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Beam with supports and loading conditions]'">
+                    <div class="figure-caption">Fig. 6(c) - Beam diagram</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">Answer any one of the following questions</span>
+            <div style="margin:15px 0 20px 35px;">
+                <div><strong>(a)</strong> Find the centroid of the cross section shown in Figure 7(a). All dimensions are in mm.</div>
+                
+                <div class="figure-box">
+                    <img src="22/7a.jpg" alt="Figure 7(a) - Cross section" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Cross section with dimensions in mm]'">
+                    <div class="figure-caption">Fig. 7(a) - Cross section diagram</div>
+                </div>
+                
+                <div style="margin-top:15px;"><strong>(b)</strong> What is the minimum effort \(P\) required to lift a load \(W\) by a screw jack when helix angle is \(\alpha\) and coefficient of friction is tan \(\phi\) where \(\phi\) is the angle of friction? A simple screw jack has a thread of pitch of 10 mm, find the mechanical advantage and efficiency, if an effort of 20 N is applied at the end of an arm 500 mm long to lift a load 2.6 kN.</div>
+                <div class="marks">[2+4]</div>
+                
+                <div style="margin-top:15px;"><strong>(c)</strong> A wheel rotating about a fixed axis at 20 revolutions per minute is uniformly accelerated for 70 sec. during which it makes 50 revolutions. Find the (i) angular velocity at the end of this interval and (ii) time required for the velocity to reach 100 revolutions per minute.</div>
+            </div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!-- Applied Physics-II 2023.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Physics-II 2023 Question Paper</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .warning-box {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff0f0;
+            border-left: 4px solid #c62828;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            text-align: center;
+        }
+        .image-container {
+            margin: 15px 0 15px 35px;
+            max-width: 350px;
+            border: 1px dashed #999;
+            padding: 10px;
+            background: #fafafa;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+            .image-container { margin-left: 0; max-width: 100%; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .short-answer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .short-answer-item {
+            padding: 8px;
+            border-bottom: 1px dotted #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="paper">
+        <div class="header-top">
+            <div>APPLIED PHYSICS - II</div>
+            <div>2023</div>
+        </div>
+        <div class="header-sub">
+            <div>Time Allowed: 2.5 Hours</div>
+            <div>Full Marks: 60</div>
+        </div>
+
+        <div class="size-row">
+            <button class="size-btn" id="sizeDown">A-</button>
+            <button class="size-btn" id="sizeReset">A</button>
+            <button class="size-btn" id="sizeUp">A+</button>
+        </div>
+
+        <div id="paperContent">
+            <div class="instruction">
+                Answer to Question No. 1 is compulsory and answer any Five (05) Questions from the rest.
+            </div>
+
+            <!-- Question 1 -->
+            <div class="q">
+                <span class="q-num">1.</span>
+                <span class="q-text">Answer the following questions (any five):</span>
+                <span class="marks-inline">[5 × ? = 10 marks]</span>
+                
+                <div class="short-answer-grid">
+                    <div class="short-answer-item">
+                        <span class="opt-marker">i.</span> In which position the velocity of a particle executing SHM is maximum? Explain.
+                    </div>
+                    <div class="short-answer-item">
+                        <span class="opt-marker">ii.</span> On what factors does the focal length of a lens depend?
+                    </div>
+                    <div class="short-answer-item">
+                        <span class="opt-marker">iii.</span> Is the electric potential necessarily be zero at a point where the electric field strength is zero? Explain.
+                    </div>
+                    <div class="short-answer-item">
+                        <span class="opt-marker">iv.</span> What are the differences between Peltier effect and Joule effect?
+                    </div>
+                    <div class="short-answer-item">
+                        <span class="opt-marker">v.</span> A wire cuts across a flux of 0.002 Weber in 0.12 seconds. What is the emf induced in the wire?
+                    </div>
+                    <div class="short-answer-item">
+                        <span class="opt-marker">vi.</span> Write down the basic principle of operation of a solar photo voltaic cell.
+                    </div>
+                    <div class="short-answer-item">
+                        <span class="opt-marker">vii.</span> What are the unique properties of LASER?
+                    </div>
+                    <div class="short-answer-item">
+                        <span class="opt-marker">viii.</span> Mention three uses of nanotechnology.
+                    </div>
+                </div>
+                <div class="marks">[10 marks]</div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="q">
+                <span class="q-num">2.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> The equation of a particle vibrating in SHM is \(y = 5 \sin \frac{2\pi}{5}(10t + x)\), where \(y\) and \(x\) are in m and t is in s. Find out the frequency and amplitude of vibration.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Write down a few differences between Oscillatory and Periodic motion.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> What is ultrasonic wave? Write down the properties and applications of it.
+                </div>
+                <div class="marks">[2 + 3 + (1 + 3) = 9 marks]</div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="q">
+                <span class="q-num">3.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> A lens is composed of different layers made of two different materials. A point object is placed on the axis. How many images of the object will be formed and why?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Calculate the speed of light in a medium whose critical angle is \(45^{\circ}\)
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Draw a ray diagram to show image formation when the convex lens produces a real, inverted and magnified image of the object.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(d)</span> Write two features to distinguish between the interference patterns in Young's double slit experiment with the diffraction pattern obtained due to a single slit.
+                </div>
+                <div class="marks">[3 + 2 + 2 + 2 = 9 marks]</div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="q">
+                <span class="q-num">4.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Compare conductor, semiconductor and insulator in terms of energy band diagram.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> A student wants to use two p-n junction diodes to convert alternating current into direct current. Draw the labelled circuit diagram he/she would use and explain it.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Draw the typical input and output characteristics of an n-p-n transistor in CE configuration. Show how these characteristics can be used to determine (i) the input resistance (r), and (ii) current amplification factor (β).
+                </div>
+                <div class="marks">[3 + (2 + 1) + 3 = 9 marks]</div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="q">
+                <span class="q-num">5.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Lenz's law. Does it obey the principle of conservation of energy?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Deduce an expression for the magnitude of the magnetic field at the centre of a circular coil of N turns.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> A straight wire carrying current of 12A is bent into a semi-circular arc of radius 0.02m. Find the magnitude of the magnetic field at the centre of the arc.
+                </div>
+                <div class="marks">[(2+2) + 2 + 3 = 9 marks]</div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="q">
+                <span class="q-num">6.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Biot-Savart law and express this law in the vector form.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> An electron travelling with velocity \(30~\mathrm{cm s}^{-1}\) enters a region of uniform magnetic field \(0.2\mathrm{T}\) acting perpendicular to its paths. Calculate the magnitude of force on the electron. (charge of electron \(= 1.6\times 10^{-19}\mathrm{C}\))
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> State and explain Lenz's law.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(d)</span> A galvanometer of resistance \(100\Omega\) gives full scale deflection when a current of \(500\mu \mathrm{A}\) passes through it. How can this be converted to a voltmeter reading up to \(5\mathrm{V}\)? Draw necessary circuit diagram.
+                </div>
+                <div class="marks">[(2+1) + 2 + 2 + 2 = 9 marks]</div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="q">
+                <span class="q-num">7.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> What are the differences between intrinsic and extrinsic semiconductors?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Calculate the tube voltage required to be applied to an X-ray tube to get minimum wavelength 1Å. (Planck's constant \(\mathrm{h} = 6.626\times 10^{-34}\mathrm{J.s}\))
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Define population inversion. Discuss some method to achieve population inversion.
+                </div>
+                <div class="marks">[3 + 2 + (1+3) = 9 marks]</div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="q">
+                <span class="q-num">8.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Draw the curve showing the variation of intensity with wavelength of X-rays and mark cut off wavelength, continuous & characteristic X-rays. Write down two important applications of X-rays.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Draw the energy level diagram of He-Ne Laser.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> State some advantages of optical fibre over conducting wire.
+                </div>
+                <div class="marks">[(3+2) + 2 + 2 = 9 marks]</div>
+            </div>
+
+            <!-- Note about diagrams -->
+            <div class="note-box">
+                <strong>Note:</strong> Students are required to draw diagrams for questions 3(c), 4(b), 4(c), 6(d), 8(a), and 8(b) in their answer scripts. The diagrams are not included in this digital version but should be drawn as per standard textbook representations.
+            </div>
+
+            <div class="footnote">
+                Source: WBSCTE Board Examination 2023<br>
+                www.polynoteshub.co.in
+            </div>
+        </div>
+
+        <div class="print-area">
+            <button class="print-btn" id="printBtn">Print / Save PDF</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const paper = document.getElementById('paperContent');
+            const up = document.getElementById('sizeUp');
+            const down = document.getElementById('sizeDown');
+            const reset = document.getElementById('sizeReset');
+            const printBtn = document.getElementById('printBtn');
+
+            let currentPx = 16;
+            const MIN = 12, MAX = 28;
+
+            function setSize(px) {
+                paper.style.fontSize = px + 'px';
+            }
+            function change(delta) {
+                let newSize = currentPx + delta;
+                if (newSize < MIN) newSize = MIN;
+                if (newSize > MAX) newSize = MAX;
+                if (newSize !== currentPx) {
+                    currentPx = newSize;
+                    setSize(currentPx);
+                }
+            }
+            setSize(currentPx);
+            up.addEventListener('click', () => change(2));
+            down.addEventListener('click', () => change(-2));
+            reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+            printBtn.addEventListener('click', () => window.print());
+
+            // MathJax configuration if needed
+            if (window.MathJax) {
+                const reloadMath = () => MathJax.typesetPromise?.();
+                up.addEventListener('click', reloadMath);
+                down.addEventListener('click', reloadMath);
+                reset.addEventListener('click', reloadMath);
+            }
+        })();
+    </script>
+    
+    <!-- Load MathJax for equation rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

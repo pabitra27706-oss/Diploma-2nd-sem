@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>FEEE · 2025 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>203(N)</span>
+        <span>FUNDAMENTALS OF ELECTRICAL & ELECTRONICS ENGINEERING</span>
+    </div>
+    <div class="header-sub">
+        <span>2025</span>
+        <span>Time Allowed: 2.5 Hours · Full Marks: 60</span>
+    </div>
+    
+    <div class="instruction">
+        <strong>Instructions:</strong> Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer. Answer any Five (05) Questions from Group-B.
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== GROUP A ========== -->
+        <div class="group-title">GROUP-A</div>
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Choose the correct answer from the given alternatives and explain your answer (any ten):</span>
+            <div class="marks">2x10=20</div>
+            
+            <div class="subquestion-roman">i. A wire has resistance of 16Ω. It is bent in the form of a circle. Resistance between two points on any diameter of the circle is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 32Ω</span>
+                <span class="opt"><span class="opt-marker">b)</span> 16Ω</span>
+                <span class="opt"><span class="opt-marker">c)</span> 8Ω</span>
+                <span class="opt"><span class="opt-marker">d)</span> 4Ω</span>
+            </div>
+
+            <div class="subquestion-roman">ii. If 110V is applied across 220V, 100W bulb, the power consumed by it will be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 100W</span>
+                <span class="opt"><span class="opt-marker">b)</span> 50W</span>
+                <span class="opt"><span class="opt-marker">c)</span> 25W</span>
+                <span class="opt"><span class="opt-marker">d)</span> 12.5W</span>
+            </div>
+
+            <div class="subquestion-roman">iii. Two resistances of 20Ω and 30Ω are connected in parallel across 120V supply. Then the currents through resistances will be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 4A and 6A</span>
+                <span class="opt"><span class="opt-marker">b)</span> 6A and 4A</span>
+                <span class="opt"><span class="opt-marker">c)</span> 2A and 8A</span>
+                <span class="opt"><span class="opt-marker">d)</span> 8A and 5A</span>
+            </div>
+
+            <div class="subquestion-roman">iv. Which of the following is a correct representation of peak value in an AC Circuit?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> RMS value/Peak factor</span>
+                <span class="opt"><span class="opt-marker">b)</span> RMS value × Form factor</span>
+                <span class="opt"><span class="opt-marker">c)</span> RMS value / Form factor</span>
+                <span class="opt"><span class="opt-marker">d)</span> RMS value × Peak factor</span>
+            </div>
+
+            <div class="subquestion-roman">v. A magnetic circuit requires 800 AT to produce certain amount of magnetic flux. If the magnetizing coil of 100 turns has 5Ω resistance, the voltage to be applied to the exciting coil must be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 40V</span>
+                <span class="opt"><span class="opt-marker">b)</span> 20V</span>
+                <span class="opt"><span class="opt-marker">c)</span> 10V</span>
+                <span class="opt"><span class="opt-marker">d)</span> 5V</span>
+            </div>
+
+            <div class="subquestion-roman">vi. If the supply frequency increases, the value of inductive reactance</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> decreases</span>
+                <span class="opt"><span class="opt-marker">b)</span> increases</span>
+                <span class="opt"><span class="opt-marker">c)</span> does not change</span>
+                <span class="opt"><span class="opt-marker">d)</span> becomes zero</span>
+            </div>
+
+            <div class="subquestion-roman">vii. Potential barrier at a p-n junction is established due to</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> majority carriers</span>
+                <span class="opt"><span class="opt-marker">b)</span> minority carriers</span>
+                <span class="opt"><span class="opt-marker">c)</span> both (a) and (b)</span>
+                <span class="opt"><span class="opt-marker">d)</span> donor and acceptor ions</span>
+            </div>
+
+            <div class="subquestion-roman">viii. The advantage of star-connected AC supply system is that</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> line current is equal to phase current</span>
+                <span class="opt"><span class="opt-marker">b)</span> it is a simple arrangement</span>
+                <span class="opt"><span class="opt-marker">c)</span> voltages at two levels can be used</span>
+                <span class="opt"><span class="opt-marker">d)</span> phase sequence can easily be changed</span>
+            </div>
+
+            <div class="subquestion-roman">ix. Transformer core is assembled with laminated sheet so as to</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> reduce hysteresis loss</span>
+                <span class="opt"><span class="opt-marker">b)</span> eddy current loss</span>
+                <span class="opt"><span class="opt-marker">c)</span> reduce copper loss</span>
+                <span class="opt"><span class="opt-marker">d)</span> ensure good magnetic coupling between the windings</span>
+            </div>
+
+            <div class="subquestion-roman">x. Which of the following dc motor is used in Railway Electric Traction?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> dc shunt motor</span>
+                <span class="opt"><span class="opt-marker">b)</span> dc series motor</span>
+                <span class="opt"><span class="opt-marker">c)</span> dc compound motor</span>
+                <span class="opt"><span class="opt-marker">d)</span> separately excited dc motor</span>
+            </div>
+
+            <div class="subquestion-roman">xi. In common emitter configuration, BJT acts as a</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> voltage controlled voltage source</span>
+                <span class="opt"><span class="opt-marker">b)</span> current controlled voltage source</span>
+                <span class="opt"><span class="opt-marker">c)</span> voltage controlled current source</span>
+                <span class="opt"><span class="opt-marker">d)</span> current controlled current source</span>
+            </div>
+
+            <div class="subquestion-roman">xii. CMRR for an OP-AMP should be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> as large as possible</span>
+                <span class="opt"><span class="opt-marker">b)</span> close to zero</span>
+                <span class="opt"><span class="opt-marker">c)</span> close to unity</span>
+                <span class="opt"><span class="opt-marker">d)</span> as small as possible</span>
+            </div>
+
+            <div class="subquestion-roman">xiii. If two inputs of a NOR gate is tied up, it will act as a</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> NOT gate</span>
+                <span class="opt"><span class="opt-marker">b)</span> OR gate</span>
+                <span class="opt"><span class="opt-marker">c)</span> NAND gate</span>
+                <span class="opt"><span class="opt-marker">d)</span> Ex-NOR gate</span>
+            </div>
+
+            <div class="subquestion-roman">xiv. A bulb in a stair-case has two switches, one switch being at the ground floor and the other at the first floor. The bulb can be turned on and off by any one of the switches. The logic of switching of the bulb resembles</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> An AND gate</span>
+                <span class="opt"><span class="opt-marker">b)</span> An OR gate</span>
+                <span class="opt"><span class="opt-marker">c)</span> an XOR gate</span>
+                <span class="opt"><span class="opt-marker">d)</span> A NAND gate</span>
+            </div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any ten questions. Each MCQ carries 2 marks: 1 mark for correct answer + 1 mark for correct explanation.
+            </div>
+        </div>
+
+        <!-- ========== GROUP B ========== -->
+        <hr>
+        <div class="group-title">GROUP-B</div>
+        <div class="instruction" style="margin-left:0;">Answer any Five (05) questions from Group-B. Each question carries 8 marks.</div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">(a) What is a parallel circuit?</span><br>
+            <span class="q-text">(b) Why all electrical equipments are connected in parallel to the supply?</span><br>
+            <span class="q-text">(c) A resistor of \(6\Omega\) is connected in series with a parallel combination of \(15\Omega\) and \(10\Omega\) resistors. The whole circuit is connected across a \(30\mathrm{V}\) supply. Determine current flowing through \(15\Omega\) resistor.</span>
+            <div class="marks">\([2 + 2 + 4]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">(a) With neat diagrams state Fleming's Left Hand Rule.</span><br>
+            <span class="q-text">(b) What is dynamically induced emf?</span><br>
+            <span class="q-text">(c) An iron ring or toroid \(0.2\mathrm{m}\) in diameter and \(10\mathrm{sq}\) cm cross-sectional area of the core is wound with \(250\mathrm{turns}\) of wire. If the flux density in the core is to be 1 T and relative permeability of iron is 500, what is the exciting current required to be passed in the winding? Further, determine the self-inductance.</span>
+            <div class="marks">\([2+2+4]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">(a) Define (i) cycle, (ii) frequency, (iii) form factor of a sinusoidally varying quantity and state their units (if any).</span><br>
+            <span class="q-text">(b) A coil of resistance \(10\Omega\) and inductance \(0.1\mathrm{H}\) is connected in series with a capacitor \(10\mu \mathrm{F}\). This whole combination is connected with \(240\mathrm{V}\), \(50\mathrm{Hz}\) supply. Calculate (i) impedance, (ii) current, (iii) angle of phase difference, (iv) power factor and (v) consumed power.</span>
+            <div class="marks">\([3+5]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">(a) Define power factor. What is the range of power factor?</span><br>
+            <span class="q-text">(b) In an AC circuit current \(i = 20\cos (2t - 30^{\circ})\) and applied voltage \(v = 200\cos (2t + 30^{\circ})\). Calculate (i) the impedance, (ii) the resistance, (iii) the reactance, (iv) the power factor, (v) the phase angle between voltage and current and (vi) the power absorbed.</span>
+            <div class="marks">\([2+6]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">(a) With neat waveforms of sinusoidal supply voltage, circuit current and instantaneous power, show that average power consumed by a purely inductive circuit is zero.</span><br>
+            <span class="q-text">(b) What do you understand by the term 3-phase balanced AC supply?</span><br>
+            <span class="q-text">(c) A three-phase, star-connected AC motor draws \(5.6\mathrm{kW}\) when the line voltage is \(220\mathrm{V}\) and the line current is \(18.2\mathrm{A}\). Determine the power factor of the motor.</span>
+            <div class="marks">\([4+2+2]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">(a) Why does a transformer has iron core?</span><br>
+            <span class="q-text">(b) Among all electrical machines, efficiency of transformers is maximum. Why?</span><br>
+            <span class="q-text">(c) A single phase, \(50\mathrm{Hz}\), transformer has 50 and 250 turns on low voltage and high voltage windings respectively. If low voltage winding is connected to \(230\mathrm{V}\), \(50\mathrm{Hz}\) AC supply, calculate (i) peak value of flux and (ii) flux density in the core with net cross-sectional area \(250\mathrm{sqcm}\). (iii) Also determine the low voltage winding current when current in the other winding is \(100\mathrm{A}\).</span>
+            <div class="marks">\([2+2+4]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            <span class="q-text">(a) What is an ideal diode? Draw its V-I characteristic.</span><br>
+            <span class="q-text">(b) Neatly draw forward and reversed biased characteristics of a practical diode.</span><br>
+            <span class="q-text">(c) Why silicon is preferred over germanium while fabricating semiconductor devices.</span>
+            <div class="marks">\([3+3+2]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            <span class="q-text">(a) Draw the pin diagram of OP AMP IC 741 and label each pin.</span><br>
+            <span class="q-text">(b) Write down the features of an ideal OP AMP.</span>
+            <div class="marks">\([4+4]\)</div>
+        </div>
+
+        <!-- ========== QUESTION 10 ========== -->
+        <div class="q">
+            <span class="q-num">10.</span>
+            <span class="q-text">(a) Give the logic symbol, Boolean expression and truth table of (i) two input NAND gate and (ii) two input EX NOR gate.</span><br>
+            <span class="q-text">(b) Explain the phrase-"NAND and NOR gates are called universal gates".</span>
+            <div class="marks">\([(3+3)+2]\)</div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

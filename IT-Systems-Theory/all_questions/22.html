@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Introduction to IT Systems · 2022 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>201(N)</span>
+        <span>INTRODUCTION TO IT SYSTEMS</span>
+    </div>
+    <div class="header-sub">
+        <span>2022</span>
+        <span>Time Allowed: 2.5 Hours · Full Marks: 60</span>
+    </div>
+    
+    <div class="instruction">
+        <strong>Instructions:</strong> Answer questions from Group-A, B & C as directed.
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== GROUP A ========== -->
+        <div class="group-title">GROUP-A</div>
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Choose the correct answer from the given alternatives (Any Ten):</span>
+            <span class="marks-inline">1×10=10</span>
+            
+            <div class="subquestion-roman">i. A web browser is an application that is used to</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> find and retrieve webpage.</span>
+                <span class="opt"><span class="opt-marker">(b)</span> send e-Mail</span>
+                <span class="opt"><span class="opt-marker">(c)</span> prepare a document</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of these.</span>
+            </div>
+
+            <div class="subquestion-roman">ii. In any search engine user can</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> use of two or more keywords</span>
+                <span class="opt"><span class="opt-marker">(b)</span> use of +</span>
+                <span class="opt"><span class="opt-marker">(c)</span> use of And</span>
+                <span class="opt"><span class="opt-marker">(d)</span> All of these.</span>
+            </div>
+
+            <div class="subquestion-roman">iii. A small program that gets loaded in the computer without the user knowledge and replicate itself repeatedly called:</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Worms</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Virus</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Browser</span>
+                <span class="opt"><span class="opt-marker">(d)</span> None of these.</span>
+            </div>
+
+            <div class="subquestion-roman">iv. What is the term for unsolicited email?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Spam</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Worm</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Browser</span>
+                <span class="opt"><span class="opt-marker">(d)</span> News Group.</span>
+            </div>
+
+            <div class="subquestion-roman">v. Rules to exchange data between computers are called</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Procedure</span>
+                <span class="opt"><span class="opt-marker">(b)</span> protocols</span>
+                <span class="opt"><span class="opt-marker">(c)</span> hyperlink</span>
+                <span class="opt"><span class="opt-marker">(d)</span> program</span>
+            </div>
+
+            <div class="subquestion-roman">vi. CPU scheduling is the basis of</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Large memory size system</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Multiprogramming system</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Multiprocessing system</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of the above.</span>
+            </div>
+
+            <div class="subquestion-roman">vii. Which of the following errors will be handled by the operating system?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Lack of paper in printer</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Connection failure in the network</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Power failure</span>
+                <span class="opt"><span class="opt-marker">(d)</span> All of the mentioned above.</span>
+            </div>
+
+            <div class="subquestion-roman">viii. Decimal equivalent of 16 in hexadecimal</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 22</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 16</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 10</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 20</span>
+            </div>
+
+            <div class="subquestion-roman">ix. The number of bits used to store a BCD digit is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 2</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 1</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 4</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 8</span>
+            </div>
+
+            <div class="subquestion-roman">x. What is the resultant binary equivalent of the decimal problem \(49 + 1 =\)</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 00110010</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 01010101</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 00110001</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 00110101</span>
+            </div>
+
+            <div class="subquestion-roman">xi. Flowcharts and Algorithms are used for</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> better programming</span>
+                <span class="opt"><span class="opt-marker">(b)</span> easy testing and debugging</span>
+                <span class="opt"><span class="opt-marker">(c)</span> efficient coding</span>
+                <span class="opt"><span class="opt-marker">(d)</span> all of these.</span>
+            </div>
+
+            <div class="subquestion-roman">xii. Which of the following HTML tag is used for inserting the largest heading in HTML?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> &lt;h1&gt;</span>
+                <span class="opt"><span class="opt-marker">(b)</span> &lt;h3&gt;</span>
+                <span class="opt"><span class="opt-marker">(c)</span> &lt;h5&gt;</span>
+                <span class="opt"><span class="opt-marker">(d)</span> &lt;h6&gt;</span>
+            </div>
+
+            <div class="subquestion-roman">xiii. In how many way can CSS be written in?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 1</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 2</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 3</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 4</span>
+            </div>
+
+            <div class="subquestion-roman">xiv. When a user views a page containing a JavaScript program, which machine actually executes the scripts?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> The user machine running a web browser</span>
+                <span class="opt"><span class="opt-marker">(b)</span> The web server</span>
+                <span class="opt"><span class="opt-marker">(c)</span> A central machine deep within Netscape office</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of the above</span>
+            </div>
+
+            <div class="subquestion-roman">xv. Which of the following is not a cybercrime?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Denial of Service</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Man in the middle</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Malware</span>
+                <span class="opt"><span class="opt-marker">(d)</span> AES.</span>
+            </div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any ten questions. Each question carries 1 mark.
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">Fill in the Blanks (Any Ten):</span>
+            <span class="marks-inline">1×10=10</span>
+            
+            <div class="subquestion-roman">i. ________________ is a type of software that is embedded in hardware.</div>
+            <div class="subquestion-roman">ii. Universal gates are those gates that can be used for implementing any function without any other types of gates. _______________</div>
+            <div class="subquestion-roman">iii. A+0=A is an example of ________________ Law.</div>
+            <div class="subquestion-roman">iv. The Operating System is responsible for interacting with ________________.</div>
+            <div class="subquestion-roman">v. In ________________ scheduling, each process is given a small amount of time to execute.</div>
+            <div class="subquestion-roman">vi. ________________ attack is an attempt to make a computer resource unavailable to its intended.</div>
+            <div class="subquestion-roman">vii. ________________ is a batch file stored in the root directory of the hard-disk.</div>
+            <div class="subquestion-roman">viii. A group of four bits is called a ________________.</div>
+            <div class="subquestion-roman">ix. The advantage of DRAM over SRAM is that it is can hold more data per chip and generate less heat. _______________</div>
+            <div class="subquestion-roman">x. ________________ software is machine independent.</div>
+            <div class="subquestion-roman">xi. ________________ is a service that automatically converts domain names into IP addresses.</div>
+            <div class="subquestion-roman">xii. Gray code equivalent of 1001 in Binary code is ________________.</div>
+            <div class="subquestion-roman">xiii. A ________________ language is computer language that uses tags to define elements within a document.</div>
+            <div class="subquestion-roman">xiv. When designing a flowchart, each step in the process is depicted by a ________________ and is associated with a short description.</div>
+            <div class="subquestion-roman">xv. Number of types of errors in JavaScript's is ________________.</div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any ten questions. Each question carries 1 mark.
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">Answer the following questions (Any Ten):</span>
+            <span class="marks-inline">1×10=10</span>
+            
+            <div class="subquestion-roman">i. What is the maximum number of outputs a logic gate can have?</div>
+            <div class="subquestion-roman">ii. Write De Morgan's first Law.</div>
+            <div class="subquestion-roman">iii. Identify the device which receives analog data and creates its digital equivalent.</div>
+            <div class="subquestion-roman">iv. Define Booting.</div>
+            <div class="subquestion-roman">v. What is the first page of a website called?</div>
+            <div class="subquestion-roman">vi. Write the full form of HTTP.</div>
+            <div class="subquestion-roman">vii. Is it possible to run a computer without operating system? Write your opinion.</div>
+            <div class="subquestion-roman">viii. Write the full form of SSD.</div>
+            <div class="subquestion-roman">ix. Differentiate between Data and Information.</div>
+            <div class="subquestion-roman">x. What is BIOS?</div>
+            <div class="subquestion-roman">xi. Write the utility of Cache Memory.</div>
+            <div class="subquestion-roman">xii. Define Truth Table.</div>
+            <div class="subquestion-roman">xiii. Write the utility of Command Line Interpreter.</div>
+            <div class="subquestion-roman">xiv. Write the full form of URL.</div>
+            <div class="subquestion-roman">xv. What is Malware?</div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any ten questions. Each question carries 1 mark.
+            </div>
+        </div>
+
+        <!-- ========== GROUP B ========== -->
+        <hr>
+        <div class="group-title">GROUP-B</div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">Answer the questions (Any Six):</span>
+            <span class="marks-inline">2×6=12</span>
+            
+            <div class="subquestion-roman">i. Write the differences between SRAM and DRAM.</div>
+            <div class="subquestion-roman">ii. Why should we use more than one search engine simultaneously?</div>
+            <div class="subquestion-roman">iii. How is 8-4-2-1 code different from 4-2-2-1 code?</div>
+            <div class="subquestion-roman">iv. "Two's complement is the most popular technique to represent signed number". Justify the statement.</div>
+            <div class="subquestion-roman">v. Is there any difference between compiler and an interpreter?</div>
+            <div class="subquestion-roman">vi. With the help of an example, explain the use of flow chart.</div>
+            <div class="subquestion-roman">vii. Does all HTML tags have an end tag?</div>
+            <div class="subquestion-roman">viii. Write the utility of a scripting language.</div>
+            <div class="subquestion-roman">ix. How does a virus get installed in a computer?</div>
+            <div class="subquestion-roman">x. Define source code and Executable code.</div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any six questions. Each question carries 2 marks.
+            </div>
+        </div>
+
+        <!-- ========== GROUP C ========== -->
+        <hr>
+        <div class="group-title">GROUP-C</div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">Answer the questions (Any One):</span>
+            <span class="marks-inline">6×1=6</span>
+            
+            <div class="subquestion-alpha">(a) </div>
+            <div class="subquestion-i">(i) How can two numbers be subtracted only through addition?</div>
+            <div class="subquestion-i">(ii) What do you mean by Universal Logic Gates? Why Universal Logic Gates are called Universal?</div>
+            <div class="subquestion-i">(iii) Why SSD is faster than Hard Disk?</div>
+            <div class="marks">[2+(1+2)+1=6]</div>
+            
+            <div class="subquestion-alpha" style="margin-top:15px;">(b) </div>
+            <div class="subquestion-i">(i) Write the utility of Excess-3 code.</div>
+            <div class="subquestion-i">(ii) Convert the number (5674)₈ into the hexadecimal system.</div>
+            <div class="subquestion-i">(iii) Write the advantages of multiprocessing operating system.</div>
+            <div class="marks">[2+2+2=6]</div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any one question. The question carries 6 marks.
+            </div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

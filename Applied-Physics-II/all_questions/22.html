@@ -1,0 +1,728 @@
+<!-- Applied Physics-II 2022.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Physics-II 2022 Question Paper</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .warning-box {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff0f0;
+            border-left: 4px solid #c62828;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            text-align: center;
+        }
+        .image-container {
+            margin: 15px 0 15px 35px;
+            max-width: 350px;
+            border: 1px dashed #999;
+            padding: 10px;
+            background: #fafafa;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+            .image-container { margin-left: 0; max-width: 100%; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .mcq-item {
+            padding: 8px;
+            border-bottom: 1px dotted #ccc;
+        }
+        .fill-blank {
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="paper">
+        <div class="header-top">
+            <div>APPLIED PHYSICS - II</div>
+            <div>2022</div>
+        </div>
+        <div class="header-sub">
+            <div>Time Allowed: 2.5 Hours</div>
+            <div>Full Marks: 60</div>
+        </div>
+
+        <div class="size-row">
+            <button class="size-btn" id="sizeDown">A-</button>
+            <button class="size-btn" id="sizeReset">A</button>
+            <button class="size-btn" id="sizeUp">A+</button>
+        </div>
+
+        <div id="paperContent">
+            <div class="instruction">
+                Answer the following questions from Group A, B & C as directed
+            </div>
+
+            <!-- GROUP A -->
+            <div class="group-title">GROUP - A</div>
+
+            <!-- Question 1: Choose correct answer -->
+            <div class="q">
+                <span class="q-num">1.</span>
+                <span class="q-text">Choose the correct answer (Any ten):</span>
+                <span class="marks-inline">[10 × 1 = 10]</span>
+                
+                <div class="mcq-grid">
+                    <div class="mcq-item">
+                        <span class="opt-marker">(i)</span> The equation of a particle executing S.H.M. is \(y = 5\sin \frac{2\pi}{5} (10t + x)\). The frequency and amplitude of vibration is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> 10, 5</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 5, 2</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 2, 5</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> \(\frac{5}{\pi}\), 5</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(ii)</span> If two progressive waves given by \(y_{1} = 6\sin 250\pi t\) and \(y_{2} = 3\sin 256\pi t\) superpose, the number of beats formed per second is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> 3</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 5</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 6</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 8</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(iii)</span> The focal lengths of a convex lens for blue and yellow light are f<sub>b</sub> and f<sub>y</sub> respectively. The correct relation is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> f<sub>b</sub> = f<sub>y</sub></span>
+                            <span class="opt"><span class="opt-marker">(b)</span> f<sub>b</sub> > f<sub>y</sub></span>
+                            <span class="opt"><span class="opt-marker">(c)</span> f<sub>b</sub> < f<sub>y</sub></span>
+                            <span class="opt"><span class="opt-marker">(d)</span> f<sub>b</sub> ≤ f<sub>y</sub></span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(iv)</span> The speed of light in air is \(3\times 10^{8}\mathrm{ms}^{-1}\). Its speed in diamond of refractive index 2.4 is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> \(3\times 10^{8}\mathrm{ms}^{-1}\)</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> \(7.2\times 10^{8}\mathrm{ms}^{-1}\)</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> \(1.25\times 10^{8}\mathrm{ms}^{-1}\)</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(v)</span> If the current flowing through a circuit is 0.5 A in 5 mins, the amount of charge flowing through it is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> 216 C</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 300 C</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 150 C</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 25 C</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(vi)</span> Specific resistance of the material of wire is \(45\times 10^{-8}\Omega \mathrm{m}\). The length of the wire (radius 0.25 mm) required to make a resistance of 8 Ω is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> 5 m</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 4.5 m</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 3.5 m</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 2.5 m</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(vii)</span> A Carbon resistor has three strips of red colour and a gold strip. What is the value of the resistor?
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> \((200\pm 5)\Omega\)</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> \((2000\pm 5)\Omega\)</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> \((2200\pm 5)\Omega\)</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> \((2220\pm 5)\Omega\)</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(viii)</span> The formula for the magnetic field inside a long solenoid of length L & total number of turns N, carrying a current I is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> \(\mu_{0}\mathrm{NI} / 2\)</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> \(\mu_{0}\mathrm{NI} / 2\mathrm{L}\)</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> \(\mu_{0}\mathrm{NI} / \mathrm{L}\)</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> None of these</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(ix)</span> Lenz's law in electromagnetic induction is another form of the law of
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> Conservation of energy</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Conservation of charge</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> Conservation of mass</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> None of these</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(x)</span> Which of the following does not exist?
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> Static charge</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Moving charge</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> Magnetic dipole</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> Magnetic monopole</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(xi)</span> In transistor the base is doped
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> heavily</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> moderately</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> lightly</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> randomly</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(xii)</span> If the voltage of X-ray tube is doubled, the intensity of X-rays will become
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> half</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> doubled</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> four times</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> unchanged</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(xiii)</span> Which of the following is a unique property of laser?
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> Low level of directionality</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Polychromatic</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> High coherence</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> Low intensity</span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(xiv)</span> If I<sub>diff</sub> and I<sub>drift</sub> are the diffusion current and drift current in an unbiased p-n junction diode, then
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> I<sub>diff</sub> = I<sub>drift</sub></span>
+                            <span class="opt"><span class="opt-marker">(b)</span> I<sub>diff</sub> > I<sub>drift</sub></span>
+                            <span class="opt"><span class="opt-marker">(c)</span> I<sub>drift</sub> > I<sub>diff</sub></span>
+                            <span class="opt"><span class="opt-marker">(d)</span> I<sub>diff</sub> < I<sub>drift</sub></span>
+                        </div>
+                    </div>
+
+                    <div class="mcq-item">
+                        <span class="opt-marker">(xv)</span> The energy of the first excited state of hydrogen atom is
+                        <div class="opts">
+                            <span class="opt"><span class="opt-marker">(a)</span> -13.6 eV</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> -3.4 eV</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> -1.51 eV</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2: Fill in the blanks -->
+            <div class="q">
+                <span class="q-num">2.</span>
+                <span class="q-text">Fill in the blanks (Any ten):</span>
+                <span class="marks-inline">[10 × 1 = 10]</span>
+                
+                <div class="fill-blank">
+                    <span class="opt-marker">(i)</span> The absorption coefficient of an open window is _______________.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(ii)</span> In _______________ wave, direction of vibration of the particles is perpendicular to the direction of propagation of the wave.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(iii)</span> Two or more light waves are said to be coherent if they are in same _______________.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(iv)</span> For total internal reflection, light should travel from _______________ medium to _______________ medium.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(v)</span> The electric field inside a hollow charged sphere is _______________.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(vi)</span> Keeping the charge same, if the capacitance of a capacitor is increased, the potential difference across it will _______________.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(vii)</span> The equivalent resistance in parallel combination of three resistances 7Ω, 5Ω, 3Ω is _______________.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(viii)</span> Seebeck effect is a _______________ process.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(ix)</span> The SI unit of magnetic flux density is _______________.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(x)</span> In a moving coil galvanometer _______________ is produced to rotate the pointer.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(xi)</span> Doping of Indium to silicon leads to _______________ type semiconductor.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(xii)</span> X-rays are produced by hitting a target (heavy metal) with a stream of _______________.
+                </div>
+                <div class="fill-blank">
+                    <span class="opt-marker">(xiii)</span> In the depletion region of a p-n junction, there is a _______________.
+                </div>
+            </div>
+
+            <!-- Question 3: Answer in one or two sentences -->
+            <div class="q">
+                <span class="q-num">3.</span>
+                <span class="q-text">Answer the following questions in one or two sentences (Any ten):</span>
+                <span class="marks-inline">[10 × 1 = 10]</span>
+                
+                <div class="subquestion">
+                    <span class="opt-marker">(i)</span> If A & ω are the amplitude and the angular frequency respectively of a particle in SHM, then write down the formula for the maximum acceleration of the particle.
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(ii)</span> In which medium transverse wave cannot propagate?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(iii)</span> If a lens is immersed in water what will happen to its focal length?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(iv)</span> Which one of the core and cladding in an optical fiber has higher refractive index?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(v)</span> Find out the equivalent capacitance for two capacitors of capacitance \(30\mu \mathrm{F}\) and \(50\mu \mathrm{F}\) connected in series.
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(vi)</span> If the voltage across a bulb is decreased by \(1\%\), what will be the percentage change in its power?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(vii)</span> If a static charge is placed inside a magnetic field, will there be any force acting on it?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(viii)</span> Why induced emf is also called back emf?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(ix)</span> Among \(K_{\alpha}\) and \(K_{\beta}\) X-ray which has higher energy?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(x)</span> Two parallel wires carry same current in same direction. What will happen?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(xi)</span> Which one of Silicon or Germanium has higher energy band gap?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(xii)</span> Which bias causes breakdown in p-n junction diode?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(xiii)</span> Which type of biasing gives a semiconductor diode very high resistance?
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(xiv)</span> Name two types of pumping mechanism in laser production.
+                </div>
+                <div class="subquestion">
+                    <span class="opt-marker">(xv)</span> Write the full form of CNT in respect to nanotechnology?
+                </div>
+            </div>
+
+            <!-- GROUP B -->
+            <div class="group-title">GROUP - B</div>
+
+            <!-- Question 4 -->
+            <div class="q">
+                <span class="q-num">4.</span>
+                <span class="q-text">Answer the following questions (Any six):</span>
+                <span class="marks-inline">[6 × 2 = 12]</span>
+                
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(i)</span> Will there be any change in critical angle if the colour of light is changed? Give reason.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(ii)</span> What happens to the capacitance of a capacitor when a dielectric slab is placed between its plates? Explain with relevant formula.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(iii)</span> Out of resistance (R) and specific resistance (ρ), which one is more fundamental and why?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(iv)</span> State the factors on which the thermo-emf developed in a thermocouple depends.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(v)</span> What are the measures to be taken to reduce the reverberation in a hall?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(vi)</span> Are Electromotive force and Potential Difference same for a cell? Explain.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(vii)</span> What will happen if a very high resistance, instead of a low resistance, is connected in parallel to a galvanometer to convert it into an ammeter?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(viii)</span> Draw the necessary circuit diagram for studying the forward bias characteristic curve (V-I curve) of a p-n junction diode.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(ix)</span> What are the different types of breakdown in p-n junction diode?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(x)</span> Describe briefly the phenomenon of Stimulated emission.
+                </div>
+            </div>
+
+            <!-- GROUP C -->
+            <div class="group-title">GROUP - C</div>
+
+            <!-- Question 5 -->
+            <div class="q">
+                <span class="q-num">5.</span>
+                <span class="q-text">Answer the following question (Any one of (i), (ii) & (iii)):</span>
+                <span class="marks-inline">[6 marks]</span>
+                
+                <div class="subquestion-roman">
+                    <span class="opt-marker">(i)</span>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">a)</span> What are damped and forced vibrations?
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">b)</span> Determine the focal length of the lens of refractive index 1.7 when placed in air. The radii of curvature of the two spherical surfaces of the lens are 20cm and 35cm.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">c)</span> Write down the characteristics of simple harmonic motion.
+                    </div>
+                    <div class="marks-inline">(2+2+2)</div>
+                </div>
+                
+                <div class="subquestion-roman">
+                    <span class="opt-marker">(ii)</span>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">a)</span> A particle executing S.H.M has a maximum displacement of 4 cm and its acceleration at a distance of 1.0 cm from its mean position is 3 cm/s². What will be its velocity when it is at a distance of 2cm from its mean position?
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">b)</span> Indicate in ray diagram the kind of lens needed, the position of the object and the position of the image to obtain a magnified virtual image.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">c)</span> Define optical center of a lens with diagram.
+                    </div>
+                    <div class="marks-inline">(2+2+2)</div>
+                </div>
+                
+                <div class="subquestion-roman">
+                    <span class="opt-marker">(iii)</span>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">a)</span> The equation of a progressive wave is given by \(y = \frac{4}{5}\sin (100\pi t - 0.4\pi x)\) where \(y\) and \(x\) are in m and t is in s. Find out the wavelength, frequency and velocity of the wave.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">b)</span> Write down the conditions for total internal reflection of light.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">c)</span> An object is placed at a certain distance from a convex lens of focal length 20 cm. Find the distance of the object if the image obtained is magnified 4 times.
+                    </div>
+                    <div class="marks-inline">(2+2+2)</div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="q">
+                <span class="q-num">6.</span>
+                <span class="q-text">Answer the following question (Any one of (i), (ii) & (iii)):</span>
+                <span class="marks-inline">[6 marks]</span>
+                
+                <div class="subquestion-roman">
+                    <span class="opt-marker">(i)</span>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">a)</span> Two point charges A and B, having charges +Q and -Q respectively, are placed at certain distance apart and force acting between them is F. If 25% charge of A is transferred to B, then what will be the force between them.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">b)</span> Find the equivalent resistance for the circuit shown below:
+                    </div>
+                    <!-- Image for 6(i)(b) -->
+                    <div class="image-container">
+                        <img src="../images/feee-22/fig5i-circuit.jpg" alt="Circuit diagram for equivalent resistance" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'150\' viewBox=\'0 0 300 150\'><rect width=\'300\' height=\'150\' fill=\'%23f0f0f0\'/><text x=\'50\' y=\'80\' font-family=\'Times New Roman\' font-size=\'16\' fill=\'%23555\'>Circuit Diagram</text><text x=\'30\' y=\'110\' font-family=\'Times New Roman\' font-size=\'14\' fill=\'%23777\'>(Resistor network)</text></svg>';">
+                        <div class="image-caption">Fig. 5(i): Circuit diagram for Q6(i)(b)</div>
+                    </div>
+                </div>
+                
+                <div class="subquestion-roman">
+                    <span class="opt-marker">(ii)</span>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">a)</span> State and explain Ampere's circuital law.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">b)</span> A long solenoid has 500 turns per meter and carries a current of 4A. Calculate the magnetic field inside the solenoid.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">c)</span> What is the difference between diamagnetic and paramagnetic materials?
+                    </div>
+                </div>
+                
+                <div class="subquestion-roman">
+                    <span class="opt-marker">(iii)</span>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">a)</span> Explain the working principle of a transformer.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">b)</span> A step-up transformer has 200 turns on primary and 1200 turns on secondary. If the primary voltage is 230V, find the secondary voltage.
+                    </div>
+                    <div class="subquestion-alpha">
+                        <span class="opt-marker">c)</span> What are eddy currents? How can they be minimized?
+                    </div>
+                </div>
+            </div>
+
+            <div class="footnote">
+                Source: WBSCTE Board Examination 2022<br>
+                www.polynoteshub.co.in
+            </div>
+        </div>
+
+        <div class="print-area">
+            <button class="print-btn" id="printBtn">Print / Save PDF</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const paper = document.getElementById('paperContent');
+            const up = document.getElementById('sizeUp');
+            const down = document.getElementById('sizeDown');
+            const reset = document.getElementById('sizeReset');
+            const printBtn = document.getElementById('printBtn');
+
+            let currentPx = 16;
+            const MIN = 12, MAX = 28;
+
+            function setSize(px) {
+                paper.style.fontSize = px + 'px';
+            }
+            function change(delta) {
+                let newSize = currentPx + delta;
+                if (newSize < MIN) newSize = MIN;
+                if (newSize > MAX) newSize = MAX;
+                if (newSize !== currentPx) {
+                    currentPx = newSize;
+                    setSize(currentPx);
+                }
+            }
+            setSize(currentPx);
+            up.addEventListener('click', () => change(2));
+            down.addEventListener('click', () => change(-2));
+            reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+            printBtn.addEventListener('click', () => window.print());
+
+            // MathJax configuration if needed
+            if (window.MathJax) {
+                const reloadMath = () => MathJax.typesetPromise?.();
+                up.addEventListener('click', reloadMath);
+                down.addEventListener('click', reloadMath);
+                reset.addEventListener('click', reloadMath);
+            }
+        })();
+    </script>
+    
+    <!-- Load MathJax for equation rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

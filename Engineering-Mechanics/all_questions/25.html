@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Engineering Mechanics · 2025 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .marks-info {
+            font-size: 1rem;
+            background: #f2f2f2;
+            padding: 8px 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2c3e50;
+            font-weight: 500;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            text-decoration: underline;
+        }
+        /* font size control row */
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 8px 0 15px 35px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .subquestion {
+            margin: 12px 0 8px 35px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .figure-box {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px dashed #999;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 350px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .figure-caption {
+            margin-top: 5px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 20px; }
+            .subquestion { margin-left: 20px; }
+            .figure-box img { max-width: 100%; }
+            .note-box { margin-left: 20px; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+            .figure-box { border: none; background: none; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>5 3064</span>
+        <span>ENGINEERING MECHANICS</span>
+    </div>
+    <div class="header-sub">
+        <span>2025</span>
+        <span>Time Allowed: 2.5 Hours · Full Marks: 60</span>
+    </div>
+    
+    <div class="instruction">
+        <strong>Instructions:</strong> Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer.<br>
+        Answer any Five (05) Questions from Group-B.
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== GROUP A ========== -->
+        <div class="group-title">GROUP-A</div>
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Choose the correct answer from the given alternatives and explain your answer (any ten):</span>
+            <div class="marks">2x10=20</div>
+            
+            <div class="subquestion">i) According to the Principle of Transmissibility of Force, the effect of a force on a rigid body remains unchanged if</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> the force is removed from the body</span>
+                <span class="opt"><span class="opt-marker">(b)</span> the force is applied to a different body</span>
+                <span class="opt"><span class="opt-marker">(c)</span> the force is shifted along its line of action</span>
+                <span class="opt"><span class="opt-marker">(d)</span> the force is doubled</span>
+            </div>
+
+            <div class="subquestion">ii) Which of the following is NOT a condition for the equilibrium of a co-planar system of non-concurrent parallel forces?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Sum of all horizontal forces must be zero</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Sum of all vertical forces must be zero</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Sum of all moments about any point must be zero</span>
+                <span class="opt"><span class="opt-marker">(d)</span> The forces must always be equal in magnitude</span>
+            </div>
+
+            <div class="subquestion">iii) A force of \(100~\mathrm{N}\) is acting at an angle of \(60^{\circ}\) with the horizontal. What is the vertical component of the force?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> \(50~\mathrm{N}\)</span>
+                <span class="opt"><span class="opt-marker">(b)</span> \(86.6~\mathrm{N}\)</span>
+                <span class="opt"><span class="opt-marker">(c)</span> \(100~\mathrm{N}\)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> \(43.3~\mathrm{N}\)</span>
+            </div>
+
+            <div class="subquestion">iv) The unit of a couple is:</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> \(\mathrm{N}/\mathrm{m}^{2}\)</span>
+                <span class="opt"><span class="opt-marker">(b)</span> \(\mathrm{N}/\mathrm{m}\)</span>
+                <span class="opt"><span class="opt-marker">(c)</span> \(\mathrm{N}-\mathrm{m}\)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> \(\mathrm{N}\)</span>
+            </div>
+
+            <div class="subquestion">v) The resultant in parallelogram law of forces has maximum value when the angle between two forces is equal to:</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> \(30^{\circ}\)</span>
+                <span class="opt"><span class="opt-marker">(b)</span> \(90^{\circ}\)</span>
+                <span class="opt"><span class="opt-marker">(c)</span> \(0^{\circ}\)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> \(180^{\circ}\)</span>
+            </div>
+
+            <div class="subquestion">vi) A block resting on a rough plane having angle of friction \(12^{\circ}\) will impend motion, if the inclination of the surface with the horizontal is:</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> \(11^{\circ}\)</span>
+                <span class="opt"><span class="opt-marker">(b)</span> \(12^{\circ}\)</span>
+                <span class="opt"><span class="opt-marker">(c)</span> \(13^{\circ}\)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> \(15^{\circ}\)</span>
+            </div>
+
+            <div class="subquestion">vii) The stability of an object increases when:</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Its centre of gravity is raised</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Its base is made smaller</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Its centre of gravity is lowered</span>
+                <span class="opt"><span class="opt-marker">(d)</span> It is tilted</span>
+            </div>
+
+            <div class="subquestion">viii) Limiting force of friction is the</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> ratio of limiting friction and normal reaction</span>
+                <span class="opt"><span class="opt-marker">(b)</span> the friction force acting when the body is in motion</span>
+                <span class="opt"><span class="opt-marker">(c)</span> the friction force acting when the body is just about to move</span>
+                <span class="opt"><span class="opt-marker">(d)</span> all of the above</span>
+            </div>
+
+            <div class="subquestion">ix) In the law of simple machine, \(\mathrm{P} = \mathrm{mW} + \mathrm{C}\), the constant C denotes</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> effort lost in friction under load W</span>
+                <span class="opt"><span class="opt-marker">(b)</span> effort lost in friction under no load</span>
+                <span class="opt"><span class="opt-marker">(c)</span> effort lost in friction when M.A. is maximum</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of the above</span>
+            </div>
+
+            <div class="subquestion">x) If a wheel rotates at 10 rad/s, what is the linear velocity of a point on its rim if the radius is 0.5 m?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> \(2\mathrm{m/s}\)</span>
+                <span class="opt"><span class="opt-marker">(b)</span> \(5\mathrm{m/s}\)</span>
+                <span class="opt"><span class="opt-marker">(c)</span> \(10\mathrm{m/s}\)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> \(20\mathrm{m/s}\)</span>
+            </div>
+
+            <div class="subquestion">xi) A machine has a power rating of 500 W. How much work does it do in 30 seconds?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> \(1500\mathrm{J}\)</span>
+                <span class="opt"><span class="opt-marker">(b)</span> \(1000\mathrm{J}\)</span>
+                <span class="opt"><span class="opt-marker">(c)</span> \(15\mathrm{kJ}\)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> \(150\mathrm{kJ}\)</span>
+            </div>
+
+            <div class="subquestion">xii) If efficiency of a lifting machine is kept constant, then it's V.R. is directly proportional to it's</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> effort applied</span>
+                <span class="opt"><span class="opt-marker">(b)</span> M.A.</span>
+                <span class="opt"><span class="opt-marker">(c)</span> machine friction</span>
+                <span class="opt"><span class="opt-marker">(d)</span> all of the above</span>
+            </div>
+        </div>
+
+        <!-- ========== GROUP B ========== -->
+        <hr>
+        <div class="group-title">GROUP-B</div>
+        <div class="note-box" style="margin-left:0;">Answer any Five (05) Questions from Group-B</div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">(a) State and explain Varignon's theorem.</span><br>
+            <span class="q-text">(b) Two forces of magnitude '2P' and 'P' act on a particle. If the first force be doubled and the second force is increased by 12 kN, the direction of their resultant remains unaltered. Find the value of P.</span>
+            <div class="marks">[4+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">(a) Define co-efficient of friction and limiting friction.</span><br>
+            <span class="q-text">(b) A body of weight 500 N is lying on a rough plane inclined at an angle of 25° with the horizontal. It is supported by an effort (P) parallel to the plane. Determine the minimum value of P, for which the equilibrium can exist, if the angle of friction is 20°.</span>
+            <div class="figure-box">
+                <img src="25/3a.jpg" alt="Figure for Q3(a) - Inclined plane" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Body on inclined plane with angle 25°]'">
+                <div class="figure-caption">Fig. 3(a)</div>
+            </div>
+            <div class="marks">[4+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">The law of wheel and axle machine is P = 0.2W + 50. The diameter of wheel is 600 mm and radius of axle is 50 mm. Determine (a) Mechanical Advantage, (b) Effort required to lift a load of 2000 N, (c) Maximum Efficiency, (d) Maximum Mechanical Advantage and (e) Load to be lifted by an effort of 520 N.</span>
+            <div class="figure-box">
+                <img src="25/4b.jpg" alt="Figure for Q4 - Wheel and axle" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Wheel and axle arrangement]'">
+                <div class="figure-caption">Fig. 4(b)</div>
+            </div>
+            <div class="marks">[9]</div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">(a) Find the friction force developed in the given figure for P = 20 N, 50 N and 60 N. Coefficient of static friction μₛ = 0.5 and Coefficient of kinetic friction μₖ = 0.4.</span>
+            <div class="figure-box">
+                <img src="25/5a.jpg" alt="Figure for Q5(a) - Friction force setup" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Block on surface with applied force P]'">
+                <div class="figure-caption">Fig. 5(a)</div>
+            </div>
+            <span class="q-text">(b) Two smooth spheres each of radius 100 mm and weighing 100 N, rest in a channel having smooth vertical walls, the distance between which is 360 mm. Find the reactions at the points of contacts.</span>
+            <div class="marks">[4+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">(a) What is the difference between centre of gravity and centre of mass?</span><br>
+            <span class="q-text">(b) Find the centroid of an I-section having the following dimensions: Top flange = 160 mm × 20 mm, Web = 80 mm × 30 mm and bottom flange = 200 mm × 10 mm.</span>
+            <div class="marks">[2+7]</div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">(a) What is the relationship between effort and the load lifted of a simple lifting machine? Plot the graph of effort vs load lifted for actual machine.</span><br>
+            <span class="q-text">(b) In a lifting machine, the effort of 15 N lifted a load of 700 N. Find the velocity ratio (V.R.) if the efficiency at this load is 60%. If a load of 1300 N is lifted by an effort of 25 N by the same machine, find the law of the machine. What will be effort required to lift the load of 1000 N? Determine maximum Mechanical Advantage (M.A.) and maximum efficiency.</span>
+            <div class="marks">[3+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            <span class="q-text">(a) Derive a relationship for the distance travelled by a body in the 'n'th second.</span><br>
+            <span class="q-text">(b) A motorist rushing at 15 m/sec, finds a block on the road 40 m ahead. He instantly applies brakes to stop the car within 5 m of the block, calculate: (i) retardation and (ii) time required to stop the car.</span>
+            <div class="marks">[4+4]</div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            <span class="q-text">(a) Define centre of gravity, centroid and centre of mass.</span><br>
+            <span class="q-text">(b) Locate the centroid of the lamina given in the fig below.</span>
+            <div class="figure-box">
+                <img src="25/9b.jpg" alt="Figure for Q9(b) - Lamina" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Lamina for centroid calculation]'">
+                <div class="figure-caption">Fig. 9(b)</div>
+            </div>
+            <div class="marks">[4+4]</div>
+        </div>
+
+        <!-- ========== QUESTION 10 ========== -->
+        <div class="q">
+            <span class="q-num">10.</span>
+            <span class="q-text">(a) Deduce the condition for self-locking of a machine.</span><br>
+            <span class="q-text">(b) A load of 2 kN is to be lifted by a screw-jack, having threads of 10 mm pitch. The efficiency of the jack at load is 50%. Determine the effort applied at the end of the handle of 50 cm length.</span>
+            <div class="marks">[3+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 11 ========== -->
+        <div class="q">
+            <span class="q-num">11.</span>
+            <span class="q-text">(a) Write mathematical expression of potential energy and kinetic energy with SI units. Give one example of each of potential energy and kinetic energy.</span><br>
+            <span class="q-text">(b) Water from a tank of capacity 18000 litres is to be lifted in 20 minutes by a pump through a height of 12 m. If the efficiency of the pump is 65%, find the power of the pump. (Take 1 litre = 1 kg).</span>
+            <div class="marks">[4+4]</div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

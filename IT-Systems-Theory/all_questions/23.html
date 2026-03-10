@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Introduction to IT Systems · 2023 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>201(N)</span>
+        <span>INTRODUCTION TO IT SYSTEMS</span>
+    </div>
+    <div class="header-sub">
+        <span>2023</span>
+        <span>Time Allowed: 2.5 Hours · Full Marks: 60</span>
+    </div>
+    
+    <div class="instruction">
+        <strong>Instructions:</strong> Answer to Question No. 1 is compulsory and answer any Five (05) Questions from the rest.
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Answer any five questions:</span>
+            
+            <div class="subquestion-alpha">a) How may type of Software? Give some example.</div>
+            <div class="subquestion-alpha">b) What is meant by a cache memory? Explain.</div>
+            <div class="subquestion-alpha">c) What are the characteristics of computers?</div>
+            <div class="subquestion-alpha">d) Give some importance functions of Operating System.</div>
+            <div class="subquestion-alpha">e) What is cyber stalking? What is Spam?</div>
+            <div class="subquestion-alpha">f) How many ways you can apply CSS to an HTML document?</div>
+            <div class="subquestion-alpha">g) Explain De Morgan's Theorem.</div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any five questions. Each question carries equal marks.
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <hr>
+        <div class="q">
+            <span class="q-num">2.</span>
+            
+            <div class="subquestion-i">(i) Prove: \(\overline{ABC} +\overline{ABC} +\overline{ABC} +\overline{ABC} = C\) <span class="marks-inline">3</span></div>
+            <div class="subquestion-i">(ii) What is the difference between Batch Processing System and Realtime Processing System? <span class="marks-inline">4</span></div>
+            <div class="subquestion-i">(iii) Convert Binary to Gray Code: \((1101101)_{2} = (?)_{Gray}\) <span class="marks-inline">2</span></div>
+            <div class="marks">[3+4+2=9]</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            
+            <div class="subquestion-i">(i) Write down the various formatting tags in HTML. <span class="marks-inline">4</span></div>
+            <div class="subquestion-i">(ii) Write an HTML code to display in Web Browser following table: <span class="marks-inline">5</span></div>
+            
+            <table>
+                <tr>
+                    <th>MATH</th>
+                    <th>PHYSICS</th>
+                    <th>IT</th>
+                </tr>
+                <tr>
+                    <td>80</td>
+                    <td>90</td>
+                    <td>95</td>
+                </tr>
+                <tr>
+                    <td>65</td>
+                    <td>78</td>
+                    <td>89</td>
+                </tr>
+                <tr>
+                    <td>76</td>
+                    <td>70</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            
+            <div class="marks">[4+5=9]</div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            
+            <div class="subquestion-i">(i) Draw a flow Chart to find out Largest number of three given number. <span class="marks-inline">3</span></div>
+            <div class="subquestion-i">(ii) Algorithm & Flowchart to convert temperature from Celsius to Fahrenheit. <span class="marks-inline">4</span></div>
+            <div class="subquestion-i">(iii) Distinguish between loop and branching statements. <span class="marks-inline">2</span></div>
+            <div class="marks">[3+4+2=9]</div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            
+            <div class="subquestion-i">(i) Name some CSS style components. <span class="marks-inline">4</span></div>
+            <div class="subquestion-i">(ii) Design a HTML page with Java Script to calculate sum of n natural numbers. <span class="marks-inline">5</span></div>
+            <div class="marks">[4+5=9]</div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            
+            <div class="subquestion-i">(i) Draw the logic diagram of an Ex-NOR gate and discuss its operation. <span class="marks-inline">3</span></div>
+            <div class="subquestion-i">(ii) Simplify the Boolean expression: \((X + Y)(X + \overline{Y})(\overline{X} + Z)\) <span class="marks-inline">4</span></div>
+            <div class="subquestion-i">(iii) Draw the logic diagram the Boolean expression: \(\mathbf{AB} + \mathbf{ABC} + \mathbf{ABC} + \mathbf{AC}\) <span class="marks-inline">2</span></div>
+            <div class="marks">[3+4+2=9]</div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            
+            <div class="subquestion-i">(i) What is a Malware and types of Malwares? <span class="marks-inline">3</span></div>
+            <div class="subquestion-i">(ii) What is DoS Attack? What are the security measures against DoS attack? <span class="marks-inline">4</span></div>
+            <div class="subquestion-i">(iii) What is Computer Hacking? <span class="marks-inline">2</span></div>
+            <div class="marks">[3+4+2=9]</div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            
+            <div class="subquestion-i">(i) Convert: \((27.23)_{10} = (?)_{2}\) and \((542)_{8} = (?)_{16}\) <span class="marks-inline">4</span></div>
+            <div class="subquestion-i">(ii) Write the main difference between Multitasking and Multiprogramming. <span class="marks-inline">3</span></div>
+            <div class="subquestion-i">(iii) What are ASCII and EBCDIC Codes? <span class="marks-inline">2</span></div>
+            <div class="marks">[4+3+2=9]</div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            
+            <div class="subquestion-i">(i) State the difference between (a) HDD and SDD memory (b) DRAM and SRAM <span class="marks-inline">8</span></div>
+            <div class="subquestion-i">(ii) Name the gates that are used as universal gates. <span class="marks-inline">1</span></div>
+            <div class="marks">[8+1=9]</div>
+        </div>
+
+        <!-- Instruction reminder -->
+        <div class="note-box" style="margin-left:0;">
+            <strong>Note:</strong> Answer any Five questions from Question No. 2 to Question No. 9. Each question carries 9 marks.
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

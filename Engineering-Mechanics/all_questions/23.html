@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Engineering Mechanics · 2023 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .marks-info {
+            font-size: 1.1rem;
+            background: #f2f2f2;
+            padding: 8px 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2c3e50;
+            font-weight: 500;
+        }
+        /* font size control row */
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 35px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .figure-box {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px dashed #999;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 300px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .figure-caption {
+            margin-top: 5px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        @media (max-width:550px) {
+            .subquestion { margin-left: 20px; }
+            .figure-box img { max-width: 100%; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+            .figure-box { border: none; background: none; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span></span>
+        <span>ENGINEERING MECHANICS</span>
+    </div>
+    <div class="header-sub">
+        <span>2023</span>
+        <span>Time Allowed: 3 Hours · Full Marks: 70</span>
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Answer the following questions (any five):</span>
+            <div class="marks">3x5=15</div>
+            <div style="margin:15px 0 20px 35px;">
+                <div>i) Explain the principle of transmissibility.</div>
+                <div>ii) Write the conditions for equilibrium of forces.</div>
+                <div>iii) Show with diagram: Uniformly distributed load and uniformly varying load.</div>
+                <div>iv) State the Coulomb's laws of friction.</div>
+                <div>v) What is cone of friction? Draw the cone.</div>
+                <div>vi) Write the advantages of friction.</div>
+                <div>vii) What is Reversible & Non-reversible machine?</div>
+                <div>viii) What do you mean by 'effort lost in friction' and 'frictional resistance'?</div>
+                <div>ix) A train was moving at a constant velocity of \(80 \mathrm{km/h}\), as it approached a station, the loco-pilot applied brakes at a constant retardation of \(0.74 \mathrm{m/sec}^2\) and stopped it at the station. How much time will it take to stop?</div>
+                <div>x) A ball is thrown vertically upwards from ground, with an initial velocity of \(2 \mathrm{m/s}\). Find the greatest height attained by the ball.</div>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">(a) State Varignon's theorem. Explain Bow's notation.</span><br>
+            <span class="q-text">(b) Two forces of magnitude '2P' and 'P' act on a particle. If the first force be doubled and the second force is increased by \(12 \mathrm{kN}\), the direction of their resultant remains unaltered. Find the value of P.</span>
+            <div class="marks">[4+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">(a) Define co-efficient of friction and limiting friction.</span><br>
+            <span class="q-text">(b) A body of weight \(500 \mathrm{N}\) is lying on a rough plane inclined at an angle of \(25^{\circ}\) with the horizontal. It is supported by an effort (P) parallel to the plane. Determine the minimum value of P, for which the equilibrium can exist, if the angle of friction is \(20^{\circ}\).</span>
+            <div class="marks">[4+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">The law of wheel and axle machine is \(\mathrm{P} = 0.2 \mathrm{W} + 50\). The diameter of wheel is \(600 \mathrm{mm}\) and radius of axle is \(50 \mathrm{mm}\). Determine (a) Mechanical Advantage, (b) Effort required to lift a load of \(2000 \mathrm{N}\), (c) Maximum Efficiency, (d) Maximum Mechanical Advantage and (e) Load to be lifted by an effort of \(520 \mathrm{N}\).</span>
+            <div class="marks">[9]</div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">(a) Find the friction force developed in the given figure for \(\mathrm{P} = 20 \mathrm{N}\), \(50 \mathrm{N}\) and \(60 \mathrm{N}\). Coefficient of static friction \(\mu_{s} = 0.5\) and Coefficient of kinetic (or dynamic) friction \(\mu_{d} = 0.4\).</span>
+            <div class="figure-box">
+                <img src="23/fig5a.jpg" alt="Figure for Q5(a)" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Friction force setup]'">
+                <div class="figure-caption">Fig. 5(a)</div>
+            </div>
+            <span class="q-text">(b) Two smooth spheres each of radius \(100 \mathrm{mm}\) and weighing \(100 \mathrm{N}\), rest in a channel having smooth vertical walls, the distance between which is \(360 \mathrm{mm}\). Find the reactions at the points of contacts.</span>
+            <div class="figure-box">
+                <img src="23/fig5b.jpg" alt="Figure for Q5(b)" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Two spheres in channel]'">
+                <div class="figure-caption">Fig. 5(b)</div>
+            </div>
+            <div class="marks">[4+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">(a) What is the difference between centre of gravity and centre of mass?</span><br>
+            <span class="q-text">(b) Find the centroid of an I-section having the following dimensions:</span>
+            <div style="margin-left:35px; margin-top:5px;">
+                Top flange \(= 160 \mathrm{mm} \times 20 \mathrm{mm}\),<br>
+                Web \(= 80 \mathrm{mm} \times 30 \mathrm{mm}\) and<br>
+                bottom flange \(= 200 \mathrm{mm} \times 10 \mathrm{mm}\).
+            </div>
+            <div class="marks">[2+7]</div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">(a) State the Newton's law of motion. Deduce the relationship \(\mathrm{P} = \mathrm{mf}\).</span><br>
+            <span class="q-text">(b) Derive a relationship for the distance travelled by a body in the nth second.</span>
+            <div class="marks">[5+4]</div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            <span class="q-text">(a) Define (i) Angle of Friction, (ii) Angle of Repose.</span><br>
+            <span class="q-text">(b) What load will be lifted by an effort of 12 N, if the velocity ratio is 18 and efficiency of the machine at this load is \(60\%\) ? If the machine has a constant friction resistance, determine the law of the machine.</span>
+            <div class="marks">[4+5]</div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            <span class="q-text">(a) Define work, power and energy with their SI units. Give one example of each of potential energy and kinetic energy.</span><br>
+            <span class="q-text">(b) A weight of 2 kN is supported by two strings as shown below. Find the tensions in the strings.</span>
+            <div class="figure-box">
+                <img src="23/fig9b.jpg" alt="Figure for Q9(b)" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Diagram: Two strings supporting a weight]'">
+                <div class="figure-caption">Fig. 9(b)</div>
+            </div>
+            <div class="marks">[5+4]</div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

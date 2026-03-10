@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics-II 2022 Question Paper</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .warning-box {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff0f0;
+            border-left: 4px solid #c62828;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            text-align: center;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .math {
+            font-style: italic;
+        }
+        .det-matrix {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+    <div class="paper">
+        <div class="header-top">
+            <span>MATHEMATICS-II (204N)</span>
+            <span>2022</span>
+        </div>
+        <div class="header-sub">
+            <span>Time Allowed: 2.5 Hours</span>
+            <span>Full Marks: 60</span>
+        </div>
+
+        <div class="size-row">
+            <button class="size-btn" id="sizeDown">A−</button>
+            <button class="size-btn" id="sizeReset">A</button>
+            <button class="size-btn" id="sizeUp">A+</button>
+        </div>
+
+        <div id="paperContent">
+            <div class="instruction">
+                <strong>Instructions:</strong> Answer the following questions from Group A, B & C as directed.
+            </div>
+
+            <!-- Group A -->
+            <div class="group-title">Group A</div>
+            
+            <!-- Q1: MCQs -->
+            <div class="q">
+                <span class="q-num">1.</span>
+                <span class="q-text">Choose the correct alternatives (any ten):</span>
+                <span class="marks-inline">[10 × 1 = 10 marks]</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">i)</span>
+                <span class="q-text">The value of \(\begin{vmatrix} 105 & 106 & 107 \\ 110 & 111 & 112 \\ 115 & 116 & 117 \end{vmatrix}\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 2</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> -1</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ii)</span>
+                <span class="q-text">Determinant value of any skew symmetric matrix of order 2×2 is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> strictly positive</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> strictly negative</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iii)</span>
+                <span class="q-text">The co-factor of the element 5 in \(\mathbf{D} = \begin{vmatrix} 1 & 3 & 4 \\ -1 & 0 & 2 \\ 3 & 5 & 8 \end{vmatrix}\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 5</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 6</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> -6</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iv)</span>
+                <span class="q-text">The value of k for which the points (1, 2), (k, 4) and (3, 6) are collinear is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 1</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 2</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 3</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">v)</span>
+                <span class="q-text">The value of k for which the line \(2x + 3y + 4 + k(6x - y + 11) = 0\) is parallel to the y-axis is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(-\frac{1}{3}\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\frac{1}{3}\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 3</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vi)</span>
+                <span class="q-text">Coordinates of centre of the circle \(2x^{2} + 2y^{2} - 8x - 5 = 0\) are</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> (0, 2)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> (2, 0)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> (4, 0)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> (-4, 0)</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vii)</span>
+                <span class="q-text">\(\int \frac{e^{1 - \log x}}{x} dx\) is equal to</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(e^x + c\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(e\log|x| + c\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(x\log e + c\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">viii)</span>
+                <span class="q-text">\(\int \frac{\cos x}{\sqrt{1 + \cos 2x}} dx =\)</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(x + c\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\frac{x}{2} + c\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(\frac{x}{\sqrt{2}} + c\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ix)</span>
+                <span class="q-text">The order and degree of the differential equation \(\left(\frac{d^2y}{dx^2}\right)^5 - x^3\left(\frac{dy}{dx}\right)^3 = 0\) are</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 1 and 2</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 2 and 5</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 2 and 3</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">x)</span>
+                <span class="q-text">The Integrating Factor (IF) of the differential equation \(\frac{dy}{dx} + \frac{1}{x}y = \sin x\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(x\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\frac{1}{x}\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(\log x\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xi)</span>
+                <span class="q-text">General solution of the differential equation \(\frac{dy}{dx} = 1\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(y = c\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(x = 0\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(y = x + c\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xii)</span>
+                <span class="q-text">The differential equation whose general solution is \(y = A\cos x + B\sin x\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(\frac{d^2y}{dx^2} = y\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\frac{d^2y}{dx^2} = -y\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(\frac{d^2y}{dx^2} = 0\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xiii)</span>
+                <span class="q-text">If \(u = 5x^2 + 7xy + 3y^2\), then \(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y}\) equals to</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(u\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(2u\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(4u\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xiv)</span>
+                <span class="q-text">The median of the data 6,4,-1,0,4,8,9 is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 4</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 6</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xv)</span>
+                <span class="q-text">Two coins are tossed. The probability of getting at least one head is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(\frac{3}{4}\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\frac{1}{2}\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(\frac{1}{4}\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                </div>
+            </div>
+
+            <!-- Q2: Fill in the blanks -->
+            <div class="q" style="margin-top: 30px;">
+                <span class="q-num">2.</span>
+                <span class="q-text">Fill in the blanks (any ten):</span>
+                <span class="marks-inline">[10 × 1 = 10 marks]</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">i)</span>
+                <span class="q-text">For a matrix \(\mathbf{A} = \begin{pmatrix} 3 & 2 & 1 \\ 2 & 0 & 5 \end{pmatrix}\), \(\mathbf{A}^{\prime} =\) ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ii)</span>
+                <span class="q-text">Matrix \(\begin{pmatrix} 1 & 2 \end{pmatrix} \begin{pmatrix} -2 \\ 5 \end{pmatrix}\) is equal to ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iii)</span>
+                <span class="q-text">The area bounded by the curves \(4x + 3y = 12\), \(y = 0\) and \(x = 0\) is ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iv)</span>
+                <span class="q-text">If the length of the diameter of the circle \(x^2 + y^2 + 4x - 6y - k = 0\) is 4 then value of \(k\) is ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">v)</span>
+                <span class="q-text">\(x^2 - y^2 = 2022\) represents a ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vi)</span>
+                <span class="q-text">If \(\frac{d}{dx}[\phi(x)] = f(x)\), then \(\int f(x) dx\) is ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vii)</span>
+                <span class="q-text">\(\int_{0}^{1} |x| dx =\) ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">viii)</span>
+                <span class="q-text">\(\int_{0}^{1} \frac{1 - x}{1 + x} dx =\) ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ix)</span>
+                <span class="q-text">Particular Integral (PI) of the differential equation \(\frac{d^2y}{dx^2} + 4y = 5e^{2x}\) is ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">x)</span>
+                <span class="q-text">If the differential equation \((2x^2 + 4y)dx + k(4x + y - 1)dy = 0\) is exact then value of \(k\) is ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xi)</span>
+                <span class="q-text">The Complementary Function (CF) of \(\frac{d^2y}{dx^2} - 16 = x e^{3x}\) is ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xii)</span>
+                <span class="q-text">\(y = c_1 + c_2e^x\) is the solution of the differential equation ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xiii)</span>
+                <span class="q-text">If \(u = e^{xy}\), then the value of \(\frac{\partial u}{\partial x} + \frac{\partial u}{\partial y}\) is ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xiv)</span>
+                <span class="q-text">If the mean of \(x - 2\), 10, \(x + 3\), 7 is 9, then \(x =\) ______</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xv)</span>
+                <span class="q-text">The probability of getting an even number from the numbers up to 50 (including 50) is ______</span>
+            </div>
+
+            <!-- Q3: Short questions -->
+            <div class="q" style="margin-top: 30px;">
+                <span class="q-num">3.</span>
+                <span class="q-text">Answer the following questions (any ten):</span>
+                <span class="marks-inline">[10 × 1 = 10 marks]</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">i)</span>
+                <span class="q-text">Find x and y such that \(\begin{pmatrix} 3 & x+1 \\ y+2 & 5 \end{pmatrix} = \begin{pmatrix} 3 & 2 \\ 7 & 5 \end{pmatrix}\)</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ii)</span>
+                <span class="q-text">What is symmetric matrix?</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iii)</span>
+                <span class="q-text">Find the value of \(x\) for which \(\mathbf{A} = \begin{pmatrix} 2 & x \\ 3 & 6 \end{pmatrix}\) is singular matrix.</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iv)</span>
+                <span class="q-text">Find slope of the line \(2x - 3y = 3\)</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">v)</span>
+                <span class="q-text">Find length of major axis of the ellipse \(9x^2 + 16y^2 = 144\)</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vi)</span>
+                <span class="q-text">Integrate: \(\int \cot^2 x dx\)</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vii)</span>
+                <span class="q-text">If the roots of Auxiliary Equation (AE) of a linear differential equation of \(2^{nd}\) order with constant coefficients be \(2 \pm 3i\), find the Complementary Function (CF).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">viii)</span>
+                <span class="q-text">Find \(\frac{1}{D^2 + 5}(\sin 2x)\).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ix)</span>
+                <span class="q-text">If \(u = 7xy^2\), find \(\frac{\partial^2 u}{\partial x \partial y}\).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">x)</span>
+                <span class="q-text">State Euler's theorem on homogeneous function.</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xi)</span>
+                <span class="q-text">If \(y = 2x - 5\) and \(\overline{x} = 7\), find the value of \(\overline{y}\).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xii)</span>
+                <span class="q-text">Find the mode of the data: 7, -1, 2, 3, 5, 0, 2, 3, 2, 3, 0, 4, 2, 5, 1</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xiii)</span>
+                <span class="q-text">Let A and B be two events and \(P(A) = 0.3\), \(P(B) = 0.2\) and \(P(A \cap B) = 0.1\), find the value of \(P(A \cup B)\).</span>
+            </div>
+
+            <!-- Group B -->
+            <div class="group-title">Group B</div>
+            
+            <!-- Q4 -->
+            <div class="q">
+                <span class="q-num">4.</span>
+                <span class="q-text">Answer the following questions (any six):</span>
+                <span class="marks-inline">[6 × 2 = 12 marks]</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">i)</span>
+                <span class="q-text">If \(A = \begin{pmatrix} 3 & 2 \\ 1 & 4 \end{pmatrix}\), find A(adj A).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ii)</span>
+                <span class="q-text">Show that \(\begin{vmatrix} 1 & \alpha & \alpha^2 \\ 1 & \beta & \beta^2 \\ 1 & \gamma & \gamma^2 \end{vmatrix} = -\begin{vmatrix} \alpha^2 & \beta^2 & \gamma^2 \\ \alpha & \beta & \gamma \\ 1 & 1 & 1 \end{vmatrix}\)</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iii)</span>
+                <span class="q-text">Transfer the Cartesian form of the equation \(x^2 + y^2 = 2ax\) to its polar form.</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iv)</span>
+                <span class="q-text">If the lines joining the points (a, -2) and (4, -a) be parallel to the line joining (2, 1) and (3, 4), find the value of a.</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">v)</span>
+                <span class="q-text">Integrate: \(\int \frac{dx}{1 - \cos x}\).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vi)</span>
+                <span class="q-text">Evaluate: \(\int_{0}^{1} \frac{\sin^{-1} x}{\sqrt{1 - x^2}} dx\).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vii)</span>
+                <span class="q-text">Solve: \(x dy - y dx = (x^2 + y^2) dx\)</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">viii)</span>
+                <span class="q-text">Verify Euler's Theorem for the function \(f(x, y) = 3x^2 + 4y^2\).</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ix)</span>
+                <span class="q-text">Find the variance of: 5, 6, 7, 8, 10.</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">x)</span>
+                <span class="q-text">An urn contains 12 white balls and 6 red balls. A ball is drawn at random. What is the probability of it being a white?</span>
+            </div>
+
+            <!-- Group C -->
+            <div class="group-title">Group C</div>
+            
+            <!-- Q5 -->
+            <div class="q">
+                <span class="q-num">5.</span>
+                <span class="q-text">Answer the following question (any one):</span>
+                <span class="marks-inline">[6 marks]</span>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">i)</span>
+                <span class="q-text">a) If A be a skew symmetric matrix then prove that A² is symmetric. [2 marks]</span>
+                <div style="margin-left: 45px; margin-top: 5px;">
+                    b) Evaluate the determinant \(\begin{vmatrix} 0 & -1 & -1 & 1 \\ 4 & 5 & 1 & 1 \\ 3 & 9 & 4 & 1 \\ 4 & 4 & 4 & 1 \end{vmatrix}\) using Chio's method. [4 marks]
+                </div>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">ii)</span>
+                <span class="q-text">a) Without expanding prove that \(\begin{vmatrix} 1 & a & b+c \\ 1 & b & c+a \\ 1 & c & a+b \end{vmatrix} = 0.\) [2 marks]</span>
+                <div style="margin-left: 45px; margin-top: 5px;">
+                    b) If \(\mathbf{A} = \begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}\) prove that \(\mathbf{A}^2 - 4\mathbf{A} - I = 0\), where I is the unit matrix of order 2 and hence find \(\mathbf{A}^{-1}\). [4 marks]
+                </div>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">iii)</span>
+                <span class="q-text">A straight line passes through the point (7, 3) and has intercepts on the axes in equal magnitude but opposite in sign. Find its equation. Also find the co-ordinates of the point on the line at which the abscissa is triple the ordinate. [6 marks]</span>
+            </div>
+
+            <!-- Q6 -->
+            <div class="q" style="margin-top: 30px;">
+                <span class="q-num">6.</span>
+                <span class="q-text">Answer the following question (any one):</span>
+                <span class="marks-inline">[6 marks]</span>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">i)</span>
+                <span class="q-text">Evaluate: a) \(\int \frac{e^{4\log x} - e^{3\log x}}{e^{\log x} - 1} dx\) [2 marks]</span>
+                <div style="margin-left: 45px; margin-top: 5px;">
+                    b) \(\int_{0}^{\frac{\pi}{2}}\frac{\cos x}{(1 + \sin x)(2 + \sin x)} dx.\) [4 marks]
+                </div>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">ii)</span>
+                <span class="q-text">Solve: \(\frac{d^2y}{dx^2} - 4a\frac{dy}{dx} + 4a^2y = x^2e^{2ax}\). [6 marks]</span>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">iii)</span>
+                <span class="q-text">Mark the area bounded by \(y^2 = 2x\), \(x = 1\) and \(x = 4\) and find the enclosed area. [6 marks]</span>
+            </div>
+
+            <!-- Q7 -->
+            <div class="q" style="margin-top: 30px;">
+                <span class="q-num">7.</span>
+                <span class="q-text">Answer the following question (any one):</span>
+                <span class="marks-inline">[6 marks]</span>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">i)</span>
+                <span class="q-text">A distribution consists of three components with frequencies 200, 250, 300 having means 25, 10 and 15; standard deviation 3, 4 and 5 respectively. Prove that the mean of the combined distribution is 16 and its standard deviation is 7.2 approximately. [6 marks]</span>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">ii)</span>
+                <span class="q-text">A coin and a die are thrown simultaneously. Find the probabilities of occurrence of a) head and even face b) tail and multiple of three. [6 marks]</span>
+            </div>
+
+            <div class="subquestion-roman">
+                <span class="q-num">iii)</span>
+                <span class="q-text">If \(u = \cos^{-1}\frac{x + y}{\sqrt{x} + \sqrt{y}}\) prove that \(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + \frac{1}{2}\cot u = 0\). [6 marks]</span>
+            </div>
+
+            <div class="footnote">
+                www.polynoteshub.co.in
+            </div>
+        </div>
+
+        <div class="print-area">
+            <button class="print-btn" id="printBtn">Print</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const paper = document.getElementById('paperContent');
+            const up = document.getElementById('sizeUp');
+            const down = document.getElementById('sizeDown');
+            const reset = document.getElementById('sizeReset');
+            const printBtn = document.getElementById('printBtn');
+
+            let currentPx = 16;
+            const MIN = 12, MAX = 28;
+
+            function setSize(px) {
+                paper.style.fontSize = px + 'px';
+            }
+            function change(delta) {
+                let newSize = currentPx + delta;
+                if (newSize < MIN) newSize = MIN;
+                if (newSize > MAX) newSize = MAX;
+                if (newSize !== currentPx) {
+                    currentPx = newSize;
+                    setSize(currentPx);
+                }
+            }
+            setSize(currentPx);
+            up.addEventListener('click', () => change(2));
+            down.addEventListener('click', () => change(-2));
+            reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+            printBtn.addEventListener('click', () => window.print());
+
+            if (window.MathJax) {
+                const reloadMath = () => MathJax.typesetPromise?.();
+                up.addEventListener('click', reloadMath);
+                down.addEventListener('click', reloadMath);
+                reset.addEventListener('click', reloadMath);
+            }
+        })();
+    </script>
+</body>
+</html>

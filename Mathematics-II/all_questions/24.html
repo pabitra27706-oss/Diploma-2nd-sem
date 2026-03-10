@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics-II 2024 Question Paper</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .warning-box {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff0f0;
+            border-left: 4px solid #c62828;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            text-align: center;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .math {
+            font-style: italic;
+        }
+        .det-matrix {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .explanation-note {
+            font-size: 0.9em;
+            color: #555;
+            font-style: italic;
+            margin-left: 55px;
+            margin-top: 2px;
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+    <div class="paper">
+        <div class="header-top">
+            <span>MATHEMATICS-II (204N)</span>
+            <span>2024</span>
+        </div>
+        <div class="header-sub">
+            <span>Time Allowed: 1 Hour</span>
+            <span>Full Marks: 60</span>
+        </div>
+
+        <div class="size-row">
+            <button class="size-btn" id="sizeDown">A−</button>
+            <button class="size-btn" id="sizeReset">A</button>
+            <button class="size-btn" id="sizeUp">A+</button>
+        </div>
+
+        <div id="paperContent">
+            <div class="instruction">
+                <strong>Instructions:</strong> Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer. However, no marks will be given for wrong explanation of the answer of each MCQ type questions. Answer any five (05) questions from Group-B.
+            </div>
+
+            <!-- Group A - Q1 MCQs -->
+            <div class="group-title">Group A</div>
+            <div class="q">
+                <span class="q-num">1.</span>
+                <span class="q-text">Choose the correct answer from the given alternatives and explain your answer (any ten):</span>
+                <span class="marks-inline">[10 × 2 = 20 marks]</span>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">i)</span>
+                <span class="q-text">The cofactor of the element '3' in the determinant \(\begin{vmatrix} 1 & -1 & 3 \\ 0 & 2 & 6 \\ 1 & 5 & 2 \end{vmatrix}\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 2</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> -2</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> 1</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ii)</span>
+                <span class="q-text">If \(2\begin{bmatrix} x & 2 \\ y+5 & 1 \end{bmatrix} + \begin{bmatrix} 3 & 4 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 3 & 8 \\ 15 & 14 \end{bmatrix}\), then the value of (x, y) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> (0, 0)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> (1, 0)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> (1, 1)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> (0, 1)</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iii)</span>
+                <span class="q-text">The value of the determinant \(\begin{vmatrix} 1 & -1 & 3 \\ 1 & -1 & 3 \\ 1 & 5 & 2 \end{vmatrix}\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 3</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 6</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> None of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">iv)</span>
+                <span class="q-text">If \(A = \begin{bmatrix} 2 & m-3 \\ 3 & 6 \end{bmatrix}\) is singular, then the value of m is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 3</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> -3</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 7</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> -7</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">v)</span>
+                <span class="q-text">The value of p for which the points (1, 2), (3, 6), (p, 4) are collinear is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 2</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 3</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 1</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> -1</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vi)</span>
+                <span class="q-text">The Cartesian co-ordinates of a point are \((-\sqrt{3}, 1)\), its polar co-ordinates are</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \((\sqrt{3}, 2)\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \((2, -\frac{\pi}{6})\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \((2, \frac{5\pi}{6})\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> \((2, -\frac{5\pi}{6})\)</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">vii)</span>
+                <span class="q-text">The value of \(\int_{0}^{\pi} \sin x \, dx\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 1</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> -1</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> 2</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">viii)</span>
+                <span class="q-text">The value of the integral \(\int_{0}^{1} \frac{dx}{1+x^2}\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(\frac{\pi}{2}\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\frac{\pi}{4}\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> 1</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">ix)</span>
+                <span class="q-text">\(\int \frac{\sin x}{\cos x} dx\) is equal to</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(\log \sin x + c\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\log \cos x + c\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(-\log \cos x + c\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> \(\log x + c\)</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">x)</span>
+                <span class="q-text">The order and degree of the differential equation \(\left(\frac{d^3y}{dx^3}\right)^2 + \left(\frac{dy}{dx}\right)^5 + y = 3\sin x\) are</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 3 and 2</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 5 and 5</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 2 and 3</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> None of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xi)</span>
+                <span class="q-text">Complementary Function of the differential equation \(\frac{d^2y}{dx^2} - 2\frac{dy}{dx} + y = e^x\) is</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \((c_1 + c_2 x)e^x\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \((c_1 + c_2 x)e^{-x}\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(c_1 e^x + c_2 e^{-x}\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> \(c_1 \cos x + c_2 \sin x\)</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xii)</span>
+                <span class="q-text">If \(f(x, y) = \frac{x}{y}\), then the value of \(x\frac{\partial f}{\partial x} + y\frac{\partial f}{\partial y}\) is equal to</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(f\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 0</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 1</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> None of these</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xiii)</span>
+                <span class="q-text">An urn contains 12 white balls and 6 black balls. A ball is drawn at random. What is the probability of getting it to be a white?</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(\frac{1}{2}\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(\frac{1}{3}\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(\frac{2}{3}\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> \(\frac{1}{9}\)</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xiv)</span>
+                <span class="q-text">If \(Var(X) = 3\) and \(Y = 2X + 3\) then \(Var(Y)\) is equal to</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> 6</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> 12</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> 15</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> 9</span>
+                </div>
+            </div>
+
+            <div class="subquestion-i">
+                <span class="q-num">xv)</span>
+                <span class="q-text">Let 'A' be any event then \(P(A)\) is always</span>
+                <div class="opts">
+                    <span class="opt"><span class="opt-marker">(a)</span> \(0 \leq P(A) \leq 1\)</span>
+                    <span class="opt"><span class="opt-marker">(b)</span> \(1 < P(A) \leq 0\)</span>
+                    <span class="opt"><span class="opt-marker">(c)</span> \(-1 \leq P(A) \leq 1\)</span>
+                    <span class="opt"><span class="opt-marker">(d)</span> \(P(A) = 1\)</span>
+                </div>
+            </div>
+
+            <!-- Group B -->
+            <div class="group-title">Group B</div>
+            <div class="instruction">
+                Answer any five (05) questions from the following.
+            </div>
+
+            <!-- Q2 -->
+            <div class="q">
+                <span class="q-num">2.</span>
+                <span class="q-text">a) Evaluate by Chio's method:</span>
+                <div style="margin-left: 45px; margin-top: 10px;">
+                    \(\begin{vmatrix} 0 & -1 & 2 & 3 \\ 1 & 2 & -1 & 1 \\ 1 & 1 & 2 & 3 \\ 3 & 2 & 1 & 0 \end{vmatrix}\)
+                </div>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">Show that the matrix \(A = \frac{1}{3}\begin{bmatrix} -1 & 2 & -2 \\ -2 & 1 & 2 \\ 2 & 2 & 1 \end{bmatrix}\) is orthogonal, i.e. \(AA^T = A^TA = I_3\).</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="q">
+                <span class="q-num">3.</span>
+                <span class="q-text">a) Solve the following system of linear equations by Cramer's Rule:</span>
+                <div style="margin-left: 45px; margin-top: 10px;">
+                    \(2x + y + z = -2\)<br>
+                    \(x + 2y + z = 1\)<br>
+                    \(x - 2y - 3z = 1\)
+                </div>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">Show that the matrix \(A = \begin{bmatrix} 2 & 0 & 2 \\ 4 & 6 & 0 \\ 0 & 2 & 4 \end{bmatrix}\) satisfies the equation \(A = \frac{1}{2}(A + A^T) + \frac{1}{2}(A - A^T)\).</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="q">
+                <span class="q-num">4.</span>
+                <span class="q-text">a) Find the straight line passes through the point (1, 0) and parallel to the straight line \(2x + 3y = 6\).</span>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">Prove that the triangle formed by the lines \(x + y = 0\), \(3x + y = 4\) and \(x + 3y = 4\) is an isosceles triangle.</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="q">
+                <span class="q-num">5.</span>
+                <span class="q-text">a) Evaluate: \(\int \frac{x-1}{(x-3)(x+2)} dx\).</span>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">Show that \(\int_{0}^{\frac{\pi}{2}} \frac{\sin x}{\sin x + \cos x} dx = \frac{\pi}{4}\).</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <span class="q-num">c)</span>
+                    <span class="q-text">Evaluate: \(\int_{0}^{1} e^{2x} dx\).</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="q">
+                <span class="q-num">6.</span>
+                <span class="q-text">a) Evaluate: \(\int_{0}^{\frac{\pi}{2}} \frac{\cos x}{(1+\sin x)(2+\sin x)} dx\).</span>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">Find the area bounded by the circle \(x^2 + y^2 = 4\) and the straight line \(x = y\) in the first quadrant and x-axis.</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="q">
+                <span class="q-num">7.</span>
+                <span class="q-text">a) If \(u = \cos^{-1}\left(\frac{x+y}{\sqrt{x}+\sqrt{y}}\right)\), then show that \(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + \frac{1}{2}\cot u = 0\).</span>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">If \(u = \log(x^3 + y^3 + z^3 - 3xyz)\) then show that \(\frac{\partial u}{\partial x} + \frac{\partial u}{\partial y} + \frac{\partial u}{\partial z} = \frac{3}{x+y+z}\).</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="q">
+                <span class="q-num">8.</span>
+                <span class="q-text">a) Solve the differential equation: \(\frac{d^2y}{dx^2} - 10\frac{dy}{dx} + 25y = 0\).</span>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">Solve the differential equation: \(\frac{d^2y}{dx^2} - 10\frac{dy}{dx} + 25y = e^{5x}\).</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="q">
+                <span class="q-num">9.</span>
+                <span class="q-text">a) There are two identical urns containing 4 white and 3 red balls; 3 white and 7 red balls. An urn is chosen at random and a ball is drawn from it. Find the probability that the ball is white. What is the probability that it is from the first urn if the ball drawn is white?</span>
+                <div class="marks-inline">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">Two dice are rolled. What is the probability that the sum total of the points on the dice is 6?</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <span class="q-num">c)</span>
+                    <span class="q-text">If \(P(A) = u\), \(P(B) = 0.7\), \(P(A \cup B) = 0.8\) and \(P(A \cap B) = 1 - u\), then find the value of \(u\).</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="q">
+                <span class="q-num">10.</span>
+                <span class="q-text">a) The table below gives the weights of 50 school students nearest to kilogram. Calculate mean and standard deviation from the following data:</span>
+                <table style="margin-left: 45px; margin-top: 10px;">
+                    <tr>
+                        <th>Wt. in kg (x)</th>
+                        <td>40-42</td>
+                        <td>43-45</td>
+                        <td>46-48</td>
+                        <td>49-51</td>
+                        <td>52-54</td>
+                        <td>55-57</td>
+                        <td>58-60</td>
+                    </tr>
+                    <tr>
+                        <th>No. of boys (f)</th>
+                        <td>3</td>
+                        <td>6</td>
+                        <td>9</td>
+                        <td>13</td>
+                        <td>8</td>
+                        <td>7</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+                <div class="marks-inline" style="margin-left: 45px;">[4 marks]</div>
+                
+                <div style="margin-top: 20px;">
+                    <span class="q-num">b)</span>
+                    <span class="q-text">P can hit a target 4 times in 5 shots, Q 3 times in 4 shots and R twice in 3 shots. They fire a volley. What is the probability that two shots at least hit the target?</span>
+                    <div class="marks-inline">[4 marks]</div>
+                </div>
+            </div>
+
+            <div class="footnote">
+                www.polynoteshub.co.in
+            </div>
+        </div>
+
+        <div class="print-area">
+            <button class="print-btn" id="printBtn">Print</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const paper = document.getElementById('paperContent');
+            const up = document.getElementById('sizeUp');
+            const down = document.getElementById('sizeDown');
+            const reset = document.getElementById('sizeReset');
+            const printBtn = document.getElementById('printBtn');
+
+            let currentPx = 16;
+            const MIN = 12, MAX = 28;
+
+            function setSize(px) {
+                paper.style.fontSize = px + 'px';
+            }
+            function change(delta) {
+                let newSize = currentPx + delta;
+                if (newSize < MIN) newSize = MIN;
+                if (newSize > MAX) newSize = MAX;
+                if (newSize !== currentPx) {
+                    currentPx = newSize;
+                    setSize(currentPx);
+                }
+            }
+            setSize(currentPx);
+            up.addEventListener('click', () => change(2));
+            down.addEventListener('click', () => change(-2));
+            reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+            printBtn.addEventListener('click', () => window.print());
+
+            if (window.MathJax) {
+                const reloadMath = () => MathJax.typesetPromise?.();
+                up.addEventListener('click', reloadMath);
+                down.addEventListener('click', reloadMath);
+                reset.addEventListener('click', reloadMath);
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!-- Applied Physics-II 2025.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Physics-II 2025 Question Paper</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .warning-box {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff0f0;
+            border-left: 4px solid #c62828;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            text-align: center;
+        }
+        .image-container {
+            margin: 15px 0 15px 35px;
+            max-width: 350px;
+            border: 1px dashed #999;
+            padding: 10px;
+            background: #fafafa;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+            .image-container { margin-left: 0; max-width: 100%; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .mcq-item {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: #f9f9f9;
+        }
+        .mcq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .explanation-note {
+            font-size: 0.85em;
+            color: #b71c1c;
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 5px;
+            border-top: 1px dotted #ccc;
+        }
+        .marking-scheme {
+            background: #e8eaf6;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="paper">
+        <div class="header-top">
+            <div>APPLIED PHYSICS - II</div>
+            <div>2025</div>
+        </div>
+        <div class="header-sub">
+            <div>Time Allowed: 2.5 Hours</div>
+            <div>Full Marks: 60</div>
+        </div>
+        <div style="text-align: right; font-weight: 500; margin-bottom: 10px;">MAY 2025 &nbsp; | &nbsp; 202(N)</div>
+
+        <div class="size-row">
+            <button class="size-btn" id="sizeDown">A-</button>
+            <button class="size-btn" id="sizeReset">A</button>
+            <button class="size-btn" id="sizeUp">A+</button>
+        </div>
+
+        <div id="paperContent">
+            <div class="instruction">
+                <strong>Instructions:</strong><br>
+                1. Answer to Question No. 1 of Group A must be written in the main answer script.<br>
+                2. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer.<br>
+                3. Answer any Five (05) Questions from Group-B.
+            </div>
+
+            <!-- GROUP A -->
+            <div class="group-title">GROUP - A</div>
+
+            <!-- Question 1: MCQs with explanation (any ten) -->
+            <div class="q">
+                <span class="q-num">1.</span>
+                <span class="q-text">Choose the correct answer from the given alternatives and explain your answer (any ten):</span>
+                <span class="marks-inline">[10 × 2 = 20]</span>
+                
+                <div class="marking-scheme">(1 mark for correct answer + 1 mark for correct explanation)</div>
+                
+                <div class="mcq-grid">
+                    <!-- Question i -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">i) The velocity of a particle vibrating in S.H.M.-</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> is maximum at the mean position</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> is minimum at the mean position</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> remains constant at every point</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question ii -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">ii) The equation of a plane progressive wave is \(y = 6 \sin \frac{2\pi}{7} (14t - x)\). The frequency and amplitude of vibration is -</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 2, 7</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 2, 6</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 6, 2</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 7, 6</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question iii -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">iii) The wavelength of the ultrasonic sound-</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> is same as that of audible sound</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> is less compared to audible sound</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> is larger compared to audible sound</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> may be greater or less than audible sound</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question iv -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">iv) Focal length of a convex lens is 20cm. Power of the lens is -</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> +5D</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> -5D</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 0.05D</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> -0.05D</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question v -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">v) For which colour of light the refractive index of a medium is maximum?</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> Green</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Yellow</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> Red</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> Violet</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question vi -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">vi) Force of repulsion between two point charges placed at a distance r is F. If the separation between them becomes 2r, the force of repulsion will be</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 2F</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> F/2</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 4F</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> F/4</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question vii -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">vii) Two capacitors of capacitance 6 μF and 3 μF are connected in series. The value of their equivalent capacitance is</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 9 μF</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 2 μF</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 18 μF</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 0.5 μF</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question viii -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">viii) If the length of a copper wire is doubled by stretching it, its resistivity will</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> be doubled</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> be halved</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> remain unchanged</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> be increased by 4 times</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question ix -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">ix) When current is passed through a junction of two dissimilar metals, heat is evolved or absorbed at the junction. This process is called -</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> Seebeck effect</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Joule effect</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> Peltier effect</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> Thomson effect</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question x -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">x) A galvanometer can be converted into an ammeter by connecting it with a</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> suitable high resistance in parallel</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> suitable low resistance in parallel</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> suitable high resistance in series</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> suitable low resistance in series</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question xi -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">xi) Magnetic dipole moment of a current carrying loop is independent of</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> number of turns in the coil</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> area of the loop of the coil</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> current in the coil</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> magnetic field in which it is placed</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question xii -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">xii) A hydrogen atom makes a transition from 1st excited state to ground state. The energy of the photon in eV, emitted in this process is</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 2.20</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 10.20</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 12.09</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 12.75</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question xiii -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">xiii) In X-ray tube, the penetrating power of X-rays can be increased by</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> increasing the filament voltage</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> decreasing the filament voltage</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> increasing the voltage across the electrodes</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> decreasing the voltage across the electrodes</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question xiv -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">xiv) N-type semiconductor is obtained on doping intrinsic germanium by-</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> gold</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> boron</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> aluminium</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> phosphorus</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+
+                    <!-- Question xv -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">xv) In a transistor the base region is -</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> highly doped</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> moderately doped</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> lightly doped</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                        </div>
+                        <div class="explanation-note">Explanation required (1 mark)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GROUP B -->
+            <div class="group-title">GROUP - B</div>
+            <div class="instruction">Answer any Five (05) questions from the following:</div>
+
+            <!-- Question 2 -->
+            <div class="q">
+                <span class="q-num">2.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Write down the characteristics of SHM.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> The equation of a plane progressive wave propagating along positive X direction is given by, \(y = 10 \sin \left(100\pi t - \frac{2\pi}{7} x\right) \mathrm{cm}\), where \(x\) is in meter and \(t\) in second. Calculate the amplitude, frequency, wavelength and speed of the wave.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Write down two applications of ultrasonic wave.
+                </div>
+                <div class="marks">[2 + 4 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="q">
+                <span class="q-num">3.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Establish the relation between critical angle and absolute refractive index of the two medium.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> With necessary ray diagram state the position and nature of image formed by an extended object placed in between principal focus and optical center of a convex lens.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> The radius of curvature of a plano-convex lens is \(20 \mathrm{~cm}\). Calculate its focal length if the absolute refractive index of the material of the lens is 1.5.
+                </div>
+                <div class="marks">[2 + 3 + 3 = 8 marks]</div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="q">
+                <span class="q-num">4.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Gauss' law in electrostatics. Using this law, derive an expression for the electric field intensity at an outside point of a uniformly charged sphere.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Calculate how many electrons are present in one coulomb of charge?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> State the factors on which the capacitance of a conductor depends.
+                </div>
+                <div class="marks">[(2 + 2) + 2 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="q">
+                <span class="q-num">5.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> On which factors does the resistance of a conductor depend and how? Define resistivity.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Three resistors \(6 \Omega\), \(4 \Omega\) and \(8 \Omega\) are connected in sides AB, BC and AC respectively in a triangle ABC. A \(12 \mathrm{~V}\) dc battery is connected across \(6 \Omega\) resistor. With necessary diagram find the equivalent resistance between A and B and the current through \(8 \Omega\) resistor.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Show that equivalent resistance in parallel combination of resistances is less than the smallest resistance in the combination.
+                </div>
+                <div class="marks">[(2 + 1) + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="q">
+                <span class="q-num">6.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State and explain Kirchhoff's current law & Kirchhoff's voltage law.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Define neutral temperature & inversion temperature for a thermo couple.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Draw the thermo e.m.f. vs. temperature graph for a thermo couple & show the position of neutral temperature and temperature of inversion.
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="q">
+                <span class="q-num">7.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State and explain Biot-Savart Law in electromagnetism.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> A circular wire of radius \(10 \mathrm{~cm}\) is carrying a current of \(2 \mathrm{~A}\). Calculate the magnetic field at the centre of the coil.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Which rule gives the direction of the force on a current carrying conductor when placed in a magnetic field? State & explain the rule.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(d)</span> "Magnetic force on a charge particle does no work" - explain.
+                </div>
+                <div class="marks">[2 + 2 + (1 + 1) + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="q">
+                <span class="q-num">8.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State & explain Faraday's law of electromagnetic induction.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> A galvanometer of resistance \(20\Omega\) gives full scale deflection when a current of \(0.5\mathrm{mA}\) passes through it. Explain with proper circuit diagram how can this be converted to an ammeter reading up to 5 A.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> "The Curie point of Iron is \(770^{\circ}\mathrm{C}\)" - Explain.
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="q">
+                <span class="q-num">9.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Write down the differences between insulator, semiconductor and conductor.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> With necessary diagram and drawing input and output waveform explain the working of p-n junction diode as full wave rectifier using two diodes.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> What is LED?
+                </div>
+                <div class="marks">[3 + 4 + 1 = 8 marks]</div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="q">
+                <span class="q-num">10.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State & explain the postulates of Bohr's atomic model.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Explain the working principle of an optical fiber with a proper diagram.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Draw the curve showing the variation of intensity with wavelength of X-rays obtained from X-ray tube and mark cut-off wavelength (\(\lambda_{\mathrm{min}}\)), continuous & characteristic X-rays.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(d)</span> Write two uses of LASER.
+                </div>
+                <div class="marks">[2 + 2 + 2 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Note about diagrams -->
+            <div class="note-box">
+                <strong>Note:</strong> Students are required to draw diagrams for questions 3(b), 5(b), 6(c), 8(b), 9(b), and 10(b) in their answer scripts as per standard textbook representations.
+            </div>
+
+            <div class="footnote">
+                Source: WBSCTE Board Examination 2025<br>
+                www.polynoteshub.co.in
+            </div>
+        </div>
+
+        <div class="print-area">
+            <button class="print-btn" id="printBtn">Print / Save PDF</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const paper = document.getElementById('paperContent');
+            const up = document.getElementById('sizeUp');
+            const down = document.getElementById('sizeDown');
+            const reset = document.getElementById('sizeReset');
+            const printBtn = document.getElementById('printBtn');
+
+            let currentPx = 16;
+            const MIN = 12, MAX = 28;
+
+            function setSize(px) {
+                paper.style.fontSize = px + 'px';
+            }
+            function change(delta) {
+                let newSize = currentPx + delta;
+                if (newSize < MIN) newSize = MIN;
+                if (newSize > MAX) newSize = MAX;
+                if (newSize !== currentPx) {
+                    currentPx = newSize;
+                    setSize(currentPx);
+                }
+            }
+            setSize(currentPx);
+            up.addEventListener('click', () => change(2));
+            down.addEventListener('click', () => change(-2));
+            reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+            printBtn.addEventListener('click', () => window.print());
+
+            // MathJax configuration
+            if (window.MathJax) {
+                const reloadMath = () => MathJax.typesetPromise?.();
+                up.addEventListener('click', reloadMath);
+                down.addEventListener('click', reloadMath);
+                reset.addEventListener('click', reloadMath);
+            }
+        })();
+    </script>
+    
+    <!-- Load MathJax for equation rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>FEEE · 2024 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 15px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 12px 0 5px 35px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 8px 0 15px 45px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .figure-box {
+            margin: 15px 0 15px 35px;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px dashed #999;
+            text-align: center;
+            max-width: 350px;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .figure-caption {
+            margin-top: 5px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 25px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-roman { margin-left: 20px; }
+            .figure-box { margin-left: 15px; max-width: 100%; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+            .figure-box { border: none; background: none; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>FEEE</span>
+        <span>FUNDAMENTALS OF ELECTRICAL & ELECTRONICS ENGINEERING</span>
+    </div>
+    <div class="header-sub">
+        <span>2024</span>
+        <span>Time Allowed: 2.5 Hours · Full Marks: 60</span>
+    </div>
+    
+    <div class="instruction">
+        <strong>Instructions:</strong> In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark for correct explanation of the answer. However, no marks will be given for wrong explanation of the answer. Answer any Five (05) Questions from Group-B.
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== GROUP A ========== -->
+        <div class="group-title">GROUP-A</div>
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Choose the correct answer from the given alternatives and explain your answer (any ten):</span>
+            <div class="marks">2x10=20</div>
+            
+            <div class="subquestion-roman">i. An ideal current source has</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> zero internal resistance</span>
+                <span class="opt"><span class="opt-marker">(b)</span> infinite internal resistance</span>
+                <span class="opt"><span class="opt-marker">(c)</span> low value of voltage</span>
+                <span class="opt"><span class="opt-marker">(d)</span> large value of current</span>
+            </div>
+
+            <div class="subquestion-roman">ii. The resistance of a conductor increases if its</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> length increases</span>
+                <span class="opt"><span class="opt-marker">(b)</span> area of cross-section increases</span>
+                <span class="opt"><span class="opt-marker">(c)</span> length as well as area of cross-section increases</span>
+                <span class="opt"><span class="opt-marker">(d)</span> value of specific resistance is kept constant</span>
+            </div>
+
+            <div class="subquestion-roman">iii. Energy stored by a coil is doubled when its current is increased by ______ percent</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 25</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 50.5</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 41.4</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 100</span>
+            </div>
+
+            <div class="subquestion-roman">iv. A coil with 500 turns carries a current of 2 A. The value of MMF of the coil is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 20 AT</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 200 AT</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 1000 AT</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 55 AT</span>
+            </div>
+
+            <div class="subquestion-roman">v. Inductive reactance of a coil of inductance 0.2 H at 50 Hz is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 62.8 Ω</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 628 Ω</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 0.2 Ω</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 10 Ω</span>
+            </div>
+
+            <div class="subquestion-roman">vi. The power factor of a purely resistive circuit is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> zero</span>
+                <span class="opt"><span class="opt-marker">(b)</span> unity</span>
+                <span class="opt"><span class="opt-marker">(c)</span> lagging</span>
+                <span class="opt"><span class="opt-marker">(d)</span> leading</span>
+            </div>
+
+            <div class="subquestion-roman">vii. A sinusoidal voltage is represented by v = 141.4 sin (314t + π/2). Its rms value of voltage is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 141.4 V</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 100 V</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 87.92 V</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 200 V</span>
+            </div>
+
+            <div class="subquestion-roman">viii. Voltage per turn in both primary and secondary windings of a transformer is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> high in high voltage winding</span>
+                <span class="opt"><span class="opt-marker">(b)</span> low in low voltage winding</span>
+                <span class="opt"><span class="opt-marker">(c)</span> same</span>
+                <span class="opt"><span class="opt-marker">(d)</span> can't be determined</span>
+            </div>
+
+            <div class="subquestion-roman">ix. Transformer rating are given in</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> KVA</span>
+                <span class="opt"><span class="opt-marker">(b)</span> HP</span>
+                <span class="opt"><span class="opt-marker">(c)</span> KVAR</span>
+                <span class="opt"><span class="opt-marker">(d)</span> kW</span>
+            </div>
+
+            <div class="subquestion-roman">x. A transformer transforms</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Power</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Voltage</span>
+                <span class="opt"><span class="opt-marker">(c)</span> current</span>
+                <span class="opt"><span class="opt-marker">(d)</span> frequency</span>
+            </div>
+
+            <div class="subquestion-roman">xi. When PN junction diode is in forward bias, by increasing the battery voltage</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Circuit resistance increases</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Current through P-N junction increases</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Current through P-N junction decreases</span>
+                <span class="opt"><span class="opt-marker">(d)</span> None of the above happens</span>
+            </div>
+
+            <div class="subquestion-roman">xii. An ideal OPAMP is an ideal</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> current controlled current source</span>
+                <span class="opt"><span class="opt-marker">(b)</span> current controlled voltage source</span>
+                <span class="opt"><span class="opt-marker">(c)</span> voltage controlled voltage source</span>
+                <span class="opt"><span class="opt-marker">(d)</span> voltage controlled current source</span>
+            </div>
+
+            <div class="subquestion-roman">xiii. When the two input of a NAND gate is high, the output of the gate will be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> high</span>
+                <span class="opt"><span class="opt-marker">(b)</span> low</span>
+                <span class="opt"><span class="opt-marker">(c)</span> toggle between high & low</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of the above</span>
+            </div>
+
+            <div class="subquestion-roman">xiv. A diode is a/an</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> bidirectional device</span>
+                <span class="opt"><span class="opt-marker">(b)</span> unidirectional device</span>
+                <span class="opt"><span class="opt-marker">(c)</span> both (a) and (b)</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of the above</span>
+            </div>
+
+            <div class="subquestion-roman">xv. Which of these sets of logic gates are known as universal gates?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> XOR, NAND, OR</span>
+                <span class="opt"><span class="opt-marker">(b)</span> OR, NOT, XOR</span>
+                <span class="opt"><span class="opt-marker">(c)</span> NOR, NAND, XNOR</span>
+                <span class="opt"><span class="opt-marker">(d)</span> NOR, NAND</span>
+            </div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answers must include explanation as per instruction. 1 mark for correct answer + 1 mark for correct explanation.
+            </div>
+        </div>
+
+        <!-- ========== GROUP B ========== -->
+        <hr>
+        <div class="group-title">GROUP-B</div>
+        <div class="instruction" style="margin-left:0;">Answer any Five (05) questions from Group-B. Each question carries 8 marks.</div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">(a) Write the unit of resistivity. Name the factors affecting the resistance of a conductor.</span><br>
+            <span class="q-text">(b) Using source transformation, find out the current through the resistance R in the figure below.</span>
+            <div class="figure-box">
+                <img src="24/2b.jpg" alt="Source transformation circuit" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Circuit Diagram: Source transformation circuit with voltage source, current source and resistance R]'">
+                <div class="figure-caption">Fig. 2(b) - Source transformation circuit</div>
+            </div>
+            <div class="marks">[8]</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">(a) Define Magnetic Flux Density and MMF.</span><br>
+            <span class="q-text">(b) State Faraday's Laws of Electromagnetic Induction.</span>
+            <div class="marks">[5+3=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">(a) Draw and explain hysteresis loop for magnetic material.</span><br>
+            <span class="q-text">(b) Discuss the causes of hysteresis loss.</span>
+            <div class="marks">[6+2=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">(a) For sinusoidally varying alternating quantity, state the relation between (i) rms value and maximum value. (ii) average value and maximum value.</span><br>
+            <span class="q-text">(b) Show that current in a pure inductive circuit lags the voltage by 90 degree.</span><br>
+            <span class="q-text">(c) Define active power and reactive power.</span>
+            <div class="marks">[2+4+2=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">A coil of resistance \(20\Omega\) and inductance \(100~\mathrm{mH}\) is connected in series with a capacitance of \(40~\mu \mathrm{F}\) across \(100~\mathrm{V}\), \(50~\mathrm{Hz}\) ac supply. Calculate (i) the magnitude of current, (ii) power factor, (iii) phase angle between voltage and current, (iv) voltage across each element.</span>
+            <div class="marks">[2+2+2+2=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">(a) Derive the emf equation of a transformer.</span><br>
+            <span class="q-text">(b) A single phase transformer is required to step down the voltage from \(1100~\mathrm{V}\) to \(400~\mathrm{V}\) at \(50~\mathrm{Hz}\). The core has a cross-sectional area of \(25~\mathrm{cm}^2\) and the maximum flux density is \(5~\mathrm{Wb/m}^2\). Determine the number of turns of the primary and secondary windings.</span>
+            <div class="marks">[4+4=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            <span class="q-text">(a) With respect to Energy band diagram differentiate between Conductors, Semiconductor & Insulator.</span><br>
+            <span class="q-text">(b) Distinguish between an intrinsic and extrinsic semiconductor material.</span>
+            <div class="marks">[6+2=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            <span class="q-text">(a) Draw the circuit diagram of an op-amp non-inverting amplifier and derive the expression for output voltage.</span><br>
+            <span class="q-text">(b) Draw the pin diagram of IC 741 OPAMP.</span>
+            <div class="marks">[5+1=6]</div>
+        </div>
+
+        <!-- ========== QUESTION 10 ========== -->
+        <div class="q">
+            <span class="q-num">10.</span>
+            <span class="q-text">(a) State De-Morgan's Theorem.</span><br>
+            <span class="q-text">(b) Draw the logic symbol and truth table of a 2-input NAND gate and EX-OR gate.</span>
+            <div class="marks">[2+3+3=8]</div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

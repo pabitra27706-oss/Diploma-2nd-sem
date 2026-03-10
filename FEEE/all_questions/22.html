@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>FEEE · 2022 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .marks-info {
+            font-size: 1rem;
+            background: #f2f2f2;
+            padding: 8px 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2c3e50;
+            font-weight: 500;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 15px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-small {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 8px 0 15px 45px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .figure-box {
+            margin: 15px 0 15px 35px;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px dashed #999;
+            text-align: center;
+            max-width: 350px;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .figure-caption {
+            margin-top: 5px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .fill-blank {
+            margin: 10px 0 15px 45px;
+            padding: 8px;
+            background: #f0f8ff;
+            border-left: 4px solid #3498db;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 25px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-small { margin-left: 20px; }
+            .figure-box { margin-left: 15px; max-width: 100%; }
+            .note-box { margin-left: 15px; }
+            .fill-blank { margin-left: 20px; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+            .figure-box { border: none; background: none; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .module-select {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>FEEE</span>
+        <span>FUNDAMENTALS OF ELECTRICAL & ELECTRONICS ENGINEERING</span>
+    </div>
+    <div class="header-sub">
+        <span>2022</span>
+        <span>Time Allowed: 1.5 Hours · Full Marks: 60</span>
+    </div>
+    
+    <div class="instruction">
+        <strong>Instructions:</strong> Answer any ten from Q1, any ten from Q2, any ten from Q3, any six from Q4, and any one from each Module (Q5, Q6, Q7).
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== GROUP A ========== -->
+        <div class="group-title">GROUP-A</div>
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Choose the correct answer from the given alternatives (any ten)</span>
+            <span class="marks-inline">1 x 10 = 10</span>
+            
+            <div class="subquestion">i. Rectifier is used to convert</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> DC signal to AC signal</span>
+                <span class="opt"><span class="opt-marker">(b)</span> AC signal to Pulsating DC signal</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Reducing the amplitude of DC signal</span>
+                <span class="opt"><span class="opt-marker">(d)</span> Generation of AC signal</span>
+            </div>
+
+            <div class="subquestion">ii. The current through a series RLC circuit under resonance condition will be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> V/R</span>
+                <span class="opt"><span class="opt-marker">(b)</span> V/Xc</span>
+                <span class="opt"><span class="opt-marker">(c)</span> V/XL</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+            </div>
+
+            <div class="subquestion">iii. Transformer ratings are given in :</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> kVA</span>
+                <span class="opt"><span class="opt-marker">b)</span> HP</span>
+                <span class="opt"><span class="opt-marker">c)</span> kVAR</span>
+                <span class="opt"><span class="opt-marker">d)</span> kW</span>
+            </div>
+
+            <div class="subquestion">iv. Two sinusoidal emfs are given as \(\mathrm{e1} =\) Asin(ωt+π/4) and \(\mathrm{e2} =\) Bsin(ωt- π/6). The phase difference between the two quantities in degrees is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 15</span>
+                <span class="opt"><span class="opt-marker">b)</span> 45</span>
+                <span class="opt"><span class="opt-marker">c)</span> 75</span>
+                <span class="opt"><span class="opt-marker">d)</span> 30</span>
+            </div>
+
+            <div class="subquestion">v. For a DC voltage, an inductor</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> is virtually a short circuit.</span>
+                <span class="opt"><span class="opt-marker">(b)</span> is an open circuit.</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Depends on polarity.</span>
+                <span class="opt"><span class="opt-marker">(d)</span> Depends on voltage value.</span>
+            </div>
+
+            <div class="subquestion">vi. The flux in transformer core</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> increases with load,</span>
+                <span class="opt"><span class="opt-marker">b)</span> decreases with load,</span>
+                <span class="opt"><span class="opt-marker">c)</span> remains constant irrespective of load,</span>
+                <span class="opt"><span class="opt-marker">d)</span> none of the above.</span>
+            </div>
+
+            <div class="subquestion">vii. The number of valence electrons in the outermost shell of semiconductor are</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 6</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 4</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 6</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 7</span>
+            </div>
+
+            <div class="subquestion">viii. The potential barrier of a silicon diode is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 0.3 V</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 0.7 V</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 1 V</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 5V</span>
+            </div>
+
+            <div class="subquestion">ix. Which of the following does not change in a transformer?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> Current</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Voltage</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Frequency</span>
+                <span class="opt"><span class="opt-marker">(d)</span> All of the above.</span>
+            </div>
+
+            <div class="subquestion">x. When two input of a NAND gate is high, the output of the gate will be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> High</span>
+                <span class="opt"><span class="opt-marker">(b)</span> Low</span>
+                <span class="opt"><span class="opt-marker">(c)</span> Toggle between high & low</span>
+                <span class="opt"><span class="opt-marker">(d)</span> none of above</span>
+            </div>
+
+            <div class="subquestion">xi. In an auto- transformer, power is transferred, through</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Conduction process only</span>
+                <span class="opt"><span class="opt-marker">b)</span> Induction process only</span>
+                <span class="opt"><span class="opt-marker">c)</span> Both conduction and induction processes</span>
+                <span class="opt"><span class="opt-marker">d)</span> Mutual coupling.</span>
+            </div>
+
+            <div class="subquestion">xii. The number of flip flops required in a decade counter is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 2</span>
+                <span class="opt"><span class="opt-marker">b)</span> 3</span>
+                <span class="opt"><span class="opt-marker">c)</span> 4</span>
+                <span class="opt"><span class="opt-marker">d)</span> 10.</span>
+            </div>
+
+            <div class="subquestion">xiii. The maximum possible number of states in a ripple counter with 5 flip- flops is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">(a)</span> 32</span>
+                <span class="opt"><span class="opt-marker">(b)</span> 15</span>
+                <span class="opt"><span class="opt-marker">(c)</span> 10</span>
+                <span class="opt"><span class="opt-marker">(d)</span> 5.</span>
+            </div>
+
+            <div class="subquestion">xiv. An ideal OP- AMP has the following characteristics- (Rin = input resistance, A= open loop gain, Rout= output resistance)</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Rin=∞, A=∞ and Rout = 0</span>
+                <span class="opt"><span class="opt-marker">b)</span> Rin=0, A=∞ and Rout = 0</span>
+                <span class="opt"><span class="opt-marker">c)</span> Rin=∞, A=0 and Rout =∞</span>
+                <span class="opt"><span class="opt-marker">d)</span> Rin=0, A=∞ and Rout =∞.</span>
+            </div>
+
+            <div class="subquestion">xv. \(\overline{A} +\overline{B}\) is equivalent to</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> A + B</span>
+                <span class="opt"><span class="opt-marker">b)</span> A.B</span>
+                <span class="opt"><span class="opt-marker">c)</span> \(\overline{A}.\overline{B}\)</span>
+                <span class="opt"><span class="opt-marker">d)</span> \(\overline{A} +\overline{B}\)</span>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">Fill in the Blanks (any ten)</span>
+            <span class="marks-inline">1x10 = 10</span>
+            
+            <div class="subquestion">i. FET is a ______ controlled device</div>
+            <div class="subquestion">ii. Transformer cores are laminated in order to ______</div>
+            <div class="subquestion">iii. The number of junctions in an NPN transistor are ______</div>
+            <div class="subquestion">iv. Fleming's Left hand rule gives the direction of ______</div>
+            <div class="subquestion">v. Conductance in Electric circuit is analogous to ______ in Magnetic Circuit.</div>
+            <div class="subquestion">vi. The CMRR of an OP- Amp is the ratio of ______</div>
+            <div class="subquestion">vii. The majority charge carrier in n- type material is ______</div>
+            <div class="subquestion">viii. Weber is the unit of ______</div>
+            <div class="subquestion">ix. Energy is stored by the capacitor in the form of ______</div>
+            <div class="subquestion">x. The time constant of a series R- C circuit is given by ______</div>
+            <div class="subquestion">xi. If two capacitance of \(10\mu \mathrm{F}\) & \(15\mu \mathrm{F}\) are connected in parallel then the equivalent capacitance will be ______ \(\mu \mathrm{F}\)</div>
+            <div class="subquestion">xii. The output of AND gate will be HIGH only when both the input is ______</div>
+            <div class="subquestion">xiii. The full form of TTL is ______</div>
+            <div class="subquestion">xiv. A motor converts electrical energy into ______ energy.</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">Answer the following question in one or two sentences (any ten):</span>
+            <span class="marks-inline">1 x 10 = 10</span>
+            
+            <div class="subquestion">i. Give two examples of insulating material.</div>
+            <div class="subquestion">ii. What is the frequency of a D.C signal?</div>
+            <div class="subquestion">iii. Define the term form factor.</div>
+            <div class="subquestion">iv. Calculate the time period of a periodic signal whose frequency is 60Hz.</div>
+            <div class="subquestion">v. Name the two input terminals of OP-AMP?</div>
+            <div class="subquestion">vi. What is a dependent Source?</div>
+            <div class="subquestion">vii. Draw the symbol of X- OR Gate.</div>
+            <div class="subquestion">viii. What is the unit of inductance?</div>
+            <div class="subquestion">ix. Why is doping done on Semiconductor?</div>
+            <div class="subquestion">x. Name any two types of Flip- Flop.</div>
+            <div class="subquestion">xi. Name one doping material for creation of N- Type Semiconductor.</div>
+            <div class="subquestion">xii. What are the types of Rectifier available?</div>
+            <div class="subquestion">xiii. On which principle the transformer works?</div>
+            <div class="subquestion">xiv. What is the unit of reactive Power?</div>
+            <div class="subquestion">xv. What type of DC Motor used in traction?</div>
+        </div>
+
+        <!-- ========== GROUP B ========== -->
+        <hr>
+        <div class="group-title">GROUP-B</div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">Answer the following question (any six):</span>
+            <span class="marks-inline">2 x 6 = 12</span>
+            
+            <div class="subquestion">i. Define the term Semiconductor.</div>
+            <div class="subquestion">ii. Draw the symbol of PNP transistor with proper labeling of its terminals.</div>
+            <div class="subquestion">iii. Define Lenz's Law?</div>
+            <div class="subquestion">iv. What is an ideal current source?</div>
+            <div class="subquestion">v. What is mutual inductance?</div>
+            <div class="subquestion">vi. State Fleming's Right hand Rule?</div>
+            <div class="subquestion">vii. A 250V bulb passes a current of 0.3A. Calculate the power consumed by the lamp.</div>
+            <div class="subquestion">viii. Define the term Flip Flop?</div>
+            <div class="subquestion">ix. Define the term Virtual Ground.</div>
+            <div class="subquestion">x. Define the term Universal Gate.</div>
+        </div>
+
+        <!-- ========== GROUP C ========== -->
+        <hr>
+        <div class="group-title">GROUP-C</div>
+
+        <!-- ========== MODULE I ========== -->
+        <div class="module-select">Module I : Answer the following Questions (any one): \(6\times 1 = 6\)</div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">i) a) Draw the load current vs Load voltage curve of an ideal voltage source.</span><br>
+            <span class="q-text">b) Using Source transformation principle find out the current through the resistance R1.</span>
+            <span class="marks-inline">\(2 + 4 = 6\)</span>
+            
+            <!-- ONLY IMAGE IN THE PDF - from Page 2 -->
+            <div class="figure-box">
+                <img src="22/5i.jpg" alt="Source transformation circuit" onerror="this.style.display='none'; this.parentElement.innerHTML+='<br>[Circuit Diagram: Source transformation circuit with resistances and voltage/current sources]'">
+                <div class="figure-caption">Fig. 5(i)b - Source transformation circuit</div>
+            </div>
+        </div>
+
+        <div class="q">
+            <span class="q-num"></span>
+            <span class="q-text">ii) a) State Faraday's Laws of Electromagnetic Induction?</span><br>
+            <span class="q-text">b) Derive the expression for the energy stored in the magnetic field of an inductor.</span>
+            <span class="marks-inline">\(2 + 4 = 6\)</span>
+        </div>
+
+        <div class="q">
+            <span class="q-num"></span>
+            <span class="q-text">iii) A rectangular shape iron core has an air gap of \(0.01\mathrm{cm}\) . The mean length of the flux path through iron is \(39.99\mathrm{cm}\) . The relative permeability of iron is 2000. The coil has 1000 turns. The cross-sectional area of the core is \(9\mathrm{cm}^2\) . Calculate the current required to produce a flux of \(1\mathrm{mWb}\) in the core.</span>
+            <span class="marks-inline">6</span>
+        </div>
+
+        <!-- ========== MODULE II ========== -->
+        <div class="module-select">Module II : Answer the following Questions (any one) : \(6\times 1 = 6\)</div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">i) A R- L- C series circuit comprises of resistance of \(15\Omega\) inductance \(0.15\mathrm{H}\) and capacitance of \(100\mu \mathrm{F}\) is connected across a \(230\mathrm{V}\) \(50\mathrm{Hz}\) supply. Calculate current, power factor and power consumed by the circuit.</span>
+            <span class="marks-inline">6</span>
+        </div>
+
+        <div class="q">
+            <span class="q-num"></span>
+            <span class="q-text">ii) a) Show that the current leads the voltage in phase by \(\pi /2\) in an a.c. circuit containing an ideal capacitor.</span><br>
+            <span class="q-text">b) Draw STAR & DELTA connections. Also write voltage and current relations for both types.</span>
+            <span class="marks-inline">6</span>
+        </div>
+
+        <div class="q">
+            <span class="q-num"></span>
+            <span class="q-text">iii) a) A 30 KVA single phase transformer has 500 primary turns and 30 secondary turns. The primary is connected to a 3300V, 50 Hz single phase supply. Calculate i) the maximum flux in the core; ii) secondary e.m.f; iii) primary and secondary full load current.</span><br>
+            <span class="q-text">b) Name different types of DC motors.</span>
+            <span class="marks-inline">\(4 + 2 = 6\)</span>
+        </div>
+
+        <!-- ========== MODULE III ========== -->
+        <div class="module-select">Module III : Answer the following Questions (any one) : \(6\times 1 = 6\)</div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">i) With respect to Energy band diagram differentiate between Conductors, Semiconductor & Insulator.</span>
+            <span class="marks-inline">6</span>
+        </div>
+
+        <div class="q">
+            <span class="q-num"></span>
+            <span class="q-text">ii) Draw the circuit diagram of an inverting amplifier & Derive the expression for output voltage.</span>
+            <span class="marks-inline">6</span>
+        </div>
+
+        <div class="q">
+            <span class="q-num"></span>
+            <span class="q-text">iii) a) State the two laws De Morgan's Theorem along with the truth table.</span><br>
+            <span class="q-text">simplify the expression using Boolean algebra and realize the same by using logic gates. \(Y = (A + \overline{B} +\overline{C})\cdot (A + \overline{B} C)\)</span>
+            <span class="marks-inline">\(3 + 3 = 6\)</span>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

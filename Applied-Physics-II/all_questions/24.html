@@ -1,0 +1,651 @@
+<!-- Applied Physics-II 2024.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Physics-II 2024 Question Paper</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .warning-box {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff0f0;
+            border-left: 4px solid #c62828;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            text-align: center;
+        }
+        .image-container {
+            margin: 15px 0 15px 35px;
+            max-width: 350px;
+            border: 1px dashed #999;
+            padding: 10px;
+            background: #fafafa;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+            .image-container { margin-left: 0; max-width: 100%; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+        .mcq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .mcq-item {
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background: #fcfcfc;
+        }
+        .mcq-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .explanation-note {
+            font-size: 0.85em;
+            color: #c62828;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="paper">
+        <div class="header-top">
+            <div>APPLIED PHYSICS - II</div>
+            <div>2024</div>
+        </div>
+        <div class="header-sub">
+            <div>Time Allowed: 3 Hours</div>
+            <div>Full Marks: 60</div>
+        </div>
+
+        <div class="size-row">
+            <button class="size-btn" id="sizeDown">A-</button>
+            <button class="size-btn" id="sizeReset">A</button>
+            <button class="size-btn" id="sizeUp">A+</button>
+        </div>
+
+        <div id="paperContent">
+            <div class="instruction">
+                <strong>Instructions:</strong><br>
+                1. Answer to Question No. 1 of Group A must be written in the main answer script.<br>
+                2. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer. No marks will be given for wrong explanation.<br>
+                3. Answer any Five (05) Questions from Group B.
+            </div>
+
+            <!-- GROUP A -->
+            <div class="group-title">GROUP - A</div>
+
+            <!-- Question 1: MCQs with explanation -->
+            <div class="q">
+                <span class="q-num">1.</span>
+                <span class="q-text">Choose the correct answer from the given alternatives and explain your answer (any ten):</span>
+                <span class="marks-inline">[10 × 2 = 20]</span>
+                
+                <div class="mcq-grid">
+                    <!-- Question (i) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(i) What happens to the wavelength of a sound wave in a medium if its frequency increases?</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> The wavelength decreases</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> The wavelength increases</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> The wavelength remains constant</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> The wavelength becomes zero</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (ii) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(ii) What is the beat frequency when two waves of frequencies 400 Hz and 405 Hz interfere?</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 5 Hz</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 400 Hz</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 405 Hz</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 805 Hz</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (iii) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(iii) The working of an optical fibre for transmission of light waves is based on</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> total internal reflection</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> refraction</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> interference</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> diffraction</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (iv) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(iv) What is the nature of the image formed by a convex lens when the object is placed at twice the focal length?</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> Real and inverted</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Virtual and erect</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> Real and erect</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> Virtual and inverted</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (v) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(v) Velocity of light in vacuum is 3×10⁸ m/s. Velocity of light in glass of refractive index 1.5 will be</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 3×10⁸ m/s</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 4.5×10⁸ m/s</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 2×10⁸ m/s</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 1.5×10⁸ m/s</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (vi) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(vi) Which of the following factors does capacitance depend on?</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> Voltage</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Current</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> Area of plates</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> Resistance</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (vii) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(vii) The SI unit of resistivity of a conductor is</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> ohm-m</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> ohm/m</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> ohm-m²</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> unit-less</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (viii) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(viii) If three currents of 1A, 2A, and 3A enter a junction, the total current leaving the junction according to KCL is</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 6A</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 5A</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 3A</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 0A</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (ix) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(ix) An electric lamp is marked 100W, 220V. Its resistance is</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> 22Ω</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> 484Ω</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> 56Ω</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> 2.2Ω</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (x) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(x) The correct dimensional formula of electric field (E = F/q) is</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> [MLT⁻²I⁻¹]</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> [MLT⁻³I⁻¹]</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> [ML²T⁻³I⁻¹]</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> [MLT⁻²I¹]</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (xi) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(xi) The weber/m² (Tesla) is the unit of</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> magnetic field</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> magnetic flux density</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> magnetic flux</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+
+                    <!-- Question (xii) -->
+                    <div class="mcq-item">
+                        <div class="mcq-question">(xii) In a p-n-p or n-p-n transistor, the correct statement is</div>
+                        <div class="opts" style="margin-left: 0;">
+                            <span class="opt"><span class="opt-marker">(a)</span> Emitter region is highly doped</span>
+                            <span class="opt"><span class="opt-marker">(b)</span> Base region is moderately doped</span>
+                            <span class="opt"><span class="opt-marker">(c)</span> Collector region is lightly doped</span>
+                            <span class="opt"><span class="opt-marker">(d)</span> none of these</span>
+                        </div>
+                        <div class="explanation-note">(1 mark for answer + 1 mark for explanation)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GROUP B -->
+            <div class="group-title">GROUP - B</div>
+            <div class="instruction">Answer any Five (05) questions from the following:</div>
+
+            <!-- Question 2 -->
+            <div class="q">
+                <span class="q-num">2.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Define simple harmonic motion. Write the differential equation of SHM and give its solution.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> A particle executes SHM with amplitude 0.1 m and time period 2 seconds. Find its maximum velocity and maximum acceleration.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> What is the difference between free and forced oscillations?
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="q">
+                <span class="q-num">3.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Snell's law of refraction. What is total internal reflection? State the conditions for total internal reflection.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> A ray of light enters from air into glass (refractive index 1.5). If the angle of incidence is 30°, find the angle of refraction.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Write the lens maker's formula and explain the terms.
+                </div>
+                <div class="marks">[3 + 2 + 3 = 8 marks]</div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="q">
+                <span class="q-num">4.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Coulomb's law in electrostatics. Write its vector form.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Define electric field intensity. Find the electric field due to a point charge.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Two point charges of +5μC and -5μC are placed 10 cm apart. Find the electric field at the midpoint of the line joining the charges.
+                </div>
+                <div class="marks">[2 + 3 + 3 = 8 marks]</div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="q">
+                <span class="q-num">5.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Kirchhoff's Current Law and Kirchhoff's Voltage Law.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Find the equivalent resistance of three resistors 2Ω, 3Ω, and 6Ω connected in parallel.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> A wire of resistance 10Ω is stretched to double its length. Find its new resistance.
+                </div>
+                <div class="marks">[2 + 3 + 3 = 8 marks]</div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="q">
+                <span class="q-num">6.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Biot-Savart law. Write the expression for magnetic field due to a straight current-carrying conductor.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Find the magnetic field at the centre of a circular coil of radius 0.1 m carrying current 5A (μ₀ = 4π × 10⁻⁷ H/m).
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> State Ampere's circuital law.
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="q">
+                <span class="q-num">7.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> State Faraday's laws of electromagnetic induction. Write the expression for induced emf.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> A coil of 100 turns has a magnetic flux of 0.02 Wb. If the flux is reduced to zero in 0.1 seconds, find the induced emf.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> State Lenz's law. How does it obey the law of conservation of energy?
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="q">
+                <span class="q-num">8.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Explain the formation of p-n junction. What is depletion region?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Draw the V-I characteristics of a p-n junction diode in forward and reverse bias.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> What is Zener breakdown? Write one application of Zener diode.
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="q">
+                <span class="q-num">9.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> What is a transistor? Explain the working of an n-p-n transistor in common emitter configuration.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Define α and β of a transistor. Derive the relation between them.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Write two applications of transistor.
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="q">
+                <span class="q-num">10.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> What are X-rays? How are they produced in an X-ray tube?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Distinguish between continuous and characteristic X-rays.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Write two medical applications of X-rays.
+                </div>
+                <div class="marks">[3 + 3 + 2 = 8 marks]</div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="q">
+                <span class="q-num">11.</span>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(a)</span> Explain the principle of LASER. What is population inversion?
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(b)</span> Write three properties of LASER light.
+                </div>
+                <div class="subquestion-alpha">
+                    <span class="opt-marker">(c)</span> Explain the working of an optical fibre. Write two advantages of optical fibre communication.
+                </div>
+                <div class="marks">[3 + 2 + 3 = 8 marks]</div>
+            </div>
+
+            <!-- PDF Corruption Note -->
+            <div class="warning-box">
+                <strong>Note regarding the 2024 paper:</strong> The original PDF for 2024 is partially corrupted with only the first page partially readable. Questions in Group B (Questions 2-11) have been reconstructed based on the standard Applied Physics-II syllabus and examination pattern of WBSCTE. Students should refer to standard textbooks for complete preparation.
+            </div>
+
+            <div class="footnote">
+                Source: WBSCTE Board Examination 2024 (Reconstructed from corrupted PDF)<br>
+                www.polynoteshub.co.in
+            </div>
+        </div>
+
+        <div class="print-area">
+            <button class="print-btn" id="printBtn">Print / Save PDF</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const paper = document.getElementById('paperContent');
+            const up = document.getElementById('sizeUp');
+            const down = document.getElementById('sizeDown');
+            const reset = document.getElementById('sizeReset');
+            const printBtn = document.getElementById('printBtn');
+
+            let currentPx = 16;
+            const MIN = 12, MAX = 28;
+
+            function setSize(px) {
+                paper.style.fontSize = px + 'px';
+            }
+            function change(delta) {
+                let newSize = currentPx + delta;
+                if (newSize < MIN) newSize = MIN;
+                if (newSize > MAX) newSize = MAX;
+                if (newSize !== currentPx) {
+                    currentPx = newSize;
+                    setSize(currentPx);
+                }
+            }
+            setSize(currentPx);
+            up.addEventListener('click', () => change(2));
+            down.addEventListener('click', () => change(-2));
+            reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+            printBtn.addEventListener('click', () => window.print());
+
+            // MathJax configuration if needed
+            if (window.MathJax) {
+                const reloadMath = () => MathJax.typesetPromise?.();
+                up.addEventListener('click', reloadMath);
+                down.addEventListener('click', reloadMath);
+                reset.addEventListener('click', reloadMath);
+            }
+        })();
+    </script>
+    
+    <!-- Load MathJax for equation rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

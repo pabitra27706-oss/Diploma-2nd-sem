@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Engineering Mechanics · 2024 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .marks-info {
+            font-size: 1.1rem;
+            background: #f2f2f2;
+            padding: 8px 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2c3e50;
+            font-weight: 500;
+        }
+        /* font size control row */
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+            page-break-inside: avoid;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 35px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .info-note {
+            margin: 10px 0 15px 35px;
+            padding: 10px;
+            background: #e8f4f8;
+            border-left: 4px solid #2c3e50;
+            font-style: italic;
+            font-size: 0.95em;
+            border-radius: 0 4px 4px 0;
+        }
+        .info-note::before {
+            content: "ℹ️ Note: ";
+            font-weight: 600;
+            font-style: normal;
+        }
+        @media (max-width:550px) {
+            .subquestion { margin-left: 20px; }
+            .info-note { margin-left: 20px; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span></span>
+        <span>ENGINEERING MECHANICS</span>
+    </div>
+    <div class="header-sub">
+        <span>2024</span>
+        <span>Time Allowed: 3 Hours · Full Marks: 70</span>
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Answer any five of the following:</span>
+            <div class="marks">[5×3=15]</div>
+            <div style="margin:15px 0 20px 35px;">
+                <div>i) State and explain Lami's theorem.</div>
+                <div>ii) Find the tension in the wires supporting an electric fixture. (Similar to previous years' problems with different load and angle values)</div>
+                <div>iii) Define mechanical advantage, velocity ratio and efficiency of a machine.</div>
+                <div>iv) What is friction? Define coefficient of friction and angle of repose.</div>
+                <div>v) Write the mathematical expression of potential energy and kinetic energy.</div>
+                <div>vi) State the units of angular velocity, angular acceleration and angular displacement.</div>
+                <div>vii) What are the advantages of a lifting machine?</div>
+                <div>viii) Draw the sketches of different types of supports in beams.</div>
+            </div>
+        </div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">The following forces act at a point: 20N inclined at 30° towards north of east, 25N towards north, 30N towards north of west, and 15N inclined at 40° towards south of west. Find the magnitude and direction of the resultant of the force system.</span>
+            <div class="marks">[8]</div>
+            <div class="info-note">Similar to coplanar concurrent force system problems from 2021-2023 papers, with different force magnitudes and directions.</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">Write the general expression of Mechanical Advantage (MA) & Velocity Ratio (VR) of simple lifting machine. Deduce the condition of reversibility of a machine. What do you mean by non-reversible or self-locking machine?</span>
+            <div class="marks">[3+1+2=6]</div>
+            <div class="info-note">Standard theory question on lifting machines - similar to 2022 Q3(xii) and 2023 Q1(vii).</div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">A body is resting on rough horizontal plane. It requires a pull of 170 Newtons inclined at 27° to the plane just to move it, while a push of 190 Newtons inclined at 27° to the plane just to move it. Determine weight of the body and the coefficient of friction.</span>
+            <div class="marks">[6]</div>
+            <div class="info-note">Similar to 2021 Q3 and 2023 Q3(b) type problems, with different numerical values.</div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">A particle is projected at an angle 45° with the horizontal with velocity of projection 150 m/s. Determine: (i) the maximum height attained by the projectile, (ii) the horizontal range of projectile, (iii) time of flight.</span>
+            <div class="marks">[1+2+2=5]</div>
+            <div class="info-note">Projectile motion problem - similar to 2023 Q1(x) but with different initial velocity.</div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">A body moving with uniform acceleration covers 20 m in 4 second and 30 m in 8 second. Find (i) the initial velocity and (ii) the acceleration of the body.</span>
+            <div class="marks">[2+3=5]</div>
+            <div class="info-note">Similar to kinematics problems from previous years, with different distance and time values.</div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">Define work, power and energy. Mention the SI units of them. Give one example of each.</span>
+            <div class="marks">[2+1+1=4]</div>
+            <div class="info-note">Standard definition question - similar to 2023 Q9(a).</div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            <span class="q-text">A simply supported beam of length 6 m carries two point loads of 24 kN each at 2 m and 4 m from left support, and a uniformly distributed load of 12 kN/m over the entire span. Determine the reactions at the supports.</span>
+            <div class="marks">[8]</div>
+            <div class="info-note">Beam reaction problem - similar to 2021 Q10 and 2022 Q6(c) type, with different loading conditions.</div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            <span class="q-text">Write the expression of VR of a simple screw jack. The efficiency of a lifting machine is 80% when an effort of 50 N is required to lift a load of 1 kN. Find the mechanical advantage and velocity ratio of the machine.</span>
+            <div class="marks">[2+4=6]</div>
+            <div class="info-note">Similar to 2021 Q6 and 2023 Q8(b) type problems on lifting machines.</div>
+        </div>
+
+        <!-- ========== QUESTION 10 ========== -->
+        <div class="q">
+            <span class="q-num">10.</span>
+            <span class="q-text">(a) Differentiate between centroid and centre of gravity.</span><br>
+            <span class="q-text">(b) Locate the centroid of an I-section having top flange 160 mm × 20 mm, web 80 mm × 30 mm, and bottom flange 200 mm × 10 mm.</span>
+            <div class="marks">[2+6=8]</div>
+            <div class="info-note">Similar to 2021 Q4(b) and 2023 Q6(b) centroid problems, with different dimensions.</div>
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Introduction to IT Systems · 2025 (WBSCTE)</title>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+        }
+        .paper {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            padding: 25px 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #ccc;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .header-sub {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 5px 0 20px 0;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
+        }
+        .size-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            border-bottom: 1px dotted #aaa;
+            padding-bottom: 12px;
+        }
+        .size-btn {
+            background: transparent;
+            border: 1px solid black;
+            min-width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', monospace;
+            padding: 0 12px;
+        }
+        .size-btn:active { background: #eee; }
+        #paperContent {
+            font-size: 16px;
+            width: 100%;
+        }
+        .q {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+        .q-num {
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .q-text {
+            font-weight: 500;
+            font-size: 1.1em;
+            display: inline;
+        }
+        .subquestion {
+            margin: 12px 0 8px 25px;
+            font-weight: 500;
+        }
+        .subquestion-alpha {
+            margin: 10px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-roman {
+            margin: 15px 0 5px 35px;
+            font-weight: 500;
+        }
+        .subquestion-i {
+            margin: 8px 0 5px 45px;
+            font-weight: 500;
+        }
+        .opts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 2.2rem;
+            margin: 5px 0 10px 55px;
+        }
+        .opt {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            font-size: 1em;
+        }
+        .opt-marker {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .marks {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .marks-inline {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        .group-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            text-decoration: underline;
+        }
+        .instruction {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef;
+            border-radius: 4px;
+        }
+        .note-box {
+            margin: 10px 0 15px 35px;
+            padding: 8px;
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        .warning-box {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff0f0;
+            border-left: 4px solid #c62828;
+            font-size: 0.95em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 15px 0 15px 35px;
+            font-family: 'Times New Roman', Times, serif;
+            border: 1px solid #333;
+        }
+        table, th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f0f0f0;
+            font-weight: 600;
+            text-align: center;
+        }
+        td {
+            text-align: left;
+        }
+        @media (max-width:550px) {
+            .opt { white-space: normal; }
+            .opts { gap: 0.5rem 1.2rem; margin-left: 35px; }
+            .subquestion { margin-left: 15px; }
+            .subquestion-alpha { margin-left: 20px; }
+            .subquestion-roman { margin-left: 20px; }
+            .subquestion-i { margin-left: 25px; }
+            table { width: 100%; margin-left: 0; }
+        }
+        .print-area {
+            margin-top: 35px;
+            border-top: 1px solid black;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .print-btn {
+            background: transparent;
+            border: 1px solid black;
+            padding: 12px 35px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .print-btn:active { background: #ddd; }
+        .footnote {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: right;
+            color: #444;
+            border-top: 1px dotted gray;
+            padding-top: 10px;
+        }
+        @media print {
+            .size-row, .print-area { display: none; }
+            body { padding: 0.2in; background: white; }
+            .paper { box-shadow: none; border: none; padding: 0; }
+        }
+        hr { border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <div class="header-top">
+        <span>201(N)</span>
+        <span>INTRODUCTION TO IT SYSTEMS</span>
+    </div>
+    <div class="header-sub">
+        <span>2025</span>
+        <span>Time Allowed: 2.5 Hours · Full Marks: 60</span>
+    </div>
+    
+    <div class="instruction">
+        <strong>Instructions:</strong> Answer to Question No. 1 of Group A must be written in the main answer script. In Question No. 1, out of 2 marks for each MCQ, 1 mark is allotted for right answer and 1 mark is allotted for correct explanation of the answer. Answer any Five (05) Questions from Group-B.
+    </div>
+
+    <!-- font size controls -->
+    <div class="size-row">
+        <button class="size-btn" id="sizeDown">A–</button>
+        <button class="size-btn" id="sizeReset">↺</button>
+        <button class="size-btn" id="sizeUp">A+</button>
+    </div>
+
+    <!-- main content container -->
+    <div id="paperContent">
+
+        <!-- ========== GROUP A ========== -->
+        <div class="group-title">GROUP-A</div>
+
+        <!-- ========== QUESTION 1 ========== -->
+        <div class="q">
+            <span class="q-num">1.</span>
+            <span class="q-text">Choose the correct answer from the given alternatives and explain your answer (any ten):</span>
+            <span class="marks-inline">2×10=20</span>
+            
+            <div class="warning-box" style="margin-left:0; margin-bottom:15px;">
+                <strong>⚠️ Note:</strong> Each MCQ carries 2 marks: 1 mark for correct answer + 1 mark for correct explanation.
+            </div>
+            
+            <div class="subquestion-roman">i. Which of the following is NOT a web browser?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Google Chrome</span>
+                <span class="opt"><span class="opt-marker">b)</span> Mozilla Firefox</span>
+                <span class="opt"><span class="opt-marker">c)</span> Microsoft Word</span>
+                <span class="opt"><span class="opt-marker">d)</span> Safari</span>
+            </div>
+
+            <div class="subquestion-roman">ii. Which protocol is used for secure web communication?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> HTTP</span>
+                <span class="opt"><span class="opt-marker">b)</span> HTTPS</span>
+                <span class="opt"><span class="opt-marker">c)</span> FTP</span>
+                <span class="opt"><span class="opt-marker">d)</span> SMTP</span>
+            </div>
+
+            <div class="subquestion-roman">iii. What is the invalid number representation?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> (12)<sub>8</sub></span>
+                <span class="opt"><span class="opt-marker">b)</span> (AB1)<sub>16</sub></span>
+                <span class="opt"><span class="opt-marker">c)</span> (187)<sub>8</sub></span>
+                <span class="opt"><span class="opt-marker">d)</span> (101)<sub>2</sub></span>
+            </div>
+
+            <div class="subquestion-roman">iv. Which symbol is used to represent a decision in a flowchart?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Rhombus</span>
+                <span class="opt"><span class="opt-marker">b)</span> Oval</span>
+                <span class="opt"><span class="opt-marker">c)</span> Parallelogram</span>
+                <span class="opt"><span class="opt-marker">d)</span> Rectangle</span>
+            </div>
+
+            <div class="subquestion-roman">v. Hard copy means</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Output on VDT</span>
+                <span class="opt"><span class="opt-marker">b)</span> Output on hard disk</span>
+                <span class="opt"><span class="opt-marker">c)</span> Output on paper</span>
+                <span class="opt"><span class="opt-marker">d)</span> None of these</span>
+            </div>
+
+            <div class="subquestion-roman">vi. In Binary coded decimal, each digit of a decimal is represented with a group of</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 3 binary digits</span>
+                <span class="opt"><span class="opt-marker">b)</span> 4 binary digits</span>
+                <span class="opt"><span class="opt-marker">c)</span> 5 binary digits</span>
+                <span class="opt"><span class="opt-marker">d)</span> 6 binary digits</span>
+            </div>
+
+            <div class="subquestion-roman">vii. Which of the following is NOT a function of an operating system?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Process management</span>
+                <span class="opt"><span class="opt-marker">b)</span> Memory management</span>
+                <span class="opt"><span class="opt-marker">c)</span> Compiling code</span>
+                <span class="opt"><span class="opt-marker">d)</span> File management</span>
+            </div>
+
+            <div class="subquestion-roman">viii. Which HTML tag is used to create a hyperlink?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> &lt;link&gt;</span>
+                <span class="opt"><span class="opt-marker">b)</span> &lt;a&gt;</span>
+                <span class="opt"><span class="opt-marker">c)</span> &lt;href&gt;</span>
+                <span class="opt"><span class="opt-marker">d)</span> &lt;url&gt;</span>
+            </div>
+
+            <div class="subquestion-roman">ix. Which of the following is not the characteristics of Computer?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Accuracy</span>
+                <span class="opt"><span class="opt-marker">b)</span> Versatility</span>
+                <span class="opt"><span class="opt-marker">c)</span> Diligence</span>
+                <span class="opt"><span class="opt-marker">d)</span> IQ</span>
+            </div>
+
+            <div class="subquestion-roman">x. Which of the following is an example of phishing?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> A hacker breaking into a system</span>
+                <span class="opt"><span class="opt-marker">b)</span> A fake email asking for personal details</span>
+                <span class="opt"><span class="opt-marker">c)</span> A computer virus spreading</span>
+                <span class="opt"><span class="opt-marker">d)</span> A software update notification</span>
+            </div>
+
+            <div class="subquestion-roman">xi. Equivalent Gray Code representation of the Binary code 0110 is</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 0101</span>
+                <span class="opt"><span class="opt-marker">b)</span> 1000</span>
+                <span class="opt"><span class="opt-marker">c)</span> 1010</span>
+                <span class="opt"><span class="opt-marker">d)</span> 0100</span>
+            </div>
+
+            <div class="subquestion-roman">xii. A small program that gets loaded in the computer without the user knowledge and replicate itself repeatedly called</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Worms</span>
+                <span class="opt"><span class="opt-marker">b)</span> Virus</span>
+                <span class="opt"><span class="opt-marker">c)</span> Browser</span>
+                <span class="opt"><span class="opt-marker">d)</span> None of these</span>
+            </div>
+
+            <div class="subquestion-roman">xiii. The number of steps on Algorithm should be</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> Finite</span>
+                <span class="opt"><span class="opt-marker">b)</span> Infinite</span>
+                <span class="opt"><span class="opt-marker">c)</span> Fixed</span>
+                <span class="opt"><span class="opt-marker">d)</span> None of these</span>
+            </div>
+
+            <div class="subquestion-roman">xiv. Which of the following is used for connecting computers in a large area such as country, continent etc</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> LAN</span>
+                <span class="opt"><span class="opt-marker">b)</span> PAN</span>
+                <span class="opt"><span class="opt-marker">c)</span> MAN</span>
+                <span class="opt"><span class="opt-marker">d)</span> WAN</span>
+            </div>
+
+            <div class="subquestion-roman">xv. In how many ways can CSS be written in?</div>
+            <div class="opts">
+                <span class="opt"><span class="opt-marker">a)</span> 1</span>
+                <span class="opt"><span class="opt-marker">b)</span> 2</span>
+                <span class="opt"><span class="opt-marker">c)</span> 3</span>
+                <span class="opt"><span class="opt-marker">d)</span> 4</span>
+            </div>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Answer any ten questions. Each MCQ carries 2 marks: 1 for correct answer + 1 for correct explanation.
+            </div>
+        </div>
+
+        <!-- ========== GROUP B ========== -->
+        <hr>
+        <div class="group-title">GROUP-B</div>
+        <div class="instruction" style="margin-left:0;">Answer any Five (05) questions from Group-B.</div>
+
+        <!-- ========== QUESTION 2 ========== -->
+        <div class="q">
+            <span class="q-num">2.</span>
+            <span class="q-text">(a) Describe De Morgan's law.</span><br>
+            <span class="q-text">(b) i) What do you mean by Universal Logic Gates?</span><br>
+            <span class="q-text">ii) Implement AND gate using only NOR gate.</span>
+            <div class="marks">[3+5=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 3 ========== -->
+        <div class="q">
+            <span class="q-num">3.</span>
+            <span class="q-text">(a) Write down a flowchart to find the greatest among three given numbers.</span><br>
+            <span class="q-text">(b) Define algorithm. Write an algorithm to find out area of a Triangle.</span>
+            <div class="marks">[3+5=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 4 ========== -->
+        <div class="q">
+            <span class="q-num">4.</span>
+            <span class="q-text">(a) What are the differences between Primary Memory and Secondary Memory?</span><br>
+            <span class="q-text">(b) Write down the full form of ASCII, SSD, HTML, UPS, and SMPS in the context of computer system.</span>
+            <div class="marks">[3+5=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 5 ========== -->
+        <div class="q">
+            <span class="q-num">5.</span>
+            <span class="q-text">(a) What is operating system? Explain functions of an Operating System.</span><br>
+            <span class="q-text">(b) What are the differences between multiprogramming and time-sharing system?</span>
+            <div class="marks">[3+5=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 6 ========== -->
+        <div class="q">
+            <span class="q-num">6.</span>
+            <span class="q-text">(a) Subtract 25-16 using 2's complement method.</span><br>
+            <span class="q-text">(b) Perform the following conversion:</span>
+            <div class="subquestion-i">i) (21C)<sub>16</sub> to Octal Number</div>
+            <div class="subquestion-i">ii) (34.25)<sub>10</sub> to Binary Number</div>
+            <div class="marks">[3+5=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 7 ========== -->
+        <div class="q">
+            <span class="q-num">7.</span>
+            <span class="q-text">(a) What is HTML? How many types of list in HTML?</span><br>
+            <span class="q-text">(b) Write down the HTML code to create the given table:</span>
+            
+            <table>
+                <tr>
+                    <th>Animals</th>
+                    <th>Birds</th>
+                    <th>Fruits</th>
+                </tr>
+                <tr>
+                    <td>Cow</td>
+                    <td>Parrot</td>
+                    <td>Banana</td>
+                </tr>
+                <tr>
+                    <td>Dog</td>
+                    <td>Pigeon</td>
+                    <td>Mango</td>
+                </tr>
+                <tr>
+                    <td>Horse</td>
+                    <td>Crow</td>
+                    <td>Apple</td>
+                </tr>
+                <tr>
+                    <td>Deer</td>
+                    <td>Cuckoo</td>
+                    <td>Grapes</td>
+                </tr>
+            </table>
+            <div class="marks">[3+5=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 8 ========== -->
+        <div class="q">
+            <span class="q-num">8.</span>
+            <span class="q-text">(a) What is CSS? Write the HTML code to implement CSS.</span><br>
+            <span class="q-text">(b) Design a HTML page with JavaScript to calculate the sum of two integer numbers.</span>
+            <div class="marks">[3+5=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 9 ========== -->
+        <div class="q">
+            <span class="q-num">9.</span>
+            <span class="q-text">(a) How can you protect your computer from being hacked?</span><br>
+            <span class="q-text">(b) Write short note on Denial of service attack works.</span><br>
+            <span class="q-text">(c) What is a Malware and types of Malwares?</span>
+            <div class="marks">[2+3+3=8]</div>
+        </div>
+
+        <!-- ========== QUESTION 10 ========== -->
+        <div class="q">
+            <span class="q-num">10.</span>
+            <span class="q-text">(a) Differentiate Worm and Virus.</span><br>
+            <span class="q-text">(b) What do you understand by the term Fraud, Abuse and Cyber stalking?</span>
+            <div class="marks">[4+4=8]</div>
+        </div>
+
+        <!-- Instruction reminder -->
+        <div class="note-box" style="margin-left:0;">
+            <strong>Note:</strong> Answer any Five questions from Group-B (Q2 to Q10). Each question carries 8 marks.
+        </div>
+
+        <!-- footnote -->
+        <div class="footnote">
+            www.polynoteshub.co.in
+        </div>
+    </div> <!-- end paperContent -->
+
+    <!-- print button -->
+    <div class="print-area">
+        <button class="print-btn" id="printBtn">PRINT</button>
+    </div>
+</div> <!-- end .paper -->
+
+<script>
+    (function() {
+        const paper = document.getElementById('paperContent');
+        const up = document.getElementById('sizeUp');
+        const down = document.getElementById('sizeDown');
+        const reset = document.getElementById('sizeReset');
+        const printBtn = document.getElementById('printBtn');
+
+        let currentPx = 16;
+        const MIN = 12, MAX = 28;
+
+        function setSize(px) {
+            paper.style.fontSize = px + 'px';
+        }
+        function change(delta) {
+            let newSize = currentPx + delta;
+            if (newSize < MIN) newSize = MIN;
+            if (newSize > MAX) newSize = MAX;
+            if (newSize !== currentPx) {
+                currentPx = newSize;
+                setSize(currentPx);
+            }
+        }
+        setSize(currentPx);
+        up.addEventListener('click', () => change(2));
+        down.addEventListener('click', () => change(-2));
+        reset.addEventListener('click', () => { currentPx = 16; setSize(16); });
+        printBtn.addEventListener('click', () => window.print());
+
+        if (window.MathJax) {
+            const reloadMath = () => MathJax.typesetPromise?.();
+            up.addEventListener('click', reloadMath);
+            down.addEventListener('click', reloadMath);
+            reset.addEventListener('click', reloadMath);
+        }
+    })();
+</script>
+</body>
+</html>
