@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>FEEE · Unit 3 · A.C Circuits</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: AC / sinusoidal / blue wave -->
+  <style>
+    :root {
+      --primary: #0d47a1;          /* deep blue */
+      --primary-light: #1976d2;
+      --accent: #f57c00;            /* orange for AC */
+      --accent-light: #ffb74d;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #00acc1;
+      --header-bg: linear-gradient(145deg, #002171, #0d47a1, #f57c00);
+    }
+    /* header emoji: AC symbols */
+    .header::after {
+      content: "📈🌊⚡🔀";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* phasor diagram placeholder */
+    .phasor-demo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .phasor-box {
+      background: var(--formula-bg);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      min-width: 120px;
+    }
+    /* waveform placeholder */
+    .wave-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      animation: wave 3s infinite ease-in-out;
+    }
+    @keyframes wave {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    /* star-delta illustration */
+    .connection-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .connection-node {
+      background: var(--light);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border: 2px solid var(--primary);
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Solution') ? 'Show Solution' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Solution') ? 'Hide Solution' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>📈 FEEE · Unit 3 📈</h1>
+      <h2>A.C Circuits · Phasors · R-L-C · Power · Star/Delta</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
+        <span class="info-item"><i class="fas fa-wave-square"></i> RMS, Avg, Form Factor</span>
+        <span class="info-item"><i class="fas fa-arrow-right-arrow-left"></i> R-L-C Series/Parallel</span>
+        <span class="info-item"><i class="fas fa-star"></i> Star/Delta</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT3</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#basics"><i class="fas fa-circle"></i> Basic Concepts</a>
+        <a href="#repr"><i class="fas fa-chart-pie"></i> Representations</a>
+        <a href="#pure"><i class="fas fa-wave-square"></i> Pure R, L, C</a>
+        <a href="#series"><i class="fas fa-arrow-right-arrow-left"></i> Series Circuits</a>
+        <a href="#parallel"><i class="fas fa-code-branch"></i> Parallel Circuits</a>
+        <a href="#power"><i class="fas fa-chart-bar"></i> Power & Triangles</a>
+        <a href="#star"><i class="fas fa-star"></i> Star/Delta</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bolt"></i> FEEE Unit 3</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#basics"><i class="fas fa-circle"></i> Cycle, RMS, Avg, Form Factor</a>
+      <a href="#repr"><i class="fas fa-chart-pie"></i> Exponential / Polar / Complex</a>
+      <a href="#pure"><i class="fas fa-wave-square"></i> Pure R, L, C circuits</a>
+      <a href="#series"><i class="fas fa-arrow-right-arrow-left"></i> R-L, R-C, R-L-C Series</a>
+      <a href="#parallel"><i class="fas fa-code-branch"></i> R-L, R-C, R-L-C Parallel</a>
+      <a href="#power"><i class="fas fa-chart-bar"></i> Active, Reactive, Apparent Power</a>
+      <a href="#star"><i class="fas fa-star"></i> Star & Delta connections</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: BASIC CONCEPTS ========= -->
+    <section id="basics" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> Basic AC Concepts
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-chart-line"></i> Key Definitions</div>
+          <div class="card-grid">
+            <div class="card"><h4>Angular speed (ω)</h4>ω = 2πf rad/s</div>
+            <div class="card"><h4>Cycle</h4>One complete set of positive and negative values.</div>
+            <div class="card"><h4>Frequency (f)</h4>Cycles per second (Hz)</div>
+            <div class="card"><h4>Periodic time (T)</h4>T = 1/f seconds</div>
+            <div class="card"><h4>Amplitude</h4>Maximum value (V<sub>m</sub> or I<sub>m</sub>)</div>
+            <div class="card"><h4>RMS value</h4>V<sub>rms</sub> = V<sub>m</sub>/√2 (for sine wave)</div>
+            <div class="card"><h4>Average value</h4>V<sub>avg</sub> = 2V<sub>m</sub>/π (for half cycle)</div>
+            <div class="card"><h4>Form Factor</h4> = RMS / Avg = 1.11 for sine</div>
+            <div class="card"><h4>Peak Factor</h4> = Peak / RMS = √2 for sine</div>
+            <div class="card"><h4>Impedance (Z)</h4>Total opposition Z = √(R² + X²)</div>
+            <div class="card"><h4>Phase difference</h4>Angle between voltage and current</div>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> A sinusoidal voltage has peak value 100V. Find RMS, average, form factor, and peak factor.</p>
+        </div>
+        <button class="toggle-btn" data-target="solBasic"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="solBasic">
+          <div class="formula answer">
+            V<sub>rms</sub> = 100/√2 = <strong>70.71 V</strong><br>
+            V<sub>avg</sub> (half cycle) = 2×100/π = <strong>63.66 V</strong><br>
+            Form factor = 70.71/63.66 = <strong>1.11</strong><br>
+            Peak factor = 100/70.71 = <strong>1.414</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: REPRESENTATION OF SINUSOIDAL QUANTITIES ========= -->
+    <section id="repr" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-pie"></i> Representation: Exponential · Complex · Polar
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-calculator"></i> Forms</div>
+          <p>A sinusoidal quantity v = V<sub>m</sub> sin(ωt + φ) can be represented as:</p>
+          <ul>
+            <li><strong>Exponential form:</strong> V<sub>m</sub> e<sup>j(ωt+φ)</sup> (using Euler's identity)</li>
+            <li><strong>Complex (rectangular) form:</strong> V = V<sub>rms</sub> (cosφ + j sinφ) = a + jb</li>
+            <li><strong>Polar form:</strong> V = V<sub>rms</sub> ∠ φ</li>
+          </ul>
+        </div>
+        <div class="example-box">
+          <div class="box-title">Example</div>
+          <p>v = 100 sin(314t + 30°). Write in polar and complex form (RMS).</p>
+          <div class="solution-box">
+            V<sub>rms</sub> = 100/√2 = 70.71<br>
+            Polar: <strong>70.71 ∠ 30°</strong><br>
+            Complex: 70.71(cos30 + j sin30) = <strong>61.24 + j35.36</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: PURELY RESISTIVE, INDUCTIVE, CAPACITIVE CIRCUITS ========= -->
+    <section id="pure" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-wave-square"></i> Pure R, L, C Circuits (with phasors)
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-ruler"></i> Pure Resistance</h4>
+            <p>v = V<sub>m</sub> sinωt, i = I<sub>m</sub> sinωt (in phase)</p>
+            <p>Phasor: V and I aligned.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-coil"></i> Pure Inductance</h4>
+            <p>v = V<sub>m</sub> sinωt, i = I<sub>m</sub> sin(ωt - 90°) (current lags)</p>
+            <p>Phasor: I lags V by 90°.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-capacitor"></i> Pure Capacitance</h4>
+            <p>v = V<sub>m</sub> sinωt, i = I<sub>m</sub> sin(ωt + 90°) (current leads)</p>
+            <p>Phasor: I leads V by 90°.</p>
+          </div>
+        </div>
+        <div class="phasor-demo">
+          <div class="phasor-box">R: V & I → <i class="fas fa-arrow-right"></i> </div>
+          <div class="phasor-box">L: I ↓ V → <i class="fas fa-arrow-down"></i> </div>
+          <div class="phasor-box">C: I ↑ V → <i class="fas fa-arrow-up"></i> </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: SERIES CIRCUITS (R-L, R-C, R-L-C) ========= -->
+    <section id="series" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrow-right-arrow-left"></i> Series R-L, R-C, R-L-C Circuits
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">R-L Series</div>
+          <p>Z = √(R² + X<sub>L</sub>²), X<sub>L</sub> = ωL</p>
+          <p>Phase angle φ = tan⁻¹(X<sub>L</sub>/R) (current lags)</p>
+        </div>
+        <div class="definition-box">
+          <div class="box-title">R-C Series</div>
+          <p>Z = √(R² + X<sub>C</sub>²), X<sub>C</sub> = 1/ωC</p>
+          <p>Phase angle φ = tan⁻¹(-X<sub>C</sub>/R) (current leads)</p>
+        </div>
+        <div class="definition-box">
+          <div class="box-title">R-L-C Series</div>
+          <p>Z = √(R² + (X<sub>L</sub> - X<sub>C</sub>)²)</p>
+          <p>φ = tan⁻¹((X<sub>L</sub>-X<sub>C</sub>)/R)</p>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> A series R-L circuit has R=10Ω, L=0.1H, f=50Hz, V=100V. Find current and phase angle.</p>
+        </div>
+        <button class="toggle-btn" data-target="solSeries"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="solSeries">
+          <div class="formula answer">
+            X<sub>L</sub> = 2π×50×0.1 = 31.42Ω<br>
+            Z = √(10² + 31.42²) = √(100 + 987) = √1087 = <strong>32.97Ω</strong><br>
+            I = V/Z = 100/32.97 = <strong>3.03 A</strong><br>
+            φ = tan⁻¹(31.42/10) = tan⁻¹(3.142) = <strong>72.3°</strong> (current lags)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: PARALLEL CIRCUITS ========= -->
+    <section id="parallel" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-code-branch"></i> Parallel R-L, R-C, R-L-C Circuits
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title">Parallel AC circuits</div>
+          <p>Use admittance Y = 1/Z = G + jB. For R-L: Y = 1/R - j(1/X<sub>L</sub>). For R-C: Y = 1/R + j(1/X<sub>C</sub>).</p>
+        </div>
+        <div class="example-box">
+          <div class="box-title">R-L parallel example</div>
+          <p>R=20Ω, X<sub>L</sub>=15Ω, V=100∠0°. Find total current.</p>
+          <div class="solution-box">
+            I<sub>R</sub> = 100/20 = 5∠0°, I<sub>L</sub> = 100/15 = 6.67∠-90°<br>
+            I<sub>total</sub> = 5 - j6.67 = √(5²+6.67²) ∠ tan⁻¹(-6.67/5) = <strong>8.33 ∠ -53.1° A</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6: POWER CONCEPTS (IMPEDANCE TRIANGLE, POWER TRIANGLE) ========= -->
+    <section id="power" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-bar"></i> Impedance Triangle · Power Triangle
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card"><h4>Impedance Triangle</h4>Z² = R² + X², φ = tan⁻¹(X/R)</div>
+          <div class="card"><h4>Power Factor</h4>cosφ = R/Z = P/S</div>
+          <div class="card"><h4>Active Power (P)</h4>P = VI cosφ (Watts)</div>
+          <div class="card"><h4>Reactive Power (Q)</h4>Q = VI sinφ (VAR)</div>
+          <div class="card"><h4>Apparent Power (S)</h4>S = VI (VA)</div>
+          <div class="card"><h4>Power Triangle</h4>S² = P² + Q²</div>
+        </div>
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> A load draws 5A at 230V with power factor 0.8 lagging. Find P, Q, S.</p>
+        </div>
+        <button class="toggle-btn" data-target="solPower"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="solPower">
+          <div class="formula answer">
+            S = V·I = 230×5 = <strong>1150 VA</strong><br>
+            P = S·cosφ = 1150×0.8 = <strong>920 W</strong><br>
+            Q = S·sinφ = 1150×0.6 = <strong>690 VAR</strong> (since sin⁻¹0.8=36.87°, sin=0.6)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 7: STAR AND DELTA CONNECTIONS ========= -->
+    <section id="star" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-star"></i> Star and Delta Connections
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="connection-grid">
+          <div style="text-align:center;">
+            <h4>Star (Y)</h4>
+            <div><span class="connection-node">R</span> <span class="connection-node">Y</span> <span class="connection-node">B</span></div>
+            <p>V<sub>L</sub> = √3 V<sub>ph</sub>, I<sub>L</sub> = I<sub>ph</sub></p>
+          </div>
+          <div style="text-align:center;">
+            <h4>Delta (Δ)</h4>
+            <div><span class="connection-node">R</span>─<span class="connection-node">Y</span>─<span class="connection-node">B</span>─R</div>
+            <p>V<sub>L</sub> = V<sub>ph</sub>, I<sub>L</sub> = √3 I<sub>ph</sub></p>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> A balanced star-connected load has phase voltage 230V. Find line voltage. If same load is delta-connected, find phase current if line current is 10A.</p>
+        </div>
+        <button class="toggle-btn" data-target="solStar"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="solStar">
+          <div class="formula answer">
+            <strong>Star:</strong> V<sub>L</sub> = √3 × 230 = <strong>398.4 V</strong><br>
+            <strong>Delta:</strong> I<sub>ph</sub> = I<sub>L</sub> / √3 = 10 / 1.732 = <strong>5.77 A</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick formula reference -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> AC Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">V<sub>rms</sub> = V<sub>m</sub>/√2</div>
+          <div class="tag">V<sub>avg</sub> = 2V<sub>m</sub>/π</div>
+          <div class="tag">Form factor = 1.11</div>
+          <div class="tag">Peak factor = √2</div>
+          <div class="tag">X<sub>L</sub> = ωL</div>
+          <div class="tag">X<sub>C</sub> = 1/ωC</div>
+          <div class="tag">Z = √(R² + (X<sub>L</sub>-X<sub>C</sub>)²)</div>
+          <div class="tag">P = VI cosφ</div>
+          <div class="tag">Q = VI sinφ</div>
+          <div class="tag">S = VI</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

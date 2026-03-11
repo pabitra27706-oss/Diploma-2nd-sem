@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>FEEE · Unit 2 · Electric & Magnetic Circuits</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: magnetic / electromagnetic / deep purple-blue -->
+  <style>
+    :root {
+      --primary: #4a2c6d;          /* deep purple */
+      --primary-light: #6b4b8c;
+      --accent: #b76e2e;            /* copper */
+      --accent-light: #d48b4b;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #7b1fa2;
+      --info: #0277bd;
+      --header-bg: linear-gradient(145deg, #1a1040, #4a2c6d, #b76e2e);
+    }
+    /* header emoji: magnetic symbols */
+    .header::after {
+      content: "🧲⚡🔄🔁";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* analogy table styling */
+    .analogy-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .analogy-item {
+      background: var(--formula-bg);
+      padding: 15px;
+      border-radius: var(--radius-sm);
+      border-left: 5px solid var(--accent);
+    }
+    .analogy-item strong {
+      color: var(--primary);
+    }
+    /* hysteresis loop placeholder */
+    .hysteresis-demo {
+      text-align: center;
+      font-size: 2rem;
+      letter-spacing: 5px;
+      color: var(--danger);
+    }
+    /* flemming hand rule cards */
+    .hand-rule {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .hand-icon {
+      font-size: 3rem;
+      background: var(--light);
+      padding: 15px;
+      border-radius: 50%;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT (works without engine.js) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button icon and text
+            var icon = this.querySelector('i');
+            var btnText = this.textContent.trim();
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Solution') ? 'Show Solution' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Solution') ? 'Hide Solution' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🧲 FEEE · Unit 2 🧲</h1>
+      <h2>Electric & Magnetic Circuits · EMF · Faraday · Hysteresis</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
+        <span class="info-item"><i class="fas fa-bolt"></i> EMF, Current, Power</span>
+        <span class="info-item"><i class="fas fa-magnet"></i> Magnetic Circuits</span>
+        <span class="info-item"><i class="fas fa-hand-peace"></i> Fleming's Rules</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT2</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#basic"><i class="fas fa-circle"></i> EMF, Current, PD</a>
+        <a href="#magnetic"><i class="fas fa-magnet"></i> Magnetic Circuits</a>
+        <a href="#induction"><i class="fas fa-sync-alt"></i> Induction & Laws</a>
+        <a href="#induced"><i class="fas fa-bolt"></i> Induced EMF</a>
+        <a href="#fleming"><i class="fas fa-hand-peace"></i> Fleming's Rules</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bolt"></i> FEEE Unit 2</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#basic"><i class="fas fa-circle"></i> EMF, Current, PD, Power</a>
+      <a href="#magnetic"><i class="fas fa-magnet"></i> MMF, Reluctance, Hysteresis, B-H</a>
+      <a href="#induction"><i class="fas fa-sync-alt"></i> Faraday, Lenz, Self/Mutual Inductance</a>
+      <a href="#induced"><i class="fas fa-bolt"></i> Dynamically/Statically induced EMF</a>
+      <a href="#fleming"><i class="fas fa-hand-peace"></i> Fleming's Left & Right Hand Rules</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: EMF, CURRENT, POTENTIAL DIFFERENCE, POWER, ENERGY ========= -->
+    <section id="basic" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> EMF · Current · Potential Difference · Power & Energy
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-bolt"></i> Electromotive Force (EMF)</div>
+          <p><strong>EMF</strong> is the energy supplied by a source per unit charge. Unit: Volt (V). It is the potential difference across the terminals when no current flows.</p>
+        </div>
+        
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-water"></i> Current (I)</h4>
+            <p>Rate of flow of charge. I = dQ/dt. Unit: Ampere (A). Direction: conventional (positive to negative).</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-battery-half"></i> Potential Difference (PD)</h4>
+            <p>Voltage across two points when current flows. PD = I·R. Less than EMF due to internal resistance.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-bolt"></i> Power (P)</h4>
+            <p>Rate of energy transfer. P = V·I = I²R = V²/R. Unit: Watt (W).</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-hourglass-half"></i> Energy (E)</h4>
+            <p>Total work done. E = P·t = V·I·t. Unit: Joule (J) or kWh.</p>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> A 12V battery supplies 2A current for 5 minutes. Calculate power and energy delivered.</p>
+        </div>
+        <button class="toggle-btn" data-target="solPower"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="solPower">
+          <div class="formula answer">
+            <strong>Solution:</strong><br>
+            Power P = V·I = 12V × 2A = <strong>24 W</strong><br>
+            Time t = 5 min = 300 s<br>
+            Energy E = P·t = 24W × 300s = <strong>7200 J</strong> (or 7.2 kJ)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: MAGNETIC CIRCUITS (MMF, PERMEABILITY, HYSTERESIS, RELUCTANCE, B-H, LOSSES) ========= -->
+    <section id="magnetic" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-magnet"></i> Magnetic Circuits · MMF · Hysteresis · Reluctance · B-H
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-circle"></i> Key Magnetic Quantities</div>
+          <ul>
+            <li><strong>MMF (Magnetomotive Force)</strong> = N·I (ampere-turns). Drives flux.</li>
+            <li><strong>Magnetic Force</strong> – force on a moving charge in magnetic field: F = qvB sinθ.</li>
+            <li><strong>Permeability (μ)</strong> – measure of how easily magnetic lines pass through material. μ = B/H.</li>
+            <li><strong>Reluctance (S)</strong> – opposition to magnetic flux. S = l / (μ·A). Analogy to resistance.</li>
+            <li><strong>Leakage factor</strong> – ratio of total flux to useful flux (λ = Φ<sub>total</sub> / Φ<sub>useful</sub>).</li>
+          </ul>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-chart-line"></i> B-H Curve & Hysteresis Loop</div>
+          <p><strong>B-H curve</strong> shows relationship between magnetic flux density (B) and magnetic field strength (H).</p>
+          <div class="hysteresis-demo">
+            <i class="fas fa-chart-line"></i> ↰ B ↑ / H →
+          </div>
+          <p><strong>Hysteresis loop</strong> – when material is magnetized in cycles, B lags behind H. Area of loop = hysteresis loss (heat).</p>
+          <p><strong>Hysteresis loss</strong> ∝ area of loop × frequency.</p>
+          <p><strong>Eddy current loss</strong> – circulating currents induced in core; reduced by laminations.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card"><h4>Hysteresis loss</h4>P<sub>h</sub> = η·B<sub>max</sub><sup>1.6</sup>·f·V</div>
+          <div class="card"><h4>Eddy current loss</h4>P<sub>e</sub> = k<sub>e</sub>·B<sub>max</sub><sup>2</sup>·f<sup>2</sup>·t<sup>2</sup>·V</div>
+        </div>
+
+        <!-- analogy between electric and magnetic circuits -->
+        <div class="workshop-box">
+          <div class="box-title"><i class="fas fa-balance-scale"></i> Analogy: Electric vs Magnetic Circuits</div>
+          <div class="analogy-table">
+            <div class="analogy-item"><strong>Electric</strong> · EMF (V) ↔ <strong>Magnetic</strong> · MMF (NI)</div>
+            <div class="analogy-item"><strong>Electric</strong> · Current (I) ↔ <strong>Magnetic</strong> · Flux (Φ)</div>
+            <div class="analogy-item"><strong>Electric</strong> · Resistance (R) ↔ <strong>Magnetic</strong> · Reluctance (S)</div>
+            <div class="analogy-item"><strong>Electric</strong> · Conductivity (σ) ↔ <strong>Magnetic</strong> · Permeability (μ)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: ELECTROMAGNETIC INDUCTION (FARADAY, LENZ) ========= -->
+    <section id="induction" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-sync-alt"></i> Electromagnetic Induction · Faraday's Laws · Lenz's Law
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-microchip"></i> Faraday's Laws</div>
+          <p><strong>First law:</strong> Whenever magnetic flux linked with a circuit changes, an EMF is induced.</p>
+          <p><strong>Second law:</strong> Induced EMF magnitude = rate of change of flux linkage. e = -N dΦ/dt</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-gavel"></i> Lenz's Law</div>
+          <p>The induced EMF opposes the change in flux that produces it (negative sign in Faraday's equation).</p>
+          <div class="formula">e = - N dΦ/dt</div>
+        </div>
+
+        <!-- self and mutual inductance (preview) -->
+        <div class="tip-box">
+          <div class="box-title"><i class="fas fa-link"></i> Self & Mutual Inductance</div>
+          <p><strong>Self inductance (L):</strong> property of a coil to induce EMF in itself due to change in its own current. e = -L di/dt</p>
+          <p><strong>Mutual inductance (M):</strong> EMF induced in one coil due to change in current in another coil. e₂ = -M di₁/dt</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: TYPES OF INDUCED EMF & ENERGY STORED ========= -->
+    <section id="induced" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-bolt"></i> Types of Induced EMF · Self/Mutual Inductance · Energy Stored
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-motion"></i> Dynamically Induced EMF</h4>
+            <p>Conductor moves in a stationary magnetic field. e = B·l·v sinθ (generator action).</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-pause"></i> Statically Induced EMF</h4>
+            <p>Magnetic field changes, conductor stationary. e = N dΦ/dt (transformer action).</p>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-battery-bolt"></i> Energy stored in magnetic circuit</div>
+          <p>Energy stored in an inductor: <strong>W = ½ L I²</strong> (Joules).</p>
+          <p>Energy density in magnetic field: u = ½ B²/μ (J/m³).</p>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> A coil of self-inductance 5H carries a current of 2A. Calculate energy stored.</p>
+        </div>
+        <button class="toggle-btn" data-target="solEnergy"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="solEnergy">
+          <div class="formula answer">
+            <strong>Solution:</strong><br>
+            W = ½ L I² = ½ × 5 × (2)² = ½ × 5 × 4 = <strong>10 J</strong>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> The mutual inductance between two coils is 2H. If current in primary changes from 3A to 5A in 0.1s, find induced EMF in secondary.</p>
+        </div>
+        <button class="toggle-btn" data-target="solMutual"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="solMutual">
+          <div class="formula answer">
+            <strong>Solution:</strong><br>
+            e = M · di/dt = 2H × (5-3)/0.1 = 2 × 2/0.1 = 2 × 20 = <strong>40 V</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: FLEMING'S RULES ========= -->
+    <section id="fleming" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-hand-peace"></i> Fleming's Left Hand & Right Hand Rules
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="hand-rule">
+          <div class="hand-icon"><i class="fas fa-hand-paper"></i></div>
+          <div class="definition-box" style="flex:1;">
+            <div class="box-title"><i class="fas fa-arrow-left"></i> Left Hand Rule (Motor)</div>
+            <p>Thumb → Motion (Force), Forefinger → Field (N to S), Middle finger → Current (conventional).</p>
+            <p>Used for motors: force on current-carrying conductor in magnetic field.</p>
+          </div>
+        </div>
+
+        <div class="hand-rule">
+          <div class="hand-icon"><i class="fas fa-hand-peace"></i></div>
+          <div class="definition-box" style="flex:1;">
+            <div class="box-title"><i class="fas fa-arrow-right"></i> Right Hand Rule (Generator)</div>
+            <p>Thumb → Motion, Forefinger → Field, Middle finger → Induced EMF (current).</p>
+            <p>Used for generators: induced EMF when conductor moves in field.</p>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-lightbulb"></i> Mnemonic</div>
+          <p><strong>LEFT</strong> for <strong>L</strong>ocomotion (motor). <strong>RIGHT</strong> for <strong>R</strong>esult (generator).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6: SIMPLE PROBLEMS (MIXED) ========= -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-pencil"></i> Additional Practice Problems
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="exercise-area">
+          <p><strong>Problem 1:</strong> A magnetic circuit has MMF of 500 AT and reluctance of 2×10⁵ AT/Wb. Find flux.</p>
+        </div>
+        <button class="toggle-btn" data-target="add1"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="add1">
+          <div class="formula answer">
+            Φ = MMF / Reluctance = 500 / (2×10⁵) = <strong>2.5×10⁻³ Wb</strong> (2.5 mWb)
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem 2:</strong> Calculate hysteresis loss per cycle if area of B-H loop is 400 J/m³ and volume of core is 0.01 m³ at 50 Hz.</p>
+        </div>
+        <button class="toggle-btn" data-target="add2"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="add2">
+          <div class="formula answer">
+            Loss per cycle = area × volume = 400 J/m³ × 0.01 m³ = <strong>4 J/cycle</strong><br>
+            Total loss = 4 J/cycle × 50 Hz = 200 W
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem 3:</strong> A conductor of length 0.5m moves at 20 m/s perpendicular to magnetic field of 0.8T. Find dynamically induced EMF.</p>
+        </div>
+        <button class="toggle-btn" data-target="add3"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="add3">
+          <div class="formula answer">
+            e = B·l·v = 0.8 × 0.5 × 20 = <strong>8 V</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">e = -N dΦ/dt</div>
+          <div class="tag">F = BIL sinθ</div>
+          <div class="tag">Φ = MMF / Reluctance</div>
+          <div class="tag">W = ½ LI²</div>
+          <div class="tag">P<sub>h</sub> ∝ f·B<sub>m</sub><sup>1.6</sup></div>
+          <div class="tag">μ = B/H</div>
+          <div class="tag">S = l/(μA)</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

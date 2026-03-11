@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>IT Systems Theory · Unit 2 · Operating Systems</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles – assumed present) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: OS / kernel / neutral with green-blue accents -->
+  <style>
+    :root {
+      --primary: #1e3c4f;          /* deep bluish slate */
+      --primary-light: #2f5e7a;
+      --accent: #2c7a5a;            /* OS teal/green */
+      --accent-light: #5fa88b;
+      --danger: #b13e3e;
+      --warning: #da8c3a;
+      --success: #1f7a5c;
+      --purple: #6e4f8a;
+      --info: #3b7a9e;
+      --header-bg: linear-gradient(145deg, #0e2b2b, #1e3c4f, #1f4e3d);
+    }
+    /* header emoji: OS symbols (penguin, windows, terminal) */
+    .header::after {
+      content: "🐧💻🖥️⚙️";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-2deg);
+    }
+    /* subtle background for concept boxes */
+    .concept-box {
+      background: linear-gradient(135deg, #e0f0f0, #cae3e3);
+    }
+    [data-theme="dark"] .concept-box {
+      background: linear-gradient(135deg, #1d2f2f, #253f3f);
+    }
+  </style>
+  <!-- engine.js (shared interactivity – assumed present) -->
+  <script src="../units-com/engine.js" defer></script>
+  <!-- FALLBACK for toggle buttons in case engine.js has issues -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+    });
+
+    // Global click handler for toggle buttons
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.toggle-btn[data-target]');
+      if (btn) {
+        e.preventDefault();
+        var targetId = btn.getAttribute('data-target');
+        var answer = document.getElementById(targetId);
+        if (answer) {
+          var visible = answer.style.display === 'block';
+          answer.style.display = visible ? 'none' : 'block';
+          
+          // Update button text based on current state
+          var btnText = btn.textContent.trim();
+          if (btnText.includes('Show') || btnText.includes('Reveal') || btnText.includes('Hint')) {
+            var newText = btnText.replace('Show', 'Hide').replace('Reveal', 'Hide').replace('Hint', 'Hide hint');
+            btn.innerHTML = '<i class="fas fa-eye-slash"></i> ' + newText;
+          } else if (btnText.includes('Hide')) {
+            var newText = btnText.replace('Hide', 'Show').replace('hide hint', 'Show hint');
+            btn.innerHTML = '<i class="fas fa-eye"></i> ' + newText;
+          } else {
+            btn.innerHTML = visible 
+              ? '<i class="fas fa-eye"></i> Show answer' 
+              : '<i class="fas fa-eye-slash"></i> Hide answer';
+          }
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🧠 Operating Systems · Unit 2</h1>
+      <h2>History · Types · Structures</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
+        <span class="info-item"><i class="fas fa-microchip"></i> System Software</span>
+        <span class="info-item"><i class="fas fa-clock"></i> Batch · Timesharing</span>
+        <span class="info-item"><i class="fas fa-sitemap"></i> OS Structures</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR (desktop + mobile trigger) -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-terminal"></i> OS·UNIT2</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#what-is-os"><i class="fas fa-question-circle"></i> What is OS?</a>
+        <a href="#history"><i class="fas fa-timeline"></i> History</a>
+        <a href="#types"><i class="fas fa-layer-group"></i> Types</a>
+        <a href="#structures"><i class="fas fa-diagram-project"></i> Structures</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER & OVERLAY -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bars"></i> OS Unit 2</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#what-is-os"><i class="fas fa-computer"></i> What is OS?</a>
+      <a href="#history"><i class="fas fa-timeline"></i> History & background</a>
+      <a href="#types"><i class="fas fa-diagram-predecessor"></i> Batch, multi, time-sharing</a>
+      <a href="#structures"><i class="fas fa-cubes"></i> OS structures</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER (all content sections) -->
+  <div class="container">
+    <!-- ========== SECTION 1: WHAT IS OS? ========= -->
+    <section id="what-is-os" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-question-circle"></i> What is an Operating System?
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-crown"></i> Definition</div>
+          <p><strong>Operating System (OS)</strong> is system software that manages computer hardware, software resources, and provides common services for computer programs. It acts as an intermediary between users and the hardware.</p>
+        </div>
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-microchip"></i> Computer System Review</div>
+          <p>A computer system consists of <strong>hardware</strong> (CPU, memory, I/O), <strong>operating system</strong>, <strong>application programs</strong>, and <strong>users</strong>. The OS controls and coordinates the hardware among applications and users.</p>
+          <div class="diagram-placeholder">
+            <i class="fas fa-diagram-project"></i>
+            <p>Hardware ↔ OS ↔ Applications ↔ Users</p>
+          </div>
+        </div>
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-bolt"></i> Kernel – the core</div>
+          <p>The <span class="highlight">kernel</span> is the central component of an OS, always resident in memory. It handles process management, memory management, device drivers, system calls.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: HISTORY & BACKGROUND ========= -->
+    <section id="history" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-timeline"></i> Brief History & Background
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card"><h4><i class="fas fa-tape"></i> 1940s-50s: No OS</h4> <p>Programmers physically connected wires, plugboards. Later, <strong>resident monitor</strong> loaded programs sequentially.</p></div>
+          <div class="card"><h4><i class="fas fa-cards"></i> 1960s: Batch systems</h4> <p>Jobs grouped into batches, reduced setup time. IBM OS/360, etc.</p></div>
+          <div class="card"><h4><i class="fas fa-sync-alt"></i> 1970s: Timesharing</h4> <p>Multiple interactive users. UNIX, Multics. <strong>CTSS</strong> was early.</p></div>
+          <div class="card"><h4><i class="fas fa-laptop"></i> 1980s–now: PC, GUI, mobile</h4> <p>MS‑DOS, Mac OS, Windows, Linux, Android, iOS.</p></div>
+        </div>
+        <div class="workshop-box">
+          <div class="box-title"><i class="fas fa-people-group"></i> Background drivers</div>
+          <p><strong>Hardware evolution</strong> (transistors → ICs → microprocessors) enabled more sophisticated OS. Need for <em>efficiency, resource sharing, user convenience</em> shaped OS history.</p>
+        </div>
+        <div class="exercise-area">
+          <p><strong>Think:</strong> Which decade introduced the first GUI-based OS for personal computers?</p>
+        </div>
+        <button class="toggle-btn" data-target="ansHistory"><i class="fas fa-eye"></i> Show hint</button>
+        <div class="answer-reveal" id="ansHistory" style="display: none;">
+          <div class="formula answer">
+            <strong>Answer:</strong> Xerox Alto (1973) was the first with GUI, but it wasn't for personal computers. The first GUI-based OS for personal computers was:<br>
+            • Macintosh (1984) - Apple<br>
+            • Windows 1.0 (1985) - Microsoft<br>
+            So the <strong>1980s</strong> is the correct decade for personal computer GUIs.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: TYPES OF OS (ARCHITECTURE & BASIC TYPES) ========= -->
+    <section id="types" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-layer-group"></i> Types of Operating Systems
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-gears"></i> Basic OS Types</div>
+          <ul>
+            <li><span class="text-purple">Batch OS</span> – Jobs with similar needs grouped, minimal user interaction.</li>
+            <li><span class="text-purple">Multi-programmed Batch</span> – Several jobs in memory, CPU switched to keep it busy.</li>
+            <li><span class="text-purple">Timesharing (multitasking)</span> – CPU switches rapidly among jobs, giving interactive users fast response.</li>
+          </ul>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-layer-group"></i> Batch OS</h4>
+            <p>Operator batches jobs (e.g., Fortran + data). No interaction. Slow turnaround. <em>Example: early IBM mainframes.</em></p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-copy"></i> Multi‑programmed batch</h4>
+            <p>Multiple jobs in memory. When one waits for I/O, OS switches to another. Increases CPU utilization.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-clock"></i> Timesharing</h4>
+            <p>Extension of multiprogramming. Each user has a terminal. OS schedules CPU in small time slices. <em>Unix, Linux, Windows.</em></p>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-archway"></i> Architecture / OS structures (preview)</div>
+          <p>OS can be designed as <strong>monolithic</strong> (Linux), <strong>layered</strong>, <strong>microkernel</strong> (QNX, macOS partially), <strong>hybrid</strong> (Windows NT), or <strong>exokernel</strong> (research).</p>
+        </div>
+
+        <!-- extra: computer system structures (given in syllabus) -->
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-cpu"></i> Computer System Structures</div>
+          <p><strong>I/O structure:</strong> after I/O starts, control returns to user program only after completion (synchronous) or with interrupt (asynchronous). <strong>DMA</strong> used for high-speed I/O.</p>
+          <p><strong>Storage structure:</strong> memory hierarchy: registers, cache, main memory, solid‑state disk, magnetic disk, optical/tapes.</p>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Exercise:</strong> List one advantage of timesharing over simple batch systems.</p>
+        </div>
+        <button class="toggle-btn" data-target="ansTypes"><i class="fas fa-eye"></i> Show answer</button>
+        <div class="answer-reveal" id="ansTypes" style="display: none;">
+          <div class="formula answer">
+            <strong>Advantages of Timesharing over Batch:</strong><br>
+            • <strong>Interactive response</strong> – users get immediate feedback<br>
+            • <strong>Multi-user support</strong> – many users can share the system simultaneously<br>
+            • <strong>Better resource utilization</strong> – CPU switches between active users<br>
+            • <strong>Faster debugging</strong> – programmers can test interactively<br>
+            • Batch systems have no interaction and long turnaround time (hours or days)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: OPERATING SYSTEM STRUCTURES ========= -->
+    <section id="structures" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-diagram-project"></i> Operating System Structures
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-puzzle-piece"></i> Common OS structures</div>
+          <ul>
+            <li><strong>Simple / Monolithic:</strong> whole OS in kernel space (e.g., Linux, older Unix). High performance, but less reliable (any bug crashes kernel).</li>
+            <li><strong>Layered approach:</strong> OS divided into layers (bottom: hardware, top: user interface). Each layer uses services of lower layer. (e.g., THE system).</li>
+            <li><strong>Microkernel:</strong> minimal kernel – only essential services (IPC, low-level memory). Other services run as user processes (e.g., Mach, QNX).</li>
+            <li><strong>Hybrid (modern):</strong> combine monolithic and microkernel for speed + modularity (Windows NT, macOS).</li>
+          </ul>
+        </div>
+
+        <div class="card-grid">
+          <div class="card"><h4><i class="fas fa-cubes"></i> Monolithic</h4><p>All OS services in kernel. System calls are expensive but fast. Linux, BSD.</p></div>
+          <div class="card"><h4><i class="fas fa-layer-group"></i> Layered</h4><p>N layer only uses N-1. Debugging easier, but less efficient. Rare today.</p></div>
+          <div class="card"><h4><i class="fas fa-microchip"></i> Microkernel</h4><p>Small kernel, services like file system, drivers in user space. More stable, secure. Potential performance overhead.</p></div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title"><i class="fas fa-code-branch"></i> Example: Windows NT structure</div>
+          <p>Hybrid: <strong>executive</strong> runs in kernel mode (contains kernel, HAL, device drivers, object manager, etc.) but also provides environment subsystems (Win32, POSIX) in user mode.</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-sitemap"></i> System Calls & API</div>
+          <p><strong>System calls</strong> provide interface to OS services (e.g., read(), fork(), ioctl()). Programmers use <strong>API</strong> (Win32, POSIX) rather than direct system calls.</p>
+          <div class="formula">user program → API → system call → kernel</div>
+        </div>
+
+        <!-- Additional: system boot / init (optional but relevant) -->
+        <div class="workshop-box">
+          <div class="box-title"><i class="fas fa-power-off"></i> OS Structures: boot process</div>
+          <p>Bootstrap loader (firmware) loads kernel into memory, then kernel initializes data structures, device drivers, and starts first process (init/systemd).</p>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Discussion:</strong> Why is a microkernel considered more secure than a monolithic kernel?</p>
+        </div>
+        <button class="toggle-btn" data-target="ansStruct"><i class="fas fa-eye"></i> Show answer</button>
+        <div class="answer-reveal" id="ansStruct" style="display: none;">
+          <div class="formula answer">
+            <strong>Microkernel Security Advantages:</strong><br>
+            • <strong>Minimal privileged code</strong> – only essential services run in kernel mode<br>
+            • <strong>Isolation</strong> – drivers and file systems run as user processes with limited privileges<br>
+            • <strong>Fault containment</strong> – if a service crashes, it doesn't bring down the entire kernel<br>
+            • <strong>Reduced attack surface</strong> – smaller code base in kernel means fewer vulnerabilities<br>
+            • <strong>Better access control</strong> – communication via IPC with strict checking
+          </div>
+        </div>
+
+        <!-- additional table: comparison -->
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead><tr><th>Structure</th><th>Performance</th><th>Reliability</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td>Monolithic</td><td>High</td><td>Lower (crash prone)</td><td>Linux, BSD</td></tr>
+              <tr><td>Layered</td><td>Medium</td><td>Medium</td><td>THE, MULTICS (partial)</td></tr>
+              <tr><td>Microkernel</td><td>Moderate (IPC overhead)</td><td>High</td><td>QNX, L4, macOS (hybrid)</td></tr>
+              <tr><td>Hybrid</td><td>High</td><td>Good</td><td>Windows NT, XNU</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- optional extra: brief OS types summary -->
+    <section id="extra-summary" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list-check"></i> Quick recap · OS structures
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag"><i class="fas fa-layer-group"></i> Batch</div>
+          <div class="tag"><i class="fas fa-layer-group"></i> Multi‑batch</div>
+          <div class="tag"><i class="fas fa-clock"></i> Timesharing</div>
+          <div class="tag"><i class="fas fa-cubes"></i> Monolithic</div>
+          <div class="tag"><i class="fas fa-puzzle-piece"></i> Microkernel</div>
+          <div class="tag"><i class="fas fa-diagram-project"></i> Layered</div>
+          <div class="tag"><i class="fas fa-hybrid"></i> Hybrid</div>
+        </div>
+        <p class="text-muted" style="text-align:center;">Unit 2 complete: OS definition, history, types, structures.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS (save, print, top) -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST for notifications -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

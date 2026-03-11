@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>FEEE · Unit 6 · Analog Circuits (Op-Amp)</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: op-amp / analog / blue-gray -->
+  <style>
+    :root {
+      --primary: #3a4e6b;          /* op-amp blue-gray */
+      --primary-light: #5a7a9c;
+      --accent: #d97706;            /* amber for circuits */
+      --accent-light: #f59e0b;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #1e2b3a, #3a4e6b, #d97706);
+    }
+    /* header emoji: op-amp symbols */
+    .header::after {
+      content: "📊🔌⚡📈";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* op-amp pinout illustration */
+    .pinout-diagram {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .chip-body {
+      background: #333;
+      color: #fff;
+      padding: 20px;
+      border-radius: 30px;
+      width: 280px;
+      position: relative;
+      border: 2px solid #aaa;
+    }
+    .pin-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+    .pin {
+      background: #ffd966;
+      color: #000;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .notch {
+      width: 30px;
+      height: 10px;
+      background: #fff;
+      margin: 0 auto 10px;
+      border-radius: 5px;
+    }
+    /* op-amp triangle symbol */
+    .opamp-symbol {
+      font-size: 4rem;
+      text-align: center;
+      color: var(--accent);
+    }
+    /* circuit demo */
+    .circuit-card {
+      background: var(--formula-bg);
+      border: 2px dashed var(--primary);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin: 15px 0;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Calculate') ? 'Show Calculation' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Calculate') ? 'Hide Calculation' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>📊 FEEE · Unit 6 📊</h1>
+      <h2>Operational Amplifiers · Modes · Applications</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
+        <span class="info-item"><i class="fas fa-microchip"></i> Op-Amp 741C</span>
+        <span class="info-item"><i class="fas fa-calculator"></i> Gain Calculation</span>
+        <span class="info-item"><i class="fas fa-wave-square"></i> Integrator/Differentiator</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT6</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#features"><i class="fas fa-star"></i> Ideal Op-Amp</a>
+        <a href="#741"><i class="fas fa-microchip"></i> 741C Pinout</a>
+        <a href="#modes"><i class="fas fa-arrow-right-arrow-left"></i> Inverting/Non-inverting</a>
+        <a href="#apps"><i class="fas fa-calculator"></i> Applications</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bolt"></i> FEEE Unit 6</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#features"><i class="fas fa-star"></i> Ideal Op-Amp Features</a>
+      <a href="#741"><i class="fas fa-microchip"></i> 741C Pin Configuration</a>
+      <a href="#modes"><i class="fas fa-arrow-right-arrow-left"></i> Inverting & Non-inverting Gain</a>
+      <a href="#apps"><i class="fas fa-calculator"></i> Adder, Integrator, Differentiator</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: IDEAL OP-AMP FEATURES ========= -->
+    <section id="features" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-star"></i> Features of an Ideal Operational Amplifier
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-microchip"></i> Ideal Op-Amp Characteristics</div>
+          <ul>
+            <li><strong>Infinite open-loop gain (A<sub>OL</sub> = ∞)</strong></li>
+            <li><strong>Infinite input impedance (Z<sub>in</sub> = ∞)</strong> → no input current</li>
+            <li><strong>Zero output impedance (Z<sub>out</sub> = 0)</strong> → can drive any load</li>
+            <li><strong>Infinite bandwidth</strong> → amplifies all frequencies equally</li>
+            <li><strong>Common-mode rejection ratio (CMRR) = ∞</strong></li>
+            <li><strong>Slew rate = ∞</strong> (instantaneous output change)</li>
+            <li><strong>Zero offset voltage</strong> (V<sub>out</sub> = 0 when V<sub>in</sub> = 0)</li>
+          </ul>
+        </div>
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-circle-info"></i> Virtual Ground Concept</div>
+          <p>In negative feedback configuration, the differential input voltage (V<sub>+</sub> - V<sub>-</sub>) is ideally zero. Since the non-inverting terminal is often grounded, the inverting terminal is at <strong>virtual ground</strong> (0V but no current flow).</p>
+          <div class="formula">V<sub>1</sub> ≈ V<sub>2</sub> (virtual short)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: 741C PIN CONFIGURATION & OFFSET NULL ========= -->
+    <section id="741" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microchip"></i> 741C Op-Amp: Pin Configuration & Offset Null
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="pinout-diagram">
+          <div class="chip-body">
+            <div class="notch"></div>
+            <div class="pin-row">
+              <span class="pin">1 Offset Null</span>
+              <span class="pin">8 NC</span>
+            </div>
+            <div class="pin-row">
+              <span class="pin">2 Inverting (-)</span>
+              <span class="pin">7 V<sub>CC</sub>+</span>
+            </div>
+            <div class="pin-row">
+              <span class="pin">3 Non-inverting (+)</span>
+              <span class="pin">6 Output</span>
+            </div>
+            <div class="pin-row">
+              <span class="pin">4 V<sub>EE</sub>-</span>
+              <span class="pin">5 Offset Null</span>
+            </div>
+          </div>
+        </div>
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-adjust"></i> Pin Functions</div>
+          <ul>
+            <li><strong>Pin 1 & 5 (Offset Null):</strong> Used to nullify output offset voltage by connecting a potentiometer (typically 10kΩ).</li>
+            <li><strong>Pin 2 (Inverting Input):</strong> Signal applied here gets inverted at output.</li>
+            <li><strong>Pin 3 (Non-inverting Input):</strong> Signal applied here appears same polarity at output.</li>
+            <li><strong>Pin 4 (V<sub>EE</sub>):</strong> Negative supply (usually -15V).</li>
+            <li><strong>Pin 6 (Output):</strong> Amplified output.</li>
+            <li><strong>Pin 7 (V<sub>CC</sub>):</strong> Positive supply (+15V).</li>
+            <li><strong>Pin 8 (NC):</strong> No connection.</li>
+          </ul>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-sliders"></i> Offset Null Adjustment</div>
+          <p>A 10kΩ potentiometer is connected between pins 1 and 5, with wiper connected to V<sub>EE</sub> (pin 4). This balances the internal circuitry to make output zero when inputs are zero.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: INVERTING & NON-INVERTING MODES ========= -->
+    <section id="modes" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrow-right-arrow-left"></i> Inverting & Non-Inverting Modes · Gain Calculation
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-arrow-left"></i> Inverting Amplifier</h4>
+            <p>Input applied to inverting terminal via R<sub>1</sub>. Non-inverting grounded.</p>
+            <div class="formula">A<sub>v</sub> = -R<sub>f</sub> / R<sub>1</sub></div>
+            <p>Negative sign indicates phase inversion.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-arrow-up"></i> Non-Inverting Amplifier</h4>
+            <p>Input applied to non-inverting terminal. Feedback from output to inverting via R<sub>f</sub> and R<sub>1</sub> to ground.</p>
+            <div class="formula">A<sub>v</sub> = 1 + (R<sub>f</sub> / R<sub>1</sub>)</div>
+            <p>Output in phase with input.</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title"><i class="fas fa-pencil"></i> Example 1: Inverting Amplifier</div>
+          <p>R<sub>1</sub> = 1kΩ, R<sub>f</sub> = 10kΩ. Find gain and output for V<sub>in</sub> = 0.5V.</p>
+          <button class="toggle-btn" data-target="calcInvert"><i class="fas fa-eye"></i> Show Calculation</button>
+          <div class="answer-reveal" id="calcInvert">
+            <div class="formula answer">
+              Gain A<sub>v</sub> = -R<sub>f</sub>/R<sub>1</sub> = -10k/1k = <strong>-10</strong><br>
+              V<sub>out</sub> = A<sub>v</sub> × V<sub>in</sub> = -10 × 0.5 = <strong>-5V</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title"><i class="fas fa-pencil"></i> Example 2: Non-Inverting Amplifier</div>
+          <p>R<sub>1</sub> = 2kΩ, R<sub>f</sub> = 8kΩ. Find gain and output for V<sub>in</sub> = 1V.</p>
+          <button class="toggle-btn" data-target="calcNonInvert"><i class="fas fa-eye"></i> Show Calculation</button>
+          <div class="answer-reveal" id="calcNonInvert">
+            <div class="formula answer">
+              Gain A<sub>v</sub> = 1 + (R<sub>f</sub>/R<sub>1</sub>) = 1 + (8k/2k) = 1 + 4 = <strong>5</strong><br>
+              V<sub>out</sub> = A<sub>v</sub> × V<sub>in</sub> = 5 × 1 = <strong>5V</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: APPLICATIONS (ADDER, INTEGRATOR, DIFFERENTIATOR) ========= -->
+    <section id="apps" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-calculator"></i> Op-Amp Applications: Amplifier · Adder · Integrator · Differentiator
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-plus"></i> Adder (Summing Amplifier)</h4>
+            <p>Inverting configuration with multiple inputs.</p>
+            <div class="formula">V<sub>out</sub> = -R<sub>f</sub> (V<sub>1</sub>/R<sub>1</sub> + V<sub>2</sub>/R<sub>2</sub> + ...)</div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-chart-line"></i> Integrator</h4>
+            <p>Replaces feedback resistor with capacitor.</p>
+            <div class="formula">V<sub>out</sub> = - (1/R<sub>1</sub>C) ∫ V<sub>in</sub> dt</div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-chart-bar"></i> Differentiator</h4>
+            <p>Input resistor replaced with capacitor.</p>
+            <div class="formula">V<sub>out</sub> = -R<sub>f</sub>C dV<sub>in</sub>/dt</div>
+          </div>
+        </div>
+
+        <!-- Adder Example -->
+        <div class="circuit-card">
+          <h4><i class="fas fa-plus-circle"></i> Adder Circuit Example</h4>
+          <p>Three inputs: V<sub>1</sub>=1V, V<sub>2</sub>=2V, V<sub>3</sub>=3V. All input resistors = 10kΩ, R<sub>f</sub> = 10kΩ. Find output.</p>
+          <button class="toggle-btn" data-target="calcAdder"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="calcAdder">
+            <div class="formula answer">
+              V<sub>out</sub> = -R<sub>f</sub> (V<sub>1</sub>/R<sub>1</sub> + V<sub>2</sub>/R<sub>2</sub> + V<sub>3</sub>/R<sub>3</sub>)<br>
+              = -10k (1/10k + 2/10k + 3/10k) = -10k × (6/10k) = -6V<br>
+              <strong>V<sub>out</sub> = -6V</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrator Example -->
+        <div class="circuit-card">
+          <h4><i class="fas fa-wave-square"></i> Integrator Circuit Example</h4>
+          <p>R = 10kΩ, C = 0.1μF. Input is a step voltage of 2V. Find output after 1ms.</p>
+          <button class="toggle-btn" data-target="calcInt"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="calcInt">
+            <div class="formula answer">
+              V<sub>out</sub> = - (1/RC) ∫ V<sub>in</sub> dt = - (1/(10k × 0.1×10⁻⁶)) × (2V × 1ms)<br>
+              RC = 10⁴ × 10⁻⁷ = 10⁻³ = 1ms<br>
+              1/RC = 1000<br>
+              V<sub>out</sub> = -1000 × (2 × 0.001) = -1000 × 0.002 = <strong>-2V</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Differentiator Example -->
+        <div class="circuit-card">
+          <h4><i class="fas fa-chart-bar"></i> Differentiator Circuit Example</h4>
+          <p>C = 0.1μF, R<sub>f</sub> = 10kΩ. Input is a ramp voltage increasing at 1000 V/s. Find output.</p>
+          <button class="toggle-btn" data-target="calcDiff"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="calcDiff">
+            <div class="formula answer">
+              V<sub>out</sub> = -R<sub>f</sub>C dV<sub>in</sub>/dt<br>
+              = -10k × 0.1×10⁻⁶ × 1000<br>
+              = -10⁴ × 10⁻⁷ × 10³ = -10⁴ × 10⁻⁴ = <strong>-1V</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amplifier circuit (just a note) -->
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-bullhorn"></i> Amplifier Circuit</div>
+          <p>Both inverting and non-inverting configurations are used as amplifier circuits. The gain is set by resistor ratio as shown in section 3.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Op-Amp Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">A<sub>v(inv)</sub> = -R<sub>f</sub>/R<sub>1</sub></div>
+          <div class="tag">A<sub>v(non)</sub> = 1 + R<sub>f</sub>/R<sub>1</sub></div>
+          <div class="tag">Adder: V<sub>out</sub> = -R<sub>f</sub>∑(V<sub>i</sub>/R<sub>i</sub>)</div>
+          <div class="tag">Integrator: V<sub>out</sub> = -1/RC ∫ V<sub>in</sub> dt</div>
+          <div class="tag">Differentiator: V<sub>out</sub> = -RC dV<sub>in</sub>/dt</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

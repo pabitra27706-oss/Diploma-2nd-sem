@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>IT Systems Theory · Unit 3A · Algorithms & Flowcharts</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles – assumed present) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: algorithmic / logical / cool blue-purple -->
+  <style>
+    :root {
+      --primary: #2c3e6d;          /* deep blueprint blue */
+      --primary-light: #3f5a8f;
+      --accent: #5a4faf;            /* purple for logic */
+      --accent-light: #8a7cd9;
+      --danger: #c44545;
+      --warning: #e68a4d;
+      --success: #2d7a5a;
+      --purple: #8e6ab8;
+      --info: #4a90b0;
+      --header-bg: linear-gradient(145deg, #1a2645, #2c3e6d, #3a2e6a);
+    }
+    /* header emoji: algorithm / flowchart symbols */
+    .header::after {
+      content: "📊🔷🔀⏩📝";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* subtle background for concept boxes */
+    .concept-box {
+      background: linear-gradient(135deg, #eaefff, #d9e0fc);
+    }
+    [data-theme="dark"] .concept-box {
+      background: linear-gradient(135deg, #222b44, #2a2f55);
+    }
+    /* symbol grid styling */
+    .symbol-card {
+      text-align: center;
+    }
+    .symbol-shape {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+  </style>
+  <!-- engine.js (shared interactivity – assumed present) -->
+  <script src="../units-com/engine.js" defer></script>
+  <!-- FALLBACK for toggle buttons in case engine.js has issues -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fallback toggle functionality
+      setTimeout(function() {
+        var toggleBtns = document.querySelectorAll('.toggle-btn[data-target]');
+        toggleBtns.forEach(function(btn) {
+          // Remove any existing listeners to avoid duplicates
+          btn.removeEventListener('click', toggleHandler);
+          btn.addEventListener('click', toggleHandler);
+        });
+      }, 500); // Small delay to ensure DOM is ready
+
+      function toggleHandler(e) {
+        var btn = e.currentTarget;
+        var targetId = btn.getAttribute('data-target');
+        var answer = document.getElementById(targetId);
+        if (answer) {
+          var visible = answer.style.display === 'block';
+          answer.style.display = visible ? 'none' : 'block';
+          btn.innerHTML = visible 
+            ? '<i class="fas fa-eye"></i> Show sample algorithm' 
+            : '<i class="fas fa-eye-slash"></i> Hide algorithm';
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>📐 Algorithms & Flowcharts · Unit 3A</h1>
+      <h2>Definition · Characteristics · Symbols · Examples</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
+        <span class="info-item"><i class="fas fa-diagram-project"></i> Problem Solving</span>
+        <span class="info-item"><i class="fas fa-shapes"></i> Flowchart Symbols</span>
+        <span class="info-item"><i class="fas fa-list-ol"></i> Algorithms</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR (desktop + mobile trigger) -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-diagram-project"></i> ALGO·UNIT3A</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#algorithm"><i class="fas fa-microchip"></i> Algorithm</a>
+        <a href="#flowchart"><i class="fas fa-share-nodes"></i> Flowchart</a>
+        <a href="#symbols"><i class="fas fa-shapes"></i> Symbols</a>
+        <a href="#examples"><i class="fas fa-file-lines"></i> Examples</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER & OVERLAY -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bars"></i> Unit 3A</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#algorithm"><i class="fas fa-microchip"></i> Algorithm (def, chars, pros/cons)</a>
+      <a href="#flowchart"><i class="fas fa-share-nodes"></i> Flowchart definition</a>
+      <a href="#symbols"><i class="fas fa-shapes"></i> Flowchart symbols</a>
+      <a href="#examples"><i class="fas fa-file-lines"></i> Examples & exercises</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER (all content sections) -->
+  <div class="container">
+    <!-- ========== SECTION 1: ALGORITHM (definition, characteristics, pros/cons) ========= -->
+    <section id="algorithm" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microchip"></i> Algorithm: Definition & Characteristics
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-book-open"></i> Definition</div>
+          <p>An <strong>algorithm</strong> is a finite sequence of well-defined, step-by-step instructions to solve a given problem or perform a computation.</p>
+          <p>Derived from the name of Persian mathematician <em>Al‑Khwarizmi</em>.</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-clipboard-list"></i> Characteristics of an Algorithm</div>
+          <ul>
+            <li><span class="text-purple">Input</span> – zero or more quantities supplied externally.</li>
+            <li><span class="text-purple">Output</span> – at least one quantity produced.</li>
+            <li><span class="text-purple">Definiteness</span> – each instruction must be clear and unambiguous.</li>
+            <li><span class="text-purple">Finiteness</span> – algorithm must terminate after a finite number of steps.</li>
+            <li><span class="text-purple">Effectiveness</span> – each step must be basic and feasible.</li>
+          </ul>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-thumbs-up text-success"></i> Advantages</h4>
+            <ul style="margin:0; padding-left:20px;">
+              <li>Systematic problem solving</li>
+              <li>Language independent</li>
+              <li>Easy to understand and debug</li>
+              <li>Can be converted into code easily</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-thumbs-down text-danger"></i> Disadvantages</h4>
+            <ul style="margin:0; padding-left:20px;">
+              <li>Time-consuming to write</li>
+              <li>Difficult for complex logic</li>
+              <li>No standard representation (unlike flowchart)</li>
+              <li>May hide details if too abstract</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-lightbulb"></i> Example (algorithm: add two numbers)</div>
+          <div class="formula">Step 1: Start<br>Step 2: Input A, B<br>Step 3: Sum = A + B<br>Step 4: Display Sum<br>Step 5: Stop</div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Exercise:</strong> Write an algorithm to find the largest of three numbers.</p>
+        </div>
+        <button class="toggle-btn" data-target="ansAlgo"><i class="fas fa-eye"></i> Show sample algorithm</button>
+        <div class="answer-reveal" id="ansAlgo" style="display: none;">
+          <div class="formula answer">
+            <strong>Algorithm: Largest of three numbers</strong><br>
+            1. Start<br>
+            2. Input three numbers: A, B, C<br>
+            3. If A > B then<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Max = A<br>
+            &nbsp;&nbsp;&nbsp;Else<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Max = B<br>
+            4. If C > Max then<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Max = C<br>
+            5. Output "Largest number is: ", Max<br>
+            6. Stop
+          </div>
+          <p style="margin-top:10px;"><i class="fas fa-check-circle text-success"></i> This algorithm uses two comparisons and works for any three numbers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: FLOWCHART DEFINITION & ADVANTAGES/DISADVANTAGES ========= -->
+    <section id="flowchart" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-share-nodes"></i> Flowchart: Definition & Overview
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-pen-ruler"></i> What is a Flowchart?</div>
+          <p>A <strong>flowchart</strong> is a graphical representation of an algorithm or a process, using standardized symbols to show the sequence of steps and decisions.</p>
+          <p>It visually depicts the flow of control, making it easier to understand and communicate logic.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-check-circle text-success"></i> Advantages of Flowchart</h4>
+            <ul>
+              <li>Communication – easy to explain to non‑programmers</li>
+              <li>Effective analysis – detect logical errors early</li>
+              <li>Documentation – serves as program guide</li>
+              <li>Easy to trace and debug</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-exclamation-triangle text-danger"></i> Disadvantages</h4>
+            <ul>
+              <li>Time‑consuming to draw (especially large programs)</li>
+              <li>Complex logic leads to messy diagrams</li>
+              <li>Modifications may require redrawing</li>
+              <li>No standard for detail level</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tip-box">
+          <div class="box-title"><i class="fas fa-pencil"></i> Tip</div>
+          <p>Flowcharts are great for small programs or modules. For large systems, use pseudocode alongside.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: FLOWCHART SYMBOLS (detailed) ========= -->
+    <section id="symbols" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-shapes"></i> Flowchart Symbols (Standard)
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-diagram-project"></i> Commonly used symbols (ISO/ANSI)</div>
+          <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+            <div class="card symbol-card">
+              <div class="symbol-shape">⚪</div>
+              <h4>Terminal</h4>
+              <p>Start / Stop / Halt</p>
+            </div>
+            <div class="card symbol-card">
+              <div class="symbol-shape">▱</div>
+              <h4>Process</h4>
+              <p>Calculation / Assignment</p>
+            </div>
+            <div class="card symbol-card">
+              <div class="symbol-shape">◇</div>
+              <h4>Decision</h4>
+              <p>Yes/No, True/False</p>
+            </div>
+            <div class="card symbol-card">
+              <div class="symbol-shape">⤹</div>
+              <h4>Flow lines</h4>
+              <p>Direction of flow</p>
+            </div>
+            <div class="card symbol-card">
+              <div class="symbol-shape">▱</div>
+              <h4>Input/Output</h4>
+              <p>Read/Print (parallelogram)</p>
+            </div>
+            <div class="card symbol-card">
+              <div class="symbol-shape">○</div>
+              <h4>Connector</h4>
+              <p>Jump to another part</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead><tr><th>Symbol</th><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>⬭ (ellipse)</td><td>Terminator</td><td>Start, Stop, or Halt</td></tr>
+              <tr><td>⬬ (parallelogram)</td><td>Input / Output</td><td>Data input (read) or output (print)</td></tr>
+              <tr><td>⬯ (rectangle)</td><td>Process</td><td>Any computation or assignment</td></tr>
+              <tr><td>⬦ (diamond)</td><td>Decision</td><td>Branch (if-else, case)</td></tr>
+              <tr><td>➡️ (arrow)</td><td>Flow line</td><td>Shows sequence and direction</td></tr>
+              <tr><td>⬤ (circle)</td><td>Connector</td><td>Connects different parts, often with label</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="workshop-box">
+          <div class="box-title"><i class="fas fa-pen-fancy"></i> Note</div>
+          <p>Some modern tools use slightly different shapes, but the meaning remains consistent. Always include a legend if using non‑standard symbols.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: EXAMPLES (with step-by-step flowcharts) ========= -->
+    <section id="examples" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-file-lines"></i> Worked Examples
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <!-- Example 1: sum of two numbers -->
+        <div class="example-box">
+          <div class="box-title"><i class="fas fa-calculator"></i> Example 1: Add two numbers</div>
+          <div class="diagram-placeholder">
+            <i class="fas fa-diagram-project" style="font-size:2rem;"></i>
+            <p>[Start] → [Input A,B] → [Sum = A+B] → [Print Sum] → [Stop]</p>
+          </div>
+          <p>Corresponding algorithm is straightforward. This shows the linear flow.</p>
+        </div>
+
+        <!-- Example 2: largest of three numbers with decision -->
+        <div class="example-box">
+          <div class="box-title"><i class="fas fa-ranking-star"></i> Example 2: Find largest of three numbers</div>
+          <div class="solution-box">
+            <div class="step" data-step="Flow">Start → Input A,B,C → if A>B then Max=A else Max=B → if C>Max then Max=C → Output Max → Stop</div>
+            <div class="diagram-placeholder" style="margin-top:10px;">
+              <pre style="font-family: monospace; text-align: left; display: inline-block;">
+   [Start]
+      ↓
+[Input A,B,C]
+      ↓
+   ◇───Yes───┐
+ A>B?         │
+   │No        │
+   ↓          ↓
+Max=B      Max=A
+   │          │
+   └────┬─────┘
+        ↓
+    ◇ C>Max? ──No──┐
+        │Yes        │
+        ↓           │
+     Max=C          │
+        └─────┬─────┘
+              ↓
+        [Output Max]
+              ↓
+            [Stop]
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 3: factorial (loop) -->
+        <div class="example-box">
+          <div class="box-title"><i class="fas fa-sync-alt"></i> Example 3: Factorial (using loop)</div>
+          <p>Algorithm (iterative):</p>
+          <div class="formula">fact = 1, i=1; while i ≤ n: fact = fact*i; i=i+1</div>
+          <div class="workshop-box">
+            <div class="box-title"><i class="fas fa-draw-polygon"></i> Flowchart structure</div>
+            <p>Start → Input n → fact=1, i=1 → ◇ i≤n? (if no → output fact) → (yes) fact=fact*i, i=i+1 → loop back.</p>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Exercise:</strong> Draw a flowchart (in words or using symbols) to check whether a number is even or odd.</p>
+        </div>
+        <button class="toggle-btn" data-target="ansEvenOdd"><i class="fas fa-eye"></i> Show solution</button>
+        <div class="answer-reveal" id="ansEvenOdd" style="display: none;">
+          <div class="formula answer">
+            <strong>Even/Odd Checker Algorithm:</strong><br>
+            1. Start<br>
+            2. Input number<br>
+            3. Compute remainder = number % 2<br>
+            4. If remainder == 0 then<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Print "Even"<br>
+            &nbsp;&nbsp;&nbsp;Else<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Print "Odd"<br>
+            5. Stop
+          </div>
+          <p style="margin-top:10px;"><strong>Flowchart:</strong> [Start] → [Input num] → ◇ remainder==0? → Yes: [Print Even] → Stop ; No: [Print Odd] → Stop.</p>
+        </div>
+
+        <!-- additional advantages/disadvantages quick recap -->
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-balance-scale"></i> Quick recap: Algorithm vs Flowchart</div>
+          <p><strong>Algorithm</strong> = textual, step-by-step. <strong>Flowchart</strong> = visual, uses symbols. Both have pros/cons; often used together.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- optional symbol quick reference -->
+    <section id="symbols-quick" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-memory"></i> Symbols at a glance
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">⬭ Terminator</div>
+          <div class="tag">⬬ I/O</div>
+          <div class="tag">⬯ Process</div>
+          <div class="tag">⬦ Decision</div>
+          <div class="tag">➡️ Flow line</div>
+          <div class="tag">⬤ Connector</div>
+        </div>
+        <p style="margin-top:12px;">Unit 3A complete: Algorithms & Flowcharts basics.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS (save, print, top) -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST for notifications -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+  
+  <!-- Additional fallback script to ensure toggle works -->
+  <script>
+    (function() {
+      // This ensures toggles work even if engine.js fails
+      document.addEventListener('click', function(e) {
+        var btn = e.target.closest('.toggle-btn[data-target]');
+        if (btn) {
+          e.preventDefault();
+          var targetId = btn.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            btn.innerHTML = visible 
+              ? '<i class="fas fa-eye"></i> ' + (btn.innerHTML.includes('algorithm') ? 'Show sample algorithm' : 'Show solution')
+              : '<i class="fas fa-eye-slash"></i> ' + (btn.innerHTML.includes('algorithm') ? 'Hide algorithm' : 'Hide solution');
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

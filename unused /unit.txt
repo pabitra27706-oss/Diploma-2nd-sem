@@ -1,0 +1,87 @@
+I have a course notes system:
+- base.css → shared styles (I have it, don't generate)
+- engine.js → shared interactivity (I have it, don't generate)
+- Each chapter = ONE html file with theme + content
+
+THE HTML FILE HAS 3 PARTS:
+
+1. THEME — <style> block overriding CSS variables:
+   --primary, --primary-light, --accent, --accent-light,
+   --danger, --warning, --success, --purple, --info,
+   --header-bg (gradient)
+   Plus .header::after with emoji decorations
+
+2. SHELL — navbar, drawer, toast, FABs (I'll copy from template)
+
+3. CONTENT — written as pure HTML inside <div class="container">
+   using these CSS classes:
+
+   SECTIONS:
+   <section id="xxx" class="section">
+     <h2 class="section-title">
+       <i class="fas fa-icon"></i> Title
+       <i class="fas fa-chevron-down collapse-icon"></i>
+     </h2>
+     <div class="section-content"> ...content... </div>
+   </section>
+
+   BOXES:
+   .concept-box     → blue, key concepts
+   .definition-box  → purple, definitions
+   .example-box     → purple, worked examples
+   .solution-box    → cyan, inside example-box for steps
+   .workshop-box    → green, real-world applications
+   .warning-box     → red, common mistakes
+   .tip-box         → orange, hints/tricks
+   .formula-box     → bordered, for formulas
+   .instrument-box  → gray border, for tools/devices
+   .important-note  → yellow, important notes
+
+   Each box starts with:
+   <div class="box-title"><i class="fas fa-icon"></i> Title</div>
+
+   FORMULAS:
+   <div class="formula">v = u + at</div>
+   <div class="formula answer">✓ Final Answer</div>
+
+   STEPS (inside .solution-box):
+   <div class="step" data-step="Step 1">description</div>
+   <div class="formula">calculation</div>
+
+   TABLES:
+   <div class="table-wrapper"><table class="data-table">...</table></div>
+
+   CARD GRID:
+   <div class="card-grid">
+     <div class="card"><h4><i class="fas fa-icon"></i> Title</h4><p>text</p></div>
+   </div>
+
+   TAG GRID:
+   <div class="tag-grid"><div class="tag">item</div></div>
+
+   EXERCISES:
+   <div class="exercise-area"><p><strong>Exercise:</strong> question</p></div>
+   <button class="toggle-btn" data-target="ans1">Show Answer</button>
+   <div class="answer-reveal" id="ans1">answer html</div>
+
+   UTILITY CLASSES:
+   .highlight  → yellow highlight
+   .text-danger .text-success .text-purple → colored text
+
+   IMAGES:
+   <figure class="content-image"><img src="..." alt="...">
+   <figcaption>caption</figcaption></figure>
+
+NOW CREATE the complete HTML file for:
+Subject: [___]
+Chapter: [___]  
+Topics: [___]
+Color scheme: [___]
+Header emojis: [___]
+
+Give me the FULL chapter HTML with:
+1. Theme <style> block
+2. Shell (copy the navbar/drawer/toast/FABs structure)
+3. All content sections with definitions, formulas,
+   worked examples with steps, tables, exercises,
+   tips, and warnings.

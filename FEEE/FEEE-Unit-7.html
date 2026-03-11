@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>FEEE · Unit 7 · Digital Electronics</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: digital / logic / binary -->
+  <style>
+    :root {
+      --primary: #1a4d8c;          /* digital blue */
+      --primary-light: #2e6ab3;
+      --accent: #e65c1e;            /* logic orange */
+      --accent-light: #ff8c42;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #00acc1;
+      --header-bg: linear-gradient(145deg, #0a2a4a, #1a4d8c, #e65c1e);
+    }
+    /* header emoji: digital symbols */
+    .header::after {
+      content: "🔄🧮🔢💾";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* truth table styling */
+    .truth-table {
+      display: inline-block;
+      background: var(--card-bg);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      margin: 5px 0;
+    }
+    .truth-table table {
+      border-collapse: collapse;
+    }
+    .truth-table td {
+      padding: 5px 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    /* k-map placeholder */
+    .kmap-demo {
+      display: grid;
+      grid-template-columns: repeat(2, 60px);
+      gap: 2px;
+      background: #333;
+      padding: 2px;
+      width: fit-content;
+      margin: 10px 0;
+    }
+    .kmap-cell {
+      background: var(--light);
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    /* flip flop symbol */
+    .ff-symbol {
+      background: var(--formula-bg);
+      border: 3px solid var(--primary);
+      width: 100px;
+      height: 80px;
+      position: relative;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Simplify') ? 'Show Simplification' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Simplify') ? 'Hide Simplification' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🔢 FEEE · Unit 7 🔢</h1>
+      <h2>Digital Electronics · Logic Gates · K-Map · Counters</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
+        <span class="info-item"><i class="fas fa-microchip"></i> Boolean Algebra</span>
+        <span class="info-item"><i class="fas fa-table"></i> K-Map</span>
+        <span class="info-item"><i class="fas fa-clock"></i> Flip Flops & Counters</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT7</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#boolean"><i class="fas fa-square-root-alt"></i> Boolean Algebra</a>
+        <a href="#gates"><i class="fas fa-microchip"></i> Logic Gates</a>
+        <a href="#simplify"><i class="fas fa-pencil"></i> Simplification</a>
+        <a href="#kmaps"><i class="fas fa-th"></i> K-Map</a>
+        <a href="#sequential"><i class="fas fa-clock"></i> Flip Flops</a>
+        <a href="#counters"><i class="fas fa-sort-numeric-up"></i> Counters</a>
+        <a href="#ttl"><i class="fas fa-bolt"></i> TTL</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bolt"></i> FEEE Unit 7</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#boolean"><i class="fas fa-square-root-alt"></i> Boolean Rules & Laws</a>
+      <a href="#gates"><i class="fas fa-microchip"></i> Logic Gates & Truth Tables</a>
+      <a href="#simplify"><i class="fas fa-pencil"></i> De-Morgan, SOP, POS</a>
+      <a href="#kmaps"><i class="fas fa-th"></i> Karnaugh Map</a>
+      <a href="#sequential"><i class="fas fa-clock"></i> Flip Flops</a>
+      <a href="#counters"><i class="fas fa-sort-numeric-up"></i> Ripple, Synchronous Counter</a>
+      <a href="#ttl"><i class="fas fa-bolt"></i> TTL Logic ICs</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: BOOLEAN ALGEBRA RULES & LAWS ========= -->
+    <section id="boolean" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-square-root-alt"></i> Boolean Algebra: Rules and Laws
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-list"></i> Basic Laws</div>
+          <ul>
+            <li><strong>Identity:</strong> A + 0 = A, A · 1 = A</li>
+            <li><strong>Null:</strong> A + 1 = 1, A · 0 = 0</li>
+            <li><strong>Idempotent:</strong> A + A = A, A · A = A</li>
+            <li><strong>Complement:</strong> A + A' = 1, A · A' = 0</li>
+            <li><strong>Involution:</strong> (A')' = A</li>
+            <li><strong>Commutative:</strong> A + B = B + A, A·B = B·A</li>
+            <li><strong>Associative:</strong> (A+B)+C = A+(B+C), (A·B)·C = A·(B·C)</li>
+            <li><strong>Distributive:</strong> A·(B+C) = A·B + A·C, A + (B·C) = (A+B)·(A+C)</li>
+            <li><strong>Absorption:</strong> A + A·B = A, A·(A+B) = A</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: LOGIC GATES (AND, OR, NOT, NAND, NOR, XOR, XNOR) ========= -->
+    <section id="gates" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microchip"></i> Logic Gates and Truth Tables
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-circle"></i> AND Gate</h4>
+            <div class="truth-table">
+              <table>
+                <tr><th>A</th><th>B</th><th>Y=A·B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-circle"></i> OR Gate</h4>
+            <div class="truth-table">
+              <table>
+                <tr><th>A</th><th>B</th><th>Y=A+B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-circle"></i> NOT Gate</h4>
+            <div class="truth-table">
+              <table>
+                <tr><th>A</th><th>Y=A'</th></tr>
+                <tr><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-circle"></i> NAND Gate</h4>
+            <div class="truth-table">
+              <table>
+                <tr><th>A</th><th>B</th><th>Y=(A·B)'</th></tr>
+                <tr><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-circle"></i> NOR Gate</h4>
+            <div class="truth-table">
+              <table>
+                <tr><th>A</th><th>B</th><th>Y=(A+B)'</th></tr>
+                <tr><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-circle"></i> XOR Gate</h4>
+            <div class="truth-table">
+              <table>
+                <tr><th>A</th><th>B</th><th>Y=A⊕B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-circle"></i> XNOR Gate</h4>
+            <div class="truth-table">
+              <table>
+                <tr><th>A</th><th>B</th><th>Y=A⊙B</th></tr>
+                <tr><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-infinity"></i> Universal Logic Gates</div>
+          <p><strong>NAND</strong> and <strong>NOR</strong> are universal gates. Any Boolean function can be implemented using only NAND or only NOR gates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: BOOLEAN EXPRESSIONS & SIMPLIFICATION (De-Morgan, SOP, POS) ========= -->
+    <section id="simplify" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-pencil"></i> De-Morgan's Theorem · SOP · POS
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-gavel"></i> De-Morgan's Theorem</div>
+          <p>(A·B)' = A' + B'</p>
+          <p>(A+B)' = A' · B'</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-plus"></i> Min term (SOP)</h4>
+            <p>Sum of Products: OR of AND terms. Each AND term contains all variables (in true or complemented form).</p>
+            <p>Example: F = A'B + AB'</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-times"></i> Max term (POS)</h4>
+            <p>Product of Sums: AND of OR terms. Each OR term contains all variables.</p>
+            <p>Example: F = (A+B)·(A'+B')</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Boolean Simplification Example</div>
+          <p>Simplify: F = A'B'C + A'BC + AB'C + ABC</p>
+          <button class="toggle-btn" data-target="simplify1"><i class="fas fa-eye"></i> Simplify</button>
+          <div class="answer-reveal" id="simplify1">
+            <div class="formula answer">
+              F = A'C(B' + B) + AC(B' + B) = A'C + AC = C(A' + A) = <strong>C</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: KARNAUGH MAP (K-MAP) SIMPLIFICATION ========= -->
+    <section id="kmaps" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-th"></i> Karnaugh Map (K-Map) Simplification
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title">2-Variable K-Map</div>
+          <div class="kmap-demo" style="grid-template-columns: 60px 60px;">
+            <div class="kmap-cell">0</div><div class="kmap-cell">1</div>
+            <div class="kmap-cell">2</div><div class="kmap-cell">3</div>
+          </div>
+          <p>Group adjacent 1s to form product terms.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">K-Map Example</div>
+          <p>Simplify using K-map: F(A,B,C) = Σ(1,2,3,5,7)</p>
+          <button class="toggle-btn" data-target="kmapSol"><i class="fas fa-eye"></i> Show Simplification</button>
+          <div class="answer-reveal" id="kmapSol">
+            <div class="formula answer">
+              <strong>Solution:</strong><br>
+              Map: 3-variable K-map.<br>
+              Group 1: minterms 1,3,5,7 → C (since all have C=1)<br>
+              Group 2: minterms 2,3 → A'B<br>
+              Result: F = <strong>C + A'B</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: SEQUENTIAL CIRCUITS - FLIP FLOPS ========= -->
+    <section id="sequential" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-clock"></i> Sequential Circuits: Flip Flops as Storage Elements
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-memory"></i> Flip Flop Basics</div>
+          <p><strong>Flip flop</strong> is a bistable multivibrator that stores 1 bit of data (0 or 1). It has two stable states.</p>
+          <p>Types: SR, JK, D, T flip flops.</p>
+          <div style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
+            <div class="ff-symbol">SR</div>
+            <div class="ff-symbol">JK</div>
+            <div class="ff-symbol">D</div>
+            <div class="ff-symbol">T</div>
+          </div>
+          <p>Flip flops are edge-triggered (positive or negative) and form the basis of counters and registers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6: COUNTERS ========= -->
+    <section id="counters" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-sort-numeric-up"></i> Counters: Ripple · Synchronous Up-Down
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-water"></i> Ripple Counter (Asynchronous)</h4>
+            <p>Flip flops are connected in series. Clock applied to first FF only. Output of one FF clocks the next.</p>
+            <p>Simple but slow (propagation delay accumulates).</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-sync-alt"></i> Synchronous Counter</h4>
+            <p>All flip flops receive same clock pulse simultaneously. Faster, can be designed for up/down counting.</p>
+          </div>
+        </div>
+
+        <div class="workshop-box">
+          <div class="box-title">Up-Down Counter</div>
+          <p>A counter that can count both forward and backward depending on control signal. Uses additional logic (e.g., XOR gates) to select counting direction.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 7: TTL LOGIC ICs ========= -->
+    <section id="ttl" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-bolt"></i> Digital IC Logic Gates: TTL
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-microchip"></i> TTL (Transistor-Transistor Logic)</div>
+          <p><strong>TTL</strong> is a family of digital logic ICs using bipolar transistors. Standard TTL series: 7400.</p>
+          <ul>
+            <li>Typical supply voltage: 5V</li>
+            <li>Logic 0: 0-0.8V, Logic 1: 2-5V</li>
+            <li>Examples: 7400 (quad NAND), 7402 (quad NOR), 7404 (hex inverter), 7408 (quad AND), 7432 (quad OR)</li>
+            <li>Propagation delay ~10ns, power consumption ~10mW per gate</li>
+          </ul>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Common TTL ICs</div>
+          <table class="data-table">
+            <tr><th>IC No.</th><th>Description</th></tr>
+            <tr><td>7400</td><td>Quad 2-input NAND</td></tr>
+            <tr><td>7402</td><td>Quad 2-input NOR</td></tr>
+            <tr><td>7404</td><td>Hex Inverter</td></tr>
+            <tr><td>7408</td><td>Quad 2-input AND</td></tr>
+            <tr><td>7432</td><td>Quad 2-input OR</td></tr>
+            <tr><td>7486</td><td>Quad 2-input XOR</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Digital Electronics Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">AND: Y=A·B</div>
+          <div class="tag">OR: Y=A+B</div>
+          <div class="tag">NOT: Y=A'</div>
+          <div class="tag">NAND: Y=(A·B)'</div>
+          <div class="tag">NOR: Y=(A+B)'</div>
+          <div class="tag">XOR: A⊕B</div>
+          <div class="tag">De-Morgan</div>
+          <div class="tag">SOP, POS</div>
+          <div class="tag">K-Map</div>
+          <div class="tag">Flip Flop</div>
+          <div class="tag">Ripple Counter</div>
+          <div class="tag">TTL 7400</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>
