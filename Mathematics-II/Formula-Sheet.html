@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics · Complete Formula Reference (Units 1-6)</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: linear-gradient(145deg, #f0f4f8, #e6ecf5);
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: linear-gradient(145deg, #1e293b, #2c3e50, #c44536);
+      color: white;
+      padding: 40px 30px;
+      border-radius: 24px 24px 24px 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .header::after {
+      content: "∫∑∏√∞≈≠≤≥⊕⊗";
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      font-size: 3.5rem;
+      opacity: 0.1;
+      color: white;
+      font-weight: bold;
+      pointer-events: none;
+    }
+    .header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .header h2 {
+      font-size: 1.6rem;
+      font-weight: 300;
+      opacity: 0.95;
+    }
+    .header p {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* ===== UNIT CARDS ===== */
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .unit-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .unit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+    }
+
+    .unit-header {
+      padding: 18px 22px;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .unit-header i {
+      font-size: 2rem;
+    }
+
+    .unit-content {
+      padding: 22px;
+    }
+
+    /* unit header colors */
+    .unit1 { background: linear-gradient(145deg, #2c3e50, #c44536); }
+    .unit2 { background: linear-gradient(145deg, #0f766e, #2563eb); }
+    .unit3 { background: linear-gradient(145deg, #1e6f9f, #f97316); }
+    .unit4 { background: linear-gradient(145deg, #6a4c9c, #d97706); }
+    .unit5 { background: linear-gradient(145deg, #0f766e, #c2410c); }
+    .unit6 { background: linear-gradient(145deg, #2563eb, #7c3aed); }
+
+    /* ===== FORMULA SECTIONS ===== */
+    .formula-section {
+      margin-bottom: 25px;
+    }
+    .formula-section h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+      border-left: 6px solid #c44536;
+      padding-left: 15px;
+      margin-bottom: 15px;
+    }
+    .formula-section h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 15px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    .formula-item {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 16px 18px;
+      border-left: 5px solid;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+      transition: all 0.2s;
+    }
+    .formula-item:hover {
+      background: #f1f5f9;
+      transform: translateX(3px);
+    }
+    .formula-item .title {
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .formula-item .math {
+      font-size: 1.15rem;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+
+    /* border colors for formula items */
+    .border-det { border-color: #c44536; }
+    .border-matrix { border-color: #2c3e50; }
+    .border-coord { border-color: #0f766e; }
+    .border-line { border-color: #2563eb; }
+    .border-circle { border-color: #d97706; }
+    .border-conic { border-color: #6a4c9c; }
+    .border-int { border-color: #f97316; }
+    .border-ode { border-color: #6a4c9c; }
+    .border-partial { border-color: #c2410c; }
+    .border-stats { border-color: #2563eb; }
+    .border-prob { border-color: #7c3aed; }
+
+    /* ===== TABLES ===== */
+    .formula-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #f8fafc;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+    .formula-table th {
+      background: #e2e8f0;
+      padding: 12px;
+      font-weight: 600;
+    }
+    .formula-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #cbd5e1;
+    }
+    .formula-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===== TAGS ===== */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .tag {
+      background: #e9eef3;
+      padding: 6px 15px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1e293b;
+      border-left: 3px solid #c44536;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #475569;
+      font-size: 0.95rem;
+      border-top: 2px dashed #cbd5e1;
+      padding-top: 25px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .header h1 { font-size: 2rem; }
+      .unit-grid { grid-template-columns: 1fr; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+
+    /* MathJax override */
+    .mjx-chtml { font-size: 1.1rem !important; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>📐 MATHEMATICS · COMPLETE FORMULA REFERENCE</h1>
+    <h2>Units 1–6 | Determinants · Matrices · Geometry · Calculus · ODE · PDE · Statistics · Probability</h2>
+    <p>All key definitions, theorems, and formulas in one place – designed for quick revision.</p>
+  </div>
+
+  <!-- UNIT GRID (1-6) -->
+  <div class="unit-grid">
+
+    <!-- UNIT 1: DETERMINANTS & MATRICES -->
+    <div class="unit-card">
+      <div class="unit-header unit1"><i class="fas fa-table"></i> UNIT 1 · Determinants & Matrices</div>
+      <div class="unit-content">
+
+        <div class="formula-section">
+          <h3>🔷 Determinants</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-det">
+              <div class="title">Order 2</div>
+              <div class="math">\(\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc\)</div>
+            </div>
+            <div class="formula-item border-det">
+              <div class="title">Order 3 (expansion)</div>
+              <div class="math">\(\begin{vmatrix}a_1&b_1&c_1\\a_2&b_2&c_2\\a_3&b_3&c_3\end{vmatrix}=a_1(b_2c_3-b_3c_2)-b_1(a_2c_3-a_3c_2)+c_1(a_2b_3-a_3b_2)\)</div>
+            </div>
+            <div class="formula-item border-det">
+              <div class="title">Minor & Cofactor</div>
+              <div class="math">\(M_{ij}\) = det after removing row i, col j<br>\(C_{ij}=(-1)^{i+j}M_{ij}\)</div>
+            </div>
+            <div class="formula-item border-det">
+              <div class="title">Chio's Method (4×4)</div>
+              <div class="math">\(\Delta = a_{11}^{3}\begin{vmatrix}b_{22}&b_{23}&b_{24}\\b_{32}&b_{33}&b_{34}\\b_{42}&b_{43}&b_{44}\end{vmatrix}\) with \(b_{ij}=\frac{a_{11}a_{ij}-a_{i1}a_{1j}}{a_{11}}\)</div>
+            </div>
+            <div class="formula-item border-det">
+              <div class="title">Cramer's Rule (3 unknowns)</div>
+              <div class="math">\(x=\frac{D_x}{D},\; y=\frac{D_y}{D},\; z=\frac{D_z}{D}\) where D = det of coefficient matrix</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>🔷 Matrices</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-matrix">
+              <div class="title">Addition / Subtraction</div>
+              <div class="math">\((A\pm B)_{ij}=a_{ij}\pm b_{ij}\)</div>
+            </div>
+            <div class="formula-item border-matrix">
+              <div class="title">Scalar Multiplication</div>
+              <div class="math">\((kA)_{ij}=k\cdot a_{ij}\)</div>
+            </div>
+            <div class="formula-item border-matrix">
+              <div class="title">Matrix Multiplication</div>
+              <div class="math">\((AB)_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}\)</div>
+            </div>
+            <div class="formula-item border-matrix">
+              <div class="title">Transpose</div>
+              <div class="math">\((A^T)_{ij}=a_{ji}\)</div>
+            </div>
+            <div class="formula-item border-matrix">
+              <div class="title">Symmetric / Skew-symmetric</div>
+              <div class="math">\(A^T=A\) (symmetric) , \(A^T=-A\) (skew-sym)</div>
+            </div>
+            <div class="formula-item border-matrix">
+              <div class="title">Adjoint & Inverse (3×3)</div>
+              <div class="math">\(\text{adj}(A)=[C_{ij}]^T\)<br>\(A^{-1}=\frac{\text{adj}(A)}{\det(A)}\)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- UNIT 2: CO-ORDINATE GEOMETRY -->
+    <div class="unit-card">
+      <div class="unit-header unit2"><i class="fas fa-chart-line"></i> UNIT 2 · Co‑ordinate Geometry (2D)</div>
+      <div class="unit-content">
+
+        <div class="formula-section">
+          <h3>📍 Coordinate Systems & Basic Formulas</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-coord">
+              <div class="title">Cartesian ↔ Polar</div>
+              <div class="math">\(x=r\cos\theta,\; y=r\sin\theta\)<br>\(r=\sqrt{x^2+y^2},\; \theta=\tan^{-1}(y/x)\)</div>
+            </div>
+            <div class="formula-item border-coord">
+              <div class="title">Distance between two points</div>
+              <div class="math">\(d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\)</div>
+            </div>
+            <div class="formula-item border-coord">
+              <div class="title">Internal division (m:n)</div>
+              <div class="math">\(\left(\frac{mx_2+nx_1}{m+n},\frac{my_2+ny_1}{m+n}\right)\)</div>
+            </div>
+            <div class="formula-item border-coord">
+              <div class="title">External division (m:n)</div>
+              <div class="math">\(\left(\frac{mx_2-nx_1}{m-n},\frac{my_2-ny_1}{m-n}\right)\)</div>
+            </div>
+            <div class="formula-item border-coord">
+              <div class="title">Area of triangle</div>
+              <div class="math">\(\Delta=\frac12\left|x_1(y_2-y_3)+x_2(y_3-y_1)+x_3(y_1-y_2)\right|\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>📈 Straight Line</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-line">
+              <div class="title">Slope (gradient)</div>
+              <div class="math">\(m=\frac{y_2-y_1}{x_2-x_1}=\tan\theta\)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Slope-intercept</div>
+              <div class="math">\(y=mx+c\)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Point-slope</div>
+              <div class="math">\(y-y_1=m(x-x_1)\)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Two-point form</div>
+              <div class="math">\(\frac{y-y_1}{y_2-y_1}=\frac{x-x_1}{x_2-x_1}\)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Intercept form</div>
+              <div class="math">\(\frac{x}{a}+\frac{y}{b}=1\)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Angle between two lines</div>
+              <div class="math">\(\tan\phi=\left|\frac{m_2-m_1}{1+m_1m_2}\right|\)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Parallel / Perpendicular</div>
+              <div class="math">\(m_1=m_2\) (parallel)<br>\(m_1m_2=-1\) (perpendicular)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Distance point to line</div>
+              <div class="math">\(d=\frac{|ax_1+by_1+c|}{\sqrt{a^2+b^2}}\)</div>
+            </div>
+            <div class="formula-item border-line">
+              <div class="title">Distance between || lines</div>
+              <div class="math">\(d=\frac{|c_1-c_2|}{\sqrt{a^2+b^2}}\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>⚪ Circle</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-circle">
+              <div class="title">Centre-radius form</div>
+              <div class="math">\((x-h)^2+(y-k)^2=r^2\)</div>
+            </div>
+            <div class="formula-item border-circle">
+              <div class="title">Diameter form</div>
+              <div class="math">\((x-x_1)(x-x_2)+(y-y_1)(y-y_2)=0\)</div>
+            </div>
+            <div class="formula-item border-circle">
+              <div class="title">General equation</div>
+              <div class="math">\(x^2+y^2+2gx+2fy+c=0\)<br>Centre \((-g,-f)\), radius \(\sqrt{g^2+f^2-c}\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>📦 Conic Sections</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-conic">
+              <div class="title">Parabola (standard)</div>
+              <div class="math">\(y^2=4ax\) (opens right)<br>Focus \((a,0)\), directrix \(x=-a\), latus rectum \(4a\)</div>
+            </div>
+            <div class="formula-item border-conic">
+              <div class="title">Ellipse (standard)</div>
+              <div class="math">\(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\;(a>b)\)<br>Eccentricity \(e=\sqrt{1-\frac{b^2}{a^2}}\)<br>Foci \((\pm ae,0)\)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- UNIT 3: INTEGRAL CALCULUS -->
+    <div class="unit-card">
+      <div class="unit-header unit3"><i class="fas fa-infinity"></i> UNIT 3 · Integral Calculus</div>
+      <div class="unit-content">
+
+        <div class="formula-section">
+          <h3>∫ Indefinite Integrals (Standard Forms)</h3>
+          <div class="tag-list">
+            <span class="tag">\(\int x^n dx = \frac{x^{n+1}}{n+1}+C\;(n\neq-1)\)</span>
+            <span class="tag">\(\int \frac{1}{x}dx = \ln|x|+C\)</span>
+            <span class="tag">\(\int e^x dx = e^x+C\)</span>
+            <span class="tag">\(\int a^x dx = \frac{a^x}{\ln a}+C\)</span>
+            <span class="tag">\(\int \sin x dx = -\cos x+C\)</span>
+            <span class="tag">\(\int \cos x dx = \sin x+C\)</span>
+            <span class="tag">\(\int \sec^2 x dx = \tan x+C\)</span>
+            <span class="tag">\(\int \csc^2 x dx = -\cot x+C\)</span>
+            <span class="tag">\(\int \sec x\tan x dx = \sec x+C\)</span>
+            <span class="tag">\(\int \csc x\cot x dx = -\csc x+C\)</span>
+            <span class="tag">\(\int \frac{1}{\sqrt{1-x^2}}dx = \sin^{-1}x+C\)</span>
+            <span class="tag">\(\int \frac{1}{1+x^2}dx = \tan^{-1}x+C\)</span>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>🔄 Methods of Integration</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-int">
+              <div class="title">Substitution</div>
+              <div class="math">\(\int f(g(x))g'(x)dx = \int f(u)du\)</div>
+            </div>
+            <div class="formula-item border-int">
+              <div class="title">Integration by parts</div>
+              <div class="math">\(\int u\,dv = uv - \int v\,du\)</div>
+            </div>
+            <div class="formula-item border-int">
+              <div class="title">Partial fractions</div>
+              <div class="math">\(\frac{P(x)}{(x-a)(x-b)} = \frac{A}{x-a}+\frac{B}{x-b}\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>📏 Definite Integrals & Applications</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-int">
+              <div class="title">Fundamental theorem</div>
+              <div class="math">\(\int_a^b f(x)dx = F(b)-F(a)\) where \(F'=f\)</div>
+            </div>
+            <div class="formula-item border-int">
+              <div class="title">Area between curves</div>
+              <div class="math">\(A=\int_a^b [f(x)-g(x)]dx\)</div>
+            </div>
+            <div class="formula-item border-int">
+              <div class="title">Volume (x‑axis revolution)</div>
+              <div class="math">\(V=\pi\int_a^b [f(x)]^2 dx\)</div>
+            </div>
+            <div class="formula-item border-int">
+              <div class="title">Volume (y‑axis)</div>
+              <div class="math">\(V=\pi\int_c^d [g(y)]^2 dy\)</div>
+            </div>
+            <div class="formula-item border-int">
+              <div class="title">Surface area (x‑axis)</div>
+              <div class="math">\(S=2\pi\int_a^b f(x)\sqrt{1+[f'(x)]^2}dx\)</div>
+            </div>
+            <div class="formula-item border-int">
+              <div class="title">Surface area (y‑axis)</div>
+              <div class="math">\(S=2\pi\int_c^d g(y)\sqrt{1+[g'(y)]^2}dy\)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- UNIT 4: ORDINARY DIFFERENTIAL EQUATIONS -->
+    <div class="unit-card">
+      <div class="unit-header unit4"><i class="fas fa-wave-square"></i> UNIT 4 · Ordinary Differential Equations</div>
+      <div class="unit-content">
+
+        <div class="formula-section">
+          <h3>📌 First Order & First Degree</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-ode">
+              <div class="title">Separation of variables</div>
+              <div class="math">\(\frac{dy}{dx}=f(x)g(y) \Rightarrow \int\frac{dy}{g(y)}=\int f(x)dx\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">Homogeneous</div>
+              <div class="math">\(\frac{dy}{dx}=f(\frac{y}{x})\); substitute \(y=vx\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">Exact equation</div>
+              <div class="math">\(Mdx+Ndy=0\) with \(\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}\)<br>Solution: \(\int M dx + \int (N-\frac{\partial}{\partial y}\int M dx)dy = C\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">Linear (integrating factor)</div>
+              <div class="math">\(\frac{dy}{dx}+P(x)y=Q(x)\)<br>\(IF=e^{\int P dx}\)<br>\(y(IF)=\int Q(IF)dx + C\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>⚙️ Second Order Linear (constant coefficients)</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-ode">
+              <div class="title">Auxiliary equation</div>
+              <div class="math">\(am^2+bm+c=0\)<br>Roots \(m_1,m_2\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">CF (real distinct roots)</div>
+              <div class="math">\(C_1 e^{m_1x}+C_2 e^{m_2x}\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">CF (real equal roots)</div>
+              <div class="math">\((C_1+C_2x)e^{mx}\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">CF (complex \(\alpha\pm i\beta\))</div>
+              <div class="math">\(e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">PI for \(e^{ax}\)</div>
+              <div class="math">\(\frac{e^{ax}}{F(a)}\) provided \(F(a)\neq0\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">PI for \(\sin ax\) or \(\cos ax\)</div>
+              <div class="math">\(\frac{\sin ax}{F(-a^2)}\) or \(\frac{\cos ax}{F(-a^2)}\) if \(F(-a^2)\neq0\)</div>
+            </div>
+            <div class="formula-item border-ode">
+              <div class="title">PI for \(e^{ax}V(x)\) (V polynomial)</div>
+              <div class="math">\(\frac{1}{F(D)}e^{ax}V = e^{ax}\frac{1}{F(D+a)}V\)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- UNIT 5: PARTIAL DIFFERENTIATION -->
+    <div class="unit-card">
+      <div class="unit-header unit5"><i class="fas fa-chart-line"></i> UNIT 5 · Partial Differentiation</div>
+      <div class="unit-content">
+
+        <div class="formula-section">
+          <h3>∂ Partial Derivatives</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-partial">
+              <div class="title">Definition</div>
+              <div class="math">\(\frac{\partial f}{\partial x}(a,b)=\lim_{h\to0}\frac{f(a+h,b)-f(a,b)}{h}\)<br>\(\frac{\partial f}{\partial y}(a,b)=\lim_{k\to0}\frac{f(a,b+k)-f(a,b)}{k}\)</div>
+            </div>
+            <div class="formula-item border-partial">
+              <div class="title">Notation</div>
+              <div class="math">\(f_x,\; f_y,\; \frac{\partial^2 f}{\partial x^2},\; \frac{\partial^2 f}{\partial y^2},\; \frac{\partial^2 f}{\partial x\partial y}\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>🧩 Homogeneous Functions & Euler</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-partial">
+              <div class="title">Homogeneous function</div>
+              <div class="math">\(f(tx,ty)=t^n f(x,y)\) ⇒ degree n</div>
+            </div>
+            <div class="formula-item border-partial">
+              <div class="title">Euler's theorem (1st order)</div>
+              <div class="math">\(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}=n f(x,y)\)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- UNIT 6: STATISTICS & PROBABILITY -->
+    <div class="unit-card">
+      <div class="unit-header unit6"><i class="fas fa-dice"></i> UNIT 6 · Statistics & Probability</div>
+      <div class="unit-content">
+
+        <div class="formula-section">
+          <h3>📊 Measures of Central Tendency</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-stats">
+              <div class="title">Mean (ungrouped)</div>
+              <div class="math">\(\bar{x}=\frac{\sum x_i}{n}\)</div>
+            </div>
+            <div class="formula-item border-stats">
+              <div class="title">Mean (grouped)</div>
+              <div class="math">\(\bar{x}=\frac{\sum f_i x_i}{\sum f_i}\)</div>
+            </div>
+            <div class="formula-item border-stats">
+              <div class="title">Median (ungrouped)</div>
+              <div class="math">middle value; for even \(n\) average of \(\frac{n}{2}\)th and \(\frac{n}{2}+1\)th</div>
+            </div>
+            <div class="formula-item border-stats">
+              <div class="title">Median (grouped)</div>
+              <div class="math">\(M = L + \frac{\frac{N}{2}-cf}{f}\times h\)</div>
+            </div>
+            <div class="formula-item border-stats">
+              <div class="title">Mode (grouped)</div>
+              <div class="math">\(Z = L + \frac{f_1-f_0}{2f_1-f_0-f_2}\times h\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>📉 Measures of Dispersion</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-stats">
+              <div class="title">Standard deviation (ungrouped)</div>
+              <div class="math">\(\sigma = \sqrt{\frac{\sum (x_i-\bar{x})^2}{n}}\)</div>
+            </div>
+            <div class="formula-item border-stats">
+              <div class="title">Standard deviation (grouped)</div>
+              <div class="math">\(\sigma = \sqrt{\frac{\sum f_i x_i^2}{\sum f_i} - \left(\frac{\sum f_i x_i}{\sum f_i}\right)^2}\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-section">
+          <h3>🎲 Probability Basics</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-prob">
+              <div class="title">Classical probability</div>
+              <div class="math">\(P(E)=\frac{\text{number of favourable outcomes}}{\text{total number of equally likely outcomes}}\)</div>
+            </div>
+            <div class="formula-item border-prob">
+              <div class="title">Mutually exclusive events</div>
+              <div class="math">\(P(A\cup B)=P(A)+P(B)\)</div>
+            </div>
+            <div class="formula-item border-prob">
+              <div class="title">Complement rule</div>
+              <div class="math">\(P(A')=1-P(A)\)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- end unit-grid -->
+
+  <!-- ADDITIONAL QUICK REFERENCE TABLE (SELECTED FORMULAS) -->
+  <div style="background: white; border-radius: 20px; padding: 25px; margin-top: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+    <h2 style="color:#2c3e50; border-left: 6px solid #c44536; padding-left: 15px; margin-bottom: 25px;">📌 Essential Formulas – At a Glance</h2>
+    <table class="formula-table">
+      <thead><tr><th>Topic</th><th>Formula</th></tr></thead>
+      <tbody>
+        <tr><td>Determinant (2×2)</td><td>\(\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc\)</td></tr>
+        <tr><td>Cramer's Rule</td><td>\(x=D_x/D,\;y=D_y/D,\;z=D_z/D\)</td></tr>
+        <tr><td>Matrix Inverse (3×3)</td><td>\(A^{-1}=\frac{\text{adj}(A)}{\det(A)}\)</td></tr>
+        <tr><td>Distance formula</td><td>\(\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\)</td></tr>
+        <tr><td>Angle between lines</td><td>\(\tan\theta=\left|\frac{m_2-m_1}{1+m_1m_2}\right|\)</td></tr>
+        <tr><td>Circle general</td><td>\(x^2+y^2+2gx+2fy+c=0\) centre \((-g,-f)\), radius \(\sqrt{g^2+f^2-c}\)</td></tr>
+        <tr><td>Parabola standard</td><td>\(y^2=4ax\)</td></tr>
+        <tr><td>Integration by parts</td><td>\(\int u\,dv = uv - \int v\,du\)</td></tr>
+        <tr><td>Volume by revolution (x‑axis)</td><td>\(V=\pi\int_a^b [f(x)]^2 dx\)</td></tr>
+        <tr><td>Linear ODE integrating factor</td><td>\(IF=e^{\int P dx}\)</td></tr>
+        <tr><td>Euler's theorem</td><td>\(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}=n f\)</td></tr>
+        <tr><td>Standard deviation (grouped)</td><td>\(\sqrt{\frac{\sum f x^2}{\sum f}-\bar{x}^2}\)</td></tr>
+        <tr><td>Classical probability</td><td>\(P(E)=m/n\)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>📚 Mathematics Complete Syllabus (Units 1–6) – All key formulas compiled for quick revision.<br>
+    ⚡ Use with MathJax for best rendering · Created as a single reference sheet.</p>
+  </div>
+
+</div> <!-- end container -->
+</body>
+</html>
