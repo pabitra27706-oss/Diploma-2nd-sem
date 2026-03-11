@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap · coming soon</title>
+  <!-- A clean, modern style with a subtle road / map hint -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f9f7f3 0%, #eae6db 100%);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    /* subtle topographic / map line pattern (barely visible) */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        repeating-linear-gradient(45deg, rgba(180, 160, 130, 0.03) 0px, rgba(180, 160, 130, 0.03) 2px, transparent 2px, transparent 8px),
+        radial-gradient(circle at 30% 40%, rgba(200, 180, 140, 0.05) 0%, transparent 25%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card {
+      background: rgba(255, 253, 249, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 3.5rem 1.5rem 3.5rem 1.5rem;
+      box-shadow: 
+        0 25px 45px -15px rgba(90, 70, 50, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.7),
+        0 0 0 1px rgba(230, 210, 180, 0.5);
+      max-width: 800px;
+      width: 100%;
+      padding: 3.5rem 2.5rem;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.2s ease;
+      border: 1px solid rgba(250, 245, 235, 0.6);
+    }
+
+    /* decoration – tiny road / dashed line suggestion */
+    .road-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+      opacity: 0.7;
+    }
+
+    .dash {
+      height: 4px;
+      width: 28px;
+      background: #c0a27c;
+      border-radius: 4px;
+      opacity: 0.4;
+    }
+
+    .dash.long {
+      width: 60px;
+      background: #b5926a;
+      opacity: 0.6;
+    }
+
+    .compass-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      margin: 0 0.2rem;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05));
+      transform: rotate(-5deg);
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 15vw, 5.2rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #3b352c;
+      text-align: center;
+      line-height: 1.1;
+      margin: 0.5rem 0 0.4rem 0;
+      text-transform: uppercase;
+      word-break: break-word;
+      text-shadow: 0 2px 3px rgba(255, 250, 240, 0.8);
+    }
+
+    .sub-road {
+      font-size: 1.9rem;
+      font-weight: 380;
+      display: block;
+      color: #7a6b58;
+      letter-spacing: 0.3rem;
+      margin-top: 0.25rem;
+      font-style: italic;
+    }
+
+    .message {
+      font-size: 1.35rem;
+      color: #5f5342;
+      background: rgba(235, 225, 210, 0.5);
+      padding: 1rem 1.8rem;
+      border-radius: 60px;
+      display: inline-block;
+      margin: 1.8rem auto 1.2rem;
+      backdrop-filter: blur(2px);
+      border: 1px dashed #cbb295;
+      font-weight: 400;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+    }
+
+    .expected {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem 2rem;
+      margin: 2.2rem 0 0.8rem;
+      color: #4d4438;
+      font-weight: 350;
+    }
+
+    .expected span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1.1rem;
+      background: rgba(245, 238, 228, 0.7);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid #e0d0bc;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #a88966;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px dashed #dacbb8;
+      margin: 2rem 0 1rem;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.5;
+    }
+
+    .footer-note {
+      color: #8e7e6a;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-top: 1.7rem;
+    }
+
+    .footer-note i {
+      font-style: normal;
+      font-size: 1.3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .card {
+        padding: 2.2rem 1.2rem;
+        border-radius: 2.5rem 1rem 2.5rem 1rem;
+      }
+      h1 {
+        font-size: clamp(2.2rem, 13vw, 3.8rem);
+      }
+      .sub-road {
+        font-size: 1.4rem;
+        letter-spacing: 0.2rem;
+      }
+      .message {
+        font-size: 1.1rem;
+        padding: 0.7rem 1.4rem;
+      }
+    }
+  </style>
+  <!-- optionally Inter font for even smoother look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="card">
+    <!-- tiny decorative compass + dashes hinting at a roadmap -->
+    <div class="road-hint">
+      <span class="dash"></span>
+      <span class="dash long"></span>
+      <span class="compass-icon">🧭</span>
+      <span class="dash long"></span>
+      <span class="dash"></span>
+    </div>
+
+    <!-- main message: ROADMAP is coming sone (with slight wordplay) -->
+    <h1>
+      ROADMAP
+      <span class="sub-road">is coming sone</span>
+    </h1>
+
+    <!-- friendly extra context, like a little signpost -->
+    <div style="text-align: center;">
+      <div class="message">
+        ⏳  we're drawing the route  ⏳
+      </div>
+    </div>
+
+    <!-- little details to echo the "map / path" vibe, and the misspelling 'sone' highlighted playfully -->
+    <div class="expected">
+      <span><span class="dot"></span> soon · sone (old English for ‘sound’?)</span>
+      <span><span class="dot"></span> directions in progress</span>
+    </div>
+
+    <!-- an horizon rule / road dash -->
+    <hr />
+
+    <!-- extra note, with a tiny map pin and the misspelled word integrated -->
+    <div class="footer-note">
+      <i>📍</i>  stay tuned — the route (roadmap) will appear sooner than you think  <i>🗺️</i>
+    </div>
+
+    <!-- the misspelling 'sone' appears in the main headline; also subtle nod: sone = unit of loudness, but here it's a fun twist -->
+    <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #b8a68b; font-style: italic;">
+      “sone” — a soft sound of progress
+    </div>
+  </div>
+</body>
+</html>

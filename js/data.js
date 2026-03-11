@@ -197,6 +197,14 @@ const subjects = {
                 isDirectType: true,
                 directLink: "all_answers/index.html",
                 desc: "Complete solutions"
+            },
+            formula: {
+                name: "Formula Sheet",
+                icon: "📋",
+                color: "#9C27B0",
+                isDirectType: true,
+                directLink: "Formula-Sheet.html",  // ✓ Updated with hyphen
+                desc: "Quick reference"
             }
         }
     },

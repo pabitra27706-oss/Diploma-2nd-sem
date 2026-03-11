@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics · Complete Formula & Concept Reference (Units 1-7)</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: linear-gradient(145deg, #f0f4fa, #e7ecf5);
+      color: #1e2b3c;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: linear-gradient(145deg, #0b2b4a, #1e4b6a, #a33e2b);
+      color: white;
+      padding: 45px 35px;
+      border-radius: 28px;
+      margin-bottom: 35px;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.22);
+      position: relative;
+      overflow: hidden;
+    }
+    .header::after {
+      content: "⚛️🔬⚡🧲💡🔭";
+      position: absolute;
+      bottom: 10px;
+      right: 25px;
+      font-size: 4rem;
+      opacity: 0.12;
+      color: white;
+      pointer-events: none;
+    }
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .header h2 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      opacity: 0.96;
+    }
+    .header p {
+      margin-top: 18px;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 800px;
+    }
+
+    /* ===== UNIT CARDS ===== */
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .unit-card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .unit-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px rgba(0,0,0,0.12);
+    }
+
+    .unit-header {
+      padding: 20px 24px;
+      color: white;
+      font-size: 1.6rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .unit-header i {
+      font-size: 2.2rem;
+    }
+
+    .unit-content {
+      padding: 25px;
+    }
+
+    /* unit header colors */
+    .unit1 { background: linear-gradient(145deg, #1e4b6a, #a33e2b); }
+    .unit2 { background: linear-gradient(145deg, #b85e8c, #3a8fb0); }
+    .unit3 { background: linear-gradient(145deg, #1e5f8e, #f9a826); }
+    .unit4 { background: linear-gradient(145deg, #c44536, #f9a826); }
+    .unit5 { background: linear-gradient(145deg, #6a4c9c, #c44536); }
+    .unit6 { background: linear-gradient(145deg, #2d6a4f, #1e6091); }
+    .unit7 { background: linear-gradient(145deg, #9c4d8c, #3a8fb0); }
+
+    /* ===== CONCEPT BLOCKS ===== */
+    .concept-block {
+      margin-bottom: 28px;
+    }
+    .concept-block h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e3a5f;
+      border-left: 6px solid #c44536;
+      padding-left: 16px;
+      margin-bottom: 16px;
+    }
+    .concept-block h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2d3c4b;
+      margin: 16px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    .formula-item {
+      background: #f9fcff;
+      border-radius: 16px;
+      padding: 16px 18px;
+      border-left: 5px solid;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      transition: all 0.2s;
+    }
+    .formula-item:hover {
+      background: #f0f5fe;
+      transform: translateX(3px);
+    }
+    .formula-item .title {
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .formula-item .math, .formula-item .text {
+      font-size: 1.05rem;
+      overflow-x: auto;
+      padding: 5px 0;
+    }
+    .formula-item .text i {
+      color: #1e4b6a;
+    }
+
+    /* border colors per topic */
+    .border-shm { border-color: #a33e2b; }
+    .border-wave { border-color: #1e4b6a; }
+    .border-acoustic { border-color: #2d6a4f; }
+    .border-optics { border-color: #b85e8c; }
+    .border-lens { border-color: #3a8fb0; }
+    .border-tir { border-color: #d97706; }
+    .border-instrument { border-color: #6a4c9c; }
+    .border-electrostatic { border-color: #1e5f8e; }
+    .border-capacitor { border-color: #f9a826; }
+    .border-current { border-color: #c44536; }
+    .border-magnet { border-color: #6a4c9c; }
+    .border-induction { border-color: #0288d1; }
+    .border-galvano { border-color: #2e7d32; }
+    .border-semi { border-color: #2d6a4f; }
+    .border-diode { border-color: #1e6091; }
+    .border-transistor { border-color: #d97706; }
+    .border-modern { border-color: #9c4d8c; }
+
+    /* ===== TABLES ===== */
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #f9fcff;
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+    .styled-table th {
+      background: #dde7f0;
+      padding: 12px;
+      font-weight: 600;
+    }
+    .styled-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    /* ===== TAGS ===== */
+    .prop-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 15px;
+      margin: 10px 0;
+    }
+    .prop-tag {
+      background: #e9ecf0;
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border-left: 4px solid;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 45px;
+      text-align: center;
+      color: #4a5f73;
+      font-size: 1rem;
+      border-top: 2px dashed #b9c7d9;
+      padding-top: 25px;
+    }
+
+    @media (max-width: 700px) {
+      .header h1 { font-size: 2.2rem; }
+      .unit-grid { grid-template-columns: 1fr; }
+    }
+    .mjx-chtml { font-size: 1.05rem !important; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>⚛️ PHYSICS · COMPLETE FORMULA & CONCEPT REFERENCE</h1>
+    <h2>Units 1–7 | Wave · Optics · Electrostatics · Current · Magnetism · Semiconductor · Modern</h2>
+    <p>All key definitions, laws, formulas, and applications in one comprehensive document.</p>
+  </div>
+
+  <!-- UNIT GRID 1-7 -->
+  <div class="unit-grid">
+
+    <!-- UNIT 1: WAVE MOTION -->
+    <div class="unit-card">
+      <div class="unit-header unit1"><i class="fas fa-wave-square"></i> UNIT 1 · Wave Motion & Applications</div>
+      <div class="unit-content">
+
+        <div class="concept-block">
+          <h3>📌 Simple Harmonic Motion (SHM)</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-shm">
+              <div class="title">Displacement</div>
+              <div class="math">\(y = A\sin(\omega t + \phi)\)</div>
+            </div>
+            <div class="formula-item border-shm">
+              <div class="title">Velocity</div>
+              <div class="math">\(v = A\omega \cos(\omega t+\phi) = \omega\sqrt{A^2-y^2}\)</div>
+            </div>
+            <div class="formula-item border-shm">
+              <div class="title">Acceleration</div>
+              <div class="math">\(a = -\omega^2 y\)</div>
+            </div>
+            <div class="formula-item border-shm">
+              <div class="title">Time period & frequency</div>
+              <div class="math">\(T = \frac{2\pi}{\omega},\quad f=\frac{1}{T}\)</div>
+            </div>
+            <div class="formula-item border-shm">
+              <div class="title">Cantilever (static deflection)</div>
+              <div class="math">\(T = 2\pi\sqrt{\frac{\delta}{g}},\;\delta = \frac{mgL^3}{3EI}\)</div>
+            </div>
+          </div>
+          <div class="prop-list">
+            <span class="prop-tag" style="border-color:#a33e2b;">Free: constant amplitude</span>
+            <span class="prop-tag" style="border-color:#a33e2b;">Damped: amplitude decays</span>
+            <span class="prop-tag" style="border-color:#a33e2b;">Forced: driven by external force</span>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🌊 Wave Motion</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-wave">
+              <div class="title">Wave velocity relation</div>
+              <div class="math">\(v = f\lambda\)</div>
+            </div>
+            <div class="formula-item border-wave">
+              <div class="title">Plane progressive wave</div>
+              <div class="math">\(y = A\sin(\omega t - kx)\) with \(k=2\pi/\lambda\)</div>
+            </div>
+            <div class="formula-item border-wave">
+              <div class="title">Beat frequency</div>
+              <div class="math">\(f_{\text{beat}} = |f_1 - f_2|\)</div>
+            </div>
+          </div>
+          <div><i class="fas fa-arrow-right"></i> Transverse (light, string) · Longitudinal (sound)</div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🏛️ Acoustics</h3>
+          <div class="formula-item border-acoustic">
+            <div class="title">Reverberation time (Sabine)</div>
+            <div class="math">\(RT = \frac{0.161\,V}{A}\) (V in m³, A total absorption sabins)</div>
+          </div>
+          <div class="formula-item border-acoustic">
+            <div class="title">Absorption coefficient</div>
+            <div class="math">\(\alpha = \frac{\text{absorbed energy}}{\text{incident energy}}\)</div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔊 Ultrasonic Waves</h3>
+          <div class="text"><i class="fas fa-check-circle"></i> Frequency >20 kHz · Properties: directional, high energy, short λ</div>
+          <div class="text"><i class="fas fa-briefcase"></i> Applications: NDT, sonography, cleaning, lithotripsy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT 2: OPTICS -->
+    <div class="unit-card">
+      <div class="unit-header unit2"><i class="fas fa-lightbulb"></i> UNIT 2 · Optics</div>
+      <div class="unit-content">
+
+        <div class="concept-block">
+          <h3>🔦 Basic Laws & Lenses</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-optics">
+              <div class="title">Snell's law</div>
+              <div class="math">\(n_1\sin\theta_1 = n_2\sin\theta_2\)</div>
+            </div>
+            <div class="formula-item border-lens">
+              <div class="title">Lens formula</div>
+              <div class="math">\(\frac{1}{f} = \frac{1}{v} - \frac{1}{u}\)</div>
+            </div>
+            <div class="formula-item border-lens">
+              <div class="title">Lens maker's formula</div>
+              <div class="math">\(\frac{1}{f} = (\mu-1)\left(\frac{1}{R_1}-\frac{1}{R_2}\right)\)</div>
+            </div>
+            <div class="formula-item border-lens">
+              <div class="title">Power of lens</div>
+              <div class="math">\(P = \frac{1}{f(\text{m})}\) (diopter)</div>
+            </div>
+            <div class="formula-item border-lens">
+              <div class="title">Magnification</div>
+              <div class="math">\(m = \frac{v}{u}\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>💎 Total Internal Reflection</h3>
+          <div class="formula-item border-tir">
+            <div class="title">Critical angle</div>
+            <div class="math">\(\sin C = \frac{n_2}{n_1}\;(n_1>n_2)\)</div>
+          </div>
+          <div class="text"><i class="fas fa-fiber"></i> Optical fiber: core (high n), cladding (low n) → TIR guides light.</div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔬 Optical Instruments</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-instrument">
+              <div class="title">Simple microscope</div>
+              <div class="math">\(m = 1 + \frac{D}{f}\) (D=25 cm)</div>
+            </div>
+            <div class="formula-item border-instrument">
+              <div class="title">Compound microscope</div>
+              <div class="math">\(m = \frac{L}{f_o}\cdot\frac{D}{f_e}\)</div>
+            </div>
+            <div class="formula-item border-instrument">
+              <div class="title">Astronomical telescope</div>
+              <div class="math">\(m = \frac{f_o}{f_e}\) (normal adjustment)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🌈 Wave Optics (qualitative)</h3>
+          <div class="prop-list">
+            <span class="prop-tag" style="border-color:#6a4c9c;">Interference: superposition → fringes</span>
+            <span class="prop-tag" style="border-color:#6a4c9c;">Diffraction: bending around obstacles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT 3: ELECTROSTATICS -->
+    <div class="unit-card">
+      <div class="unit-header unit3"><i class="fas fa-bolt"></i> UNIT 3 · Electrostatics</div>
+      <div class="unit-content">
+
+        <div class="concept-block">
+          <h3>⚡ Fundamentals</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-electrostatic">
+              <div class="title">Coulomb's law</div>
+              <div class="math">\(F = k\frac{q_1q_2}{r^2},\; k=9\times10^9\) N·m²/C²</div>
+            </div>
+            <div class="formula-item border-electrostatic">
+              <div class="title">Electric field</div>
+              <div class="math">\(E = F/q_0 = kQ/r^2\)</div>
+            </div>
+            <div class="formula-item border-electrostatic">
+              <div class="title">Electric flux</div>
+              <div class="math">\(\Phi = \vec{E}\cdot\vec{A}\)</div>
+            </div>
+            <div class="formula-item border-electrostatic">
+              <div class="title">Gauss law (statement)</div>
+              <div class="math">\(\oint \vec{E}\cdot d\vec{A} = Q_{\text{enc}}/\varepsilon_0\)</div>
+            </div>
+            <div class="formula-item border-electrostatic">
+              <div class="title">Field due to sphere (outside)</div>
+              <div class="math">\(E = \frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\) (r ≥ R)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔋 Capacitors</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-capacitor">
+              <div class="title">Capacitance</div>
+              <div class="math">\(C = Q/V\) (Farad)</div>
+            </div>
+            <div class="formula-item border-capacitor">
+              <div class="title">Parallel plate</div>
+              <div class="math">\(C = \varepsilon_0 A/d\)</div>
+            </div>
+            <div class="formula-item border-capacitor">
+              <div class="title">Series combination</div>
+              <div class="math">\(\frac{1}{C_s} = \frac{1}{C_1}+\frac{1}{C_2}+\cdots\)</div>
+            </div>
+            <div class="formula-item border-capacitor">
+              <div class="title">Parallel combination</div>
+              <div class="math">\(C_p = C_1 + C_2 + \cdots\)</div>
+            </div>
+            <div class="formula-item border-capacitor">
+              <div class="title">With dielectric</div>
+              <div class="math">\(C = \kappa C_0\) (κ = dielectric constant)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT 4: CURRENT ELECTRICITY -->
+    <div class="unit-card">
+      <div class="unit-header unit4"><i class="fas fa-battery-full"></i> UNIT 4 · Current Electricity</div>
+      <div class="unit-content">
+
+        <div class="concept-block">
+          <h3>🔌 Basic Concepts</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-current">
+              <div class="title">Current</div>
+              <div class="math">\(I = dQ/dt\) (A)</div>
+            </div>
+            <div class="formula-item border-current">
+              <div class="title">Resistance</div>
+              <div class="math">\(R = V/I\) (Ω)</div>
+            </div>
+            <div class="formula-item border-current">
+              <div class="title">Resistivity</div>
+              <div class="math">\(\rho = R A / l\)</div>
+            </div>
+            <div class="formula-item border-current">
+              <div class="title">Conductance / Conductivity</div>
+              <div class="math">\(G=1/R,\; \sigma=1/\rho\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>📏 Circuit Laws</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-current">
+              <div class="title">Ohm's law</div>
+              <div class="math">\(V = IR\)</div>
+            </div>
+            <div class="formula-item border-current">
+              <div class="title">Kirchhoff's laws</div>
+              <div class="math">\(\sum I_{\text{in}}=0\) (KCL), \(\sum V=0\) (KVL)</div>
+            </div>
+            <div class="formula-item border-current">
+              <div class="title">Wheatstone bridge</div>
+              <div class="math">\(P/Q = R/S\) at balance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔥 Heating Effect</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-current">
+              <div class="title">Electric power</div>
+              <div class="math">\(P = VI = I^2R = V^2/R\)</div>
+            </div>
+            <div class="formula-item border-current">
+              <div class="title">Electric energy</div>
+              <div class="math">\(E = P\times t\) (J) ; 1 kWh = 3.6×10⁶ J</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🌡️ Thermoelectric effects</h3>
+          <div class="text"><i class="fas fa-temperature-high"></i> Seebeck: ΔT → EMF ; Peltier: current → heating/cooling at junction</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT 5: ELECTROMAGNETISM -->
+    <div class="unit-card">
+      <div class="unit-header unit5"><i class="fas fa-magnet"></i> UNIT 5 · Electromagnetism</div>
+      <div class="unit-content">
+
+        <div class="concept-block">
+          <h3>🧲 Magnetic field & Lorentz force</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-magnet">
+              <div class="title">Lorentz force</div>
+              <div class="math">\(\vec{F} = q(\vec{v}\times\vec{B})\)</div>
+            </div>
+            <div class="formula-item border-magnet">
+              <div class="title">Biot–Savart (straight wire)</div>
+              <div class="math">\(B = \frac{\mu_0 I}{2\pi r}\)</div>
+            </div>
+            <div class="formula-item border-magnet">
+              <div class="title">Biot–Savart (loop centre)</div>
+              <div class="math">\(B = \frac{\mu_0 I}{2R}\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>⚡ Force & Torque</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-magnet">
+              <div class="title">Force on conductor</div>
+              <div class="math">\(F = I\ell B\sin\theta\)</div>
+            </div>
+            <div class="formula-item border-magnet">
+              <div class="title">Torque on coil</div>
+              <div class="math">\(\tau = NIAB\sin\theta\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔁 Induction & Galvanometer</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-induction">
+              <div class="title">Faraday's law</div>
+              <div class="math">\(\mathcal{E} = -N\frac{d\Phi}{dt}\)</div>
+            </div>
+            <div class="formula-item border-galvano">
+              <div class="title">Ammeter shunt</div>
+              <div class="math">\(S = \frac{I_g G}{I-I_g}\)</div>
+            </div>
+            <div class="formula-item border-galvano">
+              <div class="title">Voltmeter multiplier</div>
+              <div class="math">\(R = \frac{V}{I_g} - G\)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🧪 Magnetic materials</h3>
+          <table class="styled-table">
+            <tr><th>Type</th><th>Properties</th><th>Examples</th></tr>
+            <tr><td>Diamagnetic</td><td>χ small negative, repelled</td><td>Bi, Cu, Au, H₂O</td></tr>
+            <tr><td>Paramagnetic</td><td>χ small positive, attracted</td><td>Al, Pt, O₂</td></tr>
+            <tr><td>Ferromagnetic</td><td>χ large, hysteresis, Curie temp</td><td>Fe, Ni, Co</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT 6: SEMICONDUCTOR PHYSICS -->
+    <div class="unit-card">
+      <div class="unit-header unit6"><i class="fas fa-microchip"></i> UNIT 6 · Semiconductor Physics</div>
+      <div class="unit-content">
+
+        <div class="concept-block">
+          <h3>📉 Energy bands</h3>
+          <div><i class="fas fa-arrow-right"></i> Conductor (overlap), Semiconductor (small gap ~1eV), Insulator (large gap &gt;5eV)</div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔬 Semiconductor types</h3>
+          <div class="prop-list">
+            <span class="prop-tag" style="border-color:#2d6a4f;">Intrinsic: pure</span>
+            <span class="prop-tag" style="border-color:#2d6a4f;">N‑type: pentavalent dopant (P, As) → electrons majority</span>
+            <span class="prop-tag" style="border-color:#2d6a4f;">P‑type: trivalent (B, Al) → holes majority</span>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔌 P‑N Junction & Diode</h3>
+          <div class="formula-item border-diode">
+            <div class="title">V‑I characteristic</div>
+            <div class="math">\(I = I_s(e^{V/\eta V_T}-1)\) (qualitative)</div>
+          </div>
+          <div class="text"><i class="fas fa-wave-square"></i> Half‑wave rectifier (1 diode), Full‑wave centre‑tapped (2 diodes)</div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🔄 Transistors</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-transistor">
+              <div class="title">Current gain (CE)</div>
+              <div class="math">\(\beta = I_C/I_B\)</div>
+            </div>
+          </div>
+          <div class="prop-list">
+            <span class="prop-tag" style="border-color:#d97706;">NPN: arrow out</span>
+            <span class="prop-tag" style="border-color:#d97706;">PNP: arrow in</span>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>☀️ Optoelectronic devices</h3>
+          <div><i class="fas fa-sun"></i> Photocell: light → current</div>
+          <div><i class="fas fa-solar-panel"></i> Solar cell: photovoltaic effect</div>
+          <div><i class="fas fa-lightbulb"></i> LED: electroluminescence (forward bias)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT 7: MODERN PHYSICS -->
+    <div class="unit-card">
+      <div class="unit-header unit7"><i class="fas fa-atom"></i> UNIT 7 · Modern Physics</div>
+      <div class="unit-content">
+
+        <div class="concept-block">
+          <h3>⚛️ Atomic model</h3>
+          <div class="formula-grid">
+            <div class="formula-item border-modern">
+              <div class="title">Energy levels (H)</div>
+              <div class="math">\(E_n = -\frac{13.6}{n^2}\text{ eV}\)</div>
+            </div>
+            <div class="formula-item border-modern">
+              <div class="title">Ionization potential</div>
+              <div class="math">\(13.6\) eV (for hydrogen)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>🩻 X‑Rays</h3>
+          <div class="prop-list">
+            <span class="prop-tag" style="border-color:#9c4d8c;">Continuous (bremsstrahlung)</span>
+            <span class="prop-tag" style="border-color:#9c4d8c;">Characteristic (Kα, Kβ)</span>
+            <span class="prop-tag" style="border-color:#9c4d8c;">Soft (low energy) / Hard (high energy)</span>
+          </div>
+          <div class="text"><i class="fas fa-bolt"></i> Coolidge tube: electrons hit metal target</div>
+        </div>
+
+        <div class="concept-block">
+          <h3>💡 Lasers</h3>
+          <div class="text"><i class="fas fa-arrow-right"></i> Spontaneous emission (random) vs Stimulated emission (coherent)</div>
+          <div class="formula-item border-modern">
+            <div class="title">He‑Ne laser</div>
+            <div class="math">\(\lambda = 632.8\ \text{nm}\) (red)</div>
+          </div>
+          <div class="prop-list">
+            <span class="prop-tag" style="border-color:#9c4d8c;">monochromatic · coherent · directional</span>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>📡 Fiber optics & Nanotechnology</h3>
+          <div><i class="fas fa-fiber"></i> Light propagation by TIR in core‑cladding structure.</div>
+          <div><i class="fas fa-microscope"></i> Nanoscience: 1‑100 nm scale; quantum effects dominate.</div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- end unit-grid -->
+
+  <!-- ESSENTIAL CONSTANTS & UNITS -->
+  <div style="background: white; border-radius: 24px; padding: 28px; margin-top: 35px; box-shadow: 0 12px 28px rgba(0,0,0,0.07);">
+    <h2 style="color:#1e3a5f; border-left: 7px solid #c44536; padding-left: 18px; margin-bottom: 22px;">📌 Physical Constants & Units</h2>
+    <table class="styled-table">
+      <tr><th>Quantity</th><th>Symbol</th><th>Value</th></tr>
+      <tr><td>Speed of light</td><td>c</td><td>\(3\times10^8\) m/s</td></tr>
+      <tr><td>Planck's constant</td><td>h</td><td>\(6.63\times10^{-34}\) J·s</td></tr>
+      <tr><td>Permittivity of free space</td><td>ε₀</td><td>\(8.85\times10^{-12}\) F/m</td></tr>
+      <tr><td>Permeability of free space</td><td>μ₀</td><td>\(4\pi\times10^{-7}\) H/m</td></tr>
+      <tr><td>Electron charge</td><td>e</td><td>\(1.6\times10^{-19}\) C</td></tr>
+      <tr><td>Electron mass</td><td>mₑ</td><td>\(9.1\times10^{-31}\) kg</td></tr>
+      <tr><td>Avogadro's number</td><td>N<sub>A</sub></td><td>\(6.022\times10^{23}\) mol⁻¹</td></tr>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>📚 Physics Complete Syllabus (Units 1–7) – All core concepts, laws and formulas compiled for revision.<br>
+    ⚡ Use with MathJax for best rendering · Created as a single reference sheet.</p>
+  </div>
+
+</div> <!-- end container -->
+</body>
+</html>

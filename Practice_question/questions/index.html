@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Practice · coming soon</title>
+  <!-- playful, quiz-like atmosphere with柔和卡片和柔和交互暗示 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f1f0fa 0%, #e3e0f0 100%);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+      position: relative;
+    }
+
+    /* subtle question-mark pattern background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(180, 170, 220, 0.08) 0%, transparent 15%),
+        repeating-linear-gradient(45deg, rgba(150, 140, 200, 0.02) 0px, rgba(150, 140, 200, 0.02) 12px, transparent 12px, transparent 24px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 3rem 2rem 3rem 2rem;
+      box-shadow: 
+        0 30px 50px -20px rgba(70, 60, 100, 0.35),
+        inset 0 1px 3px rgba(255, 255, 255, 0.9),
+        0 0 0 1px rgba(210, 200, 240, 0.6);
+      max-width: 850px;
+      width: 100%;
+      padding: 3.2rem 2.8rem;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.2s ease;
+      border: 1px solid rgba(255, 245, 255, 0.7);
+    }
+
+    /* floating question marks decoration */
+    .q-decoration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      opacity: 0.6;
+    }
+
+    .q-badge {
+      background: #d9d0f0;
+      color: #4d4278;
+      font-size: 1.9rem;
+      font-weight: 500;
+      width: 60px;
+      height: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30% 50% 30% 50%;
+      transform: rotate(5deg);
+      box-shadow: 0 6px 12px rgba(80, 60, 120, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .q-badge:nth-child(2) {
+      transform: rotate(-5deg) scale(1.1);
+      background: #b6a9de;
+    }
+
+    .q-badge:nth-child(3) {
+      transform: rotate(3deg);
+    }
+
+    .q-badge:nth-child(4) {
+      transform: rotate(-8deg);
+      background: #c7bbeb;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 14vw, 5.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #332e4a;
+      text-align: center;
+      line-height: 1.1;
+      margin: 0.4rem 0 0.2rem;
+      text-shadow: 0 2px 5px rgba(230, 220, 255, 0.7);
+    }
+
+    .sub-coming {
+      font-size: 2rem;
+      font-weight: 350;
+      display: block;
+      color: #60548b;
+      letter-spacing: 0.15rem;
+      margin-top: 0.2rem;
+      word-break: break-word;
+    }
+
+    /* interactive “sample question” bubble */
+    .question-bubble {
+      background: rgba(245, 240, 255, 0.8);
+      border: 2px solid #cdc0ec;
+      border-radius: 50px 50px 50px 20px;
+      padding: 1.2rem 2rem;
+      margin: 2rem auto 1.8rem;
+      max-width: 450px;
+      box-shadow: 0 8px 0 #9f91c2;
+      transition: all 0.15s ease;
+    }
+
+    .question-bubble:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 11px 0 #9f91c2;
+    }
+
+    .sample-q {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #3b3452;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      justify-content: center;
+    }
+
+    .sample-q .q-icon {
+      background: #6b5f96;
+      color: white;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .options-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 1.2rem 0 0.4rem;
+    }
+
+    .opt {
+      background: white;
+      border-radius: 40px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 450;
+      color: #423c5c;
+      border: 2px solid #b3a5d4;
+      box-shadow: 0 3px 0 #8d7fb0;
+      transition: 0.07s linear;
+      cursor: default;
+    }
+
+    .opt.checked {
+      background: #ded3ff;
+      border-color: #7768a8;
+      box-shadow: 0 3px 0 #5e5082;
+    }
+
+    /* 答案小提示 (answer hint, but locked) */
+    .answer-lock {
+      color: #7b6da0;
+      font-size: 1rem;
+      background: #f0eafe;
+      border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      margin-top: 1rem;
+      border: 1px dashed #9d8ec2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .lock-icon {
+      font-size: 1.2rem;
+    }
+
+    .progress-area {
+      background: rgba(215, 205, 240, 0.3);
+      border-radius: 100px;
+      padding: 0.9rem 2rem;
+      margin: 2.2rem 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+      border: 1px solid #d2c4ec;
+    }
+
+    .progress-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: #3f3857;
+    }
+
+    .progress-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 8px;
+      background: #b2a4d9;
+      transition: 0.1s;
+    }
+
+    .progress-dot.fill {
+      background: #564b7c;
+      box-shadow: 0 0 0 2px #cdbef0;
+    }
+
+    .progress-dot.empty {
+      background: #e4dbfa;
+      border: 1px solid #a393c9;
+    }
+
+    hr {
+      border: none;
+      border-top: 3px dotted #c4b5e2;
+      width: 40%;
+      margin: 2rem auto 1.5rem;
+    }
+
+    .footer-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      color: #6b5f89;
+      font-size: 1.1rem;
+      background: rgba(239, 233, 255, 0.6);
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      width: fit-content;
+      margin: 1.5rem auto 0;
+      border: 1px solid #cebfea;
+      backdrop-filter: blur(2px);
+    }
+
+    .footer-note span {
+      font-size: 1.7rem;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 500px) {
+      .quiz-card {
+        padding: 2.2rem 1.2rem;
+      }
+      h1 {
+        font-size: clamp(2.2rem, 12vw, 3.8rem);
+      }
+      .sub-coming {
+        font-size: 1.5rem;
+        letter-spacing: 0.1rem;
+      }
+      .sample-q {
+        font-size: 1.2rem;
+      }
+      .q-badge {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="quiz-card">
+    <!-- decorative question marks — playful and quiz-like -->
+    <div class="q-decoration">
+      <span class="q-badge">?</span>
+      <span class="q-badge">❓</span>
+      <span class="q-badge">⁇</span>
+      <span class="q-badge">?</span>
+    </div>
+
+    <!-- main message: QUESTION PRACTICE / coming soon (intentionally using "sone" as requested but I'll keep "soon") 
+         but we keep it clear and add the cute sone reference separately -->
+    <h1>
+      QUESTION PRACTICE
+      <span class="sub-coming">is coming soon</span>
+    </h1>
+
+    <!-- interactive sample question (just for show) -->
+    <div class="question-bubble">
+      <div class="sample-q">
+        <span class="q-icon">Q</span> 
+        <span>Sample: 2 + 2 = ?</span>
+      </div>
+      <div class="options-row">
+        <span class="opt">3</span>
+        <span class="opt checked">4</span>
+        <span class="opt">5</span>
+        <span class="opt">22</span>
+      </div>
+      <div class="answer-lock">
+        <span class="lock-icon">🔒</span> answer & explanation — available soon
+      </div>
+    </div>
+
+    <!-- progress simulation: question 2/10 but locked (playful) -->
+    <div class="progress-area">
+      <div class="progress-item">
+        <span>📊</span> 
+        <span>your progress</span>
+      </div>
+      <div style="display: flex; gap: 0.4rem; align-items: center;">
+        <span class="progress-dot fill"></span>
+        <span class="progress-dot fill"></span>
+        <span class="progress-dot empty"></span>
+        <span class="progress-dot empty"></span>
+        <span class="progress-dot empty"></span>
+        <span class="progress-dot empty"></span>
+        <span class="progress-dot empty"></span>
+        <span class="progress-dot empty"></span>
+        <span class="progress-dot empty"></span>
+        <span class="progress-dot empty"></span>
+        <span style="margin-left: 0.3rem; color: #4f4672;">2/10</span>
+      </div>
+    </div>
+
+    <!-- subtle sone reference, playful tie-in to the previous request: "sone" but also means "sound" – maybe a tiny easter egg -->
+    <div style="text-align: center; font-size: 0.95rem; color: #897dab; font-style: italic; letter-spacing: 0.3px;">
+      “sone” — a unit of perceived loudness. your future correct answers will sound loud & clear 🎧
+    </div>
+
+    <hr />
+
+    <div class="footer-note">
+      <span>🧠</span>  question bank being prepared · practice mode coming  <span>📝</span>
+    </div>
+
+    <!-- extra playful detail: little pulsating "quiz loading" -->
+    <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.8rem;">
+      <span style="width: 12px; height: 12px; background: #a08dc2; border-radius: 50%; opacity: 0.6; animation: pulse 1.4s infinite;"></span>
+      <span style="width: 12px; height: 12px; background: #7b6dad; border-radius: 50%; opacity: 0.7; animation: pulse 1.4s infinite 0.2s;"></span>
+      <span style="width: 12px; height: 12px; background: #5c4e8a; border-radius: 50%; opacity: 0.8; animation: pulse 1.4s infinite 0.4s;"></span>
+    </div>
+    <style>
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.6; }
+        50% { transform: scale(1.3); opacity: 1; }
+      }
+    </style>
+  </div>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>FEEE Formula Sheet 📱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #4a148c;
+            background: linear-gradient(145deg, #311b92 0%, #4a148c 100%);
+            min-height: 100vh;
+            padding: 12px;
+            color: #1a1a1a;
+        }
+        
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 28px;
+            padding: 18px 14px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+        }
+        
+        h1 {
+            font-size: 26px;
+            text-align: center;
+            color: #ffd54f;
+            background: #2a1b3d;
+            padding: 18px 8px;
+            border-radius: 50px;
+            margin: 0 0 20px 0;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            word-break: break-word;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid #ffb74d;
+        }
+        
+        h1 small {
+            display: block;
+            font-size: 14px;
+            color: #ffe082;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+        
+        h2 {
+            font-size: 22px;
+            color: #1a237e;
+            margin: 25px 0 12px 0;
+            padding-left: 8px;
+            border-left: 8px solid #ff6d00;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff3e0, transparent);
+            padding: 8px 0 8px 12px;
+            border-radius: 0 30px 30px 0;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: #bf360c;
+            margin: 18px 0 8px 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        h3::before {
+            content: "⚡";
+            font-size: 20px;
+        }
+        
+        .unit-card {
+            background: white;
+            border-radius: 20px;
+            padding: 16px 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .formula-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 12px 0;
+        }
+        
+        .formula-card {
+            background: #f5f9ff;
+            padding: 14px 12px;
+            border-radius: 18px;
+            border-right: 5px solid #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .formula {
+            background: #e8eaf6;
+            padding: 14px 10px;
+            border-radius: 14px;
+            text-align: center;
+            margin: 8px 0;
+            font-size: 18px;
+            border: 1px dashed #283593;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .formula::-webkit-scrollbar {
+            height: 3px;
+        }
+        
+        .formula::-webkit-scrollbar-thumb {
+            background: #3f51b5;
+            border-radius: 10px;
+        }
+        
+        .law {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 16px;
+            margin: 12px 0;
+            border-left: 5px solid #ffb300;
+            font-size: 15px;
+        }
+        
+        .note {
+            background: #ffebee;
+            border-left: 5px solid #c62828;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 16px;
+            font-size: 15px;
+        }
+        
+        .color-code-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+        
+        .color-code-table td {
+            padding: 10px 4px;
+            border: 1px solid #bdbdbd;
+            text-align: center;
+        }
+        
+        .color-code-table tr td:first-child {
+            font-weight: 600;
+            background: #f5f5f5;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #ff9800;
+            color: #1a1a1a;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 12px 0 4px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 22px 12px;
+            background: linear-gradient(145deg, #283593, #1a237e);
+            color: white;
+            border-radius: 40px 40px 20px 20px;
+            word-break: break-word;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        .practical-list {
+            background: #e0f2f1;
+            padding: 16px;
+            border-radius: 20px;
+            margin: 15px 0;
+            border: 2px solid #00695c;
+        }
+        
+        .practical-list li {
+            list-style: none;
+            padding: 8px 0;
+            border-bottom: 1px solid #b2dfdb;
+            font-size: 15px;
+        }
+        
+        .practical-list li:before {
+            content: "🔬 ";
+            font-size: 14px;
+        }
+        
+        /* Touch-friendly */
+        .formula-card, .law, .note, button {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .formula-card:active, .law:active, .note:active {
+            background: #e3f2fd;
+            transform: scale(0.99);
+        }
+        
+        hr {
+            margin: 20px 0;
+            border: 2px solid #ffcc80;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 350px) {
+            h1 { font-size: 20px; }
+            h2 { font-size: 18px; }
+            .formula { font-size: 15px; white-space: normal; }
+        }
+    </style>
+    <!-- MathJax for formulas (mobile optimized) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script>
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+            messageStyle: "none",
+            showMathMenu: false,
+            "HTML-CSS": { scale: 90 }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ FEEE FORMULA SHEET ⚡<small>100% Syllabus Covered (All Units 1-7)</small></h1>
+
+        <!-- Unit 1 -->
+        <h2>UNIT 1: Electrical Components</h2>
+        <div class="unit-card">
+            <div class="badge">🎨 Resistor Color Code</div>
+            <table class="color-code-table">
+                <tr><td>Black</td><td>0</td><td>Brown</td><td>1</td></tr>
+                <tr><td>Red</td><td>2</td><td>Orange</td><td>3</td></tr>
+                <tr><td>Yellow</td><td>4</td><td>Green</td><td>5</td></tr>
+                <tr><td>Blue</td><td>6</td><td>Violet</td><td>7</td></tr>
+                <tr><td>Gray</td><td>8</td><td>White</td><td>9</td></tr>
+                <tr><td>Gold</td><td>±5%</td><td>Silver</td><td>±10%</td></tr>
+            </table>
+            <div class="formula">$$R = (D1×10 + D2) × Multiplier$$</div>
+            
+            <div class="badge">🔄 Source Transformation</div>
+            <div class="formula-grid">
+                <div class="formula-card">V → I: $$I = V/R$$ (R same)</div>
+                <div class="formula-card">I → V: $$V = I × R$$ (R same)</div>
+            </div>
+        </div>
+
+        <!-- Unit 2 -->
+        <h2>UNIT 2: Electric & Magnetic Circuits</h2>
+        <div class="unit-card">
+            <div class="badge">⚡ Basic Electrical</div>
+            <div class="formula-grid">
+                <div class="formula-card">$$V = W/Q$$</div>
+                <div class="formula-card">$$I = Q/t$$</div>
+                <div class="formula-card">$$P = VI = I^2R = V^2/R$$</div>
+                <div class="formula-card">$$E = P × t = VIt$$</div>
+            </div>
+
+            <div class="badge">🧲 Magnetic Circuits</div>
+            <div class="formula-grid">
+                <div class="formula-card">MMF: $$F = NI$$ (At)</div>
+                <div class="formula-card">H: $$H = NI/l$$ (A/m)</div>
+                <div class="formula-card">Flux: $$\phi = B×A$$ (Wb)</div>
+                <div class="formula-card">B: $$B = \phi/A = \mu H$$ (T)</div>
+                <div class="formula-card">μ: $$\mu = \mu_0 \mu_r$$</div>
+                <div class="formula-card">Reluctance: $$S = l/(\mu A) = F/\phi$$</div>
+            </div>
+
+            <div class="badge">📉 Losses</div>
+            <div class="formula-grid">
+                <div class="formula-card">Hysteresis: $$P_h = K_h f B_m^n$$</div>
+                <div class="formula-card">Eddy: $$P_e = K_e f^2 B_m^2$$</div>
+            </div>
+
+            <div class="badge">⚡ EMI</div>
+            <div class="formula-grid">
+                <div class="formula-card">Faraday: $$e = -N d\phi/dt$$</div>
+                <div class="formula-card">L: $$L = N\phi/I$$</div>
+                <div class="formula-card">M: $$M = k\sqrt{L_1L_2}$$</div>
+                <div class="formula-card">Energy: $$E = \frac12 LI^2$$</div>
+            </div>
+
+            <div class="law"><b>Fleming's Left (Motor):</b> Thumb = Force, Index = Field, Middle = Current</div>
+            <div class="law"><b>Fleming's Right (Generator):</b> Thumb = Motion, Index = Field, Middle = Current</div>
+        </div>
+
+        <!-- Unit 3 -->
+        <h2>UNIT 3: AC Circuits</h2>
+        <div class="unit-card">
+            <div class="badge">📊 AC Fundamentals</div>
+            <div class="formula-grid">
+                <div class="formula-card">$$\omega = 2\pi f$$</div>
+                <div class="formula-card">$$T = 1/f$$</div>
+                <div class="formula-card">$$V_{avg} = 0.637 V_m$$</div>
+                <div class="formula-card">$$V_{rms} = 0.707 V_m$$</div>
+                <div class="formula-card">Form Factor = 1.11</div>
+                <div class="formula-card">Peak Factor = 1.414</div>
+            </div>
+
+            <div class="badge">🔮 Phasor Forms</div>
+            <div class="formula-grid">
+                <div class="formula-card">Exponential: $$V = V_m e^{j\theta}$$</div>
+                <div class="formula-card">Polar: $$V = V_m \angle \theta$$</div>
+            </div>
+
+            <div class="badge">💡 Pure Elements</div>
+            <div class="formula-grid">
+                <div class="formula-card">R: $$V=IR$$, φ=0°</div>
+                <div class="formula-card">L: $$V=IX_L$$, φ=+90°</div>
+                <div class="formula-card">C: $$V=IX_C$$, φ=-90°</div>
+            </div>
+
+            <div class="badge">🔧 Reactance</div>
+            <div class="formula-grid">
+                <div class="formula-card">$$X_L = 2\pi f L = \omega L$$</div>
+                <div class="formula-card">$$X_C = 1/(2\pi f C) = 1/(\omega C)$$</div>
+            </div>
+
+            <div class="badge">📐 Impedance (Z)</div>
+            <div class="formula-grid">
+                <div class="formula-card">R-L: $$Z = \sqrt{R^2 + X_L^2}$$</div>
+                <div class="formula-card">R-C: $$Z = \sqrt{R^2 + X_C^2}$$</div>
+                <div class="formula-card">R-L-C: $$Z = \sqrt{R^2 + (X_L - X_C)^2}$$</div>
+            </div>
+
+            <div class="badge">⚡ Power</div>
+            <div class="formula-grid">
+                <div class="formula-card">Active: $$P = VI\cos\phi$$ (W)</div>
+                <div class="formula-card">Reactive: $$Q = VI\sin\phi$$ (VAR)</div>
+                <div class="formula-card">Apparent: $$S = VI$$ (VA)</div>
+                <div class="formula-card">PF = cos φ = P/S</div>
+            </div>
+
+            <div class="badge">🔺 Star-Delta</div>
+            <div class="formula-grid">
+                <div class="formula-card">Star: $$V_L = \sqrt{3}V_{ph},\ I_L = I_{ph}$$</div>
+                <div class="formula-card">Delta: $$V_L = V_{ph},\ I_L = \sqrt{3}I_{ph}$$</div>
+            </div>
+        </div>
+
+        <!-- Unit 4 -->
+        <h2>UNIT 4: Transformer & Machines</h2>
+        <div class="unit-card">
+            <div class="badge">🔧 Transformer</div>
+            <div class="formula-grid">
+                <div class="formula-card">EMF: $$E = 4.44f\phi_m N$$</div>
+                <div class="formula-card">Turn Ratio K = N₂/N₁ = E₂/E₁</div>
+                <div class="formula-card">Current: $$I₂/I₁ = N₁/N₂ = 1/K$$</div>
+            </div>
+            <div class="note">Auto Transformer: K = N₂/N₁</div>
+        </div>
+
+        <!-- Unit 5 -->
+        <h2>UNIT 5: Semiconductor Devices</h2>
+        <div class="unit-card">
+            <div class="badge">🔬 Diode</div>
+            <div class="formula-card">$$I = I_s(e^{V/ηV_T} - 1)$$</div>
+            <div class="formula-card">V_T ≈ 26mV at 25°C</div>
+
+            <div class="badge">🔍 Transistor (CE)</div>
+            <div class="formula-grid">
+                <div class="formula-card">β = I_C/I_B</div>
+                <div class="formula-card">I_E = I_B + I_C</div>
+                <div class="formula-card">β = α/(1-α)</div>
+            </div>
+        </div>
+
+        <!-- Unit 6 -->
+        <h2>UNIT 6: Op-Amp</h2>
+        <div class="unit-card">
+            <div class="badge">🔺 Configurations</div>
+            <div class="formula-grid">
+                <div class="formula-card">Inverting: $$A_v = -R_f/R_{in}$$</div>
+                <div class="formula-card">Non-inverting: $$A_v = 1 + R_f/R_{in}$$</div>
+                <div class="formula-card">Follower: A_v = 1</div>
+                <div class="formula-card">Adder: $$V_{out} = -(R_f/R_1 V_1 + R_f/R_2 V_2)$$</div>
+                <div class="formula-card">Integrator: $$V_{out} = -\frac{1}{RC}\int V_{in} dt$$</div>
+                <div class="formula-card">Differentiator: $$V_{out} = -RC\frac{dV_{in}}{dt}$$</div>
+            </div>
+        </div>
+
+        <!-- Unit 7 -->
+        <h2>UNIT 7: Digital Electronics</h2>
+        <div class="unit-card">
+            <div class="badge">🔢 Boolean Laws</div>
+            <div class="formula-grid">
+                <div class="formula-card">A+0=A, A·1=A</div>
+                <div class="formula-card">A+1=1, A·0=0</div>
+                <div class="formula-card">A+A=A, A·A=A</div>
+                <div class="formula-card">A+Ā=1, A·Ā=0</div>
+            </div>
+
+            <div class="badge">🔄 De-Morgan</div>
+            <div class="formula-grid">
+                <div class="formula-card">$$\overline{A+B} = \overline{A}·\overline{B}$$</div>
+                <div class="formula-card">$$\overline{A·B} = \overline{A}+\overline{B}$$</div>
+            </div>
+
+            <div class="badge">🎯 Flip Flops</div>
+            <div class="formula-grid">
+                <div class="formula-card">SR: Q_{n+1} = S + \overline{R}Q_n</div>
+                <div class="formula-card">JK: Q_{n+1} = J\overline{Q_n} + \overline{K}Q_n</div>
+                <div class="formula-card">D: Q_{n+1} = D</div>
+                <div class="formula-card">T: Q_{n+1} = T ⊕ Q_n</div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Practicals -->
+        <h2>🧪 LAB PRACTICALS (13)</h2>
+        <div class="practical-list">
+            <li>BH Curve & Permeability</li>
+            <li>1-Phase Power Measurement</li>
+            <li>Phase Diff using CRO</li>
+            <li>R-L Series Circuit</li>
+            <li>Transformer & Motor Parts</li>
+            <li>Transformer Ratio</li>
+            <li>Active & Passive Components</li>
+            <li>Multimeter & Color Code</li>
+            <li>LCR-Q Meter</li>
+            <li>PN Junction Diode V-I</li>
+            <li>Transistor Gain (CE)</li>
+            <li>Op-Amp Applications</li>
+            <li>Logic Gates & De-Morgan</li>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p style="font-size: 18px; font-weight: bold;">📘 100% SYLLABUS COVERED</p>
+            <p>Units 1-7 | All Formulas | 13 Practicals</p>
+            <p style="font-size: 12px; opacity: 0.9;">⚡ Phone Optimized | Tap to focus ⚡</p>
+        </div>
+    </div>
+</body>
+</html>
