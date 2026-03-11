@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Physics · Unit 3 · Electrostatics</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: electrostatics / blue-electric -->
+  <style>
+    :root {
+      --primary: #1e5f8e;          /* electric blue */
+      --primary-light: #3a7fb0;
+      --accent: #f9a826;            /* capacitor orange */
+      --accent-light: #ffc107;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #0a2a4a, #1e5f8e, #f9a826);
+    }
+    /* header emoji: electrostatics symbols */
+    .header::after {
+      content: "⚡🔋🧲🔌";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* capacitor illustration */
+    .capacitor-demo {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .cap-plates {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .plate {
+      width: 60px;
+      height: 40px;
+      background: #aaa;
+      border: 2px solid #333;
+    }
+    .plate-left {
+      background: #ffaa00;
+    }
+    .plate-right {
+      background: #00aaff;
+    }
+    /* field lines */
+    .field-demo {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      margin: 20px auto;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Capacitance') ? 'Show Capacitance' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Capacitance') ? 'Hide Capacitance' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>⚡ Physics · Unit 3 ⚡</h1>
+      <h2>Electrostatics · Gauss Law · Capacitors</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-bolt"></i> Coulomb's Law</span>
+        <span class="info-item"><i class="fas fa-circle"></i> Electric Field</span>
+        <span class="info-item"><i class="fas fa-microchip"></i> Capacitors</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> PHYS·UNIT3</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#fundamentals"><i class="fas fa-circle"></i> Fundamentals</a>
+        <a href="#gauss"><i class="fas fa-square-root-alt"></i> Gauss Law</a>
+        <a href="#capacitors"><i class="fas fa-microchip"></i> Capacitors</a>
+        <a href="#combinations"><i class="fas fa-arrow-right-arrow-left"></i> Series/Parallel</a>
+        <a href="#dielectric"><i class="fas fa-water"></i> Dielectric</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bolt"></i> PHYS Unit 3</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#fundamentals"><i class="fas fa-circle"></i> Coulomb, Electric field, flux, potential</a>
+      <a href="#gauss"><i class="fas fa-square-root-alt"></i> Gauss law, field due to sphere</a>
+      <a href="#capacitors"><i class="fas fa-microchip"></i> Capacitor, types, capacitance formula</a>
+      <a href="#combinations"><i class="fas fa-arrow-right-arrow-left"></i> Series & parallel combinations</a>
+      <a href="#dielectric"><i class="fas fa-water"></i> Dielectric effect & breakdown</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: ELECTROSTATICS FUNDAMENTALS ========= -->
+    <section id="fundamentals" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> Electrostatics Fundamentals
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-balance-scale"></i> Coulomb's Law</div>
+          <p>Force between two point charges: F = k q₁q₂ / r²</p>
+          <p>where k = 1/(4πε₀) = 9×10⁹ N·m²/C², ε₀ = permittivity of free space.</p>
+          <p><strong>Unit of charge:</strong> Coulomb (C).</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-field"></i> Electric Field (E)</div>
+          <p>E = F/q₀ = kQ/r² (for point charge). Unit: N/C or V/m.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-arrow-right"></i> Electric Lines of Force</h4>
+            <ul>
+              <li>Start from +ve, end on -ve charges</li>
+              <li>Never intersect</li>
+              <li>Tangent gives direction of E</li>
+              <li>Closer lines → stronger field</li>
+              <li>Perpendicular to conductor surface</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-sun"></i> Electric Flux (Φ)</h4>
+            <p>Φ = E·A = EA cosθ for uniform field. Unit: N·m²/C.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-bolt"></i> Electric Potential (V)</h4>
+            <p>V = W/q₀ (work per unit charge). Potential difference: ΔV = V_B - V_A = -∫ E·dl</p>
+            <p>Unit: Volt (V) = J/C.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: GAUSS LAW & APPLICATION ========= -->
+    <section id="gauss" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-square-root-alt"></i> Gauss Law · Field due to Charged Sphere
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-gavel"></i> Gauss Law (Statement)</div>
+          <p>The net electric flux through any closed surface is equal to 1/ε₀ times the net charge enclosed.</p>
+          <div class="formula">∮ E·dA = Q_enclosed / ε₀</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Application: Field due to Charged Sphere</div>
+          <p>For a uniformly charged sphere of radius R, total charge Q:</p>
+          <ul>
+            <li><strong>Outside (r ≥ R):</strong> E = (1/(4πε₀)) Q/r² (like point charge)</li>
+            <li><strong>Inside (r < R):</strong> E = (1/(4πε₀)) Q r / R³ (linearly increasing)</li>
+          </ul>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 1</div>
+          <p>A sphere of radius 0.1m has charge 2μC. Find electric field at distance 0.3m from center.</p>
+          <button class="toggle-btn" data-target="gauss1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="gauss1">
+            <div class="formula answer">
+              Outside, E = kQ/r² = 9×10⁹ × 2×10⁻⁶ / (0.3)² = 9×10⁹ × 2×10⁻⁶ / 0.09<br>
+              = 18000 / 0.09 = <strong>2×10⁵ N/C</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: CAPACITORS BASICS ========= -->
+    <section id="capacitors" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microchip"></i> Capacitors: Working, Types, Capacitance
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="capacitor-demo">
+          <div class="cap-plates">
+            <div class="plate plate-left"></div>
+            <span style="font-size:1.5rem;">➕   ➖</span>
+            <div class="plate plate-right"></div>
+          </div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-battery-full"></i> Capacitor & Working</div>
+          <p>A capacitor stores electrical energy in an electric field between two conductors separated by insulator (dielectric).</p>
+          <p><strong>Working:</strong> When connected to battery, charge accumulates on plates until potential difference equals battery voltage.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-list"></i> Types of Capacitors</h4>
+            <ul>
+              <li>Parallel plate capacitor</li>
+              <li>Cylindrical capacitor</li>
+              <li>Spherical capacitor</li>
+              <li>Electrolytic capacitor</li>
+              <li>Ceramic, Mica, Tantalum</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-ruler"></i> Capacitance (C)</h4>
+            <p>C = Q / V (charge per unit potential difference). Unit: Farad (F).</p>
+            <p>1 F = 1 C/V. Practical units: μF, nF, pF.</p>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">Parallel Plate Capacitor Formula</div>
+          <div class="formula">C = ε₀ A / d &nbsp; (without dielectric)</div>
+          <p>where A = plate area, d = separation, ε₀ = 8.85×10⁻¹² F/m.</p>
+          <p>With dielectric: C = κ ε₀ A / d, where κ = dielectric constant.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 2</div>
+          <p>Parallel plate capacitor has area 0.1 m², separation 1mm. Find capacitance.</p>
+          <button class="toggle-btn" data-target="cap1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="cap1">
+            <div class="formula answer">
+              C = ε₀ A/d = 8.85×10⁻¹² × 0.1 / 0.001 = 8.85×10⁻¹³ / 10⁻³ = 8.85×10⁻¹⁰ F = <strong>885 pF</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: SERIES & PARALLEL COMBINATIONS ========= -->
+    <section id="combinations" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrow-right-arrow-left"></i> Series & Parallel Combinations
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-arrow-right"></i> Series Combination</h4>
+            <div class="formula">1/C_eq = 1/C₁ + 1/C₂ + ...</div>
+            <p>Charge same on each capacitor. Voltage divides.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-arrow-down"></i> Parallel Combination</h4>
+            <div class="formula">C_eq = C₁ + C₂ + ...</div>
+            <p>Voltage same across each. Charge divides.</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 3 (Series)</div>
+          <p>Two capacitors 10μF and 20μF are connected in series. Find equivalent capacitance.</p>
+          <button class="toggle-btn" data-target="comb1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="comb1">
+            <div class="formula answer">
+              1/C_eq = 1/10 + 1/20 = 0.1 + 0.05 = 0.15<br>
+              C_eq = 1/0.15 = <strong>6.67 μF</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 4 (Parallel)</div>
+          <p>Three capacitors 5μF, 10μF, 15μF in parallel. Find C_eq.</p>
+          <button class="toggle-btn" data-target="comb2"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="comb2">
+            <div class="formula answer">
+              C_eq = 5 + 10 + 15 = <strong>30 μF</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 5 (Mixed)</div>
+          <p>Find equivalent capacitance between points: 6μF and 3μF in series, and this combination in parallel with 2μF.</p>
+          <button class="toggle-btn" data-target="comb3"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="comb3">
+            <div class="formula answer">
+              Series part: 1/Cs = 1/6 + 1/3 = 0.1667 + 0.3333 = 0.5 ⇒ Cs = 2 μF<br>
+              Parallel with 2μF: C_eq = 2 + 2 = <strong>4 μF</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: DIELECTRIC & BREAKDOWN ========= -->
+    <section id="dielectric" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-water"></i> Dielectric Effect & Dielectric Breakdown
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-chart-line"></i> Dielectric Constant (κ)</div>
+          <p>When a dielectric is inserted between plates, capacitance increases by factor κ.</p>
+          <div class="formula">C = κ C₀</div>
+          <p>where C₀ = capacitance without dielectric.</p>
+          <p>Dielectric reduces electric field inside: E = E₀/κ.</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-bolt"></i> Dielectric Breakdown</div>
+          <p>If electric field exceeds dielectric strength, insulator becomes conductive – spark/arc occurs.</p>
+          <p>Example: Air breakdown ~ 3×10⁶ V/m. Capacitors have maximum voltage rating.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 6</div>
+          <p>A parallel plate capacitor with air has capacitance 100pF. A dielectric of κ=5 is inserted. Find new capacitance.</p>
+          <button class="toggle-btn" data-target="di1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="di1">
+            <div class="formula answer">
+              C = κ × C₀ = 5 × 100 = <strong>500 pF</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">F = kq₁q₂/r²</div>
+          <div class="tag">E = F/q₀</div>
+          <div class="tag">Φ = E·A</div>
+          <div class="tag">V = W/q₀</div>
+          <div class="tag">∮E·dA = Q/ε₀</div>
+          <div class="tag">C = Q/V</div>
+          <div class="tag">C = ε₀A/d</div>
+          <div class="tag">Series: 1/C = Σ1/Cᵢ</div>
+          <div class="tag">Parallel: C = ΣCᵢ</div>
+          <div class="tag">C = κC₀</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

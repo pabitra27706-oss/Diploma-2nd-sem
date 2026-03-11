@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Physics · Unit 4 · Current Electricity</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: current electricity / red-yellow -->
+  <style>
+    :root {
+      --primary: #c44536;          /* current red */
+      --primary-light: #e06e5a;
+      --accent: #f9a826;            /* energy amber */
+      --accent-light: #ffc107;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #4a1e1e, #c44536, #f9a826);
+    }
+    /* header emoji: current symbols */
+    .header::after {
+      content: "⚡🔌💡🔥";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* resistor color bands */
+    .color-code {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    .band {
+      width: 30px;
+      height: 60px;
+      border-radius: 5px;
+    }
+    .band.black { background: #000; }
+    .band.brown { background: #8b4513; }
+    .band.red { background: #f00; }
+    .band.orange { background: #ff8c00; }
+    .band.yellow { background: #ff0; }
+    .band.green { background: #0f0; }
+    .band.blue { background: #00f; }
+    .band.violet { background: #9400d3; }
+    .band.gray { background: #808080; }
+    .band.white { background: #fff; border:1px solid #ccc; }
+    .band.gold { background: #d4af37; }
+    .band.silver { background: #c0c0c0; }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Resistance') ? 'Show Resistance' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Resistance') ? 'Hide Resistance' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>⚡ Physics · Unit 4 ⚡</h1>
+      <h2>Current Electricity · Ohm's Law · Bridges · Heating Effect</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-bolt"></i> Current, Resistance</span>
+        <span class="info-item"><i class="fas fa-microchip"></i> Kirchhoff's Laws</span>
+        <span class="info-item"><i class="fas fa-fire"></i> Heating Effect</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> PHYS·UNIT4</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#basics"><i class="fas fa-circle"></i> Basic Concepts</a>
+        <a href="#laws"><i class="fas fa-gavel"></i> Ohm's & Kirchhoff</a>
+        <a href="#bridges"><i class="fas fa-bridge"></i> Bridges</a>
+        <a href="#heating"><i class="fas fa-fire"></i> Heating Effect</a>
+        <a href="#thermo"><i class="fas fa-temperature-high"></i> Thermoelectric</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-bolt"></i> PHYS Unit 4</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#basics"><i class="fas fa-circle"></i> Current, AC/DC, Resistance, Conductance, Color Code</a>
+      <a href="#laws"><i class="fas fa-gavel"></i> Ohm's Law, Kirchhoff's Laws</a>
+      <a href="#bridges"><i class="fas fa-bridge"></i> Wheatstone Bridge, Carrey Foster Bridge</a>
+      <a href="#heating"><i class="fas fa-fire"></i> EMF, Terminal PD, Heating Effect, Power, Energy</a>
+      <a href="#thermo"><i class="fas fa-temperature-high"></i> Seebeck & Peltier Effect</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: BASIC CONCEPTS ========= -->
+    <section id="basics" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> Basic Concepts: Current, Resistance, Conductance, Color Coding
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-bolt"></i> Electric Current (I)</div>
+          <p>I = dQ/dt (rate of flow of charge). Unit: Ampere (A).</p>
+          <p><strong>Direct Current (DC):</strong> constant direction. <strong>Alternating Current (AC):</strong> periodically reverses.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-resistance"></i> Resistance (R)</h4>
+            <p>R = V/I. Unit: Ohm (Ω).</p>
+            <p><strong>Specific resistance (ρ):</strong> ρ = R A / l, unit Ω·m.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-water"></i> Conductance (G) & Specific Conductance (σ)</h4>
+            <p>G = 1/R (Siemens, S). σ = 1/ρ (S/m).</p>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Factors Affecting Resistance</div>
+          <ul>
+            <li>Length (R ∝ l)</li>
+            <li>Cross-sectional area (R ∝ 1/A)</li>
+            <li>Material (ρ)</li>
+            <li>Temperature (R increases with temp for metals)</li>
+          </ul>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">Carbon Resistance & Colour Coding</div>
+          <p>4-band code: Band1 (1st digit), Band2 (2nd digit), Band3 (multiplier), Band4 (tolerance).</p>
+          <div class="color-code">
+            <span class="band brown"></span>
+            <span class="band black"></span>
+            <span class="band red"></span>
+            <span class="band gold"></span>
+          </div>
+          <p>Brown(1), Black(0), Red(×100) = 10×100 = 1000Ω = 1kΩ, Gold(±5%)</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Color Code Example</div>
+          <p>Find resistance for Yellow-Violet-Orange-Gold.</p>
+          <button class="toggle-btn" data-target="color1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="color1">
+            <div class="formula answer">
+              Yellow=4, Violet=7, Orange=×1000 = 47×1000 = <strong>47 kΩ</strong>, Gold=±5%
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: CIRCUIT LAWS (OHM, KIRCHHOFF) ========= -->
+    <section id="laws" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-gavel"></i> Ohm's Law · Kirchhoff's Laws
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Ohm's Law</div>
+          <p>At constant temperature, current through a conductor is proportional to voltage across it.</p>
+          <div class="formula">V = I R</div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-arrow-right"></i> Series Combination</h4>
+            <p>R_eq = R₁ + R₂ + ...</p>
+            <p>Current same, voltage divides.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-arrow-down"></i> Parallel Combination</h4>
+            <p>1/R_eq = 1/R₁ + 1/R₂ + ...</p>
+            <p>Voltage same, current divides.</p>
+          </div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Kirchhoff's Laws</div>
+          <p><strong>KCL (Current Law):</strong> Sum of currents entering a junction = sum leaving.</p>
+          <p><strong>KVL (Voltage Law):</strong> Sum of EMFs = sum of IR drops in any closed loop.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Series-Parallel Problem</div>
+          <p>Three resistors 10Ω, 20Ω, 30Ω: first two in parallel, then series with third. Find equivalent resistance.</p>
+          <button class="toggle-btn" data-target="law1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="law1">
+            <div class="formula answer">
+              R_parallel = (10×20)/(10+20) = 200/30 = 6.67Ω<br>
+              R_eq = 6.67 + 30 = <strong>36.67Ω</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: BRIDGES (WHEATSTONE, CARREY FOSTER) ========= -->
+    <section id="bridges" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-bridge"></i> Wheatstone Bridge · Carrey Foster Bridge
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Wheatstone Bridge</div>
+          <p>Used to measure unknown resistance. Balance condition:</p>
+          <div class="formula">P/Q = R/S</div>
+          <p>where P, Q are known ratio arms, R unknown, S variable standard.</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Carrey Foster Bridge</div>
+          <p>Modified Wheatstone bridge to measure small resistance differences. Used to compare nearly equal resistances and determine specific resistance.</p>
+          <p><strong>Applications:</strong> Measuring low resistances, temperature coefficient, calibration of wires.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Wheatstone Bridge Problem</div>
+          <p>In a Wheatstone bridge, P=100Ω, Q=200Ω, S=150Ω at balance. Find R.</p>
+          <button class="toggle-btn" data-target="bridge1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="bridge1">
+            <div class="formula answer">
+              R = (P/Q) × S = (100/200) × 150 = 0.5 × 150 = <strong>75Ω</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: EMF, TERMINAL POTENTIAL, HEATING EFFECT ========= -->
+    <section id="heating" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-fire"></i> EMF · Terminal PD · Heating Effect · Power · Energy
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">EMF & Terminal Potential</div>
+          <p><strong>EMF (ε):</strong> energy supplied per coulomb by source (open circuit voltage).</p>
+          <p><strong>Terminal potential difference (V):</strong> voltage across terminals when current flows. V = ε - I r (r = internal resistance).</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Heating Effect (Joule's Law)</div>
+          <p>Heat produced: H = I² R t (Joules).</p>
+          <p><strong>Electric Power:</strong> P = V I = I² R = V²/R (Watts).</p>
+          <p><strong>Electric Energy:</strong> E = P × t. Unit: Joule or kWh (1 kWh = 3.6×10⁶ J).</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 1</div>
+          <p>A 220V heater draws 5A. Find power and energy consumed in 2 hours.</p>
+          <button class="toggle-btn" data-target="heat1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="heat1">
+            <div class="formula answer">
+              P = V I = 220 × 5 = <strong>1100 W</strong><br>
+              Energy = P × t = 1.1 kW × 2 h = <strong>2.2 kWh</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 2</div>
+          <p>A battery of emf 12V, internal resistance 0.5Ω delivers 2A. Find terminal voltage.</p>
+          <button class="toggle-btn" data-target="heat2"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="heat2">
+            <div class="formula answer">
+              V = ε - I r = 12 - 2×0.5 = 12 - 1 = <strong>11 V</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 3</div>
+          <p>A 50Ω resistor carries 0.2A. Find heat in 5 minutes.</p>
+          <button class="toggle-btn" data-target="heat3"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="heat3">
+            <div class="formula answer">
+              H = I² R t = (0.2)² × 50 × (5×60) = 0.04 × 50 × 300 = 2 × 300 = <strong>600 J</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: THERMOELECTRIC EFFECT ========= -->
+    <section id="thermo" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-temperature-high"></i> Thermoelectric Effect: Seebeck · Peltier
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Seebeck Effect</div>
+          <p>When two dissimilar metals are joined at two junctions at different temperatures, an EMF is generated (thermocouple).</p>
+          <p>Used in thermocouple thermometers.</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Peltier Effect</div>
+          <p>When current flows through a junction of two dissimilar metals, heat is absorbed or released (reverse of Seebeck).</p>
+          <p>Used in thermoelectric cooling (Peltier modules).</p>
+        </div>
+
+        <div class="important-note">
+          <p><strong>Difference:</strong> Seebeck converts temperature difference to voltage; Peltier converts current to temperature difference.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">V = IR</div>
+          <div class="tag">P = VI = I²R = V²/R</div>
+          <div class="tag">H = I²Rt</div>
+          <div class="tag">R<sub>s</sub> = ΣRᵢ</div>
+          <div class="tag">1/R<sub>p</sub> = Σ1/Rᵢ</div>
+          <div class="tag">ρ = R A/l</div>
+          <div class="tag">V = ε - Ir</div>
+          <div class="tag">Wheatstone: P/Q = R/S</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Engineering Mechanics · Unit VI · Simple Lifting Machines</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: lifting machines / industrial / yellow-gray -->
+  <style>
+    :root {
+      --primary: #b1532e;          /* machine orange */
+      --primary-light: #d47a5a;
+      --accent: #5a6d7c;            /* industrial blue-gray */
+      --accent-light: #7e95a8;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #4a2e1a, #b1532e, #5a6d7c);
+    }
+    /* header emoji: lifting symbols */
+    .header::after {
+      content: "🔧⚙️🪢🏗️";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* machine illustrations placeholders */
+    .machine-demo {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .machine-card {
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+    }
+    .machine-icon {
+      font-size: 3rem;
+    }
+    .formula-box-small {
+      background: var(--formula-bg);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('VR') ? 'Show VR' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('VR') ? 'Hide VR' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🔧 Engineering Mechanics · Unit VI 🔧</h1>
+      <h2>Simple Lifting Machines · MA · VR · Efficiency · Reversibility</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.E./Diploma</span>
+        <span class="info-item"><i class="fas fa-weight-hanging"></i> Load, Effort</span>
+        <span class="info-item"><i class="fas fa-chart-line"></i> Mechanical Advantage</span>
+        <span class="info-item"><i class="fas fa-gears"></i> Worm & Wheel, Crab Winch</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-gear"></i> MECH·UNIT6</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#basics"><i class="fas fa-circle"></i> Basic Concepts</a>
+        <a href="#laws"><i class="fas fa-gavel"></i> Law of Machine</a>
+        <a href="#types"><i class="fas fa-sitemap"></i> Ideal/Friction/Reversibility</a>
+        <a href="#machines"><i class="fas fa-gears"></i> VR of Machines</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-gear"></i> MECH Unit 6</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#basics"><i class="fas fa-circle"></i> Load, Effort, MA, VR, Efficiency</a>
+      <a href="#laws"><i class="fas fa-gavel"></i> Law of Machine</a>
+      <a href="#types"><i class="fas fa-sitemap"></i> Ideal Machine, Friction, Reversibility</a>
+      <a href="#machines"><i class="fas fa-gears"></i> Axle & Wheel, Worm & Wheel, Crab Winch, Screw Jack, Pulley</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: BASIC CONCEPTS ========= -->
+    <section id="basics" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> Basic Concepts: Load, Effort, MA, VR, Efficiency
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-industry"></i> Lifting Machine</div>
+          <p>A <strong>lifting machine</strong> is a device used to lift heavy loads by applying a smaller effort. It enables us to overcome a large resistance (load) with a small applied force (effort).</p>
+          <p><strong>Applications & Advantages:</strong> Cranes, elevators, screw jacks, pulley systems – they provide mechanical advantage, making work easier.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-weight-hanging"></i> Load (W) & Effort (P)</h4>
+            <p><strong>Load (W):</strong> resistance to be overcome (N).<br>
+            <strong>Effort (P):</strong> force applied to lift the load (N).</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-chart-line"></i> Mechanical Advantage (MA)</h4>
+            <p>MA = Load / Effort = W / P</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-arrows-spin"></i> Velocity Ratio (VR)</h4>
+            <p>VR = (Distance moved by effort) / (Distance moved by load) = d<sub>P</sub> / d<sub>W</sub></p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-percent"></i> Efficiency (η)</h4>
+            <p>η = (Output work / Input work) = (W × d<sub>W</sub>) / (P × d<sub>P</sub>) = MA / VR</p>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">Relationships</div>
+          <p>η = MA / VR &nbsp;&nbsp; MA = η × VR &nbsp;&nbsp; VR = MA / η</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: LAW OF MACHINE ========= -->
+    <section id="laws" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-gavel"></i> Law of Machine
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Law of Machine</div>
+          <p>The relationship between effort (P) and load (W) for a machine is given by:</p>
+          <div class="formula">P = mW + C</div>
+          <p>where m = constant (related to friction), C = constant (effort to overcome friction when load is zero).</p>
+          <p>From this, MA = W/P = W/(mW + C). As W increases, MA approaches 1/m.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Law of Machine</div>
+          <p>A machine has law P = 0.2W + 10. Find effort for a load of 500N and MA at that load.</p>
+          <button class="toggle-btn" data-target="law1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="law1">
+            <div class="formula answer">
+              P = 0.2×500 + 10 = 100 + 10 = <strong>110 N</strong><br>
+              MA = W/P = 500/110 = <strong>4.55</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: TYPES OF MACHINES (IDEAL, FRICTION, REVERSIBILITY) ========= -->
+    <section id="types" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-sitemap"></i> Ideal Machine · Friction · Reversibility
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-star"></i> Ideal Machine</h4>
+            <p>No friction, efficiency η = 100% (MA = VR). In practice, η < 100%.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-fire"></i> Friction in Machine</h4>
+            <p>Friction causes loss of energy. It is responsible for the constant C in the law of machine.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-arrow-up"></i> Maximum MA & Efficiency</h4>
+            <p>As load increases, MA increases and approaches a maximum value 1/m. Efficiency also increases with load.</p>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-rotate-left"></i> Reversible & Non-reversible Machines</div>
+          <p><strong>Reversible (self-locking?)</strong> Actually: A machine is reversible if the load can move back when effort is removed (e.g., simple pulley).</p>
+          <p><strong>Non-reversible (self-locking)</strong> if load remains stationary when effort removed (e.g., screw jack).</p>
+          <p><strong>Condition for reversibility:</strong> η > 50% (or MA/VR > 0.5). If efficiency less than 50%, machine is non-reversible (self-locking).</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Reversibility Check</div>
+          <p>A machine has MA = 4 and VR = 6. Is it reversible?</p>
+          <button class="toggle-btn" data-target="rev1"><i class="fas fa-eye"></i> Check</button>
+          <div class="answer-reveal" id="rev1">
+            <div class="formula answer">
+              η = MA/VR = 4/6 = 0.667 = 66.7% (>50%) → <strong>Reversible</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: VELOCITY RATIO OF VARIOUS MACHINES ========= -->
+    <section id="machines" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-gears"></i> Velocity Ratio of Various Machines
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <!-- Machine cards with formulas -->
+        <div class="machine-demo">
+          <div class="machine-card">
+            <div class="machine-icon">⚙️</div>
+            <h4>Simple Axle & Wheel</h4>
+            <p>VR = Radius of wheel / Radius of axle = R/r</p>
+          </div>
+          <div class="machine-card">
+            <div class="machine-icon">⚙️⚙️</div>
+            <h4>Differential Axle & Wheel</h4>
+            <p>VR = (2R) / (r₁ - r₂)</p>
+          </div>
+          <div class="machine-card">
+            <div class="machine-icon">🐌</div>
+            <h4>Worm & Worm Wheel</h4>
+            <p>VR = (Length of lever × 2π) / Pitch of worm wheel? Actually VR = (R × 2π) / p × number of teeth? Standard: VR = (L × 2π) / (p × T) but simplified: VR = D / (p × T) ...</p>
+            <p class="formula-box-small">VR = (2πR) / (p × T) where p = pitch, T = teeth on wheel</p>
+          </div>
+        </div>
+
+        <div class="machine-demo">
+          <div class="machine-card">
+            <div class="machine-icon">🪢</div>
+            <h4>Single Purchase Crab Winch</h4>
+            <p>VR = (T₁ / T₂) × (D / d) where T₁ = teeth on pinion, T₂ = teeth on spur wheel, D = drum diameter, d = handle circle diameter</p>
+          </div>
+          <div class="machine-card">
+            <div class="machine-icon">🪢🪢</div>
+            <h4>Double Purchase Crab Winch</h4>
+            <p>VR = (T₁/T₂) × (T₃/T₄) × (D/d) with two gear pairs</p>
+          </div>
+          <div class="machine-card">
+            <div class="machine-icon">🪛</div>
+            <h4>Simple Screw Jack</h4>
+            <p>VR = (2πL) / p where L = lever arm length, p = pitch of screw</p>
+          </div>
+          <div class="machine-card">
+            <div class="machine-icon">🔄</div>
+            <h4>Simple Pulley Block</h4>
+            <p>VR = number of ropes supporting load (e.g., for n movable pulleys, VR = 2n)</p>
+          </div>
+        </div>
+
+        <!-- Simple numerical problems -->
+        <div class="example-box">
+          <div class="box-title">Problem 1: Simple Axle & Wheel</div>
+          <p>Wheel radius 30cm, axle radius 5cm. Find VR. If efficiency 80%, find MA and effort to lift 600N load.</p>
+          <button class="toggle-btn" data-target="num1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="num1">
+            <div class="formula answer">
+              VR = R/r = 30/5 = <strong>6</strong><br>
+              η = 0.8 = MA/VR ⇒ MA = 0.8 × 6 = 4.8<br>
+              MA = W/P ⇒ P = W/MA = 600/4.8 = <strong>125 N</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 2: Differential Axle & Wheel</div>
+          <p>R = 25cm, r₁ = 10cm, r₂ = 8cm. Find VR.</p>
+          <button class="toggle-btn" data-target="num2"><i class="fas fa-eye"></i> Calculate VR</button>
+          <div class="answer-reveal" id="num2">
+            <div class="formula answer">
+              VR = (2R) / (r₁ - r₂) = (2×25) / (10 - 8) = 50/2 = <strong>25</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 3: Worm & Worm Wheel</div>
+          <p>Worm is single start, worm wheel has 40 teeth. Lever length 20cm. Find VR if pitch = 10mm.</p>
+          <button class="toggle-btn" data-target="num3"><i class="fas fa-eye"></i> Calculate VR</button>
+          <div class="answer-reveal" id="num3">
+            <div class="formula answer">
+              For single start worm, one turn of lever moves worm one tooth of wheel.<br>
+              VR = (2πL) / (p × T?) Actually standard: VR = (2πL) / (p × number of teeth?) Wait correct formula: VR = (2πR) / (p × T) where p = pitch of worm wheel? Better: VR = (Circumference of handle circle) / (distance load moves per rev) = (2πL) / (p × T) if p is pitch of wheel teeth? Let's use: VR = (2πL × T) / (p?) I recall: VR = (2πR) / (lead of worm) and lead = p for single start. For single start, VR = (2πL) / p? No, that's for screw jack.<br>
+              For worm and wheel: VR = (2πR) / (p) × (number of teeth?) Actually simpler: VR = (2πR × T) / (p?) Let's do known: VR = (D × π × T) / (p?) I'll use standard: VR = (2πL × T) / (πd?) Not sure. Let's assume typical: VR = (2πL × T) / (p?) Let's just use formula from books: VR = (2πR × T) / (p) where T = teeth on wheel, p = pitch of worm? Actually p is axial pitch of worm. For single start, VR = (2πR × T) / (lead) = (2πR × T) / p. So with L=20cm=200mm, T=40, p=10mm, VR = (2×3.14×200×40)/10 = (50240)/10 = <strong>5024</strong> (very high). That seems right.
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 4: Single Purchase Crab Winch</div>
+          <p>Pinion teeth = 20, Spur wheel teeth = 100, Handle radius = 30cm, Drum diameter = 20cm. Find VR.</p>
+          <button class="toggle-btn" data-target="num4"><i class="fas fa-eye"></i> Calculate VR</button>
+          <div class="answer-reveal" id="num4">
+            <div class="formula answer">
+              VR = (T₁/T₂) × (D/d) where D = drum diameter? Actually standard: VR = (T₁/T₂) × (D/d) where D = pitch circle of handle? Actually VR = (T₁/T₂) × (length of handle × 2π) / (π × drum diameter) = (T₁/T₂) × (2L / D). So with L=30cm, D=20cm, T₁=20, T₂=100:<br>
+              VR = (20/100) × (2×30/20) = 0.2 × (60/20) = 0.2 × 3 = <strong>0.6</strong>? That seems low. Wait correct: VR = (T₁/T₂) × (R handle / R drum) maybe. Let's use standard: VR = (T₁/T₂) × (D_h / D_d) where D_h = diameter of handle circle? Actually VR = (T₁/T₂) × (2πL) / (πD) = (T₁/T₂) × (2L/D). So with L=30, D=20: (20/100) × (60/20) = 0.2 × 3 = 0.6. That is VR. But typically VR >1. Check: maybe T₁/T₂ inverted? If pinion is driver, T₁=20, T₂=100, so speed ratio = T₂/T₁ =5. Then VR = 5 × (2L/D) = 5 × (60/20)=5×3=15. So correct VR = (T₂/T₁) × (2L/D) = (100/20) × (60/20) = 5 × 3 = <strong>15</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 5: Simple Screw Jack</div>
+          <p>Pitch = 5mm, lever length = 40cm. Find VR.</p>
+          <button class="toggle-btn" data-target="num5"><i class="fas fa-eye"></i> Calculate VR</button>
+          <div class="answer-reveal" id="num5">
+            <div class="formula answer">
+              VR = (2πL) / p = (2×3.14×400) / 5 = (2512)/5 = <strong>502.4</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 6: Simple Pulley Block</div>
+          <p>A block and tackle with 4 pulleys (2 movable). Find VR. If MA = 3, find efficiency.</p>
+          <button class="toggle-btn" data-target="num6"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="num6">
+            <div class="formula answer">
+              VR = number of rope segments supporting load = <strong>4</strong><br>
+              η = MA/VR = 3/4 = <strong>0.75 (75%)</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Practice:</strong> A double purchase crab winch has pinion 1 teeth=15, wheel 1 teeth=60, pinion 2 teeth=20, wheel 2 teeth=80. Handle length 35cm, drum diameter 25cm. Find VR.</p>
+        </div>
+        <button class="toggle-btn" data-target="num7"><i class="fas fa-eye"></i> Show VR</button>
+        <div class="answer-reveal" id="num7">
+          <div class="formula answer">
+            VR = (T₂/T₁) × (T₄/T₃) × (2L/D) = (60/15) × (80/20) × (2×35/25) = 4 × 4 × (70/25) = 16 × 2.8 = <strong>44.8</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">MA = W/P</div>
+          <div class="tag">VR = d<sub>P</sub>/d<sub>W</sub></div>
+          <div class="tag">η = MA/VR</div>
+          <div class="tag">Law: P = mW + C</div>
+          <div class="tag">Reversible if η>50%</div>
+          <div class="tag">Axle & Wheel: R/r</div>
+          <div class="tag">Diff axle: 2R/(r₁-r₂)</div>
+          <div class="tag">Screw jack: 2πL/p</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Physics · Unit 6 · Semiconductor Physics</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: semiconductor / silicon / green-blue -->
+  <style>
+    :root {
+      --primary: #2d6a4f;          /* semiconductor green */
+      --primary-light: #40916c;
+      --accent: #1e6091;            /* silicon blue */
+      --accent-light: #34a0a4;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #1a3b2e, #2d6a4f, #1e6091);
+    }
+    /* header emoji: semiconductor symbols */
+    .header::after {
+      content: "🔬⚛️💡🔋";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* energy band diagram */
+    .band-demo {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .band-card {
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+    }
+    .band-gap {
+      height: 60px;
+      width: 100%;
+      background: linear-gradient(to bottom, #ccc 0%, #ccc 45%, white 45%, white 55%, #ccc 55%, #ccc 100%);
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    /* diode symbol */
+    .diode-symbol {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 2rem;
+    }
+    /* transistor symbol */
+    .transistor-symbol {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Rectifier') ? 'Show Rectifier' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Rectifier') ? 'Hide Rectifier' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🔬 Physics · Unit 6 🔬</h1>
+      <h2>Semiconductor Physics · Diodes · Transistors · Optoelectronics</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-microchip"></i> Energy Bands</span>
+        <span class="info-item"><i class="fas fa-bolt"></i> P-N Junction</span>
+        <span class="info-item"><i class="fas fa-sun"></i> Solar Cells, LED</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-microchip"></i> PHYS·UNIT6</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#bands"><i class="fas fa-chart-bar"></i> Energy Bands</a>
+        <a href="#semiconductors"><i class="fas fa-atom"></i> Semiconductor Types</a>
+        <a href="#pn"><i class="fas fa-bolt"></i> P-N Junction</a>
+        <a href="#rectifier"><i class="fas fa-wave-square"></i> Rectifier</a>
+        <a href="#transistor"><i class="fas fa-microchip"></i> Transistor</a>
+        <a href="#opto"><i class="fas fa-sun"></i> Optoelectronic</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-microchip"></i> PHYS Unit 6</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#bands"><i class="fas fa-chart-bar"></i> Energy bands: Insulator, Semiconductor, Conductor</a>
+      <a href="#semiconductors"><i class="fas fa-atom"></i> Intrinsic & Extrinsic Semiconductors</a>
+      <a href="#pn"><i class="fas fa-bolt"></i> P-N Junction, V-I characteristics</a>
+      <a href="#rectifier"><i class="fas fa-wave-square"></i> Half wave, Full wave rectifier</a>
+      <a href="#transistor"><i class="fas fa-microchip"></i> Transistor types, CE amplifier</a>
+      <a href="#opto"><i class="fas fa-sun"></i> Photocell, Solar cell, LED</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: ENERGY BANDS ========= -->
+    <section id="bands" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-bar"></i> Energy Bands in Solids · Insulator · Semiconductor · Conductor
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="band-demo">
+          <div class="band-card">
+            <h4>Conductor</h4>
+            <div style="height:60px; background:#ccc;"></div>
+            <p>No band gap (overlap)</p>
+          </div>
+          <div class="band-card">
+            <h4>Insulator</h4>
+            <div style="height:60px; background: linear-gradient(to bottom, #ccc 0%, #ccc 30%, white 30%, white 70%, #ccc 70%, #ccc 100%);"></div>
+            <p>Large band gap > 5 eV</p>
+          </div>
+          <div class="band-card">
+            <h4>Semiconductor</h4>
+            <div class="band-gap"></div>
+            <p>Small band gap ~1 eV</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: SEMICONDUCTOR TYPES ========= -->
+    <section id="semiconductors" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-atom"></i> Intrinsic & Extrinsic Semiconductors
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Intrinsic Semiconductor</div>
+          <p>Pure semiconductor (Si, Ge). Equal number of electrons and holes. Conductivity low.</p>
+        </div>
+        <div class="definition-box">
+          <div class="box-title">Extrinsic Semiconductor</div>
+          <p>Doped with impurities to increase conductivity.</p>
+          <ul>
+            <li><strong>N-type:</strong> Pentavalent impurity (P, As) – electrons majority</li>
+            <li><strong>P-type:</strong> Trivalent impurity (B, Al) – holes majority</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: P-N JUNCTION ========= -->
+    <section id="pn" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-bolt"></i> P-N Junction · Diode · V-I Characteristics
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Formation of P-N Junction</div>
+          <p>When P-type and N-type semiconductors are joined, diffusion creates depletion region and built-in potential.</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Junction Diode Symbol</div>
+          <div class="diode-symbol">
+            <span>▶</span><span style="border-left:4px solid black; height:30px;"></span>
+          </div>
+          <p>Arrow points from P to N (direction of conventional current).</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">V-I Characteristics</div>
+          <ul>
+            <li><strong>Forward bias:</strong> Current increases exponentially after knee voltage (0.7V for Si, 0.3V for Ge).</li>
+            <li><strong>Reverse bias:</strong> Very small leakage current until breakdown.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: DIODE AS RECTIFIER ========= -->
+    <section id="rectifier" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-wave-square"></i> Diode as Rectifier: Half Wave & Full Wave
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4>Half Wave Rectifier</h4>
+            <p>Single diode. Converts only one half of AC to DC. Output pulsating DC.</p>
+            <p>Efficiency ~40.6%.</p>
+          </div>
+          <div class="card">
+            <h4>Full Wave Rectifier (Centre Tapped)</h4>
+            <p>Two diodes and centre-tapped transformer. Both halves rectified. Efficiency ~81.2%.</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Circuit Diagram (Conceptual)</div>
+          <p>Half wave: AC source → Diode → Load → return.</p>
+          <p>Full wave: Centre-tapped transformer with two diodes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: TRANSISTORS ========= -->
+    <section id="transistor" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microchip"></i> Transistors: PNP, NPN, CE Amplifier
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Block Diagram & Types</div>
+          <p>Three regions: Emitter, Base, Collector.</p>
+          <div class="transistor-symbol">
+            <div><strong>NPN:</strong> ▶ (arrow out)</div>
+            <div><strong>PNP:</strong> ◀ (arrow in)</div>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Transistor as Amplifier (CE Mode)</div>
+          <p>Common emitter configuration provides voltage and current gain.</p>
+          <p>Small base current controls larger collector current. β = I<sub>C</sub> / I<sub>B</sub>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6: OPTOELECTRONIC DEVICES ========= -->
+    <section id="opto" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-sun"></i> Optoelectronic Devices: Photocell · Solar Cell · LED
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4>Photocell</h4>
+            <p><strong>Working:</strong> Light increases conductivity (photoconductive effect) or generates voltage (photovoltaic).</p>
+            <p><strong>Applications:</strong> Light sensors, automatic lighting, burglar alarms.</p>
+          </div>
+          <div class="card">
+            <h4>Solar Cell</h4>
+            <p><strong>Working:</strong> P-N junction converts light directly into electricity (photovoltaic effect).</p>
+            <p><strong>Applications:</strong> Solar panels, calculators, satellites.</p>
+          </div>
+          <div class="card">
+            <h4>LED (Light Emitting Diode)</h4>
+            <p><strong>Working:</strong> Forward bias causes electron-hole recombination, emitting light (electroluminescence).</p>
+            <p><strong>Applications:</strong> Indicators, displays, lighting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">Intrinsic: pure</div>
+          <div class="tag">N-type: electrons</div>
+          <div class="tag">P-type: holes</div>
+          <div class="tag">Diode: 1-way</div>
+          <div class="tag">Half wave: 40.6%</div>
+          <div class="tag">Full wave: 81.2%</div>
+          <div class="tag">NPN, PNP</div>
+          <div class="tag">LED: light</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

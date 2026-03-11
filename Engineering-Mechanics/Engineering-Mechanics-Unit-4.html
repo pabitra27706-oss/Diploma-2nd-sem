@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Engineering Mechanics · Unit V · Centroid & CG</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: centroid / CG / geometric -->
+  <style>
+    :root {
+      --primary: #3a6ea5;          /* centroid blue */
+      --primary-light: #5e8fc7;
+      --accent: #d97706;            /* CG amber */
+      --accent-light: #f59e0b;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #1e3a5f, #3a6ea5, #d97706);
+    }
+    /* header emoji: centroid symbols */
+    .header::after {
+      content: "📐⚖️🎯🔲";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* shape illustrations */
+    .shape-demo {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .shape-card {
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      width: 150px;
+      text-align: center;
+    }
+    .shape-symbol {
+      font-size: 3rem;
+    }
+    /* section shape previews */
+    .section-shape {
+      display: inline-block;
+      background: var(--light);
+      margin: 5px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Centroid') ? 'Show Centroid' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Centroid') ? 'Hide Centroid' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>📐 Engineering Mechanics · Unit V 📐</h1>
+      <h2>Centroid & Centre of Gravity · Composite Sections</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.E./Diploma</span>
+        <span class="info-item"><i class="fas fa-shapes"></i> Plane Figures</span>
+        <span class="info-item"><i class="fas fa-cubes"></i> Composite Sections</span>
+        <span class="info-item"><i class="fas fa-cube"></i> Simple Solids</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-gear"></i> MECH·UNIT5</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#concepts"><i class="fas fa-brain"></i> Concepts</a>
+        <a href="#plane"><i class="fas fa-shapes"></i> Plane Figures</a>
+        <a href="#composite"><i class="fas fa-puzzle-piece"></i> Composite Sections</a>
+        <a href="#solids"><i class="fas fa-cube"></i> Simple Solids</a>
+        <a href="#composite-solids"><i class="fas fa-cubes"></i> Composite Solids</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-gear"></i> MECH Unit 5</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#concepts"><i class="fas fa-brain"></i> Centroid vs CG</a>
+      <a href="#plane"><i class="fas fa-shapes"></i> Triangle, Rectangle, Circle, Semicircle, Quadrant</a>
+      <a href="#composite"><i class="fas fa-puzzle-piece"></i> T, Angle, I, Channel, Z, Cut-out, Built-up</a>
+      <a href="#solids"><i class="fas fa-cube"></i> Cube, Cuboid, Cylinder, Sphere</a>
+      <a href="#composite-solids"><i class="fas fa-cubes"></i> Composite Solids (concept)</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: CONCEPT & DEFINITION ========= -->
+    <section id="concepts" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-brain"></i> Centroid & Centre of Gravity - Concept
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-dot-circle"></i> Definitions</div>
+          <p><strong>Centroid:</strong> The geometric center of a plane figure (point where the entire area is assumed to be concentrated). It depends only on shape.</p>
+          <p><strong>Centre of Gravity (CG):</strong> The point where the entire weight of a body is assumed to act. For uniform bodies, CG coincides with centroid.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: CENTROID OF PLANE FIGURES ========= -->
+    <section id="plane" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-shapes"></i> Centroid of Plane Figures
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="shape-demo">
+          <div class="shape-card">
+            <div class="shape-symbol">△</div>
+            <h4>Triangle</h4>
+            <p>Centroid at intersection of medians, h/3 from base</p>
+          </div>
+          <div class="shape-card">
+            <div class="shape-symbol">□</div>
+            <h4>Rectangle</h4>
+            <p>Centroid at center (b/2, h/2)</p>
+          </div>
+          <div class="shape-card">
+            <div class="shape-symbol">○</div>
+            <h4>Circle</h4>
+            <p>Centroid at center</p>
+          </div>
+          <div class="shape-card">
+            <div class="shape-symbol">◡</div>
+            <h4>Semicircle</h4>
+            <p>y̅ = 4r/(3π) from diameter</p>
+          </div>
+          <div class="shape-card">
+            <div class="shape-symbol">◩</div>
+            <h4>Quadrant</h4>
+            <p>x̅ = y̅ = 4r/(3π) from corner</p>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Uniform Triangular Lamina</h4>
+            <p>Centroid at a distance h/3 from base (for altitude h).</p>
+          </div>
+          <div class="card">
+            <h4>Uniform Rectangular Lamina</h4>
+            <p>Centroid at (b/2, h/2).</p>
+          </div>
+          <div class="card">
+            <h4>Uniform Circular Lamina</h4>
+            <p>Centroid at center of circle.</p>
+          </div>
+          <div class="card">
+            <h4>Uniform Semi-circular Lamina</h4>
+            <p>Centroid distance from base = 4r/(3π).</p>
+          </div>
+          <div class="card">
+            <h4>Uniform Quadrant of a Circle</h4>
+            <p>Centroid at x̅ = y̅ = 4r/(3π) from the two straight edges.</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Semicircle</div>
+          <p>Find centroid of a semicircular lamina of radius 100mm from the base.</p>
+          <button class="toggle-btn" data-target="plane1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="plane1">
+            <div class="formula answer">
+              y̅ = 4r/(3π) = 4×100/(3×3.14) = 400/9.42 = <strong>42.46 mm</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: CENTROID OF COMPOSITE SECTIONS ========= -->
+    <section id="composite" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-puzzle-piece"></i> Centroid of Composite Sections
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title">General Formula</div>
+          <p>For composite areas, centroid coordinates:</p>
+          <div class="formula">x̅ = Σ(Aᵢ × xᵢ) / ΣAᵢ</div>
+          <div class="formula">y̅ = Σ(Aᵢ × yᵢ) / ΣAᵢ</div>
+          <p>where Aᵢ = area of each part, (xᵢ, yᵢ) = centroid of that part.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>T-Section</h4>
+            <p>Divide into two rectangles (flange and web). Find overall centroid.</p>
+          </div>
+          <div class="card">
+            <h4>Angle Section (L)</h4>
+            <p>Equal and unequal legs. Two rectangles.</p>
+          </div>
+          <div class="card">
+            <h4>I-Section</h4>
+            <p>Three rectangles: top flange, web, bottom flange.</p>
+          </div>
+          <div class="card">
+            <h4>Channel Section</h4>
+            <p>Similar to I but flanges on same side? Actually channel has web and two flanges.</p>
+          </div>
+          <div class="card">
+            <h4>Z-Section</h4>
+            <p>Three rectangles arranged in Z shape.</p>
+          </div>
+          <div class="card">
+            <h4>Cut-out Sections</h4>
+            <p>Subtract area of hole (negative area).</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: T-Section</div>
+          <p>A T-section has flange 100×20mm, web 80×20mm (total height 100mm). Find centroid from base.</p>
+          <button class="toggle-btn" data-target="comp1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="comp1">
+            <div class="formula answer">
+              Divide into two rectangles:<br>
+              Part 1 (flange): A₁ = 100×20 = 2000 mm², y₁ = 100 - 10 = 90mm (from base)<br>
+              Part 2 (web): A₂ = 80×20 = 1600 mm², y₂ = 40mm (center of web from base)<br>
+              ΣA = 3600 mm²<br>
+              ΣA·y = 2000×90 + 1600×40 = 180000 + 64000 = 244000<br>
+              y̅ = 244000 / 3600 = <strong>67.78 mm</strong> from base.
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Unequal Angle Section</div>
+          <p>Angle 150×100×10mm (legs thickness 10mm). Find centroid from left and bottom.</p>
+          <button class="toggle-btn" data-target="comp2"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="comp2">
+            <div class="formula answer">
+              Two rectangles:<br>
+              Vertical leg: 150×10, area=1500, centroid x=5, y=75<br>
+              Horizontal leg: 100×10, area=1000, but careful: it extends from bottom, so its centroid x=50, y=5<br>
+              But horizontal leg length 100, but part of it overlaps? Actually angle: vertical leg 150 tall, 10 wide; horizontal leg 100 long, 10 thick, attached at bottom. So coordinates:<br>
+              A₁=1500, x₁=5, y₁=75<br>
+              A₂=1000, x₂=50 (since from left edge of horizontal), y₂=5<br>
+              ΣA=2500<br>
+              x̅ = (1500×5 + 1000×50)/2500 = (7500 + 50000)/2500 = 57500/2500 = <strong>23 mm</strong><br>
+              y̅ = (1500×75 + 1000×5)/2500 = (112500 + 5000)/2500 = 117500/2500 = <strong>47 mm</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Cut-out Section</div>
+          <p>A rectangular plate 200×150mm has a circular hole of diameter 50mm at center. Find centroid of remaining area.</p>
+          <button class="toggle-btn" data-target="comp3"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="comp3">
+            <div class="formula answer">
+              Full rectangle area = 200×150 = 30000 mm², centroid at (100,75)<br>
+              Hole area (negative) = π×25² = 1963.5 mm², centroid at (100,75)<br>
+              Since hole is at same centroid, overall centroid remains at <strong>(100,75)</strong>.<br>
+              (If hole is offset, use negative area method.)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Built-up Section</div>
+          <p>Two channel sections (each area 2500 mm², CG at 20mm from back) placed back-to-back 200mm apart. Find overall CG.</p>
+          <button class="toggle-btn" data-target="comp4"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="comp4">
+            <div class="formula answer">
+              By symmetry, y̅ is at mid-height of channels. x̅: from left edge, first channel CG at 20, second at 200-20=180.<br>
+              ΣA·x = 2500×20 + 2500×180 = 50000 + 450000 = 500000<br>
+              ΣA = 5000, x̅ = 500000/5000 = <strong>100 mm</strong> (centerline)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: CENTRE OF GRAVITY OF SIMPLE SOLIDS ========= -->
+    <section id="solids" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-cube"></i> CG of Simple Solids
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="shape-demo">
+          <div class="shape-card">
+            <div class="shape-symbol">⬛</div>
+            <h4>Cube</h4>
+            <p>CG at geometric center (a/2, a/2, a/2)</p>
+          </div>
+          <div class="shape-card">
+            <div class="shape-symbol">🧱</div>
+            <h4>Cuboid</h4>
+            <p>CG at (l/2, b/2, h/2)</p>
+          </div>
+          <div class="shape-card">
+            <div class="shape-symbol">🥫</div>
+            <h4>Cylinder</h4>
+            <p>CG on axis at mid-height (h/2 from base)</p>
+          </div>
+          <div class="shape-card">
+            <div class="shape-symbol">⚪</div>
+            <h4>Sphere</h4>
+            <p>CG at center</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: CG OF COMPOSITE SOLIDS (CONCEPT ONLY) ========= -->
+    <section id="composite-solids" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-cubes"></i> CG of Composite Solids (Concept only)
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Method</div>
+          <p>For composite solids (max two simple solids), the CG coordinates are found using:</p>
+          <div class="formula">x̅ = Σ(Vᵢ × xᵢ) / ΣVᵢ</div>
+          <div class="formula">y̅ = Σ(Vᵢ × yᵢ) / ΣVᵢ</div>
+          <div class="formula">z̅ = Σ(Vᵢ × zᵢ) / ΣVᵢ</div>
+          <p>where Vᵢ = volume of each part, (xᵢ, yᵢ, zᵢ) = CG of that part.</p>
+          <p><strong>Note:</strong> Problems not required as per syllabus, only conceptual understanding.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Conceptual Example</div>
+          <p>A solid cylinder of radius r and height h has a hemisphere of same radius attached to its top. The CG will lie on the axis, somewhere between the cylinder's CG (h/2) and the hemisphere's CG (3r/8 from base of hemisphere).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">Triangle: h/3 from base</div>
+          <div class="tag">Semicircle: 4r/(3π)</div>
+          <div class="tag">Quadrant: 4r/(3π)</div>
+          <div class="tag">Composite: x̅ = ΣAx / ΣA</div>
+          <div class="tag">Cut-out: negative area</div>
+          <div class="tag">Solids: CG at center</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

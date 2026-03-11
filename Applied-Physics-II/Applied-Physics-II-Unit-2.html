@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Physics · Unit 2 · Optics</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: optics / light / rainbow -->
+  <style>
+    :root {
+      --primary: #b85e8c;          /* magenta/pink for optics */
+      --primary-light: #d47aa8;
+      --accent: #3a8fb0;            /* blue for light */
+      --accent-light: #5aa9c9;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #4a2e5a, #b85e8c, #3a8fb0);
+    }
+    /* header emoji: optics symbols */
+    .header::after {
+      content: "🔭🔬💡🌈";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* lens illustration */
+    .lens-demo {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .lens-card {
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+    }
+    .lens-icon {
+      font-size: 3rem;
+    }
+    /* ray diagram placeholders */
+    .ray-diagram {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .diagram-box {
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      font-family: monospace;
+      text-align: center;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Magnification') ? 'Show Magnification' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Magnification') ? 'Hide Magnification' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🔭 Physics · Unit 2 🔭</h1>
+      <h2>Optics · Lenses · TIR · Instruments · Wave Optics</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-lightbulb"></i> Reflection/Refraction</span>
+        <span class="info-item"><i class="fas fa-microscope"></i> Microscope</span>
+        <span class="info-item"><i class="fas fa-telescope"></i> Telescope</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-lightbulb"></i> PHYS·UNIT2</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#basics"><i class="fas fa-circle"></i> Basic Laws</a>
+        <a href="#lenses"><i class="fas fa-glasses"></i> Lenses</a>
+        <a href="#tir"><i class="fas fa-exchange-alt"></i> TIR & Fiber</a>
+        <a href="#instruments"><i class="fas fa-microscope"></i> Instruments</a>
+        <a href="#wave"><i class="fas fa-wave-square"></i> Wave Optics</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-lightbulb"></i> PHYS Unit 2</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#basics"><i class="fas fa-circle"></i> Reflection, Refraction, Refractive index</a>
+      <a href="#lenses"><i class="fas fa-glasses"></i> Lens formula, Power, Magnification</a>
+      <a href="#tir"><i class="fas fa-exchange-alt"></i> Total Internal Reflection, Optical Fiber</a>
+      <a href="#instruments"><i class="fas fa-microscope"></i> Simple/Compound Microscope, Telescope</a>
+      <a href="#wave"><i class="fas fa-wave-square"></i> Interference & Diffraction (qualitative)</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: BASIC OPTICAL LAWS ========= -->
+    <section id="basics" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> Basic Optical Laws: Reflection · Refraction · Refractive Index
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-arrow-right"></i> Reflection</div>
+          <p>Angle of incidence = Angle of reflection. Incident ray, reflected ray, and normal lie in same plane.</p>
+        </div>
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-water"></i> Refraction (Snell's Law)</div>
+          <p>n₁ sinθ₁ = n₂ sinθ₂</p>
+          <p>where n = refractive index of medium.</p>
+        </div>
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-ruler"></i> Refractive Index</div>
+          <p>n = speed of light in vacuum / speed of light in medium = c/v</p>
+          <p>Also n₂₁ = n₂/n₁ (relative refractive index).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: LENSES ========= -->
+    <section id="lenses" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-glasses"></i> Thin Lenses · Lens Formula · Power · Magnification
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="lens-demo">
+          <div class="lens-card">
+            <div class="lens-icon">🔍</div>
+            <h4>Convex (Converging)</h4>
+          </div>
+          <div class="lens-card">
+            <div class="lens-icon">🔎</div>
+            <h4>Concave (Diverging)</h4>
+          </div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-calculator"></i> Lens Formula</div>
+          <div class="formula">1/f = 1/v - 1/u</div>
+          <p>where f = focal length, v = image distance, u = object distance (sign convention: u is negative for real object).</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-microchip"></i> Lens Maker's Formula (no deduction)</div>
+          <div class="formula">1/f = (μ - 1)(1/R₁ - 1/R₂)</div>
+          <p>where μ = refractive index of lens material, R₁, R₂ = radii of curvature.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-bolt"></i> Power of Lens</h4>
+            <p>P = 1/f (in meters). Unit: Diopter (D).</p>
+            <p>Convex: P positive; Concave: P negative.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-arrows-up-down"></i> Magnification (m)</h4>
+            <p>m = height of image / height of object = v/u</p>
+            <p>For lens, m = f / (f+u) etc.</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 1</div>
+          <p>An object is placed 30cm from a convex lens of focal length 20cm. Find image distance and magnification.</p>
+          <button class="toggle-btn" data-target="lens1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="lens1">
+            <div class="formula answer">
+              1/f = 1/v - 1/u, with u = -30cm, f = +20cm<br>
+              1/20 = 1/v - 1/(-30) ⇒ 1/20 = 1/v + 1/30<br>
+              1/v = 1/20 - 1/30 = (3-2)/60 = 1/60 ⇒ v = <strong>60 cm</strong> (real image)<br>
+              m = v/u = 60/(-30) = <strong>-2</strong> (inverted, magnified)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 2</div>
+          <p>A concave lens has focal length -15cm. Object at 25cm. Find image position and magnification.</p>
+          <button class="toggle-btn" data-target="lens2"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="lens2">
+            <div class="formula answer">
+              u = -25cm, f = -15cm<br>
+              1/f = 1/v - 1/u ⇒ 1/(-15) = 1/v - 1/(-25)<br>
+              -1/15 = 1/v + 1/25 ⇒ 1/v = -1/15 - 1/25 = -(5+3)/75 = -8/75<br>
+              v = <strong>-9.375 cm</strong> (virtual image on same side)<br>
+              m = v/u = (-9.375)/(-25) = <strong>+0.375</strong> (erect, diminished)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Power of Lens</div>
+          <p>Two lenses of powers +2D and -1D are in contact. Find net power and focal length.</p>
+          <button class="toggle-btn" data-target="lens3"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="lens3">
+            <div class="formula answer">
+              P = P₁ + P₂ = 2 + (-1) = <strong>+1 D</strong><br>
+              f = 1/P = 1/1 = <strong>1 m = 100 cm</strong> (convex)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: TOTAL INTERNAL REFLECTION & OPTICAL FIBER ========= -->
+    <section id="tir" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-exchange-alt"></i> Total Internal Reflection · Critical Angle · Optical Fiber
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-angle-double-right"></i> Critical Angle (C)</div>
+          <p>sin C = n₂/n₁ &nbsp; (for n₁ > n₂, when angle in denser medium gives 90° in rarer).</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-check-circle"></i> Conditions for TIR</div>
+          <ul>
+            <li>Light must travel from denser to rarer medium.</li>
+            <li>Angle of incidence > critical angle.</li>
+          </ul>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-fiber"></i> Applications in Optical Fiber</div>
+          <p>Optical fibers use TIR to guide light along core (high refractive index) surrounded by cladding (lower index).</p>
+          <p>Used in telecommunications, endoscopy, sensors.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 3</div>
+          <p>Refractive index of glass is 1.5. Find critical angle for glass-air interface.</p>
+          <button class="toggle-btn" data-target="tir1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="tir1">
+            <div class="formula answer">
+              sin C = 1/μ = 1/1.5 = 0.6667<br>
+              C = sin⁻¹(0.6667) = <strong>41.8°</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: OPTICAL INSTRUMENTS ========= -->
+    <section id="instruments" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microscope"></i> Optical Instruments: Microscope & Telescope
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <!-- Simple Microscope -->
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-search"></i> Simple Microscope</h4>
+            <p>Single convex lens. Magnification when image at D (25cm):</p>
+            <div class="formula">m = 1 + D/f</div>
+            <p>When image at infinity: m = D/f</p>
+            <div class="ray-diagram">
+              <div class="diagram-box">[Object within focal point → virtual image]</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4><i class="fas fa-microscope"></i> Compound Microscope</h4>
+            <p>Two lenses: objective (f₀) and eyepiece (fₑ). Magnification:</p>
+            <div class="formula">m = m₀ × mₑ = (L/f₀) × (D/fₑ)</div>
+            <p>where L = tube length (distance between lenses).</p>
+          </div>
+
+          <div class="card">
+            <h4><i class="fas fa-telescope"></i> Astronomical Telescope (Refracting)</h4>
+            <p>Objective (large f₀) and eyepiece (small fₑ). Magnification for normal adjustment:</p>
+            <div class="formula">m = f₀ / fₑ</div>
+            <p>Image at infinity, inverted.</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Simple Microscope</div>
+          <p>A simple microscope has focal length 5cm. Find magnification at D = 25cm (near point).</p>
+          <button class="toggle-btn" data-target="inst1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="inst1">
+            <div class="formula answer">
+              m = 1 + D/f = 1 + 25/5 = 1 + 5 = <strong>6</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Compound Microscope</div>
+          <p>Focal lengths: f₀ = 1cm, fₑ = 2cm, tube length L = 15cm. Find magnification.</p>
+          <button class="toggle-btn" data-target="inst2"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="inst2">
+            <div class="formula answer">
+              m = (L/f₀) × (D/fₑ) = (15/1) × (25/2) = 15 × 12.5 = <strong>187.5</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Astronomical Telescope</div>
+          <p>f₀ = 100cm, fₑ = 5cm. Find magnification.</p>
+          <button class="toggle-btn" data-target="inst3"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="inst3">
+            <div class="formula answer">
+              m = f₀/fₑ = 100/5 = <strong>20</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: WAVE OPTICS (QUALITATIVE) ========= -->
+    <section id="wave" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-wave-square"></i> Wave Optics: Interference & Diffraction (Qualitative)
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-layer-group"></i> Interference of Light</div>
+          <p>Superposition of two coherent light waves produces alternate bright and dark fringes (constructive and destructive interference).</p>
+          <p>Condition for constructive: path difference = nλ</p>
+          <p>Destructive: path difference = (2n+1)λ/2</p>
+          <p>Example: Young's double slit experiment.</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-sliders-h"></i> Diffraction of Light</div>
+          <p>Bending of light around obstacles or through apertures. Central maximum is brightest with secondary maxima/minima.</p>
+          <p>Single slit diffraction: width of central maximum = 2λD/d</p>
+          <p>Examples: Diffraction grating, CD/DVD reflection colors.</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">Comparison</div>
+          <p><strong>Interference:</strong> from two separate sources; fringes equally spaced.</p>
+          <p><strong>Diffraction:</strong> from single source/wavefront; central maximum wider, intensity falls off.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">n₁ sinθ₁ = n₂ sinθ₂</div>
+          <div class="tag">1/f = 1/v - 1/u</div>
+          <div class="tag">P = 1/f (m)</div>
+          <div class="tag">m = v/u</div>
+          <div class="tag">sin C = 1/μ</div>
+          <div class="tag">Simple Micro: m = 1 + D/f</div>
+          <div class="tag">Compound: m = (L/f₀)(D/fₑ)</div>
+          <div class="tag">Telescope: m = f₀/fₑ</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

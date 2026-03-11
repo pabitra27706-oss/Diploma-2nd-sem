@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Engineering Mechanics · Unit IV · Friction</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: friction / rough / amber-brown -->
+  <style>
+    :root {
+      --primary: #b85e3a;          /* friction orange-brown */
+      --primary-light: #d47c5a;
+      --accent: #5a4c3a;            /* dark earth */
+      --accent-light: #7e6e5a;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #4a2e1a, #b85e3a, #5a4c3a);
+    }
+    /* header emoji: friction symbols */
+    .header::after {
+      content: "⛓️🪨📐🔧";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* inclined plane illustration */
+    .inclined-demo {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+    .plane {
+      width: 250px;
+      height: 150px;
+      background: #ccc;
+      clip-path: polygon(0% 100%, 100% 100%, 20% 0%);
+      position: relative;
+    }
+    .block {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      position: absolute;
+      bottom: 20px;
+      left: 60px;
+    }
+    .force-arrow {
+      position: absolute;
+      font-size: 1.2rem;
+    }
+    /* friction angle illustration */
+    .angle-demo {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Force') ? 'Show Force' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Force') ? 'Hide Force' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>⛓️ Engineering Mechanics · Unit IV ⛓️</h1>
+      <h2>Friction · Laws · Angle of Repose · Inclined Planes</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.E./Diploma</span>
+        <span class="info-item"><i class="fas fa-hand"></i> Limiting Friction</span>
+        <span class="info-item"><i class="fas fa-mountain"></i> Angle of Repose</span>
+        <span class="info-item"><i class="fas fa-calculator"></i> Simple Problems</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-gear"></i> MECH·UNIT4</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#basics"><i class="fas fa-circle"></i> Friction Basics</a>
+        <a href="#laws"><i class="fas fa-gavel"></i> Laws & Coefficients</a>
+        <a href="#horizontal"><i class="fas fa-arrow-right"></i> Horizontal Plane</a>
+        <a href="#inclined"><i class="fas fa-mountain"></i> Inclined Plane</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-gear"></i> MECH Unit 4</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#basics"><i class="fas fa-circle"></i> Friction, Types, Laws</a>
+      <a href="#laws"><i class="fas fa-gavel"></i> Limiting Friction, μ, Angle of Friction, Cone</a>
+      <a href="#horizontal"><i class="fas fa-arrow-right"></i> Horizontal Surface (parallel/inclined force)</a>
+      <a href="#inclined"><i class="fas fa-mountain"></i> Inclined Plane (parallel/inclined force)</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: BASIC CONCEPTS OF FRICTION ========= -->
+    <section id="basics" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> Basic Concepts of Friction
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-hand"></i> What is Friction?</div>
+          <p><strong>Friction</strong> is the resisting force that acts along the tangent between two surfaces in contact when one tends to slide over the other.</p>
+          <p><strong>Relevance in engineering:</strong> Friction is essential for motion (walking, braking) and also causes energy loss (wear, heat).</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-list"></i> Types of Friction</h4>
+            <ul>
+              <li><strong>Static friction:</strong> between surfaces at rest</li>
+              <li><strong>Kinetic (dynamic) friction:</strong> between sliding surfaces</li>
+              <li><strong>Rolling friction:</strong> for rolling objects</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-gavel"></i> Laws of Friction</h4>
+            <ul>
+              <li>Friction acts opposite to motion</li>
+              <li>Friction is independent of area of contact</li>
+              <li>Limiting friction ∝ normal reaction (F = μN)</li>
+              <li>Kinetic friction < static friction</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: LIMITING FRICTION, COEFFICIENT, ANGLE OF FRICTION, CONE OF FRICTION, ANGLE OF REPOSE ========= -->
+    <section id="laws" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-gavel"></i> Limiting Friction · μ · Angle of Friction · Cone · Repose
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-stop"></i> Limiting Friction</div>
+          <p>The maximum friction force that can be developed before motion starts. It is proportional to normal reaction.</p>
+          <div class="formula">F<sub>max</sub> = μ<sub>s</sub> N</div>
+          <p>where μ<sub>s</sub> = coefficient of static friction, N = normal reaction.</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-arrow-right"></i> Coefficient of Friction (μ)</div>
+          <p>μ = F / N (ratio of friction force to normal reaction). It is dimensionless.</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-angle-double-right"></i> Angle of Friction (φ)</div>
+          <p>The angle between the normal reaction and the resultant of normal and limiting friction forces.</p>
+          <div class="formula">tan φ = μ</div>
+          <p>φ = angle of friction.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-draw-polygon"></i> Cone of Friction</h4>
+            <p>A right circular cone with semi-vertex angle equal to angle of friction. If the resultant force lies inside this cone, no sliding occurs.</p>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-mountain"></i> Angle of Repose (θ)</h4>
+            <p>The maximum angle of an inclined plane on which a body can rest without sliding.</p>
+            <div class="formula">tan θ = μ</div>
+            <p><strong>Relation:</strong> Angle of repose = Angle of friction (θ = φ).</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Relation Example</div>
+          <p>If coefficient of friction is 0.3, find angle of friction and angle of repose.</p>
+          <button class="toggle-btn" data-target="rel1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="rel1">
+            <div class="formula answer">
+              φ = tan⁻¹(0.3) = <strong>16.7°</strong><br>
+              Angle of repose = φ = <strong>16.7°</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: EQUILIBRIUM ON HORIZONTAL SURFACE ========= -->
+    <section id="horizontal" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrow-right"></i> Equilibrium on Horizontal Surface
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title">Force Parallel to Plane</div>
+          <p>For a body on horizontal surface with force P parallel to surface:</p>
+          <ul>
+            <li>Normal reaction N = mg</li>
+            <li>Friction force F = P (if in equilibrium)</li>
+            <li>Limiting condition: P = μN = μmg</li>
+          </ul>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Parallel Force</div>
+          <p>A block of 50N weight is on horizontal surface. μ = 0.4. Find force required to just move it.</p>
+          <button class="toggle-btn" data-target="horiz1"><i class="fas fa-eye"></i> Calculate Force</button>
+          <div class="answer-reveal" id="horiz1">
+            <div class="formula answer">
+              N = 50N<br>
+              F<sub>max</sub> = μN = 0.4 × 50 = <strong>20N</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Force Inclined to Plane</div>
+          <p>If force P acts at angle θ to horizontal:</p>
+          <ul>
+            <li>P cosθ = F (friction)</li>
+            <li>N = mg - P sinθ (if force pulls upward)</li>
+            <li>Limiting condition: P cosθ = μ (mg - P sinθ)</li>
+          </ul>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Inclined Force</div>
+          <p>A 100N block on horizontal surface, μ=0.3. Force applied at 30° above horizontal. Find P to just move.</p>
+          <button class="toggle-btn" data-target="horiz2"><i class="fas fa-eye"></i> Calculate P</button>
+          <div class="answer-reveal" id="horiz2">
+            <div class="formula answer">
+              Limiting: P cos30° = μ (mg - P sin30°)<br>
+              P × 0.866 = 0.3 (100 - 0.5P)<br>
+              0.866P = 30 - 0.15P<br>
+              1.016P = 30 ⇒ P = <strong>29.53 N</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: EQUILIBRIUM ON INCLINED PLANE ========= -->
+    <section id="inclined" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-mountain"></i> Equilibrium on Inclined Plane
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="inclined-demo">
+          <div class="plane">
+            <div class="block"></div>
+            <div class="force-arrow" style="top:60px; left:100px;">↓ mg</div>
+            <div class="force-arrow" style="top:30px; left:80px; transform:rotate(-30deg);">→ P</div>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Force Parallel to Plane</div>
+          <p>Body of weight W on incline angle θ:</p>
+          <ul>
+            <li>Component down plane = W sinθ</li>
+            <li>Normal reaction N = W cosθ</li>
+            <li>For equilibrium with force P up plane: P = W sinθ + μN (if impending up) or P = W sinθ - μN (if impending down)</li>
+          </ul>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Parallel Force on Incline</div>
+          <p>A 200N block rests on 20° incline. μ=0.25. Find force parallel to plane to just push it up.</p>
+          <button class="toggle-btn" data-target="incl1"><i class="fas fa-eye"></i> Calculate P</button>
+          <div class="answer-reveal" id="incl1">
+            <div class="formula answer">
+              N = 200 cos20° = 200×0.94 = 188N<br>
+              Friction down = μN = 0.25×188 = 47N<br>
+              Component down = 200 sin20° = 200×0.342 = 68.4N<br>
+              P = 68.4 + 47 = <strong>115.4 N</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Force Inclined to Plane</div>
+          <p>Force P applied at angle α to the incline:</p>
+          <p>Components: P cosα along plane, P sinα perpendicular to plane.</p>
+          <p>Normal reaction N = W cosθ - P sinα</p>
+          <p>Friction F = μN</p>
+          <p>Equilibrium: P cosα = W sinθ + F (for impending up)</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Inclined Force on Incline</div>
+          <p>Block 500N on 25° incline. μ=0.3. Force P applied at 15° to the incline (above the incline). Find P to just move up.</p>
+          <button class="toggle-btn" data-target="incl2"><i class="fas fa-eye"></i> Calculate P</button>
+          <div class="answer-reveal" id="incl2">
+            <div class="formula answer">
+              W sinθ = 500 sin25° = 500×0.423 = 211.5N<br>
+              W cosθ = 500 cos25° = 500×0.906 = 453N<br>
+              Let P be the force.<br>
+              N = W cosθ - P sinα = 453 - P sin15° = 453 - 0.259P<br>
+              F = μN = 0.3(453 - 0.259P) = 135.9 - 0.0777P<br>
+              Equilibrium along plane: P cosα = W sinθ + F<br>
+              P cos15° = 211.5 + 135.9 - 0.0777P<br>
+              0.966P = 347.4 - 0.0777P<br>
+              1.0437P = 347.4 ⇒ P = <strong>332.8 N</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional simple problems -->
+        <div class="exercise-area">
+          <p><strong>Problem 1:</strong> A 80kg crate rests on horizontal floor. μ=0.4. Find force required at 20° above horizontal to just start motion.</p>
+        </div>
+        <button class="toggle-btn" data-target="prob1"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="prob1">
+          <div class="formula answer">
+            W = 80×9.81 = 784.8N<br>
+            P cos20° = μ(784.8 - P sin20°)<br>
+            0.94P = 0.4(784.8 - 0.342P) = 313.92 - 0.1368P<br>
+            1.0768P = 313.92 ⇒ P = <strong>291.5 N</strong>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem 2:</strong> A 300N block is on 30° incline. μ=0.2. Find force parallel to incline to prevent sliding down.</p>
+        </div>
+        <button class="toggle-btn" data-target="prob2"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="prob2">
+          <div class="formula answer">
+            N = 300 cos30° = 300×0.866 = 259.8N<br>
+            Friction max up = μN = 0.2×259.8 = 52N<br>
+            Component down = 300 sin30° = 150N<br>
+            Since 150 > 52, it will slide. Force needed up = 150 - 52 = <strong>98N</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">F<sub>max</sub> = μN</div>
+          <div class="tag">tan φ = μ</div>
+          <div class="tag">Angle of repose θ = φ</div>
+          <div class="tag">Horizontal: P cosθ = μ(mg ± P sinθ)</div>
+          <div class="tag">Incline: P cosα = W sinθ + μ(W cosθ ∓ P sinα)</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

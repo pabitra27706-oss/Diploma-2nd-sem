@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Engineering Mechanics · Unit III · Equilibrium & Beams</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: equilibrium / balance / green-blue -->
+  <style>
+    :root {
+      --primary: #2d6a4f;          /* equilibrium green */
+      --primary-light: #40916c;
+      --accent: #1e6091;            /* beam blue */
+      --accent-light: #34a0a4;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #1a3b2e, #2d6a4f, #1e6091);
+    }
+    /* header emoji: equilibrium symbols */
+    .header::after {
+      content: "⚖️📐🏗️🔩";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* beam support illustrations */
+    .support-demo {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .support-card {
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 15px;
+      width: 150px;
+      text-align: center;
+    }
+    .support-symbol {
+      font-size: 2.5rem;
+    }
+    /* free body diagram placeholder */
+    .fbd-demo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin: 20px 0;
+    }
+    .block {
+      width: 60px;
+      height: 60px;
+      background: #aaa;
+      position: relative;
+    }
+    .arrow-up { position: absolute; top: -20px; left: 25px; }
+    .arrow-down { position: absolute; bottom: -20px; left: 25px; }
+    .arrow-left { position: absolute; left: -20px; top: 25px; }
+    .arrow-right { position: absolute; right: -20px; top: 25px; }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Reaction') ? 'Show Reaction' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Reaction') ? 'Hide Reaction' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>⚖️ Engineering Mechanics · Unit III ⚖️</h1>
+      <h2>Equilibrium · Lami's Theorem · Beams · Supports · Reactions</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.E./Diploma</span>
+        <span class="info-item"><i class="fas fa-scale-balanced"></i> Equilibrium</span>
+        <span class="info-item"><i class="fas fa-draw-polygon"></i> Free Body Diagram</span>
+        <span class="info-item"><i class="fas fa-archway"></i> Beam Reactions</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-gear"></i> MECH·UNIT3</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#concurrent"><i class="fas fa-arrows-to-circle"></i> Concurrent Equilibrium</a>
+        <a href="#lami"><i class="fas fa-greek-helmet"></i> Lami's Theorem</a>
+        <a href="#fbd"><i class="fas fa-draw-polygon"></i> Free Body Diagram</a>
+        <a href="#nonconcurrent"><i class="fas fa-arrows-left-right"></i> Non-concurrent</a>
+        <a href="#beams"><i class="fas fa-archway"></i> Beams & Supports</a>
+        <a href="#reactions"><i class="fas fa-calculator"></i> Beam Reactions</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-gear"></i> MECH Unit 3</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#concurrent"><i class="fas fa-arrows-to-circle"></i> Concurrent Force Equilibrium</a>
+      <a href="#lami"><i class="fas fa-greek-helmet"></i> Lami's Theorem, Triangle/Polygon Law</a>
+      <a href="#fbd"><i class="fas fa-draw-polygon"></i> Free Body Diagram</a>
+      <a href="#nonconcurrent"><i class="fas fa-arrows-left-right"></i> Non-concurrent Parallel Forces</a>
+      <a href="#beams"><i class="fas fa-archway"></i> Beam Types, Supports, Loads</a>
+      <a href="#reactions"><i class="fas fa-calculator"></i> Beam Reactions (SSB, Overhang, UDL)</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: EQUILIBRIUM OF CO-PLANAR CONCURRENT FORCE SYSTEM ========= -->
+    <section id="concurrent" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrows-to-circle"></i> Equilibrium of Concurrent Force System
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-scale-balanced"></i> Conditions for Equilibrium</div>
+          <p>For a concurrent force system, equilibrium occurs when the resultant force is zero.</p>
+          <div class="formula">ΣF<sub>x</sub> = 0, ΣF<sub>y</sub> = 0</div>
+        </div>
+
+        <!-- Lami's Theorem -->
+        <div id="lami" class="concept-box">
+          <div class="box-title"><i class="fas fa-greek-helmet"></i> Lami's Theorem</div>
+          <p>If three concurrent forces are in equilibrium, each force is proportional to the sine of the angle between the other two forces.</p>
+          <div class="formula">P / sinα = Q / sinβ = R / sinγ</div>
+          <p>where α, β, γ are angles opposite to forces P, Q, R respectively.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Lami's Theorem</div>
+          <p>A weight of 500N is suspended by two strings making angles of 30° and 60° with the horizontal. Find tensions.</p>
+          <button class="toggle-btn" data-target="lami1"><i class="fas fa-eye"></i> Show Solution</button>
+          <div class="answer-reveal" id="lami1">
+            <div class="formula answer">
+              The three forces: T₁, T₂, and 500N weight are in equilibrium.<br>
+              Angles: between T₁ and T₂ = 90° (since 30+60=90, but careful: between the two strings is 90°)<br>
+              Angle opposite to 500N = 90°, opposite to T₁ = 150°, opposite to T₂ = 120°<br>
+              Using Lami: T₁/sin150° = T₂/sin120° = 500/sin90°<br>
+              sin150°=0.5, sin120°=0.866, sin90°=1<br>
+              T₁ = 500 × 0.5 = <strong>250N</strong><br>
+              T₂ = 500 × 0.866 = <strong>433N</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Triangle Law & Polygon Law of Equilibrium</div>
+          <p><strong>Triangle Law:</strong> If three forces are in equilibrium, they can be represented by the sides of a triangle taken in order.</p>
+          <p><strong>Polygon Law:</strong> If multiple forces are in equilibrium, they form a closed polygon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: FREE BODY DIAGRAM ========= -->
+    <section id="fbd" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-draw-polygon"></i> Concept of Free Body Diagram (FBD)
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-vector-square"></i> What is FBD?</div>
+          <p>A <strong>Free Body Diagram</strong> is a sketch of a body isolated from its surroundings showing all forces acting on it (applied loads, reactions, weights).</p>
+        </div>
+
+        <div class="fbd-demo">
+          <div style="text-align:center;">
+            <div class="block">
+              <span class="arrow-up">↑ R</span>
+              <span class="arrow-down">↓ W</span>
+              <span class="arrow-left">← P</span>
+            </div>
+            <p>Block on floor with pull</p>
+          </div>
+          <div style="text-align:center;">
+            <div class="block" style="background: transparent; border:2px solid black;">
+              <span class="arrow-up">↑ N</span>
+              <span class="arrow-down">↓ mg</span>
+              <span class="arrow-right">→ F</span>
+            </div>
+            <p>FBD: Normal, weight, force</p>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <p>Steps to draw FBD:</p>
+          <ol>
+            <li>Isolate the body</li>
+            <li>Show all external forces (direction and magnitude if known)</li>
+            <li>Include weight if significant</li>
+            <li>Show reaction forces from supports/contacts</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: EQUILIBRIUM OF NON-CONCURRENT FORCES ========= -->
+    <section id="nonconcurrent" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrows-left-right"></i> Equilibrium of Co-planar Non-concurrent Forces
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Conditions of Equilibrium</div>
+          <p>For non-concurrent forces, three conditions must be satisfied:</p>
+          <div class="formula">ΣF<sub>x</sub> = 0, ΣF<sub>y</sub> = 0, ΣM = 0 (about any point)</div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Parallel Forces (Like and Unlike)</div>
+          <p><strong>Like parallel forces:</strong> act in same direction.<br>
+          <strong>Unlike parallel forces:</strong> act in opposite directions.</p>
+          <p>For equilibrium of parallel forces: ΣF = 0 and ΣM = 0.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Parallel Forces</div>
+          <p>A beam of length 6m carries a 20N downward force at 2m from left and a 30N downward force at 5m from left. Find reactions at ends (simple supports).</p>
+          <button class="toggle-btn" data-target="parallel1"><i class="fas fa-eye"></i> Calculate Reactions</button>
+          <div class="answer-reveal" id="parallel1">
+            <div class="formula answer">
+              Let R₁ at left, R₂ at right.<br>
+              ΣFy = 0: R₁ + R₂ = 20 + 30 = 50N<br>
+              ΣM about left: 20×2 + 30×5 - R₂×6 = 0<br>
+              40 + 150 = 6R₂ ⇒ 190 = 6R₂ ⇒ R₂ = 31.67N<br>
+              R₁ = 50 - 31.67 = <strong>18.33N</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: TYPES OF BEAMS AND SUPPORTS ========= -->
+    <section id="beams" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-archway"></i> Types of Beams, Supports, and Loads
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4><i class="fas fa-arrow-right"></i> Types of Beams</h4>
+            <ul>
+              <li>Simply Supported Beam</li>
+              <li>Cantilever Beam</li>
+              <li>Overhanging Beam</li>
+              <li>Fixed Beam</li>
+              <li>Continuous Beam</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-arrow-right"></i> Types of Supports</h4>
+            <ul>
+              <li>Simple Support (roller)</li>
+              <li>Hinged Support (pin)</li>
+              <li>Roller Support</li>
+              <li>Fixed Support (built-in)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="support-demo">
+          <div class="support-card">
+            <div class="support-symbol">🔄</div>
+            <h4>Roller</h4>
+            <p>Reaction ⊥ to surface</p>
+          </div>
+          <div class="support-card">
+            <div class="support-symbol">📍</div>
+            <h4>Hinged/Pin</h4>
+            <p>Horizontal & vertical reactions</p>
+          </div>
+          <div class="support-card">
+            <div class="support-symbol">🔒</div>
+            <h4>Fixed</h4>
+            <p>Moment & forces</p>
+          </div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-weight-hanging"></i> Types of Loads</div>
+          <ul>
+            <li><strong>Point Load (concentrated):</strong> acts at a single point</li>
+            <li><strong>Uniformly Distributed Load (UDL):</strong> constant per unit length (N/m)</li>
+            <li><strong>Uniformly Varying Load (UVL):</strong> linearly varying</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: BEAM REACTIONS (SIMPLY SUPPORTED, OVERHANG, POINT LOAD, UDL) ========= -->
+    <section id="reactions" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-calculator"></i> Beam Reactions · Simple Problems
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="concept-box">
+          <div class="box-title">Simply Supported Beam with Point Loads</div>
+          <p>For a simply supported beam, reactions are found using ΣFy=0 and ΣM=0.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 1: Point Loads</div>
+          <p>A simply supported beam of length 8m has point loads: 10kN at 2m from left, 20kN at 5m from left. Find reactions.</p>
+          <button class="toggle-btn" data-target="beam1"><i class="fas fa-eye"></i> Calculate Reactions</button>
+          <div class="answer-reveal" id="beam1">
+            <div class="formula answer">
+              ΣM about left: 10×2 + 20×5 - R₂×8 = 0<br>
+              20 + 100 = 8R₂ ⇒ 120 = 8R₂ ⇒ R₂ = 15 kN<br>
+              ΣFy: R₁ + 15 = 10 + 20 ⇒ R₁ = 30 - 15 = <strong>15 kN</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 2: UDL</div>
+          <p>A simply supported beam of length 6m carries a UDL of 5 kN/m over its entire span. Find reactions.</p>
+          <button class="toggle-btn" data-target="beam2"><i class="fas fa-eye"></i> Calculate Reactions</button>
+          <div class="answer-reveal" id="beam2">
+            <div class="formula answer">
+              Total load = 5 × 6 = 30 kN (acts at center, 3m from each end)<br>
+              By symmetry, R₁ = R₂ = 30/2 = <strong>15 kN each</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 3: Overhanging Beam</div>
+          <p>A beam with overhang: length 8m (supports at 0 and 6m), overhang 2m on right. Point load 10kN at free end (8m). Find reactions.</p>
+          <button class="toggle-btn" data-target="beam3"><i class="fas fa-eye"></i> Calculate Reactions</button>
+          <div class="answer-reveal" id="beam3">
+            <div class="formula answer">
+              Let R₁ at left (0m), R₂ at 6m.<br>
+              ΣM about left: 10×8 - R₂×6 = 0 ⇒ 80 = 6R₂ ⇒ R₂ = 13.33 kN<br>
+              ΣFy: R₁ + 13.33 = 10 ⇒ R₁ = -3.33 kN (downward)<br>
+              So R₁ acts downward (<strong>3.33 kN</strong>), R₂ = <strong>13.33 kN</strong> upward.
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 4: Combination of Point Load and UDL</div>
+          <p>Simply supported beam 5m long. UDL 4 kN/m over first 3m, point load 8kN at 4m from left. Find reactions.</p>
+          <button class="toggle-btn" data-target="beam4"><i class="fas fa-eye"></i> Calculate Reactions</button>
+          <div class="answer-reveal" id="beam4">
+            <div class="formula answer">
+              UDL total = 4×3 = 12 kN, acts at 1.5m from left.<br>
+              ΣM about left: 12×1.5 + 8×4 - R₂×5 = 0<br>
+              18 + 32 = 5R₂ ⇒ 50 = 5R₂ ⇒ R₂ = 10 kN<br>
+              ΣFy: R₁ + 10 = 12 + 8 ⇒ R₁ = 20 - 10 = <strong>10 kN</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Practice Problem:</strong> A simply supported beam of length 7m has a UDL of 3 kN/m over the entire span and a point load of 12 kN at 2.5m from left. Find support reactions.</p>
+        </div>
+        <button class="toggle-btn" data-target="beam5"><i class="fas fa-eye"></i> Check Solution</button>
+        <div class="answer-reveal" id="beam5">
+          <div class="formula answer">
+            Total UDL load = 3×7 = 21 kN (acts at 3.5m from left)<br>
+            ΣM about left: 21×3.5 + 12×2.5 - R₂×7 = 0<br>
+            73.5 + 30 = 7R₂ ⇒ 103.5 = 7R₂ ⇒ R₂ = 14.79 kN<br>
+            R₁ = 21 + 12 - 14.79 = <strong>18.21 kN</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">Lami: P/sinα = Q/sinβ = R/sinγ</div>
+          <div class="tag">ΣF<sub>x</sub>=0, ΣF<sub>y</sub>=0, ΣM=0</div>
+          <div class="tag">FBD: isolate & show forces</div>
+          <div class="tag">UDL total = w × L</div>
+          <div class="tag">Reactions: ΣM & ΣFy</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

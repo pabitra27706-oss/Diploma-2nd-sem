@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Physics · Unit 7 · Modern Physics</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: modern physics / atomic / quantum -->
+  <style>
+    :root {
+      --primary: #9c4d8c;          /* quantum purple */
+      --primary-light: #b86aa8;
+      --accent: #3a8fb0;            /* laser blue */
+      --accent-light: #5aa9c9;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #4a2e5a, #9c4d8c, #3a8fb0);
+    }
+    /* header emoji: modern physics symbols */
+    .header::after {
+      content: "⚛️🔬💡🔭";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* atom model */
+    .atom-demo {
+      width: 150px;
+      height: 150px;
+      border: 4px solid var(--accent);
+      border-radius: 50%;
+      position: relative;
+      margin: 20px auto;
+    }
+    .electron {
+      width: 15px;
+      height: 15px;
+      background: var(--danger);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .orbit {
+      position: absolute;
+      border: 2px dashed var(--primary-light);
+      border-radius: 50%;
+    }
+    /* x-ray tube */
+    .coolidge {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .glass-tube {
+      width: 300px;
+      height: 100px;
+      background: #c0e0ff;
+      border-radius: 50px;
+      position: relative;
+    }
+    .target {
+      width: 30px;
+      height: 30px;
+      background: #c0c0c0;
+      position: absolute;
+      right: 20px;
+      top: 35px;
+    }
+    .filament {
+      width: 20px;
+      height: 40px;
+      background: #ffaa00;
+      position: absolute;
+      left: 20px;
+      top: 30px;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Potential') ? 'Show Potential' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Potential') ? 'Hide Potential' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>⚛️ Physics · Unit 7 ⚛️</h1>
+      <h2>Modern Physics · X-Rays · Lasers · Fiber Optics · Nanotechnology</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-atom"></i> Bohr's Model</span>
+        <span class="info-item"><i class="fas fa-x-ray"></i> X-Rays</span>
+        <span class="info-item"><i class="fas fa-laser"></i> Lasers</span>
+        <span class="info-item"><i class="fas fa-fiber"></i> Fiber Optics</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-atom"></i> PHYS·UNIT7</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#atomic"><i class="fas fa-atom"></i> Atomic Model</a>
+        <a href="#xrays"><i class="fas fa-x-ray"></i> X-Rays</a>
+        <a href="#lasers"><i class="fas fa-laser"></i> Lasers</a>
+        <a href="#fiber"><i class="fas fa-fiber"></i> Fiber Optics</a>
+        <a href="#nano"><i class="fas fa-microchip"></i> Nanoscience</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-atom"></i> PHYS Unit 7</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#atomic"><i class="fas fa-atom"></i> Bohr's model, energy levels, ionization/excitation potential</a>
+      <a href="#xrays"><i class="fas fa-x-ray"></i> X-ray production, Coolidge tube, continuous/characteristic, hard/soft, uses</a>
+      <a href="#lasers"><i class="fas fa-laser"></i> Spontaneous/stimulated emission, He-Ne laser, applications</a>
+      <a href="#fiber"><i class="fas fa-fiber"></i> Optical fiber: propagation, applications</a>
+      <a href="#nano"><i class="fas fa-microchip"></i> Nanoscience & Nanotechnology (introduction)</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: ATOMIC MODEL ========= -->
+    <section id="atomic" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-atom"></i> Bohr's Atom Model · Energy Levels · Ionization & Excitation Potential
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="atom-demo">
+          <div class="electron"></div>
+          <div class="orbit" style="width:100px; height:100px; top:25px; left:25px;"></div>
+          <div class="orbit" style="width:140px; height:140px; top:5px; left:5px;"></div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Bohr's Model</div>
+          <ul>
+            <li>Electrons revolve in discrete orbits (energy levels) without radiating energy.</li>
+            <li>Angular momentum is quantized: mvr = nh/2π.</li>
+            <li>Energy is emitted/absorbed when electron jumps between levels: ΔE = hf.</li>
+          </ul>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Energy Levels</h4>
+            <p>E<sub>n</sub> = -13.6/n² eV (for hydrogen). Ground state (n=1): -13.6 eV.</p>
+          </div>
+          <div class="card">
+            <h4>Ionization Potential</h4>
+            <p>Energy required to remove electron from ground state to infinity (n=∞). For H: 13.6 eV.</p>
+          </div>
+          <div class="card">
+            <h4>Excitation Potential</h4>
+            <p>Energy required to raise electron from ground state to an excited state. e.g., 1st excitation potential = 10.2 eV (n=1 to n=2).</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem</div>
+          <p>Find ionization potential of hydrogen in eV and joules.</p>
+          <button class="toggle-btn" data-target="atomic1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="atomic1">
+            <div class="formula answer">
+              Ionization potential = 13.6 eV<br>
+              In joules: 13.6 × 1.6×10⁻¹⁹ = <strong>2.176×10⁻¹⁸ J</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: X-RAYS ========= -->
+    <section id="xrays" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-x-ray"></i> X-Rays: Production, Types, Uses
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="coolidge">
+          <div class="glass-tube">
+            <div class="filament"></div>
+            <div class="target"></div>
+          </div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Production (Coolidge Tube)</div>
+          <p>Electrons from hot cathode accelerated by high voltage strike metal target (W, Mo). X-rays produced via two processes:</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Continuous X-rays</h4>
+            <p>Due to deceleration of electrons (bremsstrahlung). Produces continuous spectrum up to a maximum energy corresponding to tube voltage.</p>
+          </div>
+          <div class="card">
+            <h4>Characteristic X-rays</h4>
+            <p>When high-energy electrons knock out inner shell electrons, outer electrons fill vacancies emitting X-rays of specific wavelengths (characteristic of target material).</p>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Soft vs Hard X-rays</div>
+          <p><strong>Soft X-rays:</strong> Lower energy, longer wavelength (less penetrating).</p>
+          <p><strong>Hard X-rays:</strong> Higher energy, shorter wavelength (highly penetrating).</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">Uses of X-rays</div>
+          <ul>
+            <li>Medical imaging (radiography, CT scans)</li>
+            <li>Cancer therapy (radiation treatment)</li>
+            <li>Industrial inspection (crack detection)</li>
+            <li>Security (airport baggage scanners)</li>
+            <li>X-ray crystallography (structure determination)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: LASERS ========= -->
+    <section id="lasers" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-laser"></i> Lasers: Spontaneous & Stimulated Emission · He-Ne Laser · Applications
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Spontaneous Emission</div>
+          <p>Atoms in excited state randomly decay to lower state, emitting photons in random directions and phases (ordinary light).</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Stimulated Emission</div>
+          <p>An incoming photon triggers an excited atom to emit a second photon identical in phase, direction, and polarization (laser light).</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Laser Light Characteristics</div>
+          <ul>
+            <li>Monochromatic (single wavelength)</li>
+            <li>Coherent (constant phase difference)</li>
+            <li>Directional (low divergence)</li>
+            <li>High intensity</li>
+          </ul>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>He-Ne Laser</h4>
+            <p>Gas laser: Helium-Neon mixture. Common red laser (632.8 nm). Continuous wave output.</p>
+          </div>
+          <div class="card">
+            <h4>Applications of Lasers</h4>
+            <ul>
+              <li>Medicine: surgery, eye correction</li>
+              <li>Communication: fiber optics</li>
+              <li>Industry: cutting, welding</li>
+              <li>Military: range finders</li>
+              <li>Entertainment: light shows</li>
+              <li>Barcode scanners</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: FIBER OPTICS ========= -->
+    <section id="fiber" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-fiber"></i> Fiber Optics: Introduction, Propagation, Applications
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Optical Fibers</div>
+          <p>Thin, flexible glass/plastic fibers that transmit light using total internal reflection.</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Mechanism of Light Propagation</div>
+          <p>Core (high refractive index) surrounded by cladding (lower index). Light guided by successive total internal reflections.</p>
+          <p>Acceptance angle and numerical aperture determine light-gathering ability.</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">Applications</div>
+          <ul>
+            <li>Telecommunications (high bandwidth, low loss)</li>
+            <li>Medical endoscopy (minimally invasive surgery)</li>
+            <li>Sensors (temperature, pressure, strain)</li>
+            <li>Illumination and imaging</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: NANOSCIENCE AND NANOTECHNOLOGY ========= -->
+    <section id="nano" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microchip"></i> Nanoscience and Nanotechnology (Introduction)
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Introduction</div>
+          <p><strong>Nanoscience</strong> is the study of structures and materials at the nanoscale (1–100 nm).</p>
+          <p><strong>Nanotechnology</strong> is the manipulation of matter at atomic/molecular scale to create new materials and devices.</p>
+          <p>Properties change dramatically at nanoscale due to quantum effects and high surface-to-volume ratio.</p>
+          <p><strong>Examples:</strong> Nanoparticles, carbon nanotubes, quantum dots, nanocomposites.</p>
+          <p><strong>Applications:</strong> Electronics, medicine (drug delivery), energy (solar cells), cosmetics.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">Bohr: E<sub>n</sub> = -13.6/n² eV</div>
+          <div class="tag">Ionization potential: 13.6 eV</div>
+          <div class="tag">X-rays: Coolidge tube</div>
+          <div class="tag">Continuous & Characteristic</div>
+          <div class="tag">Laser: coherent, monochromatic</div>
+          <div class="tag">He-Ne: 632.8 nm</div>
+          <div class="tag">Fiber optics: TIR</div>
+          <div class="tag">Nano: 1-100 nm</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

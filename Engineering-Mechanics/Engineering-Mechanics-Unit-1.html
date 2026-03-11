@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Engineering Mechanics · Unit II · Moments & Couples</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: moments / rotational / purple-blue -->
+  <style>
+    :root {
+      --primary: #5e4b8c;          /* moment purple */
+      --primary-light: #7e6aac;
+      --accent: #d97706;            /* couple amber */
+      --accent-light: #f59e0b;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #3a2b5a, #5e4b8c, #d97706);
+    }
+    /* header emoji: moment/couple symbols */
+    .header::after {
+      content: "🔄🔧⚙️📐";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* moment arm illustration */
+    .moment-demo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .lever {
+      width: 200px;
+      height: 10px;
+      background: #333;
+      position: relative;
+      margin: 30px 0;
+    }
+    .fulcrum {
+      width: 20px;
+      height: 30px;
+      background: #999;
+      position: absolute;
+      bottom: -10px;
+      left: 80px;
+    }
+    .force-up {
+      position: absolute;
+      left: 150px;
+      top: -30px;
+      font-size: 1.5rem;
+    }
+    .force-down {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      font-size: 1.5rem;
+    }
+    /* couple illustration */
+    .couple-demo {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      align-items: center;
+    }
+    .couple-arrows {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Moment') ? 'Show Moment' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Moment') ? 'Hide Moment' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🔄 Engineering Mechanics · Unit II 🔄</h1>
+      <h2>Moments & Couples · Varignon's Theorem · Resultants</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.E./Diploma</span>
+        <span class="info-item"><i class="fas fa-arrow-rotate-left"></i> Moment of Force</span>
+        <span class="info-item"><i class="fas fa-people-arrows"></i> Couples</span>
+        <span class="info-item"><i class="fas fa-calculator"></i> Simple Problems</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-gear"></i> MECH·UNIT2</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#moment"><i class="fas fa-arrow-rotate-left"></i> Moment</a>
+        <a href="#varignon"><i class="fas fa-greek-helmet"></i> Varignon's Theorem</a>
+        <a href="#couple"><i class="fas fa-people-arrows"></i> Couples</a>
+        <a href="#equivalent"><i class="fas fa-equals"></i> Equivalent Couples</a>
+        <a href="#replacement"><i class="fas fa-arrow-right-arrow-left"></i> Force + Couple</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-gear"></i> MECH Unit 2</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#moment"><i class="fas fa-arrow-rotate-left"></i> Moment, Sign, Parallel/Inclined Forces</a>
+      <a href="#varignon"><i class="fas fa-greek-helmet"></i> Varignon's Theorem</a>
+      <a href="#couple"><i class="fas fa-people-arrows"></i> Couple Definition & Significance</a>
+      <a href="#equivalent"><i class="fas fa-equals"></i> Equivalent Couples, Resultant of Couples</a>
+      <a href="#replacement"><i class="fas fa-arrow-right-arrow-left"></i> Force Replacement with Couple</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: MOMENT OF A FORCE ========= -->
+    <section id="moment" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrow-rotate-left"></i> Moment of a Force · Definition & Significance
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-ruler"></i> Definition</div>
+          <p>The <strong>moment of a force</strong> about a point is the measure of its tendency to cause rotation about that point.</p>
+          <div class="formula">M = F × d</div>
+          <p>where F = force magnitude, d = perpendicular distance from point to line of action of force (moment arm).</p>
+          <p>Unit: Newton-meter (Nm) or kNm.</p>
+        </div>
+
+        <div class="moment-demo">
+          <div style="position:relative; width:250px; height:100px;">
+            <div style="width:200px; height:5px; background:#333; position:absolute; top:50px;"></div>
+            <div style="position:absolute; left:180px; top:10px; font-size:1.5rem;">↓ F</div>
+            <div style="position:absolute; left:50px; top:30px;">d</div>
+            <div style="position:absolute; left:40px; top:45px; width:20px; height:20px; background:red; border-radius:50%;"></div>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-lightbulb"></i> Physical Significance</div>
+          <p>Moment causes rotation. Examples: opening a door (force at handle), using a wrench, seesaw.</p>
+          <p><strong>Sign convention:</strong> Anticlockwise moments are usually taken as positive (+), clockwise as negative (-).</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title"><i class="fas fa-arrow-right"></i> Resultant of Parallel Forces</div>
+          <p>For a system of parallel forces, the resultant is the algebraic sum of forces. Its position is found by taking moments about any point: R × d = Σ(F × x).</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Parallel Forces</div>
+          <p>Two parallel forces: 20N upward at 0m, 30N downward at 2m. Find resultant magnitude and position.</p>
+          <button class="toggle-btn" data-target="moment1"><i class="fas fa-eye"></i> Show Solution</button>
+          <div class="answer-reveal" id="moment1">
+            <div class="formula answer">
+              R = 20 - 30 = <strong>-10N</strong> (10N downward)<br>
+              Take moments about 0: ΣM = (20×0) + (-30×2) = -60 Nm<br>
+              R × d = -60 ⇒ (-10) × d = -60 ⇒ d = <strong>6m</strong> (from origin, on the side of the 30N force)
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> A force of 50N acts at 30° to horizontal at point (2,3). Find moment about origin.</p>
+        </div>
+        <button class="toggle-btn" data-target="moment2"><i class="fas fa-eye"></i> Calculate Moment</button>
+        <div class="answer-reveal" id="moment2">
+          <div class="formula answer">
+            Resolve force: Fx = 50 cos30° = 43.3N, Fy = 50 sin30° = 25N<br>
+            Moment about origin = Fx × y + Fy × x (with sign)<br>
+            = 43.3 × 3 + 25 × 2 = 129.9 + 50 = <strong>179.9 Nm</strong> (anticlockwise positive)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: VARIGNON'S THEOREM ========= -->
+    <section id="varignon" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-greek-helmet"></i> Varignon's Theorem
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Statement</div>
+          <p><strong>Varignon's Theorem:</strong> The moment of the resultant of a system of forces about any point is equal to the algebraic sum of the moments of the individual forces about the same point.</p>
+          <div class="formula">M<sub>R</sub> = Σ M<sub>i</sub></div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Varignon's Theorem</div>
+          <p>Two forces: 30N at (0,0) along +x, and 40N at (0,0) at 60° from x-axis. Find moment of resultant about point (2,0) and verify by summing moments.</p>
+          <button class="toggle-btn" data-target="varignon1"><i class="fas fa-eye"></i> Verify</button>
+          <div class="answer-reveal" id="varignon1">
+            <div class="formula answer">
+              Resultant: Rx = 30 + 40cos60° = 30+20=50N, Ry = 40sin60°=34.64N<br>
+              R = √(50²+34.64²)=60.8N<br>
+              Moment of R about (2,0): need perpendicular distance – easier to use components.<br>
+              Using Varignon: moment of each force about (2,0)<br>
+              For 30N (horizontal at y=0): lever arm=0 → M1=0<br>
+              For 40N: components: 40cos60°=20N (horiz), 40sin60°=34.64N (vert)<br>
+              M2 = 20×0 (horizontal through y=0) + 34.64×2 = 69.28 Nm<br>
+              Sum = 69.28 Nm<br>
+              Direct: resultant components: 50N horiz, 34.64N vert at (0,0)<br>
+              Moment = 50×0 + 34.64×2 = 69.28 Nm ✓
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: COUPLES ========= -->
+    <section id="couple" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-people-arrows"></i> Couples: Definition & Physical Significance
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-hand-holding-heart"></i> Definition of a Couple</div>
+          <p>A <strong>couple</strong> consists of two equal, parallel, and opposite forces separated by a perpendicular distance.</p>
+          <div class="formula">Moment of couple = F × d</div>
+          <p>where F = magnitude of one force, d = perpendicular distance between them.</p>
+        </div>
+
+        <div class="couple-demo">
+          <div style="position:relative; width:200px; height:80px;">
+            <div style="position:absolute; left:20px; top:10px;">↑ F</div>
+            <div style="position:absolute; left:20px; bottom:10px;">↓ F</div>
+            <div style="position:absolute; left:80px; top:30px;">d</div>
+            <div style="position:absolute; left:150px; top:10px;">↑ F</div>
+            <div style="position:absolute; left:150px; bottom:10px;">↓ F</div>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-lightbulb"></i> Physical Significance</div>
+          <p>A couple produces pure rotation without translation. Examples: turning a steering wheel, using a screwdriver, opening a bottle cap.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: EQUIVALENT COUPLES & RESULTANT OF COUPLES ========= -->
+    <section id="equivalent" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-equals"></i> Equivalent Couples & Resultant of Coplanar Couples
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Equivalent Couples</div>
+          <p>Two couples are equivalent if they produce the same moment (magnitude and direction). The forces and distances can differ as long as F×d is same.</p>
+        </div>
+
+        <div class="important-note">
+          <div class="box-title">Resultant of Coplanar Couples</div>
+          <p>The resultant of any number of coplanar couples is a single couple whose moment equals the algebraic sum of individual couple moments.</p>
+          <div class="formula">C<sub>R</sub> = Σ C<sub>i</sub></div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Resultant of Couples</div>
+          <p>Three couples: 20 Nm clockwise, 15 Nm anticlockwise, 30 Nm clockwise. Find resultant couple.</p>
+          <button class="toggle-btn" data-target="couple1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="couple1">
+            <div class="formula answer">
+              Take clockwise as positive: +20 -15 +30 = <strong>35 Nm clockwise</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: REPLACEMENT OF A FORCE BY A FORCE-COUPLE SYSTEM ========= -->
+    <section id="replacement" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-arrow-right-arrow-left"></i> Replacement of a Force by an Equal Parallel Force + Couple
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Principle</div>
+          <p>Any force acting at a point can be replaced by an equal force acting at any other point, together with a couple that accounts for the moment of the original force about that point.</p>
+          <p>The couple moment = F × d, where d is perpendicular distance between original line of action and new point.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Force Replacement</div>
+          <p>A 100N force acts vertically downward at point (0,2). Replace it by an equivalent system at the origin (0,0).</p>
+          <button class="toggle-btn" data-target="replace1"><i class="fas fa-eye"></i> Show Equivalent</button>
+          <div class="answer-reveal" id="replace1">
+            <div class="formula answer">
+              At origin: place a 100N downward force. <br>
+              Moment of original force about origin = F × d = 100 × 2 = 200 Nm (clockwise)<br>
+              So add a clockwise couple of <strong>200 Nm</strong>.<br>
+              Equivalent: 100N downward at origin + 200 Nm couple (clockwise).
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem:</strong> Replace a 50N force acting at 30° to horizontal at point (3,4) by an equivalent force-couple system at the origin.</p>
+        </div>
+        <button class="toggle-btn" data-target="replace2"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="replace2">
+          <div class="formula answer">
+            Force components: Fx = 50 cos30° = 43.3N, Fy = 50 sin30° = 25N<br>
+            Moment about origin = Fx × y + Fy × x = 43.3×4 + 25×3 = 173.2 + 75 = <strong>248.2 Nm</strong> (anticlockwise)<br>
+            Equivalent: at origin: 43.3N i + 25N j force, plus a couple of <strong>248.2 Nm</strong> anticlockwise.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6: ADDITIONAL SIMPLE PROBLEMS ========= -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-pencil"></i> More Simple Problems
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="exercise-area">
+          <p><strong>Problem 1:</strong> Find the moment of a force of 80N acting at 60° to horizontal at point (4,0) about point (1,2).</p>
+        </div>
+        <button class="toggle-btn" data-target="prob1"><i class="fas fa-eye"></i> Calculate Moment</button>
+        <div class="answer-reveal" id="prob1">
+          <div class="formula answer">
+            Fx = 80 cos60° = 40N, Fy = 80 sin60° = 69.28N<br>
+            Position vector from (1,2) to (4,0): dx=3, dy=-2<br>
+            Moment = Fx×dy - Fy×dx? Actually M = (r × F) = r_x·F_y - r_y·F_x<br>
+            = 3×69.28 - (-2)×40 = 207.84 + 80 = <strong>287.84 Nm</strong> (sign depends on convention)
+          </div>
+        </div>
+
+        <div class="exercise-area">
+          <p><strong>Problem 2:</strong> Two forces of 30N and 40N act at right angles to each other at a point. Find the moment of their resultant about a point 2m away perpendicular to the resultant's direction.</p>
+        </div>
+        <button class="toggle-btn" data-target="prob2"><i class="fas fa-eye"></i> Show Solution</button>
+        <div class="answer-reveal" id="prob2">
+          <div class="formula answer">
+            Resultant magnitude = √(30²+40²) = 50N<br>
+            Moment = Resultant × distance = 50 × 2 = <strong>100 Nm</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">M = F × d</div>
+          <div class="tag">Varignon: M<sub>R</sub> = ΣM<sub>i</sub></div>
+          <div class="tag">Couple moment = F × d</div>
+          <div class="tag">Resultant couple = ΣC<sub>i</sub></div>
+          <div class="tag">Force + couple replacement</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

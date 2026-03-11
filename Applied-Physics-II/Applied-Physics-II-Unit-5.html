@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Physics · Unit 5 · Electromagnetism</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: electromagnetism / purple-magnetic -->
+  <style>
+    :root {
+      --primary: #6a4c9c;          /* magnetic purple */
+      --primary-light: #8e6ab8;
+      --accent: #c44536;            /* current red */
+      --accent-light: #e06e5a;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #3a2b5a, #6a4c9c, #c44536);
+    }
+    /* header emoji: magnetic symbols */
+    .header::after {
+      content: "🧲⚡🔄🔋";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* coil illustration */
+    .coil-demo {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .coil {
+      width: 100px;
+      height: 60px;
+      border: 4px solid var(--accent);
+      border-radius: 50%;
+      position: relative;
+    }
+    .coil::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: var(--danger);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* galvanometer */
+    .galvano {
+      width: 150px;
+      height: 150px;
+      border: 4px solid var(--primary);
+      border-radius: 50%;
+      position: relative;
+      margin: 20px auto;
+    }
+    .pointer {
+      width: 60px;
+      height: 4px;
+      background: var(--danger);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: left center;
+      transform: rotate(30deg);
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Field') ? 'Show Field' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Field') ? 'Hide Field' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>🧲 Physics · Unit 5 🧲</h1>
+      <h2>Electromagnetism · Lorentz Force · Galvanometer · Magnetic Materials</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-field"></i> Magnetic Field</span>
+        <span class="info-item"><i class="fas fa-bolt"></i> Biot-Savart</span>
+        <span class="info-item"><i class="fas fa-microscope"></i> Galvanometer</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-magnet"></i> PHYS·UNIT5</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#field"><i class="fas fa-field"></i> Magnetic Field</a>
+        <a href="#biot"><i class="fas fa-chart-line"></i> Biot-Savart</a>
+        <a href="#force"><i class="fas fa-bolt"></i> Force on Conductor</a>
+        <a href="#induction"><i class="fas fa-sync-alt"></i> Induction</a>
+        <a href="#galvano"><i class="fas fa-microscope"></i> Galvanometer</a>
+        <a href="#materials"><i class="fas fa-cubes"></i> Magnetic Materials</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-magnet"></i> PHYS Unit 5</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#field"><i class="fas fa-field"></i> Magnetic field, Lorentz force</a>
+      <a href="#biot"><i class="fas fa-chart-line"></i> Biot-Savart: straight wire, circular loop</a>
+      <a href="#force"><i class="fas fa-bolt"></i> Force on conductor, torque on coil</a>
+      <a href="#induction"><i class="fas fa-sync-alt"></i> Electromagnetic induction, Faraday's laws</a>
+      <a href="#galvano"><i class="fas fa-microscope"></i> Moving coil galvanometer, ammeter, voltmeter</a>
+      <a href="#materials"><i class="fas fa-cubes"></i> Dia, Para, Ferro magnetic materials</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: MAGNETIC FIELD & LORENTZ FORCE ========= -->
+    <section id="field" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-field"></i> Magnetic Field · Lorentz Force
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-circle"></i> Magnetic Field (B)</div>
+          <p><strong>Origin:</strong> Moving charges (currents) and permanent magnets.</p>
+          <p><strong>Units:</strong> Tesla (T) = N/(A·m). Also Gauss (1 G = 10⁻⁴ T).</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title"><i class="fas fa-rocket"></i> Lorentz Force</div>
+          <p>Force on a charge q moving with velocity v in magnetic field B:</p>
+          <div class="formula">F = q (v × B)</div>
+          <p>Magnitude: F = q v B sinθ. Direction: perpendicular to both v and B (right-hand rule).</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 1</div>
+          <p>An electron (q = -1.6×10⁻¹⁹ C) moves at 2×10⁶ m/s perpendicular to 0.5T field. Find force.</p>
+          <button class="toggle-btn" data-target="lorentz1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="lorentz1">
+            <div class="formula answer">
+              F = q v B sin90° = 1.6×10⁻¹⁹ × 2×10⁶ × 0.5 = 1.6×10⁻¹⁹ × 10⁶ = <strong>1.6×10⁻¹³ N</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: BIOT-SAVART LAW ========= -->
+    <section id="biot" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-line"></i> Biot-Savart Law · Straight Conductor · Circular Loop
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-pencil"></i> Biot-Savart Law</div>
+          <p>dB = (μ₀/4π) (I dl × r̂) / r²</p>
+          <p>Magnetic field due to a current element.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Straight Conductor (long wire)</h4>
+            <p>B = (μ₀ I) / (2π r) (at distance r from wire)</p>
+          </div>
+          <div class="card">
+            <h4>Circular Loop (center)</h4>
+            <p>B = (μ₀ I) / (2R) (for N turns, multiply by N)</p>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Magnetic Dipole</div>
+          <p>A current loop behaves as a magnetic dipole with dipole moment m = I × A (area).</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 2</div>
+          <p>A long straight wire carries 10A. Find B at 5cm from wire. (μ₀/4π = 10⁻⁷)</p>
+          <button class="toggle-btn" data-target="biot1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="biot1">
+            <div class="formula answer">
+              B = (μ₀ I)/(2π r) = (2×10⁻⁷ × 10) / (0.05) = 2×10⁻⁶ / 0.05 = <strong>4×10⁻⁵ T</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 3</div>
+          <p>A circular coil of radius 10cm, 20 turns carries 2A. Find B at center.</p>
+          <button class="toggle-btn" data-target="biot2"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="biot2">
+            <div class="formula answer">
+              B = (μ₀ N I)/(2R) = (4π×10⁻⁷ × 20 × 2) / (2×0.1) = (4π×10⁻⁷ × 40) / 0.2<br>
+              = (160π×10⁻⁷)/0.2 = 800π×10⁻⁷ = <strong>2.51×10⁻⁴ T</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: FORCE ON CONDUCTORS & TORQUE ON COIL ========= -->
+    <section id="force" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-bolt"></i> Force on Current Carrying Conductor · Torque on Coil
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-arrow-right"></i> Force on a Current-Carrying Conductor</div>
+          <p>F = I (L × B)  (for straight wire in uniform field)</p>
+          <p>Magnitude: F = B I L sinθ</p>
+        </div>
+
+        <div class="concept-box">
+          <div class="box-title">Torque on Rectangular Coil in Magnetic Field</div>
+          <p>τ = N I A B sinθ (where θ is angle between normal to coil and B)</p>
+          <p>For N turns, area A, current I. This is the principle of moving coil galvanometer.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Numerical Problem 4</div>
+          <p>A 0.5m wire carries 3A perpendicular to 0.2T field. Find force.</p>
+          <button class="toggle-btn" data-target="force1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="force1">
+            <div class="formula answer">
+              F = B I L = 0.2 × 3 × 0.5 = <strong>0.3 N</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: ELECTROMAGNETIC INDUCTION ========= -->
+    <section id="induction" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-sync-alt"></i> Electromagnetic Induction · Faraday's Laws
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><i class="fas fa-bolt"></i> Concept</div>
+          <p>Changing magnetic flux through a coil induces an EMF (electromagnetic induction).</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Faraday's Laws</div>
+          <p><strong>First Law:</strong> EMF is induced whenever flux linked with circuit changes.</p>
+          <p><strong>Second Law:</strong> Induced EMF = - rate of change of flux linkage.</p>
+          <div class="formula">ε = -N dΦ/dt</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5: MOVING COIL GALVANOMETER & CONVERSION ========= -->
+    <section id="galvano" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-microscope"></i> Moving Coil Galvanometer · Ammeter · Voltmeter
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="galvano">
+          <div class="pointer"></div>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Principle, Construction & Working</div>
+          <p><strong>Principle:</strong> Torque on current-carrying coil in magnetic field: τ = N B I A.</p>
+          <p><strong>Construction:</strong> Coil suspended between poles of permanent magnet, with spring providing restoring torque.</p>
+          <p><strong>Working:</strong> Current causes deflection θ ∝ I (since τ ∝ I and spring τ ∝ θ).</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Conversion to Ammeter</h4>
+            <p>Connect a low resistance <strong>shunt</strong> in parallel with galvanometer.</p>
+            <p>S = I<sub>g</sub> G / (I - I<sub>g</sub>) where G = galvanometer resistance, I<sub>g</sub> = full scale current.</p>
+          </div>
+          <div class="card">
+            <h4>Conversion to Voltmeter</h4>
+            <p>Connect a high resistance <strong>series</strong> with galvanometer.</p>
+            <p>R = V/I<sub>g</sub> - G</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Ammeter Conversion</div>
+          <p>A galvanometer of resistance 50Ω gives full deflection at 10mA. Convert to ammeter reading 5A. Find shunt resistance.</p>
+          <button class="toggle-btn" data-target="conv1"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="conv1">
+            <div class="formula answer">
+              S = I<sub>g</sub> G / (I - I<sub>g</sub>) = (0.01 × 50) / (5 - 0.01) = 0.5 / 4.99 = <strong>0.1002 Ω</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Voltmeter Conversion</div>
+          <p>Same galvanometer (50Ω, 10mA) to measure 10V. Find series resistance.</p>
+          <button class="toggle-btn" data-target="conv2"><i class="fas fa-eye"></i> Calculate</button>
+          <div class="answer-reveal" id="conv2">
+            <div class="formula answer">
+              R = V/I<sub>g</sub> - G = 10/0.01 - 50 = 1000 - 50 = <strong>950 Ω</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6: MAGNETIC MATERIALS ========= -->
+    <section id="materials" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-cubes"></i> Magnetic Materials: Dia · Para · Ferro
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4>Diamagnetic</h4>
+            <ul>
+              <li>Weakly repelled by magnet</li>
+              <li>χ < 0, small negative susceptibility</li>
+              <li>Examples: Bi, Cu, Au, H₂O</li>
+              <li>No permanent dipole</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Paramagnetic</h4>
+            <ul>
+              <li>Weakly attracted</li>
+              <li>χ > 0, small positive</li>
+              <li>Examples: Al, Pt, Na, O₂</li>
+              <li>Permanent dipoles align with field</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Ferromagnetic</h4>
+            <ul>
+              <li>Strongly attracted</li>
+              <li>χ >> 0, large, depends on field</li>
+              <li>Examples: Fe, Ni, Co, Gd</li>
+              <li>Exhibit hysteresis, Curie temperature</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">F = qvB sinθ</div>
+          <div class="tag">B (wire) = μ₀I/(2πr)</div>
+          <div class="tag">B (loop) = μ₀I/(2R)</div>
+          <div class="tag">F = BIL sinθ</div>
+          <div class="tag">τ = NIAB sinθ</div>
+          <div class="tag">ε = -N dΦ/dt</div>
+          <div class="tag">Ammeter shunt: S = I<sub>g</sub>G/(I - I<sub>g</sub>)</div>
+          <div class="tag">Voltmeter: R = V/I<sub>g</sub> - G</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>
