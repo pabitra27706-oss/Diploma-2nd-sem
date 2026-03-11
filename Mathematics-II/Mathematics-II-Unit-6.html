@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Mathematics · Unit 6 · Statistics & Probability</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: statistics / probability / blue-green -->
+  <style>
+    :root {
+      --primary: #2563eb;          /* statistics blue */
+      --primary-light: #3b82f6;
+      --accent: #7c3aed;            /* probability purple */
+      --accent-light: #8b5cf6;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #1e3a8a, #2563eb, #7c3aed);
+    }
+    /* header emoji: statistics symbols */
+    .header::after {
+      content: "📊📈🎲🧮";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* formula cards */
+    .formula-card {
+      background: var(--formula-bg);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 5px solid var(--accent);
+      margin: 15px 0;
+    }
+    .mjx-chtml {
+      font-size: 1.1rem !important;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .data-table th, .data-table td {
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Probability') ? 'Show Probability' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Probability') ? 'Hide Probability' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>📊 Mathematics · Unit 6 📊</h1>
+      <h2>Statistics & Probability</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-chart-bar"></i> Central Tendency</span>
+        <span class="info-item"><i class="fas fa-chart-line"></i> Dispersion</span>
+        <span class="info-item"><i class="fas fa-dice"></i> Probability</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-chart-bar"></i> MATH·UNIT6</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#statistics"><i class="fas fa-chart-bar"></i> Statistics</a>
+        <a href="#central"><i class="fas fa-chart-line"></i> Central Tendency</a>
+        <a href="#dispersion"><i class="fas fa-chart-scatter"></i> Dispersion</a>
+        <a href="#probability"><i class="fas fa-dice"></i> Probability</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-chart-bar"></i> MATH Unit 6</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#statistics"><i class="fas fa-chart-bar"></i> Frequency distribution</a>
+      <a href="#central"><i class="fas fa-chart-line"></i> Mean, Median, Mode (ungrouped & grouped)</a>
+      <a href="#dispersion"><i class="fas fa-chart-scatter"></i> Standard deviation</a>
+      <a href="#probability"><i class="fas fa-dice"></i> Random experiment, sample space, event, types, classical probability</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: STATISTICS - FREQUENCY DISTRIBUTION ========= -->
+    <section id="statistics" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-bar"></i> Statistics: Frequency Distribution
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Frequency Distribution</div>
+          <p>A <strong>frequency distribution</strong> shows how often each value or class interval occurs in a data set.</p>
+          <p><strong>Example:</strong> Marks of 20 students in a test: 45, 50, 45, 55, 50, 60, 45, 55, 50, 60, 65, 45, 50, 55, 60, 65, 70, 45, 50, 55.</p>
+          <table class="data-table">
+            <tr><th>Marks</th><th>Frequency</th></tr>
+            <tr><td>45</td><td>5</td></tr>
+            <tr><td>50</td><td>5</td></tr>
+            <tr><td>55</td><td>4</td></tr>
+            <tr><td>60</td><td>3</td></tr>
+            <tr><td>65</td><td>2</td></tr>
+            <tr><td>70</td><td>1</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: MEASURES OF CENTRAL TENDENCY ========= -->
+    <section id="central" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-line"></i> Measures of Central Tendency: Mean, Median, Mode
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4>Mean (Arithmetic)</h4>
+            <p><strong>Ungrouped:</strong> \( \bar{x} = \frac{\sum x_i}{n} \)</p>
+            <p><strong>Grouped:</strong> \( \bar{x} = \frac{\sum f_i x_i}{\sum f_i} \) (where \( x_i \) = class mark)</p>
+          </div>
+          <div class="card">
+            <h4>Median</h4>
+            <p><strong>Ungrouped:</strong> Middle value when data sorted. If n odd: \( \frac{n+1}{2} \)th term. If n even: average of \( \frac{n}{2} \)th and \( \frac{n}{2}+1 \)th terms.</p>
+            <p><strong>Grouped:</strong> \( M = L + \frac{\frac{N}{2} - cf}{f} \times h \)</p>
+          </div>
+          <div class="card">
+            <h4>Mode</h4>
+            <p><strong>Ungrouped:</strong> Most frequent value.</p>
+            <p><strong>Grouped:</strong> \( Z = L + \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \times h \)</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Ungrouped Data</div>
+          <p>Find mean, median, mode for: 12, 15, 12, 18, 20, 15, 12, 16, 18, 20</p>
+          <button class="toggle-btn" data-target="central1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="central1">
+            <div class="formula answer">
+              <strong>Mean:</strong> \( \frac{12+15+12+18+20+15+12+16+18+20}{10} = \frac{158}{10} = 15.8 \)<br>
+              <strong>Median:</strong> Sorted: 12,12,12,15,15,16,18,18,20,20 → median = avg of 5th and 6th = (15+16)/2 = 15.5<br>
+              <strong>Mode:</strong> 12 appears 3 times → mode = 12
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Grouped Data</div>
+          <p>Find mean for:</p>
+          <table class="data-table">
+            <tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th></tr>
+            <tr><td>f</td><td>5</td><td>8</td><td>12</td><td>5</td></tr>
+          </table>
+          <button class="toggle-btn" data-target="central2"><i class="fas fa-eye"></i> Show Mean</button>
+          <div class="answer-reveal" id="central2">
+            <div class="formula answer">
+              Class marks: 5, 15, 25, 35<br>
+              \( \sum f_i x_i = 5×5 + 8×15 + 12×25 + 5×35 = 25 + 120 + 300 + 175 = 620 \)<br>
+              \( \sum f_i = 5+8+12+5 = 30 \)<br>
+              Mean = \( 620/30 = 20.67 \)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: MEASURES OF DISPERSION ========= -->
+    <section id="dispersion" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-scatter"></i> Measures of Dispersion: Standard Deviation
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Standard Deviation (σ)</div>
+          <p><strong>Ungrouped:</strong> \( \sigma = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n}} \)</p>
+          <p><strong>Grouped:</strong> \( \sigma = \sqrt{\frac{\sum f_i (x_i - \bar{x})^2}{\sum f_i}} \)</p>
+          <p>Also: \( \sigma = \sqrt{\frac{\sum f_i x_i^2}{\sum f_i} - \left(\frac{\sum f_i x_i}{\sum f_i}\right)^2} \)</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Ungrouped SD</div>
+          <p>Find SD for: 5, 8, 10, 12, 15</p>
+          <button class="toggle-btn" data-target="disp1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="disp1">
+            <div class="formula answer">
+              Mean \( \bar{x} = (5+8+10+12+15)/5 = 50/5 = 10 \)<br>
+              Deviations: -5, -2, 0, 2, 5; squares: 25,4,0,4,25; sum = 58<br>
+              \( \sigma = \sqrt{58/5} = \sqrt{11.6} \approx 3.41 \)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example: Grouped SD</div>
+          <p>Find SD for:</p>
+          <table class="data-table">
+            <tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th></tr>
+            <tr><td>f</td><td>5</td><td>8</td><td>12</td><td>5</td></tr>
+          </table>
+          <button class="toggle-btn" data-target="disp2"><i class="fas fa-eye"></i> Show SD</button>
+          <div class="answer-reveal" id="disp2">
+            <div class="formula answer">
+              Class marks: 5,15,25,35; \( \sum f_i x_i = 620 \) (from before), mean = 20.67<br>
+              \( \sum f_i x_i^2 = 5×25 + 8×225 + 12×625 + 5×1225 = 125 + 1800 + 7500 + 6125 = 15550 \)<br>
+              \( \sigma = \sqrt{15550/30 - (20.67)^2} = \sqrt{518.33 - 427.25} = \sqrt{91.08} \approx 9.54 \)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: PROBABILITY BASICS ========= -->
+    <section id="probability" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-dice"></i> Probability: Definitions & Classical Approach
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Basic Definitions</div>
+          <ul>
+            <li><strong>Random experiment:</strong> An experiment whose outcome cannot be predicted in advance (e.g., tossing a coin).</li>
+            <li><strong>Sample space (S):</strong> Set of all possible outcomes (e.g., {H, T} for a coin).</li>
+            <li><strong>Event:</strong> A subset of the sample space (e.g., getting a head).</li>
+            <li><strong>Occurrence of event:</strong> Event E occurs if the outcome is in E.</li>
+          </ul>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Types of Events</h4>
+            <ul>
+              <li><strong>Impossible event:</strong> \( \emptyset \) (probability 0)</li>
+              <li><strong>Mutually exclusive:</strong> Events cannot occur together ( \( A \cap B = \emptyset \) )</li>
+              <li><strong>Exhaustive events:</strong> Union covers entire sample space</li>
+              <li><strong>Equally likely events:</strong> Each outcome has same chance</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Classical Probability</h4>
+            <p>If an experiment has \( n \) equally likely outcomes, and an event E has \( m \) favorable outcomes, then:</p>
+            <div class="formula">
+              \[
+              P(E) = \frac{m}{n}
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 1: Coin Toss</div>
+          <p>Find probability of getting a head when tossing a fair coin.</p>
+          <button class="toggle-btn" data-target="prob1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="prob1">
+            <div class="formula answer">
+              Sample space S = {H, T}, n = 2, favorable outcomes {H} → m = 1<br>
+              \( P = \frac{1}{2} \)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 2: Dice Roll</div>
+          <p>Find probability of getting an even number when rolling a fair die.</p>
+          <button class="toggle-btn" data-target="prob2"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="prob2">
+            <div class="formula answer">
+              S = {1,2,3,4,5,6}, n = 6. Even numbers = {2,4,6} → m = 3<br>
+              \( P = \frac{3}{6} = \frac{1}{2} \)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 3: Cards</div>
+          <p>From a well-shuffled deck of 52 cards, find probability of drawing a king.</p>
+          <button class="toggle-btn" data-target="prob3"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="prob3">
+            <div class="formula answer">
+              Total outcomes n = 52, kings = 4 → m = 4<br>
+              \( P = \frac{4}{52} = \frac{1}{13} \)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 4: Mutually Exclusive</div>
+          <p>If A and B are mutually exclusive events with P(A)=0.3, P(B)=0.4, find P(A∪B).</p>
+          <button class="toggle-btn" data-target="prob4"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="prob4">
+            <div class="formula answer">
+              Since mutually exclusive, \( P(A \cup B) = P(A) + P(B) = 0.3 + 0.4 = 0.7 \)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">Mean (grouped): \( \bar{x} = \frac{\sum f x}{\sum f} \)</div>
+          <div class="tag">Median: \( L + \frac{N/2 - cf}{f} \times h \)</div>
+          <div class="tag">Mode: \( L + \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \times h \)</div>
+          <div class="tag">SD: \( \sigma = \sqrt{\frac{\sum f(x-\bar{x})^2}{\sum f}} \)</div>
+          <div class="tag">Probability: \( P(E) = \frac{m}{n} \)</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Mathematics · Unit 5 · Partial Differentiation</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: partial derivatives / teal-orange -->
+  <style>
+    :root {
+      --primary: #0f766e;          /* teal */
+      --primary-light: #14b8a6;
+      --accent: #c2410c;            /* partial orange */
+      --accent-light: #ea580c;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg, #115e59, #0f766e, #c2410c);
+    }
+    /* header emoji: partial derivative symbols */
+    .header::after {
+      content: "∂ƒ/∂x 📐📈";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* formula cards */
+    .formula-card {
+      background: var(--formula-bg);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 5px solid var(--accent);
+      margin: 15px 0;
+    }
+    .mjx-chtml {
+      font-size: 1.1rem !important;
+    }
+    .partial-symbol {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Partial') ? 'Show Partial' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Partial') ? 'Hide Partial' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>∂ Mathematics · Unit 5 ∂</h1>
+      <h2>Partial Differentiation</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-chart-line"></i> Partial Derivatives</span>
+        <span class="info-item"><i class="fas fa-hashtag"></i> Homogeneous Functions</span>
+        <span class="info-item"><i class="fas fa-crown"></i> Euler's Theorem</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-chart-line"></i> MATH·UNIT5</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#definition"><i class="fas fa-info-circle"></i> Definition</a>
+        <a href="#evaluation"><i class="fas fa-calculator"></i> Evaluation</a>
+        <a href="#homogeneous"><i class="fas fa-hashtag"></i> Homogeneous Functions</a>
+        <a href="#euler"><i class="fas fa-crown"></i> Euler's Theorem</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-chart-line"></i> MATH Unit 5</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#definition"><i class="fas fa-info-circle"></i> Definition & meaning of partial derivative</a>
+      <a href="#evaluation"><i class="fas fa-calculator"></i> Evaluation of partial derivatives</a>
+      <a href="#homogeneous"><i class="fas fa-hashtag"></i> Homogeneous functions (definition & examples)</a>
+      <a href="#euler"><i class="fas fa-crown"></i> Euler's theorem (1st order) for 2 variables</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: DEFINITION & MEANING ========= -->
+    <section id="definition" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-info-circle"></i> Definition & Meaning of Partial Derivative
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title"><span class="partial-symbol">∂/∂x</span> Partial Derivative</div>
+          <p>For a function \( f(x,y) \) of two variables, the partial derivative with respect to \( x \) at \( (a,b) \) is:</p>
+          <div class="formula">
+            \[
+            \frac{\partial f}{\partial x}(a,b) = \lim_{h \to 0} \frac{f(a+h, b) - f(a,b)}{h}
+            \]
+          </div>
+          <p>Similarly, with respect to \( y \):</p>
+          <div class="formula">
+            \[
+            \frac{\partial f}{\partial y}(a,b) = \lim_{k \to 0} \frac{f(a, b+k) - f(a,b)}{k}
+            \]
+          </div>
+          <p><strong>Meaning:</strong> It represents the rate of change of \( f \) as one variable changes while the other is held constant.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: EVALUATION OF PARTIAL DERIVATIVES ========= -->
+    <section id="evaluation" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-calculator"></i> Evaluation of Partial Derivatives
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">How to Compute</div>
+          <p>To find \( \frac{\partial f}{\partial x} \), treat \( y \) as constant and differentiate normally with respect to \( x \).</p>
+          <p>To find \( \frac{\partial f}{\partial y} \), treat \( x \) as constant and differentiate with respect to \( y \).</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 1</div>
+          <p>If \( f(x,y) = x^3 y^2 + 2x + y \), find \( \frac{\partial f}{\partial x} \) and \( \frac{\partial f}{\partial y} \).</p>
+          <button class="toggle-btn" data-target="eval1"><i class="fas fa-eye"></i> Show Partial Derivatives</button>
+          <div class="answer-reveal" id="eval1">
+            <div class="formula answer">
+              \[
+              \frac{\partial f}{\partial x} = 3x^2 y^2 + 2
+              \]
+              \[
+              \frac{\partial f}{\partial y} = 2x^3 y + 1
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 2</div>
+          <p>If \( f(x,y) = e^{xy} \sin x \), find \( \frac{\partial f}{\partial x} \) and \( \frac{\partial f}{\partial y} \).</p>
+          <button class="toggle-btn" data-target="eval2"><i class="fas fa-eye"></i> Show Partial Derivatives</button>
+          <div class="answer-reveal" id="eval2">
+            <div class="formula answer">
+              \[
+              \frac{\partial f}{\partial x} = e^{xy}(y \sin x + \cos x)
+              \]
+              \[
+              \frac{\partial f}{\partial y} = e^{xy} (x \sin x)
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 3: Second Order</div>
+          <p>For \( f(x,y) = x^2 y + y^2 \), find \( \frac{\partial^2 f}{\partial x^2} \) and \( \frac{\partial^2 f}{\partial y^2} \).</p>
+          <button class="toggle-btn" data-target="eval3"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="eval3">
+            <div class="formula answer">
+              \[
+              \frac{\partial f}{\partial x} = 2xy \quad \Rightarrow \quad \frac{\partial^2 f}{\partial x^2} = 2y
+              \]
+              \[
+              \frac{\partial f}{\partial y} = x^2 + 2y \quad \Rightarrow \quad \frac{\partial^2 f}{\partial y^2} = 2
+              \]
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: HOMOGENEOUS FUNCTIONS ========= -->
+    <section id="homogeneous" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-hashtag"></i> Homogeneous Functions: Definition & Examples
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Definition</div>
+          <p>A function \( f(x,y) \) is said to be homogeneous of degree \( n \) if for any scalar \( t \),</p>
+          <div class="formula">
+            \[
+            f(tx, ty) = t^n f(x,y)
+            \]
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 1</div>
+          <p>Check homogeneity of \( f(x,y) = x^3 + 2x^2 y + y^3 \).</p>
+          <button class="toggle-btn" data-target="homog1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="homog1">
+            <div class="formula answer">
+              \[
+              f(tx, ty) = (tx)^3 + 2(tx)^2(ty) + (ty)^3 = t^3 x^3 + 2 t^3 x^2 y + t^3 y^3 = t^3 (x^3 + 2x^2 y + y^3)
+              \]
+              So homogeneous of degree 3.
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Example 2</div>
+          <p>Is \( f(x,y) = \frac{x^2 + y^2}{x + y} \) homogeneous? Find degree.</p>
+          <button class="toggle-btn" data-target="homog2"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="homog2">
+            <div class="formula answer">
+              \[
+              f(tx, ty) = \frac{(tx)^2 + (ty)^2}{tx + ty} = \frac{t^2(x^2 + y^2)}{t(x+y)} = t \cdot \frac{x^2 + y^2}{x+y} = t f(x,y)
+              \]
+              Homogeneous of degree 1.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: EULER'S THEOREM (1ST ORDER) ========= -->
+    <section id="euler" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-crown"></i> Euler's Theorem on Homogeneous Functions (2 variables)
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Euler's Theorem (Statement only)</div>
+          <p>If \( f(x,y) \) is a homogeneous function of degree \( n \), then:</p>
+          <div class="formula">
+            \[
+            x \frac{\partial f}{\partial x} + y \frac{\partial f}{\partial y} = n f(x,y)
+            \]
+          </div>
+          <p>This holds for all \( x,y \) where the partial derivatives exist.</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 1</div>
+          <p>Verify Euler's theorem for \( f(x,y) = x^3 + y^3 + 2x^2 y \).</p>
+          <button class="toggle-btn" data-target="euler1"><i class="fas fa-eye"></i> Show Verification</button>
+          <div class="answer-reveal" id="euler1">
+            <div class="formula answer">
+              First, check homogeneity: \( f(tx,ty) = t^3(x^3 + y^3 + 2x^2 y) \), so degree \( n=3 \).<br>
+              Compute partials:<br>
+              \( \frac{\partial f}{\partial x} = 3x^2 + 4xy \)<br>
+              \( \frac{\partial f}{\partial y} = 3y^2 + 2x^2 \)<br>
+              LHS = \( x(3x^2 + 4xy) + y(3y^2 + 2x^2) = 3x^3 + 4x^2 y + 3y^3 + 2x^2 y = 3x^3 + 6x^2 y + 3y^3 \)<br>
+              RHS = \( 3(x^3 + y^3 + 2x^2 y) = 3x^3 + 3y^3 + 6x^2 y \) ✔
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 2</div>
+          <p>If \( f(x,y) = \frac{x^2 + y^2}{x+y} \), use Euler's theorem to find \( x f_x + y f_y \).</p>
+          <button class="toggle-btn" data-target="euler2"><i class="fas fa-eye"></i> Show Solution</button>
+          <div class="answer-reveal" id="euler2">
+            <div class="formula answer">
+              From earlier, \( f \) is homogeneous of degree 1.<br>
+              By Euler's theorem: \( x f_x + y f_y = 1 \cdot f = \frac{x^2 + y^2}{x+y} \)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem 3</div>
+          <p>Given \( u = \tan^{-1}\left( \frac{x^3 + y^3}{x - y} \right) \), show that \( x \frac{\partial u}{\partial x} + y \frac{\partial u}{\partial y} = \sin 2u \).</p>
+          <button class="toggle-btn" data-target="euler3"><i class="fas fa-eye"></i> Show Solution</button>
+          <div class="answer-reveal" id="euler3">
+            <div class="formula answer">
+              Let \( v = \frac{x^3 + y^3}{x - y} \). Then \( u = \tan^{-1} v \).<br>
+              Check homogeneity of \( v \): \( v(tx,ty) = t^2 \cdot \frac{x^3 + y^3}{x - y} = t^2 v \) ⇒ degree 2.<br>
+              By Euler: \( x v_x + y v_y = 2v \).<br>
+              Now \( \frac{\partial u}{\partial x} = \frac{1}{1+v^2} \frac{\partial v}{\partial x} \), similarly for y.<br>
+              Then \( x u_x + y u_y = \frac{1}{1+v^2} (x v_x + y v_y) = \frac{2v}{1+v^2} \).<br>
+              But \( v = \tan u \), so \( \frac{2\tan u}{1+\tan^2 u} = 2 \cdot \frac{\tan u}{\sec^2 u} = 2 \sin u \cos u = \sin 2u \). ✔
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">\( \frac{\partial}{\partial x} f(x,y) \)</div>
+          <div class="tag">\( \frac{\partial}{\partial y} f(x,y) \)</div>
+          <div class="tag">Homogeneous: \( f(tx,ty) = t^n f(x,y) \)</div>
+          <div class="tag">Euler: \( x f_x + y f_y = n f \)</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>

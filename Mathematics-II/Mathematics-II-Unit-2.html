@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Mathematics · Unit 2 · Co-ordinate Geometry (2D)</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <!-- base.css (shared styles from units-com folder) -->
+  <link rel="stylesheet" href="../units-com/base.css">
+  <!-- CHAPTER THEME: geometry / green-blue -->
+  <style>
+    :root {
+      --primary: #2e7d5e;          /* geometry green */
+      --primary-light: #4a9f7a;
+      --accent: #d97706;            /* coordinate orange */
+      --accent-light: #f59e0b;
+      --danger: #c62828;
+      --warning: #ef6c00;
+      --success: #2e7d32;
+      --purple: #6a4c9c;
+      --info: #0288d1;
+      --header-bg: linear-gradient(145deg: #1e4a3a, #2e7d5e, #d97706);
+    }
+    /* header emoji: geometry symbols */
+    .header::after {
+      content: "📐📏📍📈";
+      position: absolute;
+      bottom: 12px; right: 20px;
+      font-size: 2.6rem;
+      opacity: 0.15;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-1deg);
+    }
+    /* formula cards */
+    .formula-card {
+      background: var(--formula-bg);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 5px solid var(--accent);
+      margin: 15px 0;
+    }
+    .mjx-chtml {
+      font-size: 1.1rem !important;
+    }
+  </style>
+  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure all answer divs start hidden
+      document.querySelectorAll('.answer-reveal').forEach(function(el) {
+        el.style.display = 'none';
+      });
+
+      // Add click handlers to all toggle buttons
+      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('data-target');
+          var answer = document.getElementById(targetId);
+          if (answer) {
+            var visible = answer.style.display === 'block';
+            answer.style.display = visible ? 'none' : 'block';
+            
+            // Update button text
+            var btnText = this.innerHTML;
+            if (visible) {
+              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Equation') ? 'Show Equation' : 'Show Answer');
+            } else {
+              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Equation') ? 'Hide Equation' : 'Hide Answer');
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <!-- engine.js (deferred) -->
+  <script src="../units-com/engine.js" defer></script>
+</head>
+<body>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <h1>📐 Mathematics · Unit 2 📐</h1>
+      <h2>Co-ordinate Geometry (2D)</h2>
+      <div class="course-info">
+        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
+        <span class="info-item"><i class="fas fa-crosshairs"></i> Coordinate Systems</span>
+        <span class="info-item"><i class="fas fa-chart-line"></i> Straight Line</span>
+        <span class="info-item"><i class="fas fa-circle"></i> Circle & Conics</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand"><h3><i class="fas fa-chart-line"></i> MATH·UNIT2</h3></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#coordsys"><i class="fas fa-crosshairs"></i> Coordinate Systems</a>
+        <a href="#line"><i class="fas fa-chart-line"></i> Straight Line</a>
+        <a href="#circle"><i class="fas fa-circle"></i> Circle</a>
+        <a href="#conics"><i class="fas fa-parabola"></i> Conics</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-chart-line"></i> MATH Unit 2</h3>
+      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="drawer-links" id="drawerLinks">
+      <a href="#coordsys"><i class="fas fa-crosshairs"></i> Cartesian, Polar, distance, division, area, collinearity</a>
+      <a href="#line"><i class="fas fa-chart-line"></i> Slope, line forms, angle, parallelism, perpendicular distance</a>
+      <a href="#circle"><i class="fas fa-circle"></i> Circle: centre-radius, diameter, general equation</a>
+      <a href="#conics"><i class="fas fa-parabola"></i> Parabola, Ellipse: definitions, standard equations</a>
+    </div>
+    <div class="drawer-footer">
+      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
+      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <!-- ========== SECTION 1: COORDINATE SYSTEMS ========= -->
+    <section id="coordsys" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-crosshairs"></i> Coordinate Systems · Distance · Division · Area
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Cartesian & Polar Coordinates</div>
+          <p>Cartesian: \( (x, y) \). Polar: \( (r, \theta) \) where \( r = \sqrt{x^2 + y^2}, \theta = \tan^{-1}(y/x) \).</p>
+          <p>Relations: \( x = r\cos\theta, y = r\sin\theta \).</p>
+        </div>
+
+        <div class="formula-card">
+          <h4>Distance Formula</h4>
+          <p>\( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \)</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Internal Division</h4>
+            <p>Point dividing \( A(x_1,y_1) \) and \( B(x_2,y_2) \) in ratio \( m:n \) internally:</p>
+            <p>\( \left( \frac{mx_2 + nx_1}{m+n}, \frac{my_2 + ny_1}{m+n} \right) \)</p>
+          </div>
+          <div class="card">
+            <h4>External Division</h4>
+            <p>\( \left( \frac{mx_2 - nx_1}{m-n}, \frac{my_2 - ny_1}{m-n} \right) \)</p>
+          </div>
+        </div>
+
+        <div class="formula-card">
+          <h4>Area of Triangle</h4>
+          <p>\( \Delta = \frac{1}{2} \left| x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2) \right| \)</p>
+          <p><strong>Collinearity:</strong> Area = 0 (points lie on same line).</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem: Distance & Division</div>
+          <p>Find the point dividing \( A(2,3) \) and \( B(5,7) \) in ratio 2:3 internally.</p>
+          <button class="toggle-btn" data-target="coord1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="coord1">
+            <div class="formula answer">
+              \[
+              x = \frac{2\cdot5 + 3\cdot2}{2+3} = \frac{10+6}{5} = \frac{16}{5} = 3.2
+              \]
+              \[
+              y = \frac{2\cdot7 + 3\cdot3}{5} = \frac{14+9}{5} = \frac{23}{5} = 4.6
+              \]
+              Point: \( (3.2, 4.6) \)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2: STRAIGHT LINE ========= -->
+    <section id="line" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-chart-line"></i> Straight Line: Slope, Equations, Angle, Distance
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Slope (Gradient)</div>
+          <p>\( m = \frac{y_2 - y_1}{x_2 - x_1} = \tan\theta \) (θ = inclination).</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Slope-Intercept</h4>
+            \( y = mx + c \)
+          </div>
+          <div class="card">
+            <h4>Point-Slope</h4>
+            \( y - y_1 = m(x - x_1) \)
+          </div>
+          <div class="card">
+            <h4>Two-Point</h4>
+            \( \frac{y - y_1}{y_2 - y_1} = \frac{x - x_1}{x_2 - x_1} \)
+          </div>
+          <div class="card">
+            <h4>Intercept Form</h4>
+            \( \frac{x}{a} + \frac{y}{b} = 1 \)
+          </div>
+        </div>
+
+        <div class="formula-card">
+          <h4>Angle Between Two Lines</h4>
+          <p>\( \tan\theta = \left| \frac{m_2 - m_1}{1 + m_1 m_2} \right| \)</p>
+          <p><strong>Parallel:</strong> \( m_1 = m_2 \)</p>
+          <p><strong>Perpendicular:</strong> \( m_1 m_2 = -1 \)</p>
+        </div>
+
+        <div class="formula-card">
+          <h4>Perpendicular Distance</h4>
+          <p>From point \( (x_1,y_1) \) to line \( ax+by+c=0 \):</p>
+          <p>\( d = \frac{|ax_1 + by_1 + c|}{\sqrt{a^2 + b^2}} \)</p>
+          <p>Distance between parallel lines \( ax+by+c_1=0 \) and \( ax+by+c_2=0 \):</p>
+          <p>\( d = \frac{|c_1 - c_2|}{\sqrt{a^2 + b^2}} \)</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem: Angle & Perpendicular</div>
+          <p>Find angle between lines \( y = 2x+3 \) and \( 3x - y + 1 = 0 \).</p>
+          <button class="toggle-btn" data-target="line1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="line1">
+            <div class="formula answer">
+              \( m_1 = 2 \), \( m_2 = 3 \) (from \( y = 3x+1 \))<br>
+              \[
+              \tan\theta = \left| \frac{3-2}{1+2\cdot3} \right| = \frac{1}{7}
+              \]
+              \( \theta = \tan^{-1}(1/7) \approx 8.13^\circ \)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3: CIRCLE ========= -->
+    <section id="circle" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-circle"></i> Circle: Equations, Centre, Radius
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Centre-Radius Form</div>
+          <p>\( (x - h)^2 + (y - k)^2 = r^2 \) with centre \( (h,k) \), radius \( r \).</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">Diameter Form</div>
+          <p>If \( A(x_1,y_1) \) and \( B(x_2,y_2) \) are ends of diameter, equation:</p>
+          <p>\( (x - x_1)(x - x_2) + (y - y_1)(y - y_2) = 0 \)</p>
+        </div>
+
+        <div class="definition-box">
+          <div class="box-title">General Equation</div>
+          <p>\( x^2 + y^2 + 2gx + 2fy + c = 0 \)</p>
+          <p>Centre: \( (-g, -f) \), Radius \( = \sqrt{g^2 + f^2 - c} \)</p>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem: Circle from General Equation</div>
+          <p>Find centre and radius of \( x^2 + y^2 - 4x + 6y - 12 = 0 \).</p>
+          <button class="toggle-btn" data-target="circle1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="circle1">
+            <div class="formula answer">
+              \( 2g = -4 \Rightarrow g = -2 \), \( 2f = 6 \Rightarrow f = 3 \)<br>
+              Centre \( (-g, -f) = (2, -3) \)<br>
+              Radius \( = \sqrt{(-2)^2 + 3^2 - (-12)} = \sqrt{4+9+12} = \sqrt{25} = 5 \)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4: CONIC SECTIONS ========= -->
+    <section id="conics" class="section">
+      <h2 class="section-title">
+        <i class="fas fa-parabola"></i> Conic Sections: Parabola · Ellipse
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="definition-box">
+          <div class="box-title">Definition of Conic</div>
+          <p>A conic is the locus of a point whose distance from a fixed point (focus) and fixed line (directrix) are in constant ratio \( e \) (eccentricity).</p>
+          <ul>
+            <li><strong>Vertex:</strong> point where conic meets axis</li>
+            <li><strong>Axis:</strong> line through focus perpendicular to directrix</li>
+            <li><strong>Eccentricity e:</strong> for parabola \( e=1 \), ellipse \( e<1 \)</li>
+            <li><strong>Latus rectum:</strong> chord through focus perpendicular to axis</li>
+          </ul>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h4>Parabola (Standard Equation)</h4>
+            <p>\( y^2 = 4ax \) (opens right)</p>
+            <p>Vertex: \( (0,0) \), Focus: \( (a,0) \), Directrix: \( x = -a \), Latus rectum length: \( 4a \)</p>
+          </div>
+          <div class="card">
+            <h4>Ellipse (Standard Equation)</h4>
+            <p>\( \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 \) (a > b)</p>
+            <p>Centre: \( (0,0) \), Foci: \( (\pm ae, 0) \), Eccentricity \( e = \sqrt{1 - \frac{b^2}{a^2}} \)</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem: Parabola</div>
+          <p>Find focus, directrix of parabola \( y^2 = 12x \).</p>
+          <button class="toggle-btn" data-target="conic1"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="conic1">
+            <div class="formula answer">
+              \( 4a = 12 \Rightarrow a = 3 \)<br>
+              Focus: \( (3,0) \), Directrix: \( x = -3 \)
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="box-title">Problem: Ellipse</div>
+          <p>Find eccentricity of ellipse \( \frac{x^2}{25} + \frac{y^2}{9} = 1 \).</p>
+          <button class="toggle-btn" data-target="conic2"><i class="fas fa-eye"></i> Show</button>
+          <div class="answer-reveal" id="conic2">
+            <div class="formula answer">
+              \( a^2 = 25 \Rightarrow a = 5 \), \( b^2 = 9 \Rightarrow b = 3 \)<br>
+              \( e = \sqrt{1 - \frac{9}{25}} = \sqrt{\frac{16}{25}} = \frac{4}{5} = 0.8 \)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- quick reference card -->
+    <section class="section">
+      <h2 class="section-title">
+        <i class="fas fa-list"></i> Formula Quick Reference
+        <i class="fas fa-chevron-down collapse-icon"></i>
+      </h2>
+      <div class="section-content">
+        <div class="tag-grid">
+          <div class="tag">\( d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2} \)</div>
+          <div class="tag">Internal division: \( \frac{mx_2+nx_1}{m+n} \)</div>
+          <div class="tag">Area = \( \frac{1}{2}|x_1(y_2-y_3)+\cdots| \)</div>
+          <div class="tag">Slope \( m = \frac{y_2-y_1}{x_2-x_1} \)</div>
+          <div class="tag">\( y = mx + c \)</div>
+          <div class="tag">\( \tan\theta = \left|\frac{m_2-m_1}{1+m_1m_2}\right| \)</div>
+          <div class="tag">Circle: \( (x-h)^2+(y-k)^2 = r^2 \)</div>
+          <div class="tag">Parabola: \( y^2 = 4ax \)</div>
+          <div class="tag">Ellipse: \( \frac{x^2}{a^2}+\frac{y^2}{b^2}=1 \)</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fab-container">
+    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Ready</span>
+  </div>
+</body>
+</html>
