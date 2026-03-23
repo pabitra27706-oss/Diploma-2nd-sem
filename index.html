@@ -2,12 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2nd Semester Study Hub</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>2nd Semester Study Hub</title>
 
@@ -21,6 +15,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="msapplication-TileColor" content="#6C63FF">
     <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
+    <meta name="description" content="Your smart companion for 2nd semester preparation">
 
     <!-- App Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png">
@@ -29,18 +24,11 @@
     <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180x180.png">
 
-    <!-- Splash Screens for iOS -->
-    <link rel="apple-touch-startup-image" href="icons/splash-640x1136.png" media="(device-width: 320px)">
-    <link rel="apple-touch-startup-image" href="icons/splash-750x1334.png" media="(device-width: 375px)">
-    <link rel="apple-touch-startup-image" href="icons/splash-1242x2208.png" media="(device-width: 414px)">
-
-    <!-- Existing Stylesheets -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
-
 </head>
 <body>
-
     <!-- Welcome Screen -->
     <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-bg">
@@ -57,17 +45,17 @@
             <p class="welcome-subtitle">Your smart companion for 2nd semester preparation</p>
             <div class="welcome-stats">
                 <div class="stat-item">
-                    <div class="stat-number" id="welcomeStatSubjects">5</div>
+                    <div class="stat-number">5</div>
                     <div class="stat-label">Subjects</div>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <div class="stat-number" id="welcomeStatUnits">32</div>
+                    <div class="stat-number">32</div>
                     <div class="stat-label">Units</div>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <div class="stat-number" id="welcomeStatPYQs">25</div>
+                    <div class="stat-number">25</div>
                     <div class="stat-label">PYQs</div>
                 </div>
             </div>
@@ -75,16 +63,12 @@
                 <span>Get Started</span>
                 <i class="fas fa-arrow-right"></i>
             </button>
-            <p class="welcome-note">
-                <span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
-                Tap to explore all study materials
-            </p>
+            <p class="welcome-note">Tap to explore all study materials</p>
         </div>
     </div>
 
     <!-- Main App Container -->
     <div class="container" id="appContainer" style="display: none;">
-
         <!-- Progress Bar -->
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
@@ -92,32 +76,31 @@
 
         <!-- Header -->
         <div class="header">
-            <button class="back-btn is-hidden" id="backBtn" onclick="goBack()">
+            <button class="back-btn hidden" id="backBtn" onclick="goBack()">
                 <i class="fas fa-arrow-left"></i>
             </button>
             <div class="header-content">
                 <div class="title" id="screenTitle">Subjects</div>
                 <div class="breadcrumb" id="breadcrumb">Choose a subject to begin</div>
             </div>
-            <button class="more-btn" id="headerMoreBtn" onclick="openMorePanel()">
+            <button class="more-btn" onclick="openMorePanel()">
                 <i class="fas fa-ellipsis-v"></i>
             </button>
         </div>
 
-        <!-- Screen 1: Subjects (Home) -->
+        <!-- Screen 1: Subjects -->
         <div class="screen active" id="screen1">
-
-            <!-- Greeting -->
+            <!-- Greeting Section -->
             <div class="home-greeting" id="homeGreeting">
                 <div class="greeting-text">
-                    <h2 id="greetingMessage">Good Morning! ☀️</h2>
+                    <h2 id="greetingMessage">Good Morning! 👋</h2>
                     <p class="greeting-sub">Ready to study? Pick a subject below.</p>
                 </div>
                 <div class="greeting-date" id="greetingDate"></div>
             </div>
 
             <!-- Continue Studying Banner -->
-            <div class="continue-banner" id="continueBanner" style="display:none;" onclick="resumeStudy()">
+            <div class="continue-banner" id="continueBanner" style="display:none;">
                 <div class="continue-left">
                     <span class="continue-icon" id="continueIcon">📖</span>
                     <div class="continue-info">
@@ -140,14 +123,13 @@
                 <span class="subject-count" id="subjectCount">5 subjects</span>
             </div>
 
-            <!-- Subject Grid -->
             <div class="subject-grid" id="subjectGrid"></div>
 
             <!-- Quick Links -->
-            <div class="section-label" style="margin-top: 24px;">
+            <div class="section-label" style="margin-top: 20px;">
                 <span>Quick Access</span>
             </div>
-            <div class="quick-links">
+            <div class="quick-links" id="quickLinks">
                 <div class="quick-link-item" onclick="openQuickLink('practice')">
                     <span>✏️</span>
                     <span>Practice</span>
@@ -160,9 +142,9 @@
                     <span>📋</span>
                     <span>Formulas</span>
                 </div>
-                <div class="quick-link-item" onclick="openQuickLink('feedback')">
-                    <span>💬</span>
-                    <span>Feedback</span>
+                <div class="quick-link-item" onclick="openMorePanel()">
+                    <span>⚙️</span>
+                    <span>More</span>
                 </div>
             </div>
         </div>
@@ -179,19 +161,14 @@
             <div class="content-list" id="contentList"></div>
         </div>
 
-        <!-- Screen 4: More -->
-        <div class="screen" id="screen4">
-            <div class="more-screen-content" id="moreScreenContent"></div>
-        </div>
-
         <!-- More Panel Overlay -->
         <div class="overlay" id="moreOverlay" onclick="closeMorePanel()"></div>
 
-        <!-- More Panel (Slide-Up) -->
+        <!-- More Panel -->
         <div class="more-panel" id="morePanel">
             <div class="panel-handle"></div>
             <div class="panel-header">
-                <h3 id="panelTitle"><i class="fas fa-info-circle"></i> Quick Access</h3>
+                <h3><i class="fas fa-info-circle"></i> More Options</h3>
                 <button class="close-btn" onclick="closeMorePanel()">
                     <i class="fas fa-times"></i>
                 </button>
@@ -213,31 +190,28 @@
                 <i class="fas fa-file-alt"></i>
                 <span>Content</span>
             </button>
-            <button class="nav-btn" id="navMore" onclick="showMoreScreen()">
-                <i class="fas fa-ellipsis-h"></i>
-                <span>More</span>
+            <button class="nav-btn" id="navHome" onclick="goHome()">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
             </button>
         </div>
     </div>
 
-        <script src="js/data.js"></script>
+    <script src="js/data.js"></script>
     <script src="js/app.js"></script>
 
     <!-- PWA Service Worker Registration -->
     <script>
-        // Register Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
                     .then((registration) => {
                         console.log('[PWA] Service Worker registered:', registration.scope);
 
-                        // Check for updates
                         registration.addEventListener('updatefound', () => {
                             const newWorker = registration.installing;
                             newWorker.addEventListener('statechange', () => {
                                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    // New version available
                                     showUpdateNotification();
                                 }
                             });
@@ -249,7 +223,6 @@
             });
         }
 
-        // Show update notification
         function showUpdateNotification() {
             const banner = document.createElement('div');
             banner.id = 'updateBanner';
@@ -294,14 +267,12 @@
             document.body.appendChild(banner);
         }
 
-        // Install Prompt Handler
         let deferredPrompt;
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
 
-            // Show install button after 3 seconds on welcome screen
             setTimeout(() => {
                 if (deferredPrompt && document.getElementById('welcomeScreen').style.display !== 'none') {
                     showInstallButton();
@@ -310,7 +281,6 @@
         });
 
         function showInstallButton() {
-            // Check if button already exists
             if (document.getElementById('installBtn')) return;
 
             const btn = document.createElement('button');
@@ -341,7 +311,6 @@
 
             btn.addEventListener('click', async () => {
                 if (!deferredPrompt) return;
-
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
                 console.log('[PWA] Install outcome:', outcome);
@@ -362,7 +331,6 @@
             document.body.appendChild(btn);
         }
 
-        // Remove install button after app is installed
         window.addEventListener('appinstalled', () => {
             console.log('[PWA] App installed!');
             deferredPrompt = null;
@@ -370,7 +338,5 @@
             if (btn) btn.remove();
         });
     </script>
-</body>
-</html>
 </body>
 </html>
