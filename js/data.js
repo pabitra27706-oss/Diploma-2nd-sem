@@ -10,7 +10,7 @@ const subjects = {
         shortName: "Math-II",
         icon: "📐",
         color: "#4CAF50",
-        folder: "Mathematics-II",  // ✓ Already correct (no spaces)
+        folder: "Mathematics-II",
         types: {
             units: {
                 name: "Units / Notes",
@@ -51,7 +51,7 @@ const subjects = {
                 icon: "📋",
                 color: "#9C27B0",
                 isDirectType: true,
-                directLink: "Formula-Sheet.html",  // ✓ Updated with hyphen
+                directLink: "Formula-Sheet.html",
                 desc: "Quick reference"
             }
         }
@@ -63,7 +63,7 @@ const subjects = {
         shortName: "Physics-II",
         icon: "⚡",
         color: "#2196F3",
-        folder: "Applied-Physics-II",  // ✓ FIXED: hyphen instead of space
+        folder: "Applied-Physics-II",
         types: {
             units: {
                 name: "Units / Notes",
@@ -105,7 +105,7 @@ const subjects = {
                 icon: "📋",
                 color: "#9C27B0",
                 isDirectType: true,
-                directLink: "Formula-Sheet.html",  // ✓ Updated with hyphen
+                directLink: "Formula-Sheet.html",
                 desc: "Quick reference"
             }
         }
@@ -117,7 +117,7 @@ const subjects = {
         shortName: "IT Systems",
         icon: "💻",
         color: "#9C27B0",
-        folder: "IT-Systems-Theory",  // ✓ FIXED: hyphens instead of spaces
+        folder: "IT-Systems-Theory",
         types: {
             units: {
                 name: "Units / Notes",
@@ -161,7 +161,7 @@ const subjects = {
         shortName: "FEEE",
         icon: "🔌",
         color: "#FF9800",
-        folder: "FEEE",  // ✓ Already correct (no spaces)
+        folder: "FEEE",
         types: {
             units: {
                 name: "Units / Notes",
@@ -203,7 +203,7 @@ const subjects = {
                 icon: "📋",
                 color: "#9C27B0",
                 isDirectType: true,
-                directLink: "Formula-Sheet.html",  // ✓ Updated with hyphen
+                directLink: "Formula-Sheet.html",
                 desc: "Quick reference"
             }
         }
@@ -215,7 +215,7 @@ const subjects = {
         shortName: "Eng Mechanics",
         icon: "⚙️",
         color: "#F44336",
-        folder: "Engineering-Mechanics",  // ✓ FIXED: hyphens instead of spaces
+        folder: "Engineering-Mechanics",
         types: {
             units: {
                 name: "Units / Notes",
@@ -262,27 +262,27 @@ const subjects = {
         icon: "📝",
         color: "#00BCD4",
         isPractice: true,
-        folder: "Practice_question",  // ✓ Already correct (underscore)
+        folder: "Practice_question",
         options: [
             {
                 name: "Practice Questions",
                 icon: "✏️",
                 color: "#00BCD4",
                 desc: "Daily practice (Day 1-10)",
-                link: "Practice_question/questions/index.html"  // ✓ FIXED: added questions/ path
+                link: "Practice_question/questions/index.html"
             },
             {
                 name: "Study Roadmap",
                 icon: "🗺️",
                 color: "#FF6B6B",
                 desc: "Complete preparation plan",
-                link: "Practice_question/roadmap.html"  // ✓ Already correct
+                link: "Practice_question/roadmap.html"
             }
         ]
     }
 };
 
-// More Section Links - ✓ FIXED: app-resorses (not app-resources)
+// More Section Links
 const moreLinks = [
     {
         section: "App Info",
