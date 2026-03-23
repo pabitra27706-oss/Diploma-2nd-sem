@@ -1,5 +1,5 @@
 // ============================================
-// 2ND SEMESTER STUDY HUB - APP LOGIC (FULL)
+// 2ND SEMESTER STUDY HUB - APP LOGIC (REFINED)
 // ============================================
 
 // ============ STATE ============
@@ -7,212 +7,30 @@ let appState = {
     currentScreen: 1,
     selectedSubject: null,
     selectedType: null,
-    history: [],
-    preMoreScreen: null
+    history: []
 };
 
 // ============ DOM CACHE ============
 const $ = id => document.getElementById(id);
-const welcomeScreen  = $('welcomeScreen');
-const appContainer   = $('appContainer');
-const progressFill   = $('progressFill');
-const screenTitle    = $('screenTitle');
-const breadcrumbEl   = $('breadcrumb');
-const backBtn        = $('backBtn');
-const screen1        = $('screen1');
-const screen2        = $('screen2');
-const screen3        = $('screen3');
-const screen4        = $('screen4');
-const footer         = $('appFooter');
-const headerMoreBtn  = $('headerMoreBtn');
-
-// ============ CONFIG ============
-// ✏️ CHANGE THIS DATE TO YOUR EXAM DATE
-const EXAM_DATE = new Date('2025-07-15');
+const welcomeScreen = $('welcomeScreen');
+const appContainer = $('appContainer');
+const progressFill = $('progressFill');
+const screenTitle = $('screenTitle');
+const breadcrumbEl = $('breadcrumb');
+const backBtn = $('backBtn');
+const screen1 = $('screen1');
+const screen2 = $('screen2');
+const screen3 = $('screen3');
+const footer = $('appFooter');
 
 // ============================================
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    updateWelcomeStats();
-    updateGreeting();
-    updateExamCountdown();
-    updateContinueBanner();
-    updateSubjectCount();
     renderSubjects();
     renderMorePanel();
     checkReturnState();
 });
-
-// ============================================
-// DYNAMIC STATS
-// ============================================
-function calculateStats() {
-    const subjectList = Object.values(subjects).filter(s => !s.isPractice);
-    let totalUnits = 0;
-    let totalPYQs = 0;
-
-    subjectList.forEach(s => {
-        if (s.types?.units?.items) totalUnits += s.types.units.items.length;
-        if (s.types?.pyq?.items) totalPYQs += s.types.pyq.items.length;
-    });
-
-    return { subjects: subjectList.length, units: totalUnits, pyqs: totalPYQs };
-}
-
-function updateWelcomeStats() {
-    const stats = calculateStats();
-    const elSub  = $('welcomeStatSubjects');
-    const elUnit = $('welcomeStatUnits');
-    const elPYQ  = $('welcomeStatPYQs');
-    if (elSub)  elSub.textContent  = stats.subjects;
-    if (elUnit) elUnit.textContent = stats.units;
-    if (elPYQ)  elPYQ.textContent  = stats.pyqs;
-}
-
-function updateSubjectCount() {
-    const el = $('subjectCount');
-    if (el) el.textContent = `${Object.keys(subjects).length} subjects`;
-}
-
-// ============================================
-// HOME SCREEN ENHANCEMENTS
-// ============================================
-function updateGreeting() {
-    const hour = new Date().getHours();
-    let greeting, emoji;
-
-    if (hour < 5)       { greeting = 'Late Night Study'; emoji = '🌙'; }
-    else if (hour < 12) { greeting = 'Good Morning';     emoji = '☀️'; }
-    else if (hour < 17) { greeting = 'Good Afternoon';   emoji = '🌤️'; }
-    else if (hour < 21) { greeting = 'Good Evening';     emoji = '🌆'; }
-    else                { greeting = 'Night Owl Mode';    emoji = '🦉'; }
-
-    const el = $('greetingMessage');
-    if (el) el.textContent = `${greeting}! ${emoji}`;
-
-    const dateEl = $('greetingDate');
-    if (dateEl) {
-        const now = new Date();
-        dateEl.textContent = now.toLocaleDateString('en-US', {
-            weekday: 'short', month: 'short', day: 'numeric'
-        });
-    }
-}
-
-function updateExamCountdown() {
-    const el = $('countdownText');
-    if (!el) return;
-
-    const now  = new Date();
-    const diff = EXAM_DATE - now;
-
-    if (diff <= 0) {
-        el.textContent = 'Exams are here! Best of luck! 🎯';
-    } else {
-        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        if (days <= 7) {
-            el.textContent = `Only ${days} day${days > 1 ? 's' : ''} left — Give it your all! 🔥`;
-        } else if (days <= 30) {
-            el.textContent = `${days} days until exams — Stay focused! 💪`;
-        } else {
-            el.textContent = `${days} days until exams — Build consistency! 📈`;
-        }
-    }
-}
-
-function updateContinueBanner() {
-    const banner = $('continueBanner');
-    if (!banner) return;
-
-    const lastVisited = localStorage.getItem('lastVisitedSubject');
-    if (!lastVisited) { banner.style.display = 'none'; return; }
-
-    try {
-        const data = JSON.parse(lastVisited);
-        const subject = subjects[data.id];
-        if (!subject) { banner.style.display = 'none'; return; }
-
-        $('continueIcon').textContent = subject.icon;
-        $('continueSubject').textContent = subject.name;
-        banner.style.display = 'flex';
-    } catch (e) {
-        banner.style.display = 'none';
-    }
-}
-
-function resumeStudy() {
-    const lastVisited = localStorage.getItem('lastVisitedSubject');
-    if (!lastVisited) return;
-    try {
-        const data = JSON.parse(lastVisited);
-        const subject = subjects[data.id];
-        if (subject) selectSubject(subject);
-    } catch (e) { /* ignore */ }
-}
-
-function trackSubjectVisit(subject) {
-    if (subject && !subject.isPractice) {
-        localStorage.setItem('lastVisitedSubject', JSON.stringify({
-            id: subject.id,
-            timestamp: Date.now()
-        }));
-    }
-}
-
-// ============================================
-// QUICK LINKS
-// ============================================
-function openQuickLink(type) {
-    switch (type) {
-        case 'practice':
-            if (subjects['practice']) selectSubject(subjects['practice']);
-            break;
-        case 'roadmap':
-            saveState();
-            window.location.href = 'Practice_question/roadmap.html';
-            break;
-        case 'formulas':
-            showFormulaSelector();
-            break;
-        case 'feedback':
-            saveState();
-            window.location.href = 'app-resorses/sections/send-feedback.html';
-            break;
-    }
-}
-
-function showFormulaSelector() {
-    const content = $('morePanelContent');
-    content.innerHTML = '';
-
-    Object.values(subjects).forEach(subject => {
-        if (subject.types?.formula) {
-            const item = document.createElement('div');
-            item.className = 'more-item';
-            item.innerHTML = `
-                <div class="more-icon" style="background:${subject.color}18;color:${subject.color}">
-                    <span style="font-size:1.2rem">${subject.icon}</span>
-                </div>
-                <div class="more-text">
-                    <h4>${subject.name}</h4>
-                    <p>Formula Sheet</p>
-                </div>
-                <i class="fas fa-chevron-right more-arrow"></i>
-            `;
-            item.addEventListener('click', () => {
-                saveState();
-                window.location.href = `${subject.folder}/${subject.types.formula.directLink}`;
-            });
-            content.appendChild(item);
-        }
-    });
-
-    $('panelTitle').innerHTML = '<i class="fas fa-clipboard-list"></i> Formula Sheets';
-    $('morePanel').classList.add('show');
-    $('moreOverlay').classList.add('show');
-    document.body.style.overflow = 'hidden';
-}
 
 // ============================================
 // SESSION STATE MANAGEMENT
@@ -226,29 +44,24 @@ function checkReturnState() {
         if (!state || !state.currentScreen) return;
 
         appState = state;
-
-        // If was on More screen, restore to previous
-        if (appState.currentScreen === 4) {
-            appState.currentScreen = appState.preMoreScreen || 1;
-            appState.preMoreScreen = null;
-        }
-
         welcomeScreen.style.display = 'none';
         appContainer.style.display = 'flex';
 
-        if (appState.currentScreen === 2 && appState.selectedSubject) {
-            if (appState.selectedSubject.isPractice) {
-                renderPracticeOptions(appState.selectedSubject);
+        if (state.currentScreen === 2 && state.selectedSubject) {
+            if (state.selectedSubject.isPractice) {
+                renderPracticeOptions(state.selectedSubject);
             } else {
-                renderContentTypes(appState.selectedSubject);
+                renderContentTypes(state.selectedSubject);
             }
-        } else if (appState.currentScreen === 3 && appState.selectedSubject && appState.selectedType) {
-            if (appState.selectedSubject.isPractice) {
-                renderPracticeOptions(appState.selectedSubject);
+            showFooter();
+        } else if (state.currentScreen === 3 && state.selectedSubject && state.selectedType) {
+            if (state.selectedSubject.isPractice) {
+                renderPracticeOptions(state.selectedSubject);
             } else {
-                renderContentTypes(appState.selectedSubject);
+                renderContentTypes(state.selectedSubject);
             }
-            renderContentItems(appState.selectedSubject, appState.selectedType.key, appState.selectedType.data);
+            renderContentItems(state.selectedSubject, state.selectedType.key, state.selectedType.data);
+            showFooter();
         } else {
             appState.currentScreen = 1;
             appState.selectedSubject = null;
@@ -256,7 +69,17 @@ function checkReturnState() {
             appState.history = [];
         }
 
-        showScreen(appState.currentScreen);
+        // Rebuild browser history stack so back button works
+        history.replaceState({ screen: 1 }, '', '#screen1');
+        if (appState.currentScreen >= 2) {
+            history.pushState({ screen: 2 }, '', '#screen2');
+        }
+        if (appState.currentScreen >= 3) {
+            history.pushState({ screen: 3 }, '', '#screen3');
+        }
+
+        restoreScreen(appState.currentScreen);
+
     } catch (e) {
         console.warn('State restore failed:', e);
         sessionStorage.removeItem('studyHubState');
@@ -291,8 +114,7 @@ function startApp() {
         currentScreen: 1,
         selectedSubject: null,
         selectedType: null,
-        history: [],
-        preMoreScreen: null
+        history: []
     };
 
     welcomeScreen.style.opacity = '0';
@@ -305,6 +127,10 @@ function startApp() {
             appContainer.style.opacity = '1';
             appContainer.style.transition = 'opacity 0.4s ease';
         });
+
+        // Set initial browser history state
+        history.replaceState({ screen: 1 }, '', '#screen1');
+
         showScreen(1);
     }, 500);
 }
@@ -318,9 +144,10 @@ function renderSubjects() {
 
     const subjectList = Object.values(subjects);
 
-    subjectList.forEach((subject) => {
+    subjectList.forEach((subject, index) => {
         const card = document.createElement('div');
 
+        // Practice card is full-width
         if (subject.isPractice) {
             card.className = 'subject-card full-width';
             card.style.setProperty('--card-color', subject.color);
@@ -335,9 +162,11 @@ function renderSubjects() {
         } else {
             card.className = 'subject-card';
             card.style.setProperty('--card-color', subject.color);
+
             const unitCount = subject.types?.units?.items?.length || 0;
             const hasAnswers = subject.types?.answers ? ' • Answers' : '';
             const meta = `${unitCount} Units${hasAnswers}`;
+
             card.innerHTML = `
                 <span class="subject-icon">${subject.icon}</span>
                 <div class="subject-name">${subject.shortName || subject.name}</div>
@@ -358,8 +187,6 @@ function selectSubject(subject) {
     appState.selectedSubject = subject;
     appState.selectedType = null;
 
-    trackSubjectVisit(subject);
-
     if (subject.isPractice) {
         renderPracticeOptions(subject);
     } else {
@@ -367,6 +194,7 @@ function selectSubject(subject) {
     }
 
     showScreen(2);
+    showFooter();
 }
 
 // ============================================
@@ -452,6 +280,7 @@ function renderContentTypes(subject) {
 // SELECT TYPE
 // ============================================
 function selectType(subject, typeKey, typeData) {
+    // Direct types open immediately
     if (typeData.isDirectType) {
         saveState();
         window.location.href = `${subject.folder}/${typeData.directLink}`;
@@ -490,7 +319,7 @@ function renderContentItems(subject, typeKey, typeData) {
 
         div.innerHTML = `
             <div class="item-left">
-                <div class="item-icon" style="background:${subject.color}18;color:${subject.color}">
+                <div class="item-icon" style="background: ${subject.color}18; color: ${subject.color}">
                     ${itemIcon}
                 </div>
                 <div class="item-info">
@@ -511,8 +340,8 @@ function renderContentItems(subject, typeKey, typeData) {
 // ============================================
 function openContent(subject, typeKey, typeData, item) {
     saveState();
-    let path = '';
 
+    let path = '';
     if (typeKey === 'units') {
         path = `${subject.folder}/${item.file}`;
     } else if (typeKey === 'pyq') {
@@ -523,86 +352,162 @@ function openContent(subject, typeKey, typeData, item) {
 }
 
 // ============================================
-// MORE SCREEN (Screen 4 — Full Page)
+// SCREEN MANAGEMENT
 // ============================================
-function showMoreScreen() {
-    if (appState.currentScreen === 4) return;
-    appState.preMoreScreen = appState.currentScreen;
-    renderMoreScreenContent();
-    showScreen(4);
+function showScreen(num) {
+    // Deactivate all
+    screen1.classList.remove('active');
+    screen2.classList.remove('active');
+    screen3.classList.remove('active');
+
+    appState.currentScreen = num;
+
+    // Activate target
+    const target = $(`screen${num}`);
+    target.classList.add('active');
+
+    // Push browser history state so back button works
+    const stateData = {
+        screen: num,
+        subjectId: appState.selectedSubject?.id || null,
+        typeKey: appState.selectedType?.key || null
+    };
+    history.pushState(stateData, '', `#screen${num}`);
+
+    // Update all UI elements
+    updateProgress(num);
+    updateHeader(num);
+    updateFooterState(num);
+    updateBackBtn(num);
+    saveState();
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function renderMoreScreenContent() {
-    const content = $('moreScreenContent');
-    content.innerHTML = '';
+// Show screen WITHOUT pushing browser history (used by popstate handler)
+function restoreScreen(num) {
+    screen1.classList.remove('active');
+    screen2.classList.remove('active');
+    screen3.classList.remove('active');
 
-    // App Info Card
-    const stats = calculateStats();
-    const appCard = document.createElement('div');
-    appCard.className = 'more-app-card';
-    appCard.innerHTML = `
-        <div class="more-app-icon">📚</div>
-        <div class="more-app-info">
-            <h3>2nd Semester Study Hub</h3>
-            <p>${stats.subjects} subjects • ${stats.units} units • ${stats.pyqs} PYQs</p>
-        </div>
-    `;
-    content.appendChild(appCard);
+    appState.currentScreen = num;
 
-    // Home / Welcome Button
-    const homeItem = document.createElement('div');
-    homeItem.className = 'more-item home-action';
-    homeItem.innerHTML = `
-        <div class="more-icon blue">
-            <i class="fas fa-home"></i>
-        </div>
-        <div class="more-text">
-            <h4>Back to Welcome</h4>
-            <p>Return to start screen</p>
-        </div>
-        <i class="fas fa-chevron-right more-arrow"></i>
-    `;
-    homeItem.addEventListener('click', goHome);
-    content.appendChild(homeItem);
+    const target = $(`screen${num}`);
+    target.classList.add('active');
 
-    // Sections
-    moreLinks.forEach(section => {
-        const sectionDiv = document.createElement('div');
-        sectionDiv.className = 'more-screen-section';
-        sectionDiv.innerHTML = `<div class="more-section-label">${section.section}</div>`;
+    updateProgress(num);
+    updateHeader(num);
+    updateFooterState(num);
+    updateBackBtn(num);
+    saveState();
 
-        section.items.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'more-item';
-            itemDiv.innerHTML = `
-                <div class="more-icon ${item.color}">
-                    <i class="${item.icon}"></i>
-                </div>
-                <div class="more-text">
-                    <h4>${item.name}</h4>
-                    <p>${item.desc}</p>
-                </div>
-                <i class="fas fa-chevron-right more-arrow"></i>
-            `;
-            itemDiv.addEventListener('click', () => {
-                saveState();
-                window.location.href = item.link;
-            });
-            sectionDiv.appendChild(itemDiv);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgress(num) {
+    progressFill.style.width = `${(num / 3) * 100}%`;
+}
+
+function updateHeader(num) {
+    const subject = appState.selectedSubject;
+    const type = appState.selectedType;
+
+    const titles = {
+        1: 'Subjects',
+        2: subject ? subject.name : 'Content Type',
+        3: type ? type.data.name : 'Content'
+    };
+
+    const crumbs = {
+        1: 'Choose a subject to begin',
+        2: subject?.isPractice ? 'Choose an option' : 'Select content type',
+        3: type ? `${type.data.items?.length || 0} items available` : 'Browse items'
+    };
+
+    screenTitle.textContent = titles[num];
+    breadcrumbEl.textContent = crumbs[num];
+}
+
+function updateFooterState(num) {
+    if (appState.selectedSubject) {
+        showFooter();
+    } else {
+        hideFooter();
+    }
+
+    // Active states
+    $('navSubjects').classList.toggle('active', num === 1);
+    $('navType').classList.toggle('active', num === 2);
+    $('navContent').classList.toggle('active', num === 3);
+
+    // Disabled states
+    $('navType').classList.toggle('disabled', !appState.selectedSubject);
+    $('navContent').classList.toggle('disabled', !appState.selectedType);
+
+    // Remove active indicator from disabled
+    if (!appState.selectedSubject) $('navType').classList.remove('active');
+    if (!appState.selectedType) $('navContent').classList.remove('active');
+}
+
+function updateBackBtn(num) {
+    backBtn.classList.toggle('hidden', num === 1);
+}
+
+// ============================================
+// NAVIGATION FUNCTIONS
+// ============================================
+function goBack() {
+    // Use browser history so device back button and header back button behave same
+    history.back();
+}
+
+function navigateTo(num) {
+    if (num === 2 && !appState.selectedSubject) return;
+    if (num === 3 && !appState.selectedType) return;
+
+    if (num < appState.currentScreen) {
+        if (num === 1) {
+            appState.selectedSubject = null;
+            appState.selectedType = null;
+            appState.history = [];
+            hideFooter();
+        } else if (num === 2) {
+            appState.selectedType = null;
+        }
+    }
+
+    showScreen(num);
+}
+
+function goHome() {
+    hideFooter();
+    appState = {
+        currentScreen: 1,
+        selectedSubject: null,
+        selectedType: null,
+        history: []
+    };
+    clearState();
+
+    appContainer.style.opacity = '0';
+    appContainer.style.transition = 'opacity 0.4s ease';
+
+    setTimeout(() => {
+        appContainer.style.display = 'none';
+        welcomeScreen.style.display = 'flex';
+        requestAnimationFrame(() => {
+            welcomeScreen.style.opacity = '1';
+            welcomeScreen.style.transition = 'opacity 0.5s ease';
         });
 
-        content.appendChild(sectionDiv);
-    });
-
-    // Version Footer
-    const versionDiv = document.createElement('div');
-    versionDiv.className = 'more-version';
-    versionDiv.innerHTML = `<p>Version 1.0 • Made with ❤️ for students</p>`;
-    content.appendChild(versionDiv);
+        // Replace history so we don't stack up entries
+        history.replaceState(null, '', '#welcome');
+    }, 400);
 }
 
 // ============================================
-// MORE PANEL (Slide-Up — Header ⋮ Button)
+// MORE PANEL
 // ============================================
 function renderMorePanel() {
     const content = $('morePanelContent');
@@ -638,11 +543,12 @@ function renderMorePanel() {
 }
 
 function openMorePanel() {
-    renderMorePanel();
-    $('panelTitle').innerHTML = '<i class="fas fa-info-circle"></i> Quick Access';
     $('morePanel').classList.add('show');
     $('moreOverlay').classList.add('show');
     document.body.style.overflow = 'hidden';
+
+    // Push state so device back button closes panel instead of navigating away
+    history.pushState({ panel: 'more', screen: appState.currentScreen }, '', '#more');
 }
 
 function closeMorePanel() {
@@ -652,181 +558,55 @@ function closeMorePanel() {
 }
 
 // ============================================
-// SCREEN MANAGEMENT
+// BROWSER BACK BUTTON (FIXED - PROPER HISTORY)
 // ============================================
-function showScreen(num) {
-    screen1.classList.remove('active');
-    screen2.classList.remove('active');
-    screen3.classList.remove('active');
-    screen4.classList.remove('active');
-
-    appState.currentScreen = num;
-
-    const target = $(`screen${num}`);
-    target.classList.add('active');
-
-    updateProgress(num);
-    updateHeader(num);
-    updateFooterState(num);
-    updateBackBtn(num);
-    saveState();
-
-    // Refresh home screen data when shown
-    if (num === 1) {
-        updateGreeting();
-        updateContinueBanner();
-        updateExamCountdown();
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function updateProgress(num) {
-    if (num === 4) {
-        progressFill.style.width = '100%';
-        progressFill.style.opacity = '0.4';
-    } else {
-        progressFill.style.width = `${(num / 3) * 100}%`;
-        progressFill.style.opacity = '1';
-    }
-}
-
-function updateHeader(num) {
-    const subject = appState.selectedSubject;
-    const type = appState.selectedType;
-
-    const titles = {
-        1: 'Subjects',
-        2: subject ? subject.name : 'Content Type',
-        3: type ? type.data.name : 'Content',
-        4: 'More'
-    };
-
-    const crumbs = {
-        1: 'Choose a subject to begin',
-        2: subject?.isPractice ? 'Choose an option' : 'Select content type',
-        3: type ? `${type.data.items?.length || 0} items available` : 'Browse items',
-        4: 'App info & settings'
-    };
-
-    screenTitle.textContent = titles[num];
-    breadcrumbEl.textContent = crumbs[num];
-
-    // Hide header ⋮ on More screen (already showing More content)
-    if (headerMoreBtn) {
-        headerMoreBtn.style.display = (num === 4) ? 'none' : 'flex';
-    }
-}
-
-function updateFooterState(num) {
-    // Always show footer when in app
-    showFooter();
-
-    $('navSubjects').classList.toggle('active', num === 1);
-    $('navType').classList.toggle('active', num === 2);
-    $('navContent').classList.toggle('active', num === 3);
-    $('navMore').classList.toggle('active', num === 4);
-
-    // Disabled states
-    $('navType').classList.toggle('disabled', !appState.selectedSubject);
-    $('navContent').classList.toggle('disabled', !appState.selectedType);
-
-    // Remove active from disabled buttons
-    if (!appState.selectedSubject) $('navType').classList.remove('active');
-    if (!appState.selectedType) $('navContent').classList.remove('active');
-}
-
-function updateBackBtn(num) {
-    backBtn.classList.toggle('is-hidden', num === 1);
-}
-
-// ============================================
-// NAVIGATION FUNCTIONS
-// ============================================
-function goBack() {
-    // From More screen → go to previous screen
-    if (appState.currentScreen === 4) {
-        const prev = appState.preMoreScreen || 1;
-        appState.preMoreScreen = null;
-        showScreen(prev);
+window.addEventListener('popstate', (event) => {
+    // 1. Close more panel first if open
+    if ($('morePanel').classList.contains('show')) {
+        closeMorePanel();
+        // Re-push current screen state so history stays correct
+        history.pushState({ screen: appState.currentScreen }, '', `#screen${appState.currentScreen}`);
         return;
     }
 
-    if (appState.history.length > 0) {
-        const prev = appState.history.pop();
-        if (prev.screen === 1) {
-            appState.selectedSubject = null;
-            appState.selectedType = null;
-            showScreen(1);
-        } else if (prev.screen === 2) {
-            appState.selectedType = null;
-            showScreen(2);
-        }
-    } else if (appState.currentScreen > 1) {
-        if (appState.currentScreen === 3) {
-            appState.selectedType = null;
-            showScreen(2);
-        } else if (appState.currentScreen === 2) {
-            appState.selectedSubject = null;
-            appState.selectedType = null;
-            showScreen(1);
-        }
-    }
-}
-
-function navigateTo(num) {
-    if (num === 2 && !appState.selectedSubject) return;
-    if (num === 3 && !appState.selectedType) return;
-
-    // Coming from More screen
-    if (appState.currentScreen === 4) {
-        appState.preMoreScreen = null;
+    // 2. If on welcome screen, let browser handle naturally (exit app)
+    if (welcomeScreen.style.display !== 'none') {
+        return;
     }
 
-    // Reset state when going backwards
-    if (num === 1) {
+    // 3. If event has state with screen number, use it
+    if (event.state && event.state.screen) {
+        const targetScreen = event.state.screen;
+
+        if (targetScreen === 1) {
+            appState.selectedSubject = null;
+            appState.selectedType = null;
+            appState.history = [];
+            hideFooter();
+            restoreScreen(1);
+        } else if (targetScreen === 2) {
+            appState.selectedType = null;
+            restoreScreen(2);
+        } else {
+            restoreScreen(targetScreen);
+        }
+        return;
+    }
+
+    // 4. Fallback - no state data, handle manually
+    if (appState.currentScreen === 3) {
+        appState.selectedType = null;
+        appState.history.pop();
+        restoreScreen(2);
+    } else if (appState.currentScreen === 2) {
         appState.selectedSubject = null;
         appState.selectedType = null;
         appState.history = [];
-    } else if (num === 2) {
-        appState.selectedType = null;
-    }
-
-    showScreen(num);
-}
-
-function goHome() {
-    hideFooter();
-    appState = {
-        currentScreen: 1,
-        selectedSubject: null,
-        selectedType: null,
-        history: [],
-        preMoreScreen: null
-    };
-    clearState();
-
-    appContainer.style.opacity = '0';
-    appContainer.style.transition = 'opacity 0.4s ease';
-
-    setTimeout(() => {
-        appContainer.style.display = 'none';
-        welcomeScreen.style.display = 'flex';
-        requestAnimationFrame(() => {
-            welcomeScreen.style.opacity = '1';
-            welcomeScreen.style.transition = 'opacity 0.5s ease';
-        });
-    }, 400);
-}
-
-// ============================================
-// BROWSER BACK BUTTON
-// ============================================
-window.addEventListener('popstate', () => {
-    if ($('morePanel').classList.contains('show')) {
-        closeMorePanel();
-    } else if (appState.currentScreen > 1 || appState.currentScreen === 4) {
-        goBack();
+        hideFooter();
+        restoreScreen(1);
+    } else if (appState.currentScreen === 1) {
+        // On screen 1, go back to welcome screen
+        goHome();
     }
 });
 
@@ -837,13 +617,13 @@ document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         if ($('morePanel').classList.contains('show')) {
             closeMorePanel();
-        } else if (appState.currentScreen > 1 || appState.currentScreen === 4) {
+        } else if (appState.currentScreen > 1) {
             goBack();
         }
     }
 
     if (e.key === 'Backspace' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-        if (appState.currentScreen > 1 || appState.currentScreen === 4) {
+        if (appState.currentScreen > 1) {
             e.preventDefault();
             goBack();
         }
@@ -865,10 +645,11 @@ document.addEventListener('touchend', e => {
     const deltaX = e.changedTouches[0].screenX - touchStartX;
     const deltaY = Math.abs(e.changedTouches[0].screenY - touchStartY);
 
+    // Swipe right from left edge, horizontal swipe only
     if (deltaX > 80 && touchStartX < 40 && deltaY < 60) {
         if ($('morePanel').classList.contains('show')) {
             closeMorePanel();
-        } else if (appState.currentScreen > 1 || appState.currentScreen === 4) {
+        } else if (appState.currentScreen > 1) {
             goBack();
         }
     }
