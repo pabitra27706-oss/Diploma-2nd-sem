@@ -1,5 +1,5 @@
 // ============================================
-// 2ND SEMESTER STUDY HUB - APP LOGIC (REFINED)
+// 2ND SEMESTER STUDY HUB - APP LOGIC (FINAL)
 // ============================================
 
 // ============ STATE ============
@@ -27,10 +27,257 @@ const footer = $('appFooter');
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Dynamic welcome stats
+    updateWelcomeStats();
+
+    // Home screen enhancements
+    updateGreeting();
+    updateExamCountdown();
+    updateContinueBanner();
+    updateSubjectCount();
+
+    // Render content
     renderSubjects();
     renderMorePanel();
     checkReturnState();
 });
+
+// ============================================
+// WELCOME STATS (Dynamic)
+// ============================================
+function calculateStats() {
+    const subjectList = Object.values(subjects).filter(s => !s.isPractice);
+    let totalUnits = 0;
+    let totalPYQs = 0;
+
+    subjectList.forEach(s => {
+        if (s.types?.units?.items) totalUnits += s.types.units.items.length;
+        if (s.types?.pyq?.items) totalPYQs += s.types.pyq.items.length;
+    });
+
+    return {
+        subjects: subjectList.length,
+        units: totalUnits,
+        pyqs: totalPYQs
+    };
+}
+
+function updateWelcomeStats() {
+    const stats = calculateStats();
+    const statNumbers = document.querySelectorAll('.stat-number');
+    if (statNumbers.length >= 3) {
+        statNumbers[0].textContent = stats.subjects;
+        statNumbers[1].textContent = stats.units;
+        statNumbers[2].textContent = stats.pyqs;
+    }
+}
+
+// ============================================
+// HOME SCREEN ENHANCEMENTS
+// ============================================
+function updateGreeting() {
+    const hour = new Date().getHours();
+    let greeting, emoji;
+
+    if (hour < 5)       { greeting = 'Late Night Study'; emoji = '🌙'; }
+    else if (hour < 12) { greeting = 'Good Morning';     emoji = '☀️'; }
+    else if (hour < 17) { greeting = 'Good Afternoon';   emoji = '🌤️'; }
+    else if (hour < 21) { greeting = 'Good Evening';     emoji = '🌆'; }
+    else                { greeting = 'Night Owl Mode';    emoji = '🦉'; }
+
+    const greetingEl = $('greetingMessage');
+    if (greetingEl) {
+        greetingEl.textContent = `${greeting}! ${emoji}`;
+    }
+
+    const dateEl = $('greetingDate');
+    if (dateEl) {
+        const now = new Date();
+        const options = { weekday: 'short', month: 'short', day: 'numeric' };
+        dateEl.textContent = now.toLocaleDateString('en-US', options);
+    }
+}
+
+function updateExamCountdown() {
+    // SET YOUR EXAM DATE HERE
+    const examDate = new Date('2025-07-15');
+    const now = new Date();
+    const diff = examDate - now;
+
+    const countdownEl = $('countdownText');
+    if (!countdownEl) return;
+
+    if (diff <= 0) {
+        countdownEl.textContent = 'Exams are here! Best of luck! 🎯';
+    } else {
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        if (days <= 7) {
+            countdownEl.textContent = `Only ${days} day${days === 1 ? '' : 's'} left! Final push! 🔥`;
+        } else if (days <= 30) {
+            countdownEl.textContent = `${days} days until exams — Time to focus! 📚`;
+        } else {
+            countdownEl.textContent = `${days} days until exams — Stay consistent! 💪`;
+        }
+    }
+}
+
+function updateContinueBanner() {
+    const banner = $('continueBanner');
+    if (!banner) return;
+
+    const lastVisited = localStorage.getItem('lastVisitedSubject');
+    if (!lastVisited) {
+        banner.style.display = 'none';
+        return;
+    }
+
+    try {
+        const data = JSON.parse(lastVisited);
+        const subject = subjects[data.id];
+        if (!subject) {
+            banner.style.display = 'none';
+            return;
+        }
+
+        const continueIcon = $('continueIcon');
+        const continueSubject = $('continueSubject');
+
+        if (continueIcon) continueIcon.textContent = subject.icon;
+        if (continueSubject) continueSubject.textContent = subject.name;
+
+        banner.style.display = 'flex';
+
+        // Remove old listeners to prevent stacking
+        const newBanner = banner.cloneNode(true);
+        banner.parentNode.replaceChild(newBanner, banner);
+
+        newBanner.addEventListener('click', () => selectSubject(subject));
+    } catch (e) {
+        banner.style.display = 'none';
+    }
+}
+
+function updateSubjectCount() {
+    const countEl = $('subjectCount');
+    if (countEl) {
+        const total = Object.keys(subjects).length;
+        countEl.textContent = `${total} subjects`;
+    }
+}
+
+function trackSubjectVisit(subject) {
+    if (subject && !subject.isPractice) {
+        localStorage.setItem('lastVisitedSubject', JSON.stringify({
+            id: subject.id,
+            timestamp: Date.now()
+        }));
+    }
+}
+
+// ============================================
+// QUICK LINKS
+// ============================================
+function openQuickLink(type) {
+    switch (type) {
+        case 'practice':
+            const practice = subjects['practice'];
+            if (practice) selectSubject(practice);
+            break;
+        case 'roadmap':
+            saveState();
+            window.location.href = 'Practice_question/roadmap.html';
+            break;
+        case 'formulas':
+            openFormulaPicker();
+            break;
+    }
+}
+
+// ============================================
+// FORMULA PICKER — Shows ALL subjects with formulas
+// ============================================
+function openFormulaPicker() {
+    // Find all subjects that have formula sheets
+    const formulaSubjects = Object.values(subjects).filter(s =>
+        s.types?.formula?.isDirectType && s.types?.formula?.directLink
+    );
+
+    // If only one subject has formula, open directly
+    if (formulaSubjects.length === 1) {
+        saveState();
+        window.location.href = `${formulaSubjects[0].folder}/${formulaSubjects[0].types.formula.directLink}`;
+        return;
+    }
+
+    // If no subjects have formula
+    if (formulaSubjects.length === 0) {
+        return;
+    }
+
+    // Show formula picker panel
+    const overlay = $('moreOverlay');
+    const panel = $('morePanel');
+    const content = $('morePanelContent');
+
+    // Update panel header
+    const panelHeader = panel.querySelector('.panel-header h3');
+    panelHeader.innerHTML = '<i class="fas fa-clipboard-list"></i> Formula Sheets';
+
+    // Build formula list
+    content.innerHTML = '';
+
+    const sectionDiv = document.createElement('div');
+    sectionDiv.className = 'more-section';
+    sectionDiv.innerHTML = '<div class="more-section-label">Choose a Subject</div>';
+
+    formulaSubjects.forEach(subject => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'more-item';
+        itemDiv.innerHTML = `
+            <div class="more-icon" style="background: ${subject.color}20; color: ${subject.color}">
+                <span style="font-size: 1.2rem;">${subject.icon}</span>
+            </div>
+            <div class="more-text">
+                <h4>${subject.name}</h4>
+                <p>Formula Sheet — Quick reference</p>
+            </div>
+            <i class="fas fa-chevron-right more-arrow"></i>
+        `;
+        itemDiv.addEventListener('click', () => {
+            closeFormulaPicker();
+            saveState();
+            window.location.href = `${subject.folder}/${subject.types.formula.directLink}`;
+        });
+        sectionDiv.appendChild(itemDiv);
+    });
+
+    content.appendChild(sectionDiv);
+
+    // Show panel
+    panel.classList.add('show');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+
+    // Mark panel as formula picker so we can restore later
+    panel.setAttribute('data-mode', 'formula');
+}
+
+function closeFormulaPicker() {
+    const panel = $('morePanel');
+    const overlay = $('moreOverlay');
+
+    panel.classList.remove('show');
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Restore original more panel content
+    if (panel.getAttribute('data-mode') === 'formula') {
+        panel.removeAttribute('data-mode');
+        const panelHeader = panel.querySelector('.panel-header h3');
+        panelHeader.innerHTML = '<i class="fas fa-info-circle"></i> More Options';
+        renderMorePanel();
+    }
+}
 
 // ============================================
 // SESSION STATE MANAGEMENT
@@ -69,16 +316,7 @@ function checkReturnState() {
             appState.history = [];
         }
 
-        // Rebuild browser history stack so back button works
-        history.replaceState({ screen: 1 }, '', '#screen1');
-        if (appState.currentScreen >= 2) {
-            history.pushState({ screen: 2 }, '', '#screen2');
-        }
-        if (appState.currentScreen >= 3) {
-            history.pushState({ screen: 3 }, '', '#screen3');
-        }
-
-        restoreScreen(appState.currentScreen);
+        showScreen(appState.currentScreen);
 
     } catch (e) {
         console.warn('State restore failed:', e);
@@ -128,8 +366,10 @@ function startApp() {
             appContainer.style.transition = 'opacity 0.4s ease';
         });
 
-        // Set initial browser history state
-        history.replaceState({ screen: 1 }, '', '#screen1');
+        // Refresh home screen data
+        updateGreeting();
+        updateExamCountdown();
+        updateContinueBanner();
 
         showScreen(1);
     }, 500);
@@ -186,6 +426,9 @@ function selectSubject(subject) {
     appState.history.push({ screen: 1 });
     appState.selectedSubject = subject;
     appState.selectedType = null;
+
+    // Track visit for continue banner
+    trackSubjectVisit(subject);
 
     if (subject.isPractice) {
         renderPracticeOptions(subject);
@@ -366,14 +609,6 @@ function showScreen(num) {
     const target = $(`screen${num}`);
     target.classList.add('active');
 
-    // Push browser history state so back button works
-    const stateData = {
-        screen: num,
-        subjectId: appState.selectedSubject?.id || null,
-        typeKey: appState.selectedType?.key || null
-    };
-    history.pushState(stateData, '', `#screen${num}`);
-
     // Update all UI elements
     updateProgress(num);
     updateHeader(num);
@@ -382,26 +617,6 @@ function showScreen(num) {
     saveState();
 
     // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Show screen WITHOUT pushing browser history (used by popstate handler)
-function restoreScreen(num) {
-    screen1.classList.remove('active');
-    screen2.classList.remove('active');
-    screen3.classList.remove('active');
-
-    appState.currentScreen = num;
-
-    const target = $(`screen${num}`);
-    target.classList.add('active');
-
-    updateProgress(num);
-    updateHeader(num);
-    updateFooterState(num);
-    updateBackBtn(num);
-    saveState();
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -458,8 +673,29 @@ function updateBackBtn(num) {
 // NAVIGATION FUNCTIONS
 // ============================================
 function goBack() {
-    // Use browser history so device back button and header back button behave same
-    history.back();
+    if (appState.history.length > 0) {
+        const prev = appState.history.pop();
+
+        if (prev.screen === 1) {
+            appState.selectedSubject = null;
+            appState.selectedType = null;
+            hideFooter();
+            showScreen(1);
+        } else if (prev.screen === 2) {
+            appState.selectedType = null;
+            showScreen(2);
+        }
+    } else if (appState.currentScreen > 1) {
+        if (appState.currentScreen === 3) {
+            appState.selectedType = null;
+            showScreen(2);
+        } else if (appState.currentScreen === 2) {
+            appState.selectedSubject = null;
+            appState.selectedType = null;
+            hideFooter();
+            showScreen(1);
+        }
+    }
 }
 
 function navigateTo(num) {
@@ -500,9 +736,6 @@ function goHome() {
             welcomeScreen.style.opacity = '1';
             welcomeScreen.style.transition = 'opacity 0.5s ease';
         });
-
-        // Replace history so we don't stack up entries
-        history.replaceState(null, '', '#welcome');
     }, 400);
 }
 
@@ -543,70 +776,42 @@ function renderMorePanel() {
 }
 
 function openMorePanel() {
-    $('morePanel').classList.add('show');
+    // Reset panel to default mode
+    const panel = $('morePanel');
+    if (panel.getAttribute('data-mode') === 'formula') {
+        panel.removeAttribute('data-mode');
+        const panelHeader = panel.querySelector('.panel-header h3');
+        panelHeader.innerHTML = '<i class="fas fa-info-circle"></i> More Options';
+        renderMorePanel();
+    }
+
+    panel.classList.add('show');
     $('moreOverlay').classList.add('show');
     document.body.style.overflow = 'hidden';
-
-    // Push state so device back button closes panel instead of navigating away
-    history.pushState({ panel: 'more', screen: appState.currentScreen }, '', '#more');
 }
 
 function closeMorePanel() {
-    $('morePanel').classList.remove('show');
+    const panel = $('morePanel');
+
+    // If formula picker is open, use its close function
+    if (panel.getAttribute('data-mode') === 'formula') {
+        closeFormulaPicker();
+        return;
+    }
+
+    panel.classList.remove('show');
     $('moreOverlay').classList.remove('show');
     document.body.style.overflow = '';
 }
 
 // ============================================
-// BROWSER BACK BUTTON (FIXED - PROPER HISTORY)
+// BROWSER BACK BUTTON
 // ============================================
-window.addEventListener('popstate', (event) => {
-    // 1. Close more panel first if open
+window.addEventListener('popstate', () => {
     if ($('morePanel').classList.contains('show')) {
         closeMorePanel();
-        // Re-push current screen state so history stays correct
-        history.pushState({ screen: appState.currentScreen }, '', `#screen${appState.currentScreen}`);
-        return;
-    }
-
-    // 2. If on welcome screen, let browser handle naturally (exit app)
-    if (welcomeScreen.style.display !== 'none') {
-        return;
-    }
-
-    // 3. If event has state with screen number, use it
-    if (event.state && event.state.screen) {
-        const targetScreen = event.state.screen;
-
-        if (targetScreen === 1) {
-            appState.selectedSubject = null;
-            appState.selectedType = null;
-            appState.history = [];
-            hideFooter();
-            restoreScreen(1);
-        } else if (targetScreen === 2) {
-            appState.selectedType = null;
-            restoreScreen(2);
-        } else {
-            restoreScreen(targetScreen);
-        }
-        return;
-    }
-
-    // 4. Fallback - no state data, handle manually
-    if (appState.currentScreen === 3) {
-        appState.selectedType = null;
-        appState.history.pop();
-        restoreScreen(2);
-    } else if (appState.currentScreen === 2) {
-        appState.selectedSubject = null;
-        appState.selectedType = null;
-        appState.history = [];
-        hideFooter();
-        restoreScreen(1);
-    } else if (appState.currentScreen === 1) {
-        // On screen 1, go back to welcome screen
-        goHome();
+    } else if (appState.currentScreen > 1) {
+        goBack();
     }
 });
 
