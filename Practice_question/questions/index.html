@@ -11,6 +11,32 @@
 
   <title>📝 Practice Questions | WB Diploma Sem-II</title>
 
+  <!-- ===== MATHJAX (Load before everything) ===== -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'none'
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        ignoreHtmlClass: 'no-mathjax',
+        renderActions: {
+          addMenu: []
+        }
+      },
+      startup: {
+        pageReady: () => {
+          return MathJax.startup.defaultPageReady();
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
   <!-- ===== FONTS ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -364,9 +390,6 @@
              QUESTIONS GRID (rendered by JS)
              ====================================== -->
         <div class="questions-grid questions-grid--card" id="questionsGrid">
-          <!-- Question cards rendered here by renderer.js -->
-
-          <!-- Default loading state -->
           <div class="empty-state">
             <div class="empty-state__icon animate-pulse">📚</div>
             <div class="empty-state__title">Loading questions...</div>
@@ -390,7 +413,7 @@
 
 
   <!-- ================================================
-       MODAL BACKDROP (shared for all modals)
+       MODAL BACKDROP
        ================================================ -->
   <div class="modal-backdrop" id="modalBackdrop"></div>
 
@@ -400,13 +423,10 @@
        ================================================ -->
   <div class="modal" id="analyticsModal" role="dialog" aria-modal="true" aria-labelledby="analyticsTitle">
     <div class="modal__header">
-      <h2 class="modal__title" id="analyticsTitle">
-        📊 Analytics Dashboard
-      </h2>
+      <h2 class="modal__title" id="analyticsTitle">📊 Analytics Dashboard</h2>
       <button class="modal__close" aria-label="Close Analytics">✕</button>
     </div>
     <div class="modal__body">
-      <!-- Rendered by renderer.js -->
       <div class="empty-state">
         <div class="empty-state__icon">📊</div>
         <div class="empty-state__title">Loading analytics...</div>
@@ -420,13 +440,10 @@
        ================================================ -->
   <div class="modal practice-mode" id="practiceModal" role="dialog" aria-modal="true" aria-labelledby="practiceTitle">
     <div class="modal__header">
-      <h2 class="modal__title" id="practiceTitle">
-        🎯 Practice Mode
-      </h2>
+      <h2 class="modal__title" id="practiceTitle">🎯 Practice Mode</h2>
       <button class="modal__close" aria-label="Close Practice">✕</button>
     </div>
     <div class="modal__body">
-      <!-- Rendered by renderer.js (setup form → questions → summary) -->
       <div class="empty-state">
         <div class="empty-state__icon">🎯</div>
         <div class="empty-state__title">Setting up practice...</div>
@@ -440,19 +457,15 @@
        ================================================ -->
   <div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
     <div class="modal__header">
-      <h2 class="modal__title" id="settingsTitle">
-        ⚙️ Settings
-      </h2>
+      <h2 class="modal__title" id="settingsTitle">⚙️ Settings</h2>
       <button class="modal__close" aria-label="Close Settings">✕</button>
     </div>
     <div class="modal__body">
-      <!-- Rendered by renderer.js -->
       <div class="empty-state">
         <div class="empty-state__icon">⚙️</div>
         <div class="empty-state__title">Loading settings...</div>
       </div>
     </div>
-    <!-- Hidden file input for import -->
     <input type="file" id="importFileInput" accept=".json" style="display:none;" aria-hidden="true">
   </div>
 
@@ -491,9 +504,6 @@
 
   <!-- ================================================
        SCRIPTS (Load order matters!)
-       1. helper.js  — Constants, Storage, Filters, Utils
-       2. renderer.js — DOM rendering functions
-       3. app.js      — Core logic, events, init
        ================================================ -->
   <script src="../js/helper.js"></script>
   <script src="../js/renderer.js"></script>
