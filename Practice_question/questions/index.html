@@ -1,377 +1,503 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
+  <!-- ===== META ===== -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Question Practice · coming soon</title>
-  <!-- playful, quiz-like atmosphere with柔和卡片和柔和交互暗示 -->
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="15-Day Practice Questions for WB Diploma Semester II Exam Preparation">
+  <meta name="theme-color" content="#0a0a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    body {
-      background: linear-gradient(135deg, #f1f0fa 0%, #e3e0f0 100%);
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      margin: 0;
-      position: relative;
-    }
+  <title>📝 Practice Questions | WB Diploma Sem-II</title>
 
-    /* subtle question-mark pattern background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(180, 170, 220, 0.08) 0%, transparent 15%),
-        repeating-linear-gradient(45deg, rgba(150, 140, 200, 0.02) 0px, rgba(150, 140, 200, 0.02) 12px, transparent 12px, transparent 24px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .quiz-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 3rem 2rem 3rem 2rem;
-      box-shadow: 
-        0 30px 50px -20px rgba(70, 60, 100, 0.35),
-        inset 0 1px 3px rgba(255, 255, 255, 0.9),
-        0 0 0 1px rgba(210, 200, 240, 0.6);
-      max-width: 850px;
-      width: 100%;
-      padding: 3.2rem 2.8rem;
-      position: relative;
-      z-index: 2;
-      transition: transform 0.2s ease;
-      border: 1px solid rgba(255, 245, 255, 0.7);
-    }
-
-    /* floating question marks decoration */
-    .q-decoration {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.2rem;
-      margin-bottom: 1.8rem;
-      flex-wrap: wrap;
-      opacity: 0.6;
-    }
-
-    .q-badge {
-      background: #d9d0f0;
-      color: #4d4278;
-      font-size: 1.9rem;
-      font-weight: 500;
-      width: 60px;
-      height: 60px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 30% 50% 30% 50%;
-      transform: rotate(5deg);
-      box-shadow: 0 6px 12px rgba(80, 60, 120, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.5);
-    }
-
-    .q-badge:nth-child(2) {
-      transform: rotate(-5deg) scale(1.1);
-      background: #b6a9de;
-    }
-
-    .q-badge:nth-child(3) {
-      transform: rotate(3deg);
-    }
-
-    .q-badge:nth-child(4) {
-      transform: rotate(-8deg);
-      background: #c7bbeb;
-    }
-
-    h1 {
-      font-size: clamp(2.7rem, 14vw, 5.2rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #332e4a;
-      text-align: center;
-      line-height: 1.1;
-      margin: 0.4rem 0 0.2rem;
-      text-shadow: 0 2px 5px rgba(230, 220, 255, 0.7);
-    }
-
-    .sub-coming {
-      font-size: 2rem;
-      font-weight: 350;
-      display: block;
-      color: #60548b;
-      letter-spacing: 0.15rem;
-      margin-top: 0.2rem;
-      word-break: break-word;
-    }
-
-    /* interactive “sample question” bubble */
-    .question-bubble {
-      background: rgba(245, 240, 255, 0.8);
-      border: 2px solid #cdc0ec;
-      border-radius: 50px 50px 50px 20px;
-      padding: 1.2rem 2rem;
-      margin: 2rem auto 1.8rem;
-      max-width: 450px;
-      box-shadow: 0 8px 0 #9f91c2;
-      transition: all 0.15s ease;
-    }
-
-    .question-bubble:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 11px 0 #9f91c2;
-    }
-
-    .sample-q {
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: #3b3452;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      justify-content: center;
-    }
-
-    .sample-q .q-icon {
-      background: #6b5f96;
-      color: white;
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      font-weight: bold;
-    }
-
-    .options-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      margin: 1.2rem 0 0.4rem;
-    }
-
-    .opt {
-      background: white;
-      border-radius: 40px;
-      padding: 0.6rem 1.5rem;
-      font-size: 1.1rem;
-      font-weight: 450;
-      color: #423c5c;
-      border: 2px solid #b3a5d4;
-      box-shadow: 0 3px 0 #8d7fb0;
-      transition: 0.07s linear;
-      cursor: default;
-    }
-
-    .opt.checked {
-      background: #ded3ff;
-      border-color: #7768a8;
-      box-shadow: 0 3px 0 #5e5082;
-    }
-
-    /* 答案小提示 (answer hint, but locked) */
-    .answer-lock {
-      color: #7b6da0;
-      font-size: 1rem;
-      background: #f0eafe;
-      border-radius: 30px;
-      padding: 0.5rem 1.2rem;
-      margin-top: 1rem;
-      border: 1px dashed #9d8ec2;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .lock-icon {
-      font-size: 1.2rem;
-    }
-
-    .progress-area {
-      background: rgba(215, 205, 240, 0.3);
-      border-radius: 100px;
-      padding: 0.9rem 2rem;
-      margin: 2.2rem 0 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem 2.5rem;
-      border: 1px solid #d2c4ec;
-    }
-
-    .progress-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 1.1rem;
-      color: #3f3857;
-    }
-
-    .progress-dot {
-      width: 20px;
-      height: 20px;
-      border-radius: 8px;
-      background: #b2a4d9;
-      transition: 0.1s;
-    }
-
-    .progress-dot.fill {
-      background: #564b7c;
-      box-shadow: 0 0 0 2px #cdbef0;
-    }
-
-    .progress-dot.empty {
-      background: #e4dbfa;
-      border: 1px solid #a393c9;
-    }
-
-    hr {
-      border: none;
-      border-top: 3px dotted #c4b5e2;
-      width: 40%;
-      margin: 2rem auto 1.5rem;
-    }
-
-    .footer-note {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      color: #6b5f89;
-      font-size: 1.1rem;
-      background: rgba(239, 233, 255, 0.6);
-      padding: 0.8rem 1.8rem;
-      border-radius: 60px;
-      width: fit-content;
-      margin: 1.5rem auto 0;
-      border: 1px solid #cebfea;
-      backdrop-filter: blur(2px);
-    }
-
-    .footer-note span {
-      font-size: 1.7rem;
-    }
-
-    /* 移动端适配 */
-    @media (max-width: 500px) {
-      .quiz-card {
-        padding: 2.2rem 1.2rem;
-      }
-      h1 {
-        font-size: clamp(2.2rem, 12vw, 3.8rem);
-      }
-      .sub-coming {
-        font-size: 1.5rem;
-        letter-spacing: 0.1rem;
-      }
-      .sample-q {
-        font-size: 1.2rem;
-      }
-      .q-badge {
-        width: 45px;
-        height: 45px;
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  <!-- ===== FONTS ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ===== STYLESHEET ===== -->
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <!-- ===== FAVICON (inline SVG) ===== -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
 </head>
-<body>
-  <div class="quiz-card">
-    <!-- decorative question marks — playful and quiz-like -->
-    <div class="q-decoration">
-      <span class="q-badge">?</span>
-      <span class="q-badge">❓</span>
-      <span class="q-badge">⁇</span>
-      <span class="q-badge">?</span>
-    </div>
 
-    <!-- main message: QUESTION PRACTICE / coming soon (intentionally using "sone" as requested but I'll keep "soon") 
-         but we keep it clear and add the cute sone reference separately -->
-    <h1>
-      QUESTION PRACTICE
-      <span class="sub-coming">is coming soon</span>
-    </h1>
+<body data-theme="dark">
 
-    <!-- interactive sample question (just for show) -->
-    <div class="question-bubble">
-      <div class="sample-q">
-        <span class="q-icon">Q</span> 
-        <span>Sample: 2 + 2 = ?</span>
-      </div>
-      <div class="options-row">
-        <span class="opt">3</span>
-        <span class="opt checked">4</span>
-        <span class="opt">5</span>
-        <span class="opt">22</span>
-      </div>
-      <div class="answer-lock">
-        <span class="lock-icon">🔒</span> answer & explanation — available soon
-      </div>
-    </div>
+  <!-- ================================================
+       TOAST NOTIFICATION
+       ================================================ -->
+  <div class="toast" id="toast"></div>
 
-    <!-- progress simulation: question 2/10 but locked (playful) -->
-    <div class="progress-area">
-      <div class="progress-item">
-        <span>📊</span> 
-        <span>your progress</span>
+
+  <!-- ================================================
+       HEADER (Sticky)
+       ================================================ -->
+  <header class="header">
+    <div class="container header__inner">
+
+      <!-- Logo -->
+      <div class="header__logo">
+        <span class="header__logo-icon">📝</span>
+        <span class="header__logo-text"><span>PracticeQ</span></span>
       </div>
-      <div style="display: flex; gap: 0.4rem; align-items: center;">
-        <span class="progress-dot fill"></span>
-        <span class="progress-dot fill"></span>
-        <span class="progress-dot empty"></span>
-        <span class="progress-dot empty"></span>
-        <span class="progress-dot empty"></span>
-        <span class="progress-dot empty"></span>
-        <span class="progress-dot empty"></span>
-        <span class="progress-dot empty"></span>
-        <span class="progress-dot empty"></span>
-        <span class="progress-dot empty"></span>
-        <span style="margin-left: 0.3rem; color: #4f4672;">2/10</span>
+
+      <!-- Header Controls -->
+      <div class="header__controls">
+
+        <!-- Stats Pill -->
+        <div class="header__stats-pill" id="headerStatsPill">
+          <span class="num">0</span>/<span>0</span> done
+        </div>
+
+        <!-- Analytics Button -->
+        <button class="btn btn--icon" id="analyticsBtn" data-tooltip="Analytics [A]" aria-label="Open Analytics">
+          📊
+        </button>
+
+        <!-- Practice Button -->
+        <button class="btn btn--icon" id="practiceBtn" data-tooltip="Practice Mode" aria-label="Start Practice">
+          🎯
+        </button>
+
+        <!-- Settings Button -->
+        <button class="btn btn--icon" id="settingsBtn" data-tooltip="Settings" aria-label="Open Settings">
+          ⚙️
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="btn btn--icon" id="themeBtn" data-tooltip="Toggle Theme [T]" aria-label="Toggle Theme">
+          🌙
+        </button>
       </div>
     </div>
+  </header>
 
-    <!-- subtle sone reference, playful tie-in to the previous request: "sone" but also means "sound" – maybe a tiny easter egg -->
-    <div style="text-align: center; font-size: 0.95rem; color: #897dab; font-style: italic; letter-spacing: 0.3px;">
-      “sone” — a unit of perceived loudness. your future correct answers will sound loud & clear 🎧
+
+  <!-- ================================================
+       HERO SECTION
+       ================================================ -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">
+        <span class="gradient">Practice Questions</span>
+      </h1>
+      <p class="hero__subtitle">
+        WB Diploma Semester II — 15-Day Smart Question Bank
+      </p>
+      <div class="hero__actions">
+        <button class="btn btn--primary btn--lg" id="heroPracticeBtn">
+          🎯 Start Practice
+        </button>
+        <button class="btn btn--lg" id="heroAnalyticsBtn">
+          📊 View Analytics
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       MAIN CONTAINER
+       ================================================ -->
+  <div class="container">
+
+    <!-- ============================================
+         DASHBOARD STATS BAR
+         ============================================ -->
+    <div class="dashboard" id="dashboard">
+
+      <div class="dashboard__card">
+        <div class="dashboard__card-icon">📚</div>
+        <div class="dashboard__card-num" id="statTotal">0</div>
+        <div class="dashboard__card-label">Total Questions</div>
+      </div>
+
+      <div class="dashboard__card dashboard__card--green">
+        <div class="dashboard__card-icon">✅</div>
+        <div class="dashboard__card-num" id="statAttempted">0</div>
+        <div class="dashboard__card-label">Attempted</div>
+      </div>
+
+      <div class="dashboard__card dashboard__card--orange">
+        <div class="dashboard__card-icon">⭐</div>
+        <div class="dashboard__card-num" id="statBookmarked">0</div>
+        <div class="dashboard__card-label">Bookmarked</div>
+      </div>
+
+      <div class="dashboard__card dashboard__card--blue">
+        <div class="dashboard__card-icon">📈</div>
+        <div class="dashboard__card-num" id="statPct">0%</div>
+        <div class="dashboard__card-label">Completion</div>
+      </div>
+
+      <div class="dashboard__card dashboard__card--pink">
+        <div class="dashboard__card-icon">🔥</div>
+        <div class="dashboard__card-num" id="statStreak">0</div>
+        <div class="dashboard__card-label">Day Streak</div>
+      </div>
     </div>
 
-    <hr />
 
-    <div class="footer-note">
-      <span>🧠</span>  question bank being prepared · practice mode coming  <span>📝</span>
+    <!-- ============================================
+         OVERALL PROGRESS BAR
+         ============================================ -->
+    <div class="progress-bar">
+      <div class="progress-bar__header">
+        <span class="progress-bar__title">📊 Overall Progress</span>
+        <span class="progress-bar__pct" id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar__outer">
+        <div class="progress-bar__inner" id="progressBar" style="width: 0%;"></div>
+      </div>
     </div>
 
-    <!-- extra playful detail: little pulsating "quiz loading" -->
-    <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.8rem;">
-      <span style="width: 12px; height: 12px; background: #a08dc2; border-radius: 50%; opacity: 0.6; animation: pulse 1.4s infinite;"></span>
-      <span style="width: 12px; height: 12px; background: #7b6dad; border-radius: 50%; opacity: 0.7; animation: pulse 1.4s infinite 0.2s;"></span>
-      <span style="width: 12px; height: 12px; background: #5c4e8a; border-radius: 50%; opacity: 0.8; animation: pulse 1.4s infinite 0.4s;"></span>
+
+    <!-- ============================================
+         MAIN LAYOUT (Sidebar + Content on Desktop)
+         ============================================ -->
+    <div class="main-layout">
+
+      <!-- ==========================================
+           SIDEBAR — FILTER PANEL
+           ========================================== -->
+      <aside class="main-layout__sidebar">
+        <div class="filter-panel" id="filterPanel">
+
+          <!-- Filter Header (Click to toggle) -->
+          <div class="filter-panel__header">
+            <div class="filter-panel__header-left">
+              <span>🔍</span>
+              <span>Filters</span>
+            </div>
+            <div class="filter-panel__header-right">
+              <span class="filter-count-bubble hidden" id="filterCountBubble">0</span>
+              <span class="filter-panel__toggle-icon" id="filterToggleIcon">▼</span>
+            </div>
+          </div>
+
+          <!-- Filter Body -->
+          <div class="filter-panel__body" id="filterBody">
+
+            <!-- Search -->
+            <div class="filter-group">
+              <label class="filter-group__label">🔍 Search</label>
+              <div class="search-wrapper">
+                <span class="search-wrapper__icon">🔍</span>
+                <input type="text"
+                       class="search-input"
+                       id="searchInput"
+                       placeholder="Search questions, topics, tags..."
+                       autocomplete="off"
+                       aria-label="Search questions">
+              </div>
+            </div>
+
+            <!-- Day Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">📅 Day</label>
+              <div class="filter-days" id="filterDays">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Subject Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">📚 Subject</label>
+              <div class="filter-group__options" id="filterSubjects">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Question Type Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">📝 Question Type</label>
+              <div class="filter-group__options" id="filterTypes">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Difficulty Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">🎯 Difficulty</label>
+              <div class="filter-group__options" id="filterDifficulty">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Unit Dropdown -->
+            <div class="filter-group">
+              <label class="filter-group__label">📖 Unit</label>
+              <select class="filter-select" id="filterUnit" aria-label="Filter by unit">
+                <option value="">All Units</option>
+              </select>
+            </div>
+
+            <!-- Topic Dropdown -->
+            <div class="filter-group">
+              <label class="filter-group__label">📌 Topic</label>
+              <select class="filter-select" id="filterTopic" aria-label="Filter by topic">
+                <option value="">All Topics</option>
+              </select>
+            </div>
+
+            <!-- Marks Range -->
+            <div class="filter-group">
+              <label class="filter-group__label">💯 Max Marks</label>
+              <div class="filter-range">
+                <span class="filter-range__value">1</span>
+                <input type="range"
+                       class="filter-range__slider"
+                       id="filterMarksSlider"
+                       min="1"
+                       max="10"
+                       value="10"
+                       aria-label="Filter by marks range">
+                <span class="filter-range__value" id="filterMarksValue">10</span>
+              </div>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">📋 Status</label>
+              <div class="filter-group__options" id="filterStatuses">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Bookmark Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">⭐ Bookmarks</label>
+              <div class="filter-group__options">
+                <button class="filter-pill" id="filterBookmarkBtn" data-filter-type="bookmarkedOnly">
+                  ⭐ Bookmarked Only
+                </button>
+              </div>
+            </div>
+
+            <!-- Confidence Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">🎭 Confidence</label>
+              <div class="filter-group__options" id="filterConfidence">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Exam Source Filter -->
+            <div class="filter-group">
+              <label class="filter-group__label">📎 Exam Source</label>
+              <div class="filter-group__options" id="filterSources">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Active Filter Tags + Clear -->
+            <div class="filter-actions">
+              <div class="filter-active-tags" id="filterActiveTags">
+                <span style="font-size:0.75rem;color:var(--text-tertiary);">No active filters</span>
+              </div>
+              <button class="btn btn--sm btn--ghost" id="clearFiltersBtn">
+                ✕ Clear All
+              </button>
+            </div>
+
+          </div><!-- /filter-panel__body -->
+        </div><!-- /filter-panel -->
+      </aside>
+
+
+      <!-- ==========================================
+           MAIN CONTENT
+           ========================================== -->
+      <main class="main-layout__content">
+
+        <!-- ======================================
+             RESULTS BAR
+             ====================================== -->
+        <div class="results-bar">
+          <div class="results-bar__info" id="resultsInfo">
+            Showing <strong>0</strong> of <strong>0</strong> questions
+          </div>
+
+          <div class="results-bar__controls">
+            <!-- Sort -->
+            <select class="results-bar__sort" id="sortSelect" aria-label="Sort questions">
+              <option value="default">Sort: Default</option>
+              <option value="day-asc">Day ↑</option>
+              <option value="day-desc">Day ↓</option>
+              <option value="difficulty-asc">Easy → Hard</option>
+              <option value="difficulty-desc">Hard → Easy</option>
+              <option value="marks-asc">Marks ↑</option>
+              <option value="marks-desc">Marks ↓</option>
+              <option value="type">By Type</option>
+              <option value="subject">By Subject</option>
+              <option value="random">🔀 Random</option>
+            </select>
+
+            <!-- View Mode -->
+            <div class="results-bar__view-btns">
+              <button class="results-bar__view-btn active"
+                      data-view="card"
+                      data-tooltip="Card View"
+                      aria-label="Card View">
+                🃏
+              </button>
+              <button class="results-bar__view-btn"
+                      data-view="compact"
+                      data-tooltip="Compact View"
+                      aria-label="Compact View">
+                📋
+              </button>
+              <button class="results-bar__view-btn"
+                      data-view="list"
+                      data-tooltip="List View"
+                      aria-label="List View">
+                📄
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ======================================
+             QUESTIONS GRID (rendered by JS)
+             ====================================== -->
+        <div class="questions-grid questions-grid--card" id="questionsGrid">
+          <!-- Question cards rendered here by renderer.js -->
+
+          <!-- Default loading state -->
+          <div class="empty-state">
+            <div class="empty-state__icon animate-pulse">📚</div>
+            <div class="empty-state__title">Loading questions...</div>
+            <div class="empty-state__text">
+              Please wait while we load your practice questions.
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ======================================
+             PAGINATION
+             ====================================== -->
+        <div class="pagination" id="pagination">
+          <!-- Rendered by JS -->
+        </div>
+
+      </main>
+    </div><!-- /main-layout -->
+  </div><!-- /container -->
+
+
+  <!-- ================================================
+       MODAL BACKDROP (shared for all modals)
+       ================================================ -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+
+
+  <!-- ================================================
+       ANALYTICS MODAL
+       ================================================ -->
+  <div class="modal" id="analyticsModal" role="dialog" aria-modal="true" aria-labelledby="analyticsTitle">
+    <div class="modal__header">
+      <h2 class="modal__title" id="analyticsTitle">
+        📊 Analytics Dashboard
+      </h2>
+      <button class="modal__close" aria-label="Close Analytics">✕</button>
     </div>
-    <style>
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); opacity: 0.6; }
-        50% { transform: scale(1.3); opacity: 1; }
-      }
-    </style>
+    <div class="modal__body">
+      <!-- Rendered by renderer.js -->
+      <div class="empty-state">
+        <div class="empty-state__icon">📊</div>
+        <div class="empty-state__title">Loading analytics...</div>
+      </div>
+    </div>
   </div>
+
+
+  <!-- ================================================
+       PRACTICE MODE MODAL
+       ================================================ -->
+  <div class="modal practice-mode" id="practiceModal" role="dialog" aria-modal="true" aria-labelledby="practiceTitle">
+    <div class="modal__header">
+      <h2 class="modal__title" id="practiceTitle">
+        🎯 Practice Mode
+      </h2>
+      <button class="modal__close" aria-label="Close Practice">✕</button>
+    </div>
+    <div class="modal__body">
+      <!-- Rendered by renderer.js (setup form → questions → summary) -->
+      <div class="empty-state">
+        <div class="empty-state__icon">🎯</div>
+        <div class="empty-state__title">Setting up practice...</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================
+       SETTINGS MODAL
+       ================================================ -->
+  <div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal__header">
+      <h2 class="modal__title" id="settingsTitle">
+        ⚙️ Settings
+      </h2>
+      <button class="modal__close" aria-label="Close Settings">✕</button>
+    </div>
+    <div class="modal__body">
+      <!-- Rendered by renderer.js -->
+      <div class="empty-state">
+        <div class="empty-state__icon">⚙️</div>
+        <div class="empty-state__title">Loading settings...</div>
+      </div>
+    </div>
+    <!-- Hidden file input for import -->
+    <input type="file" id="importFileInput" accept=".json" style="display:none;" aria-hidden="true">
+  </div>
+
+
+  <!-- ================================================
+       FLOATING ACTION BUTTONS (FAB)
+       ================================================ -->
+  <div class="fab-container">
+    <button class="fab-btn fab-btn--primary fab-btn--sm"
+            id="fabScrollTop"
+            data-tooltip="Scroll to Top"
+            aria-label="Scroll to top">
+      ⬆
+    </button>
+  </div>
+
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer class="footer">
+    <p class="footer__text">
+      Made with ❤️ for WB Diploma Students
+      <br>
+      📝 All progress saved locally in your browser
+      <br>
+      <span style="font-size:0.7rem; opacity:0.6;">
+        💡 Keyboard shortcuts: <kbd class="kbd">T</kbd> Theme
+        <kbd class="kbd">F</kbd> Search
+        <kbd class="kbd">A</kbd> Analytics
+        <kbd class="kbd">Esc</kbd> Close
+      </span>
+    </p>
+  </footer>
+
+
+  <!-- ================================================
+       SCRIPTS (Load order matters!)
+       1. helper.js  — Constants, Storage, Filters, Utils
+       2. renderer.js — DOM rendering functions
+       3. app.js      — Core logic, events, init
+       ================================================ -->
+  <script src="../js/helper.js"></script>
+  <script src="../js/renderer.js"></script>
+  <script src="../js/app.js"></script>
+
 </body>
 </html>
