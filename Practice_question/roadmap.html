@@ -1,251 +1,1510 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roadmap · coming soon</title>
-  <!-- A clean, modern style with a subtle road / map hint -->
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 15-Day Exam Roadmap | WB Diploma Sem-II</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-    body {
-      background: linear-gradient(145deg, #f9f7f3 0%, #eae6db 100%);
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      margin: 0;
-      position: relative;
-      line-height: 1.5;
-    }
+:root {
+  --bg: #0f0f23;
+  --bg2: #1a1a2e;
+  --bg3: #16213e;
+  --card: #1e1e3f;
+  --card-hover: #252550;
+  --text: #e0e0ff;
+  --text2: #a0a0cc;
+  --accent: #7c3aed;
+  --accent2: #a78bfa;
+  --green: #10b981;
+  --green2: #34d399;
+  --red: #ef4444;
+  --orange: #f59e0b;
+  --blue: #3b82f6;
+  --pink: #ec4899;
+  --cyan: #06b6d4;
+  --border: #2a2a4a;
+  --shadow: 0 8px 32px rgba(0,0,0,0.3);
+  --shadow2: 0 4px 16px rgba(0,0,0,0.2);
+  --radius: 16px;
+  --radius2: 12px;
+  --maths: #3b82f6;
+  --physics: #10b981;
+  --mechanics: #ef4444;
+  --feee: #f59e0b;
+  --it: #a855f7;
+  --evs: #78716c;
+  --revision: #64748b;
+}
 
-    /* subtle topographic / map line pattern (barely visible) */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: 
-        repeating-linear-gradient(45deg, rgba(180, 160, 130, 0.03) 0px, rgba(180, 160, 130, 0.03) 2px, transparent 2px, transparent 8px),
-        radial-gradient(circle at 30% 40%, rgba(200, 180, 140, 0.05) 0%, transparent 25%);
-      pointer-events: none;
-      z-index: 0;
-    }
+[data-theme="light"] {
+  --bg: #f0f4ff;
+  --bg2: #e8eeff;
+  --bg3: #dce4ff;
+  --card: #ffffff;
+  --card-hover: #f5f7ff;
+  --text: #1e1e3f;
+  --text2: #555580;
+  --border: #d0d0e8;
+  --shadow: 0 8px 32px rgba(100,100,200,0.12);
+  --shadow2: 0 4px 16px rgba(100,100,200,0.08);
+}
 
-    .card {
-      background: rgba(255, 253, 249, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 3.5rem 1.5rem 3.5rem 1.5rem;
-      box-shadow: 
-        0 25px 45px -15px rgba(90, 70, 50, 0.25),
-        inset 0 1px 2px rgba(255, 255, 255, 0.7),
-        0 0 0 1px rgba(230, 210, 180, 0.5);
-      max-width: 800px;
-      width: 100%;
-      padding: 3.5rem 2.5rem;
-      position: relative;
-      z-index: 2;
-      transition: transform 0.2s ease;
-      border: 1px solid rgba(250, 245, 235, 0.6);
-    }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* decoration – tiny road / dashed line suggestion */
-    .road-hint {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 1.75rem;
-      opacity: 0.7;
-    }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
 
-    .dash {
-      height: 4px;
-      width: 28px;
-      background: #c0a27c;
-      border-radius: 4px;
-      opacity: 0.4;
-    }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
 
-    .dash.long {
-      width: 60px;
-      background: #b5926a;
-      opacity: 0.6;
-    }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    .compass-icon {
-      font-size: 1.8rem;
-      line-height: 1;
-      margin: 0 0.2rem;
-      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05));
-      transform: rotate(-5deg);
-      display: inline-block;
-    }
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, var(--bg2), var(--bg3));
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px);
+}
+.header-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.logo { font-size: 1.4rem; font-weight: 800; }
+.logo span { color: var(--accent2); }
+.header-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 
-    h1 {
-      font-size: clamp(2.6rem, 15vw, 5.2rem);
-      font-weight: 650;
-      letter-spacing: -0.02em;
-      color: #3b352c;
-      text-align: center;
-      line-height: 1.1;
-      margin: 0.5rem 0 0.4rem 0;
-      text-transform: uppercase;
-      word-break: break-word;
-      text-shadow: 0 2px 3px rgba(255, 250, 240, 0.8);
-    }
+.btn {
+  padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--card); color: var(--text); cursor: pointer;
+  font-family: inherit; font-size: 0.85rem; font-weight: 500;
+  transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.btn:hover { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-1px); }
+.btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.btn-icon { padding: 8px 10px; font-size: 1.1rem; }
 
-    .sub-road {
-      font-size: 1.9rem;
-      font-weight: 380;
-      display: block;
-      color: #7a6b58;
-      letter-spacing: 0.3rem;
-      margin-top: 0.25rem;
-      font-style: italic;
-    }
+/* HERO */
+.hero {
+  text-align: center; padding: 50px 20px 30px;
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg) 100%);
+}
+.hero h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 8px; }
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent2), var(--cyan), var(--green2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { color: var(--text2); font-size: 1.1rem; }
 
-    .message {
-      font-size: 1.35rem;
-      color: #5f5342;
-      background: rgba(235, 225, 210, 0.5);
-      padding: 1rem 1.8rem;
-      border-radius: 60px;
-      display: inline-block;
-      margin: 1.8rem auto 1.2rem;
-      backdrop-filter: blur(2px);
-      border: 1px dashed #cbb295;
-      font-weight: 400;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
-    }
+@media(max-width: 600px) {
+  .hero h1 { font-size: 1.6rem; }
+  .hero p { font-size: 0.9rem; }
+}
 
-    .expected {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem 2rem;
-      margin: 2.2rem 0 0.8rem;
-      color: #4d4438;
-      font-weight: 350;
-    }
+/* STATS BAR */
+.stats-bar {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; padding: 20px 0;
+}
+.stat-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius2);
+  padding: 16px; text-align: center; transition: all 0.3s;
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.stat-card .num { font-size: 1.8rem; font-weight: 800; color: var(--accent2); }
+.stat-card .label { font-size: 0.75rem; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
-    .expected span {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 1.1rem;
-      background: rgba(245, 238, 228, 0.7);
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      border: 1px solid #e0d0bc;
-    }
+/* PROGRESS BAR */
+.progress-section { padding: 20px 0; }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.progress-header h3 { font-size: 1rem; font-weight: 600; }
+.progress-header span { font-size: 1.2rem; font-weight: 800; color: var(--green); }
+.progress-bar-outer {
+  width: 100%; height: 16px; background: var(--bg3); border-radius: 10px;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.progress-bar-inner {
+  height: 100%; border-radius: 10px; transition: width 0.6s ease;
+  background: linear-gradient(90deg, var(--accent), var(--cyan), var(--green));
+  background-size: 200% 100%; animation: shimmer 2s infinite;
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: #a88966;
-      border-radius: 50%;
-      display: inline-block;
-    }
+/* SUBJECT PROGRESS */
+.subject-progress { padding: 20px 0; }
+.subject-progress h3 { margin-bottom: 16px; font-size: 1.1rem; }
+.subj-prog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+.subj-prog-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius2);
+  padding: 14px; position: relative; overflow: hidden;
+}
+.subj-prog-item .subj-name { font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.subj-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.subj-prog-item .subj-bar { width: 100%; height: 6px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+.subj-prog-item .subj-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+.subj-prog-item .subj-pct { font-size: 0.75rem; color: var(--text2); margin-top: 4px; text-align: right; }
 
-    hr {
-      border: none;
-      border-top: 2px dashed #dacbb8;
-      margin: 2rem 0 1rem;
-      width: 60%;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.5;
-    }
+/* FILTER BAR */
+.filter-section { padding: 15px 0; }
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  padding: 14px; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius2);
+}
+.filter-bar .label { font-size: 0.8rem; color: var(--text2); font-weight: 600; margin-right: 4px; }
+.filter-btn {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  background: transparent; color: var(--text2); cursor: pointer;
+  font-family: inherit; font-size: 0.78rem; font-weight: 500; transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active { color: white; border-color: transparent; }
+.filter-btn[data-filter="all"].active { background: var(--accent); }
+.filter-btn[data-filter="maths"].active { background: var(--maths); }
+.filter-btn[data-filter="physics"].active { background: var(--physics); }
+.filter-btn[data-filter="mechanics"].active { background: var(--mechanics); }
+.filter-btn[data-filter="feee"].active { background: var(--feee); }
+.filter-btn[data-filter="it"].active { background: var(--it); }
+.filter-btn[data-filter="evs"].active { background: var(--evs); }
+.filter-btn[data-filter="revision"].active { background: var(--revision); }
 
-    .footer-note {
-      color: #8e7e6a;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      margin-top: 1.7rem;
-    }
+/* TIMER */
+.timer-section {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin: 20px 0; text-align: center;
+}
+.timer-section h3 { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.timer-display {
+  font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; font-weight: 700;
+  color: var(--accent2); margin: 10px 0;
+  text-shadow: 0 0 30px rgba(124,58,237,0.3);
+}
+.timer-controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+.timer-presets { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+.timer-presets .btn { font-size: 0.75rem; padding: 5px 12px; }
+.timer-status { font-size: 0.8rem; color: var(--text2); margin-top: 8px; }
+.timer-btn-start { background: var(--green) !important; color: white !important; border-color: var(--green) !important; }
+.timer-btn-pause { background: var(--orange) !important; color: white !important; border-color: var(--orange) !important; }
+.timer-btn-reset { background: var(--red) !important; color: white !important; border-color: var(--red) !important; }
 
-    .footer-note i {
-      font-style: normal;
-      font-size: 1.3rem;
-    }
+/* DAYS */
+.days-section { padding: 20px 0; }
+.days-section > h2 { font-size: 1.4rem; margin-bottom: 20px; font-weight: 800; }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .card {
-        padding: 2.2rem 1.2rem;
-        border-radius: 2.5rem 1rem 2.5rem 1rem;
-      }
-      h1 {
-        font-size: clamp(2.2rem, 13vw, 3.8rem);
-      }
-      .sub-road {
-        font-size: 1.4rem;
-        letter-spacing: 0.2rem;
-      }
-      .message {
-        font-size: 1.1rem;
-        padding: 0.7rem 1.4rem;
-      }
-    }
-  </style>
-  <!-- optionally Inter font for even smoother look -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+.day-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  margin-bottom: 16px; overflow: hidden; transition: all 0.3s;
+}
+.day-card:hover { box-shadow: var(--shadow2); }
+.day-card.completed { opacity: 0.7; }
+.day-card.completed .day-header { background: var(--green) !important; }
+
+.day-header {
+  padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between;
+  align-items: center; background: linear-gradient(135deg, var(--bg3), var(--bg2));
+  border-bottom: 1px solid var(--border); user-select: none; flex-wrap: wrap; gap: 8px;
+}
+.day-header-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.day-num {
+  background: var(--accent); color: white; width: 42px; height: 42px;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; flex-shrink: 0;
+}
+.day-title { font-weight: 700; font-size: 1rem; }
+.day-subtitle { font-size: 0.78rem; color: var(--text2); }
+.day-header-right { display: flex; align-items: center; gap: 10px; }
+.day-badge {
+  padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600;
+  color: white; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.day-toggle { font-size: 1.2rem; transition: transform 0.3s; color: var(--text2); }
+.day-card.open .day-toggle { transform: rotate(180deg); }
+.day-complete-btn {
+  width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--border);
+  background: transparent; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; font-size: 0.9rem; transition: all 0.2s; color: var(--text2);
+}
+.day-complete-btn.checked { background: var(--green); border-color: var(--green); color: white; }
+
+.day-body { padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+.day-card.open .day-body { max-height: 3000px; padding: 20px; }
+
+.slot {
+  margin-bottom: 14px; padding: 16px; border-radius: var(--radius2);
+  border-left: 4px solid var(--border); background: var(--bg2);
+  transition: all 0.2s;
+}
+.slot:hover { transform: translateX(4px); }
+.slot:last-child { margin-bottom: 0; }
+.slot-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.slot-time { font-size: 0.75rem; color: var(--text2); font-family: 'JetBrains Mono', monospace; font-weight: 500; white-space: nowrap; }
+.slot-subject {
+  padding: 2px 10px; border-radius: 10px; font-size: 0.72rem; font-weight: 600;
+  color: white; white-space: nowrap;
+}
+.slot-topic { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+.slot-details { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+.slot-tasks { margin-top: 8px; }
+.slot-task {
+  display: flex; align-items: flex-start; gap: 8px; padding: 4px 0; font-size: 0.8rem;
+  color: var(--text2); cursor: pointer; transition: all 0.2s;
+}
+.slot-task:hover { color: var(--text); }
+.task-check {
+  width: 18px; height: 18px; border-radius: 5px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-size: 0.7rem; margin-top: 1px; transition: all 0.2s;
+}
+.slot-task.done .task-check { background: var(--green); border-color: var(--green); color: white; }
+.slot-task.done { text-decoration: line-through; opacity: 0.6; }
+
+.slot.maths { border-left-color: var(--maths); }
+.slot.physics { border-left-color: var(--physics); }
+.slot.mechanics { border-left-color: var(--mechanics); }
+.slot.feee { border-left-color: var(--feee); }
+.slot.it { border-left-color: var(--it); }
+.slot.evs { border-left-color: var(--evs); }
+.slot.revision { border-left-color: var(--revision); }
+
+.bg-maths { background: var(--maths); }
+.bg-physics { background: var(--physics); }
+.bg-mechanics { background: var(--mechanics); }
+.bg-feee { background: var(--feee); }
+.bg-it { background: var(--it); }
+.bg-evs { background: var(--evs); }
+.bg-revision { background: var(--revision); }
+
+/* NOTES */
+.notes-section {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin: 20px 0;
+}
+.notes-section h3 { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+.notes-textarea {
+  width: 100%; min-height: 120px; background: var(--bg2); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius2);
+  padding: 14px; font-family: inherit; font-size: 0.9rem; resize: vertical;
+  transition: border-color 0.2s;
+}
+.notes-textarea:focus { outline: none; border-color: var(--accent); }
+.notes-saved { font-size: 0.75rem; color: var(--green); margin-top: 6px; display: none; }
+
+/* CHECKLIST */
+.checklist-section {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin: 20px 0;
+}
+.checklist-section h3 { margin-bottom: 16px; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+.checklist-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  background: var(--bg2); border-radius: 8px; margin-bottom: 6px; cursor: pointer;
+  transition: all 0.2s; font-size: 0.85rem;
+}
+.checklist-item:hover { background: var(--bg3); }
+.checklist-item.done { opacity: 0.5; text-decoration: line-through; }
+.cl-check {
+  width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: all 0.2s;
+}
+.checklist-item.done .cl-check { background: var(--green); border-color: var(--green); color: white; }
+
+/* WEIGHTAGE CHART */
+.weightage-section {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; margin: 20px 0;
+}
+.weightage-section h3 { margin-bottom: 16px; font-size: 1rem; }
+.weight-item { margin-bottom: 12px; }
+.weight-item-header { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px; }
+.weight-item-header .name { font-weight: 600; }
+.weight-item-header .hrs { color: var(--text2); }
+.weight-bar { width: 100%; height: 10px; background: var(--bg3); border-radius: 6px; overflow: hidden; }
+.weight-bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
+
+/* MOTIVATIONAL QUOTES */
+.quote-section {
+  text-align: center; padding: 30px 20px; margin: 20px 0;
+  background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.1));
+  border-radius: var(--radius); border: 1px solid var(--border);
+}
+.quote-text { font-size: 1.2rem; font-weight: 600; font-style: italic; margin-bottom: 8px; }
+.quote-author { font-size: 0.85rem; color: var(--text2); }
+.quote-btn { margin-top: 12px; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--green); color: white; padding: 12px 24px; border-radius: 12px;
+  font-size: 0.85rem; font-weight: 600; z-index: 1000; opacity: 0;
+  transition: all 0.4s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* FOOTER */
+.footer {
+  text-align: center; padding: 30px 20px; color: var(--text2); font-size: 0.8rem;
+  border-top: 1px solid var(--border); margin-top: 40px;
+}
+
+/* FAB */
+.fab {
+  position: fixed; bottom: 24px; right: 24px; z-index: 99;
+  display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+}
+.fab-btn {
+  width: 50px; height: 50px; border-radius: 14px; border: none;
+  background: var(--accent); color: white; font-size: 1.3rem;
+  cursor: pointer; box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+  transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+}
+.fab-btn:hover { transform: scale(1.1); }
+.fab-btn.green { background: var(--green); box-shadow: 0 4px 20px rgba(16,185,129,0.4); }
+
+/* SEARCH */
+.search-box {
+  width: 100%; padding: 12px 16px; background: var(--bg2); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius2);
+  font-family: inherit; font-size: 0.9rem; margin: 15px 0;
+  transition: border-color 0.2s;
+}
+.search-box:focus { outline: none; border-color: var(--accent); }
+
+/* CONFETTI */
+.confetti-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+.confetti-piece {
+  position: absolute; width: 10px; height: 10px; top: -10px;
+  animation: confetti-fall 3s ease-out forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* TABS */
+.tab-container { margin: 20px 0; }
+.tab-nav { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 4px; }
+.tab-btn {
+  padding: 10px 18px; border: none; background: var(--bg3); color: var(--text2);
+  cursor: pointer; font-family: inherit; font-size: 0.82rem; font-weight: 600;
+  border-radius: 10px 10px 0 0; transition: all 0.2s; white-space: nowrap;
+}
+.tab-btn.active { background: var(--card); color: var(--text); }
+.tab-content { background: var(--card); border: 1px solid var(--border); border-radius: 0 var(--radius2) var(--radius2) var(--radius2); padding: 20px; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* FORMULA SHEET */
+.formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.formula-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius2);
+  padding: 14px; border-left: 4px solid var(--accent);
+}
+.formula-card h4 { font-size: 0.85rem; margin-bottom: 6px; color: var(--accent2); }
+.formula-card p { font-size: 0.8rem; color: var(--text2); font-family: 'JetBrains Mono', monospace; }
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .container { padding: 0 12px; }
+  .header-inner { justify-content: center; }
+  .timer-display { font-size: 2.5rem; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .day-header { padding: 12px 14px; }
+  .day-num { width: 36px; height: 36px; font-size: 0.85rem; }
+  .slot { padding: 12px; }
+  .fab { bottom: 16px; right: 16px; }
+  .fab-btn { width: 44px; height: 44px; font-size: 1.1rem; }
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in { animation: fadeInUp 0.5s ease forwards; }
+.day-card { animation: fadeInUp 0.5s ease forwards; }
+
+/* HIDDEN */
+.hidden { display: none !important; }
+
+/* PRINT */
+@media print {
+  .header, .timer-section, .fab, .filter-section, .header-controls, .notes-section, .quote-section { display: none !important; }
+  .day-body { max-height: none !important; padding: 16px !important; }
+  body { background: white; color: black; }
+  .day-card, .slot { break-inside: avoid; }
+}
+</style>
 </head>
-<body>
-  <div class="card">
-    <!-- tiny decorative compass + dashes hinting at a roadmap -->
-    <div class="road-hint">
-      <span class="dash"></span>
-      <span class="dash long"></span>
-      <span class="compass-icon">🧭</span>
-      <span class="dash long"></span>
-      <span class="dash"></span>
+<body data-theme="dark">
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">📚 <span>ExamMap</span> 15</div>
+    <div class="header-controls">
+      <button class="btn btn-icon" onclick="toggleTheme()" title="Toggle Theme" id="themeBtn">🌙</button>
+      <button class="btn btn-icon" onclick="expandAll()" title="Expand All">📖</button>
+      <button class="btn btn-icon" onclick="collapseAll()" title="Collapse All">📕</button>
+      <button class="btn btn-icon" onclick="resetAll()" title="Reset Progress">🔄</button>
+      <button class="btn btn-icon" onclick="window.print()" title="Print">🖨️</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>15-Day <span class="gradient">Exam Roadmap</span></h1>
+    <p>WB Diploma Semester II — Smart Mixed Study Plan</p>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- STATS -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-card">
+    <div class="num" id="statDaysLeft">15</div>
+    <div class="label">Days Left</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" id="statCompleted">0</div>
+    <div class="label">Days Done</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" id="statTasks">0</div>
+    <div class="label">Tasks Done</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" id="statHours">0</div>
+    <div class="label">Hours Studied</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" id="statStreak">0</div>
+    <div class="label">Day Streak 🔥</div>
+  </div>
+</div>
+
+<!-- OVERALL PROGRESS -->
+<div class="progress-section">
+  <div class="progress-header">
+    <h3>📊 Overall Progress</h3>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar-outer">
+    <div class="progress-bar-inner" id="progressBar" style="width: 0%;"></div>
+  </div>
+</div>
+
+<!-- SUBJECT PROGRESS -->
+<div class="subject-progress">
+  <h3>📈 Subject-wise Progress</h3>
+  <div class="subj-prog-grid" id="subjProgGrid">
+    <div class="subj-prog-item" data-subj="maths">
+      <div class="subj-name"><span class="subj-dot" style="background:var(--maths)"></span> Mathematics</div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:0%; background:var(--maths)"></div></div>
+      <div class="subj-pct">0%</div>
+    </div>
+    <div class="subj-prog-item" data-subj="physics">
+      <div class="subj-name"><span class="subj-dot" style="background:var(--physics)"></span> Physics</div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:0%; background:var(--physics)"></div></div>
+      <div class="subj-pct">0%</div>
+    </div>
+    <div class="subj-prog-item" data-subj="mechanics">
+      <div class="subj-name"><span class="subj-dot" style="background:var(--mechanics)"></span> Mechanics</div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:0%; background:var(--mechanics)"></div></div>
+      <div class="subj-pct">0%</div>
+    </div>
+    <div class="subj-prog-item" data-subj="feee">
+      <div class="subj-name"><span class="subj-dot" style="background:var(--feee)"></span> FEEE</div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:0%; background:var(--feee)"></div></div>
+      <div class="subj-pct">0%</div>
+    </div>
+    <div class="subj-prog-item" data-subj="it">
+      <div class="subj-name"><span class="subj-dot" style="background:var(--it)"></span> IT Systems</div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:0%; background:var(--it)"></div></div>
+      <div class="subj-pct">0%</div>
+    </div>
+    <div class="subj-prog-item" data-subj="evs">
+      <div class="subj-name"><span class="subj-dot" style="background:var(--evs)"></span> EVS</div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:0%; background:var(--evs)"></div></div>
+      <div class="subj-pct">0%</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-section" id="quoteSection">
+  <div class="quote-text" id="quoteText">"Success is the sum of small efforts repeated day in and day out."</div>
+  <div class="quote-author" id="quoteAuthor">— Robert Collier</div>
+  <button class="btn quote-btn" onclick="newQuote()">🔄 New Quote</button>
+</div>
+
+<!-- TABS -->
+<div class="tab-container">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(event,'tabSchedule')">📅 Schedule</button>
+    <button class="tab-btn" onclick="switchTab(event,'tabWeightage')">⚖️ Weightage</button>
+    <button class="tab-btn" onclick="switchTab(event,'tabTimer')">⏱️ Timer</button>
+    <button class="tab-btn" onclick="switchTab(event,'tabChecklist')">✅ Checklist</button>
+    <button class="tab-btn" onclick="switchTab(event,'tabNotes')">📝 Notes</button>
+    <button class="tab-btn" onclick="switchTab(event,'tabFormulas')">📐 Quick Formulas</button>
+  </div>
+
+  <!-- TAB: SCHEDULE -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="tabSchedule">
+      <!-- FILTER -->
+      <div class="filter-section">
+        <div class="filter-bar">
+          <span class="label">FILTER:</span>
+          <button class="filter-btn active" data-filter="all" onclick="filterDays('all',this)">🔹 All</button>
+          <button class="filter-btn" data-filter="maths" onclick="filterDays('maths',this)">🔵 Maths</button>
+          <button class="filter-btn" data-filter="physics" onclick="filterDays('physics',this)">🟢 Physics</button>
+          <button class="filter-btn" data-filter="mechanics" onclick="filterDays('mechanics',this)">🔴 Mechanics</button>
+          <button class="filter-btn" data-filter="feee" onclick="filterDays('feee',this)">🟡 FEEE</button>
+          <button class="filter-btn" data-filter="it" onclick="filterDays('it',this)">🟣 IT</button>
+          <button class="filter-btn" data-filter="evs" onclick="filterDays('evs',this)">🟤 EVS</button>
+          <button class="filter-btn" data-filter="revision" onclick="filterDays('revision',this)">⚪ Revision</button>
+        </div>
+      </div>
+
+      <!-- SEARCH -->
+      <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search topics, subjects, keywords..." oninput="searchDays(this.value)">
+
+      <!-- DAYS -->
+      <div class="days-section" id="daysContainer"></div>
     </div>
 
-    <!-- main message: ROADMAP is coming sone (with slight wordplay) -->
-    <h1>
-      ROADMAP
-      <span class="sub-road">is coming sone</span>
-    </h1>
-
-    <!-- friendly extra context, like a little signpost -->
-    <div style="text-align: center;">
-      <div class="message">
-        ⏳  we're drawing the route  ⏳
+    <!-- TAB: WEIGHTAGE -->
+    <div class="tab-pane" id="tabWeightage">
+      <div class="weightage-section" style="border:none; padding:0;">
+        <h3>⚖️ Study Hours Distribution (15 Days)</h3>
+        <div id="weightageChart" style="margin-top:16px;"></div>
+      </div>
+      <div style="margin-top:24px;">
+        <h3 style="margin-bottom:12px;">📊 Subject Details</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+          <thead>
+            <tr style="border-bottom:2px solid var(--border);">
+              <th style="text-align:left; padding:10px;">Subject</th>
+              <th style="padding:10px;">Credits</th>
+              <th style="padding:10px;">Marks</th>
+              <th style="padding:10px;">Difficulty</th>
+              <th style="padding:10px;">Hours</th>
+              <th style="padding:10px;">% Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px;"><span class="subj-dot" style="background:var(--maths)"></span> Mathematics-II</td><td style="text-align:center;">4</td><td style="text-align:center;">100</td><td style="text-align:center;">🔴 High</td><td style="text-align:center;">~32 hrs</td><td style="text-align:center; font-weight:700; color:var(--maths);">27%</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px;"><span class="subj-dot" style="background:var(--mechanics)"></span> Engg. Mechanics</td><td style="text-align:center;">3</td><td style="text-align:center;">100</td><td style="text-align:center;">🔴 High</td><td style="text-align:center;">~24 hrs</td><td style="text-align:center; font-weight:700; color:var(--mechanics);">20%</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px;"><span class="subj-dot" style="background:var(--feee)"></span> FEEE</td><td style="text-align:center;">3</td><td style="text-align:center;">100</td><td style="text-align:center;">🟠 Med-High</td><td style="text-align:center;">~22 hrs</td><td style="text-align:center; font-weight:700; color:var(--feee);">18%</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px;"><span class="subj-dot" style="background:var(--physics)"></span> Applied Physics-II</td><td style="text-align:center;">3</td><td style="text-align:center;">100</td><td style="text-align:center;">🟠 Med-High</td><td style="text-align:center;">~21 hrs</td><td style="text-align:center; font-weight:700; color:var(--physics);">17%</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px;"><span class="subj-dot" style="background:var(--it)"></span> IT Systems</td><td style="text-align:center;">2</td><td style="text-align:center;">100</td><td style="text-align:center;">🟡 Medium</td><td style="text-align:center;">~12 hrs</td><td style="text-align:center; font-weight:700; color:var(--it);">10%</td></tr>
+            <tr><td style="padding:10px;"><span class="subj-dot" style="background:var(--evs)"></span> Environmental Sci.</td><td style="text-align:center;">0</td><td style="text-align:center;">100</td><td style="text-align:center;">🟢 Low</td><td style="text-align:center;">~6 hrs</td><td style="text-align:center; font-weight:700; color:var(--evs);">5%</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- little details to echo the "map / path" vibe, and the misspelling 'sone' highlighted playfully -->
-    <div class="expected">
-      <span><span class="dot"></span> soon · sone (old English for ‘sound’?)</span>
-      <span><span class="dot"></span> directions in progress</span>
+    <!-- TAB: TIMER -->
+    <div class="tab-pane" id="tabTimer">
+      <div class="timer-section" style="border:none; padding:0;">
+        <h3>⏱️ Pomodoro Study Timer</h3>
+        <div class="timer-display" id="timerDisplay">25:00</div>
+        <div class="timer-status" id="timerStatus">Ready to start</div>
+        <div class="timer-controls">
+          <button class="btn timer-btn-start" id="timerStartBtn" onclick="startTimer()">▶ Start</button>
+          <button class="btn timer-btn-pause" onclick="pauseTimer()">⏸ Pause</button>
+          <button class="btn timer-btn-reset" onclick="resetTimer()">⏹ Reset</button>
+        </div>
+        <div class="timer-presets">
+          <button class="btn" onclick="setTimer(25)">25 min</button>
+          <button class="btn" onclick="setTimer(45)">45 min</button>
+          <button class="btn" onclick="setTimer(60)">60 min</button>
+          <button class="btn" onclick="setTimer(90)">90 min</button>
+          <button class="btn" onclick="setTimer(5)">5 min Break</button>
+          <button class="btn" onclick="setTimer(10)">10 min Break</button>
+        </div>
+        <div style="margin-top:16px; font-size:0.8rem; color:var(--text2);">
+          Sessions Completed Today: <span id="sessionCount" style="color:var(--green); font-weight:700;">0</span>
+        </div>
+      </div>
     </div>
 
-    <!-- an horizon rule / road dash -->
-    <hr />
-
-    <!-- extra note, with a tiny map pin and the misspelled word integrated -->
-    <div class="footer-note">
-      <i>📍</i>  stay tuned — the route (roadmap) will appear sooner than you think  <i>🗺️</i>
+    <!-- TAB: CHECKLIST -->
+    <div class="tab-pane" id="tabChecklist">
+      <div class="checklist-section" style="border:none; padding:0;">
+        <h3>✅ Daily Study Checklist</h3>
+        <div id="checklistContainer">
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl1">
+            <div class="cl-check">✓</div> <span>Morning slot completed (3.5 hrs)</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl2">
+            <div class="cl-check">✓</div> <span>Afternoon slot completed (3 hrs)</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl3">
+            <div class="cl-check">✓</div> <span>Evening slot completed (2.5 hrs)</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl4">
+            <div class="cl-check">✓</div> <span>Night recap done (1.5 hrs)</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl5">
+            <div class="cl-check">✓</div> <span>Formula sheet updated</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl6">
+            <div class="cl-check">✓</div> <span>Minimum 10 problems solved</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl7">
+            <div class="cl-check">✓</div> <span>Yesterday's topic quickly revised</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl8">
+            <div class="cl-check">✓</div> <span>Drank enough water (2L+)</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl9">
+            <div class="cl-check">✓</div> <span>Took breaks between sessions</span>
+          </div>
+          <div class="checklist-item" onclick="toggleChecklist(this)" data-key="cl10">
+            <div class="cl-check">✓</div> <span>Slept 6-7 hours last night</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- the misspelling 'sone' appears in the main headline; also subtle nod: sone = unit of loudness, but here it's a fun twist -->
-    <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #b8a68b; font-style: italic;">
-      “sone” — a soft sound of progress
+    <!-- TAB: NOTES -->
+    <div class="tab-pane" id="tabNotes">
+      <div class="notes-section" style="border:none; padding:0;">
+        <h3>📝 Personal Study Notes</h3>
+        <textarea class="notes-textarea" id="notesArea" placeholder="Write your study notes, weak topics, important formulas here..." oninput="saveNotes()"></textarea>
+        <div class="notes-saved" id="notesSaved">✅ Saved automatically!</div>
+      </div>
     </div>
+
+    <!-- TAB: FORMULAS -->
+    <div class="tab-pane" id="tabFormulas">
+      <h3 style="margin-bottom:16px;">📐 Quick Reference Formulas</h3>
+      <div class="formula-grid">
+        <div class="formula-card" style="border-left-color:var(--maths);">
+          <h4>Integration by Parts</h4>
+          <p>∫u·v dx = u∫v dx - ∫(u'·∫v dx)dx<br>ILATE Rule: I→L→A→T→E</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--maths);">
+          <h4>Cramer's Rule (3 unknowns)</h4>
+          <p>x = Δx/Δ, y = Δy/Δ, z = Δz/Δ</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--maths);">
+          <h4>ODE Linear Type</h4>
+          <p>dy/dx + Py = Q<br>IF = e^∫P dx<br>y·IF = ∫Q·IF dx + C</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--maths);">
+          <h4>Standard Deviation</h4>
+          <p>σ = √(Σfi(xi-x̄)²/Σfi)</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--mechanics);">
+          <h4>Lami's Theorem</h4>
+          <p>P/sinα = Q/sinβ = R/sinγ</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--mechanics);">
+          <h4>Beam: ΣM = 0</h4>
+          <p>ΣFx=0, ΣFy=0, ΣM=0<br>For equilibrium</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--feee);">
+          <h4>Transformer EMF</h4>
+          <p>E = 4.44·f·N·Φm<br>N1/N2 = V1/V2 = I2/I1</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--feee);">
+          <h4>Impedance (R-L-C)</h4>
+          <p>Z = √(R²+(XL-XC)²)<br>tanφ = (XL-XC)/R</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--physics);">
+          <h4>Lens Formula</h4>
+          <p>1/f = 1/v - 1/u<br>m = v/u</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--physics);">
+          <h4>Capacitor (Parallel Plate)</h4>
+          <p>C = ε₀·A/d<br>Series: 1/C = Σ(1/Ci)<br>Parallel: C = ΣCi</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--physics);">
+          <h4>SHM Equations</h4>
+          <p>x = A sin(ωt+φ)<br>v = Aω cos(ωt+φ)<br>a = -Aω² sin(ωt+φ)</p>
+        </div>
+        <div class="formula-card" style="border-left-color:var(--mechanics);">
+          <h4>Equations of Motion</h4>
+          <p>v = u + at<br>s = ut + ½at²<br>v² = u² + 2as</p>
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>
+
+</div><!-- container -->
+
+<!-- FAB -->
+<div class="fab">
+  <button class="fab-btn green" onclick="scrollToTop()" title="Scroll to Top">⬆</button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Made with ❤️ for WB Diploma Students | All progress saved locally in your browser</p>
+  <p style="margin-top:4px;">💡 Tip: Your progress is auto-saved. Come back anytime!</p>
+</div>
+
+<script>
+// ============= DATA =============
+const scheduleData = [
+  {
+    day: 1, title: "Foundation Day", badge: "START", badgeColor: "#10b981",
+    subjects: ["maths","physics","feee"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 1 — Determinants",
+        details: "Expansion of 2×3 order determinants, Minors & Cofactors, Properties, Chio's method for 4th order, Cramer's Rule for 3 unknowns",
+        tasks: ["Learn determinant expansion methods","Solve 5 Cramer's Rule problems","Practice Chio's method (2 problems)","Write formula sheet for determinants"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "physics", subjectLabel: "PHYSICS", topic: "Unit 1 — SHM & Wave Motion",
+        details: "SHM: displacement, velocity, acceleration expressions. Time period, Cantilever vibrations. Free, Damped & Forced vibrations. Wave equation, Superposition, Beats",
+        tasks: ["Memorize SHM formulas","Understand cantilever time period","Note differences: free vs damped vs forced","Solve 3 wave equation problems"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "feee", subjectLabel: "FEEE", topic: "Unit 1 — Electrical Components",
+        details: "Passive Components (R, L, C), DC/AC signal waveforms, Ideal/Non-ideal sources, Source transformation with problems",
+        tasks: ["Understand R, L, C behavior","Practice source transformation (3 problems)","Draw DC/AC waveforms"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "Day 1 Recap",
+        details: "Write key formulas of Determinants + SHM + Source transformation on one page. Quick self-test.",
+        tasks: ["Write formula sheet for all 3 topics","Self-test: solve 1 problem each"]
+      }
+    ]
+  },
+  {
+    day: 2, title: "Building Blocks", badge: "DAY 2", badgeColor: "#3b82f6",
+    subjects: ["maths","mechanics","it"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 1 — Matrices",
+        details: "Types of matrices, Operations (add, subtract, scalar multiply, matrix multiply), Transpose, Symmetric & Skew-symmetric, Adjoint & Inverse of 3×3 matrix",
+        tasks: ["Learn all matrix types","Practice matrix multiplication (4 problems)","Solve inverse of 3×3 matrix (3 problems)","Understand singular vs non-singular"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "Unit I — Force System",
+        details: "Vectors, Parallelogram/Triangle/Polygon Law, Resultant determination (Analytical & Graphical), Resolution of forces into components",
+        tasks: ["Draw force diagrams for each law","Solve 5 resultant problems","Practice resolution into components","Learn Bow's notation"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "it", subjectLabel: "IT SYSTEMS", topic: "Unit 1 (Part 1) — Number Systems",
+        details: "Binary, Octal, Hex, Decimal conversions. BCD (8421, 2421), Gray code, Excess-3. ASCII, EBCDIC. 1's & 2's complement. Binary addition/subtraction",
+        tasks: ["Practice 10 number conversions","Learn complement methods","Convert 5 numbers to BCD/Gray","Understand signed/unsigned numbers"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "Day 1 + Day 2 Recap",
+        details: "Revise determinant + SHM formulas from Day 1. Review today's matrix, force system, number system topics",
+        tasks: ["Quick formula revision Day 1","Summarize today's key concepts"]
+      }
+    ]
+  },
+  {
+    day: 3, title: "Geometry & Circuits", badge: "DAY 3", badgeColor: "#f59e0b",
+    subjects: ["maths","feee","physics"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 2 — Coordinate Geometry",
+        details: "Cartesian/Polar systems, Distance formula, Section formula, Area of triangle, Collinearity. Straight line: all standard forms, Angle between lines, Perpendicular distance",
+        tasks: ["Memorize all straight line forms","Solve 4 distance/section problems","Solve 4 straight line problems","Practice angle & perpendicular distance"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "feee", subjectLabel: "FEEE", topic: "Unit 2 — Electric & Magnetic Circuits",
+        details: "EMF, Current, PD, Power. MMF, Permeability, Hysteresis, BH curve, Reluctance. Faraday's & Lenz's law. Self & Mutual inductance. Fleming's rules",
+        tasks: ["Draw BH curve and hysteresis loop","Understand Faraday's laws (state & explain)","Solve 4 magnetic circuit problems","Learn Fleming's LHR & RHR"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "physics", subjectLabel: "PHYSICS", topic: "Unit 1 (finish) + Unit 2 (start) — Acoustics + Optics",
+        details: "Acoustics: Reverberation, control methods. Ultrasonics. Optics: Reflection, Refraction, Refractive index, Lens formula, Lens maker's formula, Power of lens",
+        tasks: ["Note reverberation control methods","Memorize lens formula & lens maker's formula","Solve 3 optics numericals"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "Maths Unit 1-2 Formula Revision",
+        details: "Create a complete formula sheet for Determinants + Matrices + Coordinate Geometry",
+        tasks: ["Complete formula sheet","Self-test: 2 problems from each topic"]
+      }
+    ]
+  },
+  {
+    day: 4, title: "Conics & Logic", badge: "DAY 4", badgeColor: "#a855f7",
+    subjects: ["maths","mechanics","it"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 2 (finish) + Unit 3 (start) — Circle, Conics + Integration",
+        details: "Circle: centre-radius form, diameter form, general equation. Conics: Parabola & Ellipse standard equations. Start Integration: standard formulas, substitution method",
+        tasks: ["Learn circle equation forms","Memorize parabola/ellipse formulas","Write all standard integration formulas","Solve 5 basic integrals"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "Unit II — Moments & Couples",
+        details: "Moment of force about a point, Varignon's theorem, Resultant of parallel & inclined forces. Couples: definition, equivalent couples, replacement by force + couple",
+        tasks: ["Understand Varignon's theorem with examples","Solve 4 moment problems","Solve 4 couple problems","Draw diagrams for each problem"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "it", subjectLabel: "IT SYSTEMS", topic: "Unit 1 (Part 2) — Boolean Algebra + Hardware",
+        details: "Logic gates (AND, OR, NOT, NAND, NOR, XOR, XNOR), Truth tables, Universal gates, Boolean laws, De Morgan's theorem. Hardware: CPU, Memory, Display, HDD/SSD",
+        tasks: ["Draw all gate symbols & truth tables","Verify De Morgan's theorem","Identify hardware components","List software types"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "Cross-Subject Recap",
+        details: "Revise Physics optics formulas + FEEE magnetic circuits from yesterday. Quick self-test on today's topics",
+        tasks: ["Revise yesterday's weak points","Write today's key takeaways"]
+      }
+    ]
+  },
+  {
+    day: 5, title: "Integration Deep Dive", badge: "KEY DAY", badgeColor: "#ef4444",
+    subjects: ["maths","physics","feee"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 3 — Integration (By Parts + Partial Fractions)",
+        details: "Integration by Parts (ILATE rule) — the MOST IMPORTANT technique. Integration by Partial Fractions. This unit = HIGHEST weight in exam!",
+        tasks: ["Master ILATE rule with 5 examples","Solve 5 by-parts problems","Solve 5 partial fraction problems","Practice mixed type integrals"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "physics", subjectLabel: "PHYSICS", topic: "Unit 2 — Optics (Complete)",
+        details: "Total Internal Reflection, Critical angle, Optical fibre. Microscope (simple & compound), Telescope (refracting). Interference & Diffraction (qualitative)",
+        tasks: ["Draw ray diagrams for microscope & telescope","Understand TIR conditions","Note optical fibre applications","Learn magnification formulas"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "feee", subjectLabel: "FEEE", topic: "Unit 3 (Part 1) — AC Circuits Basics",
+        details: "Angular speed, Cycle, Frequency, Time period, Amplitude. RMS, Average, Form Factor, Peak Factor. Sinusoidal representation: exponential, complex, polar form",
+        tasks: ["Memorize RMS/Average/Form Factor formulas","Practice complex number representation","Solve 3 problems on AC quantities"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "Integration Formula Drill",
+        details: "Write ALL standard integration formulas from memory. Test yourself without looking. This is the single most scoring topic!",
+        tasks: ["Write all formulas from memory","Identify gaps and re-learn","Solve 3 more mixed problems"]
+      }
+    ]
+  },
+  {
+    day: 6, title: "Applications & Circuits", badge: "DAY 6", badgeColor: "#06b6d4",
+    subjects: ["maths","mechanics","feee"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 3 — Definite Integration + Applications",
+        details: "Definite integral definition, Properties. Applications: Area of bounded region, Volume & Surface area of solids of revolution about x and y axes",
+        tasks: ["Learn all properties of definite integrals","Solve 5 definite integral problems","Solve 3 area problems","Solve 2 volume/surface area problems"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "Unit III — Equilibrium + Beam Reactions",
+        details: "Lami's theorem, FBD, Equilibrium conditions. Types of beams & supports. Beam reactions for simply supported beams with Point Load + UDL",
+        tasks: ["Master Lami's theorem (3 problems)","Draw FBD for different scenarios","Solve 4 beam reaction problems","Practice UDL + Point load combinations"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "feee", subjectLabel: "FEEE", topic: "Unit 3 (Part 2) — AC Circuits (R-L, R-C, R-L-C)",
+        details: "V-I through R, L, C with phasors. R-L, R-C, R-L-C series & parallel. Impedance triangle, Power factor, Power triangle. Star-Delta connections",
+        tasks: ["Draw phasor diagrams for each circuit","Solve 3 impedance problems","Calculate power factor for 3 circuits","Understand Star-Delta conversion"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "High-Value Topic Recap",
+        details: "Integration + Beam Reactions are the TWO highest-scoring topics across all subjects. Extra practice!",
+        tasks: ["Solve 2 more integration problems","Solve 2 more beam problems","Update formula sheet"]
+      }
+    ]
+  },
+  {
+    day: 7, title: "ODE & Electrostatics", badge: "DAY 7", badgeColor: "#3b82f6",
+    subjects: ["maths","physics","mechanics"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 4 — ODE (1st Order)",
+        details: "Definition, order & degree. Variable separable, Homogeneous type, Exact type, Linear type (Integrating Factor method)",
+        tasks: ["Learn to identify each ODE type","Solve 3 variable separable","Solve 2 homogeneous","Solve 3 exact type","Solve 3 linear type (IF method)"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "physics", subjectLabel: "PHYSICS", topic: "Unit 3 — Electrostatics",
+        details: "Coulomb's law, Electric field, Electric lines of force, Electric flux. Gauss's law & application. Capacitors: parallel plate, series/parallel, dielectric effect",
+        tasks: ["Derive electric field using Gauss's law","Solve 3 capacitor combination problems","Understand dielectric effect on capacitance","Memorize all formulas"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "Unit IV — Friction",
+        details: "Types & Laws of friction, Limiting friction, Coefficient, Angle of friction, Cone of friction, Angle of repose. Bodies on horizontal & inclined planes",
+        tasks: ["Understand angle of repose concept","Solve 3 horizontal surface problems","Solve 4 inclined plane problems","Draw FBD for each friction problem"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "ODE + Electrostatics Recap",
+        details: "Summarize all 4 ODE methods. Revise capacitor formulas. Quick self-test.",
+        tasks: ["Write ODE method identification flowchart","Revise capacitor series/parallel formulas"]
+      }
+    ]
+  },
+  {
+    day: 8, title: "2nd Order & Transformers", badge: "DAY 8", badgeColor: "#f59e0b",
+    subjects: ["maths","feee","physics"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 4 (finish) + Unit 5 — 2nd Order ODE + Partial Differentiation",
+        details: "2nd order: CF (auxiliary equation), PI for e^ax, sin ax, cos ax, polynomials, e^ax·V. Partial Differentiation: partial derivatives, Euler's theorem",
+        tasks: ["Learn CF method (3 cases: real distinct, equal, complex)","Practice PI for each function type","Solve 3 Euler's theorem problems","Total: solve 8 problems"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "feee", subjectLabel: "FEEE", topic: "Unit 4 — Transformers & Machines",
+        details: "Transformer: construction, types, EMF equation, transformation ratio, auto transformer. Motors: construction, working principle, types & applications",
+        tasks: ["Draw transformer diagram","Derive EMF equation","Solve 4 transformer problems","List motor types with applications"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "physics", subjectLabel: "PHYSICS", topic: "Unit 4 — Current Electricity",
+        details: "Ohm's law, Kirchhoff's laws (KVL, KCL), Wheatstone bridge, Carey Foster bridge. Heating effect, Power, Energy. Seebeck & Peltier effects",
+        tasks: ["State & explain Kirchhoff's laws","Solve 3 Wheatstone bridge problems","Solve 2 heating effect problems","Understand thermoelectric effects"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RECAP", topic: "PI Rules + Transformer Recap",
+        details: "2nd order ODE PI rules are tricky — revise the specific rules for each function type. Revise transformer EMF equation.",
+        tasks: ["Make PI rule cheat sheet","Quick transformer formula revision"]
+      }
+    ]
+  },
+  {
+    day: 9, title: "Statistics & Semiconductors", badge: "DAY 9", badgeColor: "#10b981",
+    subjects: ["maths","mechanics","feee","evs"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS", topic: "Unit 6 — Statistics & Probability",
+        details: "Frequency distribution, Mean/Median/Mode (grouped & ungrouped), Standard Deviation. Probability: sample space, events, types, classical definition",
+        tasks: ["Solve 2 mean/median/mode for grouped data","Solve 2 standard deviation problems","Solve 3 probability problems","✅ MATHS SYLLABUS COMPLETE!"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "Unit V — Centroid & Centre of Gravity",
+        details: "Centroid of plane figures (triangle, rectangle, circle, semicircle, quadrant). Composite sections: T, I, L, Channel, Z, cut-out sections. CG of simple solids",
+        tasks: ["Memorize centroid formulas for basic shapes","Solve 4 composite section problems","Learn CG of cube, cuboid, cylinder, sphere"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "feee", subjectLabel: "FEEE", topic: "Unit 5 — Semiconductor Devices",
+        details: "Energy bands (insulator, conductor, semiconductor). Intrinsic & Extrinsic, Doping. P-type, N-type. PN junction diode. PNP/NPN transistor. FET, MOSFET, CMOS",
+        tasks: ["Draw energy band diagrams","Understand P-N junction formation","Draw transistor symbols (PNP, NPN)","Note FET/MOSFET applications"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "evs", subjectLabel: "EVS", topic: "Unit 1 + Unit 2 — Ecosystem + Air Pollution",
+        details: "Ecosystem structure, Food chain/web, Biogeochemical cycles. Air pollution: sources, pollutants, PM2.5/PM10, control methods. Global warming, Ozone depletion",
+        tasks: ["Draw food chain/web diagrams","List air pollution control devices","Note global warming causes & effects"]
+      }
+    ]
+  },
+  {
+    day: 10, title: "Machines & Magnetism", badge: "DAY 10", badgeColor: "#ec4899",
+    subjects: ["mechanics","physics","it","evs"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "Unit VI — Simple Lifting Machines",
+        details: "MA, VR, Efficiency, Law of machine, Reversibility. VR of: Axle & Wheel (Simple + Differential), Worm wheel, Crab winch (Single + Double), Screw jack, Pulley block",
+        tasks: ["Memorize VR formulas for each machine","Solve 3 law of machine problems","Solve 3 efficiency problems","Understand reversibility condition"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "physics", subjectLabel: "PHYSICS", topic: "Unit 5 — Electromagnetism",
+        details: "Biot-Savart law (straight conductor, circular loop), Lorentz force. Force on current conductor, Torque on coil. Faraday's laws. Galvanometer: conversion to A/V. Magnetic materials",
+        tasks: ["State Biot-Savart law with applications","Understand galvanometer conversion","Differentiate dia/para/ferromagnetic","Solve 3 problems"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "it", subjectLabel: "IT SYSTEMS", topic: "Unit 2 — Operating Systems",
+        details: "What is OS, History. Types: Batch, Multiprogrammed, Timesharing. Computer system structures, OS structures. Architecture basics",
+        tasks: ["List OS types with examples","Understand batch vs timesharing","Draw OS architecture diagram","Note key differences"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "evs", subjectLabel: "EVS", topic: "Unit 3 — Water & Soil Pollution",
+        details: "Water pollution sources & characteristics (pH, TDS, BOD, COD). Treatment: Primary, Secondary, Tertiary. Soil pollution causes & effects",
+        tasks: ["Memorize water quality parameters","Draw water treatment flow diagram","Note soil pollution causes"]
+      }
+    ]
+  },
+  {
+    day: 11, title: "Complete All Subjects", badge: "FINISH", badgeColor: "#10b981",
+    subjects: ["mechanics","feee","physics","evs"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "Unit VII — Motion in a Plane",
+        details: "Rectilinear: equations of motion (v=u+at, s=ut+½at², v²=u²+2as). Newton's 2nd law, Momentum. Curvilinear: angular velocity/acceleration, Centripetal force. Work-Power-Energy",
+        tasks: ["Derive equations of motion","Solve 3 rectilinear problems","Solve 2 centripetal force problems","Understand Work-Power-Energy concepts","✅ MECHANICS COMPLETE!"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "feee", subjectLabel: "FEEE", topic: "Unit 6 (Op-Amp) + Unit 7 (Digital Electronics)",
+        details: "Op-Amp: 741C, Virtual ground, Inverting/Non-inverting gain, Adder, Integrator, Differentiator. Digital: Boolean algebra, K-Map (SOP/POS), Flip-flops, Counters, TTL gates",
+        tasks: ["Calculate gain for inverting/non-inverting","Draw K-Map for 3-4 variable functions","Understand flip-flop as storage","Note counter types","✅ FEEE COMPLETE!"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "physics", subjectLabel: "PHYSICS", topic: "Unit 6 + Unit 7 — Semiconductors + Modern Physics",
+        details: "Energy bands, PN junction, Diode rectifier (half/full wave), Transistor CE amplifier. Photocell, Solar cell, LED. Bohr model, X-rays, Laser (He-Ne), Fibre optics, Nanotech",
+        tasks: ["Draw rectifier circuits","Understand transistor amplification","Note X-ray production (Coolidge tube)","Learn Laser properties","✅ PHYSICS COMPLETE!"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "evs", subjectLabel: "EVS", topic: "Unit 4 + Unit 5 — Renewable Energy + Waste Management",
+        details: "Solar, Biomass, Wind, Tidal, Geothermal energy. Solid waste, E-waste, 4R principles. Acts (Air, Water). ISO 14000. Carbon credit/footprint",
+        tasks: ["List renewable energy types","Draw biogas production flowchart","Note 4R principles","Learn Act names","✅ EVS COMPLETE!"]
+      }
+    ]
+  },
+  {
+    day: 12, title: "IT Complete + Start Revision", badge: "PIVOT", badgeColor: "#a855f7",
+    subjects: ["it","maths","mechanics"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "it", subjectLabel: "IT SYSTEMS", topic: "Unit 3 + Unit 4 — Algo/Flowchart + HTML/CSS/JS",
+        details: "Algorithm & Flowchart: definition, symbols, advantages. HTML5: tags, forms, tables, images. CSS: selectors, box model, styling. JavaScript: variables, operators, if-else, loops",
+        tasks: ["Draw flowchart symbols","Write HTML for a basic webpage","Learn CSS selectors","Write JS if-else examples"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "it", subjectLabel: "IT SYSTEMS", topic: "Unit 5 — Cyber Security + Complete",
+        details: "Computer security, Networks & Internet, Cyber stalking, DoS attacks, Malware, Hacking techniques",
+        tasks: ["Note types of cyber attacks","Understand DoS attack concept","List malware types","✅ IT SYSTEMS COMPLETE!"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "maths", subjectLabel: "MATHS", topic: "🔁 Revision — Integration + ODE",
+        details: "These 2 units = 40+ marks in exam. Solve mixed problems. Focus on weak areas from your first pass.",
+        tasks: ["Solve 5 integration problems (mixed types)","Solve 5 ODE problems (all types)","Identify remaining weak spots"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "mechanics", subjectLabel: "MECHANICS", topic: "🔁 Revision — Beam Reactions",
+        details: "Beam reactions are the most common exam question. Practice different load combinations.",
+        tasks: ["Solve 3 beam problems with UDL","Solve 2 with overhang","Check FBD accuracy"]
+      }
+    ]
+  },
+  {
+    day: 13, title: "Revision Day 1", badge: "REVISE", badgeColor: "#f59e0b",
+    subjects: ["maths","mechanics","feee","physics"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "MATHS REV", topic: "🔁 Problem Practice — All Units",
+        details: "Solve 2 problems from EACH unit: Determinants, Matrices, Coordinate Geometry, Integration, ODE, Partial Diff, Statistics, Probability = 12+ problems",
+        tasks: ["2 determinant/matrix problems","2 coordinate geometry problems","3 integration problems","3 ODE problems","2 statistics/probability problems"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "mechanics", subjectLabel: "MECH REV", topic: "🔁 Problem Practice — All Units",
+        details: "Focus: Beam reactions (3), Friction (2), Lifting machines (2), Centroid (2), Motion equations (2)",
+        tasks: ["3 beam reaction problems","2 friction problems","2 lifting machine problems","2 centroid problems","2 motion problems"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "feee", subjectLabel: "FEEE REV", topic: "🔁 Problem Practice — AC Circuits + Transformer",
+        details: "AC circuits: impedance, phasor, power factor (3 problems). Transformer: EMF equation, ratio (3 problems). Op-Amp gain (2 problems)",
+        tasks: ["3 AC circuit problems","3 transformer problems","2 Op-Amp gain calculations"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "physics", subjectLabel: "PHY REV", topic: "🔁 Numericals — All Units",
+        details: "Capacitor (2), Resistance (2), Kirchhoff's (1), Lens (1), SHM (1) = 7 problems",
+        tasks: ["2 capacitor problems","2 resistance circuit problems","1 Kirchhoff's law problem","1 lens problem","1 SHM problem"]
+      }
+    ]
+  },
+  {
+    day: 14, title: "Revision Day 2", badge: "POLISH", badgeColor: "#06b6d4",
+    subjects: ["maths","mechanics","feee","physics","it","evs"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "maths", subjectLabel: "PAPERS", topic: "📝 Previous Year Papers — Maths + Mechanics",
+        details: "Solve 1 full previous year paper for Maths and 1 for Mechanics. Time yourself. Identify repeated question patterns",
+        tasks: ["Solve Maths paper in 2 hours","Solve Mechanics paper in 1.5 hours","Mark commonly repeated questions","Note time taken per question"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "feee", subjectLabel: "PAPERS", topic: "📝 Previous Year Papers — FEEE + Physics",
+        details: "Solve 1 full previous year paper for FEEE and 1 for Physics. Note where you made mistakes",
+        tasks: ["Solve FEEE paper","Solve Physics paper","List topics where mistakes occurred","Re-study those topics"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "revision", subjectLabel: "WEAK AREAS", topic: "🎯 Attack Weak Topics",
+        details: "Go back to topics where you struggled in papers. Re-read notes, solve 2-3 more problems in each weak area",
+        tasks: ["Identify top 5 weak topics","Re-study each weak topic","Solve 2 problems per weak topic"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "QUICK REV", topic: "⚡ IT + EVS Final Read",
+        details: "IT: Number systems + Boolean algebra + HTML tags + OS types. EVS: All 5 units in one read. These are theory-heavy and easy to score",
+        tasks: ["Revise IT key points","Read EVS all units once","Mark important definitions"]
+      }
+    ]
+  },
+  {
+    day: 15, title: "Final Day", badge: "EXAM!", badgeColor: "#ef4444",
+    subjects: ["revision"],
+    slots: [
+      { time: "6:00 AM – 9:30 AM", subject: "revision", subjectLabel: "FORMULAS", topic: "📋 Formula Sheet Marathon — ALL Subjects",
+        details: "Go through ALL formula sheets: Maths → Physics → Mechanics → FEEE → IT → EVS. Read each formula, close eyes, recall it",
+        tasks: ["Revise Maths formulas","Revise Physics formulas","Revise Mechanics formulas","Revise FEEE formulas","Revise IT key concepts"]
+      },
+      { time: "10:00 AM – 1:00 PM", subject: "revision", subjectLabel: "MCQ DRILL", topic: "🎯 MCQ Practice — ALL Subjects",
+        details: "Practice 20 MCQs per subject. MCQ section = 20 marks per paper = EASIEST scoring section. Focus on definitions, formulas, standard results",
+        tasks: ["20 Maths MCQs","20 Physics MCQs","20 Mechanics MCQs","20 FEEE MCQs","10 IT + 10 EVS MCQs"]
+      },
+      { time: "3:00 PM – 5:30 PM", subject: "revision", subjectLabel: "DIAGRAMS", topic: "🎨 Diagram & Circuit Revision",
+        details: "Redraw: Phasor diagrams, Transformer, Rectifier circuits, Galvanometer, Beam diagrams, FBD, Flowchart symbols, Ray diagrams",
+        tasks: ["Draw 3 phasor diagrams","Draw transformer diagram","Draw rectifier circuits","Draw beam FBDs","Draw ray diagrams"]
+      },
+      { time: "8:00 PM – 9:30 PM", subject: "revision", subjectLabel: "RELAX 🧘", topic: "🌟 Light Revision + Early Sleep",
+        details: "Just skim formula sheets ONE LAST TIME. Eat well. Sleep early. Your brain consolidates memory during sleep. YOU'RE READY!",
+        tasks: ["Skim all formula sheets","Pack exam materials","Set alarm","Sleep by 10 PM","💪 YOU'VE GOT THIS!"]
+      }
+    ]
+  }
+];
+
+const quotes = [
+  {text: "Success is the sum of small efforts repeated day in and day out.", author: "Robert Collier"},
+  {text: "The secret of getting ahead is getting started.", author: "Mark Twain"},
+  {text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson"},
+  {text: "It always seems impossible until it's done.", author: "Nelson Mandela"},
+  {text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt"},
+  {text: "The only way to do great work is to love what you do.", author: "Steve Jobs"},
+  {text: "Hard work beats talent when talent doesn't work hard.", author: "Tim Notke"},
+  {text: "Push yourself because no one else is going to do it for you.", author: "Unknown"},
+  {text: "The pain you feel today will be the strength you feel tomorrow.", author: "Unknown"},
+  {text: "Study hard, for the well is deep, and our brains are shallow.", author: "Richard Baxter"},
+  {text: "Discipline is the bridge between goals and accomplishment.", author: "Jim Rohn"},
+  {text: "There are no shortcuts to any place worth going.", author: "Beverly Sills"},
+  {text: "The expert in anything was once a beginner.", author: "Helen Hayes"},
+  {text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela"},
+  {text: "A little progress each day adds up to big results.", author: "Unknown"},
+];
+
+// ============= INIT =============
+let timerInterval = null;
+let timerSeconds = 25 * 60;
+let timerRunning = false;
+let sessionCount = parseInt(localStorage.getItem('sessionCount') || '0');
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderDays();
+  loadProgress();
+  loadTheme();
+  loadNotes();
+  loadChecklist();
+  renderWeightage();
+  updateStats();
+  document.getElementById('sessionCount').textContent = sessionCount;
+});
+
+// ============= RENDER DAYS =============
+function renderDays() {
+  const container = document.getElementById('daysContainer');
+  container.innerHTML = '';
+  scheduleData.forEach((day, di) => {
+    const dayEl = document.createElement('div');
+    dayEl.className = 'day-card';
+    dayEl.setAttribute('data-day', day.day);
+    dayEl.setAttribute('data-subjects', day.subjects.join(','));
+    dayEl.id = 'day' + day.day;
+
+    let slotsHTML = '';
+    day.slots.forEach((slot, si) => {
+      let tasksHTML = '';
+      slot.tasks.forEach((task, ti) => {
+        const taskId = `task-${day.day}-${si}-${ti}`;
+        tasksHTML += `<div class="slot-task" data-taskid="${taskId}" onclick="toggleTask(this,'${taskId}')">
+          <div class="task-check">✓</div>
+          <span>${task}</span>
+        </div>`;
+      });
+      slotsHTML += `
+        <div class="slot ${slot.subject}">
+          <div class="slot-header">
+            <span class="slot-time">${slot.time}</span>
+            <span class="slot-subject bg-${slot.subject}">${slot.subjectLabel}</span>
+          </div>
+          <div class="slot-topic">${slot.topic}</div>
+          <div class="slot-details">${slot.details}</div>
+          <div class="slot-tasks">${tasksHTML}</div>
+        </div>`;
+    });
+
+    dayEl.innerHTML = `
+      <div class="day-header" onclick="toggleDay(${day.day})">
+        <div class="day-header-left">
+          <div class="day-num">${day.day}</div>
+          <div>
+            <div class="day-title">${day.title}</div>
+            <div class="day-subtitle">${day.subjects.map(s => s.toUpperCase()).join(' • ')}</div>
+          </div>
+        </div>
+        <div class="day-header-right">
+          <span class="day-badge" style="background:${day.badgeColor}">${day.badge}</span>
+          <button class="day-complete-btn" onclick="event.stopPropagation(); toggleDayComplete(${day.day}, this)" data-daycomp="${day.day}" title="Mark Day Complete">✓</button>
+          <span class="day-toggle">▼</span>
+        </div>
+      </div>
+      <div class="day-body">${slotsHTML}</div>`;
+    container.appendChild(dayEl);
+  });
+}
+
+// ============= DAY TOGGLE =============
+function toggleDay(dayNum) {
+  const card = document.getElementById('day' + dayNum);
+  card.classList.toggle('open');
+}
+
+function expandAll() {
+  document.querySelectorAll('.day-card').forEach(c => c.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.day-card').forEach(c => c.classList.remove('open'));
+}
+
+// ============= TASK TOGGLE =============
+function toggleTask(el, taskId) {
+  el.classList.toggle('done');
+  let tasks = JSON.parse(localStorage.getItem('tasks') || '{}');
+  tasks[taskId] = el.classList.contains('done');
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  updateStats();
+  updateSubjectProgress();
+  if (el.classList.contains('done')) showToast('✅ Task completed!');
+}
+
+// ============= DAY COMPLETE =============
+function toggleDayComplete(dayNum, btn) {
+  btn.classList.toggle('checked');
+  const card = document.getElementById('day' + dayNum);
+  card.classList.toggle('completed');
+  let days = JSON.parse(localStorage.getItem('daysComplete') || '{}');
+  days[dayNum] = btn.classList.contains('checked');
+  localStorage.setItem('daysComplete', JSON.stringify(days));
+  updateStats();
+  if (btn.classList.contains('checked')) {
+    showToast(`🎉 Day ${dayNum} completed!`);
+    let allDone = true;
+    for(let i=1;i<=15;i++) { if(!days[i]) { allDone=false; break; } }
+    if(allDone) launchConfetti();
+  }
+}
+
+// ============= FILTER =============
+function filterDays(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.day-card').forEach(card => {
+    if (filter === 'all') {
+      card.classList.remove('hidden');
+    } else {
+      const subjects = card.getAttribute('data-subjects');
+      card.classList.toggle('hidden', !subjects.includes(filter));
+    }
+  });
+}
+
+// ============= SEARCH =============
+function searchDays(query) {
+  query = query.toLowerCase().trim();
+  document.querySelectorAll('.day-card').forEach(card => {
+    if (!query) { card.classList.remove('hidden'); return; }
+    const text = card.textContent.toLowerCase();
+    card.classList.toggle('hidden', !text.includes(query));
+  });
+}
+
+// ============= LOAD PROGRESS =============
+function loadProgress() {
+  const tasks = JSON.parse(localStorage.getItem('tasks') || '{}');
+  Object.keys(tasks).forEach(taskId => {
+    if (tasks[taskId]) {
+      const el = document.querySelector(`[data-taskid="${taskId}"]`);
+      if (el) el.classList.add('done');
+    }
+  });
+  const days = JSON.parse(localStorage.getItem('daysComplete') || '{}');
+  Object.keys(days).forEach(dayNum => {
+    if (days[dayNum]) {
+      const btn = document.querySelector(`[data-daycomp="${dayNum}"]`);
+      if (btn) { btn.classList.add('checked'); document.getElementById('day'+dayNum).classList.add('completed'); }
+    }
+  });
+  updateSubjectProgress();
+}
+
+// ============= UPDATE STATS =============
+function updateStats() {
+  const tasks = JSON.parse(localStorage.getItem('tasks') || '{}');
+  const days = JSON.parse(localStorage.getItem('daysComplete') || '{}');
+  const totalTasks = document.querySelectorAll('.slot-task').length;
+  const doneTasks = Object.values(tasks).filter(v => v).length;
+  const doneDays = Object.values(days).filter(v => v).length;
+  const pct = totalTasks > 0 ? Math.round((doneTasks / totalTasks) * 100) : 0;
+  const hours = Math.round(doneTasks * 0.5 * 10) / 10;
+
+  document.getElementById('statDaysLeft').textContent = 15 - doneDays;
+  document.getElementById('statCompleted').textContent = doneDays;
+  document.getElementById('statTasks').textContent = doneTasks;
+  document.getElementById('statHours').textContent = hours;
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressBar').style.width = pct + '%';
+
+  // Streak
+  let streak = 0;
+  for (let i = 1; i <= 15; i++) { if (days[i]) streak++; else break; }
+  document.getElementById('statStreak').textContent = streak;
+}
+
+// ============= SUBJECT PROGRESS =============
+function updateSubjectProgress() {
+  const tasks = JSON.parse(localStorage.getItem('tasks') || '{}');
+  const subjects = ['maths','physics','mechanics','feee','it','evs'];
+  subjects.forEach(subj => {
+    const allTasks = document.querySelectorAll(`.slot.${subj} .slot-task, .slot.revision .slot-task`);
+    const subjTasks = document.querySelectorAll(`.slot.${subj} .slot-task`);
+    let total = subjTasks.length;
+    let done = 0;
+    subjTasks.forEach(t => { if (t.classList.contains('done')) done++; });
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+    const item = document.querySelector(`.subj-prog-item[data-subj="${subj}"]`);
+    if (item) {
+      item.querySelector('.subj-bar-fill').style.width = pct + '%';
+      item.querySelector('.subj-pct').textContent = pct + '%';
+    }
+  });
+}
+
+// ============= THEME =============
+function toggleTheme() {
+  const body = document.body;
+  const curr = body.getAttribute('data-theme');
+  const next = curr === 'dark' ? 'light' : 'dark';
+  body.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('themeBtn').textContent = next === 'dark' ? '🌙' : '☀️';
+  showToast(next === 'dark' ? '🌙 Dark mode' : '☀️ Light mode');
+}
+
+function loadTheme() {
+  const theme = localStorage.getItem('theme') || 'dark';
+  document.body.setAttribute('data-theme', theme);
+  document.getElementById('themeBtn').textContent = theme === 'dark' ? '🌙' : '☀️';
+}
+
+// ============= TIMER =============
+function setTimer(mins) {
+  timerSeconds = mins * 60;
+  timerRunning = false;
+  clearInterval(timerInterval);
+  updateTimerDisplay();
+  document.getElementById('timerStatus').textContent = `Set to ${mins} minutes`;
+  document.getElementById('timerStartBtn').textContent = '▶ Start';
+}
+
+function startTimer() {
+  if (timerRunning) return;
+  timerRunning = true;
+  document.getElementById('timerStatus').textContent = '⏳ Running...';
+  document.getElementById('timerStartBtn').textContent = '▶ Running';
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    updateTimerDisplay();
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      sessionCount++;
+      localStorage.setItem('sessionCount', sessionCount);
+      document.getElementById('sessionCount').textContent = sessionCount;
+      document.getElementById('timerStatus').textContent = '🎉 Session complete!';
+      document.getElementById('timerStartBtn').textContent = '▶ Start';
+      showToast('🎉 Study session complete! Take a break.');
+      timerSeconds = 25 * 60;
+      updateTimerDisplay();
+      try { new Audio('data:audio/wav;base64,UklGRl9vT19teleGFtcGxlAA==').play(); } catch(e) {}
+    }
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  document.getElementById('timerStatus').textContent = '⏸ Paused';
+  document.getElementById('timerStartBtn').textContent = '▶ Resume';
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSeconds = 25 * 60;
+  updateTimerDisplay();
+  document.getElementById('timerStatus').textContent = 'Ready to start';
+  document.getElementById('timerStartBtn').textContent = '▶ Start';
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(timerSeconds / 60);
+  const s = timerSeconds % 60;
+  document.getElementById('timerDisplay').textContent =
+    String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+}
+
+// ============= NOTES =============
+function saveNotes() {
+  localStorage.setItem('studyNotes', document.getElementById('notesArea').value);
+  const saved = document.getElementById('notesSaved');
+  saved.style.display = 'block';
+  setTimeout(() => saved.style.display = 'none', 2000);
+}
+
+function loadNotes() {
+  document.getElementById('notesArea').value = localStorage.getItem('studyNotes') || '';
+}
+
+// ============= CHECKLIST =============
+function toggleChecklist(el) {
+  el.classList.toggle('done');
+  let cl = JSON.parse(localStorage.getItem('checklist') || '{}');
+  cl[el.getAttribute('data-key')] = el.classList.contains('done');
+  localStorage.setItem('checklist', JSON.stringify(cl));
+  if (el.classList.contains('done')) showToast('✅ Checked!');
+}
+
+function loadChecklist() {
+  const cl = JSON.parse(localStorage.getItem('checklist') || '{}');
+  Object.keys(cl).forEach(key => {
+    if (cl[key]) {
+      const el = document.querySelector(`.checklist-item[data-key="${key}"]`);
+      if (el) el.classList.add('done');
+    }
+  });
+}
+
+// ============= WEIGHTAGE =============
+function renderWeightage() {
+  const data = [
+    {name: 'Mathematics-II', hrs: 32, pct: 27, color: 'var(--maths)'},
+    {name: 'Engg. Mechanics', hrs: 24, pct: 20, color: 'var(--mechanics)'},
+    {name: 'FEEE', hrs: 22, pct: 18, color: 'var(--feee)'},
+    {name: 'Applied Physics-II', hrs: 21, pct: 17, color: 'var(--physics)'},
+    {name: 'IT Systems', hrs: 12, pct: 10, color: 'var(--it)'},
+    {name: 'Environmental Sci.', hrs: 6, pct: 5, color: 'var(--evs)'},
+    {name: 'Revision/Papers', hrs: 4, pct: 3, color: 'var(--revision)'},
+  ];
+  const el = document.getElementById('weightageChart');
+  el.innerHTML = data.map(d => `
+    <div class="weight-item">
+      <div class="weight-item-header">
+        <span class="name">${d.name}</span>
+        <span class="hrs">~${d.hrs} hrs (${d.pct}%)</span>
+      </div>
+      <div class="weight-bar">
+        <div class="weight-bar-fill" style="width:${d.pct * 3.7}%; background:${d.color};"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============= TABS =============
+function switchTab(e, tabId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// ============= QUOTES =============
+function newQuote() {
+  const q = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById('quoteText').textContent = `"${q.text}"`;
+  document.getElementById('quoteAuthor').textContent = `— ${q.author}`;
+}
+
+// ============= TOAST =============
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// ============= CONFETTI =============
+function launchConfetti() {
+  const container = document.createElement('div');
+  container.className = 'confetti-container';
+  document.body.appendChild(container);
+  const colors = ['#ef4444','#f59e0b','#10b981','#3b82f6','#a855f7','#ec4899','#06b6d4'];
+  for (let i = 0; i < 100; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 2 + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+    piece.style.width = (Math.random() * 8 + 5) + 'px';
+    piece.style.height = (Math.random() * 8 + 5) + 'px';
+    container.appendChild(piece);
+  }
+  setTimeout(() => container.remove(), 4000);
+  showToast('🎊 ALL 15 DAYS COMPLETE! YOU DID IT! 🎊');
+}
+
+// ============= RESET =============
+function resetAll() {
+  if (confirm('⚠️ Reset ALL progress? This cannot be undone!')) {
+    localStorage.removeItem('tasks');
+    localStorage.removeItem('daysComplete');
+    localStorage.removeItem('checklist');
+    localStorage.removeItem('sessionCount');
+    sessionCount = 0;
+    location.reload();
+  }
+}
+
+// ============= SCROLL =============
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
