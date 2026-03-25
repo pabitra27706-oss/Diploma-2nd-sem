@@ -1,47 +1,27 @@
 /* ============================================
    APP.JS — Core Logic, State, Event Handling
    WB Diploma Sem-II | Practice Questions App
+   WITH DAY JUMP NAVIGATION
    ============================================ */
 
 'use strict';
 
-// ============================================
-// 1. APPLICATION STATE
-// ============================================
-
 const App = {
 
-  /** @type {Array} All questions merged from all JSON files */
+  // ============================================
+  // 1. STATE
+  // ============================================
+
   allQuestions: [],
-
-  /** @type {Array} Questions after applying filters */
   filteredQuestions: [],
-
-  /** @type {Object} Day metadata { 1: { title, totalQuestions }, ... } */
   dayMeta: {},
-
-  /** @type {Object} Current active filters — matches DEFAULT_FILTERS shape */
   filters: null,
-
-  /** @type {Object} App settings */
   settings: null,
-
-  /** @type {number} Current page (1-based) */
   currentPage: 1,
-
-  /** @type {boolean} Whether data has been loaded */
   dataLoaded: false,
-
-  /** @type {StudyTimer|null} Timer instance for practice mode */
   practiceTimer: null,
-
-  /** @type {Array} Questions selected for current practice session */
   practiceQuestions: [],
-
-  /** @type {number} Current question index in practice mode (0-based) */
   practiceCurrentIndex: 0,
-
-  /** @type {Object} Practice mode configuration */
   practiceConfig: {
     subjects: [],
     difficulty: [],
@@ -50,56 +30,28 @@ const App = {
     timer: 60,
     shuffle: true
   },
-
-  /** @type {boolean} Whether practice mode is active */
   practiceActive: false,
-
-  /** @type {number} Practice start timestamp */
   practiceStartTime: 0,
+  currentDay: 'all',
 
 
   // ============================================
-  // 2. INITIALIZATION
+  // 2. INIT
   // ============================================
 
-  /**
-   * Initialize the application
-   * Called on DOMContentLoaded
-   */
   async init() {
     console.log('[App] Initializing...');
-
-    // Cache DOM elements
     Renderer.cacheElements();
-
-    // Load saved settings
     this.settings = Storage.load(STORAGE_KEYS.SETTINGS, { ...DEFAULT_SETTINGS });
-
-    // Load saved filters
     this.filters = Storage.load(STORAGE_KEYS.FILTERS, Utils.deepClone(DEFAULT_FILTERS));
-
-    // Apply theme
     Renderer.applyTheme(this.settings.theme);
-
-    // Initialize keyboard shortcuts
     Keyboard.init();
     this._setupKeyboardShortcuts();
-
-    // Initialize sounds
     Sounds.setEnabled(this.settings.soundEffects);
-
-    // Show loading state
     Renderer.renderSkeletons(5);
-
-    // Bind all event listeners
     this._bindEvents();
-
-    // Load question data
     await this._loadData();
-
-    // Update streak
     Streak.update();
-
     console.log('[App] Initialized successfully.');
   },
 
@@ -108,22 +60,15 @@ const App = {
   // 3. DATA LOADING
   // ============================================
 
-  /**
-   * Load all question data from JSON files
-   */
   async _loadData() {
     Renderer.renderLoading('Loading questions...');
-
     try {
       const result = await DataLoader.loadAll((loaded, total) => {
-        // Progress callback — could update a loading bar
         console.log(`[App] Loaded ${loaded}/${total} days`);
       });
-
       this.allQuestions = result.allQuestions;
       this.dayMeta = result.dayMeta;
       this.dataLoaded = true;
-
       console.log(`[App] Total questions loaded: ${this.allQuestions.length}`);
 
       if (this.allQuestions.length === 0) {
@@ -131,24 +76,13 @@ const App = {
         return;
       }
 
-      // Initial render
       this._applyFiltersAndRender();
-
-      // Render dashboard
       this._updateDashboard();
-
-      // Render filter panel
       Renderer.renderFilterPanel(this.allQuestions, this.filters);
-
-      // Set view mode
       Renderer.setActiveViewMode(this.settings.viewMode);
-
-      // Set sort option
       Renderer.setActiveSortOption(this.settings.sortBy);
-
-      // Show welcome toast
+      this._updateDayJumpProgress();
       Renderer.showToast(`📚 ${this.allQuestions.length} questions loaded!`, 'success');
-
     } catch (error) {
       console.error('[App] Failed to load data:', error);
       Renderer.renderLoading('Failed to load questions. Check console for errors.');
@@ -161,94 +95,204 @@ const App = {
   // 4. FILTER & RENDER PIPELINE
   // ============================================
 
-  /**
-   * Apply all filters, sort, paginate, and render questions
-   */
   _applyFiltersAndRender() {
-    // Step 1: Apply filters
     this.filteredQuestions = Filters.applyAll(this.allQuestions, this.filters);
-
-    // Step 2: Sort
     this.filteredQuestions = Sorter.sort(this.filteredQuestions, this.settings.sortBy);
-
-    // Step 3: Paginate
-    const paginated = Utils.paginate(
-      this.filteredQuestions,
-      this.currentPage,
-      this.settings.perPage
-    );
-
-    // Step 4: Render
-    Renderer.renderQuestions(
-      paginated.items,
-      this.settings.viewMode,
-      this.filters.search
-    );
-
-    // Step 5: Update results bar
+    const paginated = Utils.paginate(this.filteredQuestions, this.currentPage, this.settings.perPage);
+    Renderer.renderQuestions(paginated.items, this.settings.viewMode, this.filters.search);
     Renderer.renderResultsBar(this.filteredQuestions.length, this.allQuestions.length);
-
-    // Step 6: Update pagination
     Renderer.renderPagination(paginated.currentPage, paginated.totalPages, paginated.totalItems);
-
-    // Step 7: Update filter panel
     Renderer.renderActiveFilterTags(this.filters);
     Renderer.updateFilterCount(this.filters);
-
-    // Step 8: Save filters to storage
     Storage.save(STORAGE_KEYS.FILTERS, this.filters);
-
-    // Adjust current page if needed
     this.currentPage = paginated.currentPage;
   },
 
-  /**
-   * Update dashboard stats
-   */
   _updateDashboard() {
     if (!this.dataLoaded) return;
     const stats = StatsCalculator.calculate(this.allQuestions);
     Renderer.renderDashboard(stats);
     Renderer.renderProgressBar(stats.completionPct);
+    this._updateDayJumpProgress();
   },
 
 
   // ============================================
-  // 5. FILTER HANDLERS
+  // 5. DAY JUMP NAVIGATION
   // ============================================
 
-  /**
-   * Toggle a filter value in an array-type filter
-   * @param {string} filterType — e.g. 'subjects', 'types', 'difficulty'
-   * @param {*} value — Value to toggle
-   */
+  jumpToDay(day, btn) {
+    // Update active button
+    document.querySelectorAll('.day-jump-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    this.currentDay = day;
+
+    // Update filter
+    if (day === 'all') {
+      this.filters.days = [];
+    } else {
+      this.filters.days = [parseInt(day)];
+    }
+
+    // Sync filter panel day buttons
+    document.querySelectorAll('.filter-day-btn').forEach(b => {
+      const d = parseInt(b.dataset.day);
+      b.classList.toggle('active', this.filters.days.includes(d));
+    });
+
+    this.currentPage = 1;
+    this._applyFiltersAndRender();
+    this._showDayInfo(day);
+    Renderer.scrollTo('.day-jump-bar');
+
+    if (day === 'all') {
+      Renderer.showToast('📚 Showing all days', 'info');
+    } else {
+      const meta = this.dayMeta[day];
+      const title = meta ? meta.title : `Day ${day}`;
+      Renderer.showToast(`📅 Day ${day}: ${title}`, 'info');
+    }
+
+    Sounds.click();
+  },
+
+  _showDayInfo(day) {
+    const existing = document.getElementById('dayInfoPanel');
+    if (existing) existing.remove();
+
+    if (day === 'all') return;
+
+    const dayNum = parseInt(day);
+    const dayQuestions = this.allQuestions.filter(q => q.day === dayNum);
+    if (dayQuestions.length === 0) return;
+
+    let attempted = 0, bookmarked = 0;
+    const subjects = new Set();
+    const types = {};
+    const diffs = { easy: 0, medium: 0, hard: 0 };
+
+    dayQuestions.forEach(q => {
+      if (Progress.getStatus(q.id) === 'attempted') attempted++;
+      if (Progress.isBookmarked(q.id)) bookmarked++;
+      subjects.add(q.subject);
+      types[q.type] = (types[q.type] || 0) + 1;
+      if (diffs.hasOwnProperty(q.difficulty)) diffs[q.difficulty]++;
+    });
+
+    const pct = Utils.percentage(attempted, dayQuestions.length);
+    const meta = this.dayMeta[dayNum];
+    const title = meta ? meta.title : `Day ${dayNum}`;
+
+    const subjectColors = {
+      maths: 'var(--clr-maths)', physics: 'var(--clr-physics)',
+      mechanics: 'var(--clr-mechanics)', feee: 'var(--clr-feee)',
+      it: 'var(--clr-it)', evs: 'var(--clr-evs)'
+    };
+
+    const panel = document.createElement('div');
+    panel.className = 'day-info-panel visible';
+    panel.id = 'dayInfoPanel';
+    panel.innerHTML = `
+      <div class="day-info-panel__header">
+        <div class="day-info-panel__title">
+          <span class="day-info-panel__title-num">${dayNum}</span>
+          ${title}
+        </div>
+        <div class="day-info-panel__subjects">
+          ${Array.from(subjects).map(s => {
+            const subj = SUBJECTS.find(x => x.id === s);
+            return `<span class="day-info-panel__subject-tag" style="background:${subjectColors[s] || 'var(--accent)'}">
+              ${subj ? subj.icon : ''} ${(s || '').toUpperCase()}
+            </span>`;
+          }).join('')}
+        </div>
+      </div>
+      <div class="day-info-panel__stats">
+        <span class="day-info-panel__stat">📝 Total: <strong>${dayQuestions.length}</strong></span>
+        <span class="day-info-panel__stat">✅ Done: <strong>${attempted}</strong></span>
+        <span class="day-info-panel__stat">⭐ Saved: <strong>${bookmarked}</strong></span>
+        <span class="day-info-panel__stat">📈 Progress: <strong>${pct}%</strong></span>
+        <span class="day-info-panel__stat">🟢 Easy: <strong>${diffs.easy}</strong></span>
+        <span class="day-info-panel__stat">🟡 Med: <strong>${diffs.medium}</strong></span>
+        <span class="day-info-panel__stat">🔴 Hard: <strong>${diffs.hard}</strong></span>
+      </div>
+      <div class="day-info-panel__nav">
+        <button class="btn btn--sm" onclick="App.jumpToDayByNum(${dayNum - 1})" ${dayNum <= 1 ? 'disabled' : ''}>
+          ◀ Day ${dayNum - 1}
+        </button>
+        <button class="btn btn--sm btn--primary" onclick="App.jumpToDayByNum('all')">
+          📚 Show All
+        </button>
+        <button class="btn btn--sm" onclick="App.jumpToDayByNum(${dayNum + 1})" ${dayNum >= 15 ? 'disabled' : ''}>
+          Day ${dayNum + 1} ▶
+        </button>
+      </div>
+    `;
+
+    const jumpBar = document.getElementById('dayJumpBar');
+    if (jumpBar) {
+      jumpBar.insertAdjacentElement('afterend', panel);
+    }
+  },
+
+  jumpToDayByNum(day) {
+    const btn = document.querySelector(`.day-jump-btn[data-jump="${day}"]`);
+    this.jumpToDay(day, btn);
+  },
+
+  _updateDayJumpProgress() {
+    for (let d = 1; d <= TOTAL_DAYS; d++) {
+      const btn = document.querySelector(`.day-jump-btn[data-jump="${d}"]`);
+      if (!btn) continue;
+
+      const dayQuestions = this.allQuestions.filter(q => q.day === d);
+      if (dayQuestions.length === 0) continue;
+
+      let attempted = 0;
+      dayQuestions.forEach(q => {
+        if (Progress.getStatus(q.id) === 'attempted') attempted++;
+      });
+
+      const pct = Utils.percentage(attempted, dayQuestions.length);
+
+      // Remove old progress bar
+      const oldProgress = btn.querySelector('.day-jump-progress');
+      if (oldProgress) oldProgress.remove();
+
+      // Add progress bar
+      const progressBar = document.createElement('div');
+      progressBar.className = 'day-jump-progress';
+      progressBar.style.width = pct + '%';
+      btn.appendChild(progressBar);
+
+      // Mark completed
+      btn.classList.toggle('completed', pct === 100);
+    }
+  },
+
+
+  // ============================================
+  // 6. FILTER HANDLERS
+  // ============================================
+
   toggleFilter(filterType, value) {
     if (!this.filters[filterType]) return;
-
     const idx = this.filters[filterType].indexOf(value);
     if (idx > -1) {
       this.filters[filterType].splice(idx, 1);
     } else {
       this.filters[filterType].push(value);
     }
-
     this.currentPage = 1;
     this._applyFiltersAndRender();
-
-    // Update specific filter UI
     this._updateFilterUI(filterType);
-
-    // If subject changed, update unit/topic dropdowns
     if (filterType === 'subjects' || filterType === 'units') {
       Renderer.renderUnitDropdown(this.allQuestions, this.filters);
       Renderer.renderTopicDropdown(this.allQuestions, this.filters);
     }
   },
 
-  /**
-   * Toggle day filter
-   * @param {number} day
-   */
   toggleDayFilter(day) {
     const idx = this.filters.days.indexOf(day);
     if (idx > -1) {
@@ -256,31 +300,35 @@ const App = {
     } else {
       this.filters.days.push(day);
     }
-
     this.currentPage = 1;
     this._applyFiltersAndRender();
-
-    // Update day buttons UI
     document.querySelectorAll('.filter-day-btn').forEach(btn => {
       const d = parseInt(btn.dataset.day);
       btn.classList.toggle('active', this.filters.days.includes(d));
     });
+    // Sync day jump bar
+    this._syncDayJumpWithFilter();
   },
 
-  /**
-   * Set a non-array filter value
-   * @param {string} key — Filter key
-   * @param {*} value
-   */
+  _syncDayJumpWithFilter() {
+    document.querySelectorAll('.day-jump-btn').forEach(b => b.classList.remove('active'));
+    if (this.filters.days.length === 0) {
+      const allBtn = document.querySelector('.day-jump-btn[data-jump="all"]');
+      if (allBtn) allBtn.classList.add('active');
+      this.currentDay = 'all';
+    } else if (this.filters.days.length === 1) {
+      const btn = document.querySelector(`.day-jump-btn[data-jump="${this.filters.days[0]}"]`);
+      if (btn) btn.classList.add('active');
+      this.currentDay = this.filters.days[0];
+    }
+  },
+
   setFilter(key, value) {
     this.filters[key] = value;
     this.currentPage = 1;
     this._applyFiltersAndRender();
   },
 
-  /**
-   * Toggle bookmark-only filter
-   */
   toggleBookmarkFilter() {
     this.filters.bookmarkedOnly = !this.filters.bookmarkedOnly;
     this.currentPage = 1;
@@ -288,20 +336,12 @@ const App = {
     Renderer.renderBookmarkFilter(this.filters.bookmarkedOnly);
   },
 
-  /**
-   * Set search query
-   * @param {string} query
-   */
   setSearchQuery(query) {
     this.filters.search = query;
     this.currentPage = 1;
     this._applyFiltersAndRender();
   },
 
-  /**
-   * Set marks range
-   * @param {number} max
-   */
   setMarksMax(max) {
     this.filters.marksMax = parseInt(max);
     this.currentPage = 1;
@@ -309,87 +349,53 @@ const App = {
     Renderer.renderMarksSlider(this.filters.marksMax);
   },
 
-  /**
-   * Set unit filter from dropdown
-   * @param {string} unit
-   */
   setUnitFilter(unit) {
     this.filters.units = unit ? [unit] : [];
-    // Reset topic when unit changes
     this.filters.topics = [];
     this.currentPage = 1;
     this._applyFiltersAndRender();
     Renderer.renderTopicDropdown(this.allQuestions, this.filters);
   },
 
-  /**
-   * Set topic filter from dropdown
-   * @param {string} topic
-   */
   setTopicFilter(topic) {
     this.filters.topics = topic ? [topic] : [];
     this.currentPage = 1;
     this._applyFiltersAndRender();
   },
 
-  /**
-   * Remove a specific active filter tag
-   * @param {string} type — Filter type
-   * @param {*} value — Value to remove
-   */
   removeFilterTag(type, value) {
     switch (type) {
       case 'days':
         this.filters.days = this.filters.days.filter(d => d != value);
+        this._syncDayJumpWithFilter();
         break;
-      case 'subjects':
-      case 'types':
-      case 'difficulty':
-      case 'statuses':
-      case 'confidence':
-      case 'sources':
+      case 'subjects': case 'types': case 'difficulty': case 'statuses': case 'confidence': case 'sources':
         this.filters[type] = this.filters[type].filter(v => v !== value);
         break;
-      case 'units':
-        this.filters.units = [];
-        this.filters.topics = [];
-        break;
-      case 'topics':
-        this.filters.topics = [];
-        break;
-      case 'marks':
-        this.filters.marksMin = 1;
-        this.filters.marksMax = 10;
-        break;
-      case 'bookmarkedOnly':
-        this.filters.bookmarkedOnly = false;
-        break;
-      case 'search':
-        this.filters.search = '';
-        Renderer.renderSearchInput('');
-        break;
+      case 'units': this.filters.units = []; this.filters.topics = []; break;
+      case 'topics': this.filters.topics = []; break;
+      case 'marks': this.filters.marksMin = 1; this.filters.marksMax = 10; break;
+      case 'bookmarkedOnly': this.filters.bookmarkedOnly = false; break;
+      case 'search': this.filters.search = ''; Renderer.renderSearchInput(''); break;
     }
-
     this.currentPage = 1;
     this._applyFiltersAndRender();
     Renderer.renderFilterPanel(this.allQuestions, this.filters);
   },
 
-  /**
-   * Clear all filters
-   */
   clearAllFilters() {
     this.filters = Utils.deepClone(DEFAULT_FILTERS);
     this.currentPage = 1;
+    this.currentDay = 'all';
     this._applyFiltersAndRender();
     Renderer.renderFilterPanel(this.allQuestions, this.filters);
+    this._syncDayJumpWithFilter();
+    // Remove day info panel
+    const panel = document.getElementById('dayInfoPanel');
+    if (panel) panel.remove();
     Renderer.showToast('🔄 All filters cleared', 'info');
   },
 
-  /**
-   * Update filter pill UI after toggle
-   * @param {string} filterType
-   */
   _updateFilterUI(filterType) {
     const container = {
       subjects: Renderer._els.filterSubjects,
@@ -399,9 +405,7 @@ const App = {
       confidence: Renderer._els.filterConfidence,
       sources: Renderer._els.filterSources
     }[filterType];
-
     if (!container) return;
-
     container.querySelectorAll('.filter-pill').forEach(pill => {
       const value = pill.dataset.value;
       pill.classList.toggle('active', this.filters[filterType].includes(value));
@@ -410,14 +414,9 @@ const App = {
 
 
   // ============================================
-  // 6. QUESTION INTERACTION HANDLERS
+  // 7. QUESTION INTERACTION HANDLERS
   // ============================================
 
-  /**
-   * Handle MCQ option click
-   * @param {string} qId
-   * @param {number} optionIndex
-   */
   handleMCQSelect(qId, optionIndex) {
     Progress.saveAnswer(qId, optionIndex);
     Renderer.updateMCQSelection(qId, optionIndex);
@@ -426,11 +425,6 @@ const App = {
     Sounds.click();
   },
 
-  /**
-   * Handle True/False selection
-   * @param {string} qId
-   * @param {string} value — 'true' or 'false'
-   */
   handleTFSelect(qId, value) {
     Progress.saveAnswer(qId, value);
     Renderer.updateTFSelection(qId, value);
@@ -439,11 +433,6 @@ const App = {
     Sounds.click();
   },
 
-  /**
-   * Handle text input change (fill-blank, numerical, short, long)
-   * @param {string} qId
-   * @param {*} value
-   */
   handleTextInput(qId, value) {
     if (value && value.toString().trim() !== '') {
       Progress.saveAnswer(qId, value);
@@ -453,12 +442,6 @@ const App = {
     this._updateDashboard();
   },
 
-  /**
-   * Handle match selection change
-   * @param {string} qId
-   * @param {number} matchIndex — Which left item
-   * @param {number} selectedRight — Selected right item index
-   */
   handleMatchSelect(qId, matchIndex, selectedRight) {
     const currentAnswers = Progress.getAnswer(qId) || {};
     currentAnswers[matchIndex] = selectedRight;
@@ -467,10 +450,6 @@ const App = {
     this._updateDashboard();
   },
 
-  /**
-   * Handle bookmark toggle
-   * @param {string} qId
-   */
   handleBookmark(qId) {
     const newState = Progress.toggleBookmark(qId);
     Renderer.updateBookmark(qId, newState);
@@ -479,51 +458,29 @@ const App = {
     Sounds.click();
   },
 
-  /**
-   * Handle confidence selection
-   * @param {string} qId
-   * @param {string} level
-   */
   handleConfidence(qId, level) {
     const currentConf = Progress.getConfidence(qId);
-    // Toggle off if same level clicked
     const newLevel = currentConf === level ? null : level;
-
     if (newLevel) {
       Progress.setConfidence(qId, newLevel);
     } else {
       Progress.update(qId, { confidence: null });
     }
-
     Renderer.updateConfidence(qId, newLevel);
     this._updateDashboard();
     Sounds.click();
   },
 
-  /**
-   * Handle status button click
-   * @param {string} qId
-   * @param {string} status — 'attempted' or 'skipped'
-   */
   handleStatusChange(qId, status) {
     const currentStatus = Progress.getStatus(qId);
-    // Toggle off if same status clicked
     const newStatus = currentStatus === status ? 'not-attempted' : status;
-
     Progress.setStatus(qId, newStatus);
     Renderer.updateStatus(qId, newStatus);
     this._updateDashboard();
     Sounds.click();
-
-    if (newStatus === 'attempted') {
-      Streak.update();
-    }
+    if (newStatus === 'attempted') Streak.update();
   },
 
-  /**
-   * Handle hint toggle
-   * @param {string} qId
-   */
   handleHintToggle(qId) {
     if (!this.settings.showHints) {
       Renderer.showToast('💡 Hints are disabled in settings', 'warning');
@@ -532,10 +489,6 @@ const App = {
     Renderer.toggleHint(qId);
   },
 
-  /**
-   * Handle tag click (quick filter)
-   * @param {string} tag
-   */
   handleTagClick(tag) {
     this.filters.search = tag;
     Renderer.renderSearchInput(tag);
@@ -547,13 +500,9 @@ const App = {
 
 
   // ============================================
-  // 7. VIEW & SORT HANDLERS
+  // 8. VIEW & SORT
   // ============================================
 
-  /**
-   * Change view mode
-   * @param {string} mode — 'card' | 'compact' | 'list'
-   */
   setViewMode(mode) {
     this.settings.viewMode = mode;
     Storage.save(STORAGE_KEYS.SETTINGS, this.settings);
@@ -561,10 +510,6 @@ const App = {
     this._applyFiltersAndRender();
   },
 
-  /**
-   * Change sort order
-   * @param {string} sortBy
-   */
   setSortBy(sortBy) {
     this.settings.sortBy = sortBy;
     Storage.save(STORAGE_KEYS.SETTINGS, this.settings);
@@ -573,10 +518,6 @@ const App = {
     this._applyFiltersAndRender();
   },
 
-  /**
-   * Go to a specific page
-   * @param {number} page
-   */
   goToPage(page) {
     this.currentPage = page;
     this._applyFiltersAndRender();
@@ -585,49 +526,26 @@ const App = {
 
 
   // ============================================
-  // 8. THEME & SETTINGS
+  // 9. THEME & SETTINGS
   // ============================================
 
-  /**
-   * Toggle dark/light theme
-   */
   toggleTheme() {
     this.settings.theme = this.settings.theme === 'dark' ? 'light' : 'dark';
     Storage.save(STORAGE_KEYS.SETTINGS, this.settings);
     Renderer.applyTheme(this.settings.theme);
-    Renderer.showToast(
-      this.settings.theme === 'dark' ? '🌙 Dark mode' : '☀️ Light mode',
-      'info'
-    );
+    Renderer.showToast(this.settings.theme === 'dark' ? '🌙 Dark mode' : '☀️ Light mode', 'info');
   },
 
-  /**
-   * Update a setting
-   * @param {string} key
-   * @param {*} value
-   */
   updateSetting(key, value) {
     this.settings[key] = value;
     Storage.save(STORAGE_KEYS.SETTINGS, this.settings);
-
-    // Apply specific settings immediately
     switch (key) {
-      case 'theme':
-        Renderer.applyTheme(value);
-        break;
-      case 'soundEffects':
-        Sounds.setEnabled(value);
-        break;
-      case 'perPage':
-        this.currentPage = 1;
-        this._applyFiltersAndRender();
-        break;
+      case 'theme': Renderer.applyTheme(value); break;
+      case 'soundEffects': Sounds.setEnabled(value); break;
+      case 'perPage': this.currentPage = 1; this._applyFiltersAndRender(); break;
     }
   },
 
-  /**
-   * Open settings modal
-   */
   openSettings() {
     Renderer.renderSettings(this.settings);
     Renderer.openModal('settingsModal');
@@ -636,17 +554,11 @@ const App = {
 
 
   // ============================================
-  // 9. ANALYTICS
+  // 10. ANALYTICS
   // ============================================
 
-  /**
-   * Open analytics modal
-   */
   openAnalytics() {
-    if (!this.dataLoaded) {
-      Renderer.showToast('📊 Data not loaded yet', 'warning');
-      return;
-    }
+    if (!this.dataLoaded) { Renderer.showToast('📊 Data not loaded yet', 'warning'); return; }
     const stats = StatsCalculator.calculate(this.allQuestions);
     Renderer.renderAnalytics(stats, this.allQuestions);
     Renderer.openModal('analyticsModal');
@@ -654,58 +566,37 @@ const App = {
 
 
   // ============================================
-  // 10. PRACTICE MODE
+  // 11. PRACTICE MODE
   // ============================================
 
-  /**
-   * Open practice mode setup
-   */
   openPracticeSetup() {
-    if (!this.dataLoaded) {
-      Renderer.showToast('📚 Data not loaded yet', 'warning');
-      return;
-    }
-
-    // Reset practice config
+    if (!this.dataLoaded) { Renderer.showToast('📚 Data not loaded yet', 'warning'); return; }
     this.practiceConfig = {
       subjects: SUBJECTS.map(s => s.id),
       difficulty: DIFFICULTIES.map(d => d.id),
       types: QUESTION_TYPES.map(t => t.id),
-      count: 20,
-      timer: 60,
-      shuffle: true
+      count: 20, timer: 60, shuffle: true
     };
-
     Renderer.renderPracticeSetup();
     Renderer.openModal('practiceModal');
     this._bindPracticeSetupEvents();
   },
 
-  /**
-   * Start practice session
-   */
   startPractice() {
-    // Filter questions based on practice config
     let questions = [...this.allQuestions];
-
     questions = Filters.bySubject(questions, this.practiceConfig.subjects);
     questions = Filters.byDifficulty(questions, this.practiceConfig.difficulty);
     questions = Filters.byType(questions, this.practiceConfig.types);
 
-    if (questions.length === 0) {
-      Renderer.showToast('❌ No questions match your criteria', 'error');
-      return;
+    // If on a specific day, filter by that day too
+    if (this.currentDay !== 'all') {
+      questions = questions.filter(q => q.day === parseInt(this.currentDay));
     }
 
-    // Shuffle if configured
-    if (this.practiceConfig.shuffle) {
-      questions = Utils.shuffleArray(questions);
-    }
-
-    // Limit count
+    if (questions.length === 0) { Renderer.showToast('❌ No questions match your criteria', 'error'); return; }
+    if (this.practiceConfig.shuffle) questions = Utils.shuffleArray(questions);
     if (this.practiceConfig.count !== 'all') {
-      const count = parseInt(this.practiceConfig.count);
-      questions = questions.slice(0, count);
+      questions = questions.slice(0, parseInt(this.practiceConfig.count));
     }
 
     this.practiceQuestions = questions;
@@ -713,17 +604,14 @@ const App = {
     this.practiceActive = true;
     this.practiceStartTime = Date.now();
 
-    // Setup timer if configured
     if (this.practiceConfig.timer > 0) {
       if (this.practiceTimer) this.practiceTimer.destroy();
-
       this.practiceTimer = new StudyTimer(
         (remaining) => {
           const display = document.getElementById('practiceTimerDisplay');
           if (display) display.textContent = Utils.formatTime(remaining);
         },
         () => {
-          // Auto-skip on timeout
           Renderer.showToast('⏰ Time up! Moving to next...', 'warning');
           this._practiceNext();
         }
@@ -733,145 +621,70 @@ const App = {
 
     this._renderCurrentPracticeQuestion();
     this._bindPracticeActiveEvents();
-
     if (this.practiceTimer) this.practiceTimer.start();
-
     Renderer.showToast(`🚀 Practice started! ${this.practiceQuestions.length} questions`, 'success');
   },
 
-  /**
-   * Render current practice question
-   */
   _renderCurrentPracticeQuestion() {
     const timerSeconds = this.practiceTimer ? this.practiceTimer.getRemaining() : 0;
-    Renderer.renderPracticeQuestion(
-      this.practiceQuestions,
-      this.practiceCurrentIndex,
-      this.practiceConfig.timer > 0 ? timerSeconds : 0
-    );
+    Renderer.renderPracticeQuestion(this.practiceQuestions, this.practiceCurrentIndex, this.practiceConfig.timer > 0 ? timerSeconds : 0);
     this._bindPracticeActiveEvents();
   },
 
-  /**
-   * Go to next practice question
-   */
   _practiceNext() {
-    if (this.practiceCurrentIndex >= this.practiceQuestions.length - 1) {
-      this._endPractice();
-      return;
-    }
-
+    if (this.practiceCurrentIndex >= this.practiceQuestions.length - 1) { this._endPractice(); return; }
     this.practiceCurrentIndex++;
-
-    // Reset timer for next question
-    if (this.practiceTimer) {
-      this.practiceTimer.reset();
-      this.practiceTimer.start();
-    }
-
+    if (this.practiceTimer) { this.practiceTimer.reset(); this.practiceTimer.start(); }
     this._renderCurrentPracticeQuestion();
   },
 
-  /**
-   * Go to previous practice question
-   */
   _practicePrev() {
     if (this.practiceCurrentIndex <= 0) return;
-
     this.practiceCurrentIndex--;
-
-    if (this.practiceTimer) {
-      this.practiceTimer.reset();
-      this.practiceTimer.start();
-    }
-
+    if (this.practiceTimer) { this.practiceTimer.reset(); this.practiceTimer.start(); }
     this._renderCurrentPracticeQuestion();
   },
 
-  /**
-   * Skip current practice question
-   */
   _practiceSkip() {
     const q = this.practiceQuestions[this.practiceCurrentIndex];
-    if (q) {
-      Progress.setStatus(q.id, 'skipped');
-    }
+    if (q) Progress.setStatus(q.id, 'skipped');
     this._practiceNext();
   },
 
-  /**
-   * Go to specific practice question
-   * @param {number} index — 0-based
-   */
   _practiceGoTo(index) {
     if (index < 0 || index >= this.practiceQuestions.length) return;
-
     this.practiceCurrentIndex = index;
-
-    if (this.practiceTimer) {
-      this.practiceTimer.reset();
-      this.practiceTimer.start();
-    }
-
+    if (this.practiceTimer) { this.practiceTimer.reset(); this.practiceTimer.start(); }
     this._renderCurrentPracticeQuestion();
   },
 
-  /**
-   * End practice session
-   */
   _endPractice() {
     this.practiceActive = false;
-
-    if (this.practiceTimer) {
-      this.practiceTimer.stop();
-    }
-
+    if (this.practiceTimer) this.practiceTimer.stop();
     const elapsed = Math.floor((Date.now() - this.practiceStartTime) / 1000);
-
-    // Save to practice history
     let attempted = 0, skipped = 0;
     this.practiceQuestions.forEach(q => {
       const s = Progress.getStatus(q.id);
       if (s === 'attempted') attempted++;
       else if (s === 'skipped') skipped++;
     });
-
     PracticeHistory.save({
-      count: this.practiceQuestions.length,
-      attempted,
-      skipped,
-      time: elapsed,
-      subjects: this.practiceConfig.subjects,
-      difficulty: this.practiceConfig.difficulty
+      count: this.practiceQuestions.length, attempted, skipped, time: elapsed,
+      subjects: this.practiceConfig.subjects, difficulty: this.practiceConfig.difficulty
     });
-
-    // Update streak
     Streak.update();
-
-    // Render summary
     Renderer.renderPracticeSummary(this.practiceQuestions, elapsed);
     this._bindPracticeSummaryEvents();
-
-    // Update main dashboard
     this._updateDashboard();
-
-    // Confetti if all attempted
-    if (attempted === this.practiceQuestions.length) {
-      Renderer.launchConfetti();
-      Sounds.success();
-    }
-
+    if (attempted === this.practiceQuestions.length) { Renderer.launchConfetti(); Sounds.success(); }
     Renderer.showToast('🎉 Practice complete!', 'success');
   },
 
 
   // ============================================
-  // 11. IMPORT / EXPORT
+  // 12. IMPORT / EXPORT
   // ============================================
 
-  /**
-   * Export progress as JSON file
-   */
   exportProgress() {
     const data = Progress.export();
     const filename = `practice-progress-${new Date().toISOString().split('T')[0]}.json`;
@@ -879,23 +692,15 @@ const App = {
     Renderer.showToast('📤 Progress exported!', 'success');
   },
 
-  /**
-   * Trigger file input for import
-   */
   triggerImport() {
     const fileInput = document.getElementById('importFileInput');
     if (fileInput) fileInput.click();
   },
 
-  /**
-   * Handle import file selection
-   * @param {File} file
-   */
   async handleImport(file) {
     try {
       const content = await Utils.readFile(file);
       const success = Progress.import(content);
-
       if (success) {
         Renderer.showToast('📥 Progress imported successfully!', 'success');
         this._applyFiltersAndRender();
@@ -909,268 +714,149 @@ const App = {
     }
   },
 
-  /**
-   * Reset all progress data
-   */
   resetAllData() {
-    if (!confirm('⚠️ Are you sure you want to reset ALL progress? This cannot be undone!')) {
-      return;
-    }
-
-    if (!confirm('🗑️ Last chance! All your progress, bookmarks, and answers will be deleted.')) {
-      return;
-    }
-
+    if (!confirm('⚠️ Are you sure you want to reset ALL progress? This cannot be undone!')) return;
+    if (!confirm('🗑️ Last chance! All progress, bookmarks, answers deleted.')) return;
     Storage.clearAll();
     this.filters = Utils.deepClone(DEFAULT_FILTERS);
     this.settings = { ...DEFAULT_SETTINGS };
     this.currentPage = 1;
-
+    this.currentDay = 'all';
     Renderer.applyTheme(this.settings.theme);
     this._applyFiltersAndRender();
     this._updateDashboard();
     Renderer.renderFilterPanel(this.allQuestions, this.filters);
+    this._syncDayJumpWithFilter();
     Renderer.closeAllModals();
-
+    const panel = document.getElementById('dayInfoPanel');
+    if (panel) panel.remove();
     Renderer.showToast('🗑️ All data has been reset', 'warning');
   },
 
 
   // ============================================
-  // 12. EVENT BINDING — MAIN
+  // 13. EVENT BINDING — MAIN
   // ============================================
 
-  /**
-   * Bind all main event listeners
-   */
   _bindEvents() {
-    // --- HEADER ---
+    // Header buttons
     const themeBtn = document.getElementById('themeBtn');
-    if (themeBtn) {
-      themeBtn.addEventListener('click', () => this.toggleTheme());
-    }
-
+    if (themeBtn) themeBtn.addEventListener('click', () => this.toggleTheme());
     const analyticsBtn = document.getElementById('analyticsBtn');
-    if (analyticsBtn) {
-      analyticsBtn.addEventListener('click', () => this.openAnalytics());
-    }
-
+    if (analyticsBtn) analyticsBtn.addEventListener('click', () => this.openAnalytics());
     const practiceBtn = document.getElementById('practiceBtn');
-    if (practiceBtn) {
-      practiceBtn.addEventListener('click', () => this.openPracticeSetup());
-    }
-
+    if (practiceBtn) practiceBtn.addEventListener('click', () => this.openPracticeSetup());
     const settingsBtn = document.getElementById('settingsBtn');
-    if (settingsBtn) {
-      settingsBtn.addEventListener('click', () => this.openSettings());
-    }
+    if (settingsBtn) settingsBtn.addEventListener('click', () => this.openSettings());
 
-    // --- FILTER PANEL TOGGLE ---
+    // Filter panel toggle
     const filterHeader = document.querySelector('.filter-panel__header');
-    if (filterHeader) {
-      filterHeader.addEventListener('click', () => Renderer.toggleFilterPanel());
-    }
+    if (filterHeader) filterHeader.addEventListener('click', () => Renderer.toggleFilterPanel());
 
-    // --- FILTER PILLS (Delegated) ---
+    // Delegated filter clicks
     document.addEventListener('click', (e) => {
-      // Filter pill toggle
       const pill = e.target.closest('.filter-pill[data-filter-type]');
       if (pill && !pill.closest('#practiceSetupForm')) {
-        const type = pill.dataset.filterType;
-        const value = pill.dataset.value;
-        this.toggleFilter(type, value);
+        this.toggleFilter(pill.dataset.filterType, pill.dataset.value);
         return;
       }
-
-      // Day filter button
       const dayBtn = e.target.closest('.filter-day-btn');
-      if (dayBtn) {
-        const day = parseInt(dayBtn.dataset.day);
-        this.toggleDayFilter(day);
-        return;
-      }
-
-      // Bookmark filter toggle
-      if (e.target.closest('#filterBookmarkBtn')) {
-        this.toggleBookmarkFilter();
-        return;
-      }
-
-      // Clear filters
-      if (e.target.closest('#clearFiltersBtn')) {
-        this.clearAllFilters();
-        return;
-      }
-
-      // Remove active filter tag
+      if (dayBtn) { this.toggleDayFilter(parseInt(dayBtn.dataset.day)); return; }
+      if (e.target.closest('#filterBookmarkBtn')) { this.toggleBookmarkFilter(); return; }
+      if (e.target.closest('#clearFiltersBtn')) { this.clearAllFilters(); return; }
       const removeTag = e.target.closest('.filter-active-tag__remove');
-      if (removeTag) {
-        this.removeFilterTag(removeTag.dataset.removeType, removeTag.dataset.removeValue);
-        return;
-      }
+      if (removeTag) { this.removeFilterTag(removeTag.dataset.removeType, removeTag.dataset.removeValue); return; }
     });
 
-    // --- FILTER DROPDOWNS ---
+    // Dropdowns
     const unitSelect = document.getElementById('filterUnit');
-    if (unitSelect) {
-      unitSelect.addEventListener('change', (e) => this.setUnitFilter(e.target.value));
-    }
-
+    if (unitSelect) unitSelect.addEventListener('change', (e) => this.setUnitFilter(e.target.value));
     const topicSelect = document.getElementById('filterTopic');
-    if (topicSelect) {
-      topicSelect.addEventListener('change', (e) => this.setTopicFilter(e.target.value));
-    }
+    if (topicSelect) topicSelect.addEventListener('change', (e) => this.setTopicFilter(e.target.value));
 
-    // --- MARKS SLIDER ---
+    // Marks slider
     const marksSlider = document.getElementById('filterMarksSlider');
     if (marksSlider) {
       marksSlider.addEventListener('input', (e) => {
-        if (Renderer._els.filterMarksValue) {
-          Renderer._els.filterMarksValue.textContent = e.target.value;
-        }
+        if (Renderer._els.filterMarksValue) Renderer._els.filterMarksValue.textContent = e.target.value;
       });
       marksSlider.addEventListener('change', (e) => this.setMarksMax(e.target.value));
     }
 
-    // --- SEARCH ---
+    // Search
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-      const debouncedSearch = Utils.debounce((query) => {
-        this.setSearchQuery(query);
-      }, 350);
-
-      searchInput.addEventListener('input', (e) => {
-        debouncedSearch(e.target.value);
-      });
+      const debouncedSearch = Utils.debounce((query) => this.setSearchQuery(query), 350);
+      searchInput.addEventListener('input', (e) => debouncedSearch(e.target.value));
     }
 
-    // --- SORT ---
+    // Sort
     const sortSelect = document.getElementById('sortSelect');
-    if (sortSelect) {
-      sortSelect.addEventListener('change', (e) => this.setSortBy(e.target.value));
-    }
+    if (sortSelect) sortSelect.addEventListener('change', (e) => this.setSortBy(e.target.value));
 
-    // --- VIEW MODE ---
+    // View mode
     document.querySelectorAll('.results-bar__view-btn').forEach(btn => {
       btn.addEventListener('click', () => this.setViewMode(btn.dataset.view));
     });
 
-    // --- QUESTION CARD INTERACTIONS (Delegated) ---
+    // Question interactions (delegated)
     document.addEventListener('click', (e) => {
-      // MCQ option
       const option = e.target.closest('.q-card__option');
-      if (option) {
-        const qId = option.dataset.qid;
-        const idx = parseInt(option.dataset.optionIndex);
-        this.handleMCQSelect(qId, idx);
-        return;
-      }
-
-      // True/False button
+      if (option) { this.handleMCQSelect(option.dataset.qid, parseInt(option.dataset.optionIndex)); return; }
       const tfBtn = e.target.closest('.q-card__tf-btn');
-      if (tfBtn) {
-        this.handleTFSelect(tfBtn.dataset.qid, tfBtn.dataset.tfValue);
-        return;
-      }
-
-      // Bookmark button
+      if (tfBtn) { this.handleTFSelect(tfBtn.dataset.qid, tfBtn.dataset.tfValue); return; }
       const bookmarkBtn = e.target.closest('.btn-bookmark');
-      if (bookmarkBtn) {
-        this.handleBookmark(bookmarkBtn.dataset.qid);
-        return;
-      }
-
-      // Hint button
+      if (bookmarkBtn) { this.handleBookmark(bookmarkBtn.dataset.qid); return; }
       const hintBtn = e.target.closest('.btn-hint');
-      if (hintBtn) {
-        this.handleHintToggle(hintBtn.dataset.qid);
-        return;
-      }
-
-      // Confidence button
+      if (hintBtn) { this.handleHintToggle(hintBtn.dataset.qid); return; }
       const confBtn = e.target.closest('.q-card__conf-btn');
-      if (confBtn) {
-        this.handleConfidence(confBtn.dataset.qid, confBtn.dataset.conf);
-        return;
-      }
-
-      // Status button
+      if (confBtn) { this.handleConfidence(confBtn.dataset.qid, confBtn.dataset.conf); return; }
       const statusBtn = e.target.closest('.q-card__status-btn');
-      if (statusBtn) {
-        this.handleStatusChange(statusBtn.dataset.qid, statusBtn.dataset.status);
-        return;
-      }
-
-      // Tag click
+      if (statusBtn) { this.handleStatusChange(statusBtn.dataset.qid, statusBtn.dataset.status); return; }
       const tagEl = e.target.closest('.q-card__tag');
-      if (tagEl) {
-        this.handleTagClick(tagEl.dataset.tag);
-        return;
-      }
+      if (tagEl) { this.handleTagClick(tagEl.dataset.tag); return; }
     });
 
-    // --- TEXT INPUT / TEXTAREA (Delegated, debounced) ---
-    const debouncedTextSave = Utils.debounce((qId, value) => {
-      this.handleTextInput(qId, value);
-    }, 500);
-
+    // Text inputs (delegated, debounced)
+    const debouncedTextSave = Utils.debounce((qId, value) => this.handleTextInput(qId, value), 500);
     document.addEventListener('input', (e) => {
-      // Fill blank
-      if (e.target.classList.contains('q-card__fill-input')) {
+      if (e.target.classList.contains('q-card__fill-input') ||
+          e.target.classList.contains('q-card__num-input') ||
+          e.target.classList.contains('q-card__textarea')) {
         debouncedTextSave(e.target.dataset.qid, e.target.value);
-        return;
-      }
-      // Numerical
-      if (e.target.classList.contains('q-card__num-input')) {
-        debouncedTextSave(e.target.dataset.qid, e.target.value);
-        return;
-      }
-      // Textarea (short/long)
-      if (e.target.classList.contains('q-card__textarea')) {
-        debouncedTextSave(e.target.dataset.qid, e.target.value);
-        return;
       }
     });
 
-    // --- MATCH SELECT (Delegated) ---
+    // Match select
     document.addEventListener('change', (e) => {
       if (e.target.classList.contains('q-card__match-select')) {
-        const qId = e.target.dataset.qid;
-        const matchIndex = parseInt(e.target.dataset.matchIndex);
         const selectedRight = e.target.value !== '' ? parseInt(e.target.value) : null;
-        this.handleMatchSelect(qId, matchIndex, selectedRight);
-        return;
+        this.handleMatchSelect(e.target.dataset.qid, parseInt(e.target.dataset.matchIndex), selectedRight);
       }
     });
 
-    // --- PAGINATION (Delegated) ---
+    // Pagination
     document.addEventListener('click', (e) => {
       const pageBtn = e.target.closest('.pagination__btn');
-      if (pageBtn && !pageBtn.disabled) {
-        this.goToPage(parseInt(pageBtn.dataset.page));
-        return;
-      }
+      if (pageBtn && !pageBtn.disabled) this.goToPage(parseInt(pageBtn.dataset.page));
     });
 
-    // --- MODAL BACKDROP CLOSE ---
+    // Modal backdrop
     const backdrop = document.getElementById('modalBackdrop');
     if (backdrop) {
       backdrop.addEventListener('click', () => {
-        if (this.practiceActive) return; // Don't close during practice
+        if (this.practiceActive) return;
         Renderer.closeAllModals();
       });
     }
 
-    // --- MODAL CLOSE BUTTONS ---
+    // Modal close buttons
     document.querySelectorAll('.modal__close').forEach(btn => {
       btn.addEventListener('click', () => {
         const modal = btn.closest('.modal');
         if (modal) {
           if (this.practiceActive && modal.id === 'practiceModal') {
-            if (confirm('⚠️ End practice session?')) {
-              this._endPractice();
-              Renderer.closeModal(modal.id);
-            }
+            if (confirm('⚠️ End practice session?')) { this._endPractice(); Renderer.closeModal(modal.id); }
           } else {
             Renderer.closeModal(modal.id);
           }
@@ -1178,29 +864,17 @@ const App = {
       });
     });
 
-    // --- FAB BUTTONS ---
+    // FAB
     const fabTop = document.getElementById('fabScrollTop');
-    if (fabTop) {
-      fabTop.addEventListener('click', () => Renderer.scrollToTop());
-    }
+    if (fabTop) fabTop.addEventListener('click', () => Renderer.scrollToTop());
 
-    // --- HERO BUTTONS ---
+    // Hero buttons
     const heroPractice = document.getElementById('heroPracticeBtn');
-    if (heroPractice) {
-      heroPractice.addEventListener('click', () => this.openPracticeSetup());
-    }
-
+    if (heroPractice) heroPractice.addEventListener('click', () => this.openPracticeSetup());
     const heroAnalytics = document.getElementById('heroAnalyticsBtn');
-    if (heroAnalytics) {
-      heroAnalytics.addEventListener('click', () => this.openAnalytics());
-    }
+    if (heroAnalytics) heroAnalytics.addEventListener('click', () => this.openAnalytics());
 
-    // --- WINDOW RESIZE ---
-    window.addEventListener('resize', Utils.debounce(() => {
-      // Could handle responsive changes here
-    }, 250));
-
-    // --- BEFORE UNLOAD (save state) ---
+    // Save on unload
     window.addEventListener('beforeunload', () => {
       Storage.save(STORAGE_KEYS.FILTERS, this.filters);
       Storage.save(STORAGE_KEYS.SETTINGS, this.settings);
@@ -1209,26 +883,19 @@ const App = {
 
 
   // ============================================
-  // 13. EVENT BINDING — PRACTICE SETUP
+  // 14. EVENT BINDING — PRACTICE SETUP
   // ============================================
 
-  /**
-   * Bind events within practice setup form
-   */
   _bindPracticeSetupEvents() {
-    // Practice filter pills
     document.querySelectorAll('[data-practice-filter]').forEach(pill => {
       pill.addEventListener('click', () => {
         const filterKey = pill.dataset.practiceFilter;
-
         switch (filterKey) {
           case 'subject': {
             const subj = pill.dataset.subject;
             pill.classList.toggle('active');
             if (pill.classList.contains('active')) {
-              if (!this.practiceConfig.subjects.includes(subj)) {
-                this.practiceConfig.subjects.push(subj);
-              }
+              if (!this.practiceConfig.subjects.includes(subj)) this.practiceConfig.subjects.push(subj);
             } else {
               this.practiceConfig.subjects = this.practiceConfig.subjects.filter(s => s !== subj);
             }
@@ -1238,9 +905,7 @@ const App = {
             const diff = pill.dataset.diff;
             pill.classList.toggle('active');
             if (pill.classList.contains('active')) {
-              if (!this.practiceConfig.difficulty.includes(diff)) {
-                this.practiceConfig.difficulty.push(diff);
-              }
+              if (!this.practiceConfig.difficulty.includes(diff)) this.practiceConfig.difficulty.push(diff);
             } else {
               this.practiceConfig.difficulty = this.practiceConfig.difficulty.filter(d => d !== diff);
             }
@@ -1250,16 +915,13 @@ const App = {
             const type = pill.dataset.type;
             pill.classList.toggle('active');
             if (pill.classList.contains('active')) {
-              if (!this.practiceConfig.types.includes(type)) {
-                this.practiceConfig.types.push(type);
-              }
+              if (!this.practiceConfig.types.includes(type)) this.practiceConfig.types.push(type);
             } else {
               this.practiceConfig.types = this.practiceConfig.types.filter(t => t !== type);
             }
             break;
           }
           case 'count': {
-            // Single select
             document.querySelectorAll('[data-practice-filter="count"]').forEach(b => b.classList.remove('active'));
             pill.classList.add('active');
             this.practiceConfig.count = pill.dataset.count;
@@ -1280,255 +942,148 @@ const App = {
         }
       });
     });
-
-    // Start button
     const startBtn = document.getElementById('startPracticeBtn');
-    if (startBtn) {
-      startBtn.addEventListener('click', () => this.startPractice());
-    }
+    if (startBtn) startBtn.addEventListener('click', () => this.startPractice());
   },
 
 
   // ============================================
-  // 14. EVENT BINDING — PRACTICE ACTIVE
+  // 15. EVENT BINDING — PRACTICE ACTIVE
   // ============================================
 
-  /**
-   * Bind events within active practice mode
-   */
   _bindPracticeActiveEvents() {
-    // Navigation buttons
     const prevBtn = document.getElementById('practicePrevBtn');
-    if (prevBtn) {
-      prevBtn.onclick = () => this._practicePrev();
-    }
-
+    if (prevBtn) prevBtn.onclick = () => this._practicePrev();
     const nextBtn = document.getElementById('practiceNextBtn');
-    if (nextBtn) {
-      nextBtn.onclick = () => this._practiceNext();
-    }
-
+    if (nextBtn) nextBtn.onclick = () => this._practiceNext();
     const skipBtn = document.getElementById('practiceSkipBtn');
-    if (skipBtn) {
-      skipBtn.onclick = () => this._practiceSkip();
-    }
-
+    if (skipBtn) skipBtn.onclick = () => this._practiceSkip();
     const hintBtn = document.getElementById('practiceHintBtn');
-    if (hintBtn) {
-      hintBtn.onclick = () => {
-        const q = this.practiceQuestions[this.practiceCurrentIndex];
-        if (q) this.handleHintToggle(q.id);
-      };
-    }
-
-    // Question navigation pills
+    if (hintBtn) hintBtn.onclick = () => {
+      const q = this.practiceQuestions[this.practiceCurrentIndex];
+      if (q) this.handleHintToggle(q.id);
+    };
     document.querySelectorAll('[data-practice-goto]').forEach(btn => {
-      btn.onclick = () => {
-        this._practiceGoTo(parseInt(btn.dataset.practiceGoto));
-      };
+      btn.onclick = () => this._practiceGoTo(parseInt(btn.dataset.practiceGoto));
     });
   },
 
 
   // ============================================
-  // 15. EVENT BINDING — PRACTICE SUMMARY
+  // 16. EVENT BINDING — PRACTICE SUMMARY
   // ============================================
 
-  /**
-   * Bind events in practice summary screen
-   */
   _bindPracticeSummaryEvents() {
     const retryBtn = document.getElementById('practiceRetryBtn');
-    if (retryBtn) {
-      retryBtn.onclick = () => {
-        Renderer.renderPracticeSetup();
-        this._bindPracticeSetupEvents();
-      };
-    }
-
+    if (retryBtn) retryBtn.onclick = () => { Renderer.renderPracticeSetup(); this._bindPracticeSetupEvents(); };
     const closeBtn = document.getElementById('practiceCloseBtn');
-    if (closeBtn) {
-      closeBtn.onclick = () => Renderer.closeModal('practiceModal');
-    }
+    if (closeBtn) closeBtn.onclick = () => Renderer.closeModal('practiceModal');
   },
 
 
   // ============================================
-  // 16. EVENT BINDING — SETTINGS
+  // 17. EVENT BINDING — SETTINGS
   // ============================================
 
-  /**
-   * Bind events within settings modal
-   */
   _bindSettingsEvents() {
-    // Theme toggle
     const themeToggle = document.getElementById('settingTheme');
-    if (themeToggle) {
-      themeToggle.onchange = () => {
-        this.updateSetting('theme', themeToggle.checked ? 'dark' : 'light');
-      };
-    }
-
-    // Animations
+    if (themeToggle) themeToggle.onchange = () => this.updateSetting('theme', themeToggle.checked ? 'dark' : 'light');
     const animToggle = document.getElementById('settingAnimations');
-    if (animToggle) {
-      animToggle.onchange = () => {
-        this.updateSetting('animations', animToggle.checked);
-      };
-    }
-
-    // Hints
+    if (animToggle) animToggle.onchange = () => this.updateSetting('animations', animToggle.checked);
     const hintsToggle = document.getElementById('settingHints');
-    if (hintsToggle) {
-      hintsToggle.onchange = () => {
-        this.updateSetting('showHints', hintsToggle.checked);
-      };
-    }
-
-    // Tags
+    if (hintsToggle) hintsToggle.onchange = () => this.updateSetting('showHints', hintsToggle.checked);
     const tagsToggle = document.getElementById('settingTags');
-    if (tagsToggle) {
-      tagsToggle.onchange = () => {
-        this.updateSetting('showTags', tagsToggle.checked);
-      };
-    }
-
-    // Sound
+    if (tagsToggle) tagsToggle.onchange = () => this.updateSetting('showTags', tagsToggle.checked);
     const soundToggle = document.getElementById('settingSound');
-    if (soundToggle) {
-      soundToggle.onchange = () => {
-        this.updateSetting('soundEffects', soundToggle.checked);
-      };
-    }
-
-    // Per page
+    if (soundToggle) soundToggle.onchange = () => this.updateSetting('soundEffects', soundToggle.checked);
     const perPageSelect = document.getElementById('settingPerPage');
-    if (perPageSelect) {
-      perPageSelect.onchange = () => {
-        this.updateSetting('perPage', parseInt(perPageSelect.value));
-      };
-    }
-
-    // Export
+    if (perPageSelect) perPageSelect.onchange = () => this.updateSetting('perPage', parseInt(perPageSelect.value));
     const exportBtn = document.getElementById('settingExport');
-    if (exportBtn) {
-      exportBtn.onclick = () => this.exportProgress();
-    }
-
-    // Import
+    if (exportBtn) exportBtn.onclick = () => this.exportProgress();
     const importBtn = document.getElementById('settingImport');
-    if (importBtn) {
-      importBtn.onclick = () => this.triggerImport();
-    }
-
+    if (importBtn) importBtn.onclick = () => this.triggerImport();
     const importInput = document.getElementById('importFileInput');
-    if (importInput) {
-      importInput.onchange = (e) => {
-        if (e.target.files[0]) {
-          this.handleImport(e.target.files[0]);
-        }
-      };
-    }
-
-    // Reset
+    if (importInput) importInput.onchange = (e) => { if (e.target.files[0]) this.handleImport(e.target.files[0]); };
     const resetBtn = document.getElementById('settingReset');
-    if (resetBtn) {
-      resetBtn.onclick = () => this.resetAllData();
-    }
+    if (resetBtn) resetBtn.onclick = () => this.resetAllData();
   },
 
 
   // ============================================
-  // 17. KEYBOARD SHORTCUTS
+  // 18. KEYBOARD SHORTCUTS
   // ============================================
 
-  /**
-   * Setup keyboard shortcuts
-   */
   _setupKeyboardShortcuts() {
-    // Theme toggle
     Keyboard.on('t', () => this.toggleTheme());
 
-    // Focus search
     Keyboard.on('f', () => {
       const input = document.getElementById('searchInput');
-      if (input) {
-        input.focus();
-        Renderer.scrollTo('.search-wrapper');
-      }
+      if (input) { input.focus(); Renderer.scrollTo('.search-wrapper'); }
     });
 
-    // Toggle filter panel
-    Keyboard.on('ctrl+f', () => {
-      Renderer.toggleFilterPanel();
-    });
+    Keyboard.on('ctrl+f', () => Renderer.toggleFilterPanel());
 
-    // Close modals
     Keyboard.on('escape', () => {
       if (this.practiceActive) {
-        if (confirm('⚠️ End practice?')) {
-          this._endPractice();
-          Renderer.closeAllModals();
-        }
+        if (confirm('⚠️ End practice?')) { this._endPractice(); Renderer.closeAllModals(); }
       } else {
         Renderer.closeAllModals();
       }
     });
 
     // Practice mode shortcuts
-    Keyboard.on('n', () => {
-      if (this.practiceActive) this._practiceNext();
-    });
-
-    Keyboard.on('p', () => {
-      if (this.practiceActive) this._practicePrev();
-    });
-
+    Keyboard.on('n', () => { if (this.practiceActive) this._practiceNext(); });
+    Keyboard.on('p', () => { if (this.practiceActive) this._practicePrev(); });
     Keyboard.on('b', () => {
       if (this.practiceActive) {
         const q = this.practiceQuestions[this.practiceCurrentIndex];
         if (q) this.handleBookmark(q.id);
       }
     });
-
     Keyboard.on('h', () => {
       if (this.practiceActive) {
         const q = this.practiceQuestions[this.practiceCurrentIndex];
         if (q) this.handleHintToggle(q.id);
       }
     });
+    Keyboard.on('s', () => { if (this.practiceActive) this._practiceSkip(); });
 
-    Keyboard.on('s', () => {
-      if (this.practiceActive) this._practiceSkip();
-    });
-
-    // MCQ shortcuts (1-4)
+    // MCQ shortcuts
     ['1', '2', '3', '4'].forEach((key, i) => {
       Keyboard.on(key, () => {
         if (this.practiceActive) {
           const q = this.practiceQuestions[this.practiceCurrentIndex];
           if (q && q.type === 'mcq' && q.options && q.options[i]) {
             this.handleMCQSelect(q.id, i);
-            // Re-render to show selection
             this._renderCurrentPracticeQuestion();
           }
         }
       });
     });
 
-    // Scroll to top
-    Keyboard.on('shift+t', () => Renderer.scrollToTop());
-
-    // Open analytics
-    Keyboard.on('a', () => {
-      if (!this.practiceActive) this.openAnalytics();
+    // Day navigation
+    Keyboard.on('shift+right', () => {
+      const currentDay = this.filters.days.length === 1 ? this.filters.days[0] : 0;
+      const nextDay = Math.min(currentDay + 1, 15);
+      if (nextDay >= 1) this.jumpToDayByNum(nextDay);
     });
+
+    Keyboard.on('shift+left', () => {
+      const currentDay = this.filters.days.length === 1 ? this.filters.days[0] : 16;
+      const prevDay = Math.max(currentDay - 1, 1);
+      if (prevDay >= 1) this.jumpToDayByNum(prevDay);
+    });
+
+    Keyboard.on('shift+a', () => this.jumpToDayByNum('all'));
+
+    Keyboard.on('a', () => { if (!this.practiceActive) this.openAnalytics(); });
+    Keyboard.on('shift+t', () => Renderer.scrollToTop());
   }
 };
 
 
 // ============================================
-// 18. BOOTSTRAP — Start the app
+// BOOTSTRAP
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {

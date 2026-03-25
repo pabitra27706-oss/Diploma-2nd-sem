@@ -11,7 +11,7 @@
 
   <title>📝 Practice Questions | WB Diploma Sem-II</title>
 
-  <!-- ===== MATHJAX (Load before everything) ===== -->
+  <!-- ===== MATHJAX ===== -->
   <script>
     window.MathJax = {
       tex: {
@@ -24,14 +24,10 @@
       options: {
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
         ignoreHtmlClass: 'no-mathjax',
-        renderActions: {
-          addMenu: []
-        }
+        renderActions: { addMenu: [] }
       },
       startup: {
-        pageReady: () => {
-          return MathJax.startup.defaultPageReady();
-        }
+        pageReady: () => { return MathJax.startup.defaultPageReady(); }
       }
     };
   </script>
@@ -45,119 +41,77 @@
   <!-- ===== STYLESHEET ===== -->
   <link rel="stylesheet" href="../css/styles.css">
 
-  <!-- ===== FAVICON (inline SVG) ===== -->
+  <!-- ===== FAVICON ===== -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
 </head>
 
 <body data-theme="dark">
 
-  <!-- ================================================
-       TOAST NOTIFICATION
-       ================================================ -->
+  <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
-
   <!-- ================================================
-       HEADER (Sticky)
+       HEADER
        ================================================ -->
   <header class="header">
     <div class="container header__inner">
-
-      <!-- Logo -->
       <div class="header__logo">
         <span class="header__logo-icon">📝</span>
         <span class="header__logo-text"><span>PracticeQ</span></span>
       </div>
-
-      <!-- Header Controls -->
       <div class="header__controls">
-
-        <!-- Stats Pill -->
         <div class="header__stats-pill" id="headerStatsPill">
           <span class="num">0</span>/<span>0</span> done
         </div>
-
-        <!-- Analytics Button -->
-        <button class="btn btn--icon" id="analyticsBtn" data-tooltip="Analytics [A]" aria-label="Open Analytics">
-          📊
-        </button>
-
-        <!-- Practice Button -->
-        <button class="btn btn--icon" id="practiceBtn" data-tooltip="Practice Mode" aria-label="Start Practice">
-          🎯
-        </button>
-
-        <!-- Settings Button -->
-        <button class="btn btn--icon" id="settingsBtn" data-tooltip="Settings" aria-label="Open Settings">
-          ⚙️
-        </button>
-
-        <!-- Theme Toggle -->
-        <button class="btn btn--icon" id="themeBtn" data-tooltip="Toggle Theme [T]" aria-label="Toggle Theme">
-          🌙
-        </button>
+        <button class="btn btn--icon" id="analyticsBtn" data-tooltip="Analytics [A]" aria-label="Open Analytics">📊</button>
+        <button class="btn btn--icon" id="practiceBtn" data-tooltip="Practice Mode" aria-label="Start Practice">🎯</button>
+        <button class="btn btn--icon" id="settingsBtn" data-tooltip="Settings" aria-label="Open Settings">⚙️</button>
+        <button class="btn btn--icon" id="themeBtn" data-tooltip="Toggle Theme [T]" aria-label="Toggle Theme">🌙</button>
       </div>
     </div>
   </header>
 
-
   <!-- ================================================
-       HERO SECTION
+       HERO
        ================================================ -->
   <section class="hero">
     <div class="container">
-      <h1 class="hero__title">
-        <span class="gradient">Practice Questions</span>
-      </h1>
-      <p class="hero__subtitle">
-        WB Diploma Semester II — 15-Day Smart Question Bank
-      </p>
+      <h1 class="hero__title"><span class="gradient">Practice Questions</span></h1>
+      <p class="hero__subtitle">WB Diploma Semester II — 15-Day Smart Question Bank</p>
       <div class="hero__actions">
-        <button class="btn btn--primary btn--lg" id="heroPracticeBtn">
-          🎯 Start Practice
-        </button>
-        <button class="btn btn--lg" id="heroAnalyticsBtn">
-          📊 View Analytics
-        </button>
+        <button class="btn btn--primary btn--lg" id="heroPracticeBtn">🎯 Start Practice</button>
+        <button class="btn btn--lg" id="heroAnalyticsBtn">📊 View Analytics</button>
       </div>
     </div>
   </section>
-
 
   <!-- ================================================
        MAIN CONTAINER
        ================================================ -->
   <div class="container">
 
-    <!-- ============================================
-         DASHBOARD STATS BAR
-         ============================================ -->
+    <!-- DASHBOARD -->
     <div class="dashboard" id="dashboard">
-
       <div class="dashboard__card">
         <div class="dashboard__card-icon">📚</div>
         <div class="dashboard__card-num" id="statTotal">0</div>
         <div class="dashboard__card-label">Total Questions</div>
       </div>
-
       <div class="dashboard__card dashboard__card--green">
         <div class="dashboard__card-icon">✅</div>
         <div class="dashboard__card-num" id="statAttempted">0</div>
         <div class="dashboard__card-label">Attempted</div>
       </div>
-
       <div class="dashboard__card dashboard__card--orange">
         <div class="dashboard__card-icon">⭐</div>
         <div class="dashboard__card-num" id="statBookmarked">0</div>
         <div class="dashboard__card-label">Bookmarked</div>
       </div>
-
       <div class="dashboard__card dashboard__card--blue">
         <div class="dashboard__card-icon">📈</div>
         <div class="dashboard__card-num" id="statPct">0%</div>
         <div class="dashboard__card-label">Completion</div>
       </div>
-
       <div class="dashboard__card dashboard__card--pink">
         <div class="dashboard__card-icon">🔥</div>
         <div class="dashboard__card-num" id="statStreak">0</div>
@@ -165,10 +119,7 @@
       </div>
     </div>
 
-
-    <!-- ============================================
-         OVERALL PROGRESS BAR
-         ============================================ -->
+    <!-- PROGRESS BAR -->
     <div class="progress-bar">
       <div class="progress-bar__header">
         <span class="progress-bar__title">📊 Overall Progress</span>
@@ -179,175 +130,189 @@
       </div>
     </div>
 
-
-    <!-- ============================================
-         MAIN LAYOUT (Sidebar + Content on Desktop)
-         ============================================ -->
+    <!-- ================================================
+         MAIN LAYOUT
+         ================================================ -->
     <div class="main-layout">
 
-      <!-- ==========================================
-           SIDEBAR — FILTER PANEL
-           ========================================== -->
+      <!-- SIDEBAR — FILTER PANEL -->
       <aside class="main-layout__sidebar">
         <div class="filter-panel" id="filterPanel">
-
-          <!-- Filter Header (Click to toggle) -->
           <div class="filter-panel__header">
             <div class="filter-panel__header-left">
-              <span>🔍</span>
-              <span>Filters</span>
+              <span>🔍</span><span>Filters</span>
             </div>
             <div class="filter-panel__header-right">
               <span class="filter-count-bubble hidden" id="filterCountBubble">0</span>
               <span class="filter-panel__toggle-icon" id="filterToggleIcon">▼</span>
             </div>
           </div>
-
-          <!-- Filter Body -->
           <div class="filter-panel__body" id="filterBody">
-
             <!-- Search -->
             <div class="filter-group">
               <label class="filter-group__label">🔍 Search</label>
               <div class="search-wrapper">
                 <span class="search-wrapper__icon">🔍</span>
-                <input type="text"
-                       class="search-input"
-                       id="searchInput"
-                       placeholder="Search questions, topics, tags..."
-                       autocomplete="off"
-                       aria-label="Search questions">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search questions, topics, tags..." autocomplete="off" aria-label="Search questions">
               </div>
             </div>
-
             <!-- Day Filter -->
             <div class="filter-group">
               <label class="filter-group__label">📅 Day</label>
-              <div class="filter-days" id="filterDays">
-                <!-- Rendered by JS -->
-              </div>
+              <div class="filter-days" id="filterDays"></div>
             </div>
-
-            <!-- Subject Filter -->
+            <!-- Subject -->
             <div class="filter-group">
               <label class="filter-group__label">📚 Subject</label>
-              <div class="filter-group__options" id="filterSubjects">
-                <!-- Rendered by JS -->
-              </div>
+              <div class="filter-group__options" id="filterSubjects"></div>
             </div>
-
-            <!-- Question Type Filter -->
+            <!-- Type -->
             <div class="filter-group">
               <label class="filter-group__label">📝 Question Type</label>
-              <div class="filter-group__options" id="filterTypes">
-                <!-- Rendered by JS -->
-              </div>
+              <div class="filter-group__options" id="filterTypes"></div>
             </div>
-
-            <!-- Difficulty Filter -->
+            <!-- Difficulty -->
             <div class="filter-group">
               <label class="filter-group__label">🎯 Difficulty</label>
-              <div class="filter-group__options" id="filterDifficulty">
-                <!-- Rendered by JS -->
-              </div>
+              <div class="filter-group__options" id="filterDifficulty"></div>
             </div>
-
-            <!-- Unit Dropdown -->
+            <!-- Unit -->
             <div class="filter-group">
               <label class="filter-group__label">📖 Unit</label>
               <select class="filter-select" id="filterUnit" aria-label="Filter by unit">
                 <option value="">All Units</option>
               </select>
             </div>
-
-            <!-- Topic Dropdown -->
+            <!-- Topic -->
             <div class="filter-group">
               <label class="filter-group__label">📌 Topic</label>
               <select class="filter-select" id="filterTopic" aria-label="Filter by topic">
                 <option value="">All Topics</option>
               </select>
             </div>
-
-            <!-- Marks Range -->
+            <!-- Marks -->
             <div class="filter-group">
               <label class="filter-group__label">💯 Max Marks</label>
               <div class="filter-range">
                 <span class="filter-range__value">1</span>
-                <input type="range"
-                       class="filter-range__slider"
-                       id="filterMarksSlider"
-                       min="1"
-                       max="10"
-                       value="10"
-                       aria-label="Filter by marks range">
+                <input type="range" class="filter-range__slider" id="filterMarksSlider" min="1" max="10" value="10" aria-label="Filter by marks">
                 <span class="filter-range__value" id="filterMarksValue">10</span>
               </div>
             </div>
-
-            <!-- Status Filter -->
+            <!-- Status -->
             <div class="filter-group">
               <label class="filter-group__label">📋 Status</label>
-              <div class="filter-group__options" id="filterStatuses">
-                <!-- Rendered by JS -->
-              </div>
+              <div class="filter-group__options" id="filterStatuses"></div>
             </div>
-
-            <!-- Bookmark Filter -->
+            <!-- Bookmark -->
             <div class="filter-group">
               <label class="filter-group__label">⭐ Bookmarks</label>
               <div class="filter-group__options">
-                <button class="filter-pill" id="filterBookmarkBtn" data-filter-type="bookmarkedOnly">
-                  ⭐ Bookmarked Only
-                </button>
+                <button class="filter-pill" id="filterBookmarkBtn" data-filter-type="bookmarkedOnly">⭐ Bookmarked Only</button>
               </div>
             </div>
-
-            <!-- Confidence Filter -->
+            <!-- Confidence -->
             <div class="filter-group">
               <label class="filter-group__label">🎭 Confidence</label>
-              <div class="filter-group__options" id="filterConfidence">
-                <!-- Rendered by JS -->
-              </div>
+              <div class="filter-group__options" id="filterConfidence"></div>
             </div>
-
-            <!-- Exam Source Filter -->
+            <!-- Source -->
             <div class="filter-group">
               <label class="filter-group__label">📎 Exam Source</label>
-              <div class="filter-group__options" id="filterSources">
-                <!-- Rendered by JS -->
-              </div>
+              <div class="filter-group__options" id="filterSources"></div>
             </div>
-
-            <!-- Active Filter Tags + Clear -->
+            <!-- Active Tags + Clear -->
             <div class="filter-actions">
               <div class="filter-active-tags" id="filterActiveTags">
                 <span style="font-size:0.75rem;color:var(--text-tertiary);">No active filters</span>
               </div>
-              <button class="btn btn--sm btn--ghost" id="clearFiltersBtn">
-                ✕ Clear All
-              </button>
+              <button class="btn btn--sm btn--ghost" id="clearFiltersBtn">✕ Clear All</button>
             </div>
-
-          </div><!-- /filter-panel__body -->
-        </div><!-- /filter-panel -->
+          </div>
+        </div>
       </aside>
 
-
-      <!-- ==========================================
-           MAIN CONTENT
-           ========================================== -->
+      <!-- MAIN CONTENT -->
       <main class="main-layout__content">
 
         <!-- ======================================
-             RESULTS BAR
+             DAY JUMP BAR
              ====================================== -->
+        <div class="day-jump-bar" id="dayJumpBar">
+          <button class="day-jump-btn active" data-jump="all" onclick="App.jumpToDay('all', this)">
+            <span class="day-jump-num">📚</span>
+            <span class="day-jump-label">All</span>
+          </button>
+          <button class="day-jump-btn" data-jump="1" onclick="App.jumpToDay(1, this)">
+            <span class="day-jump-num">1</span>
+            <span class="day-jump-label">Foundation</span>
+          </button>
+          <button class="day-jump-btn" data-jump="2" onclick="App.jumpToDay(2, this)">
+            <span class="day-jump-num">2</span>
+            <span class="day-jump-label">Building</span>
+          </button>
+          <button class="day-jump-btn" data-jump="3" onclick="App.jumpToDay(3, this)">
+            <span class="day-jump-num">3</span>
+            <span class="day-jump-label">Geometry</span>
+          </button>
+          <button class="day-jump-btn" data-jump="4" onclick="App.jumpToDay(4, this)">
+            <span class="day-jump-num">4</span>
+            <span class="day-jump-label">Conics</span>
+          </button>
+          <button class="day-jump-btn" data-jump="5" onclick="App.jumpToDay(5, this)">
+            <span class="day-jump-num">5</span>
+            <span class="day-jump-label">Integration</span>
+          </button>
+          <button class="day-jump-btn" data-jump="6" onclick="App.jumpToDay(6, this)">
+            <span class="day-jump-num">6</span>
+            <span class="day-jump-label">Circuits</span>
+          </button>
+          <button class="day-jump-btn" data-jump="7" onclick="App.jumpToDay(7, this)">
+            <span class="day-jump-num">7</span>
+            <span class="day-jump-label">ODE</span>
+          </button>
+          <button class="day-jump-btn" data-jump="8" onclick="App.jumpToDay(8, this)">
+            <span class="day-jump-num">8</span>
+            <span class="day-jump-label">Transform</span>
+          </button>
+          <button class="day-jump-btn" data-jump="9" onclick="App.jumpToDay(9, this)">
+            <span class="day-jump-num">9</span>
+            <span class="day-jump-label">Stats</span>
+          </button>
+          <button class="day-jump-btn" data-jump="10" onclick="App.jumpToDay(10, this)">
+            <span class="day-jump-num">10</span>
+            <span class="day-jump-label">Machines</span>
+          </button>
+          <button class="day-jump-btn" data-jump="11" onclick="App.jumpToDay(11, this)">
+            <span class="day-jump-num">11</span>
+            <span class="day-jump-label">Complete</span>
+          </button>
+          <button class="day-jump-btn" data-jump="12" onclick="App.jumpToDay(12, this)">
+            <span class="day-jump-num">12</span>
+            <span class="day-jump-label">IT+Rev</span>
+          </button>
+          <button class="day-jump-btn" data-jump="13" onclick="App.jumpToDay(13, this)">
+            <span class="day-jump-num">13</span>
+            <span class="day-jump-label">Rev 1</span>
+          </button>
+          <button class="day-jump-btn" data-jump="14" onclick="App.jumpToDay(14, this)">
+            <span class="day-jump-num">14</span>
+            <span class="day-jump-label">Rev 2</span>
+          </button>
+          <button class="day-jump-btn" data-jump="15" onclick="App.jumpToDay(15, this)">
+            <span class="day-jump-num">15</span>
+            <span class="day-jump-label">MCQ</span>
+          </button>
+        </div>
+
+        <!-- DAY INFO PANEL (inserted dynamically by JS) -->
+
+        <!-- RESULTS BAR -->
         <div class="results-bar">
           <div class="results-bar__info" id="resultsInfo">
             Showing <strong>0</strong> of <strong>0</strong> questions
           </div>
-
           <div class="results-bar__controls">
-            <!-- Sort -->
             <select class="results-bar__sort" id="sortSelect" aria-label="Sort questions">
               <option value="default">Sort: Default</option>
               <option value="day-asc">Day ↑</option>
@@ -360,151 +325,89 @@
               <option value="subject">By Subject</option>
               <option value="random">🔀 Random</option>
             </select>
-
-            <!-- View Mode -->
             <div class="results-bar__view-btns">
-              <button class="results-bar__view-btn active"
-                      data-view="card"
-                      data-tooltip="Card View"
-                      aria-label="Card View">
-                🃏
-              </button>
-              <button class="results-bar__view-btn"
-                      data-view="compact"
-                      data-tooltip="Compact View"
-                      aria-label="Compact View">
-                📋
-              </button>
-              <button class="results-bar__view-btn"
-                      data-view="list"
-                      data-tooltip="List View"
-                      aria-label="List View">
-                📄
-              </button>
+              <button class="results-bar__view-btn active" data-view="card" data-tooltip="Card View" aria-label="Card View">🃏</button>
+              <button class="results-bar__view-btn" data-view="compact" data-tooltip="Compact View" aria-label="Compact View">📋</button>
+              <button class="results-bar__view-btn" data-view="list" data-tooltip="List View" aria-label="List View">📄</button>
             </div>
           </div>
         </div>
 
-
-        <!-- ======================================
-             QUESTIONS GRID (rendered by JS)
-             ====================================== -->
+        <!-- QUESTIONS GRID -->
         <div class="questions-grid questions-grid--card" id="questionsGrid">
           <div class="empty-state">
             <div class="empty-state__icon animate-pulse">📚</div>
             <div class="empty-state__title">Loading questions...</div>
-            <div class="empty-state__text">
-              Please wait while we load your practice questions.
-            </div>
+            <div class="empty-state__text">Please wait while we load your practice questions.</div>
           </div>
         </div>
 
-
-        <!-- ======================================
-             PAGINATION
-             ====================================== -->
-        <div class="pagination" id="pagination">
-          <!-- Rendered by JS -->
-        </div>
+        <!-- PAGINATION -->
+        <div class="pagination" id="pagination"></div>
 
       </main>
-    </div><!-- /main-layout -->
-  </div><!-- /container -->
+    </div>
+  </div>
 
-
-  <!-- ================================================
-       MODAL BACKDROP
-       ================================================ -->
+  <!-- MODAL BACKDROP -->
   <div class="modal-backdrop" id="modalBackdrop"></div>
 
-
-  <!-- ================================================
-       ANALYTICS MODAL
-       ================================================ -->
+  <!-- ANALYTICS MODAL -->
   <div class="modal" id="analyticsModal" role="dialog" aria-modal="true" aria-labelledby="analyticsTitle">
     <div class="modal__header">
       <h2 class="modal__title" id="analyticsTitle">📊 Analytics Dashboard</h2>
       <button class="modal__close" aria-label="Close Analytics">✕</button>
     </div>
     <div class="modal__body">
-      <div class="empty-state">
-        <div class="empty-state__icon">📊</div>
-        <div class="empty-state__title">Loading analytics...</div>
-      </div>
+      <div class="empty-state"><div class="empty-state__icon">📊</div><div class="empty-state__title">Loading analytics...</div></div>
     </div>
   </div>
 
-
-  <!-- ================================================
-       PRACTICE MODE MODAL
-       ================================================ -->
+  <!-- PRACTICE MODAL -->
   <div class="modal practice-mode" id="practiceModal" role="dialog" aria-modal="true" aria-labelledby="practiceTitle">
     <div class="modal__header">
       <h2 class="modal__title" id="practiceTitle">🎯 Practice Mode</h2>
       <button class="modal__close" aria-label="Close Practice">✕</button>
     </div>
     <div class="modal__body">
-      <div class="empty-state">
-        <div class="empty-state__icon">🎯</div>
-        <div class="empty-state__title">Setting up practice...</div>
-      </div>
+      <div class="empty-state"><div class="empty-state__icon">🎯</div><div class="empty-state__title">Setting up practice...</div></div>
     </div>
   </div>
 
-
-  <!-- ================================================
-       SETTINGS MODAL
-       ================================================ -->
+  <!-- SETTINGS MODAL -->
   <div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
     <div class="modal__header">
       <h2 class="modal__title" id="settingsTitle">⚙️ Settings</h2>
       <button class="modal__close" aria-label="Close Settings">✕</button>
     </div>
     <div class="modal__body">
-      <div class="empty-state">
-        <div class="empty-state__icon">⚙️</div>
-        <div class="empty-state__title">Loading settings...</div>
-      </div>
+      <div class="empty-state"><div class="empty-state__icon">⚙️</div><div class="empty-state__title">Loading settings...</div></div>
     </div>
     <input type="file" id="importFileInput" accept=".json" style="display:none;" aria-hidden="true">
   </div>
 
-
-  <!-- ================================================
-       FLOATING ACTION BUTTONS (FAB)
-       ================================================ -->
+  <!-- FAB -->
   <div class="fab-container">
-    <button class="fab-btn fab-btn--primary fab-btn--sm"
-            id="fabScrollTop"
-            data-tooltip="Scroll to Top"
-            aria-label="Scroll to top">
-      ⬆
-    </button>
+    <button class="fab-btn fab-btn--primary fab-btn--sm" id="fabScrollTop" data-tooltip="Scroll to Top" aria-label="Scroll to top">⬆</button>
   </div>
 
-
-  <!-- ================================================
-       FOOTER
-       ================================================ -->
+  <!-- FOOTER -->
   <footer class="footer">
     <p class="footer__text">
       Made with ❤️ for WB Diploma Students
-      <br>
-      📝 All progress saved locally in your browser
-      <br>
-      <span style="font-size:0.7rem; opacity:0.6;">
-        💡 Keyboard shortcuts: <kbd class="kbd">T</kbd> Theme
+      <br>📝 All progress saved locally in your browser
+      <br><span style="font-size:0.7rem;opacity:0.6;">
+        💡 <kbd class="kbd">T</kbd> Theme
         <kbd class="kbd">F</kbd> Search
         <kbd class="kbd">A</kbd> Analytics
+        <kbd class="kbd">Shift+→</kbd> Next Day
+        <kbd class="kbd">Shift+←</kbd> Prev Day
         <kbd class="kbd">Esc</kbd> Close
       </span>
     </p>
   </footer>
 
-
-  <!-- ================================================
-       SCRIPTS (Load order matters!)
-       ================================================ -->
+  <!-- SCRIPTS -->
   <script src="../js/helper.js"></script>
   <script src="../js/renderer.js"></script>
   <script src="../js/app.js"></script>

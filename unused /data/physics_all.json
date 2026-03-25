@@ -1,0 +1,4596 @@
+[
+  {
+    "id": "P25Q01",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The velocity of a particle vibrating in S.H.M.- (a) is maximum at the mean position (b) is minimum at the mean position (c) remains constant at every point (d) none of these",
+    "options": [
+      "is maximum at the mean position",
+      "is minimum at the mean position",
+      "remains constant at every point",
+      "none of these"
+    ],
+    "marks": 2,
+    "tags": [
+      "velocity",
+      "SHM",
+      "mean position",
+      "2025"
+    ],
+    "hint": "Velocity is highest where displacement is minimum."
+  },
+  {
+    "id": "P25Q02",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Plane Progressive Wave",
+    "type": "mcq",
+    "difficulty": "medium",
+    "question": "The equation of a plane progressive wave is \\(y = 6 \\sin \\frac{2\\pi}{7} (14t - x)\\) . The frequency and amplitude of vibration is - (a) 2, 7 (b) 2, 6 (c) 6, 2 (d) 7, 6",
+    "options": [
+      "2, 7",
+      "2, 6",
+      "6, 2",
+      "7, 6"
+    ],
+    "marks": 2,
+    "tags": [
+      "plane progressive wave",
+      "amplitude",
+      "frequency",
+      "2025"
+    ],
+    "hint": "Compare with the standard wave equation: $y = A \\sin(\\omega t - kx)$."
+  },
+  {
+    "id": "P25Q03",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Ultrasonic Waves",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The wavelength of the ultrasonic sound- (a) is same as that of audible sound (b) is less compared to audible sound (c) is larger compared to audible sound (d) may be greater or less than audible sound",
+    "options": [
+      "is same as that of audible sound",
+      "is less compared to audible sound",
+      "is larger compared to audible sound",
+      "may be greater or less than audible sound"
+    ],
+    "marks": 2,
+    "tags": [
+      "ultrasonic waves",
+      "wavelength",
+      "audible sound",
+      "2025"
+    ],
+    "hint": "Ultrasonic waves have a frequency higher than the audible range."
+  },
+  {
+    "id": "P25Q04",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Refraction",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "For which colour of light the refractive index of a medium is maximum? (a) Green (b) Yellow (c) Red (d) Violet",
+    "options": [
+      "Green",
+      "Yellow",
+      "Red",
+      "Violet"
+    ],
+    "marks": 2,
+    "tags": [
+      "refractive index",
+      "dispersion",
+      "colour",
+      "2025"
+    ],
+    "hint": "Refractive index is higher for colours with shorter wavelengths."
+  },
+  {
+    "id": "P25Q05",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Coulomb's Law",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "Force of repulsion between two point charges placed at a distance r is F. If the separation between them becomes 2r, the force of repulsion will be (a) 2F (b) F/2 (c) 4F (d) F/4",
+    "options": [
+      "2F",
+      "F/2",
+      "4F",
+      "F/4"
+    ],
+    "marks": 2,
+    "tags": [
+      "Coulomb's law",
+      "force",
+      "distance",
+      "2025"
+    ],
+    "hint": "Force is inversely proportional to the square of the distance."
+  },
+  {
+    "id": "P25Q06",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Capacitance",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "Two capacitors of capacitance \\(6\\mu \\mathrm{F}\\) and \\(3\\mu \\mathrm{F}\\) are connected in series. The value of their equivalent capacitance is (a) \\(9\\mu \\mathrm{F}\\) (b) \\(2\\mu \\mathrm{F}\\) (c) \\(18\\mu \\mathrm{F}\\) (d) \\(0.5\\mu \\mathrm{F}\\)",
+    "options": [
+      "9μF",
+      "2μF",
+      "18μF",
+      "0.5μF"
+    ],
+    "marks": 2,
+    "tags": [
+      "capacitance",
+      "series combination",
+      "2025"
+    ],
+    "hint": "For series capacitors, $\\frac{1}{C_{eq}} = \\frac{1}{C_1} + \\frac{1}{C_2}$."
+  },
+  {
+    "id": "P25Q07",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistivity",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If the length of a copper wire is doubled by stretching it, its resistivity will (a) be doubled (b) be halved (c) remain unchanged (d) be increased by 4 times",
+    "options": [
+      "be doubled",
+      "be halved",
+      "remain unchanged",
+      "be increased by 4 times"
+    ],
+    "marks": 2,
+    "tags": [
+      "resistivity",
+      "material property",
+      "2025"
+    ],
+    "hint": "Resistivity is an intrinsic property that does not depend on dimensions."
+  },
+  {
+    "id": "P25Q08",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Thermoelectric Effect",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "When current is passed through a junction of two dissimilar metals, heat is evolved or absorbed at the junction. This process is called - (a) Seebeck effect (b) Joule effect (c) Peltier effect (d) Thomson effect",
+    "options": [
+      "Seebeck effect",
+      "Joule effect",
+      "Peltier effect",
+      "Thomson effect"
+    ],
+    "marks": 2,
+    "tags": [
+      "Peltier effect",
+      "thermoelectricity",
+      "2025"
+    ],
+    "hint": "This is the reverse of the Seebeck effect, involving heating/cooling at a junction."
+  },
+  {
+    "id": "P25Q09",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Galvanometer",
+    "type": "mcq",
+    "difficulty": "medium",
+    "question": "A galvanometer can be converted into an ammeter by connecting it with a (a) suitable high resistance in parallel (b) suitable low resistance in parallel (c) suitable high resistance in series (d) suitable low resistance in series",
+    "options": [
+      "suitable high resistance in parallel",
+      "suitable low resistance in parallel",
+      "suitable high resistance in series",
+      "suitable low resistance in series"
+    ],
+    "marks": 2,
+    "tags": [
+      "galvanometer",
+      "ammeter",
+      "conversion",
+      "2025"
+    ],
+    "hint": "To measure large currents, most of the current must bypass the coil via a shunt."
+  },
+  {
+    "id": "P25Q10",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Dipole",
+    "type": "mcq",
+    "difficulty": "medium",
+    "question": "Magnetic dipole moment of a current carrying loop is independent of (a) number of turns in the coil (b) area of the loop of the coil (c) current in the coil (d) magnetic field in which it is placed",
+    "options": [
+      "number of turns in the coil",
+      "area of the loop of the coil",
+      "current in the coil",
+      "magnetic field in which it is placed"
+    ],
+    "marks": 2,
+    "tags": [
+      "magnetic dipole moment",
+      "current loop",
+      "2025"
+    ],
+    "hint": "The magnetic dipole moment depends on the loop's properties, not the external field."
+  },
+  {
+    "id": "P25Q11",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Bohr's Atomic Model",
+    "type": "mcq",
+    "difficulty": "medium",
+    "question": "A hydrogen atom makes a transition from 1st excited state to ground state. The energy of the photon in eV, emitted in this process is (a) 2.20 (b) 10.20 (c) 12.09 (d) 12.75",
+    "options": [
+      "2.20",
+      "10.20",
+      "12.09",
+      "12.75"
+    ],
+    "marks": 2,
+    "tags": [
+      "hydrogen atom",
+      "energy levels",
+      "photon",
+      "2025"
+    ],
+    "hint": "Energy difference between $n=2$ and $n=1$ for hydrogen is 10.2 eV."
+  },
+  {
+    "id": "P25Q12",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "In X- ray tube, the penetrating power of X- rays can be increased by (a) increasing the filament voltage (b) decreasing the filament voltage (c) increasing the voltage across the electrodes (d) decreasing the voltage across the electrodes",
+    "options": [
+      "increasing the filament voltage",
+      "decreasing the filament voltage",
+      "increasing the voltage across the electrodes",
+      "decreasing the voltage across the electrodes"
+    ],
+    "marks": 2,
+    "tags": [
+      "X-rays",
+      "penetrating power",
+      "Coolidge tube",
+      "2025"
+    ],
+    "hint": "Higher accelerating voltage gives X-rays with higher energy and shorter wavelength."
+  },
+  {
+    "id": "P25Q13",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Extrinsic Semiconductors",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "N- type semiconductor is obtained on doping intrinsic germanium by (a) gold (b) boron (c) aluminium (d) phosphorus",
+    "options": [
+      "gold",
+      "boron",
+      "aluminium",
+      "phosphorus"
+    ],
+    "marks": 2,
+    "tags": [
+      "N-type",
+      "doping",
+      "pentavalent",
+      "2025"
+    ],
+    "hint": "N-type is created by doping with a pentavalent (5 valence electrons) impurity."
+  },
+  {
+    "id": "P25Q14",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "In a transistor the base region is - (a) highly doped (b) moderately doped (c) lightly doped (d) none of these",
+    "options": [
+      "highly doped",
+      "moderately doped",
+      "lightly doped",
+      "none of these"
+    ],
+    "marks": 2,
+    "tags": [
+      "transistor",
+      "base region",
+      "doping",
+      "2025"
+    ],
+    "hint": "The base is thin and lightly doped to minimize recombination."
+  },
+  {
+    "id": "P25Q15",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) Write down the characteristics of SHM.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "SHM",
+      "characteristics",
+      "2025"
+    ],
+    "hint": "Think about restoring force, acceleration, and periodic nature."
+  },
+  {
+    "id": "P25Q16",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Plane Progressive Wave",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "(b) The equation of a plane progressive wave propagating along positive X direction is given by, \\(y = 10\\sin \\left(100\\pi t - \\frac{2\\pi}{7} x\\right)\\mathrm{cm}\\) , where \\(x\\) is in meter and \\(t\\) in second. Calculate the amplitude, frequency, wavelength and speed of the wave.",
+    "options": null,
+    "marks": 4,
+    "tags": [
+      "plane progressive wave",
+      "amplitude",
+      "frequency",
+      "wavelength",
+      "wave speed",
+      "2025"
+    ],
+    "hint": "Compare with $y = A \\sin(\\omega t - kx)$. $A$ = amplitude, $\\omega = 2\\pi f$, $k = \\frac{2\\pi}{\\lambda}$."
+  },
+  {
+    "id": "P25Q17",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Ultrasonic Waves",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Write down two applications of ultrasonic wave.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "ultrasonic waves",
+      "applications",
+      "2025"
+    ],
+    "hint": "Examples: medical imaging (sonography), non-destructive testing."
+  },
+  {
+    "id": "P25Q18",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Total Internal Reflection",
+    "type": "short-answer",
+    "difficulty": "medium",
+    "question": "(a) Establish the relation between critical angle and absolute refractive index of the two medium.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "critical angle",
+      "refractive index",
+      "total internal reflection",
+      "2025"
+    ],
+    "hint": "Use Snell's law at the critical angle where the angle of refraction is $90^\\circ$."
+  },
+  {
+    "id": "P25Q19",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) With necessary ray diagram state the position and nature of image formed by an extended object placed in between principal focus and optical center of a convex lens.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "convex lens",
+      "ray diagram",
+      "image formation",
+      "2025"
+    ],
+    "hint": "The object is within the focal length. The image is virtual, erect, and magnified."
+  },
+  {
+    "id": "P25Q20",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Lens Maker's Formula",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "(c) The radius of curvature of a plano-convex lens is \\(20\\mathrm{cm}\\) . Calculate its focal length if the absolute refractive index of the material of the lens is 1.5.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "lens maker's formula",
+      "plano-convex lens",
+      "focal length",
+      "2025"
+    ],
+    "hint": "Use lens maker's formula: $\\frac{1}{f} = (\\mu-1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$. For plano-convex, $R_1 = R$, $R_2 = \\infty$."
+  },
+  {
+    "id": "P25Q21",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Gauss's Law",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "(a) State Gauss' law in electrostatics. Using this law, derive an expression for the electric field intensity at an outside point of a uniformly charged sphere.",
+    "options": null,
+    "marks": 4,
+    "tags": [
+      "Gauss's law",
+      "electric field",
+      "charged sphere",
+      "2025"
+    ],
+    "hint": "Consider a spherical Gaussian surface concentric with the charged sphere. The electric field is radial and constant on the surface."
+  },
+  {
+    "id": "P25Q22",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Electric Charge",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "(b) Calculate how many electrons are present in one coulomb of charge?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "electric charge",
+      "quantization",
+      "electrons",
+      "2025"
+    ],
+    "hint": "Use the relation $Q = n \\cdot e$, where $e = 1.6 \\times 10^{-19} \\text{ C}$."
+  },
+  {
+    "id": "P25Q23",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Capacitance",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) State the factors on which the capacitance of a conductor depends.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "capacitance",
+      "factors",
+      "2025"
+    ],
+    "hint": "Consider the size, shape, and the medium surrounding the conductor."
+  },
+  {
+    "id": "P25Q24",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Field",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) Define magnetic flux. What are its SI units?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "magnetic flux",
+      "definition",
+      "SI unit",
+      "2025"
+    ],
+    "hint": "It is the dot product of magnetic field and area vector. Unit is Weber (Wb)."
+  },
+  {
+    "id": "P25Q25",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Biot-Savart Law",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "(b) State Biot-Savart's law and apply it to find the magnetic field at the centre of a circular loop carrying current I.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "Biot-Savart law",
+      "magnetic field",
+      "circular coil",
+      "2025"
+    ],
+    "hint": "Integrate the field contribution from each current element. At the centre, the field is perpendicular to the plane and adds up."
+  },
+  {
+    "id": "P25Q26",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) State Lenz's law. Does it obey the principle of conservation of energy?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Lenz's law",
+      "conservation of energy",
+      "2025"
+    ],
+    "hint": "The induced emf opposes the change causing it, ensuring energy conservation."
+  },
+  {
+    "id": "P25Q27",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Extrinsic Semiconductors",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) What are extrinsic semiconductors? Distinguish between N-type and P-type semiconductors.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "extrinsic semiconductor",
+      "N-type",
+      "P-type",
+      "doping",
+      "2025"
+    ],
+    "hint": "Extrinsic are doped semiconductors. N-type has electrons as majority carriers, P-type has holes."
+  },
+  {
+    "id": "P25Q28",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) What is a p-n junction diode? Draw the symbol of a p-n junction diode. Draw the circuit diagram for forward and reverse bias.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "PN junction",
+      "diode",
+      "forward bias",
+      "reverse bias",
+      "2025"
+    ],
+    "hint": "A junction of p-type and n-type semiconductors. In forward bias, the p-side is connected to positive terminal."
+  },
+  {
+    "id": "P25Q29",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Zener Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) What is Zener diode? Write its two applications.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Zener diode",
+      "applications",
+      "2025"
+    ],
+    "hint": "A heavily doped diode that works in reverse breakdown. Used as voltage regulator."
+  },
+  {
+    "id": "P25Q30",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "medium",
+    "question": "(a) Write down the differences between insulator, semiconductor and conductor.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "insulator",
+      "semiconductor",
+      "conductor",
+      "energy bands",
+      "2025"
+    ],
+    "hint": "Based on energy band gap and conductivity."
+  },
+  {
+    "id": "P25Q31",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Rectifier",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "(b) With necessary diagram and drawing input and output waveform explain the working of p-n junction diode as full wave rectifier using two diodes.",
+    "options": null,
+    "marks": 4,
+    "tags": [
+      "full wave rectifier",
+      "PN junction",
+      "waveform",
+      "2025"
+    ],
+    "hint": "A center-tapped transformer and two diodes conduct during alternate half-cycles."
+  },
+  {
+    "id": "P25Q32",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "LED",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) What is LED?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "LED",
+      "2025"
+    ],
+    "hint": "It's a semiconductor device that emits light when forward biased."
+  },
+  {
+    "id": "P25Q33",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Bohr's Atomic Model",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "(a) State & explain the postulates of Bohr's atomic model.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Bohr's atomic model",
+      "postulates",
+      "2025"
+    ],
+    "hint": "Key postulates: stable orbits, angular momentum quantization, and photon emission."
+  },
+  {
+    "id": "P25Q34",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Fiber Optics",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "(b) Explain the working principle of an optical fiber with a proper diagram.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "optical fiber",
+      "working principle",
+      "total internal reflection",
+      "2025"
+    ],
+    "hint": "Based on total internal reflection of light within a core of higher refractive index."
+  },
+  {
+    "id": "P25Q35",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Draw the curve showing the variation of intensity with wavelength of X-rays obtained from X-ray tube and mark cut-off wavelength \\((\\lambda_{\\min})\\) , continuous & characteristic X-rays.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "X-rays",
+      "continuous spectrum",
+      "characteristic spectrum",
+      "cut-off wavelength",
+      "2025"
+    ],
+    "hint": "The continuous spectrum has a minimum wavelength. Sharp peaks are characteristic X-rays."
+  },
+  {
+    "id": "P25Q36",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(d) Write two uses of LASER.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "LASER",
+      "applications",
+      "2025"
+    ],
+    "hint": "Examples: barcode scanners, eye surgery, optical storage."
+  },
+  {
+    "id": "P24Q01",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Sound Waves",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "What happens to the wavelength of a sound wave in a medium if its frequency increases? (a) The wavelength decreases (b) The wavelength increases (c) The wavelength remains constant (d) The wavelength becomes zero",
+    "options": [
+      "The wavelength decreases",
+      "The wavelength increases",
+      "The wavelength remains constant",
+      "The wavelength becomes zero"
+    ],
+    "marks": 2,
+    "tags": [
+      "sound wave",
+      "wavelength",
+      "frequency",
+      "2024"
+    ],
+    "hint": "Use the relation $v = f\\lambda$. Velocity is constant for a given medium."
+  },
+  {
+    "id": "P24Q02",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Beats",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "What is the beat frequency when two waves of frequencies 400 Hz and 405 Hz interfere? (a) 5 Hz (b) 400 Hz (c) 405 Hz (d) 805 Hz",
+    "options": [
+      "5 Hz",
+      "400 Hz",
+      "405 Hz",
+      "805 Hz"
+    ],
+    "marks": 2,
+    "tags": [
+      "beats",
+      "frequency",
+      "interference",
+      "2024"
+    ],
+    "hint": "Beat frequency is the absolute difference of the two frequencies."
+  },
+  {
+    "id": "P24Q03",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Optical Fiber",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The working of an optical fibre for transmission of light waves is based on (a) total internal reflection (b) refraction (c) interference (d) diffraction",
+    "options": [
+      "total internal reflection",
+      "refraction",
+      "interference",
+      "diffraction"
+    ],
+    "marks": 2,
+    "tags": [
+      "optical fiber",
+      "total internal reflection",
+      "2024"
+    ],
+    "hint": "Light is guided through the fiber by repeated total internal reflections."
+  },
+  {
+    "id": "P24Q04",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "What is the nature of the image formed by a convex lens when the object is placed at twice the focal length? (a) Real and inverted (b) Virtual and erect (c) Real and erect (d) Virtual and inverted",
+    "options": [
+      "Real and inverted",
+      "Virtual and erect",
+      "Real and erect",
+      "Virtual and inverted"
+    ],
+    "marks": 2,
+    "tags": [
+      "convex lens",
+      "image formation",
+      "2024"
+    ],
+    "hint": "At $2F$, the image is real, inverted, and of the same size."
+  },
+  {
+    "id": "P24Q05",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Refraction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "Velocity of light in vacuum is \\(3 \\times 10^{8} \\mathrm{~m} / \\mathrm{s}\\) . Velocity of light in glass of refractive index 1.5 will be (a) \\(3 \\times 10^{8} \\mathrm{~m} / \\mathrm{s}\\) (b) \\(4.5 \\times 10^{8} \\mathrm{~m} / \\mathrm{s}\\) (c) \\(2 \\times 10^{8} \\mathrm{~m} / \\mathrm{s}\\) (d) \\(1.5 \\times 10^{8} \\mathrm{~m} / \\mathrm{s}\\)",
+    "options": [
+      "3 × 10⁸ m/s",
+      "4.5 × 10⁸ m/s",
+      "2 × 10⁸ m/s",
+      "1.5 × 10⁸ m/s"
+    ],
+    "marks": 2,
+    "tags": [
+      "refractive index",
+      "speed of light",
+      "2024"
+    ],
+    "hint": "$v = \\frac{c}{\\mu}$."
+  },
+  {
+    "id": "P24Q06",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Capacitance",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "Which of the following factors does capacitance depend on? (a) Voltage (b) Current (c) Area of plates (d) Resistance",
+    "options": [
+      "Voltage",
+      "Current",
+      "Area of plates",
+      "Resistance"
+    ],
+    "marks": 2,
+    "tags": [
+      "capacitance",
+      "factors",
+      "2024"
+    ],
+    "hint": "For a parallel plate capacitor, $C = \\frac{\\varepsilon_0 A}{d}$."
+  },
+  {
+    "id": "P24Q07",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistivity",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The SI unit of resistivity of a conductor is (a) ohm-m (b) ohm/m (c) ohm-m² (d) unit-less",
+    "options": [
+      "ohm-m",
+      "ohm/m",
+      "ohm-m²",
+      "unit-less"
+    ],
+    "marks": 2,
+    "tags": [
+      "resistivity",
+      "SI unit",
+      "2024"
+    ],
+    "hint": "From $R = \\frac{\\rho L}{A}$, $\\rho = \\frac{RA}{L}$."
+  },
+  {
+    "id": "P24Q08",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Kirchhoff's Laws",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If three currents of 1A, 2A, and 3A enter a junction, the total current leaving the junction according to KCL is (a) 6A (b) 5A (c) 3A (d) 0A",
+    "options": [
+      "6A",
+      "5A",
+      "3A",
+      "0A"
+    ],
+    "marks": 2,
+    "tags": [
+      "Kirchhoff's Current Law",
+      "KCL",
+      "2024"
+    ],
+    "hint": "Sum of currents entering equals sum of currents leaving."
+  },
+  {
+    "id": "P24Q09",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Heating Effect",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "An electric lamp is marked 100W, 220V. Its resistance is (a) 22Ω (b) 484Ω (c) 56Ω (d) 2.2Ω",
+    "options": [
+      "22Ω",
+      "484Ω",
+      "56Ω",
+      "2.2Ω"
+    ],
+    "marks": 2,
+    "tags": [
+      "electric power",
+      "resistance",
+      "2024"
+    ],
+    "hint": "Use $P = \\frac{V^2}{R}$ to find $R$."
+  },
+  {
+    "id": "P24Q10",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Electric Field",
+    "type": "mcq",
+    "difficulty": "medium",
+    "question": "The correct dimensional formula of electric field \\((\\mathrm{E} = \\mathrm{F} / \\mathrm{q})\\) is (a) [MLT⁻²I⁻¹] (b) [MLT⁻³I⁻¹] (c) [MLT⁻³I⁻¹] (d) [MLT⁻²I¹]",
+    "options": [
+      "[MLT⁻²I⁻¹]",
+      "[MLT⁻³I⁻¹]",
+      "[MLT⁻³I⁻¹]",
+      "[MLT⁻²I¹]"
+    ],
+    "marks": 2,
+    "tags": [
+      "electric field",
+      "dimensional formula",
+      "2024"
+    ],
+    "hint": "$F = [MLT^{-2}]$, $q = [IT]$, so $E = \\frac{F}{q}$."
+  },
+  {
+    "id": "P24Q11",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Flux",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The weber/m² (Tesla) is the unit of (a) magnetic field (b) magnetic flux density (c) magnetic flux (d) none of these",
+    "options": [
+      "magnetic field",
+      "magnetic flux density",
+      "magnetic flux",
+      "none of these"
+    ],
+    "marks": 2,
+    "tags": [
+      "magnetic field",
+      "unit",
+      "Tesla",
+      "2024"
+    ],
+    "hint": "$1 \\text{ T} = 1 \\text{ Wb/m}^2$."
+  },
+  {
+    "id": "P24Q12",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "In a p-n-p or n-p-n transistor, the correct statement is (a) Emitter region is highly doped (b) Base region is moderately doped (c) Collector region is lightly doped (d) none of these",
+    "options": [
+      "Emitter region is highly doped",
+      "Base region is moderately doped",
+      "Collector region is lightly doped",
+      "none of these"
+    ],
+    "marks": 2,
+    "tags": [
+      "transistor",
+      "doping",
+      "2024"
+    ],
+    "hint": "The emitter is heavily doped to supply majority carriers."
+  },
+  {
+    "id": "P24Q13",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) Define simple harmonic motion. Write the differential equation of SHM and give its solution.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "SHM",
+      "definition",
+      "differential equation",
+      "solution",
+      "2024"
+    ],
+    "hint": "$\\frac{d^2x}{dt^2} = -\\omega^2 x$. The solution is $x = A \\sin(\\omega t + \\phi)$."
+  },
+  {
+    "id": "P24Q14",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "(b) A particle executes SHM with amplitude \\(0.1 \\mathrm{m}\\) and time period 2 seconds. Find its maximum velocity and maximum acceleration.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "SHM",
+      "maximum velocity",
+      "maximum acceleration",
+      "2024"
+    ],
+    "hint": "$v_{max} = A\\omega$, $a_{max} = A\\omega^2$, where $\\omega = \\frac{2\\pi}{T}$."
+  },
+  {
+    "id": "P24Q15",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Oscillations",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) What is the difference between free and forced oscillations?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "free oscillations",
+      "forced oscillations",
+      "2024"
+    ],
+    "hint": "Free oscillations occur at natural frequency. Forced oscillations occur due to an external periodic force."
+  },
+  {
+    "id": "P24Q16",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Refraction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) State Snell's law of refraction. What is total internal reflection? State the conditions for total internal reflection.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "Snell's law",
+      "total internal reflection",
+      "conditions",
+      "2024"
+    ],
+    "hint": "$\\mu_1 \\sin i = \\mu_2 \\sin r$. TIR occurs when light goes from denser to rarer medium and $i > c$."
+  },
+  {
+    "id": "P24Q17",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Refraction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "(b) A ray of light enters from air into glass. The angle of incidence is \\(30^{\\circ}\\) , find the angle of refraction. (Refractive index of glass = 1.5)",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "refraction",
+      "Snell's law",
+      "2024"
+    ],
+    "hint": "Use Snell's law: $n_{air} \\sin i = n_{glass} \\sin r$."
+  },
+  {
+    "id": "P24Q18",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Lens Maker's Formula",
+    "type": "short-answer",
+    "difficulty": "medium",
+    "question": "(c) Write the lens maker's formula and explain the terms.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "lens maker's formula",
+      "terms",
+      "2024"
+    ],
+    "hint": "$\\frac{1}{f} = (\\mu-1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$."
+  },
+  {
+    "id": "P24Q19",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Coulomb's Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) State Coulomb's law in electrostatics. Write its vector form.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "Coulomb's law",
+      "vector form",
+      "2024"
+    ],
+    "hint": "$F = k \\frac{q_1 q_2}{r^2}$. In vector form, $\\vec{F}_{12} = k \\frac{q_1 q_2 \\hat{r}_{12}}{r_{12}^2}$."
+  },
+  {
+    "id": "P24Q20",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Electric Field",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) Define electric field intensity. Find the electric field due to a point charge.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "electric field",
+      "point charge",
+      "2024"
+    ],
+    "hint": "$\\vec{E} = \\frac{\\vec{F}}{q_0}$. For a point charge, $E = \\frac{kq}{r^2}$."
+  },
+  {
+    "id": "P24Q21",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Kirchhoff's Laws",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) State Kirchhoff's Current Law and Kirchhoff's Voltage Law.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "Kirchhoff's laws",
+      "KCL",
+      "KVL",
+      "2024"
+    ],
+    "hint": "KCL: Sum of currents entering a junction = sum leaving. KVL: Sum of potential differences in a loop = 0."
+  },
+  {
+    "id": "P24Q22",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "(b) Find the equivalent resistance of three resistors 2Ω, 3Ω, and 6Ω connected in parallel.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "resistance",
+      "parallel combination",
+      "2024"
+    ],
+    "hint": "$\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3}$."
+  },
+  {
+    "id": "P24Q23",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "(c) A wire of resistance 10Ω is stretched to double its length. Find its new resistance.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "resistance",
+      "length",
+      "area",
+      "2024"
+    ],
+    "hint": "$R = \\frac{\\rho L}{A}$. If length doubles, area halves. New $R = 4 \\times$ original $R$."
+  },
+  {
+    "id": "P24Q24",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Biot-Savart Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) State Biot-Savart law. Write the expression for magnetic field due to a straight current-carrying wire.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "Biot-Savart law",
+      "straight wire",
+      "magnetic field",
+      "2024"
+    ],
+    "hint": "$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I d\\vec{l} \\times \\hat{r}}{r^2}$. For infinite wire, $B = \\frac{\\mu_0 I}{2\\pi r}$."
+  },
+  {
+    "id": "P24Q25",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Field",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "(b) Find the magnetic field at the centre of a circular coil of radius 0.1 m carrying current 5A \\((\\mu_{0} = 4\\pi \\times 10^{-7}\\mathrm{H / m})\\) .",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "magnetic field",
+      "circular coil",
+      "2024"
+    ],
+    "hint": "$B = \\frac{\\mu_0 I}{2R}$ for a single loop."
+  },
+  {
+    "id": "P24Q26",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Ampere's Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) State Ampere's circular law.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Ampere's law",
+      "2024"
+    ],
+    "hint": "$\\oint \\vec{B} \\cdot d\\vec{l} = \\mu_0 I_{enc}$."
+  },
+  {
+    "id": "P24Q27",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) State Faraday's laws of electromagnetic induction. Write the expression for induced emf.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "Faraday's laws",
+      "induced emf",
+      "2024"
+    ],
+    "hint": "Emf is induced when magnetic flux changes. $\\mathcal{E} = -\\frac{d\\Phi}{dt}$."
+  },
+  {
+    "id": "P24Q28",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "(b) A coil of 100 turns has a magnetic flux of 0.02 Wb. If the flux is reduced to zero in 0.1 seconds, find the induced emf.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "induced emf",
+      "Faraday's law",
+      "2024"
+    ],
+    "hint": "Induced emf = $-N \\frac{\\Delta \\Phi}{\\Delta t}$."
+  },
+  {
+    "id": "P24Q29",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Lenz's Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) State Lenz's law. How does it obey the law of conservation of energy?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Lenz's law",
+      "conservation of energy",
+      "2024"
+    ],
+    "hint": "The induced emf opposes the change, ensuring energy is not created out of nothing."
+  },
+  {
+    "id": "P24Q30",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) Explain the formation of p-n junction.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "PN junction",
+      "formation",
+      "2024"
+    ],
+    "hint": "Diffusion of holes and electrons across the junction creates a depletion region."
+  },
+  {
+    "id": "P24Q31",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) Draw the V-I characteristics of a p-n junction.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "PN junction",
+      "V-I characteristics",
+      "2024"
+    ],
+    "hint": "It shows low resistance in forward bias and high resistance in reverse bias."
+  },
+  {
+    "id": "P24Q32",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Zener Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) What is Zener breakdown? Write one application of Zener diode.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Zener breakdown",
+      "Zener diode",
+      "application",
+      "2024"
+    ],
+    "hint": "Breakdown due to high reverse voltage. Used as voltage regulator."
+  },
+  {
+    "id": "P24Q33",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "(a) What is a transistor? Explain the working of an n- p- n transistor in common emitter configuration.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "transistor",
+      "NPN",
+      "common emitter",
+      "2024"
+    ],
+    "hint": "A small base current controls a larger collector current."
+  },
+  {
+    "id": "P24Q34",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "short-answer",
+    "difficulty": "medium",
+    "question": "(b) Define \\(\\alpha\\) and \\(\\beta\\) of a transistor. Derive the relation between them.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "transistor",
+      "α",
+      "β",
+      "current gain",
+      "2024"
+    ],
+    "hint": "$\\alpha = \\frac{I_c}{I_e}$, $\\beta = \\frac{I_c}{I_b}$. Relation: $\\beta = \\frac{\\alpha}{1-\\alpha}$."
+  },
+  {
+    "id": "P24Q35",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Write two applications of transistor.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "transistor",
+      "applications",
+      "2024"
+    ],
+    "hint": "Examples: amplifier, switch."
+  },
+  {
+    "id": "P24Q36",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) What are X-rays? How are they produced in an X-ray tube?",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "X-rays",
+      "production",
+      "Coolidge tube",
+      "2024"
+    ],
+    "hint": "High-speed electrons striking a metal target produce X-rays."
+  },
+  {
+    "id": "P24Q37",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) Distinguish between continuous and characteristic X-rays.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "X-rays",
+      "continuous spectrum",
+      "characteristic spectrum",
+      "2024"
+    ],
+    "hint": "Continuous X-rays are produced by deceleration, characteristic by transitions in target atoms."
+  },
+  {
+    "id": "P24Q38",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Write two medical applications of X-rays.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "X-rays",
+      "medical applications",
+      "2024"
+    ],
+    "hint": "Examples: radiography (bone imaging), CT scans."
+  },
+  {
+    "id": "P24Q39",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) Explain the principle of LASER. What is population inversion?",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "LASER",
+      "principle",
+      "population inversion",
+      "2024"
+    ],
+    "hint": "Laser works on stimulated emission. Population inversion is having more atoms in excited state than ground state."
+  },
+  {
+    "id": "P24Q40",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) Write three properties of LASER light.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "LASER",
+      "properties",
+      "2024"
+    ],
+    "hint": "Coherence, monochromaticity, directionality."
+  },
+  {
+    "id": "P24Q41",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Fiber Optics",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Explain the working of an optical fibre. Write two advantages of optical fibre communication.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "optical fiber",
+      "working",
+      "advantages",
+      "2024"
+    ],
+    "hint": "Based on total internal reflection. Advantages: high bandwidth, low loss."
+  },
+  {
+    "id": "P23Q01",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "i. In which position the velocity of a particle executing SHM is maximum? Explain.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "SHM",
+      "velocity",
+      "2023"
+    ],
+    "hint": "Velocity is maximum at the mean position where displacement is zero."
+  },
+  {
+    "id": "P23Q02",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "ii. On what factors does the focal length of a lens depend?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "focal length",
+      "lens",
+      "factors",
+      "2023"
+    ],
+    "hint": "Refractive index of material, radii of curvature, and surrounding medium."
+  },
+  {
+    "id": "P23Q03",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Electric Potential",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "iii. Is the electric potential necessarily be zero at a point where the electric field strength is zero? Explain.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "electric field",
+      "electric potential",
+      "2023"
+    ],
+    "hint": "No, potential can be constant and non-zero even if field is zero (e.g., inside a charged conductor)."
+  },
+  {
+    "id": "P23Q04",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Thermoelectric Effect",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "iv. What are the differences between Peltier effect and Joule effect?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Peltier effect",
+      "Joule effect",
+      "2023"
+    ],
+    "hint": "Peltier effect is reversible and occurs at junctions; Joule effect is irreversible heating in a resistor."
+  },
+  {
+    "id": "P23Q05",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "v. A wire cuts across a flux of 0.002 Weber in 0.12 seconds. What is the emf induced in the wire?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "induced emf",
+      "Faraday's law",
+      "2023"
+    ],
+    "hint": "Induced emf = $-\\frac{\\Delta \\Phi}{\\Delta t}$."
+  },
+  {
+    "id": "P23Q06",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Solar Cell",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "vi. Write down the basic principle of operation of a solar photo voltaic cell.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "solar cell",
+      "photovoltaic effect",
+      "2023"
+    ],
+    "hint": "Converts light energy into electrical energy using the photovoltaic effect."
+  },
+  {
+    "id": "P23Q07",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "vii. What are the unique properties of LASER?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "LASER",
+      "properties",
+      "2023"
+    ],
+    "hint": "Coherence, monochromaticity, directionality, high intensity."
+  },
+  {
+    "id": "P23Q08",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Nanotechnology",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "viii. Mention three uses of nanotechnology.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "nanotechnology",
+      "applications",
+      "2023"
+    ],
+    "hint": "Examples: drug delivery, electronics, materials science."
+  },
+  {
+    "id": "P23Q09",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "(a) The equation of a particle vibrating in SHM is \\(y = 5 \\sin \\frac{2\\pi}{5} (10t + x)\\) , where \\(y\\) and \\(x\\) are in m and t is in s. Find out the frequency and amplitude of vibration.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "SHM",
+      "amplitude",
+      "frequency",
+      "2023"
+    ],
+    "hint": "Compare with $y = A \\sin(\\omega t + \\phi)$. Frequency $f = \\frac{\\omega}{2\\pi}$."
+  },
+  {
+    "id": "P23Q10",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Oscillations",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) Write down a few differences between Oscillatory and Periodic motion.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "oscillatory motion",
+      "periodic motion",
+      "2023"
+    ],
+    "hint": "Oscillatory motion is to and fro about a mean point; periodic motion repeats after a fixed time."
+  },
+  {
+    "id": "P23Q11",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Ultrasonic Waves",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) What is ultrasonic wave? Write down the properties and applications of it.",
+    "options": null,
+    "marks": 4,
+    "tags": [
+      "ultrasonic waves",
+      "properties",
+      "applications",
+      "2023"
+    ],
+    "hint": "Sound waves with frequency $> 20$ kHz. Properties: high frequency, short wavelength. Applications: medical imaging, cleaning."
+  },
+  {
+    "id": "P23Q12",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) A lens is composed of different layers made of two different materials. A point object is placed on the axis. How many images of the object will be formed and why?",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "lens",
+      "refraction",
+      "multiple images",
+      "2023"
+    ],
+    "hint": "Two images, because each material has a different refractive index, hence different focal lengths."
+  },
+  {
+    "id": "P23Q13",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Refraction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "(b) Calculate the speed of light in a medium whose critical angle is \\(45^{\\circ}\\) . (Speed of light in air = 3×10⁸ m/s)",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "critical angle",
+      "refractive index",
+      "speed of light",
+      "2023"
+    ],
+    "hint": "$\\mu = \\frac{1}{\\sin c}$, and $v = \\frac{c}{\\mu}$."
+  },
+  {
+    "id": "P23Q14",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Draw a ray diagram to show image formation when the convex lens produces a real, inverted and magnified image of the object.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "convex lens",
+      "ray diagram",
+      "real image",
+      "2023"
+    ],
+    "hint": "Object is placed between $F$ and $2F$."
+  },
+  {
+    "id": "P23Q15",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Interference & Diffraction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(d) Write two features to distinguish between the interference patterns in Young's double slit experiment with the diffraction pattern obtained due to a single slit.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "interference",
+      "diffraction",
+      "Young's double slit",
+      "2023"
+    ],
+    "hint": "Interference: equally spaced fringes of same intensity. Diffraction: central maximum is brightest and broadest."
+  },
+  {
+    "id": "P23Q16",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Energy Bands",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) Compare conductor, semiconductor and insulator in terms of energy band diagram.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "conductor",
+      "semiconductor",
+      "insulator",
+      "energy bands",
+      "2023"
+    ],
+    "hint": "Conductors: no band gap. Semiconductors: small band gap. Insulators: large band gap."
+  },
+  {
+    "id": "P23Q17",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Rectifier",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) A student wants to use two p-n junction diodes to convert alternating current into direct current. Draw the labelled circuit diagram he/she would use and explain it.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "rectifier",
+      "full wave rectifier",
+      "2023"
+    ],
+    "hint": "Center-tapped full-wave rectifier with two diodes."
+  },
+  {
+    "id": "P23Q18",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Draw the typical input and output characteristics of an n-p-n transistor in CE configuration. Show how these characteristics can be used to determine (i) the input resistance (r), and (ii) current amplification factor (β).",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "transistor",
+      "common emitter",
+      "characteristics",
+      "2023"
+    ],
+    "hint": "Input characteristics: $I_B$ vs $V_{BE}$. Output: $I_C$ vs $V_{CE}$. $\\beta = \\frac{\\Delta I_C}{\\Delta I_B}$ at constant $V_{CE}$."
+  },
+  {
+    "id": "P23Q19",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Lenz's Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) State Lenz's law. Does it obey the principle of conservation of energy?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Lenz's law",
+      "conservation of energy",
+      "2023"
+    ],
+    "hint": "Induced emf opposes change. Yes, it ensures energy conservation."
+  },
+  {
+    "id": "P23Q20",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Field",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "(b) Deduce an expression for the magnitude of the magnetic field at the centre of a circular coil of N turns.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "magnetic field",
+      "circular coil",
+      "Biot-Savart law",
+      "2023"
+    ],
+    "hint": "$B = \\frac{\\mu_0 N I}{2R}$ for the centre of a circular coil."
+  },
+  {
+    "id": "P23Q21",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Field",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "(c) A straight wire carrying current of 12A is bent into a semi-circular arc of radius 0.02m. Find the magnitude of the magnetic field at the centre of the arc.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "magnetic field",
+      "semi-circular arc",
+      "Biot-Savart law",
+      "2023"
+    ],
+    "hint": "$B = \\frac{\\mu_0 I}{4R}$ for a semi-circular arc."
+  },
+  {
+    "id": "P23Q22",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Biot-Savart Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) State Biot-Savart law and express this law in the vector form.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Biot-Savart law",
+      "vector form",
+      "2023"
+    ],
+    "hint": "$d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\frac{I d\\vec{l} \\times \\hat{r}}{r^2}$."
+  },
+  {
+    "id": "P23Q23",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Lorentz Force",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "(b) An electron travelling with velocity \\(30~\\mathrm{cm s}^{-1}\\) enters a region of uniform magnetic field \\(0.2\\mathrm{T}\\) acting perpendicular to its paths. Calculate the magnitude of force on the electron. (charge of electron \\(= 1.6\\times 10^{-19}\\mathrm{C}\\) )",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Lorentz force",
+      "magnetic force",
+      "2023"
+    ],
+    "hint": "$F = q v B \\sin\\theta$. Here, $\\theta=90^\\circ$."
+  },
+  {
+    "id": "P23Q24",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Lenz's Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) State and explain Lenz's law.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Lenz's law",
+      "2023"
+    ],
+    "hint": "The direction of induced emf is such that it opposes the change causing it."
+  },
+  {
+    "id": "P23Q25",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Galvanometer",
+    "type": "short-answer",
+    "difficulty": "medium",
+    "question": "(d) A galvanometer of resistance \\(100\\Omega\\) gives full scale deflection when a current of \\(500\\mu \\mathrm{A}\\) passes through it. How can this be converted to a voltmeter reading up to \\(5\\mathrm{V}\\) ? Draw necessary circuit diagram.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "galvanometer",
+      "voltmeter",
+      "conversion",
+      "2023"
+    ],
+    "hint": "Connect a high resistance in series with the galvanometer. $R_{series} = \\frac{V}{I_g} - R_g$."
+  },
+  {
+    "id": "P23Q26",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Extrinsic Semiconductors",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) What are the differences between intrinsic and extrinsic semiconductors?",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "intrinsic semiconductor",
+      "extrinsic semiconductor",
+      "2023"
+    ],
+    "hint": "Intrinsic: pure, equal electron and hole concentration. Extrinsic: doped, majority carriers."
+  },
+  {
+    "id": "P23Q27",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "(b) Calculate the tube voltage required to be applied to an X-ray tube to get minimum wavelength 1A. (Planck's constant \\(\\mathrm{h} = 6.626 \\times 10^{-34} \\mathrm{~J} \\cdot \\mathrm{s}\\) )",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "X-rays",
+      "minimum wavelength",
+      "tube voltage",
+      "2023"
+    ],
+    "hint": "$\\lambda_{min} = \\frac{hc}{eV}$, so $V = \\frac{hc}{e\\lambda_{min}}$."
+  },
+  {
+    "id": "P23Q28",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) Define population inversion. Discuss some method to achieve population inversion.",
+    "options": null,
+    "marks": 4,
+    "tags": [
+      "population inversion",
+      "pumping",
+      "LASER",
+      "2023"
+    ],
+    "hint": "More atoms in excited state than ground state. Methods: optical pumping, electrical discharge."
+  },
+  {
+    "id": "P23Q29",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(a) Draw the curve showing the variation of intensity with wavelength of X-rays and mark cut off wavelength, continuous & characteristic X-rays. Write down two important applications of X-rays.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "X-rays",
+      "spectrum",
+      "applications",
+      "2023"
+    ],
+    "hint": "Continuous spectrum with a minimum wavelength, sharp peaks for characteristic X-rays. Applications: medical imaging, crystallography."
+  },
+  {
+    "id": "P23Q30",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(b) Draw the energy level diagram of He-Ne Laser.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "He-Ne Laser",
+      "energy level diagram",
+      "2023"
+    ],
+    "hint": "Helium atoms transfer energy to Neon atoms, causing population inversion."
+  },
+  {
+    "id": "P23Q31",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Fiber Optics",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "(c) State some advantages of optical fibre over conducting wire.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "optical fiber",
+      "advantages",
+      "2023"
+    ],
+    "hint": "High bandwidth, low loss, immune to electromagnetic interference."
+  },
+  {
+    "id": "P22Q01",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "mcq",
+    "difficulty": "medium",
+    "question": "The equation of a particle executing S.H.M. is \\(y = 5 \\sin \\frac{2\\pi}{5} (10t + x)\\) . The frequency and amplitude of vibration is (a) 10, 5 (b) 5, 2 (c) 2, 5 (d) \\(\\frac{5}{2}\\) , 5",
+    "options": [
+      "10, 5",
+      "5, 2",
+      "2, 5",
+      "5/2, 5"
+    ],
+    "marks": 1,
+    "tags": [
+      "SHM",
+      "amplitude",
+      "frequency",
+      "2022"
+    ],
+    "hint": "Compare with $y = A \\sin(\\omega t + \\phi)$. Frequency $f = \\frac{\\omega}{2\\pi}$."
+  },
+  {
+    "id": "P22Q02",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The focal lengths of a convex lens for blue and yellow light are \\(\\mathrm{f}_{\\mathrm{b}}\\) and \\(\\mathrm{f}_{\\mathrm{y}}\\) respectively. The correct relation is (a) \\(\\mathrm{fb} = \\mathrm{fy}\\) (b) \\(\\mathrm{fb} > \\mathrm{fy}\\) (c) \\(\\mathrm{fb}< \\mathrm{fy}\\) (d) \\(\\mathrm{fb}\\leq \\mathrm{fy}\\)",
+    "options": [
+      "fb = fy",
+      "fb > fy",
+      "fb < fy",
+      "fb ≤ fy"
+    ],
+    "marks": 1,
+    "tags": [
+      "focal length",
+      "dispersion",
+      "2022"
+    ],
+    "hint": "Refractive index is higher for blue light, so focal length is shorter."
+  },
+  {
+    "id": "P22Q03",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Electric Current",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "If the current flowing through a circuit is 0.5 A in 5 mins, the amount of charge flowing through it is (a) 216 C (b) 300 C (c) 150 C (d) 25 C",
+    "options": [
+      "216 C",
+      "300 C",
+      "150 C",
+      "25 C"
+    ],
+    "marks": 1,
+    "tags": [
+      "electric charge",
+      "current",
+      "2022"
+    ],
+    "hint": "$Q = I \\times t$. Time in seconds."
+  },
+  {
+    "id": "P22Q04",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Beats",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "If two progressive waves given by \\(y_{1} = 6 \\sin 250\\pi t\\) and \\(y_{2} = 3 \\sin 256\\pi t\\) superpose, the number of beats formed per second is (a) 3 (b) 5 (c) 6 (d) 8",
+    "options": [
+      "3",
+      "5",
+      "6",
+      "8"
+    ],
+    "marks": 1,
+    "tags": [
+      "beats",
+      "frequency",
+      "2022"
+    ],
+    "hint": "Beat frequency = $|f_1 - f_2|$. $f = \\frac{\\omega}{2\\pi}$."
+  },
+  {
+    "id": "P22Q05",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Refraction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "The speed of light in air is \\(3 \\times 10^{8} \\mathrm{~ms}^{- 1}\\) . Its speed in diamond of refractive index 2.4 is (a) \\(3 \\times 10^{8} \\mathrm{~ms}^{- 1}\\) (b) \\(7.2 \\times 10^{8} \\mathrm{~ms}^{- 1}\\) (c) \\(1.25 \\times 10^{8} \\mathrm{~ms}^{- 1}\\) (d) none of these",
+    "options": [
+      "3 × 10⁸ ms⁻¹",
+      "7.2 × 10⁸ ms⁻¹",
+      "1.25 × 10⁸ ms⁻¹",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "refractive index",
+      "speed of light",
+      "2022"
+    ],
+    "hint": "$v = \\frac{c}{\\mu}$."
+  },
+  {
+    "id": "P22Q06",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "Specific resistance of the material of wire is \\(45 \\times 10^{- 8} \\Omega \\mathrm{~m}\\) . The length of the wire (radius 0.25 mm) required to make a resistance of 8 \\(\\Omega\\) is (a) 5 m (b) 4.5 m (c) 3.5 m (d) 2.5 m",
+    "options": [
+      "5 m",
+      "4.5 m",
+      "3.5 m",
+      "2.5 m"
+    ],
+    "marks": 1,
+    "tags": [
+      "resistance",
+      "resistivity",
+      "2022"
+    ],
+    "hint": "$R = \\frac{\\rho L}{A}$. $A = \\pi r^2$."
+  },
+  {
+    "id": "P22Q07",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Field",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The formula for the magnetic field inside a long solenoid of length L & total number of turns N, carrying a current I is (a) \\(B = \\mu_{0} n I\\) (b) \\(B = \\mu_{0} N I / L\\) (c) \\(B = \\mu_{0} N I / L\\) (d) None of these",
+    "options": [
+      "B = μ₀ n I",
+      "B = μ₀ N I / L",
+      "B = μ₀ N I / L",
+      "None of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "solenoid",
+      "magnetic field",
+      "2022"
+    ],
+    "hint": "$B = \\mu_0 n I$, where $n = \\frac{N}{L}$."
+  },
+  {
+    "id": "P22Q08",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "A Carbon resistor has three strips of red colour and a gold strip. What is the value of the resistor? (a) \\((200\\pm 5)\\Omega\\) (b) \\((2000\\pm 5)\\Omega\\) (c) \\((2200\\pm 5)\\Omega\\) (d) \\((2220\\pm 5)\\Omega\\)",
+    "options": [
+      "(200±5)Ω",
+      "(2000±5)Ω",
+      "(2200±5)Ω",
+      "(2220±5)Ω"
+    ],
+    "marks": 1,
+    "tags": [
+      "carbon resistor",
+      "color coding",
+      "2022"
+    ],
+    "hint": "Red = 2. Three red stripes: 2, 2, $\\times 10^2$, gold = $\\pm 5\\%$."
+  },
+  {
+    "id": "P22Q09",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "Lenz's law in electromagnetic induction is another form of the law of (a) Conservation of energy (b) Conservation of charge (c) Conservation of mass (d) None of these",
+    "options": [
+      "Conservation of energy",
+      "Conservation of charge",
+      "Conservation of mass",
+      "None of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "Lenz's law",
+      "conservation of energy",
+      "2022"
+    ],
+    "hint": "Opposing the change ensures energy is not created from nothing."
+  },
+  {
+    "id": "P22Q10",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetism",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "Which of the following does not exist? (a) Static charge (b) Moving charge (c) Magnetic dipole (d) Magnetic monopole",
+    "options": [
+      "Static charge",
+      "Moving charge",
+      "Magnetic dipole",
+      "Magnetic monopole"
+    ],
+    "marks": 1,
+    "tags": [
+      "magnetic monopole",
+      "2022"
+    ],
+    "hint": "Magnetic monopoles have not been observed in nature."
+  },
+  {
+    "id": "P22Q11",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "In transistor the base is doped (a) heavily (b) moderately (c) lightly (d) randomly",
+    "options": [
+      "heavily",
+      "moderately",
+      "lightly",
+      "randomly"
+    ],
+    "marks": 1,
+    "tags": [
+      "transistor",
+      "base",
+      "doping",
+      "2022"
+    ],
+    "hint": "The base is thin and lightly doped to minimize recombination."
+  },
+  {
+    "id": "P22Q12",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If the voltage of X- ray tube is doubled, the intensity of X- rays will become (a) half (b) doubled (c) four times (d) unchanged",
+    "options": [
+      "half",
+      "doubled",
+      "four times",
+      "unchanged"
+    ],
+    "marks": 1,
+    "tags": [
+      "X-rays",
+      "intensity",
+      "2022"
+    ],
+    "hint": "Intensity is proportional to the number of electrons striking the target, which is controlled by filament current, not tube voltage."
+  },
+  {
+    "id": "P22Q13",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "Which of the following is a unique property of laser? (a) Low level of directionality (b) Polychromatic (c) High coherence (d) Low intensity",
+    "options": [
+      "Low level of directionality",
+      "Polychromatic",
+      "High coherence",
+      "Low intensity"
+    ],
+    "marks": 1,
+    "tags": [
+      "LASER",
+      "properties",
+      "2022"
+    ],
+    "hint": "Laser light is highly coherent."
+  },
+  {
+    "id": "P22Q14",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If \\(\\mathrm{I}_{\\mathrm{diff}}\\) and \\(\\mathrm{I}_{\\mathrm{diff}}\\) are the diffusion current and drift current in an unbiased p- n junction diode, then (a) \\(\\mathrm{Idiff} = \\mathrm{Idiff}\\) (b) \\(\\mathrm{Idiff} > \\mathrm{Idiff}\\) (c) \\(\\mathrm{Idiff} > \\mathrm{Idiff}\\) (d) \\(\\mathrm{Idiff}< \\mathrm{Idiff}\\)",
+    "options": [
+      "Idiff = Idiff",
+      "Idiff > Idiff",
+      "Idiff > Idiff",
+      "Idiff < Idiff"
+    ],
+    "marks": 1,
+    "tags": [
+      "PN junction",
+      "diffusion current",
+      "drift current",
+      "2022"
+    ],
+    "hint": "At equilibrium, drift and diffusion currents are equal and opposite."
+  },
+  {
+    "id": "P22Q15",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Bohr's Atomic Model",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The energy of the first excited state of hydrogen atom is (a)- 13.6 eV (b)- 3.4 eV (c)- 1.51 eV (d) none of these",
+    "options": [
+      "-13.6 eV",
+      "-3.4 eV",
+      "-1.51 eV",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "hydrogen atom",
+      "energy levels",
+      "2022"
+    ],
+    "hint": "First excited state is $n=2$. $E_n = -\\frac{13.6}{n^2} \\text{ eV}$."
+  },
+  {
+    "id": "P22Q16",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Acoustics",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "The absorption coefficient of an open window is",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "acoustics",
+      "absorption coefficient",
+      "2022"
+    ],
+    "hint": "It is the ratio of absorbed energy to incident energy. An open window absorbs perfectly."
+  },
+  {
+    "id": "P22Q17",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Wave Motion",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "In wave, direction of vibration of the particles is perpendicular to the direction of propagation of the wave.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "transverse wave",
+      "2022"
+    ],
+    "hint": "Transverse waves."
+  },
+  {
+    "id": "P22Q18",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Interference",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "Two or more light waves are said to be coherent if they are in same",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "coherence",
+      "phase",
+      "2022"
+    ],
+    "hint": "Constant phase difference."
+  },
+  {
+    "id": "P22Q19",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Total Internal Reflection",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "For total internal reflection, light should travel from medium to medium.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "total internal reflection",
+      "2022"
+    ],
+    "hint": "From denser to rarer."
+  },
+  {
+    "id": "P22Q20",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Electric Field",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "The electric field inside a hollow charged sphere is",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "electric field",
+      "charged sphere",
+      "2022"
+    ],
+    "hint": "Zero."
+  },
+  {
+    "id": "P22Q21",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Capacitance",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "Keeping the charge same, if the capacitance of a capacitor is increased, the potential difference across it will",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "capacitance",
+      "potential difference",
+      "2022"
+    ],
+    "hint": "$V = \\frac{Q}{C}$, so V decreases."
+  },
+  {
+    "id": "P22Q22",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "The equivalent resistance in parallel combination of three resistances \\(7\\Omega\\) \\(5\\Omega\\) \\(3\\Omega\\) is",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "resistance",
+      "parallel combination",
+      "2022"
+    ],
+    "hint": "$\\frac{1}{R_{eq}} = \\frac{1}{7} + \\frac{1}{5} + \\frac{1}{3}$."
+  },
+  {
+    "id": "P22Q23",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Thermoelectric Effect",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "Seebeck effect is a process.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "Seebeck effect",
+      "thermoelectricity",
+      "2022"
+    ],
+    "hint": "Conversion of heat into electricity."
+  },
+  {
+    "id": "P22Q24",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Flux",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "The SI unit of magnetic flux density is",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "magnetic flux density",
+      "SI unit",
+      "2022"
+    ],
+    "hint": "Tesla (T)."
+  },
+  {
+    "id": "P22Q25",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Galvanometer",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "In a moving coil galvanometer is produced to rotate the pointer.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "galvanometer",
+      "torque",
+      "2022"
+    ],
+    "hint": "Magnetic torque."
+  },
+  {
+    "id": "P22Q26",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Extrinsic Semiconductors",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "Doping of Indium to silicon leads to type semiconductor.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "doping",
+      "P-type",
+      "indium",
+      "2022"
+    ],
+    "hint": "Indium is trivalent, so P-type."
+  },
+  {
+    "id": "P22Q27",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "X-rays are produced by hitting a target (heavy metal) with a stream of",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "X-rays",
+      "production",
+      "2022"
+    ],
+    "hint": "High-speed electrons."
+  },
+  {
+    "id": "P22Q28",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "fill-blank",
+    "difficulty": "easy",
+    "question": "In the depletion region of a p-n junction, there is a",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "depletion region",
+      "PN junction",
+      "2022"
+    ],
+    "hint": "Lack of free charge carriers, so it is an insulating region."
+  },
+  {
+    "id": "P22Q29",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "If A & ω are the amplitude and the angular frequency respectively of a particle in SHM, then write down the formula for the maximum acceleration of the particle.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "SHM",
+      "maximum acceleration",
+      "2022"
+    ],
+    "hint": "$a_{max} = A\\omega^2$."
+  },
+  {
+    "id": "P22Q30",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Wave Motion",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "In which medium transverse wave cannot propagate?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "transverse wave",
+      "medium",
+      "2022"
+    ],
+    "hint": "Gases and liquids."
+  },
+  {
+    "id": "P22Q31",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "If a lens is immersed in water what will happen to its focal length?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "focal length",
+      "lens",
+      "2022"
+    ],
+    "hint": "Focal length increases (lens becomes weaker) as refractive index difference decreases."
+  },
+  {
+    "id": "P22Q32",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Optical Fiber",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Which one of the core and cladding in an optical fiber has higher refractive index?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "optical fiber",
+      "refractive index",
+      "2022"
+    ],
+    "hint": "Core."
+  },
+  {
+    "id": "P22Q33",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Capacitance",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "Find out the equivalent capacitance for two capacitors of capacitance \\(30\\mu \\mathrm{F}\\) and \\(50\\mu \\mathrm{F}\\) connected in series.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "capacitance",
+      "series combination",
+      "2022"
+    ],
+    "hint": "$\\frac{1}{C_{eq}} = \\frac{1}{30} + \\frac{1}{50}$."
+  },
+  {
+    "id": "P22Q34",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Electric Power",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "If the voltage across a bulb is decreased by \\(1\\%\\) , what will be the percentage change in its power?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "electric power",
+      "voltage",
+      "2022"
+    ],
+    "hint": "$P \\propto V^2$, so a $1\\%$ decrease in V gives about $2\\%$ decrease in P."
+  },
+  {
+    "id": "P22Q35",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Lorentz Force",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "If a static charge is placed inside a magnetic field, will there be any force acting on it?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "Lorentz force",
+      "magnetic force",
+      "2022"
+    ],
+    "hint": "No, because $v = 0$."
+  },
+  {
+    "id": "P22Q36",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Why induced emf is also called back emf?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "induced emf",
+      "back emf",
+      "2022"
+    ],
+    "hint": "It opposes the change in current that produced it."
+  },
+  {
+    "id": "P22Q37",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Among \\(K_{\\alpha}\\) and \\(K_{\\beta}\\) X- ray which has higher energy?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "X-rays",
+      "characteristic X-rays",
+      "2022"
+    ],
+    "hint": "$K_\\beta$ has higher energy (shorter wavelength) than $K_\\alpha$."
+  },
+  {
+    "id": "P22Q38",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Force",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Two parallel wires carry same current in same direction. What will happen?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "magnetic force",
+      "parallel wires",
+      "2022"
+    ],
+    "hint": "They attract each other."
+  },
+  {
+    "id": "P22Q39",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Energy Bands",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Which one of Silicon or Germanium has higher energy band gap?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "energy band gap",
+      "silicon",
+      "germanium",
+      "2022"
+    ],
+    "hint": "Silicon (~1.1 eV) has a larger band gap than germanium (~0.7 eV)."
+  },
+  {
+    "id": "P22Q40",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Which bias causes breakdown in p- n junction diode?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "PN junction",
+      "breakdown",
+      "2022"
+    ],
+    "hint": "Reverse bias."
+  },
+  {
+    "id": "P22Q41",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Which type of biasing gives a semiconductor diode very high resistance?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "PN junction",
+      "reverse bias",
+      "2022"
+    ],
+    "hint": "Reverse bias."
+  },
+  {
+    "id": "P22Q42",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Name two types of pumping mechanism in laser production.",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "pumping",
+      "LASER",
+      "2022"
+    ],
+    "hint": "Optical pumping and electrical discharge."
+  },
+  {
+    "id": "P22Q43",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Nanotechnology",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Write the full form of CNT in respect to nanotechnology?",
+    "options": null,
+    "marks": 1,
+    "tags": [
+      "nanotechnology",
+      "CNT",
+      "2022"
+    ],
+    "hint": "Carbon Nanotube."
+  },
+  {
+    "id": "P22Q44",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Total Internal Reflection",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Will there be any change in critical angle if the colour of light is changed? Give reason.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "critical angle",
+      "refractive index",
+      "2022"
+    ],
+    "hint": "Yes, because refractive index depends on colour."
+  },
+  {
+    "id": "P22Q45",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Capacitance",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "What happens to the capacitance of a capacitor when a dielectric slab is placed between its plates? Explain with relevant formula.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "capacitance",
+      "dielectric",
+      "2022"
+    ],
+    "hint": "Capacitance increases: $C = \\kappa C_0$, where $\\kappa > 1$."
+  },
+  {
+    "id": "P22Q46",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistivity",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Out of resistance (R) and specific resistance (p), which one is more fundamental and why?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "resistance",
+      "resistivity",
+      "2022"
+    ],
+    "hint": "Specific resistance (ρ) is more fundamental as it depends only on the material."
+  },
+  {
+    "id": "P22Q47",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Thermoelectric Effect",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "State the factors on which the thermo-emf developed in a thermocouple depends.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "thermocouple",
+      "thermo-emf",
+      "2022"
+    ],
+    "hint": "Nature of metals and temperature difference between junctions."
+  },
+  {
+    "id": "P22Q48",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Acoustics",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "What are the measures to be taken to reduce the reverberation in a hall?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "reverberation",
+      "acoustics",
+      "2022"
+    ],
+    "hint": "Use sound-absorbing materials on walls and ceilings."
+  },
+  {
+    "id": "P22Q49",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "EMF and Terminal Voltage",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Are Electromotive force and Potential Difference same for a cell? Explain.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "EMF",
+      "potential difference",
+      "cell",
+      "2022"
+    ],
+    "hint": "No, EMF is the open-circuit voltage, PD is less than EMF when current flows due to internal resistance."
+  },
+  {
+    "id": "P22Q50",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Galvanometer",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "What will happen if a very high resistance, instead of a low resistance, is connected in parallel to a galvanometer to convert it into an ammeter?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "galvanometer",
+      "ammeter",
+      "conversion",
+      "2022"
+    ],
+    "hint": "The ammeter will not work properly as most current will still pass through the coil."
+  },
+  {
+    "id": "P22Q51",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Draw the necessary circuit diagram for studying the forward bias characteristic curve (V-I curve) of a p-n junction diode.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "PN junction",
+      "forward bias",
+      "characteristics",
+      "2022"
+    ],
+    "hint": "Circuit with battery, diode, resistor, ammeter in series, voltmeter across diode."
+  },
+  {
+    "id": "P22Q52",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "What are the different types of breakdown in p-n junction diode?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "PN junction",
+      "breakdown",
+      "Zener",
+      "avalanche",
+      "2022"
+    ],
+    "hint": "Zener breakdown and avalanche breakdown."
+  },
+  {
+    "id": "P22Q53",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "Describe briefly the phenomenon of Stimulated emission.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "stimulated emission",
+      "LASER",
+      "2022"
+    ],
+    "hint": "An incoming photon stimulates an excited atom to emit another identical photon."
+  },
+  {
+    "id": "P22Q54",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Oscillations",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) What are damped and forced vibrations?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "damped vibrations",
+      "forced vibrations",
+      "2022"
+    ],
+    "hint": "Damped: amplitude decreases over time. Forced: vibrations under an external periodic force."
+  },
+  {
+    "id": "P22Q55",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Lens Maker's Formula",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "b) Determine the focal length of the lens of refractive index 1.7 when placed in air. The radii of curvature of the two spherical surfaces of the lens are 20cm and 35cm.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "lens maker's formula",
+      "focal length",
+      "2022"
+    ],
+    "hint": "Use lens maker's formula: $\\frac{1}{f} = (\\mu-1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$."
+  },
+  {
+    "id": "P22Q56",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "c) Write down the characteristics of simple harmonic motion.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "SHM",
+      "characteristics",
+      "2022"
+    ],
+    "hint": "Restoring force proportional to displacement, acceleration directed towards mean point, periodic motion."
+  },
+  {
+    "id": "P22Q57",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Simple Harmonic Motion (SHM)",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "a) A particle executing S.H.M has a maximum displacement of 4 cm and its acceleration at a distance of 1.0 cm from its mean position is 3 cm/s2. What will be its velocity when it is at a distance of 2cm from its mean position?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "SHM",
+      "velocity",
+      "acceleration",
+      "2022"
+    ],
+    "hint": "$a = -\\omega^2 x$, $v = \\omega\\sqrt{A^2 - x^2}$. Find $\\omega$ from given a and x."
+  },
+  {
+    "id": "P22Q58",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) Indicate in ray diagram the kind of lens needed, the position of the object and the position of the image to obtain a magnified virtual image.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "convex lens",
+      "magnified virtual image",
+      "2022"
+    ],
+    "hint": "Object is between F and optical centre of convex lens."
+  },
+  {
+    "id": "P22Q59",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "c) Define optical center of a lens with diagram.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "optical center",
+      "lens",
+      "2022"
+    ],
+    "hint": "The point on the principal axis through which a ray passes undeviated."
+  },
+  {
+    "id": "P22Q60",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Plane Progressive Wave",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "a) The equation of a progressive wave is given by \\(y = \\frac{4}{5}\\sin (100\\pi t - 0.4\\pi x)\\) where \\(y\\) and \\(x\\) are in m and t is in s. Find out the wavelength, frequency and velocity of the wave.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "plane progressive wave",
+      "wavelength",
+      "frequency",
+      "wave speed",
+      "2022"
+    ],
+    "hint": "Compare with $y = A \\sin(\\omega t - kx)$. $k = \\frac{2\\pi}{\\lambda}$, $\\omega = 2\\pi f$."
+  },
+  {
+    "id": "P22Q61",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Total Internal Reflection",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) Write down the conditions for total internal reflection of light.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "total internal reflection",
+      "conditions",
+      "2022"
+    ],
+    "hint": "Light must travel from denser to rarer medium, angle of incidence $>$ critical angle."
+  },
+  {
+    "id": "P22Q62",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "c) An object is placed at a certain distance from a convex lens of focal length 20 cm. Find the distance of the object if the image obtained is magnified 4 times.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "convex lens",
+      "magnification",
+      "lens formula",
+      "2022"
+    ],
+    "hint": "Use $m = \\frac{v}{u}$ and lens formula. Two cases: real image ($m=-4$) or virtual image ($m=+4$)."
+  },
+  {
+    "id": "P22Q63",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Coulomb's Law",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "a) Two point charges A and B, having charges +Q and -Q respectively, are placed at certain distance apart and force acting between them is F. If 25% charge of A is transferred to B, then what will be the force between them.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Coulomb's law",
+      "force",
+      "2022"
+    ],
+    "hint": "Calculate new charges. Force $\\propto$ product of charges."
+  },
+  {
+    "id": "P22Q64",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "b) Find the equivalent resistance for the circuit shown below:",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "resistance",
+      "network",
+      "2022"
+    ],
+    "hint": "Simplify series and parallel combinations."
+  },
+  {
+    "id": "P22Q65",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Ampere's Law",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "1) State and explain Ampere's circuital law.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Ampere's law",
+      "2022"
+    ],
+    "hint": "$\\oint \\vec{B} \\cdot d\\vec{l} = \\mu_0 I_{enc}$. It relates magnetic field to current."
+  },
+  {
+    "id": "P22Q66",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Field",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "b) A long solenoid has 500 turns per meter and carries a current of 4A. Calculate the magnetic field inside the solenoid.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "solenoid",
+      "magnetic field",
+      "2022"
+    ],
+    "hint": "$B = \\mu_0 n I$, where $n =$ number of turns per unit length."
+  },
+  {
+    "id": "P22Q67",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Materials",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "c) What is the difference between diamagnetic and paramagnetic materials?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "diamagnetic",
+      "paramagnetic",
+      "2022"
+    ],
+    "hint": "Diamagnetic: repelled by field, $\\mu < 1$. Paramagnetic: weakly attracted, $\\mu > 1$."
+  },
+  {
+    "id": "P22Q68",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) Explain the working principle of a transformer.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "transformer",
+      "working principle",
+      "2022"
+    ],
+    "hint": "Mutual induction between two coils."
+  },
+  {
+    "id": "P22Q69",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "b) A step-up transformer has 200 turns on primary and 1200 turns on secondary. If the primary voltage is 230V, find the secondary voltage.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "transformer",
+      "turns ratio",
+      "voltage",
+      "2022"
+    ],
+    "hint": "$\\frac{V_s}{V_p} = \\frac{N_s}{N_p}$."
+  },
+  {
+    "id": "P22Q70",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "c) What are eddy currents? How can they be minimized?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "eddy currents",
+      "2022"
+    ],
+    "hint": "Circulating currents in a conductor in a changing magnetic field. Minimized by laminating the core."
+  },
+  {
+    "id": "P21Q01",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If the length of a conducting wire be made half and the area of cross section be made double, the resistance becomes (a) four times (b) two times (c) halved (d) one- fourth",
+    "options": [
+      "four times",
+      "two times",
+      "halved",
+      "one- fourth"
+    ],
+    "marks": 1,
+    "tags": [
+      "resistance",
+      "factors",
+      "2021"
+    ],
+    "hint": "$R = \\frac{\\rho L}{A}$. New $R = \\frac{\\rho (L/2)}{(2A)} = \\frac{R}{4}$."
+  },
+  {
+    "id": "P21Q02",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "LASER is the acronym for (a) Light Amplification by Stimulated Absorption o (b) Light Amplification by Stimulated Emission of (c) Light Amplification by Spontaneous Emission o (d) None of these",
+    "options": [
+      "Light Amplification by Stimulated Absorption",
+      "Light Amplification by Stimulated Emission of",
+      "Light Amplification by Spontaneous Emission",
+      "None of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "LASER",
+      "acronym",
+      "2021"
+    ],
+    "hint": "Light Amplification by Stimulated Emission of Radiation."
+  },
+  {
+    "id": "P21Q03",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "X- rays are deflected by (a) electric field (b) magnetic field (c) both magnetic field and electric field (d) neither electric field nor magnetic field",
+    "options": [
+      "electric field",
+      "magnetic field",
+      "both magnetic field and electric field",
+      "neither electric field nor magnetic field"
+    ],
+    "marks": 1,
+    "tags": [
+      "X-rays",
+      "properties",
+      "2021"
+    ],
+    "hint": "X-rays are electromagnetic waves, not charged particles."
+  },
+  {
+    "id": "P21Q04",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistivity",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The specific resistance of a copper conductor depends on (a) Length (b) area of cross-section (c) temperature (d) all of these",
+    "options": [
+      "Length",
+      "area of cross-section",
+      "temperature",
+      "all of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "resistivity",
+      "temperature",
+      "2021"
+    ],
+    "hint": "Specific resistance depends on material and temperature, not dimensions."
+  },
+  {
+    "id": "P21Q05",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Moving Charges",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "A moving charge produces (a) an electric field only (b) a magnetic field only (c) Both electric and magnetic field (d) either electric field or magnetic field",
+    "options": [
+      "an electric field only",
+      "a magnetic field only",
+      "Both electric and magnetic field",
+      "either electric field or magnetic field"
+    ],
+    "marks": 1,
+    "tags": [
+      "moving charge",
+      "electric field",
+      "magnetic field",
+      "2021"
+    ],
+    "hint": "A moving charge is a current, which produces a magnetic field in addition to its electric field."
+  },
+  {
+    "id": "P21Q06",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If the forward bias voltage across a p- n junction be increased, the width of the depletion region (a) decrease (b) increase (c) remains same (d) increases proportionally to the applied voltage",
+    "options": [
+      "decrease",
+      "increase",
+      "remains same",
+      "increases proportionally to the applied voltage"
+    ],
+    "marks": 1,
+    "tags": [
+      "PN junction",
+      "depletion region",
+      "forward bias",
+      "2021"
+    ],
+    "hint": "Forward bias reduces the depletion layer width."
+  },
+  {
+    "id": "P21Q07",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistivity",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The SI unit of resistivity is (a) ohm.m⁻¹ (b) volt.m⁻¹ (c) volt.m (d) ohm.m",
+    "options": [
+      "ohm.m⁻¹",
+      "volt.m⁻¹",
+      "volt.m",
+      "ohm.m"
+    ],
+    "marks": 1,
+    "tags": [
+      "resistivity",
+      "SI unit",
+      "2021"
+    ],
+    "hint": "From $R = \\frac{\\rho L}{A}$, $\\rho = \\frac{RA}{L}$."
+  },
+  {
+    "id": "P21Q08",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Energy Bands",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "In germanium crystal, the energy band gap is (a) \\(0.068\\mathrm{eV}\\) (b) \\(6.8\\mathrm{eV}\\) (c) \\(68\\mathrm{eV}\\) (d) \\(0.68\\mathrm{eV}\\)",
+    "options": [
+      "0.068 eV",
+      "6.8 eV",
+      "68 eV",
+      "0.68 eV"
+    ],
+    "marks": 1,
+    "tags": [
+      "germanium",
+      "band gap",
+      "2021"
+    ],
+    "hint": "Band gap of Ge is about 0.7 eV."
+  },
+  {
+    "id": "P21Q09",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Rectifier",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The output of a full wave rectifier is (a) an AC voltage (b) a constant DC voltage (c) zero (d) a pulsating unidirectional voltage",
+    "options": [
+      "an AC voltage",
+      "a constant DC voltage",
+      "zero",
+      "a pulsating unidirectional voltage"
+    ],
+    "marks": 1,
+    "tags": [
+      "full wave rectifier",
+      "output",
+      "2021"
+    ],
+    "hint": "The output is a DC voltage with ripples."
+  },
+  {
+    "id": "P21Q10",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "The power of two lenses is \\(+5\\mathrm{D}\\) and - 2.5D. The focal length of the two lenses in contact will be (a) \\(+40\\mathrm{cm}\\) (b) - 40 cm (c) \\(+40\\mathrm{m}\\) (d) none of these",
+    "options": [
+      "+40 cm",
+      "-40 cm",
+      "+40 m",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "power of lens",
+      "focal length",
+      "2021"
+    ],
+    "hint": "$P_{total} = P_1 + P_2$, $f = \\frac{1}{P_{total}}$ (in m)."
+  },
+  {
+    "id": "P21Q11",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Magnetic Flux",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The SI unit of magnetic flux is (a) weber (b) gauss (c) oersted (d) none of these",
+    "options": [
+      "weber",
+      "gauss",
+      "oersted",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "magnetic flux",
+      "SI unit",
+      "2021"
+    ],
+    "hint": "Weber (Wb)."
+  },
+  {
+    "id": "P21Q12",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Wave Front",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The phase difference between any two points situated on a wave front is (a) π (b) 2π (c) 0 (d) π/2",
+    "options": [
+      "π",
+      "2π",
+      "0",
+      "π/2"
+    ],
+    "marks": 1,
+    "tags": [
+      "wave front",
+      "phase difference",
+      "2021"
+    ],
+    "hint": "All points on a wave front are in the same phase."
+  },
+  {
+    "id": "P21Q13",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If the potential difference applied to an X- ray tube be doubled, the cut off (minimum) wavelength (a) becomes halved (b) becomes doubled (c) becomes four times (d) remains same",
+    "options": [
+      "becomes halved",
+      "becomes doubled",
+      "becomes four times",
+      "remains same"
+    ],
+    "marks": 1,
+    "tags": [
+      "X-rays",
+      "minimum wavelength",
+      "2021"
+    ],
+    "hint": "$\\lambda_{min} = \\frac{hc}{eV}$, so $\\lambda_{min} \\propto \\frac{1}{V}$."
+  },
+  {
+    "id": "P21Q14",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Extrinsic Semiconductors",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "For obtaining a p- type semiconductor, doping is to be done with impurity material which is (a) tetravalent (b) pentavalent (c) trivalent (d) none of these",
+    "options": [
+      "tetravalent",
+      "pentavalent",
+      "trivalent",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "P-type",
+      "doping",
+      "2021"
+    ],
+    "hint": "Trivalent impurities (e.g., boron) create holes."
+  },
+  {
+    "id": "P21Q15",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "The induced emf in a 1 millihreny inductor in which the current changes from 5A to 3A in \\(10^{- 3}\\) s is (a) \\(2\\times 10^{-6}\\mathrm{V}\\) (b) \\(8\\times 10^{-6}\\mathrm{V}\\) (c) 2V (d) 8V",
+    "options": [
+      "2×10⁻⁶ V",
+      "8×10⁻⁶ V",
+      "2 V",
+      "8 V"
+    ],
+    "marks": 1,
+    "tags": [
+      "induced emf",
+      "inductor",
+      "2021"
+    ],
+    "hint": "$\\mathcal{E} = -L \\frac{\\Delta I}{\\Delta t}$."
+  },
+  {
+    "id": "P21Q16",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Interference",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "In the interference fringe, if width of dark band is \\(\\beta_{1}\\) and that of the bright band is \\(\\beta_{2}\\) , then (a) \\(2\\beta_{1} = \\beta_{2}\\) (b) \\(2\\beta_{2} = \\beta_{1}\\) (c) \\(\\beta_{1} = \\beta_{2}\\) (d) \\(\\beta_{1} + 3\\beta_{2} = 1\\)",
+    "options": [
+      "2β₁ = β₂",
+      "2β₂ = β₁",
+      "β₁ = β₂",
+      "β₁ + 3β₂ = 1"
+    ],
+    "marks": 1,
+    "tags": [
+      "interference",
+      "fringe width",
+      "2021"
+    ],
+    "hint": "Dark and bright bands have the same width."
+  },
+  {
+    "id": "P21Q17",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If a lens is surrounded by a medium denser than air, the focal length of the lens (a) decreases (b) increases (c) remains same (d) cannot be determined",
+    "options": [
+      "decreases",
+      "increases",
+      "remains same",
+      "cannot be determined"
+    ],
+    "marks": 1,
+    "tags": [
+      "focal length",
+      "lens",
+      "surrounding medium",
+      "2021"
+    ],
+    "hint": "Focal length increases as the relative refractive index decreases."
+  },
+  {
+    "id": "P21Q18",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Heating Effect",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "A source of emf 2 volt sends 0.2 amp current to an external circuit for 5s. The energy used by the source is (a) 0.2 joule (b) 0.4 joule (c) 4.0 joule (d) 2.0 joule",
+    "options": [
+      "0.2 joule",
+      "0.4 joule",
+      "4.0 joule",
+      "2.0 joule"
+    ],
+    "marks": 1,
+    "tags": [
+      "energy",
+      "power",
+      "2021"
+    ],
+    "hint": "Energy $= VIt$."
+  },
+  {
+    "id": "P21Q19",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "numerical",
+    "difficulty": "easy",
+    "question": "Two resistances of 6Ω and 8Ω are connected in parallel and the combination is connected across a 24 volt battery. The total power consumed is (a) 48 watt (b) 84 watt (c) 168 watt (d) 36 watt",
+    "options": [
+      "48 watt",
+      "84 watt",
+      "168 watt",
+      "36 watt"
+    ],
+    "marks": 1,
+    "tags": [
+      "resistance",
+      "parallel combination",
+      "power",
+      "2021"
+    ],
+    "hint": "$R_{eq} = \\frac{R_1 R_2}{R_1+R_2}$, $P = \\frac{V^2}{R_{eq}}$."
+  },
+  {
+    "id": "P21Q20",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The lasing action is based on (a) Stimulated emission (b) Spontaneous emission (c) absorption (d) none of these",
+    "options": [
+      "Stimulated emission",
+      "Spontaneous emission",
+      "absorption",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "LASER",
+      "lasing action",
+      "2021"
+    ],
+    "hint": "Laser is based on stimulated emission."
+  },
+  {
+    "id": "P21Q21",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The focal length of a convex lens is maximum for the colour of light (a) blue (b) yellow (c) green (d) red",
+    "options": [
+      "blue",
+      "yellow",
+      "green",
+      "red"
+    ],
+    "marks": 1,
+    "tags": [
+      "focal length",
+      "dispersion",
+      "2021"
+    ],
+    "hint": "Refractive index is least for red, so focal length is maximum for red."
+  },
+  {
+    "id": "P21Q22",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "If a conductor moves across a magnetic field, the direction of induced emf is obtained from (a) Laplace's law (b) Fleming's left hand rule (c) Fleming's right hand rule (d) none of these",
+    "options": [
+      "Laplace's law",
+      "Fleming's left hand rule",
+      "Fleming's right hand rule",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "induced emf",
+      "Fleming's right hand rule",
+      "2021"
+    ],
+    "hint": "Fleming's right-hand rule gives the direction of induced current."
+  },
+  {
+    "id": "P21Q23",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Interference",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "For destructive interference the path difference of the waves emitted from the two sources is equal to (a) odd multiple of λ/2 (b) even multiple of λ/2 (c) any multiple of λ/2 (d) any other number",
+    "options": [
+      "odd multiple of λ/2",
+      "even multiple of λ/2",
+      "any multiple of λ/2",
+      "any other number"
+    ],
+    "marks": 1,
+    "tags": [
+      "interference",
+      "destructive interference",
+      "2021"
+    ],
+    "hint": "Destructive interference occurs for a path difference of $(2n+1)\\frac{\\lambda}{2}$."
+  },
+  {
+    "id": "P21Q24",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "The intensity of X- rays produced by an X- ray tube can be increased by (a) increasing the tube voltage (b) decreasing the tube voltage (c) decreasing the filament current (d) increasing the filament current",
+    "options": [
+      "increasing the tube voltage",
+      "decreasing the tube voltage",
+      "decreasing the filament current",
+      "increasing the filament current"
+    ],
+    "marks": 1,
+    "tags": [
+      "X-rays",
+      "intensity",
+      "2021"
+    ],
+    "hint": "Intensity depends on the number of electrons, which is controlled by filament current."
+  },
+  {
+    "id": "P21Q25",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "mcq",
+    "difficulty": "easy",
+    "question": "In He- Ne laser pumping is done by (a) optical method (b) Thermo- chemical reaction (c) atom-atom inelastic collision through electrical discharge (d) none of these",
+    "options": [
+      "optical method",
+      "Thermo- chemical reaction",
+      "atom-atom inelastic collision through electrical discharge",
+      "none of these"
+    ],
+    "marks": 1,
+    "tags": [
+      "He-Ne Laser",
+      "pumping",
+      "2021"
+    ],
+    "hint": "Electrical discharge pumps He atoms, which transfer energy to Ne atoms."
+  },
+  {
+    "id": "P21Q26",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Oscillations",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) What do you mean by free and damped oscillations?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "free oscillations",
+      "damped oscillations",
+      "2021"
+    ],
+    "hint": "Free: no external force, constant amplitude. Damped: amplitude decreases due to friction."
+  },
+  {
+    "id": "P21Q27",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Beats",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "b) What are beats? Prove that, the number of beats per second produced by two sources of sound is equal to the difference in the frequencies of the two sources.",
+    "options": null,
+    "marks": 4,
+    "tags": [
+      "beats",
+      "proof",
+      "2021"
+    ],
+    "hint": "Beats are periodic variations in intensity. Derive using superposition of two waves of close frequencies."
+  },
+  {
+    "id": "P21Q28",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Acoustics",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "c) What are the requirements of good acoustic in an auditorium?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "acoustics",
+      "auditorium",
+      "2021"
+    ],
+    "hint": "Appropriate reverberation time, uniform sound distribution, no echoes."
+  },
+  {
+    "id": "P21Q29",
+    "subject": "physics",
+    "unit": "Unit 1",
+    "topic": "Wave Motion & Applications",
+    "subtopic": "Ultrasonic Waves",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "d) Write down the medical applications of ultrasonic waves.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "ultrasonic waves",
+      "medical applications",
+      "2021"
+    ],
+    "hint": "Sonography, lithotripsy (kidney stone breaking)."
+  },
+  {
+    "id": "P21Q30",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Total Internal Reflection",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) State the criteria for the phenomenon of total internal reflection of light to take place.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "total internal reflection",
+      "conditions",
+      "2021"
+    ],
+    "hint": "Light from denser to rarer medium, $i > c$."
+  },
+  {
+    "id": "P21Q31",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Thin Lenses",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) How does focal length of a lens change when red light incident on it is replaced by violet light? Give reason for your answer.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "focal length",
+      "dispersion",
+      "2021"
+    ],
+    "hint": "Focal length decreases for violet light as refractive index is higher."
+  },
+  {
+    "id": "P21Q32",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Compound Microscope",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "c) Draw a ray diagram of a compound microscope. Write the expression for its magnifying power.",
+    "options": null,
+    "marks": 4,
+    "tags": [
+      "compound microscope",
+      "ray diagram",
+      "magnifying power",
+      "2021"
+    ],
+    "hint": "$M = \\frac{L}{f_0}\\left(1 + \\frac{D}{f_e}\\right)$ for final image at near point."
+  },
+  {
+    "id": "P21Q33",
+    "subject": "physics",
+    "unit": "Unit 2",
+    "topic": "Optics",
+    "subtopic": "Interference",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "d) How will the interference pattern in Young's double slit experiment get affected, when (i) distance between the slits S₁ and S₂ reduced and (ii) the entire set up is immersed in water? Justify your answer.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Young's double slit",
+      "interference",
+      "2021"
+    ],
+    "hint": "Fringe width $\\beta = \\frac{\\lambda D}{d}$. (i) $\\beta$ increases. (ii) $\\lambda$ decreases, so $\\beta$ decreases."
+  },
+  {
+    "id": "P21Q34",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Gauss's Law",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "a) State Gauss' law in electrostatics. Using this law, derive an expression for the electric field due to a uniformly charged sphere.",
+    "options": null,
+    "marks": 5,
+    "tags": [
+      "Gauss's law",
+      "electric field",
+      "charged sphere",
+      "2021"
+    ],
+    "hint": "For a point outside, field is as if all charge is at centre. Inside, field is zero for hollow, proportional to r for solid."
+  },
+  {
+    "id": "P21Q35",
+    "subject": "physics",
+    "unit": "Unit 3",
+    "topic": "Electrostatics",
+    "subtopic": "Electric Potential",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) Why electrostatic potential is constant throughout the volume of the conductor and has the same value as on its surface?",
+    "options": null,
+    "marks": 5,
+    "tags": [
+      "electrostatic potential",
+      "conductor",
+      "2021"
+    ],
+    "hint": "Electric field inside a conductor is zero, so potential is constant."
+  },
+  {
+    "id": "P21Q36",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistivity",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) Define the term electrical resistivity of a material. Write its SI unit.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "resistivity",
+      "definition",
+      "SI unit",
+      "2021"
+    ],
+    "hint": "Resistivity is the resistance of a unit cube. Unit: ohm-meter ($\\Omega \\cdot m$)."
+  },
+  {
+    "id": "P21Q37",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Kirchhoff's Laws",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) State Kirchhoff's rules for an electric network.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Kirchhoff's laws",
+      "2021"
+    ],
+    "hint": "KCL: junction rule. KVL: loop rule."
+  },
+  {
+    "id": "P21Q38",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Wheatstone Bridge",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "c) Draw a circuit diagram for a Wheatstone bridge. For a Wheatstone bridge, use Kirchhoff's laws to obtain its balance condition.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "Wheatstone bridge",
+      "balance condition",
+      "Kirchhoff's laws",
+      "2021"
+    ],
+    "hint": "Balance condition: $\\frac{P}{Q} = \\frac{R}{S}$."
+  },
+  {
+    "id": "P21Q39",
+    "subject": "physics",
+    "unit": "Unit 4",
+    "topic": "Current Electricity",
+    "subtopic": "Resistance",
+    "type": "numerical",
+    "difficulty": "medium",
+    "question": "d) A wire of 15Ω resistance is gradually stretched to double its original length. It is then cut into two equal parts. These parts are then connected in parallel across a 3V battery. Find the current drawn from the battery.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "resistance",
+      "stretching",
+      "parallel combination",
+      "2021"
+    ],
+    "hint": "When stretched to double length, $R$ becomes 60 $\\Omega$. Cut into two halves: each 30 $\\Omega$. Parallel combination: 15 $\\Omega$. Current $= \\frac{V}{R} = \\frac{3}{15} = 0.2$ A."
+  },
+  {
+    "id": "P21Q40",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Biot-Savart Law",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "a) State Biot-Savart's law in vector form expressing the magnetic field due to an element carrying current at a distance from the element. A circular coil of radius R carries a current I. Derive the expression for the magnetic field due to this coil at its centre. What is the effect of increasing the number of turns on magnetic field produced to a circular coil?",
+    "options": null,
+    "marks": 5,
+    "tags": [
+      "Biot-Savart law",
+      "magnetic field",
+      "circular coil",
+      "2021"
+    ],
+    "hint": "$B$ at centre $= \\frac{\\mu_0 I}{2R}$ for single loop. For $N$ turns, $B = \\frac{\\mu_0 N I}{2R}$."
+  },
+  {
+    "id": "P21Q41",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Electromagnetic Induction",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) State the Faraday's law of electromagnetic induction.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "Faraday's law",
+      "2021"
+    ],
+    "hint": "Induced emf is proportional to the rate of change of magnetic flux."
+  },
+  {
+    "id": "P21Q42",
+    "subject": "physics",
+    "unit": "Unit 5",
+    "topic": "Electromagnetism",
+    "subtopic": "Galvanometer",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "c) A galvanometer of resistance \\(50\\Omega\\) gives full scale deflection when a current of \\(500\\mu \\mathrm{A}\\) passes through it. It is to be converted into a voltmeter reading up to 10V. Explain how this can be done? Circuit diagram is essential.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "galvanometer",
+      "voltmeter",
+      "conversion",
+      "2021"
+    ],
+    "hint": "Connect a high resistance in series. $R = \\frac{V}{I_g} - R_g$."
+  },
+  {
+    "id": "P21Q43",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Extrinsic Semiconductors",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) Distinguish between an intrinsic semiconductor and p-type semiconductor.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "intrinsic semiconductor",
+      "P-type",
+      "2021"
+    ],
+    "hint": "Intrinsic: pure, equal $e^-$ and $h^+$. P-type: doped with trivalent, holes majority."
+  },
+  {
+    "id": "P21Q44",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "PN Junction Diode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) With the help of circuit diagrams, distinguish between forward biasing and reverse biasing of a p-n junction diode.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "PN junction",
+      "forward bias",
+      "reverse bias",
+      "2021"
+    ],
+    "hint": "Forward: p positive, n negative. Reverse: p negative, n positive."
+  },
+  {
+    "id": "P21Q45",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Rectifier",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "c) Draw a labeled diagram of a full wave rectifier circuit. Show the input-output waveforms.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "full wave rectifier",
+      "circuit diagram",
+      "waveforms",
+      "2021"
+    ],
+    "hint": "Center-tapped transformer with two diodes."
+  },
+  {
+    "id": "P21Q46",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Photodiode",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "d) Draw the circuit diagram of an illuminated photodiode in reverse bias. How is photodiode used to measure light intensity.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "photodiode",
+      "reverse bias",
+      "light intensity",
+      "2021"
+    ],
+    "hint": "Reverse-biased photodiode, current proportional to light intensity."
+  },
+  {
+    "id": "P21Q47",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Energy Bands",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) Write any two distinguishing features between conductors, semiconductors and insulators on the basis of energy band diagrams.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "conductor",
+      "semiconductor",
+      "insulator",
+      "energy bands",
+      "2021"
+    ],
+    "hint": "Band gap, and whether bands overlap or not."
+  },
+  {
+    "id": "P21Q48",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "LED",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) State two advantages of LED lamps over conventional incandescent lamps.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "LED",
+      "advantages",
+      "2021"
+    ],
+    "hint": "Higher efficiency, longer life."
+  },
+  {
+    "id": "P21Q49",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Transistor",
+    "type": "long-answer",
+    "difficulty": "medium",
+    "question": "c) Draw a circuit diagram of n-p-n transistor amplifier in CE configuration.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "transistor",
+      "common emitter",
+      "amplifier",
+      "2021"
+    ],
+    "hint": "Circuit with biasing resistors, input and output capacitors."
+  },
+  {
+    "id": "P21Q50",
+    "subject": "physics",
+    "unit": "Unit 6",
+    "topic": "Semiconductor Physics",
+    "subtopic": "Solar Cell",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "d) Why GaAs is most commonly used in making of a solar cell?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "GaAs",
+      "solar cell",
+      "2021"
+    ],
+    "hint": "High efficiency, direct band gap."
+  },
+  {
+    "id": "P21Q51",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "a) What is the main difference between ordinary light and LASER?",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "LASER",
+      "ordinary light",
+      "2021"
+    ],
+    "hint": "Laser is coherent, monochromatic, and directional."
+  },
+  {
+    "id": "P21Q52",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Laser",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "b) Write a short note on 'population inversion'.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "population inversion",
+      "LASER",
+      "2021"
+    ],
+    "hint": "More atoms in excited state than ground state, essential for lasing."
+  },
+  {
+    "id": "P21Q53",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "X-Rays",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "c) How continuous and characteristic X-rays are produced in Coolidge tube? Explain.",
+    "options": null,
+    "marks": 3,
+    "tags": [
+      "X-rays",
+      "continuous",
+      "characteristic",
+      "Coolidge tube",
+      "2021"
+    ],
+    "hint": "Continuous: deceleration of electrons. Characteristic: transitions in target atoms."
+  },
+  {
+    "id": "P21Q54",
+    "subject": "physics",
+    "unit": "Unit 7",
+    "topic": "Modern Physics",
+    "subtopic": "Fiber Optics",
+    "type": "short-answer",
+    "difficulty": "easy",
+    "question": "d) Explain the mechanism of light propagation through optical fiber.",
+    "options": null,
+    "marks": 2,
+    "tags": [
+      "optical fiber",
+      "propagation",
+      "2021"
+    ],
+    "hint": "Total internal reflection."
+  }
+]
