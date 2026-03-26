@@ -1,12 +1,29 @@
 /* ================================================
-   ENGINE v3 — Robust behavior engine
-   Fixes: fast-scroll visibility, collapse bugs
-   No maxHeight. Uses CSS grid collapse.
+   ENGINE v3.2 — Robust behavior engine
+   Fixes: collapse blank space, fast-scroll, 
+   auto-wraps section-content for grid collapse
    ================================================ */
 (function() {
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function() {
+
+        // ========== AUTO-WRAP SECTION CONTENT ==========
+        // CSS Grid 0fr collapse needs a SINGLE child wrapper
+        // This wraps all children of .section-content in a .section-content-inner div
+        document.querySelectorAll('.section-content').forEach(function(content) {
+            // Skip if already wrapped
+            if (content.querySelector('.section-content-inner')) return;
+            
+            var wrapper = document.createElement('div');
+            wrapper.className = 'section-content-inner';
+            
+            // Move all children into wrapper
+            while (content.firstChild) {
+                wrapper.appendChild(content.firstChild);
+            }
+            content.appendChild(wrapper);
+        });
 
         // ========== TOAST ==========
         var toastEl = document.getElementById('toast');
@@ -95,8 +112,14 @@
                     var target = document.querySelector(href);
                     if (target) {
                         setTimeout(function() {
-                            // Make sure section is visible before scrolling
                             target.classList.add('visible');
+                            // If section is collapsed, expand it
+                            var content = target.querySelector('.section-content');
+                            var icon = target.querySelector('.collapse-icon');
+                            if (content && content.classList.contains('collapsed')) {
+                                content.classList.remove('collapsed');
+                                if (icon) icon.classList.remove('collapsed');
+                            }
                             window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
                         }, 300);
                     }
@@ -113,8 +136,14 @@
                     var href = this.getAttribute('href');
                     var target = document.querySelector(href);
                     if (target) {
-                        // Ensure visible
                         target.classList.add('visible');
+                        // If section is collapsed, expand it
+                        var content = target.querySelector('.section-content');
+                        var icon = target.querySelector('.collapse-icon');
+                        if (content && content.classList.contains('collapsed')) {
+                            content.classList.remove('collapsed');
+                            if (icon) icon.classList.remove('collapsed');
+                        }
                         window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
                     }
                 });
@@ -135,13 +164,8 @@
                     var y = window.scrollY;
                     var h = document.documentElement.scrollHeight - window.innerHeight;
 
-                    // Progress bar
                     if (progressBar) progressBar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
-
-                    // Navbar shadow
                     if (navbar) navbar.classList.toggle('scrolled', y > 10);
-
-                    // FAB top
                     if (fabTop) fabTop.classList.toggle('visible', y > 400);
 
                     // Active nav link
@@ -189,7 +213,7 @@
             });
         }
 
-        // ========== COLLAPSIBLE SECTIONS (CSS Grid — no maxHeight!) ==========
+        // ========== COLLAPSIBLE SECTIONS ==========
         document.querySelectorAll('.section-title').forEach(function(title) {
             var content = title.nextElementSibling;
             var icon = title.querySelector('.collapse-icon');
@@ -210,18 +234,15 @@
         });
 
         // ========== EXERCISE ANSWER TOGGLES ==========
-        // Hide all answer panels initially
         document.querySelectorAll('.answer-reveal').forEach(function(el) {
             el.style.display = 'none';
         });
 
-        // Process each toggle button
         document.querySelectorAll('.toggle-btn[data-target]').forEach(function(oldBtn) {
             var originalHTML = oldBtn.innerHTML;
             var label = 'Answer';
             if (originalHTML.indexOf('Solution') !== -1) label = 'Solution';
 
-            // Clone to remove any existing listeners
             var newBtn = oldBtn.cloneNode(true);
             newBtn.innerHTML = '<i class="fas fa-eye"></i> Show ' + label;
             oldBtn.parentNode.replaceChild(newBtn, oldBtn);
@@ -243,8 +264,7 @@
             });
         });
 
-        // ========== SCROLL REVEAL — Robust, handles fast scrolling ==========
-        // Use IntersectionObserver for initial reveal
+        // ========== SCROLL REVEAL ==========
         var revealObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
@@ -253,43 +273,37 @@
                 }
             });
         }, {
-            threshold: 0.02,       // Very low threshold — triggers early
-            rootMargin: '50px 0px'  // Extra margin so it triggers before fully in view
+            threshold: 0.02,
+            rootMargin: '50px 0px'
         });
 
         var allSections = document.querySelectorAll('.section');
-
         allSections.forEach(function(s) {
             revealObserver.observe(s);
         });
 
-        // FALLBACK: After a short delay, force-reveal any sections
-        // that are already in the viewport (handles fast scroll / page load)
+        // Fallback for fast scrolling
         function forceRevealVisible() {
             var viewportHeight = window.innerHeight;
             allSections.forEach(function(s) {
                 if (s.classList.contains('visible')) return;
                 var rect = s.getBoundingClientRect();
-                // If any part of the section is in view
                 if (rect.top < viewportHeight + 100 && rect.bottom > -100) {
                     s.classList.add('visible');
                 }
             });
         }
 
-        // Run fallback on multiple triggers
         setTimeout(forceRevealVisible, 100);
         setTimeout(forceRevealVisible, 500);
         setTimeout(forceRevealVisible, 1500);
 
-        // Also run on scroll end (covers fast scrolling)
         var scrollEndTimer;
         window.addEventListener('scroll', function() {
             clearTimeout(scrollEndTimer);
             scrollEndTimer = setTimeout(forceRevealVisible, 80);
         }, { passive: true });
 
-        // Also run on resize
         window.addEventListener('resize', function() {
             setTimeout(forceRevealVisible, 200);
         });

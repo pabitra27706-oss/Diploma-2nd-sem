@@ -650,3 +650,25 @@ code { word-break: break-all; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
     .section { opacity: 1; transform: none; }
 }
+/* ===== COLLAPSE — CSS Grid with inner wrapper ===== */
+.section-content {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.45s ease, opacity 0.3s ease;
+    overflow: hidden;
+    min-width: 0;
+    max-width: 100%;
+}
+.section-content.collapsed {
+    grid-template-rows: 0fr;
+    opacity: 0;
+}
+/* THE KEY: inner wrapper must have overflow:hidden and min-height:0 */
+.section-content-inner {
+    overflow: hidden;
+    min-height: 0;
+    min-width: 0;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
