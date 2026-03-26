@@ -22,8 +22,7 @@ const subjects = {
                     { name: "Unit 3", file: "Mathematics-II-Unit-3.html", desc: "Integral Calculus" },
                     { name: "Unit 4", file: "Mathematics-II-Unit-4.html", desc: "Ordinary Differential Equation" },
                     { name: "Unit 5", file: "Mathematics-II-Unit-5.html", desc: "Partial Differentiation" },
-                    { name: "Unit 6", file: "Mathematics-II-Unit-6.html", desc: "Statistics & Probability" },
-                    { name: "Unit 7", file: "Mathematics-II-Unit-7.html", desc: "Laplace Transform" }
+                    { name: "Unit 6", file: "Mathematics-II-Unit-6.html", desc: "Statistics & Probability" }
                 ]
             },
             pyq: {
