@@ -1,388 +1,1938 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>FEEE · Unit 1 · Electrical Components & Sources</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: electrical / yellow-glow / dark amber -->
-  <style>
-    :root {
-      --primary: #b76e2e;          /* copper / electrical */
-      --primary-light: #d48b4b;
-      --accent: #f9a825;            /* bright amber */
-      --accent-light: #ffb74d;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0277bd;
-      --header-bg: linear-gradient(145deg, #4a2c1a, #b76e2e, #f9a825);
-    }
-    /* header emoji: electrical symbols */
-    .header::after {
-      content: "⚡🔌💡📊";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-2deg);
-    }
-    /* waveform preview */
-    .waveform-demo {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin: 20px 0;
-    }
-    .waveform-card {
-      background: var(--card-bg);
-      border: 2px solid var(--accent);
-      border-radius: var(--radius-md);
-      padding: 15px;
-      text-align: center;
-      flex: 1 1 150px;
-    }
-    .waveform-card i {
-      font-size: 3rem;
-      color: var(--accent);
-    }
-    /* source transformation diagram */
-    .source-transform {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .source-box {
-      background: var(--formula-bg);
-      border: 2px solid var(--primary);
-      padding: 15px 25px;
-      border-radius: var(--radius-lg);
-      font-size: 1.2rem;
-    }
-    .arrow {
-      font-size: 2rem;
-      color: var(--danger);
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT (works without engine.js) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 - Overview of Electronic Components and Signals | FEEE</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Unit-specific styles */
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; text-align:center; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; line-height:1.2; }
+        .fraction .den { padding:3px 6px 0; line-height:1.2; }
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button icon and text
-            var icon = this.querySelector('i');
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (this.innerHTML.includes('Solution') ? 'Show Solution' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (this.innerHTML.includes('Solution') ? 'Hide Solution' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred, but toggle script above ensures functionality) -->
-  <script src="../units-com/engine.js" defer></script>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder { padding:24px 16px; text-align:center; border-radius:var(--radius-sm); background:var(--formula-bg); margin:12px 0; }
+        .diagram-placeholder i.fas { font-size:2rem; color:var(--accent); margin-bottom:8px; display:block; }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .outcomes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+        .outcome-card { background:var(--formula-bg); border-left:4px solid var(--accent); border-radius:var(--radius-sm); padding:16px; }
+        .outcome-card .badge { display:inline-block; background:var(--accent); color:#fff; font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:20px; margin-bottom:8px; }
+
+        .bio-box { background:linear-gradient(135deg, #fff8e1 0%, #fff3e0 100%); border-left:4px solid #ff8f00; border-radius:var(--radius-md); padding:20px; margin:20px 0; display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+        [data-theme="dark"] .bio-box { background:linear-gradient(135deg, #2a2210 0%, #2a1e10 100%); }
+        .bio-box .bio-text { flex:1; min-width:220px; }
+        .bio-box .bio-icon { font-size:3rem; color:#ff8f00; }
+
+        .prereq-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; margin:12px 0; }
+        .prereq-item { background:var(--formula-bg); border-radius:var(--radius-sm); padding:12px 16px; border-left:3px solid var(--info); font-size:0.92rem; }
+
+        .app-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:12px 0; }
+        .app-item { background:var(--formula-bg); border-radius:var(--radius-sm); padding:10px 14px; text-align:center; font-size:0.88rem; border:1px solid var(--border-color); }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>⚡ FEEE · Unit 1 ⚡</h1>
-      <h2>Electrical Components · Waveforms · Sources</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
-        <span class="info-item"><i class="fas fa-microchip"></i> Passive Components</span>
-        <span class="info-item"><i class="fas fa-wave-square"></i> AC/DC Signals</span>
-        <span class="info-item"><i class="fas fa-battery-full"></i> Source Transformation</span>
-      </div>
+        <h1><i class="fas fa-microchip"></i> Overview of Electronic Components and Signals</h1>
+        <h2>Unit 1 — Fundamentals of Electrical and Electronics Engineering</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> ES110</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 1</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> Diploma Engineering</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR (desktop + mobile trigger) -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT1</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#passive"><i class="fas fa-microchip"></i> Passive Components</a>
-        <a href="#waveforms"><i class="fas fa-wave-square"></i> Waveforms</a>
-        <a href="#sources"><i class="fas fa-battery-full"></i> Sources</a>
-        <a href="#transformation"><i class="fas fa-exchange-alt"></i> Transformation</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>FEEE U1</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+            <a href="#passive"><i class="fas fa-plug"></i> Passive</a>
+            <a href="#active"><i class="fas fa-bolt"></i> Active</a>
+            <a href="#signals"><i class="fas fa-wave-square"></i> Signals</a>
+            <a href="#summary"><i class="fas fa-clipboard-list"></i> Summary</a>
+            <a href="#exercises"><i class="fas fa-pencil-alt"></i> Exercises</a>
+            <a href="#practicals"><i class="fas fa-flask"></i> Practicals</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER & OVERLAY -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-bolt"></i> FEEE Unit 1</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>FEEE U1</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#passive"><i class="fas fa-microchip"></i> Resistors, Capacitors, Inductors</a>
-      <a href="#waveforms"><i class="fas fa-wave-square"></i> DC/AC, Periodic signals</a>
-      <a href="#sources"><i class="fas fa-battery-full"></i> Ideal/Independent sources</a>
-      <a href="#transformation"><i class="fas fa-exchange-alt"></i> Source transformation & problems</a>
+        <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+        <a href="#passive"><i class="fas fa-plug"></i> Passive</a>
+        <a href="#active"><i class="fas fa-bolt"></i> Active</a>
+        <a href="#signals"><i class="fas fa-wave-square"></i> Signals</a>
+        <a href="#summary"><i class="fas fa-clipboard-list"></i> Summary</a>
+        <a href="#exercises"><i class="fas fa-pencil-alt"></i> Exercises</a>
+        <a href="#practicals"><i class="fas fa-flask"></i> Practicals</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: PASSIVE COMPONENTS ========= -->
-    <section id="passive" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-microchip"></i> Passive Components: Resistor · Capacitor · Inductor
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-circle-info"></i> Concept of Passive Components</div>
-          <p><strong>Passive components</strong> cannot introduce net energy into the circuit. They only consume or store energy.</p>
-        </div>
+<div class="container">
 
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-ruler"></i> Resistor</h4>
-            <p>Opposes current flow. Unit: Ohm (Ω). <br> V = I·R (Ohm's law). Energy dissipated as heat.</p>
-            <div class="formula">R = ρ·L/A</div>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-battery-half"></i> Capacitor</h4>
-            <p>Stores energy in electric field. Unit: Farad (F). <br> I = C·dV/dt. Blocks DC, passes AC.</p>
-            <div class="formula">C = ε·A/d</div>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-magnet"></i> Inductor</h4>
-            <p>Stores energy in magnetic field. Unit: Henry (H). <br> V = L·dI/dt. Passes DC, blocks AC.</p>
-            <div class="formula">L = N²·μ·A/l</div>
-          </div>
-        </div>
+    <!-- ====== SECTION: OVERVIEW ====== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-eye"></i> Overview & Unit Specifics
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="workshop-box">
-          <div class="box-title"><i class="fas fa-lightbulb"></i> Series/Parallel combinations</div>
-          <p>Resistors series: R<sub>eq</sub> = R₁ + R₂ + …<br>Parallel: 1/R<sub>eq</sub> = 1/R₁ + 1/R₂ + …</p>
-          <p>Capacitors series: 1/C<sub>eq</sub> = 1/C₁ + 1/C₂ + …<br>Parallel: C<sub>eq</sub> = C₁ + C₂ + …</p>
-          <p>Inductors series: L<sub>eq</sub> = L₁ + L₂ + …<br>Parallel: 1/L<sub>eq</sub> = 1/L₁ + 1/L₂ + …</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 2: TYPES OF SIGNAL WAVEFORMS ========= -->
-    <section id="waveforms" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-wave-square"></i> Signal Waveforms: DC/AC · Voltage/Current · Periodic
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-chart-line"></i> DC vs AC</div>
-          <div class="waveform-demo">
-            <div class="waveform-card">
-              <i class="fas fa-circle"></i>
-              <h4>DC (Direct Current)</h4>
-              <p>Constant polarity. Example: battery</p>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Unit Specifics</div>
+                <p>This unit discusses the following topics:</p>
+                <ul>
+                    <li>Passive and active components</li>
+                    <li>Resistors, capacitors and inductors</li>
+                    <li>Diodes and their applications</li>
+                    <li>Bipolar Junction Transistors and their applications</li>
+                    <li>Field Effect Transistors, MOS and CMOS and their applications</li>
+                    <li>Signals: DC/AC, voltage/current, periodic/non-periodic signals</li>
+                    <li>Average, rms, peak values of signals</li>
+                    <li>Different types of signal waveforms</li>
+                    <li>Voltage and current sources</li>
+                </ul>
+                <p>The practical applications of the topics are discussed for generating further curiosity as well as improving problem solving capacity. Besides giving a number of multiple choice questions as well as questions of short and long answer types belonging to different categories following lower and higher order of Bloom's taxonomy, number of numerical problems are provided for practice.</p>
+                <p>The related practicals are provided based on the content of Unit 1, followed up by a "Know More" section. This section mainly contains "micro project and activities" that highlights the practical activity, examples of some interesting applications focusing on self-learning, creativity and developing outcomes in all the domains of learning.</p>
             </div>
-            <div class="waveform-card">
-              <i class="fas fa-sine"></i>
-              <h4>AC (Alternating Current)</h4>
-              <p>Sinusoidal, changes polarity. Example: mains supply</p>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Rationale</div>
+                <p>The wired world and human beings are dependent on electricity to perform many activities. Number of applications are controlled by electrical and electronic circuits, from miniature ones in integrated circuits in mobile phones and music players, to the computers and TV sets, to massive ones that carry power to the homes.</p>
+                <p>This unit is a basic theme in the study of fundamentals of electrical and electronics engineering. In this unit, working of components like resistors, capacitors, inductors, diodes, BJT, FET that are basic constituents of any circuit are described. Signals that aids in analyzing, processing and validating the circuits and an overview of active sources which can deliver or absorb energy continuously are also explained in this unit.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="card-grid">
-          <div class="card"><h4><i class="fas fa-bolt"></i> Voltage vs Current</h4>Voltage is potential difference; current is flow of charge. They can be DC or AC.</div>
-          <div class="card"><h4><i class="fas fa-repeat"></i> Periodic vs Non-periodic</h4><strong>Periodic:</strong> repeats after T (sine, square). <strong>Non-periodic:</strong> random, transient.</div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title"><i class="fas fa-chart-bar"></i> Common Periodic Waveforms</div>
-          <ul>
-            <li><strong>Sinusoidal:</strong> v(t) = V<sub>m</sub> sin(ωt + φ)</li>
-            <li><strong>Square wave:</strong> alternates between two levels</li>
-            <li><strong>Triangular / Sawtooth</strong></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 3: VOLTAGE/CURRENT SOURCES ========= -->
-    <section id="sources" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-battery-full"></i> Voltage/Current Sources: Ideal · Non-ideal · Independent/Dependent
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-circle-check"></i> Ideal vs Non-ideal</div>
-          <p><strong>Ideal voltage source:</strong> maintains constant voltage regardless of current (zero internal resistance).</p>
-          <p><strong>Ideal current source:</strong> maintains constant current regardless of voltage (infinite internal resistance).</p>
-          <p><strong>Non-ideal (practical) sources</strong> have internal resistance: voltage source with series R<sub>s</sub>, current source with parallel R<sub>s</sub>.</p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card"><h4><i class="fas fa-arrow-right"></i> Independent Source</h4>Value fixed or time-varying but not controlled by other circuit variables.</div>
-          <div class="card"><h4><i class="fas fa-code-branch"></i> Dependent Source</h4>Value depends on voltage/current elsewhere in circuit (VCVS, CCVS, VCCS, CCCS).</div>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-diagram-project"></i> Symbols</div>
-          <p>Independent sources: circle. Dependent sources: diamond shape.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 4: SOURCE TRANSFORMATION & PROBLEMS ========= -->
-    <section id="transformation" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-exchange-alt"></i> Source Transformation · Simple Problems
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-retweet"></i> Source Transformation Principle</div>
-          <p>A voltage source V in series with resistance R can be transformed into a current source I = V/R in parallel with same resistance R, and vice‑versa.</p>
-          <div class="source-transform">
-            <div class="source-box">
-              <i class="fas fa-bolt"></i> V<br>─── R ──
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-book-open"></i> Pre-Requisites</div>
+                <div class="prereq-list">
+                    <div class="prereq-item"><strong>1.</strong> Science: Effects of Current, Chemical Substances – Nature and Behaviour (Class X)</div>
+                    <div class="prereq-item"><strong>2.</strong> Applied Chemistry: Atomic Structure, Engineering Materials (Semester I)</div>
+                    <div class="prereq-item"><strong>3.</strong> Applied Physics-I: Physical world, Units and Measurements (Semester I)</div>
+                    <div class="prereq-item"><strong>4.</strong> Mathematics-1: Trigonometry, Algebra (Semester I)</div>
+                </div>
             </div>
-            <div class="arrow">⇄</div>
-            <div class="source-box">
-              <i class="fas fa-water"></i> I = V/R<br>─── R ──
+
+            <h3><i class="fas fa-bullseye"></i> Unit Outcomes</h3>
+            <p>Upon completion of this unit, the student will be able to:</p>
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <span class="badge">U1-O1</span>
+                    <p>Classify electronic and electrical components.</p>
+                </div>
+                <div class="outcome-card">
+                    <span class="badge">U1-O2</span>
+                    <p>Suggest suitable discrete components for a given application.</p>
+                </div>
+                <div class="outcome-card">
+                    <span class="badge">U1-O3</span>
+                    <p>Describe the construction and working principle of a given semiconductor devices.</p>
+                </div>
+                <div class="outcome-card">
+                    <span class="badge">U1-O4</span>
+                    <p>Interpret parameters of continuous electrical signals.</p>
+                </div>
+                <div class="outcome-card">
+                    <span class="badge">U1-O5</span>
+                    <p>Compare ideal and practical active sources.</p>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title"><i class="fas fa-pencil"></i> Example 1: Voltage → Current</div>
-          <p>Convert a 12V voltage source with series 4Ω to a current source.</p>
-          <div class="solution-box">
-            <div class="step" data-step="Formula">I = V / R = 12V / 4Ω = 3A</div>
-            <div class="step" data-step="Result">3A current source in parallel with 4Ω resistor.</div>
-          </div>
-        </div>
+            <h3><i class="fas fa-th"></i> Expected Mapping with Course Outcomes</h3>
+            <p><em>(1 – Weak Correlation; 2 – Medium Correlation; 3 – Strong Correlation)</em></p>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Unit-1 Outcomes</th><th>CO-1</th><th>CO-2</th><th>CO-3</th><th>CO-4</th><th>CO-5</th><th>CO-6</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>U1-O1</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>U1-O2</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>U1-O3</td><td>3</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>U1-O4</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>U1-O5</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="example-box">
-          <div class="box-title"><i class="fas fa-pencil"></i> Example 2: Current → Voltage</div>
-          <p>Convert a 5A current source with parallel 10Ω to a voltage source.</p>
-          <div class="solution-box">
-            <div class="step" data-step="Formula">V = I × R = 5A × 10Ω = 50V</div>
-            <div class="step" data-step="Result">50V voltage source in series with 10Ω resistor.</div>
-          </div>
         </div>
-
-        <!-- Exercise with toggle button (self-contained) -->
-        <div class="exercise-area">
-          <p><strong>Problem 1:</strong> Transform the 20V voltage source with series 5Ω resistor into an equivalent current source.</p>
-        </div>
-        <button class="toggle-btn" data-target="sol1"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="sol1">
-          <div class="formula answer">
-            <strong>Solution:</strong><br>
-            I = V / R = 20V / 5Ω = <strong>4A</strong><br>
-            Equivalent: 4A current source in parallel with 5Ω resistor.
-          </div>
-        </div>
-
-        <div class="exercise-area">
-          <p><strong>Problem 2:</strong> Transform the 2A current source with parallel 8Ω resistor into an equivalent voltage source.</p>
-        </div>
-        <button class="toggle-btn" data-target="sol2"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="sol2">
-          <div class="formula answer">
-            <strong>Solution:</strong><br>
-            V = I × R = 2A × 8Ω = <strong>16V</strong><br>
-            Equivalent: 16V voltage source in series with 8Ω resistor.
-          </div>
-        </div>
-
-        <div class="exercise-area">
-          <p><strong>Problem 3 (mixed):</strong> Use source transformation to find the current through a 4Ω load connected across terminals A-B: circuit has a 10V source in series with 2Ω, transformed?</p>
-        </div>
-        <button class="toggle-btn" data-target="sol3"><i class="fas fa-eye"></i> Show Hint</button>
-        <div class="answer-reveal" id="sol3">
-          <div class="formula answer">
-            <strong>Hint:</strong> Transform 10V + 2Ω → 5A current source in parallel with 2Ω. Then combine parallel resistances if needed. Current through 4Ω load can be found by current divider.
-          </div>
-        </div>
-
-        <div class="workshop-box">
-          <div class="box-title"><i class="fas fa-calculator"></i> Simple transformation steps</div>
-          <ol>
-            <li>Identify source and its series/parallel resistance.</li>
-            <li>Apply V = I·R or I = V/R.</li>
-            <li>Draw new source with same resistance in opposite configuration.</li>
-            <li>Polarity/direction: current source points toward positive terminal of voltage source.</li>
-          </ol>
-        </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">V = I·R</div>
-          <div class="tag">P = I²R = V²/R</div>
-          <div class="tag">Q = C·V</div>
-          <div class="tag">I = C·dV/dt</div>
-          <div class="tag">V = L·dI/dt</div>
-          <div class="tag">Source: V → I: I=V/R</div>
-          <div class="tag">Source: I → V: V=I·R</div>
+    <!-- ====== SECTION: 1.1 PASSIVE COMPONENTS ====== -->
+    <section class="section" id="passive">
+        <h2 class="section-title">
+            <i class="fas fa-plug"></i> 1.1 Passive Components
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <!-- Historical Note -->
+            <div class="bio-box">
+                <div class="bio-icon"><i class="fas fa-user-graduate"></i></div>
+                <div class="bio-text">
+                    <strong>Georg Simon Ohm (1789–1854)</strong> began his research with the electrochemical cell, invented by Italian scientist Alessandro Volta. His practical experiments showed the mathematical links and he found that there is a direct proportionality between the potential differences (voltage) applied across a conductor and the resultant electric current, provided the temperature does not change. This relationship is known as <strong>Ohm's law</strong> and is now a cornerstone of electrical circuit design.
+                </div>
+            </div>
+
+            <!-- 1.1.1 Introduction -->
+            <h3>1.1.1 Introduction</h3>
+            <p>Teenagers as well as children love to play jig saw puzzles. Number of discrete parts have to be properly placed together in the puzzle to develop a complete picture. Each part has a specific role in the developed picture. Similarly, for any electrical or electronics application, circuits or systems are developed in which each component has a specific meaningful role for the application to become operational.</p>
+            <p>In fact, it is possible to assemble a circuit without really understanding the different parts involved. One can just connect components together like jigsaw puzzle to match an electronic schematic. That said, in order to debug an existing circuit or design one, it is important to actually understand how the individual electrical components work and how to use them together. In this topic working of components like resistors, capacitors, and inductors that are basic constituents of any circuit will be described.</p>
+
+            <!-- 1.1.2 Types of Circuit Elements -->
+            <h3>1.1.2 Types of Circuit Elements</h3>
+            <p>Electronic elements also known as components that make up a circuit are connected together by conductors to form a complete circuit. They can be classified into two main categories depending on whether they deliver or absorb energy from the circuit:</p>
+            <ol type="a">
+                <li><strong>Passive components</strong></li>
+                <li><strong>Active components</strong></li>
+            </ol>
+            <p>A passive component can only receive energy, which it can either dissipate or absorb. An active component supplies energy to an electric circuit, and hence has the ability to electrically control the flow of charge. An example of a basic circuit made up of two electronic elements, a cell and a bulb has been illustrated in Fig. 1.1.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=basic+circuit+active+passive+component+cell+bulb+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.1:</strong> A basic circuit showing active and passive components</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-puzzle-piece"></i> Discrete Components</div>
+                <p>The components, which are discrete in nature i.e. with just one circuit element, are called <strong>discrete components</strong>. These components may be active or passive in nature. They are widely used in electrical and electronic circuits. Some of the discrete components are Resistors, Capacitors, Inductors, Semiconductor diodes, Transistors.</p>
+                <p>The term discrete component should be understood as it is used to differentiate discrete components from integrated circuits (ICs) which contain multiple different circuit elements.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition of a Passive Component</div>
+                <p>A passive component is an electronic component when connected in a circuit can only receive energy, which it can either dissipate, absorb or store it in an electric field or a magnetic field. Passive elements do not need any form of electrical power to operate. As the name 'passive' suggests – passive devices do not provide gain or amplification. Common examples of passive components include <strong>Resistors, Inductors, Capacitors</strong>.</p>
+            </div>
+
+            <!-- 1.1.3 Resistance -->
+            <h3>1.1.3 Resistance</h3>
+            <p>Resistance is the opposition to current flow in an electrical circuit. It is described as the property of a substance due to which it opposes the flow of current through it. Resistance is not same for all materials. Conductors like copper, aluminum etc. offer small resistances whereas insulating materials like Bakelite, glass, rubber, mica, dry wood, p.v.c. (polyvinyl chloride), etc. offer high resistance.</p>
+            <p>The higher the resistance provided by a material, the lower the flow of electrons or current through the material. The property of resistance is used in a wide variety of applications and appliances such as computer mother board, televisions and incandescent lamps. The SI unit for resistance is the ohm, symbolized by the Greek letter Ω (omega) and also represented by letter R. Resistance of a material is one ohm when a current of one ampere passes through a material with a voltage of one volt. The current is proportional to the voltage across the terminal ends. This ratio is represented by Ohms law:</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Ohm's Law — Eq. (1.1)</div>
+                <div class="formula">
+                    R = <span class="fraction"><span class="num">V</span><span class="den">I</span></span>
+                </div>
+            </div>
+
+            <p>The resistance R offered by a conductor depends on the following four factors:</p>
+            <ol type="a">
+                <li>It varies directly as its length, 'l'.</li>
+                <li>It varies inversely as the cross-section area 'A' of the conductor.</li>
+                <li>It is dependent upon the nature of the material.</li>
+                <li>It also depends on the temperature of the conductor.</li>
+            </ol>
+            <p>Neglecting the last factor for the present,</p>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Resistance Formula — Eq. (1.2)</div>
+                <div class="formula">
+                    R ∝ <span class="fraction"><span class="num">l</span><span class="den">A</span></span> &nbsp; or &nbsp;
+                    R = <span class="fraction"><span class="num">ρ l</span><span class="den">A</span></span>
+                </div>
+            </div>
+            <p>Where ρ is a constant depending on the nature of the material and is known as its <strong>specific resistance</strong> or <strong>resistivity</strong>. The unit of specific resistance is ohm-meter.</p>
+
+            <h4>Resistors</h4>
+            <p>The resistor is an electrical component with two terminals. It is one of the most important components in a circuit as it allows the user to precisely control the amount of current and voltage in the circuit.</p>
+            <p>Resistors can be divided in terms of construction type as well as resistance material. A resistor though very small, is often made up of copper wires coiled around a ceramic rod and an outer coating of insulating paint. This is called a <strong>wire-wound resistor</strong>. Smaller resistors, those designed for low-power circuits, are often made out of <strong>carbon film</strong>, which replaces the wound copper wire that can be bulky.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=resistor+symbols+IEC+IEEE+fixed+variable" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.2:</strong> Symbol of Resistors (IEC, IEEE, Variable)</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=resistor+colour+coding+carbon+film+4+band" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.3:</strong> Colour Coding of Resistors</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=classification+of+resistors+linear+nonlinear+fixed+variable+thermistor+LDR" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.4:</strong> Classification of Resistors</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-fire"></i> Power Rating or Wattage</div>
+                <ul>
+                    <li>The maximum amount of heat dissipated by a resistor at maximum specified temperature without damage to resistor is called <strong>power rating</strong> of a resistor.</li>
+                    <li>It is expressed in watt (W) at specified temperature.</li>
+                    <li>When resistor is used at higher temperature, power rating will be decreased.</li>
+                    <li>The normal available resistors have power ratings of 1/8 W, 1/4 W, 1/2 W, 1 W, 2 W.</li>
+                    <li>The size of a resistor depends on its power handling capacity. Small resistors are designed to handle low powers, as size of resistor increases power handling capacity also increases.</li>
+                </ul>
+            </div>
+
+            <h4>Conductance and Conductivity</h4>
+            <p>The reciprocal of resistance is called as <strong>Conductance</strong>, represented by letter 'G'. Whereas resistance of a conductor measures the opposition which it offers to the flow of current, the conductance measures the inducement which it offers to its flow.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Conductance — Eq. (1.3)</div>
+                <div class="formula">
+                    R = ρ <span class="fraction"><span class="num">l</span><span class="den">A</span></span> &nbsp;&nbsp;
+                    G = <span class="fraction"><span class="num">1</span><span class="den">ρ</span></span> · <span class="fraction"><span class="num">l</span><span class="den">A</span></span> &nbsp;&nbsp;
+                    G = σ <span class="fraction"><span class="num">A</span><span class="den">l</span></span>
+                </div>
+            </div>
+            <p>where σ is called the <strong>conductivity</strong> or specific conductance of a conductor. The unit of conductance is <strong>Siemens (S)</strong>. The unit of conductivity is <strong>Siemens/metre (S/m)</strong>.</p>
+
+            <h4>Effect of Temperature on Resistance</h4>
+            <p>One of the factors that effects resistance of any material is temperature. The effect of rise in temperature is:</p>
+            <ol type="a">
+                <li>to increase the resistance of <strong>pure metals</strong>.</li>
+                <li>to decrease the resistance of <strong>carbon, electrolytes, and insulators</strong>.</li>
+                <li>to increase the resistance of <strong>alloys</strong>, though in their case, the increase is relatively small.</li>
+            </ol>
+
+            <h4>Temperature Coefficient of Resistance</h4>
+            <p>Let a metallic conductor having a resistance of R₀ at 0°C be heated to t°C and let its resistance at this temperature be R<sub>t</sub>. Then, considering normal ranges of temperature, it is found that the increase in resistance, R<sub>t</sub> − R₀ depends:</p>
+            <ol type="a">
+                <li>directly on its initial resistance</li>
+                <li>directly on the rise in temperature</li>
+                <li>on the nature of the material of the conductor.</li>
+            </ol>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Temperature Coefficient — Eq. (1.4) & (1.5)</div>
+                <div class="formula">
+                    R<sub>t</sub> − R₀ = α R₀ t &nbsp;&nbsp;&nbsp;...(1.4)
+                </div>
+                <div class="formula" style="margin-top:10px;">
+                    R<sub>t</sub> = R₀ (1 + α t) &nbsp;&nbsp;&nbsp;...(1.5)
+                </div>
+            </div>
+            <p>where α (alpha) is a constant and is known as the <strong>temperature coefficient of resistance</strong> of the conductor.</p>
+
+            <!-- 1.1.4 Inductors -->
+            <h3>1.1.4 Inductors</h3>
+            <p>Inductor is a two-terminal component that temporarily stores energy in the form of a <strong>magnetic field</strong>. It is usually called as a coil. The main property of an inductor is that it opposes any change in current. An inductor is also considered as passive element of circuit, because it can store energy in it as a magnetic field, and can deliver that energy to the circuit, but not in continuous basis. The energy absorbing and delivering capacity of an inductor is limited.</p>
+            <p>According to <strong>Faraday's law of Electromagnetic induction</strong>, when the current flowing through an inductor changes, the time-varying magnetic field induces a voltage in the conductor. According to <strong>Lenz's law</strong>, the direction of induced EMF opposes the change in current that created it. Hence, induced EMF is opposite to the voltage applied across the coil.</p>
+            <p>An inductor blocks any AC component present in a DC signal. The inductor is sometimes wrapped upon a core, for example a ferrite core.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=inductor+parts+diagram+coil+core+turns+cross+section" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.5:</strong> Parts of an Inductor</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=inductor+symbols+air+core+iron+core+ferrite+variable" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.6:</strong> Symbol of Inductors (Air Core, Iron Core, Ferrite, Variable)</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-ruler"></i> Symbol and Units</div>
+                <p>The unit of inductance is <strong>Henry (H)</strong>. In actual practice, Henry is an extremely large unit. Therefore, much smaller units are used:</p>
+                <ul>
+                    <li>millihenry (mH): 1 mH = 1 × 10⁻³ H</li>
+                    <li>microhenry (μH): 1 μH = 1 × 10⁻⁶ H</li>
+                </ul>
+            </div>
+
+            <h4>Factors Affecting Inductance</h4>
+            <p>The inductance of a coil depends upon the following parameters:</p>
+            <ol>
+                <li>Number of turns, N</li>
+                <li>Core material</li>
+                <li>Length of winding</li>
+                <li>Dimension of coil former</li>
+            </ol>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-magnet"></i> Storage of Energy in Inductor</div>
+                <p>One of the basic properties of electromagnetism is that the current when flows through an inductor, a magnetic field gets created perpendicular to the current flow. This keeps on building up. It gets stabilized at some point, which means that the inductance won't build up after that. When the current stops flowing, the magnetic field gets decreased. This magnetic energy gets turned into electrical energy. Hence energy gets stored temporarily in the form of magnetic field.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-star"></i> Q Factor of an Inductor</div>
+                <p>The ability of an inductor to store energy as compared to the dissipation of energy within the inductor is called <strong>Quality (or Q) factor</strong>. It is also known as figure of merit.</p>
+                <div class="formula-box">
+                    <div class="box-title"><i class="fas fa-square-root-alt"></i> Q Factor — Eq. (1.6)</div>
+                    <div class="formula">
+                        Q = <span class="fraction"><span class="num">Energy Stored</span><span class="den">Energy Dissipated</span></span>
+                    </div>
+                </div>
+                <ul>
+                    <li>A high Q factor means little energy dissipation with respect to energy storage, while a low Q factor means energy dissipation as large as energy storage.</li>
+                    <li>The value of Q factor for coils may range between 5 to 100.</li>
+                    <li>Smaller the value of DC resistance of a coil, higher is the value of Q factor. High Q coils are preferred in tuning circuits, because it makes the circuit more selective and sensitive.</li>
+                </ul>
+            </div>
+
+            <!-- 1.1.5 Capacitors -->
+            <h3>1.1.5 Capacitors</h3>
+            <p>A capacitor is a passive component that has the ability to store the energy in the form of <strong>potential difference</strong> between its plates. It resists a sudden change in voltage. The charge is stored in the form of potential difference between two plates, which form to be positive and negative depending upon the direction of charge storage.</p>
+            <p>A non-conducting region is present between these two plates which is called as <strong>dielectric</strong>. This dielectric can be vacuum, air, mica, paper, ceramic, aluminium etc. The name of the capacitor is given as per the dielectric used.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-ruler"></i> Symbol and Units</div>
+                <p>The standard units for capacitance is <strong>Farads</strong>. Generally, the values of capacitors available will be in the order of micro-farads, pico-farads and nano-farads.</p>
+                <p>The capacitance of a capacitor is proportional to the distance between the plates and is inversely proportional to the area of the plates. Also, the higher the permittivity of a material, the higher will be the capacitance. The permittivity of a medium describes how much electric flux is being generated per unit charge in that medium.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=capacitor+circuit+symbol+fixed+variable+electrolytic" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.7:</strong> Symbol of a Capacitor</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Dielectric Materials Used in a Capacitor</h4>
+            <div class="tag-grid">
+                <div class="tag">1. Air</div><div class="tag">2. Mica</div>
+                <div class="tag">3. Glass</div><div class="tag">4. Ceramic</div>
+                <div class="tag">5. Porcelain</div><div class="tag">6. Polystyrene</div>
+                <div class="tag">7. Fibre</div><div class="tag">8. Bakelite</div>
+                <div class="tag">9. Waxed paper</div><div class="tag">10. Electrolyte</div>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Functions of a Capacitor</div>
+                <ol>
+                    <li>It opposes the flow of direct current (D.C.) through it.</li>
+                    <li>It bypasses the alternating current (A.C.) through it very easily.</li>
+                    <li>It stores the electric energy in it.</li>
+                    <li>It removes the ripple from D.C. power supply.</li>
+                    <li>It opposes any change of voltage in the circuit.</li>
+                </ol>
+            </div>
+
+            <!-- 1.1.6 Series and Parallel Circuits -->
+            <h3>1.1.6 Series and Parallel Circuits</h3>
+            <p>Resistors connected in such a way that current from one flows only into another are said to be connected in <strong>series</strong>. The series combination of two resistors acts, as far as the voltage source is concerned, as a single resistor having a value equal to the sum of the two resistances.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=series+circuit+two+resistors+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.8:</strong> Series Circuit</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=parallel+circuit+two+resistors+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.9:</strong> Parallel Circuit</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <h4>Table 1.1: Formulas for Parallel and Series Connection of Elements</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Type of Connection</th><th>Resistor</th><th>Inductor</th><th>Capacitor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Series</strong></td>
+                            <td>R = R₁ + R₂</td>
+                            <td>L = L₁ + L₂</td>
+                            <td>1/C = 1/C₁ + 1/C₂</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Parallel</strong></td>
+                            <td>1/R = 1/R₁ + 1/R₂</td>
+                            <td>1/L = 1/L₁ + 1/L₂</td>
+                            <td>C = C₁ + C₂</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Applications -->
+            <h4>Applications of Passive Components in Real Life</h4>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Applications of Resistors</div>
+                <div class="app-grid">
+                    <div class="app-item">Potential dividers</div>
+                    <div class="app-item">Current control</div>
+                    <div class="app-item">D.C. power supplies</div>
+                    <div class="app-item">Filter circuit networks</div>
+                    <div class="app-item">Amplifier circuits</div>
+                    <div class="app-item">Heating element</div>
+                </div>
+                <p style="margin-top:12px;"><strong>Other applications:</strong></p>
+                <ul>
+                    <li>For protection purposes, e.g. fusible resistors.</li>
+                    <li>Wire wound resistors find application where balanced current control, high sensitivity, and accurate measurement are required like in shunt with ampere meter.</li>
+                    <li>Photo resistors find application in flame detectors, burglar alarm, in photographic devices, etc.</li>
+                </ul>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Applications of Capacitors</div>
+                <ol>
+                    <li>Storage of energy.</li>
+                    <li>Filter circuits to minimize the ripple voltage.</li>
+                    <li>Tuning circuits for selection of frequency.</li>
+                    <li>Starting and running of motors.</li>
+                    <li>Equipment like SMPS, Modem.</li>
+                </ol>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Applications of Inductors</div>
+                <ol>
+                    <li>Minimize the ripples of alternating current in a circuit.</li>
+                    <li>Allowing the flow of direct current.</li>
+                    <li>Filter circuits to minimize the ripple voltage or ripple factor.</li>
+                    <li>Tuning circuits of radio transmitters and receivers to select the frequency.</li>
+                    <li>Devices like Relays, Electric Motors, Transformers, Sensors.</li>
+                </ol>
+            </div>
+
+            <!-- Solved Problems -->
+            <h3><i class="fas fa-calculator"></i> Solved Problems — Passive Components</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.1.1</div>
+                <p>Five resistors with resistances of 2.2 MΩ, 470 KΩ, 220 KΩ, 55 KΩ, and 1.6 MΩ are connected in series. Calculate the total or equivalent resistance of this series combination?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>For series combination of resistances, the equation is:</p>
+                <div class="formula">R<sub>eq</sub> = R₁ + R₂ + R₃ + R₄ + R₅</div>
+                <p>All resistances must be expressed in terms of the same unit. In terms of kilo ohms:</p>
+                <div class="step" data-step="Step 1">R<sub>eq</sub> = 2200 + 470 + 220 + 55 + 1600</div>
+                <div class="step" data-step="Step 2">R<sub>eq</sub> = 4545 kΩ</div>
+                <div class="formula answer">R<sub>eq</sub> = 4.545 Mega ohms</div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.1.2</div>
+                <p>Four resistors with resistances of 1 kΩ, 2 kΩ, 4 kΩ, and 8 kΩ are connected in parallel. Calculate the equivalent resistance of this combination?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>For parallel combination of resistances, the equation is:</p>
+                <div class="formula">
+                    <span class="fraction"><span class="num">1</span><span class="den">R<sub>eq</sub></span></span> =
+                    <span class="fraction"><span class="num">1</span><span class="den">R₁</span></span> +
+                    <span class="fraction"><span class="num">1</span><span class="den">R₂</span></span> +
+                    <span class="fraction"><span class="num">1</span><span class="den">R₃</span></span> +
+                    <span class="fraction"><span class="num">1</span><span class="den">R₄</span></span>
+                </div>
+                <div class="step" data-step="Step 1">
+                    <span class="fraction"><span class="num">1</span><span class="den">R<sub>eq</sub></span></span> =
+                    <span class="fraction"><span class="num">1</span><span class="den">1</span></span> +
+                    <span class="fraction"><span class="num">1</span><span class="den">2</span></span> +
+                    <span class="fraction"><span class="num">1</span><span class="den">4</span></span> +
+                    <span class="fraction"><span class="num">1</span><span class="den">8</span></span>
+                    = 1.000 + 0.500 + 0.250 + 0.125 = 1.875
+                </div>
+                <div class="formula answer">R<sub>eq</sub> = <span class="fraction"><span class="num">1</span><span class="den">1.875</span></span> = 0.53 kΩ</div>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS (save, print, top) -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    <!-- ====== SECTION: 1.2 ACTIVE COMPONENTS ====== -->
+    <section class="section" id="active">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> 1.2 Active Components
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-  <!-- TOAST for notifications -->
-  <div class="toast" id="toast">
+            <!-- 1.2.1 Introduction -->
+            <h3>1.2.1 Introduction</h3>
+            <p>Automation, Digitization and Smart system requires use of active components. Active components play a vital role in all engineering disciplines and engineering application ranging from domestic to industrial, space, defense, agriculture, medical, transportation, education and entertainment. All electronic products are based on functioning of active components.</p>
+            <p>The components which operation changes as per external energy are termed as <strong>active components</strong>. Active components performance relies on external energy. Active components are suitable for rectifying, amplifying and switching applications. Two main types of active components are: <strong>1) Tube devices</strong> <strong>2) Semiconductor devices</strong>.</p>
+            <p>Now a days tube devices are not commonly used as they exhibit many drawbacks such as low speed of operation, larger size, difficult for mounting and expensive than semiconductor components. Semiconductor active components are also called as <strong>solid state components</strong>.</p>
+
+            <div class="important-note">
+                <strong>Commonly used active components:</strong> Diode, BJTs (Bipolar Junction Transistors), FET (Field Effect Transistor), MOSFET (Metal Oxide Semiconductor FET), SCR (Silicon Controlled Rectifier), DIAC, UJT (Uni Junction Transistor), TRIAC, IGBT, PUT and Integrated Circuits.
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-atom"></i> Semiconductor Materials</div>
+                <p>Semiconductor material has electrical conductivity less than conductor and more than insulator. Its conductivity changes as per application of external energy.</p>
+                <ul>
+                    <li><strong>Intrinsic semiconductor:</strong> Pure semiconductor materials – commonly Silicon (Si) and Germanium (Ge).</li>
+                    <li><strong>Doping:</strong> The process of addition of impurity to intrinsic semiconductor to improve conductivity.</li>
+                    <li><strong>Extrinsic semiconductor:</strong> Impure semiconductor material after doping.</li>
+                    <li><strong>P-type:</strong> Obtained by adding trivalent impurity. Holes are majority charge carriers.</li>
+                    <li><strong>N-type:</strong> Obtained by adding pentavalent impurity. Electrons are majority charge carriers.</li>
+                </ul>
+            </div>
+
+            <!-- 1.2.2 PN Junction Diode -->
+            <h3>1.2.2 P N Junction Diode</h3>
+            <p>A P-N junction diode is formed by connecting P and N type semiconductors. As soon as the P-N junction is formed, it results in the following processes:</p>
+            <ol>
+                <li>Holes from P region near the junction diffuse into N region and combine with free electrons. Similarly, free electrons from N region and near the junction enter P region to recombine with holes.</li>
+                <li>These re-combinations near the junction do not continue for a long because electrons trying to diffuse into P region are now repelled by the negative immobile ions and the holes from P region are repelled by positive immobile ions in the N region. So total recombination of holes and electrons cannot occur.</li>
+                <li>Due to few re-combinations near the junction, a region is formed on both sides with no charge carriers. It contains only negative and positive immobile ions. This region is called <strong>depletion region</strong> or <strong>space-charge region</strong>.</li>
+            </ol>
+
+            <a href="https://www.google.com/search?tbm=isch&q=PN+junction+diode+depletion+region+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.10:</strong> P N Junction with Depletion Region</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <p>The electric field between the acceptor and donor ions is called <strong>barrier</strong>. The barrier potential is about <strong>0.7 V for Si</strong> and <strong>0.3 V for Ge</strong>. P-N junction diode is a two terminal device. The terminal connected to the P region is called <strong>anode</strong>. The terminal connected to N region is called <strong>cathode</strong>. There are two electrodes, hence the name diode (DI + electrode).</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=PN+junction+diode+symbol+anode+cathode" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.11:</strong> P N Junction Diode Symbol</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <!-- 1.2.2.1 Operation -->
+            <h4>1.2.2.1 Operation of P-N Junction Diode</h4>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-arrow-right"></i> Forward Bias</div>
+                <p>When anode is at higher potential with respect to cathode, the diode is said to be in <strong>forward bias</strong>, i.e., connecting positive terminal of the external battery to anode and negative terminal to the cathode.</p>
+                <p>Holes from the P region are repelled by the positive terminal of the battery and move towards the junction. Similarly electrons from N region move towards the junction. So the <strong>width of depletion region decreases</strong>.</p>
+                <p>The direction of conventional current is from anode to cathode. If the battery voltage is increased, the current also increases. Very little current flows due to minority carriers in opposite direction.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-arrow-left"></i> Reverse Bias</div>
+                <p>When the anode is at lower potential with respect to cathode, the P-N junction is said to be <strong>reverse biased</strong>.</p>
+                <p>Holes from P region are attracted towards the negative terminal of the battery and the electrons from N region move towards the positive terminal. Since the carriers move away from the junction, the <strong>width of depletion region increases</strong>. Thus there is no current due to majority carriers. But there is very small current from cathode to anode due to minority carriers.</p>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=diode+forward+bias+circuit+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.12:</strong> Diode – Forward Bias</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=diode+reverse+bias+circuit+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.13:</strong> Diode – Reverse Bias</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 1.2.2.2 Characteristics -->
+            <h4>1.2.2.2 Characteristics of a Diode</h4>
+            <p>V-I Characteristics of a device shows device operation for various applied input voltages.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=diode+VI+characteristics+forward+reverse+breakdown+voltage" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.14:</strong> Diode V–I Characteristics</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <p>The diode connected in a DC circuit offers a definite resistance which is called <strong>DC resistance</strong> or <strong>static resistance</strong>:</p>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Static Resistance — Eq. (1.7)</div>
+                <div class="formula">R<sub>F</sub> = <span class="fraction"><span class="num">V</span><span class="den">I</span></span></div>
+            </div>
+            <p>The static resistance is small (few ohms) in forward bias and high (mega ohms) in reverse bias.</p>
+
+            <!-- 1.2.2.3 Diode Parameters -->
+            <h4>1.2.2.3 Diode Parameters</h4>
+            <p>Following parameters are specified by the manufacturers:</p>
+            <ol type="a">
+                <li><strong>Maximum Forward Current (I<sub>Fmax</sub>):</strong> The maximum current in forward bias which the diode can withstand safely.</li>
+                <li><strong>Peak Inverse Voltage (PIV):</strong> The maximum reverse voltage that can be applied safely to a diode.</li>
+                <li>Forward and reverse static and dynamic resistance</li>
+                <li>Junction capacitance</li>
+            </ol>
+
+            <!-- 1.2.2.4 Diode Applications -->
+            <h4>1.2.2.4 Diode Applications</h4>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Major Applications of PN Junction Diode</div>
+                <ol>
+                    <li>Diodes are used to construct <strong>rectifier circuits</strong> to convert AC signals to DC signals.</li>
+                    <li>In <strong>wave shaping</strong> circuit diode is used to clip or clamp input signal.</li>
+                    <li>Diodes are used in <strong>digital circuits</strong> as a switching element.</li>
+                    <li>To construct all types of <strong>DC power supply, battery charger, voltage multiplier and eliminator</strong>.</li>
+                    <li>In <strong>communication systems</strong>, for signal demodulation i.e. detection of information signal and in computers for reset circuits.</li>
+                    <li>To avoid D.C. saturation of <strong>inductive relay or motor</strong>, diode is connected across it.</li>
+                </ol>
+            </div>
+
+            <!-- 1.2.2.5 Types of Diodes -->
+            <h4>1.2.2.5 Types of Diodes</h4>
+            <p>Table 1.2 shows basic three types of diodes, their features and applications.</p>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Sr. No.</th><th>Diode</th><th>Features</th><th>Applications</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Zener Diode</strong></td>
+                            <td>
+                                <ol>
+                                    <li>Doping concentration is very high</li>
+                                    <li>Normally operated in reverse biased</li>
+                                    <li>Exhibits zener breakdown</li>
+                                    <li>Made up of silicon</li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li>Voltage regulation in regulated DC power supply</li>
+                                    <li>Meter protection circuits</li>
+                                    <li>Spike guard circuits</li>
+                                </ol>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Light Emitting Diode (LED)</strong></td>
+                            <td>
+                                <ol>
+                                    <li>Special materials: GaAs, GaAsP, GaP, SiC</li>
+                                    <li>When forward biased, it emits light</li>
+                                    <li>Working principle: injection of charge carriers</li>
+                                    <li>Available in various sizes</li>
+                                    <li>Light intensity proportional to current</li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li>Power indicator</li>
+                                    <li>Display device</li>
+                                    <li>Seven segment & matrix display</li>
+                                    <li>Opto coupler, remote control</li>
+                                    <li>Distance measurement instruments</li>
+                                    <li>Optical switching & communication</li>
+                                </ol>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Photo Diode</strong></td>
+                            <td>
+                                <ol>
+                                    <li>Special semiconductor material</li>
+                                    <li>Converts light intensity into current</li>
+                                    <li>Normally operated in reverse biased</li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li>Light sensing</li>
+                                    <li>Burglar alarm</li>
+                                    <li>Opto coupler</li>
+                                    <li>Auto flash camera</li>
+                                </ol>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 1.2.3 Transistors -->
+            <h3>1.2.3 Transistors</h3>
+            <p>A bipolar junction transistor (BJT) is basically a silicon or germanium crystal having two P-N junctions formed by sandwiching either P-type or N-type semiconductor between a pair of opposite types. BJT is normally called a transistor. It is capable of <strong>amplifying weak signals</strong>. The current in transistor flows due to positive as well as negative polarity charge carriers. Therefore, a transistor (BJT) is called a <strong>bipolar device</strong>.</p>
+
+            <h4>1.2.3.1 Construction of Transistor</h4>
+            <p>Transistor is a solid state semiconductor two junction, three region and three terminal device. Three terminals are <strong>emitter, base and collector</strong>. From constructional details, two types of transistors are <strong>PNP transistor</strong> and <strong>NPN transistor</strong>.</p>
+
+            <div class="important-note">
+                <strong>Key points:</strong> In BJT, emitter region is heavily doped compared to collector region. Collector region has large physical area. Base region has lower doping concentration. So always <strong>emitter current is largest</strong> in BJT.
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> BJT Current Relation — Eq. (1.8)</div>
+                <div class="formula">I<sub>E</sub> = I<sub>B</sub> + I<sub>C</sub></div>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=NPN+transistor+structural+diagram+emitter+base+collector" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.15:</strong> Structural Diagram of NPN BJT</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=NPN+PNP+transistor+schematic+symbol" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.16:</strong> Schematic Symbol of NPN and PNP BJT</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 1.2.3.2 Configuration -->
+            <h4>1.2.3.2 Configuration of Transistor</h4>
+            <p>BJT can be operated in any one of three configurations: 1) Common Base (CB), 2) Common Emitter (CE), 3) Common Collector (CC).</p>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr. No.</th><th>Parameters</th><th>Common Base</th><th>Common Emitter</th><th>Common Collector</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Input terminal</td><td>Emitter</td><td>Base</td><td>Base</td></tr>
+                        <tr><td>2</td><td>Output terminal</td><td>Collector</td><td>Collector</td><td>Emitter</td></tr>
+                        <tr><td>3</td><td>Input impedance</td><td>Low</td><td>Medium</td><td>High</td></tr>
+                        <tr><td>4</td><td>Output impedance</td><td>Very high</td><td>Medium</td><td>Low</td></tr>
+                        <tr><td>5</td><td>Current gain</td><td>Nearly one</td><td>High</td><td>Very high</td></tr>
+                        <tr><td>6</td><td>Voltage gain</td><td>High</td><td>Higher than CB</td><td>Nearly one</td></tr>
+                        <tr><td>7</td><td>Power gain</td><td>Medium</td><td>High</td><td>Low</td></tr>
+                        <tr><td>8</td><td>Thermal stability</td><td>High</td><td>Low</td><td>High</td></tr>
+                        <tr><td>9</td><td>Applications</td><td>Low noise preamplifier (wide band)</td><td>AF voltage amplifier</td><td>Impedance matching, buffer</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Current Gain α and β — Eq. (1.9) to (1.12)</div>
+                <div class="formula">α<sub>dc</sub> = I<sub>C</sub> / I<sub>E</sub> &nbsp;&nbsp;&nbsp;...(1.9)</div>
+                <div class="formula" style="margin-top:8px;">β<sub>dc</sub> = I<sub>C</sub> / I<sub>B</sub> &nbsp;&nbsp;&nbsp;...(1.10)</div>
+                <div class="formula" style="margin-top:8px;">α = <span class="fraction"><span class="num">β</span><span class="den">1 + β</span></span> &nbsp;&nbsp;&nbsp;...(1.11)</div>
+                <div class="formula" style="margin-top:8px;">β = <span class="fraction"><span class="num">α</span><span class="den">1 − α</span></span> &nbsp;&nbsp;&nbsp;...(1.12)</div>
+            </div>
+            <p>The value of beta (β) ranges from <strong>20 to 250</strong>.</p>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-clipboard-list"></i> Specifications for Transistor</div>
+                <ol>
+                    <li>Maximum collector-to-emitter voltage, V<sub>CE(max)</sub></li>
+                    <li>Maximum collector current, I<sub>C(max)</sub></li>
+                    <li>Collector-to-emitter cut-off voltage, V<sub>CEO</sub></li>
+                    <li>Collector cut-off current, I<sub>CEO</sub></li>
+                    <li>Collector-to-emitter break down voltage, BV<sub>CBO</sub></li>
+                    <li>Maximum collector dissipation, P<sub>D</sub></li>
+                    <li>Collector saturation voltage, V<sub>CE(sat)</sub></li>
+                    <li>DC current gain (h<sub>FE</sub>)</li>
+                </ol>
+            </div>
+
+            <!-- 1.2.3.3 Applications -->
+            <h4>1.2.3.3 Applications of Transistors</h4>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr. No.</th><th>Operating State</th><th>Base Emitter Junction</th><th>Base Collector Junction</th><th>Application</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Cut off state</td><td>Reverse Biased</td><td>Reverse Biased</td><td>—</td></tr>
+                        <tr><td>2</td><td>Active State</td><td>Forward Bias</td><td>Reverse Bias</td><td>Amplifier</td></tr>
+                        <tr><td>3</td><td>Saturation State</td><td>Forward Bias</td><td>Forward Bias</td><td>Switching</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="app-grid">
+                <div class="app-item">1. Amplifier</div><div class="app-item">2. Timers & time delay circuits</div>
+                <div class="app-item">3. Switching circuits</div><div class="app-item">4. Oscillator</div>
+                <div class="app-item">5. Multivibrator</div><div class="app-item">6. Electronic switch</div>
+                <div class="app-item">7. Wave shaping (clipping)</div><div class="app-item">8. Modulator</div>
+                <div class="app-item">9. Detector (demodulator)</div><div class="app-item">10. Logic circuits</div>
+            </div>
+
+            <!-- 1.2.4 FET -->
+            <h3>1.2.4 FET</h3>
+            <p>The <strong>FIELD EFFECT TRANSISTOR (FET)</strong> is a semiconductor solid state active device. It is an example of a <strong>uni-polar transistor</strong>. In FET output current is either due to electrons or due to holes. As the input applied electrical field i.e. voltage controls the output current so it is called as field effect transistor.</p>
+
+            <h4>1.2.4.1 FET Construction</h4>
+            <p>There are mainly two types of FETs: <strong>Junction Field Effect Transistor (JFET)</strong> and <strong>Metal Oxide Semiconductor Field Effect Transistor (MOSFET)</strong>. JFET's may be made with either an N channel or P channel. FET has three terminals: <strong>1) Source, 2) Drain, 3) Gate</strong>.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=JFET+symbol+N+channel+P+channel" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.17:</strong> FET Symbols — (a) N-channel JFET (b) P-channel JFET</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <p>Voltage applied on gate V<sub>GS</sub> controls channel current. The V<sub>GS</sub> at which channel current becomes zero is called <strong>pinch off voltage</strong>. When V<sub>GS</sub> is zero the current flowing through the channel is maximum — called <strong>saturation state drain current I<sub>DSS</sub></strong>.</p>
+
+            <!-- 1.2.4.2 Comparison BJT vs FET -->
+            <h4>1.2.4.2 Comparison between BJT and FET</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.</th><th>Bi-polar Junction Transistor</th><th>Field Effect Transistor</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Three terminals: Base, Emitter, Collector</td><td>Three terminals: Gate, Source, Drain</td></tr>
+                        <tr><td>2</td><td>Bipolar device (holes and electrons)</td><td>Unipolar transistor (holes or electrons)</td></tr>
+                        <tr><td>3</td><td>Current controlled device</td><td>Voltage controlled device</td></tr>
+                        <tr><td>4</td><td>Depends on majority & minority carriers</td><td>Depends on majority carriers only</td></tr>
+                        <tr><td>5</td><td>Low input impedance</td><td>High input impedance</td></tr>
+                        <tr><td>6</td><td>Noisy</td><td>Less noisy</td></tr>
+                        <tr><td>7</td><td>NPN and PNP types</td><td>N-channel and P-channel types</td></tr>
+                        <tr><td>8</td><td>Difficult to construct, occupies more space</td><td>Simpler to fabricate, occupies less space</td></tr>
+                        <tr><td>9</td><td>High gain-bandwidth product</td><td>Low gain-bandwidth product</td></tr>
+                        <tr><td>10</td><td>EB forward biased, CB reverse biased</td><td>GS and DS both reverse biased</td></tr>
+                        <tr><td>11</td><td>Poor thermal stability</td><td>Good thermal stability</td></tr>
+                        <tr><td>12</td><td>Cannot be used as VVR</td><td>Can be used as voltage variable resistor</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>1.2.4.3 Applications of FET</h4>
+            <div class="app-grid">
+                <div class="app-item">1. RF and AF Amplifier</div><div class="app-item">2. Oscillator</div>
+                <div class="app-item">3. Switching circuits</div><div class="app-item">4. Buffer in instruments</div>
+                <div class="app-item">5. Communication receivers</div><div class="app-item">6. Signal mixer (TV)</div>
+                <div class="app-item">7. Memory devices</div><div class="app-item">8. Digital circuits</div>
+            </div>
+
+            <!-- 1.2.5 MOS Devices -->
+            <h3>1.2.5 MOS Devices</h3>
+            <p>Insulated gate field effect transistor is called as <strong>metal oxide semiconductor field effect transistor (MOSFET)</strong>. It has insulation layer of SiO₂ between gate and channel. So it offers <strong>very high input impedance</strong> than FET.</p>
+
+            <h4>1.2.5.1 Types of MOSFET</h4>
+            <p>From constructional details two types: <strong>1) Depletion type MOSFET</strong> (Normally ON, has physical channel) and <strong>2) Enhancement type MOSFET</strong> (no depletion mode). N channel and P channel MOSFETs are known as <strong>NMOS</strong> and <strong>PMOS</strong> devices.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=depletion+type+MOSFET+symbol+N+channel+P+channel" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.18:</strong> Depletion Type MOSFET Symbols</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=enhancement+type+MOSFET+symbol+N+channel+P+channel" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.19:</strong> Enhancement Type MOSFET Symbols</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <h4>1.2.5.2 MOSFET Applications</h4>
+            <ol>
+                <li>Suitable for high current and voltage switching applications</li>
+                <li>Traction system</li>
+                <li>AC drives</li>
+                <li>Multiphase inverters</li>
+            </ol>
+
+            <!-- 1.2.6 CMOS -->
+            <h3>1.2.6 CMOS</h3>
+            <p>P Channel MOSFET and N Channel MOSFETs are used together to form <strong>Complementary Metal Oxide Semiconductor device (CMOS)</strong>. These devices are commonly used for digital circuits fabrications. Logic gates, counters, microcontroller and memories are constructed using CMOS devices. CMOS devices offer features such as <strong>low power consumption</strong> and <strong>compact</strong>. Integrated circuits are constructed using these devices.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=CMOS+inverter+circuit+diagram+PMOS+NMOS" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.20:</strong> CMOS Device (Inverter Circuit)</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <!-- 1.2.7 Comparison Table -->
+            <h3>1.2.7 Comparison between Passive and Active Components</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.</th><th>Criteria</th><th>Passive Components</th><th>Active Components</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Nature of source</td><td>Utilize power or energy from the circuit</td><td>Deliver or control power or energy to the circuit</td></tr>
+                        <tr><td>2</td><td>Examples</td><td>Resistor, Capacitor, Inductor</td><td>Diodes, BJT, FET, Integrated circuits</td></tr>
+                        <tr><td>3</td><td>Power Gain</td><td>Incapable of providing power gain</td><td>Capable of providing power gain</td></tr>
+                        <tr><td>4</td><td>Flow of current</td><td>Cannot control the flow of current</td><td>Can control the flow of current</td></tr>
+                        <tr><td>5</td><td>External source</td><td>Do not require external source</td><td>Require an external source</td></tr>
+                        <tr><td>6</td><td>Nature of energy</td><td>Energy acceptor</td><td>Energy donor</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Activities -->
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tasks"></i> Activities</div>
+                <ol>
+                    <li>After learning Topic No. 1.1 and 1.2, student should try to identify and prepare list on various gadgets available at home using active and passive components.</li>
+                    <li>Student shall refer data book to know about active and passive components with their major specifications and prepare a presentation with two components each of different varieties.</li>
+                </ol>
+            </div>
+
+            <!-- Solved Problems for Active Components -->
+            <h3><i class="fas fa-calculator"></i> Solved Problems — Active Components</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.2.1</div>
+                <p>In BJT three terminal currents are I₁ = 100 mA, I₂ = 93 mA and I₃ = 7 mA. Identify terminal names.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>BJT has three terminals: 1) Emitter 2) Base 3) Collector. Out of the three terminal currents, <strong>emitter current is always largest</strong>.</p>
+                <p>As I₁ is largest, it is current flowing through <strong>Emitter</strong> terminal.</p>
+                <div class="formula">I<sub>E</sub> = I<sub>C</sub> + I<sub>B</sub><br>100 mA = 93 mA + 7 mA</div>
+                <p>In BJT, base current is smallest. So I₃ = 7 mA is <strong>Base</strong> current. Therefore I₂ = 93 mA is <strong>Collector</strong> current.</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.2.2</div>
+                <p>Justify that current gain α in CB transistor configuration is less than and nearly equal to 1.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>α = I<sub>C</sub>/I<sub>E</sub> and I<sub>E</sub> = I<sub>C</sub> + I<sub>B</sub>.</p>
+                <p>Since I<sub>B</sub> is very small as compared to I<sub>E</sub>, the term I<sub>B</sub>/I<sub>E</sub> will be very small compared to 1. So the value of current gain α will be <strong>less than 1</strong> (but nearly equal to 1).</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.2.3</div>
+                <p>If α of a transistor is 0.9, calculate β.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="formula">β = <span class="fraction"><span class="num">α</span><span class="den">1 − α</span></span> = <span class="fraction"><span class="num">0.9</span><span class="den">1 − 0.9</span></span> = <span class="fraction"><span class="num">0.9</span><span class="den">0.1</span></span></div>
+                <div class="formula answer">β = 9</div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.2.4</div>
+                <p>If β is 100, calculate alpha.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="formula">α = <span class="fraction"><span class="num">β</span><span class="den">1 + β</span></span> = <span class="fraction"><span class="num">100</span><span class="den">101</span></span></div>
+                <div class="formula answer">α = 0.99</div>
+            </div>
+
+        </div>
+    </section>
+        <!-- ====== SECTION: 1.3 SIGNALS AND ACTIVE SOURCES ====== -->
+    <section class="section" id="signals">
+        <h2 class="section-title">
+            <i class="fas fa-wave-square"></i> 1.3 Signals and Active Sources
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1.3.1 Introduction</h3>
+            <p>The signals can be in different forms like audio, visual which convey information, mechanical signals for physical activities and electrical signals for power delivery. The classification of signals helps in analyzing, processing and validating the circuits. Signals can be classified by any of their physical characteristics, their mathematical representation or on their use.</p>
+
+            <!-- 1.3.2 Classification -->
+            <h3>1.3.2 Classification of Signals</h3>
+            <p>Signals are broadly classified as <strong>continuous time signals</strong> and <strong>discrete time signals</strong>. A continuous time signal is one whose mathematical function is defined continuously in the time domain, whereas a discrete time signal is defined at specific time instants.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=continuous+time+signal+graph+x(t)" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.21:</strong> Continuous Time Signal</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=discrete+time+signal+graph+x(n)+stem+plot" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.22:</strong> Discrete Time Signal</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <p>The above signals are further classified as:</p>
+            <ol type="i">
+                <li>Deterministic and Non-deterministic signals</li>
+                <li>Periodic and Non-periodic signals</li>
+            </ol>
+
+            <!-- 1.3.3 Deterministic -->
+            <h3>1.3.3 Deterministic and Non-Deterministic Signals</h3>
+            <p><strong>Deterministic signals</strong> are those signals whose nature and amplitude can be predicted at any instant of time.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Deterministic Signals — Eq. (1.13) & (1.14)</div>
+                <div class="formula">x(t) = A sin ωt &nbsp;&nbsp;&nbsp;...(1.13)</div>
+                <div class="formula" style="margin-top:8px;">x(n) = { 1, n ≥ 0 ; 0, otherwise } &nbsp;&nbsp;&nbsp;...(1.14)</div>
+            </div>
+            <p>Eq. 1.13 is a sine function with maximum amplitude A varying sinusoidally with time. Eq. 1.14 represents a discrete time signal with amplitude equals to one for the sampling instants n ≥ 0 and zero for all other sampling instants.</p>
+
+            <p><strong>Non-deterministic signals</strong> (also known as random signals) are not predictive in nature. The pattern is irregular and cannot be defined by simple mathematical function. Example: thermal noise created due to the movement of electrons in a semiconductor material.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=deterministic+signal+sine+wave+example" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.23:</strong> Deterministic Signal</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=non+deterministic+random+signal+noise+waveform" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.24:</strong> Non-deterministic Signal</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 1.3.4 Periodic -->
+            <h3>1.3.4 Periodic and Non-Periodic Signals</h3>
+            <p>A continuous time signal is said to be <strong>periodic</strong> if it repeats itself after a specific interval of time.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Periodic Signal — Eq. (1.15)</div>
+                <div class="formula">x(t) = x(t + T), &nbsp; −∞ &lt; t &lt; ∞</div>
+            </div>
+            <p>Where T is the period of the signal. The smallest value of T that satisfies the equation is called the <strong>fundamental time period T₀</strong> of the signal.</p>
+            <p>A signal which does not repeat itself after specific interval of time is known as <strong>non-periodic</strong> or <strong>aperiodic</strong> signal. Examples: signals created by a microphone, signals generated from a radio station.</p>
+
+            <!-- 1.3.5 Electrical Signals -->
+            <h3>1.3.5 Electrical Signals</h3>
+            <p>There are two electrical signals in use today: <strong>Alternating Current (AC)</strong> and <strong>Direct Current (DC)</strong>. The most common signal used is AC. Major advantages: ease of generation and amplification, low cost of transmission, and easier to interrupt for fault protection.</p>
+            <p>For a residential household the voltage requirement is <strong>230 V at 50 Hz</strong>.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=alternating+current+AC+signal+sinusoidal+waveform" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.25:</strong> Alternating Current Signal</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=direct+current+DC+signal+constant+voltage+waveform" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.26:</strong> Direct Current Signal</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <h4>1.3.5.1 Period and Cycle</h4>
+            <p>The <strong>period</strong> of an alternating current or voltage is the smallest value of time which separates the recurring value of the alternating quantity, denoted by T. The complete set of one positive and negative values is called a <strong>cycle</strong>. A cycle is 360° or 2π radians.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Angular Velocity — Eq. (1.16)</div>
+                <div class="formula">ω = <span class="fraction"><span class="num">2π</span><span class="den">T</span></span></div>
+            </div>
+
+            <h4>1.3.5.2 Frequency</h4>
+            <p><strong>Frequency</strong> is the number of cycles per second. For a p pole machine with speed n (rps):</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Frequency — Eq. (1.17) & (1.18)</div>
+                <div class="formula">f = <span class="fraction"><span class="num">np</span><span class="den">2</span></span> &nbsp;&nbsp;&nbsp;...(1.17)</div>
+                <div class="formula" style="margin-top:8px;">f = <span class="fraction"><span class="num">1</span><span class="den">T</span></span> &nbsp;&nbsp;&nbsp;...(1.18)</div>
+            </div>
+            <p>In India the frequency is <strong>50 Hz</strong>; in North America and Europe, <strong>60 Hz</strong>.</p>
+
+            <h4>1.3.5.3 Waveform</h4>
+            <p>The shape of the curve resulting from a plot of instantaneous voltage or current (y-axis) against time (x-axis) is its waveform. In practice the AC voltage and current approximates a <strong>sine wave</strong> very closely.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Sine Wave — Eq. (1.19)</div>
+                <div class="formula">v(t) = V<sub>m</sub> sin ωt</div>
+            </div>
+            <p>where v is the instantaneous voltage and V<sub>m</sub> is the maximum/peak value.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=AC+voltage+sine+waveform+Vm+peak+period+T" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 1.27:</strong> AC Voltage Sine Waveform</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <!-- 1.3.6 Voltage and Current Sources -->
+            <h3>1.3.6 Voltage and Current Sources</h3>
+            <p>Sources of electrical energy which can deliver or absorb energy continuously are called <strong>active sources</strong>. They are classified as <strong>voltage source</strong> and <strong>current source</strong> according to their voltage–current characteristics.</p>
+
+            <!-- 1.3.7 Ideal and Non-Ideal -->
+            <h3>1.3.7 Ideal and Non-Ideal Sources</h3>
+
+            <h4>1.3.7.1 Ideal Voltage Source</h4>
+            <p>An ideal voltage source delivers energy with a voltage across its output terminal that is <strong>independent of the current</strong> from the source.</p>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=ideal+voltage+source+circuit+symbol+representation" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.28:</strong> Circuit representation of ideal voltage source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=ideal+voltage+source+VI+characteristic+horizontal+line" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.29:</strong> V-I characteristic of ideal voltage source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <h4>1.3.7.2 Ideal Current Source</h4>
+            <p>An ideal current source delivers energy with a current through the output terminals that is <strong>independent of the voltage</strong> across the terminals.</p>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=ideal+current+source+circuit+symbol+representation" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.30:</strong> Circuit representation of ideal current source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=ideal+current+source+VI+characteristic+vertical+line" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.31:</strong> V-I characteristic of ideal current source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <h4>1.3.7.3 Non-Ideal or Practical Voltage Source</h4>
+            <p>In a practical voltage source, conversion of energy results in losses, represented by an internal resistance R<sub>in</sub> in series with the voltage source.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Terminal Voltage — Eq. (1.20)</div>
+                <div class="formula">v<sub>T</sub> = v − i R<sub>in</sub></div>
+            </div>
+            <p>The terminal voltage v<sub>T</sub> decreases with increase in the current i.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=practical+voltage+source+internal+resistance+circuit+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.32:</strong> Circuit representation of a practical voltage source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=practical+voltage+source+VI+characteristics+drooping+line" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.33:</strong> V-I characteristics of practical voltage source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <h4>1.3.7.4 Non-Ideal or Practical Current Source</h4>
+            <p>In a practical current source, loss is represented by connecting an internal resistance R<sub>in</sub> <strong>parallel</strong> with the current source.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-square-root-alt"></i> Terminal Current — Eq. (1.21)</div>
+                <div class="formula">i<sub>T</sub> = i − <span class="fraction"><span class="num">v</span><span class="den">R<sub>in</sub></span></span></div>
+            </div>
+            <p>The terminal current i<sub>T</sub> decreases with increase in the terminal voltage v.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=practical+current+source+internal+resistance+parallel+circuit" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.34:</strong> Circuit representation of practical current source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=practical+current+source+VI+characteristic" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.35:</strong> V-I characteristic of practical current source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 1.3.8 Dependent Sources -->
+            <h3>1.3.8 Dependent Voltage and Current Source</h3>
+            <p>In dependent sources, the voltage/current is determined by voltage/current existing somewhere else in the circuit. The four types are:</p>
+            <ol type="i">
+                <li>Voltage dependent voltage source</li>
+                <li>Current dependent voltage source</li>
+                <li>Current dependent current source</li>
+                <li>Voltage dependent current source</li>
+            </ol>
+            <p>k<sub>V</sub>, k<sub>r</sub>, k<sub>C</sub> and k<sub>I</sub> are real numbers, where k<sub>r</sub>, k<sub>C</sub> are trans-resistance and trans-conductance respectively and k<sub>V</sub>, k<sub>I</sub> are dimensionless.</p>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=dependent+voltage+source+symbol+diamond+shape" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.36:</strong> Symbol of dependent voltage source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=dependent+current+source+symbol+diamond+shape" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 1.37:</strong> Symbol of dependent current source</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Applications -->
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Applications</div>
+                <p>Discrete signals are used for processing the analog signals obtained from sensors, like observing the temperature of a person using Digital thermometer, mobile communication, video streaming, smart watches etc.</p>
+                <p>Active sources are part of our daily life: the 1.5 V cell for wall clock, remote control of TV; 12V battery for ignition and lighting system of vehicles — all active DC sources. Domestic appliances like Refrigerator, washing machine, fluorescent tube lights, ceiling fan — all use single phase AC source.</p>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tasks"></i> Activities</div>
+                <ol>
+                    <li>List the applications of continuous and discrete signals.</li>
+                    <li>Prepare a list of gadgets which uses continuous and discrete signals.</li>
+                </ol>
+            </div>
+
+            <!-- Solved Problems for Signals -->
+            <h3><i class="fas fa-calculator"></i> Solved Problems — Signals & Sources</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.3.1</div>
+                <p>A battery source as an ideal voltage source in series with a resistor is feeding a load. The voltage V<sub>T</sub> at the terminal is 130 V and the current I<sub>T</sub> drawn is 10 A. The load is changed: V<sub>T</sub> = 100 V and I<sub>T</sub> = 25 A. Calculate the rating of voltage source V<sub>s</sub> and the resistor R. Draw the V-I characteristic.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>The terminal voltage: V<sub>T</sub> = V<sub>s</sub> − I<sub>T</sub>R &nbsp;...(1)</p>
+                <div class="step" data-step="Step 1">130 = V<sub>s</sub> − 10R &nbsp;...(2)</div>
+                <div class="step" data-step="Step 2">100 = V<sub>s</sub> − 25R &nbsp;...(3)</div>
+                <div class="step" data-step="Step 3">Subtracting (3) from (2): 30 = 15R → <strong>R = 2 Ω</strong></div>
+                <div class="step" data-step="Step 4">Substituting R in (2): V<sub>s</sub> = 130 + 20 = <strong>150 V</strong></div>
+                <div class="formula answer">V<sub>s</sub> = 150 V, &nbsp; R = 2 Ω</div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pen"></i> Example 1.3.2</div>
+                <p>A practical current source consists of a 3 milliamp ideal current source which has an internal resistance of 1000 ohm. Calculate the open circuit terminal voltage and the power dissipated in internal resistor.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>The equation: i<sub>T</sub> = i − v/R<sub>in</sub> &nbsp;...(4)</p>
+                <p>No load connected → i<sub>T</sub> = 0. Therefore: v = i × R<sub>in</sub></p>
+                <div class="formula answer">v = 3 × 10⁻³ × 1000 = 3 Volt</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ====== SECTION: UNIT SUMMARY ====== -->
+    <section class="section" id="summary">
+        <h2 class="section-title">
+            <i class="fas fa-clipboard-list"></i> Unit Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-list-ul"></i> Key Points</div>
+                <ul>
+                    <li>Passive and active components form the two main types of circuit elements.</li>
+                    <li>Electrical symbols are used to represent both active and passive components.</li>
+                    <li>Resistance (R) is a property of a material used for describing the opposition provided to the flow of current.</li>
+                    <li>A capacitor stores energy in the form of electric charges.</li>
+                    <li>An inductor is a passive component that is used to store energy in the form of magnetic energy when electricity is applied to it.</li>
+                    <li>Semiconductor components are active solid state components.</li>
+                    <li>Diode, BJT and FET are basic discrete active components.</li>
+                    <li>Diode is a unidirectional device used mainly for rectification.</li>
+                    <li>BJT is a current operating three terminal device mainly used for amplification and switching operation.</li>
+                    <li>FET is a voltage operating device having high input impedance. PMOS and NMOS are combined together to construct CMOS.</li>
+                    <li>Signals are classified broadly as continuous time signals and discrete signals.</li>
+                    <li>The Electrical Signal used for domestic and Industrial application are classified as AC signals and DC signals.</li>
+                    <li>The AC and DC signal sources are classified as Ideal and Practical source according to their voltage-current characteristics.</li>
+                    <li>The dependent voltage and current source are used for analysis of circuits containing active components like BJT, JFET.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SECTION: EXERCISES ====== -->
+    <section class="section" id="exercises">
+        <h2 class="section-title">
+            <i class="fas fa-pencil-alt"></i> Exercises
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>A — Objective Questions (MCQs)</h3>
+            <p><em>Instruction: Please select the most appropriate answer.</em></p>
+
+            <div class="mcq-grid">
+                <div class="mcq-item">
+                    <h4>Q 1.1</h4>
+                    <p>With rise in temperature the resistance of pure metal</p>
+                    <ul class="options">
+                        <li>a. Increases</li><li>b. Decreases</li><li>c. Remains constant</li><li>d. First increases and then decreases</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq1"><strong>Answer: a. Increases</strong></div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.2</h4>
+                    <p>The insulating medium between the two plates of capacitor is known as</p>
+                    <ul class="options">
+                        <li>a. Electrode</li><li>b. Capacitive medium</li><li>c. Conducting medium</li><li>d. Dielectric</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2"><strong>Answer: d. Dielectric</strong></div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.3</h4>
+                    <p>The most common used semiconductor is</p>
+                    <ul class="options">
+                        <li>a. Carbon</li><li>b. Silicon</li><li>c. Germanium</li><li>d. Gallium</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3"><strong>Answer: b. Silicon</strong></div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.4</h4>
+                    <p>For voltage regulation, the diode that is suitable is</p>
+                    <ul class="options">
+                        <li>a. P N junction</li><li>b. Light emitting</li><li>c. Photo</li><li>d. Zener</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4"><strong>Answer: d. Zener</strong></div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.5</h4>
+                    <p>The signal x(t) is said to be non-periodic signal if</p>
+                    <ul class="options">
+                        <li>a. x(t) = x(t+T) is satisfied for all values of T</li>
+                        <li>b. x(t) = x(t+T) is satisfied for only one value of T</li>
+                        <li>c. x(t) = x(t+T) is satisfied for no values of T</li>
+                        <li>d. x(t) = x(t+T) is satisfied for only odd values of T</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq5"><strong>Answer: c. x(t) = x(t+T) is satisfied for no values of T</strong></div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.6</h4>
+                    <p>In an ideal voltage source the source voltage and terminal voltage can be related as</p>
+                    <ul class="options">
+                        <li>a. Terminal voltage is higher than the source voltage</li>
+                        <li>b. Terminal voltage is equal to the source voltage</li>
+                        <li>c. Terminal voltage is always lower than source voltage</li>
+                        <li>d. Terminal voltage cannot exceed source voltage</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq6"><strong>Answer: b. Terminal voltage is equal to the source voltage</strong></div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.7</h4>
+                    <p>For opto-coupler, the pair of diodes that is used is</p>
+                    <ul class="options">
+                        <li>a. Zener diode and PN junction diode</li><li>b. Zener and LED</li>
+                        <li>c. Zener diode and Photo diode</li><li>d. LED and Photodiode</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq7"><strong>Answer: d. LED and Photodiode</strong></div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.8</h4>
+                    <p>A length of wire having a resistance of 1.0 Ω is cut into four equal parts. These four parts are bundled together side by side. The resistance of thicker wire will be</p>
+                    <ul class="options">
+                        <li>a. 4 Ω</li><li>b. 1/16 Ω</li><li>c. 1/4 Ω</li><li>d. 16 Ω</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq8"><strong>Answer: b. 1/16 Ω</strong> (Each part = 0.25 Ω; 4 in parallel = 0.25/4 = 1/16 Ω)</div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.9</h4>
+                    <p>In BJT, terminal currents are I₁ = 5 mA, I₂ = 95 mA and I₃ = 100 mA, then the appropriate option is</p>
+                    <ul class="options">
+                        <li>a. I₁ = I<sub>B</sub>, I₂ = I<sub>C</sub>, I₃ = I<sub>E</sub></li>
+                        <li>b. I₁ = I<sub>B</sub>, I₂ = I<sub>E</sub>, I₃ = I<sub>C</sub></li>
+                        <li>c. I₁ = I<sub>C</sub>, I₂ = I<sub>B</sub>, I₃ = I<sub>E</sub></li>
+                        <li>d. I₁ = I<sub>E</sub>, I₂ = I<sub>C</sub>, I₃ = I<sub>E</sub></li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq9"><strong>Answer: a. I₁ = I<sub>B</sub>, I₂ = I<sub>C</sub>, I₃ = I<sub>E</sub></strong> (I<sub>E</sub> is largest, I<sub>B</sub> is smallest)</div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 1.10</h4>
+                    <p>If the battery with E volt has some finite internal resistance and if R is decreased, the voltmeter reading will</p>
+                    <ul class="options">
+                        <li>a. Remain constant</li><li>b. Increase</li><li>c. Decrease</li><li>d. Will be equal to E</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq10"><strong>Answer: c. Decrease</strong> (More current → more voltage drop across internal resistance)</div>
+                </div>
+            </div>
+
+            <h3>B — Subjective Questions</h3>
+            <div class="exercise-area">
+                <ol>
+                    <li>A very long string of 500 multi-colored outdoor lights is installed on a house. After applying power, the home owner notices two bulbs are burnt out. Are the lights connected in series or parallel?
+                        <button class="toggle-btn" data-target="sub1"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="sub1"><strong>Answer:</strong> The lights are connected in <strong>parallel</strong>. If they were in series, all 500 lights would go out when even one bulb burns out. Since only two bulbs are out and the rest are working, it indicates a parallel connection.</div>
+                    </li>
+                    <li>Three capacitors of 5 F, 10 F and 15 F are connected in series across a 100 V supply. Determine the equivalent capacitance.
+                        <button class="toggle-btn" data-target="sub2"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="sub2"><strong>Answer:</strong> 1/C = 1/5 + 1/10 + 1/15 = 6/30 + 3/30 + 2/30 = 11/30. C = 30/11 ≈ <strong>2.727 F</strong>.</div>
+                    </li>
+                    <li>List out two applications each of inductor, photodiode, MOSFET and active DC source.</li>
+                    <li>Compare BJT with FET on the basis of power requirement, input impedance, thermal stability and compactness.</li>
+                    <li>Two light bulbs are used for lightening the kitchen and store room. One draws 300 mA at 240 V. Another draws 240 mA at 240 V. Calculate the total resistance of the light bulbs?
+                        <button class="toggle-btn" data-target="sub5"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="sub5"><strong>Answer:</strong> R₁ = 240/0.3 = 800 Ω; R₂ = 240/0.24 = 1000 Ω. In parallel: 1/R = 1/800 + 1/1000 = 9/4000; R = 4000/9 ≈ <strong>444.44 Ω</strong>.</div>
+                    </li>
+                    <li>Suggest type of diode suitable to detect light obstruction in burglar alarm.
+                        <button class="toggle-btn" data-target="sub6"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="sub6"><strong>Answer: Photo Diode</strong> — it converts light intensity into current and is operated in reverse bias for light sensing applications.</div>
+                    </li>
+                    <li>Justify 'In BJT, emitter terminal current is maximum current'.</li>
+                    <li>Calculate value of β, if value of α is 0.92.
+                        <button class="toggle-btn" data-target="sub8"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="sub8"><strong>Answer:</strong> β = α/(1−α) = 0.92/(1−0.92) = 0.92/0.08 = <strong>11.5</strong>.</div>
+                    </li>
+                    <li>A practical source of BJT consists of 3 Amp ideal current source with internal resistance of 500 Ω. A load resistor of 250 Ω is connected. Find the voltage across load and power absorbed.
+                        <button class="toggle-btn" data-target="sub9"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="sub9"><strong>Answer:</strong> R<sub>in</sub> ∥ R<sub>L</sub> = (500×250)/(500+250) = 500/3 ≈ 166.67 Ω. V<sub>L</sub> = i × R<sub>eq</sub> = 3 × 166.67 = <strong>500 V</strong>. P<sub>L</sub> = V²/R<sub>L</sub> = 500²/250 = <strong>1000 W</strong>.</div>
+                    </li>
+                    <li>List the differences between ideal and practical sources.</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+        <!-- ====== SECTION: PRACTICALS ====== -->
+    <section class="section" id="practicals">
+        <h2 class="section-title">
+            <i class="fas fa-flask"></i> Practicals
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <!-- ===== PRACTICAL P7 ===== -->
+            <h3><i class="fas fa-search"></i> P7 — ES110: Passive Components</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bullseye"></i> P7.1 Practical Statement</div>
+                <p>Identify various passive electronic components in the given circuit.</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> P7.2 Practical Significance</div>
+                <p>Any circuit is composed of various types of components. This experiment is aimed at development of identification skills of passive electronic components. Passive components like resistors, inductor and capacitors dissipate or store energy. This experiment will help in developing identification skills which is very essential for troubleshooting of any circuit or device.</p>
+            </div>
+
+            <p><strong>P7.3 Relevant Theory:</strong> Refer section 1.1 of this unit.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-tasks"></i> P7.4 Practical Outcomes (PrO)</div>
+                <ul>
+                    <li><strong>PrO1:</strong> Identify various types of resistors in the given circuit.</li>
+                    <li><strong>PrO2:</strong> Identify various types of inductors in the given circuit.</li>
+                    <li><strong>PrO3:</strong> Identify various types of capacitors in the given circuit.</li>
+                </ul>
+            </div>
+
+            <h4>P7.5 Practical Setup (Work Situation)</h4>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=various+types+of+resistors+electronic+components" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P7.1:</strong> Various types of resistors</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=various+types+of+variable+resistors+potentiometers" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P7.2:</strong> Various types of variable resistors</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+            </div>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=various+types+of+capacitors+electronic+components" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P7.3:</strong> Various types of capacitors</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=various+types+of+inductors+electronic+components+toroidal" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P7.4:</strong> Various types of inductors</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Component Identification Notes</div>
+                <p><strong>Potentiometers:</strong> Variable resistors normally marked with max value in ohms. Smaller trim pots may use a 3-digit code (e.g. 104 = 100K Ohms). Marked with "VR" on circuit board. Linear (Lin) or Logarithmic (Log) tracks.</p>
+                <p><strong>Capacitors:</strong> At least two electrical conductors separated by a dielectric. Values may be printed, 3-digit coded, or color coded. Marked with "C" on a circuit board.</p>
+                <p><strong>Inductors:</strong> A conductor wound into a coil. Some are colour coded, otherwise an LCR meter is needed. Marked with "L" on a circuit board.</p>
+            </div>
+
+            <h4>P7.6 Resources Required</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr. No.</th><th>Resources</th><th>Qty</th><th>Actual (student fills)</th><th>Remarks</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Sample circuits containing different components</td><td>2</td><td></td><td></td></tr>
+                        <tr><td>2</td><td>Various types of resistors, pots, inductors and capacitors</td><td>Assorted</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> P7.7 Precautions</div>
+                <ol>
+                    <li>Ensure that any passive component taken for identification is put back at the right place.</li>
+                    <li>Maintain neatness on the working table.</li>
+                    <li>Handle the components properly.</li>
+                </ol>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-list-ol"></i> P7.8 Suggested Procedure</div>
+                <ol>
+                    <li>Observe carefully the various components.</li>
+                    <li>Identify value and type of resistors, inductor and capacitors in the given two circuits and note them down in the observation table.</li>
+                </ol>
+            </div>
+
+            <h4>P7.9 Observation Table</h4>
+            <p><strong>Circuit 1:</strong></p>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr. No.</th><th>Resistor Type</th><th>Resistor Value</th><th>Inductor Type</th><th>Inductor Value</th><th>Capacitor Type</th><th>Capacitor Value</th></tr></thead>
+                    <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+                </table>
+            </div>
+            <p><strong>Circuit 2:</strong></p>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr. No.</th><th>Resistor Type</th><th>Resistor Value</th><th>Inductor Type</th><th>Inductor Value</th><th>Capacitor Type</th><th>Capacitor Value</th></tr></thead>
+                    <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+                </table>
+            </div>
+
+            <div class="exercise-area">
+                <strong>P7.12 Practical Related Questions:</strong>
+                <ol>
+                    <li>If no fourth colour is indicated on the body of a resistor, state its tolerance value.
+                        <button class="toggle-btn" data-target="pq71"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="pq71"><strong>Answer:</strong> If no fourth colour band is present, the tolerance is <strong>±20%</strong>.</div>
+                    </li>
+                    <li>List the passive components that are used in conventional tube lights.
+                        <button class="toggle-btn" data-target="pq72"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="pq72"><strong>Answer:</strong> Choke (Inductor) and Capacitor (for power factor improvement).</div>
+                    </li>
+                </ol>
+            </div>
+
+            <hr style="margin:30px 0;">
+
+            <!-- ===== PRACTICAL P8 ===== -->
+            <h3><i class="fas fa-project-diagram"></i> P8 — ES110: Resistor in Series and Parallel</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bullseye"></i> P8.1 Practical Statement</div>
+                <p>Connect resistor in series and parallel combination on breadboard and measure its value using multimeter.</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> P8.2 Practical Significance</div>
+                <p>Series and parallel circuit connections are very common in electric equipment. Fuses, automatic house heating equipment and safety cutouts are connected in series. Majority of the equipment are connected in parallel. This experiment aims to develop skill of using measuring instruments and analysing series and parallel circuits.</p>
+            </div>
+
+            <p><strong>P8.3 Relevant Theory:</strong> Refer section 1.1.6 of this unit.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-tasks"></i> P8.4 Practical Outcomes</div>
+                <ul>
+                    <li><strong>PrO1:</strong> Use multimeter to measure resistance.</li>
+                    <li><strong>PrO2:</strong> Measure equivalent resistance when resistors are connected in series.</li>
+                    <li><strong>PrO3:</strong> Measure equivalent resistance when resistors are connected in parallel.</li>
+                    <li><strong>PrO4:</strong> Determine whether the error is within acceptable limits.</li>
+                </ul>
+            </div>
+
+            <h4>P8.5 Practical Setup</h4>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=digital+multimeter+measuring+resistance" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P8.1:</strong> Digital Multimeter</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=series+circuit+two+resistors+ammeter+voltmeter+breadboard" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P8.2:</strong> Series Circuit</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=parallel+circuit+two+resistors+ammeter+voltmeter+breadboard" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P8.3:</strong> Parallel Circuit</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+            </div>
+
+            <h4>P8.6 Resources Required</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.</th><th>Resources</th><th>Qty</th><th>Actual (student fills)</th><th>Remarks</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Digital Multimeter: 3½ digit display with probes</td><td>2</td><td></td><td></td></tr>
+                        <tr><td>2</td><td>Variable DC power supply: 0-30V, 2A</td><td>1</td><td></td><td></td></tr>
+                        <tr><td>3</td><td>Resistances R₁ and R₂ (two different values)</td><td>2</td><td></td><td></td></tr>
+                        <tr><td>4</td><td>Breadboard: 5 cm × 17 cm</td><td>1</td><td></td><td></td></tr>
+                        <tr><td>5</td><td>Connecting wires: Single strand Teflon coating (0.5 mm dia)</td><td>L.S.</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> P8.7 Precautions</div>
+                <ol>
+                    <li>Ensure connections as per the experimental setup.</li>
+                    <li>Select proper function of multi-meter.</li>
+                    <li>Do not switch ON the multi-meter unless circuit connections are checked.</li>
+                    <li>Connect voltmeter and ammeter in correct polarities.</li>
+                    <li>Multimeter for voltage measurement should be connected in parallel.</li>
+                </ol>
+            </div>
+
+            <h4>P8.9 Observation Table</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.</th><th>V across R₁</th><th>I with R₁</th><th>V across R₂</th><th>I with R₂</th><th>V (series)</th><th>I (series)</th><th>V (parallel)</th><th>I (parallel)</th></tr></thead>
+                    <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+                </table>
+            </div>
+
+            <h4>P8.10 Results Table</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>R₁ (Exp.)</th><th>R₂ (Exp.)</th><th>Rs (Theory)</th><th>Rs (Exp.)</th><th>Rp (Theory)</th><th>Rp (Exp.)</th></tr></thead>
+                    <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+                </table>
+            </div>
+
+            <div class="exercise-area">
+                <strong>P8.12 Practical Related Questions:</strong>
+                <ol>
+                    <li>If the voltage across the resistance is increased three times, how the current will be affected?
+                        <button class="toggle-btn" data-target="pq81"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="pq81"><strong>Answer:</strong> By Ohm's law (I = V/R), if voltage is tripled and resistance remains constant, the current will also <strong>increase three times</strong>.</div>
+                    </li>
+                    <li>How should the resistor be connected so that the resultant resistance is decreased?
+                        <button class="toggle-btn" data-target="pq82"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="pq82"><strong>Answer:</strong> Resistors should be connected in <strong>parallel</strong> to decrease the resultant resistance.</div>
+                    </li>
+                </ol>
+            </div>
+
+            <hr style="margin:30px 0;">
+
+            <!-- ===== PRACTICAL P9 ===== -->
+            <h3><i class="fas fa-project-diagram"></i> P9 — ES110: Capacitors in Series and Parallel</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bullseye"></i> P9.1 Practical Statement</div>
+                <p>Connect capacitors in series and parallel combination on bread board and measure its value using multimeter.</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> P9.2 Practical Significance</div>
+                <p>In industries and domestic applications, measurement of equivalent capacitance with accuracy is very important. Such measurements can be done by multimeter or LCR meter.</p>
+            </div>
+
+            <p><strong>P9.3 Relevant Theory:</strong> Refer section 1.1.5 of this unit.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-tasks"></i> P9.4 Practical Outcomes</div>
+                <ul>
+                    <li><strong>PrO1:</strong> Use multimeter to measure capacitance.</li>
+                    <li><strong>PrO2:</strong> Measure equivalent capacitance in series.</li>
+                    <li><strong>PrO3:</strong> Measure equivalent capacitance in parallel.</li>
+                </ul>
+            </div>
+
+            <h4>P9.5 Practical Setup</h4>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=capacitors+series+circuit+diagram+voltmeter+ammeter" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P9.1:</strong> Series combination of capacitors</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=capacitors+parallel+circuit+diagram+voltmeter+ammeter" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P9.2:</strong> Parallel combination of capacitors</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+            </div>
+
+            <h4>P9.6 Resources Required</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.</th><th>Resources</th><th>Qty</th><th>Actual (student fills)</th><th>Remarks</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Digital Multimeter: ½ digit display with probes</td><td>3</td><td></td><td></td></tr>
+                        <tr><td>2</td><td>DC power supply: 0-30V, 2A, SC protection</td><td>1</td><td></td><td></td></tr>
+                        <tr><td>3</td><td>EMF source: 0-20V, 0-1A</td><td>1</td><td></td><td></td></tr>
+                        <tr><td>4</td><td>Ammeter: 0-5 Amps</td><td>2</td><td></td><td></td></tr>
+                        <tr><td>5</td><td>Suitable capacitors in micro farads</td><td>2</td><td></td><td></td></tr>
+                        <tr><td>6</td><td>Connecting wires: Single strand Teflon coating (0.6 mm)</td><td>L.S.</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> P9.7 Precautions</div>
+                <ol>
+                    <li>Do not switch ON until circuit connections checked.</li>
+                    <li>Select proper function of multi-meter.</li>
+                    <li>Ensure all capacitors are <strong>discharged completely</strong> before connecting.</li>
+                    <li>Ensure hands are not wet while touching the circuit.</li>
+                </ol>
+            </div>
+
+            <h4>P9.9 Observation Tables</h4>
+            <p><strong>Series connection:</strong></p>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr. No.</th><th>V</th><th>V₁</th><th>V₂</th><th>I</th></tr></thead>
+                    <tbody><tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+                </table>
+            </div>
+            <p>Theoretically: V = V₁ + V₂; &nbsp; 1/C = 1/C₁ + 1/C₂; &nbsp; C<sub>TS</sub> = (C₁ × C₂)/(C₁ + C₂)</p>
+
+            <p><strong>Parallel connection:</strong></p>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr. No.</th><th>V</th><th>V₁</th><th>V₂</th><th>I₁</th><th>I₂</th></tr></thead>
+                    <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+                </table>
+            </div>
+            <p>Theoretically: V = V₁ = V₂; &nbsp; C<sub>TP</sub> = C₁ + C₂</p>
+
+            <div class="exercise-area">
+                <strong>P9.12 Practical Related Questions:</strong>
+                <ol>
+                    <li>Give the reason for discharging each capacitor at the start.
+                        <button class="toggle-btn" data-target="pq91"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="pq91"><strong>Answer:</strong> Capacitors may retain charge from previous use. If not discharged, the stored charge can give inaccurate readings and may cause electric shock.</div>
+                    </li>
+                    <li>Two capacitors of 2 μF and 5 μF. Compare equivalent capacitance in series and parallel.
+                        <button class="toggle-btn" data-target="pq92"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="pq92"><strong>Answer:</strong> Series: C = (2×5)/(2+5) = 10/7 ≈ 1.43 μF. Parallel: C = 2 + 5 = 7 μF. Parallel combination gives larger capacitance.</div>
+                    </li>
+                    <li>If you wish to store a large amount of charge, should capacitors be connected in series or parallel?
+                        <button class="toggle-btn" data-target="pq93"><i class="fas fa-eye"></i> Show Answer</button>
+                        <div class="answer-reveal" id="pq93"><strong>Answer: Parallel.</strong> In parallel, equivalent capacitance increases (C = C₁ + C₂ + ...), allowing more charge storage.</div>
+                    </li>
+                </ol>
+            </div>
+
+            <hr style="margin:30px 0;">
+
+            <!-- ===== PRACTICAL P10 ===== -->
+            <h3><i class="fas fa-microchip"></i> P10 — ES110: Active Electronic Components</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bullseye"></i> P10.1 Practical Statement</div>
+                <p>Identify various active electronic components in the given circuit.</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> P10.2 Practical Significance</div>
+                <p>Any circuit is composed of various types of components. Active components supply energy to the electric circuit. This experiment is aimed at identification of active components, which is very essential for developing skills of designing basic circuits or troubleshooting of any circuit or device.</p>
+            </div>
+
+            <p><strong>P10.3 Relevant Theory:</strong> Refer section 1.2 of this unit.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-tasks"></i> P10.4 Practical Outcomes</div>
+                <ul>
+                    <li><strong>PrO1:</strong> Identify various types of diodes in the given circuit.</li>
+                    <li><strong>PrO2:</strong> Identify various types of transistors in the given circuit.</li>
+                </ul>
+            </div>
+
+            <h4>P10.5 Practical Setup</h4>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=various+types+of+diodes+PN+junction+LED+zener+photodiode" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P10.1:</strong> Various types of Diodes (PN Junction, Photodiode, Zener, LED)</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=various+types+of+transistors+BJT+power+transistor+JFET+MOSFET" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. P10.2:</strong> Various types of Transistors (BJT, Power Transistor, JFET, MOSFET)</p><span class="click-hint">🔍 Click to view on Google Images</span></div>
+                </a>
+            </div>
+
+            <h4>P10.6 Resources Required</h4>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.</th><th>Resources</th><th>Qty</th><th>Actual (student fills)</th><th>Remarks</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Sample circuits containing different active components</td><td>2</td><td></td><td></td></tr>
+                        <tr><td>2</td><td>Diodes: Semiconductor, Zener, LED, Photo diode etc.</td><td>Assorted</td><td></td><td></td></tr>
+                        <tr><td>3</td><td>Transistors: BJT, JFET, MOSFET etc.</td><td>Assorted</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> P10.7 Precautions</div>
+                <ol>
+                    <li>Ensure that any active component taken for identification is put back at the right place.</li>
+                    <li>Maintain neatness on the working table.</li>
+                    <li>Handle the components properly.</li>
+                </ol>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-list-ol"></i> P10.8 Suggested Procedure</div>
+                <ol>
+                    <li>Observe carefully the various components.</li>
+                    <li>Identify Component No. and type of diodes and transistors in the given two circuits and note them down in the observation table.</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+</div><!-- end .container -->
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
+    <button class="fab fab-print" id="fabPrint"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Done</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>
