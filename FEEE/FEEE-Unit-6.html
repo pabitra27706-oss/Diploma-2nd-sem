@@ -1,408 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>FEEE · Unit 6 · Analog Circuits (Op-Amp)</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: op-amp / analog / blue-gray -->
-  <style>
-    :root {
-      --primary: #3a4e6b;          /* op-amp blue-gray */
-      --primary-light: #5a7a9c;
-      --accent: #d97706;            /* amber for circuits */
-      --accent-light: #f59e0b;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #1e2b3a, #3a4e6b, #d97706);
-    }
-    /* header emoji: op-amp symbols */
-    .header::after {
-      content: "📊🔌⚡📈";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* op-amp pinout illustration */
-    .pinout-diagram {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .chip-body {
-      background: #333;
-      color: #fff;
-      padding: 20px;
-      border-radius: 30px;
-      width: 280px;
-      position: relative;
-      border: 2px solid #aaa;
-    }
-    .pin-row {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 0;
-    }
-    .pin {
-      background: #ffd966;
-      color: #000;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: bold;
-    }
-    .notch {
-      width: 30px;
-      height: 10px;
-      background: #fff;
-      margin: 0 auto 10px;
-      border-radius: 5px;
-    }
-    /* op-amp triangle symbol */
-    .opamp-symbol {
-      font-size: 4rem;
-      text-align: center;
-      color: var(--accent);
-    }
-    /* circuit demo */
-    .circuit-card {
-      background: var(--formula-bg);
-      border: 2px dashed var(--primary);
-      padding: 20px;
-      border-radius: var(--radius-md);
-      margin: 15px 0;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
-
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Calculate') ? 'Show Calculation' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Calculate') ? 'Hide Calculation' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 - Transformer and Machines | FEEE</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+    MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}};
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <style>
+        .figure-link{text-decoration:none;color:inherit;display:block;cursor:pointer}.figure-link .diagram-placeholder{transition:all var(--transition);border:2px dashed var(--gray);position:relative}.figure-link:hover .diagram-placeholder{border-color:var(--accent);background:var(--formula-bg);transform:translateY(-2px);box-shadow:var(--shadow-md)}.diagram-placeholder .click-hint{display:block;margin-top:8px;font-size:.78rem;color:var(--accent);font-weight:500}.figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}@media(max-width:768px){.figure-row{grid-template-columns:1fr}}.mcq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin:20px 0}.mcq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;border-left:4px solid var(--accent)}.mcq-item h4{color:var(--primary);margin-bottom:12px;font-size:.95rem}.mcq-item .options{list-style:none;padding:0}.mcq-item .options li{padding:6px 0;font-size:.9rem}@media(max-width:768px){.mcq-grid{grid-template-columns:1fr}}[data-theme="dark"] .mcq-item{background:#1a2332}.bio-box{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;padding:20px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-left:5px solid var(--primary);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:20px 0}[data-theme="dark"] .bio-box{background:linear-gradient(135deg,#1a237e33,#28359333)}.bio-box .bio-text{flex:1;min-width:250px}.bio-box .bio-text h4{color:var(--primary);margin-bottom:8px}.outcome-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:16px 0}.outcome-item{background:var(--formula-bg);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem}.outcome-item strong{color:var(--accent)}.eq-num{float:right;color:var(--gray);font-size:.9rem}
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+<header class="header"><div class="header-content">
+    <h1><i class="fas fa-cog"></i> Transformer and Machines</h1>
+    <h2>Unit 6 — Fundamentals of Electrical and Electronics Engineering</h2>
+    <div class="course-info"><span class="info-item"><i class="fas fa-book"></i> ES110</span><span class="info-item"><i class="fas fa-layer-group"></i> Unit 6</span><span class="info-item"><i class="fas fa-graduation-cap"></i> Diploma — Sem I</span><span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span></div>
+</div></header>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-content">
-      <h1>📊 FEEE · Unit 6 📊</h1>
-      <h2>Operational Amplifiers · Modes · Applications</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
-        <span class="info-item"><i class="fas fa-microchip"></i> Op-Amp 741C</span>
-        <span class="info-item"><i class="fas fa-calculator"></i> Gain Calculation</span>
-        <span class="info-item"><i class="fas fa-wave-square"></i> Integrator/Differentiator</span>
-      </div>
+<nav class="navbar" id="navbar"><div class="nav-container">
+    <div class="nav-brand"><h3>⚡ FEEE U6</h3></div>
+    <div class="nav-links" id="navLinks">
+        <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+        <a href="#parts"><i class="fas fa-puzzle-piece"></i> Parts</a>
+        <a href="#types"><i class="fas fa-columns"></i> Types</a>
+        <a href="#emf"><i class="fas fa-bolt"></i> EMF Eq.</a>
+        <a href="#noload"><i class="fas fa-battery-empty"></i> No Load</a>
+        <a href="#auto"><i class="fas fa-random"></i> Auto-Tr.</a>
+        <a href="#dcmotor"><i class="fas fa-cog"></i> DC Motor</a>
+        <a href="#dcchars"><i class="fas fa-chart-line"></i> DC Chars</a>
+        <a href="#acmotor"><i class="fas fa-sync-alt"></i> AC Motor</a>
+        <a href="#single"><i class="fas fa-home"></i> 1-Phase</a>
+        <a href="#solved"><i class="fas fa-calculator"></i> Solved</a>
+        <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
+        <a href="#summary"><i class="fas fa-list"></i> Summary</a>
     </div>
-  </header>
-
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT6</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#features"><i class="fas fa-star"></i> Ideal Op-Amp</a>
-        <a href="#741"><i class="fas fa-microchip"></i> 741C Pinout</a>
-        <a href="#modes"><i class="fas fa-arrow-right-arrow-left"></i> Inverting/Non-inverting</a>
-        <a href="#apps"><i class="fas fa-calculator"></i> Applications</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <h3><i class="fas fa-bolt"></i> FEEE Unit 6</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
-    </div>
+    <div class="nav-right"><button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button><button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button></div>
+</div></nav>
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer"><div class="drawer-header"><h3>⚡ FEEE U6</h3><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#features"><i class="fas fa-star"></i> Ideal Op-Amp Features</a>
-      <a href="#741"><i class="fas fa-microchip"></i> 741C Pin Configuration</a>
-      <a href="#modes"><i class="fas fa-arrow-right-arrow-left"></i> Inverting & Non-inverting Gain</a>
-      <a href="#apps"><i class="fas fa-calculator"></i> Adder, Integrator, Differentiator</a>
+        <a href="#overview"><i class="fas fa-eye"></i> Overview</a><a href="#parts"><i class="fas fa-puzzle-piece"></i> Parts</a><a href="#types"><i class="fas fa-columns"></i> Types</a><a href="#emf"><i class="fas fa-bolt"></i> EMF Eq.</a><a href="#noload"><i class="fas fa-battery-empty"></i> No Load</a><a href="#auto"><i class="fas fa-random"></i> Auto-Tr.</a><a href="#dcmotor"><i class="fas fa-cog"></i> DC Motor</a><a href="#dcchars"><i class="fas fa-chart-line"></i> DC Chars</a><a href="#acmotor"><i class="fas fa-sync-alt"></i> AC Motor</a><a href="#single"><i class="fas fa-home"></i> 1-Phase</a><a href="#solved"><i class="fas fa-calculator"></i> Solved</a><a href="#exercises"><i class="fas fa-pen"></i> Exercises</a><a href="#summary"><i class="fas fa-list"></i> Summary</a>
     </div>
-    <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
-    </div>
-  </div>
+    <div class="drawer-footer"><button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button><button id="drawerPrint"><i class="fas fa-print"></i> Print</button></div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: IDEAL OP-AMP FEATURES ========= -->
-    <section id="features" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-star"></i> Features of an Ideal Operational Amplifier
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-microchip"></i> Ideal Op-Amp Characteristics</div>
-          <ul>
-            <li><strong>Infinite open-loop gain (A<sub>OL</sub> = ∞)</strong></li>
-            <li><strong>Infinite input impedance (Z<sub>in</sub> = ∞)</strong> → no input current</li>
-            <li><strong>Zero output impedance (Z<sub>out</sub> = 0)</strong> → can drive any load</li>
-            <li><strong>Infinite bandwidth</strong> → amplifies all frequencies equally</li>
-            <li><strong>Common-mode rejection ratio (CMRR) = ∞</strong></li>
-            <li><strong>Slew rate = ∞</strong> (instantaneous output change)</li>
-            <li><strong>Zero offset voltage</strong> (V<sub>out</sub> = 0 when V<sub>in</sub> = 0)</li>
-          </ul>
+<div class="container">
+
+    <!-- OVERVIEW -->
+    <section class="section" id="overview">
+        <h2 class="section-title"><i class="fas fa-eye"></i> Unit Overview <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-bullseye"></i> Unit Specifics</div><ul><li>Major parts &amp; working principle of a transformer</li><li>Constructional features of DC machines</li><li>Types of DC motors and their characteristics</li><li>Types of AC motors and their applications</li></ul></div>
+            <div class="tip-box"><div class="box-title"><i class="fas fa-lightbulb"></i> Rationale</div><p>Electrical power systems are incomplete without transformers to change voltage/current levels. Industries and consumers use small and large electric motors. This chapter covers basic working and applications of transformers and enables motor selection for specific applications.</p></div>
+            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+            <div class="outcome-grid">
+                <div class="outcome-item"><strong>U6-O1:</strong> Describe construction and classification of transformers.</div>
+                <div class="outcome-item"><strong>U6-O2:</strong> Describe principle of working of transformers.</div>
+                <div class="outcome-item"><strong>U6-O3:</strong> Explain functioning of autotransformer.</div>
+                <div class="outcome-item"><strong>U6-O4:</strong> Describe construction and working of motors.</div>
+                <div class="outcome-item"><strong>U6-O5:</strong> Explain basic equations and characteristics of motors.</div>
+                <div class="outcome-item"><strong>U6-O6:</strong> Suggest motors for specific applications.</div>
+            </div>
+            <div class="bio-box"><div class="bio-text"><h4><i class="fas fa-user-graduate"></i> Nikola Tesla (1856–1943)</h4><p>Serbian-American engineer who invented the first <strong>alternating current (AC) motor</strong> and developed AC generation and transmission technology. He invented electric oscillators, the high-voltage <strong>Tesla coil</strong>, and together with Westinghouse installed <strong>AC generators at Niagara Falls</strong>, creating the first modern power station.</p></div></div>
         </div>
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-circle-info"></i> Virtual Ground Concept</div>
-          <p>In negative feedback configuration, the differential input voltage (V<sub>+</sub> - V<sub>-</sub>) is ideally zero. Since the non-inverting terminal is often grounded, the inverting terminal is at <strong>virtual ground</strong> (0V but no current flow).</p>
-          <div class="formula">V<sub>1</sub> ≈ V<sub>2</sub> (virtual short)</div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 2: 741C PIN CONFIGURATION & OFFSET NULL ========= -->
-    <section id="741" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-microchip"></i> 741C Op-Amp: Pin Configuration & Offset Null
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="pinout-diagram">
-          <div class="chip-body">
-            <div class="notch"></div>
-            <div class="pin-row">
-              <span class="pin">1 Offset Null</span>
-              <span class="pin">8 NC</span>
+    <!-- TRANSFORMER PARTS -->
+    <section class="section" id="parts">
+        <h2 class="section-title"><i class="fas fa-puzzle-piece"></i> 6.1.2 Parts of a Transformer <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Transformer</div><p>A <strong>static device</strong> (no rotating parts) which transfers electrical energy from one AC circuit to another with the desired change in voltage or current level and <strong>without change in frequency</strong>.</p></div>
+            <a href="https://www.google.com/search?tbm=isch&q=transformer+constructional+details+front+view+conservator+breather+bushing+tank" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.1:</strong> Front view of transformer — HV/LV bushings, conservator, Buchholz relay, breather, cooling vent, tank body, pressure vent, winding</p><span class="click-hint">🔍 Click to view</span></div></a>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-magnet"></i> a. Core &amp; Windings</h4><p>Core: high-grade silicon steel laminations (0.35–0.5mm), varnished/enameled. Provides low reluctance path for flux. Windings: primary &amp; secondary, former wound using insulated copper conductor (round wire or strip), placed on limbs.</p></div>
+                <div class="card"><h4><i class="fas fa-box"></i> b. Transformer Tank</h4><p>For ratings &gt;50 kVA. Fabricated sheet metal tank, assembly immersed in oil for insulation and cooling. Cooling tubes increase surface area.</p></div>
+                <div class="card"><h4><i class="fas fa-plug"></i> c. Terminal Bushings</h4><p>Porcelain bushings insulate winding terminals from tank body.</p></div>
+                <div class="card"><h4><i class="fas fa-expand-alt"></i> d. Conservator</h4><p>Airtight cylindrical drum connected by pipe to tank. Takes up oil expansion/contraction with temperature. Main tank stays full — oil surface not directly exposed to air.</p></div>
+                <div class="card"><h4><i class="fas fa-wind"></i> e. Breather</h4><p>Contains drying agent (silica gel/calcium chloride). Extracts moisture and dust from air during transformer "breathing".</p></div>
+                <div class="card"><h4><i class="fas fa-shield-alt"></i> f. Buchholz Relay</h4><p>Protective device in pipeline between tank and conservator. Gases from oil decomposition during faults operate it — gives alarm or trips breaker.</p></div>
+                <div class="card"><h4><i class="fas fa-bomb"></i> g. Explosion Vent</h4><p>Bent pipe on tank top with glass/aluminium diaphragm. Bursts to release excessive pressure during faults.</p></div>
             </div>
-            <div class="pin-row">
-              <span class="pin">2 Inverting (-)</span>
-              <span class="pin">7 V<sub>CC</sub>+</span>
-            </div>
-            <div class="pin-row">
-              <span class="pin">3 Non-inverting (+)</span>
-              <span class="pin">6 Output</span>
-            </div>
-            <div class="pin-row">
-              <span class="pin">4 V<sub>EE</sub>-</span>
-              <span class="pin">5 Offset Null</span>
-            </div>
-          </div>
+            <a href="https://www.google.com/search?tbm=isch&q=single+phase+core+type+transformer+sectional+view+limb+yoke+HV+LV+winding" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.2:</strong> Sectional view — limb, yoke, HV winding, LV winding, insulation</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-adjust"></i> Pin Functions</div>
-          <ul>
-            <li><strong>Pin 1 & 5 (Offset Null):</strong> Used to nullify output offset voltage by connecting a potentiometer (typically 10kΩ).</li>
-            <li><strong>Pin 2 (Inverting Input):</strong> Signal applied here gets inverted at output.</li>
-            <li><strong>Pin 3 (Non-inverting Input):</strong> Signal applied here appears same polarity at output.</li>
-            <li><strong>Pin 4 (V<sub>EE</sub>):</strong> Negative supply (usually -15V).</li>
-            <li><strong>Pin 6 (Output):</strong> Amplified output.</li>
-            <li><strong>Pin 7 (V<sub>CC</sub>):</strong> Positive supply (+15V).</li>
-            <li><strong>Pin 8 (NC):</strong> No connection.</li>
-          </ul>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-sliders"></i> Offset Null Adjustment</div>
-          <p>A 10kΩ potentiometer is connected between pins 1 and 5, with wiper connected to V<sub>EE</sub> (pin 4). This balances the internal circuitry to make output zero when inputs are zero.</p>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: INVERTING & NON-INVERTING MODES ========= -->
-    <section id="modes" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-arrow-right-arrow-left"></i> Inverting & Non-Inverting Modes · Gain Calculation
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-arrow-left"></i> Inverting Amplifier</h4>
-            <p>Input applied to inverting terminal via R<sub>1</sub>. Non-inverting grounded.</p>
-            <div class="formula">A<sub>v</sub> = -R<sub>f</sub> / R<sub>1</sub></div>
-            <p>Negative sign indicates phase inversion.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-arrow-up"></i> Non-Inverting Amplifier</h4>
-            <p>Input applied to non-inverting terminal. Feedback from output to inverting via R<sub>f</sub> and R<sub>1</sub> to ground.</p>
-            <div class="formula">A<sub>v</sub> = 1 + (R<sub>f</sub> / R<sub>1</sub>)</div>
-            <p>Output in phase with input.</p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title"><i class="fas fa-pencil"></i> Example 1: Inverting Amplifier</div>
-          <p>R<sub>1</sub> = 1kΩ, R<sub>f</sub> = 10kΩ. Find gain and output for V<sub>in</sub> = 0.5V.</p>
-          <button class="toggle-btn" data-target="calcInvert"><i class="fas fa-eye"></i> Show Calculation</button>
-          <div class="answer-reveal" id="calcInvert">
-            <div class="formula answer">
-              Gain A<sub>v</sub> = -R<sub>f</sub>/R<sub>1</sub> = -10k/1k = <strong>-10</strong><br>
-              V<sub>out</sub> = A<sub>v</sub> × V<sub>in</sub> = -10 × 0.5 = <strong>-5V</strong>
+    <!-- TRANSFORMER TYPES & WORKING -->
+    <section class="section" id="types">
+        <h2 class="section-title"><i class="fas fa-columns"></i> 6.1.3 Types &amp; Working Principle <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-th-large"></i> Core Type</h4><ul><li>Rectangular laminated structure, <strong>single magnetic circuit</strong></li><li>Cylindrical, concentric coils (LV near core)</li><li>Windings distributed on <strong>two limbs</strong> → better cooling</li><li>Coils withdrawn by dismantling top yoke</li></ul></div>
+                <div class="card"><h4><i class="fas fa-layer-group"></i> Shell Type</h4><ul><li><strong>Double magnetic circuit</strong></li><li>Sandwich-type windings on <strong>central limb only</strong></li><li>H.V./L.V. pancake coils interleaved</li><li>Core surrounds windings → mechanical protection</li><li>Poorer natural cooling; repair more difficult</li></ul></div>
             </div>
-          </div>
-        </div>
+            <a href="https://www.google.com/search?tbm=isch&q=core+type+shell+type+transformer+comparison+diagram" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.3:</strong> (a) Core type transformer (b) Shell type transformer</p><span class="click-hint">🔍 Click to view</span></div></a>
 
-        <div class="example-box">
-          <div class="box-title"><i class="fas fa-pencil"></i> Example 2: Non-Inverting Amplifier</div>
-          <p>R<sub>1</sub> = 2kΩ, R<sub>f</sub> = 8kΩ. Find gain and output for V<sub>in</sub> = 1V.</p>
-          <button class="toggle-btn" data-target="calcNonInvert"><i class="fas fa-eye"></i> Show Calculation</button>
-          <div class="answer-reveal" id="calcNonInvert">
-            <div class="formula answer">
-              Gain A<sub>v</sub> = 1 + (R<sub>f</sub>/R<sub>1</sub>) = 1 + (8k/2k) = 1 + 4 = <strong>5</strong><br>
-              V<sub>out</sub> = A<sub>v</sub> × V<sub>in</sub> = 5 × 1 = <strong>5V</strong>
+            <h3>6.1.3.1 Principle of Working</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Mutual Induction</div>
+                <p>Based on <strong>mutual induction</strong> between two circuits linked by a common magnetic field. Primary winding receives energy from AC supply → alternating current → alternating flux → links secondary winding through iron core → induces emf by <strong>Faraday's law</strong>. Frequency of induced emf = supply frequency.</p>
             </div>
-          </div>
+            <a href="https://www.google.com/search?tbm=isch&q=elementary+transformer+diagram+primary+secondary+winding+flux+N1+N2" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.4:</strong> Elementary Transformer — V₁, N₁ (primary), N₂, V₂ (secondary), flux φ<sub>m</sub>, load</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: APPLICATIONS (ADDER, INTEGRATOR, DIFFERENTIATOR) ========= -->
-    <section id="apps" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-calculator"></i> Op-Amp Applications: Amplifier · Adder · Integrator · Differentiator
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-plus"></i> Adder (Summing Amplifier)</h4>
-            <p>Inverting configuration with multiple inputs.</p>
-            <div class="formula">V<sub>out</sub> = -R<sub>f</sub> (V<sub>1</sub>/R<sub>1</sub> + V<sub>2</sub>/R<sub>2</sub> + ...)</div>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-chart-line"></i> Integrator</h4>
-            <p>Replaces feedback resistor with capacitor.</p>
-            <div class="formula">V<sub>out</sub> = - (1/R<sub>1</sub>C) ∫ V<sub>in</sub> dt</div>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-chart-bar"></i> Differentiator</h4>
-            <p>Input resistor replaced with capacitor.</p>
-            <div class="formula">V<sub>out</sub> = -R<sub>f</sub>C dV<sub>in</sub>/dt</div>
-          </div>
-        </div>
-
-        <!-- Adder Example -->
-        <div class="circuit-card">
-          <h4><i class="fas fa-plus-circle"></i> Adder Circuit Example</h4>
-          <p>Three inputs: V<sub>1</sub>=1V, V<sub>2</sub>=2V, V<sub>3</sub>=3V. All input resistors = 10kΩ, R<sub>f</sub> = 10kΩ. Find output.</p>
-          <button class="toggle-btn" data-target="calcAdder"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="calcAdder">
-            <div class="formula answer">
-              V<sub>out</sub> = -R<sub>f</sub> (V<sub>1</sub>/R<sub>1</sub> + V<sub>2</sub>/R<sub>2</sub> + V<sub>3</sub>/R<sub>3</sub>)<br>
-              = -10k (1/10k + 2/10k + 3/10k) = -10k × (6/10k) = -6V<br>
-              <strong>V<sub>out</sub> = -6V</strong>
+    <!-- EMF EQUATION -->
+    <section class="section" id="emf">
+        <h2 class="section-title"><i class="fas fa-bolt"></i> 6.1.3.2–6.1.3.3 EMF Equation &amp; Turns Ratio <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> EMF Equation Derivation</div>
+                <div class="formula">\[\varphi = \varphi_m \cos\omega t\] <span class="eq-num">...(6.1)</span></div>
+                <div class="formula">\[e_1 = -N_1\frac{d\varphi}{dt} = N_1\omega\varphi_m\sin\omega t\] <span class="eq-num">...(6.2–6.3)</span></div>
+                <p>Maximum induced EMF: \(E_m = 2\pi f N_1 \varphi_m\)</p>
+                <div class="formula">\[E_1 = \frac{2\pi f N_1\varphi_m}{\sqrt{2}} = 4.44\,f\,N_1\,\varphi_m\] <span class="eq-num">...(6.4)</span></div>
+                <div class="formula">\[E_2 = 4.44\,f\,N_2\,\varphi_m\] <span class="eq-num">...(6.5)</span></div>
             </div>
-          </div>
-        </div>
-
-        <!-- Integrator Example -->
-        <div class="circuit-card">
-          <h4><i class="fas fa-wave-square"></i> Integrator Circuit Example</h4>
-          <p>R = 10kΩ, C = 0.1μF. Input is a step voltage of 2V. Find output after 1ms.</p>
-          <button class="toggle-btn" data-target="calcInt"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="calcInt">
-            <div class="formula answer">
-              V<sub>out</sub> = - (1/RC) ∫ V<sub>in</sub> dt = - (1/(10k × 0.1×10⁻⁶)) × (2V × 1ms)<br>
-              RC = 10⁴ × 10⁻⁷ = 10⁻³ = 1ms<br>
-              1/RC = 1000<br>
-              V<sub>out</sub> = -1000 × (2 × 0.001) = -1000 × 0.002 = <strong>-2V</strong>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Voltage Transformation Ratio (K)</div>
+                <div class="formula">\[\frac{E_1}{E_2} = \frac{V_1}{V_2} = \frac{N_1}{N_2} = \frac{I_2}{I_1} = \frac{1}{K}\] <span class="eq-num">...(6.6)</span></div>
+                <p><strong>K &lt; 1:</strong> Step-down transformer. <strong>K &gt; 1:</strong> Step-up transformer.</p>
             </div>
-          </div>
-        </div>
-
-        <!-- Differentiator Example -->
-        <div class="circuit-card">
-          <h4><i class="fas fa-chart-bar"></i> Differentiator Circuit Example</h4>
-          <p>C = 0.1μF, R<sub>f</sub> = 10kΩ. Input is a ramp voltage increasing at 1000 V/s. Find output.</p>
-          <button class="toggle-btn" data-target="calcDiff"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="calcDiff">
-            <div class="formula answer">
-              V<sub>out</sub> = -R<sub>f</sub>C dV<sub>in</sub>/dt<br>
-              = -10k × 0.1×10⁻⁶ × 1000<br>
-              = -10⁴ × 10⁻⁷ × 10³ = -10⁴ × 10⁻⁴ = <strong>-1V</strong>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-star"></i> Ideal Transformer Assumptions</div>
+                <ul><li>Winding resistances are negligible</li><li>All flux confined to core, links both windings fully</li><li>Core permeability is high → negligible magnetizing current</li><li>Hysteresis and eddy current losses are negligible</li><li>V₁I₁ = V₂I₂ (input VA = output VA)</li></ul>
             </div>
-          </div>
         </div>
-
-        <!-- Amplifier circuit (just a note) -->
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-bullhorn"></i> Amplifier Circuit</div>
-          <p>Both inverting and non-inverting configurations are used as amplifier circuits. The gain is set by resistor ratio as shown in section 3.</p>
-        </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Op-Amp Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">A<sub>v(inv)</sub> = -R<sub>f</sub>/R<sub>1</sub></div>
-          <div class="tag">A<sub>v(non)</sub> = 1 + R<sub>f</sub>/R<sub>1</sub></div>
-          <div class="tag">Adder: V<sub>out</sub> = -R<sub>f</sub>∑(V<sub>i</sub>/R<sub>i</sub>)</div>
-          <div class="tag">Integrator: V<sub>out</sub> = -1/RC ∫ V<sub>in</sub> dt</div>
-          <div class="tag">Differentiator: V<sub>out</sub> = -RC dV<sub>in</sub>/dt</div>
+    <!-- NO LOAD -->
+    <section class="section" id="noload">
+        <h2 class="section-title"><i class="fas fa-battery-empty"></i> 6.1.3.4 No Load Condition <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <p>At no load: I₂ = 0, primary carries small no-load current I₀ with two components:</p>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-magnet"></i> Magnetizing (I<sub>μ</sub>)</h4><p>Produces magnetizing flux, <strong>in phase with flux</strong>. I<sub>μ</sub> = I₀ sin Ø₀</p></div>
+                <div class="card"><h4><i class="fas fa-bolt"></i> Active/Power (I<sub>ω</sub>)</h4><p>Supplies hysteresis &amp; eddy current losses, <strong>in phase with V₁</strong>. I<sub>ω</sub> = I₀ cos Ø₀</p></div>
+            </div>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> No Load Formulas</div>
+                <div class="formula">\[P_0 = V_1 I_0 \cos\phi_0\] <span class="eq-num">...(6.7)</span></div>
+                <div class="formula">\[I_0 = \sqrt{I_\mu^2 + I_\omega^2}\] <span class="eq-num">...(6.8)</span></div>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=transformer+no+load+phasor+diagram+magnetizing+current+core+loss" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.5:</strong> Phasor diagram at no load — V₁, E₁, I₀, I<sub>μ</sub>, I<sub>ω</sub>, φ<sub>m</sub>, φ₀</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    <!-- AUTOTRANSFORMER -->
+    <section class="section" id="auto">
+        <h2 class="section-title"><i class="fas fa-random"></i> 6.1.4 Autotransformer <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Autotransformer</div><p>A transformer where part of the winding is <strong>common to both primary and secondary</strong>. Electrically connected AND magnetically coupled (not electrically isolated).</p></div>
+            <a href="https://www.google.com/search?tbm=isch&q=autotransformer+circuit+diagram+single+winding+V1+V2+N1+N2" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.6:</strong> Autotransformer — PR (primary N₁), QR (secondary N₂), common winding</p><span class="click-hint">🔍 Click to view</span></div></a>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Autotransformer Relations</div>
+                <div class="formula">\[\frac{V_1}{V_2} = \frac{I_1}{I_2} = \frac{N_1}{N_2} = \frac{1}{K}\] <span class="eq-num">...(6.9)</span></div>
+                <p>Transformed (inductive) power = V₂I₂(1−K) <span class="eq-num">...(6.10)</span></p>
+                <p>Conducted power = KV₂I₂ <span class="eq-num">...(6.11)</span></p>
+            </div>
+            <div class="tip-box"><div class="box-title"><i class="fas fa-check-circle"></i> Advantages &amp; Applications</div>
+                <p><strong>Advantages:</strong> Less copper, smaller size for same rating.</p>
+                <p><strong>Applications:</strong> Compensate voltage drops on feeders, provide variable voltage control, adjust output voltage with varying load.</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <!-- DC MOTOR -->
+    <section class="section" id="dcmotor">
+        <h2 class="section-title"><i class="fas fa-cog"></i> 6.2.2 DC Motor <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> DC Motor</div><p>A machine that converts <strong>electrical energy into mechanical energy</strong> using DC supply.</p></div>
+            <h3>6.2.2.1 Construction</h3>
+            <p>Stator: cylindrical yoke, field poles with windings, pole shoes. Rotor (armature): laminated silicon steel core with slots for armature coils, connected to commutator. Commutator: copper segments separated by mica. Carbon brushes with spring-loaded holders conduct current to armature.</p>
+            <a href="https://www.google.com/search?tbm=isch&q=DC+machine+sectional+view+pole+yoke+armature+commutator+brush+field+winding" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.7:</strong> Sectional view of DC machine — pole, field winding, pole shoe, yoke, armature winding, rotor, commutator, brush</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <h3>6.2.2.2 Working Principle</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-hand-point-right"></i> Fleming's Left Hand Rule</div>
+                <p>Current-carrying conductor in magnetic field → mechanical force. Direction by Fleming's Left Hand Rule.</p>
+                <div class="formula">\[F = BIL\] <span class="eq-num">...(6.12)</span></div>
+                <p>B = field strength (Wb/m²), I = current (A), L = conductor length (m).</p>
+            </div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Back EMF (E<sub>b</sub>)</div>
+                <p>When armature rotates, conductors cut magnetic lines → induced emf <strong>opposing applied voltage</strong>.</p>
+                <div class="formula">\[E_b \propto \phi N\] <span class="eq-num">...(6.13)</span></div>
+            </div>
+
+            <h3>6.2.2.4 Types of DC Motors</h3>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-link"></i> DC Series Motor</h4><p>Field winding in <strong>series</strong> with armature. Same current flows through both. Few turns of <strong>thick</strong> wire. Flux varies with current till saturation.</p></div>
+                <div class="card"><h4><i class="fas fa-columns"></i> DC Shunt Motor</h4><p>Field winding in <strong>parallel</strong> with armature. Many turns of <strong>thin</strong> wire. Field current constant (DC supply constant) → flux practically constant.</p></div>
+            </div>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=DC+series+motor+circuit+diagram+field+winding+armature+series" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.8:</strong> DC series motor circuit</p><span class="click-hint">🔍 Click to view</span></div></a>
+                <a href="https://www.google.com/search?tbm=isch&q=DC+shunt+motor+circuit+diagram+field+winding+parallel+armature" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.9:</strong> DC shunt motor circuit</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DC CHARACTERISTICS -->
+    <section class="section" id="dcchars">
+        <h2 class="section-title"><i class="fas fa-chart-line"></i> 6.2.2.5–6 DC Motor Characteristics &amp; Applications <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>Torque Characteristics (T vs I<sub>a</sub>)</h3>
+            <div class="formula">\[T \propto \phi I_a\] <span class="eq-num">...(6.14)</span></div>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-link"></i> Series: T ∝ I<sub>a</sub>²</h4><p>φ ∝ I<sub>a</sub> (until saturation) → T ∝ I<sub>a</sub>² (parabolic). After saturation → linear. <strong>Extremely high starting torque.</strong></p></div>
+                <div class="card"><h4><i class="fas fa-columns"></i> Shunt: T ∝ I<sub>a</sub></h4><p>φ = constant → T directly proportional to I<sub>a</sub> (linear).</p></div>
+            </div>
+            <h3>Speed Characteristics (N vs I<sub>a</sub>)</h3>
+            <div class="formula">\[N \propto \frac{E_b}{\phi}\] <span class="eq-num">...(6.16)</span></div>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-link"></i> Series: N ∝ 1/I<sub>a</sub></h4><p>Speed decreases with load. <strong class="text-danger">Never run without load</strong> — dangerously high speed!</p></div>
+                <div class="card"><h4><i class="fas fa-columns"></i> Shunt: N ≈ constant</h4><p>Slight decrease with load. Considered <strong>constant speed motor</strong>.</p></div>
+            </div>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=DC+series+motor+speed+torque+characteristics+curve" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.10:</strong> Speed-Torque of DC series motor</p><span class="click-hint">🔍 Click to view</span></div></a>
+                <a href="https://www.google.com/search?tbm=isch&q=DC+shunt+motor+speed+torque+characteristics+curve" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.11:</strong> Speed-Torque of DC shunt motor</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+            <h3>Applications</h3>
+            <div class="workshop-box"><div class="box-title"><i class="fas fa-link"></i> DC Series Motor Applications</div><p>High starting torque needed: Cranes, Lifts, Electric traction, Vacuum cleaner, Hair drier, Sewing machine, Power tools, Air compressor.</p></div>
+            <div class="workshop-box"><div class="box-title"><i class="fas fa-columns"></i> DC Shunt Motor Applications</div><p>Constant speed needed: Lathe, Fans, Spinning machines, Centrifugal pumps, Boring machines, Blowers, Conveyors, Weighing machines.</p></div>
+        </div>
+    </section>
+
+    <!-- AC MOTORS -->
+    <section class="section" id="acmotor">
+        <h2 class="section-title"><i class="fas fa-sync-alt"></i> 6.2.3 Three-Phase AC Motors <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Rotating Magnetic Field</div>
+                <p>Three-phase balanced supply to stator coils displaced 120° → <strong>rotating magnetic field</strong>. Speed:</p>
+                <div class="formula">\[N_s = \frac{120f}{P}\] <span class="eq-num">...(6.18)</span></div>
+                <p>Torque: \(T = F_s F_r \sin\lambda\) <span class="eq-num">...(6.19)</span></p>
+            </div>
+            <h3>3-Phase Induction Motor</h3>
+            <div class="table-wrapper"><table class="data-table"><thead><tr><th>Feature</th><th>Squirrel Cage</th><th>Wound Rotor</th></tr></thead>
+            <tbody>
+                <tr><td>Rotor</td><td>Cylindrical, slotted</td><td>Cylindrical, slotted</td></tr>
+                <tr><td>Conductors</td><td>Uninsulated Cu/Al bars shorted by <strong>end rings</strong></td><td>Winding similar to stator, ends to <strong>slip rings</strong></td></tr>
+                <tr><td>External connection</td><td>None (self-contained)</td><td>Through brushes on slip rings</td></tr>
+                <tr><td>Speed control</td><td>Poor conventional methods</td><td>Good (external resistance)</td></tr>
+                <tr><td>Starting torque</td><td>Low-moderate</td><td><strong>High</strong></td></tr>
+            </tbody></table></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Slip</div>
+                <p>Difference between synchronous speed N<sub>s</sub> and rotor speed N<sub>r</sub>: <strong>s = (N<sub>s</sub> − N<sub>r</sub>)/N<sub>s</sub></strong>. Rotor frequency f<sub>r</sub> = s × f.</p>
+            </div>
+            <h3>3-Phase Synchronous Motor</h3>
+            <p>Stator carries AC, rotor is <strong>DC excited</strong>. Runs at <strong>exactly synchronous speed</strong>. Used for power factor improvement and high-power constant-speed applications.</p>
+            <a href="https://www.google.com/search?tbm=isch&q=torque+speed+characteristics+3+phase+induction+motor+synchronous+motor" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.14:</strong> Torque-Speed Characteristics of (a) 3-Phase Induction motor (b) 3-Phase Synchronous motor</p><span class="click-hint">🔍 Click to view</span></div></a>
+        </div>
+    </section>
+
+    <!-- SINGLE PHASE -->
+    <section class="section" id="single">
+        <h2 class="section-title"><i class="fas fa-home"></i> 6.2.4 Single-Phase AC Motors <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <p>Single-phase induction motors are <strong>not self-starting</strong> (pulsating field). Solution: 2-winding motors with main + auxiliary winding at 90° electrical, with impedance for phase splitting.</p>
+            <h3>6.2.4.1 Capacitor Split Phase Motors</h3>
+            <p>Most widely used for household. Types: Capacitor start, Permanent split capacitor, Capacitor start-capacitor run.</p>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Working</div><p>Capacitor in series with auxiliary winding → I<sub>a</sub> leads I<sub>m</sub> → creates 2-phase motor effect → starting torque produced → rotor starts. Typical capacitor: 40–100 μF.</p></div>
+            <a href="https://www.google.com/search?tbm=isch&q=single+phase+capacitor+split+phase+induction+motor+connection+phasor+diagram" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 6.15:</strong> 1-Phase capacitor split phase motor (a) Connection diagram (b) Phasor diagram</p><span class="click-hint">🔍 Click to view</span></div></a>
+            <div class="workshop-box"><div class="box-title"><i class="fas fa-home"></i> Applications</div><p>Ceiling fans, compressor motors, household pumps, refrigerators, air conditioners, kitchen equipment.</p></div>
+        </div>
+    </section>
+
+    <!-- SOLVED -->
+    <section class="section" id="solved">
+        <h2 class="section-title"><i class="fas fa-calculator"></i> Solved Problems <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Ex 6.1.1</div><p>Transformer: N₁=400, N₂=1000, A=60cm², V₁=500V, f=50Hz. Find B<sub>m</sub>.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div><p>500 = 4.44 × 50 × 400 × B<sub>m</sub> × 60×10⁻⁴ → <strong>B<sub>m</sub> = 0.938 Wb/m²</strong></p></div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Ex 6.1.2</div><p>200/100V, 50Hz transformer excited at 40Hz from 100V side, same I<sub>μ</sub>. Find voltage.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div><p>Same φ<sub>m</sub>: E₂(40Hz)/E₂(50Hz) = 40/50 → E₂ = 100 × 40/50 = <strong>80V</strong></p></div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Ex 6.2.1</div><p>DC shunt motor, unsaturated, 1000 rpm at rated V. Voltage halved. Find speed.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div><p>V = k×I<sub>f</sub>×1000 ...(1). V/2 = k×I<sub>f</sub>/2×N ...(2). Equating: <strong>N = 1000 rpm</strong></p></div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Ex 6.2.2</div><p>3-phase IM, 4 poles, 50Hz, slip 4%. Find N<sub>s</sub>, N<sub>r</sub>, f<sub>r</sub>.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div><p>N<sub>s</sub> = 120×50/4 = <strong>1500 rpm</strong>. N<sub>r</sub> = 1500(1−0.04) = <strong>1440 rpm</strong>. f<sub>r</sub> = 0.04×50 = <strong>2 Hz</strong></p></div>
+        </div>
+    </section>
+
+    <!-- EXERCISES -->
+    <section class="section" id="exercises">
+        <h2 class="section-title"><i class="fas fa-pen"></i> Exercises <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>A. MCQs</h3>
+            <div class="mcq-grid">
+                <div class="mcq-item"><h4>Q 6.1</h4><p>Desirable core properties:</p><ul class="options"><li>a. Low μ, low hysteresis</li><li>b. Low μ, high hysteresis</li><li>c. High μ, high hysteresis</li><li>d. High μ, low hysteresis</li></ul><button class="toggle-btn" data-target="m61"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m61"><strong>d. High permeability and low hysteresis loss</strong></div></div>
+                <div class="mcq-item"><h4>Q 6.2</h4><p>Transformer core size depends on:</p><ul class="options"><li>a. Supply frequency</li><li>b. Permissible flux density</li><li>c. Area of core</li><li>d. Both (a) and (b)</li></ul><button class="toggle-btn" data-target="m62"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m62"><strong>d. Both (a) and (b)</strong></div></div>
+                <div class="mcq-item"><h4>Q 6.3</h4><p>DC motor rotation direction by:</p><ul class="options"><li>a. Coulomb's Law</li><li>b. Lenz's Law</li><li>c. Fleming's right hand</li><li>d. Fleming's left hand</li></ul><button class="toggle-btn" data-target="m63"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m63"><strong>d. Fleming's left hand rule</strong></div></div>
+                <div class="mcq-item"><h4>Q 6.4</h4><p>High starting torque for:</p><ul class="options"><li>a. Air blower</li><li>b. Weighing machine</li><li>c. Locomotive</li><li>d. Centrifugal pump</li></ul><button class="toggle-btn" data-target="m64"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m64"><strong>c. Locomotive</strong> — requires DC series motor with high starting torque.</div></div>
+                <div class="mcq-item"><h4>Q 6.5</h4><p>3-phase IM for high starting torque:</p><ul class="options"><li>a. Squirrel cage</li><li>b. Double cage</li><li>c. Slip ring</li><li>d. Deep bar</li></ul><button class="toggle-btn" data-target="m65"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m65"><strong>c. Slip ring</strong> — external resistance gives high starting torque.</div></div>
+                <div class="mcq-item"><h4>Q 6.6</h4><p>Capacitor in capacitor-start motor connected with:</p><ul class="options"><li>a. Auxiliary winding</li><li>b. Compensating</li><li>c. Main winding</li><li>d. Squirrel cage</li></ul><button class="toggle-btn" data-target="m66"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m66"><strong>a. Auxiliary winding</strong></div></div>
+            </div>
+            <h3>B. Subjective Questions</h3>
+            <div class="exercise-area"><p><strong>Q1.</strong> Explain working of a two winding transformer.</p><button class="toggle-btn" data-target="s1"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="s1"><p>AC supply to primary → alternating current → alternating flux in core → links secondary winding → induces EMF by Faraday's law (mutual induction) → connects to load → current flows. E₁=4.44fN₁φₘ, E₂=4.44fN₂φₘ. V₁/V₂=N₁/N₂.</p></div></div>
+            <div class="exercise-area"><p><strong>Q4.</strong> 3000/220V, 50Hz, A=400cm², B=1Wb/m². Find N₁, N₂.</p><button class="toggle-btn" data-target="s4"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="s4"><p>φₘ=B×A=1×400×10⁻⁴=0.04Wb. N₁=3000/(4.44×50×0.04)=<strong>338 turns</strong>. N₂=220/(4.44×50×0.04)=<strong>25 turns</strong>.</p></div></div>
+            <div class="exercise-area"><p><strong>Q7.</strong> What happens when load is removed from DC series motor?</p><button class="toggle-btn" data-target="s7"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="s7"><p>N∝1/I<sub>a</sub>. Without load, I<sub>a</sub> becomes very small → speed increases to <strong>dangerously high values</strong>. Motor may get damaged due to excessive centrifugal force. <strong>Never run DC series motor without load.</strong></p></div></div>
+            <div class="exercise-area"><p><strong>Q9.</strong> Describe construction of 3-phase induction motor.</p><button class="toggle-btn" data-target="s9"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="s9"><p><strong>Stator:</strong> Cylindrical laminated core with slots for 3-phase winding displaced 120°. <strong>Rotor:</strong> Either squirrel cage (Cu/Al bars shorted by end rings) or wound rotor (winding connected to slip rings for external resistance). Air gap separates stator and rotor.</p></div></div>
+            <div class="exercise-area"><p><strong>Q10.</strong> Types of single-phase induction motors and applications.</p><button class="toggle-btn" data-target="s10"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="s10"><p><strong>Types:</strong> Resistance split-phase, Capacitor start, Permanent split capacitor, Capacitor start-capacitor run. <strong>Applications:</strong> Ceiling fans, refrigerator compressors, household pumps, air conditioners, washing machines, kitchen equipment.</p></div></div>
+        </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="section" id="summary">
+        <h2 class="section-title"><i class="fas fa-list"></i> Unit Summary <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-clipboard-list"></i> Key Takeaways</div><ul>
+                <li>Transformers: <strong>Core type</strong> (single magnetic circuit) and <strong>Shell type</strong> (double magnetic circuit).</li>
+                <li>Two-winding transformer: step-down (K&lt;1) or step-up (K&gt;1). <strong>E = 4.44fNφ<sub>m</sub></strong>.</li>
+                <li>Transformer is a <strong>static device</strong> — changes V or I level, frequency unchanged.</li>
+                <li>Autotransformer: power transfer via <strong>conductive + inductive</strong> coupling.</li>
+                <li>DC Series motor: few turns thick wire, series connection, <strong>T∝I<sub>a</sub>²</strong>, high starting torque.</li>
+                <li>DC Shunt motor: many turns thin wire, parallel, <strong>constant speed</strong>.</li>
+                <li>Series motor: traction, cranes, hoists. Shunt motor: lathe, pumps, fans.</li>
+                <li>AC motors: 3-phase (induction, synchronous) and 1-phase.</li>
+                <li>Synchronous speed: N<sub>s</sub> = 120f/P.</li>
+                <li>Induction motor T-N characteristic ≈ DC shunt motor.</li>
+                <li>Single-phase motors need phase splitting (capacitor) for self-starting.</li>
+            </ul></div>
+        </div>
+    </section>
+
+</div>
+<div class="fab-container"><button class="fab fab-top" id="fabTop" title="Top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button><button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button><button class="fab fab-save" id="fabSave" title="Save"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button></div>
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Done</span></div>
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

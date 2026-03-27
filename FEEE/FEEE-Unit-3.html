@@ -1,436 +1,913 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>FEEE · Unit 3 · A.C Circuits</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: AC / sinusoidal / blue wave -->
-  <style>
-    :root {
-      --primary: #0d47a1;          /* deep blue */
-      --primary-light: #1976d2;
-      --accent: #f57c00;            /* orange for AC */
-      --accent-light: #ffb74d;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #00acc1;
-      --header-bg: linear-gradient(145deg, #002171, #0d47a1, #f57c00);
-    }
-    /* header emoji: AC symbols */
-    .header::after {
-      content: "📈🌊⚡🔀";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* phasor diagram placeholder */
-    .phasor-demo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .phasor-box {
-      background: var(--formula-bg);
-      border: 2px solid var(--accent);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      text-align: center;
-      font-size: 1.2rem;
-      min-width: 120px;
-    }
-    /* waveform placeholder */
-    .wave-icon {
-      font-size: 3rem;
-      color: var(--accent);
-      animation: wave 3s infinite ease-in-out;
-    }
-    @keyframes wave {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-    /* star-delta illustration */
-    .connection-grid {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    .connection-node {
-      background: var(--light);
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      border: 2px solid var(--primary);
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3 - Overview of Digital Electronics | FEEE</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Solution') ? 'Show Solution' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Solution') ? 'Hide Solution' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <style>
+        .fraction{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;text-align:center}
+        .fraction .num{border-bottom:2px solid currentColor;padding:0 6px 3px;line-height:1.2}
+        .fraction .den{padding:3px 6px 0;line-height:1.2}
+        .figure-link{text-decoration:none;color:inherit;display:block;cursor:pointer}
+        .figure-link .diagram-placeholder{transition:all var(--transition);border:2px dashed var(--gray);position:relative}
+        .figure-link:hover .diagram-placeholder{border-color:var(--accent);background:var(--formula-bg);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+        .diagram-placeholder .click-hint{display:block;margin-top:8px;font-size:.78rem;color:var(--accent);font-weight:500}
+        .figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}
+        @media(max-width:768px){.figure-row{grid-template-columns:1fr}}
+        .mcq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin:20px 0}
+        .mcq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;border-left:4px solid var(--accent)}
+        .mcq-item h4{color:var(--primary);margin-bottom:12px;font-size:.95rem}
+        .mcq-item .options{list-style:none;padding:0}
+        .mcq-item .options li{padding:6px 0;font-size:.9rem}
+        @media(max-width:768px){.mcq-grid{grid-template-columns:1fr}}
+        [data-theme="dark"] .mcq-item{background:#1a2332}
+        .bio-box{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;padding:20px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-left:5px solid var(--primary);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:20px 0}
+        [data-theme="dark"] .bio-box{background:linear-gradient(135deg,#1a237e33,#28359333)}
+        .bio-box .bio-text{flex:1;min-width:250px}
+        .bio-box .bio-text h4{color:var(--primary);margin-bottom:8px}
+        .outcome-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:16px 0}
+        .outcome-item{background:var(--formula-bg);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem}
+        .outcome-item strong{color:var(--accent)}
+        .binary-calc{background:var(--formula-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;margin:16px 0;font-family:var(--font-mono);overflow-x:auto}
+        .binary-calc pre{margin:0;white-space:pre;overflow-x:auto;font-size:0.95rem}
+        .truth-table{margin:16px 0}
+        .truth-table table{min-width:200px}
+        .gate-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;margin:16px 0;border-top:4px solid var(--accent)}
+        .gate-card h4{color:var(--primary);margin-bottom:12px}
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>📈 FEEE · Unit 3 📈</h1>
-      <h2>A.C Circuits · Phasors · R-L-C · Power · Star/Delta</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
-        <span class="info-item"><i class="fas fa-wave-square"></i> RMS, Avg, Form Factor</span>
-        <span class="info-item"><i class="fas fa-arrow-right-arrow-left"></i> R-L-C Series/Parallel</span>
-        <span class="info-item"><i class="fas fa-star"></i> Star/Delta</span>
-      </div>
+        <h1><i class="fas fa-digital-tachograph"></i> Overview of Digital Electronics</h1>
+        <h2>Unit 3 — Fundamentals of Electrical and Electronics Engineering</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> ES110</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 3</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> Diploma — Sem I</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT3</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#basics"><i class="fas fa-circle"></i> Basic Concepts</a>
-        <a href="#repr"><i class="fas fa-chart-pie"></i> Representations</a>
-        <a href="#pure"><i class="fas fa-wave-square"></i> Pure R, L, C</a>
-        <a href="#series"><i class="fas fa-arrow-right-arrow-left"></i> Series Circuits</a>
-        <a href="#parallel"><i class="fas fa-code-branch"></i> Parallel Circuits</a>
-        <a href="#power"><i class="fas fa-chart-bar"></i> Power & Triangles</a>
-        <a href="#star"><i class="fas fa-star"></i> Star/Delta</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>⚡ FEEE U3</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+            <a href="#intro"><i class="fas fa-plug"></i> Intro</a>
+            <a href="#numsys"><i class="fas fa-hashtag"></i> Number Systems</a>
+            <a href="#conversion"><i class="fas fa-exchange-alt"></i> Conversions</a>
+            <a href="#arithmetic"><i class="fas fa-calculator"></i> Arithmetic</a>
+            <a href="#boolean"><i class="fas fa-code-branch"></i> Boolean</a>
+            <a href="#gates"><i class="fas fa-door-open"></i> Logic Gates</a>
+            <a href="#flipflops"><i class="fas fa-memory"></i> Flip-Flops</a>
+            <a href="#counters"><i class="fas fa-sort-numeric-up"></i> Counters</a>
+            <a href="#digitalic"><i class="fas fa-microchip"></i> Digital ICs</a>
+            <a href="#solved"><i class="fas fa-pencil-alt"></i> Solved</a>
+            <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
+            <a href="#summary"><i class="fas fa-list"></i> Summary</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-bolt"></i> FEEE Unit 3</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>⚡ FEEE U3</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#basics"><i class="fas fa-circle"></i> Cycle, RMS, Avg, Form Factor</a>
-      <a href="#repr"><i class="fas fa-chart-pie"></i> Exponential / Polar / Complex</a>
-      <a href="#pure"><i class="fas fa-wave-square"></i> Pure R, L, C circuits</a>
-      <a href="#series"><i class="fas fa-arrow-right-arrow-left"></i> R-L, R-C, R-L-C Series</a>
-      <a href="#parallel"><i class="fas fa-code-branch"></i> R-L, R-C, R-L-C Parallel</a>
-      <a href="#power"><i class="fas fa-chart-bar"></i> Active, Reactive, Apparent Power</a>
-      <a href="#star"><i class="fas fa-star"></i> Star & Delta connections</a>
+        <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+        <a href="#intro"><i class="fas fa-plug"></i> Intro</a>
+        <a href="#numsys"><i class="fas fa-hashtag"></i> Number Systems</a>
+        <a href="#conversion"><i class="fas fa-exchange-alt"></i> Conversions</a>
+        <a href="#arithmetic"><i class="fas fa-calculator"></i> Arithmetic</a>
+        <a href="#boolean"><i class="fas fa-code-branch"></i> Boolean</a>
+        <a href="#gates"><i class="fas fa-door-open"></i> Logic Gates</a>
+        <a href="#flipflops"><i class="fas fa-memory"></i> Flip-Flops</a>
+        <a href="#counters"><i class="fas fa-sort-numeric-up"></i> Counters</a>
+        <a href="#digitalic"><i class="fas fa-microchip"></i> Digital ICs</a>
+        <a href="#solved"><i class="fas fa-pencil-alt"></i> Solved</a>
+        <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
+        <a href="#summary"><i class="fas fa-list"></i> Summary</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: BASIC CONCEPTS ========= -->
-    <section id="basics" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-circle"></i> Basic AC Concepts
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-chart-line"></i> Key Definitions</div>
-          <div class="card-grid">
-            <div class="card"><h4>Angular speed (ω)</h4>ω = 2πf rad/s</div>
-            <div class="card"><h4>Cycle</h4>One complete set of positive and negative values.</div>
-            <div class="card"><h4>Frequency (f)</h4>Cycles per second (Hz)</div>
-            <div class="card"><h4>Periodic time (T)</h4>T = 1/f seconds</div>
-            <div class="card"><h4>Amplitude</h4>Maximum value (V<sub>m</sub> or I<sub>m</sub>)</div>
-            <div class="card"><h4>RMS value</h4>V<sub>rms</sub> = V<sub>m</sub>/√2 (for sine wave)</div>
-            <div class="card"><h4>Average value</h4>V<sub>avg</sub> = 2V<sub>m</sub>/π (for half cycle)</div>
-            <div class="card"><h4>Form Factor</h4> = RMS / Avg = 1.11 for sine</div>
-            <div class="card"><h4>Peak Factor</h4> = Peak / RMS = √2 for sine</div>
-            <div class="card"><h4>Impedance (Z)</h4>Total opposition Z = √(R² + X²)</div>
-            <div class="card"><h4>Phase difference</h4>Angle between voltage and current</div>
-          </div>
-        </div>
+<div class="container">
 
-        <div class="exercise-area">
-          <p><strong>Problem:</strong> A sinusoidal voltage has peak value 100V. Find RMS, average, form factor, and peak factor.</p>
+    <!-- ===== OVERVIEW ===== -->
+    <section class="section" id="overview">
+        <h2 class="section-title"><i class="fas fa-eye"></i> Unit Overview &amp; Outcomes <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bullseye"></i> Unit Specifics</div>
+                <ul>
+                    <li>Number system and conversions</li>
+                    <li>Boolean laws and theorem</li>
+                    <li>Logic gates</li>
+                    <li>Flip flops and its types</li>
+                    <li>Use of flip flops as counter</li>
+                    <li>Introduction to Integrated Circuits</li>
+                </ul>
+            </div>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Rationale</div>
+                <p>Digital systems are extensively used for computation, data processing, communication and in measurement and control. The main reason being Digital systems are <strong>more reliable, less affected by noise, easier to design</strong> and fabricated on IC chips. The unit will aid to understand the fundamental concepts of digital systems and their application in digital devices and integrated circuits.</p>
+            </div>
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-book-reader"></i> Pre-Requisite</div>
+                <ol><li>Mathematics: Set, Real Numbers, Proofs in Mathematics (Class X)</li></ol>
+            </div>
+            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+            <div class="outcome-grid">
+                <div class="outcome-item"><strong>U3-O1:</strong> Simplify the given expression using Boolean laws and theorem.</div>
+                <div class="outcome-item"><strong>U3-O2:</strong> Explain the various types of logic gates.</div>
+                <div class="outcome-item"><strong>U3-O3:</strong> Use the given flip-flop to construct the specific type of counter.</div>
+                <div class="outcome-item"><strong>U3-O4:</strong> Suggest appropriate TTL digital IC for gates.</div>
+            </div>
+            <h3><i class="fas fa-table"></i> CO Mapping Table</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Outcomes</th><th>CO-1</th><th>CO-2</th><th>CO-3</th><th>CO-4</th><th>CO-5</th><th>CO-6</th></tr></thead>
+                    <tbody>
+                        <tr><td>U3-O1</td><td>-</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>U3-O2</td><td>2</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>U3-O3</td><td>2</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>U3-O4</td><td>3</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bio-box">
+                <div class="bio-text">
+                    <h4><i class="fas fa-user-graduate"></i> George Boole (1815–1864)</h4>
+                    <p>Boolean algebra was introduced by George Boole, Professor of Mathematics at University College, Cork, Ireland in his first book <em>'The Mathematical Analysis of Logic'</em> in 1847. Boolean algebra is the branch of algebra in which the values of the variables are the truth values <strong>'true' and 'false'</strong>, usually denoted as '1' and '0', respectively. In elementary algebra, the values of the variables are numbers and the prime operations are addition and multiplication; the main operations of Boolean algebra are the <strong>AND, OR and NOT</strong>. Boolean logic is credited with laying the foundations for all modern electronic digital computers.</p>
+                </div>
+            </div>
         </div>
-        <button class="toggle-btn" data-target="solBasic"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="solBasic">
-          <div class="formula answer">
-            V<sub>rms</sub> = 100/√2 = <strong>70.71 V</strong><br>
-            V<sub>avg</sub> (half cycle) = 2×100/π = <strong>63.66 V</strong><br>
-            Form factor = 70.71/63.66 = <strong>1.11</strong><br>
-            Peak factor = 100/70.71 = <strong>1.414</strong>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 2: REPRESENTATION OF SINUSOIDAL QUANTITIES ========= -->
-    <section id="repr" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-pie"></i> Representation: Exponential · Complex · Polar
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-calculator"></i> Forms</div>
-          <p>A sinusoidal quantity v = V<sub>m</sub> sin(ωt + φ) can be represented as:</p>
-          <ul>
-            <li><strong>Exponential form:</strong> V<sub>m</sub> e<sup>j(ωt+φ)</sup> (using Euler's identity)</li>
-            <li><strong>Complex (rectangular) form:</strong> V = V<sub>rms</sub> (cosφ + j sinφ) = a + jb</li>
-            <li><strong>Polar form:</strong> V = V<sub>rms</sub> ∠ φ</li>
-          </ul>
+    <!-- ===== INTRODUCTION ===== -->
+    <section class="section" id="intro">
+        <h2 class="section-title"><i class="fas fa-plug"></i> 3.1.1 Introduction <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <p>Electronic circuits and systems are of two types: <strong>Analog</strong> and <strong>Digital</strong>.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h4><i class="fas fa-wave-square"></i> Analog Circuits</h4>
+                    <p>Voltage and current vary <strong>continuously</strong> between a maximum and minimum value.</p>
+                </div>
+                <div class="card">
+                    <h4><i class="fas fa-digital-tachograph"></i> Digital Circuits</h4>
+                    <p>Voltage level assumes a <strong>finite value</strong>. In modern digital systems, there are just <strong>two distinct voltage levels</strong>.</p>
+                </div>
+            </div>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Concepts</div>
+                <ul>
+                    <li>Binary digit <strong>1</strong> represents a <strong>high voltage level</strong>; binary digit <strong>0</strong> represents a <strong>low voltage level</strong> — this is a <strong>positive logic system</strong>.</li>
+                    <li>Digital systems are also called <strong>switching circuits</strong> or <strong>logic circuits</strong>.</li>
+                    <li>These circuits use <strong>Boolean algebra</strong> — a system of mathematical logic consisting of a set of elements and operators for analysis and synthesis of logic circuits.</li>
+                </ul>
+            </div>
         </div>
-        <div class="example-box">
-          <div class="box-title">Example</div>
-          <p>v = 100 sin(314t + 30°). Write in polar and complex form (RMS).</p>
-          <div class="solution-box">
-            V<sub>rms</sub> = 100/√2 = 70.71<br>
-            Polar: <strong>70.71 ∠ 30°</strong><br>
-            Complex: 70.71(cos30 + j sin30) = <strong>61.24 + j35.36</strong>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: PURELY RESISTIVE, INDUCTIVE, CAPACITIVE CIRCUITS ========= -->
-    <section id="pure" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-wave-square"></i> Pure R, L, C Circuits (with phasors)
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-ruler"></i> Pure Resistance</h4>
-            <p>v = V<sub>m</sub> sinωt, i = I<sub>m</sub> sinωt (in phase)</p>
-            <p>Phasor: V and I aligned.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-coil"></i> Pure Inductance</h4>
-            <p>v = V<sub>m</sub> sinωt, i = I<sub>m</sub> sin(ωt - 90°) (current lags)</p>
-            <p>Phasor: I lags V by 90°.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-capacitor"></i> Pure Capacitance</h4>
-            <p>v = V<sub>m</sub> sinωt, i = I<sub>m</sub> sin(ωt + 90°) (current leads)</p>
-            <p>Phasor: I leads V by 90°.</p>
-          </div>
+    <!-- ===== NUMBER SYSTEMS ===== -->
+    <section class="section" id="numsys">
+        <h2 class="section-title"><i class="fas fa-hashtag"></i> 3.1.2 Number Systems <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <p>Number system relates quantities and symbols. The number system represents a value of a given number with respect to its given base. The base value determines the unique representation of a given number.</p>
+
+            <h3>3.1.2.1 Decimal Number System (Base 10)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Decimal System</div>
+                <p>Has a base <strong>10</strong> — uses ten independent symbols: <strong>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</strong>. Each digit position represents a specific power of base 10.</p>
+                <div class="formula">
+                    (3456)<sub>10</sub> = 3 × 10<sup>3</sup> + 4 × 10<sup>2</sup> + 5 × 10<sup>1</sup> + 6 × 10<sup>0</sup>
+                </div>
+                <p>General form: D<sub>3</sub>D<sub>2</sub>D<sub>1</sub>D<sub>0</sub>.D<sub>-1</sub>D<sub>-2</sub></p>
+                <div class="formula">
+                    D<sub>3</sub> × 10<sup>3</sup> + D<sub>2</sub> × 10<sup>2</sup> + D<sub>1</sub> × 10<sup>1</sup> + D<sub>0</sub> × 10<sup>0</sup> + D<sub>-1</sub> × 10<sup>-1</sup> + D<sub>-2</sub> × 10<sup>-2</sup>
+                </div>
+                <p>The right most digit is of the order of 10<sup>0</sup> (units), second of 10<sup>1</sup> (tens), third of 10<sup>2</sup> (hundreds), etc.</p>
+            </div>
+
+            <h3>3.1.2.2 Binary Number System (Base 2)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Binary System</div>
+                <p>Has <strong>two</strong> independent symbols: <strong>0 and 1</strong>. Base is <strong>2</strong>. A binary digit is called a <strong>bit</strong>.</p>
+                <p>The right most bit is called the <strong>Least Significant Bit (LSB)</strong> and the left most bit is the <strong>Most Significant Bit (MSB)</strong>.</p>
+                <div class="formula">
+                    b<sub>3</sub> × 2<sup>3</sup> + b<sub>2</sub> × 2<sup>2</sup> + b<sub>1</sub> × 2<sup>1</sup> + b<sub>0</sub> × 2<sup>0</sup> + b<sub>-1</sub> × 2<sup>-1</sup> + b<sub>-2</sub> × 2<sup>-2</sup>
+                </div>
+            </div>
+
+            <h3>3.1.2.3 Octal and Hexadecimal Number Systems</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4><i class="fas fa-circle"></i> Octal (Base 8)</h4>
+                    <p>Eight independent symbols: <strong>0–7</strong>. Used by early microcomputers. Each digit represents a specific power of base 8.</p>
+                </div>
+                <div class="card">
+                    <h4><i class="fas fa-th"></i> Hexadecimal (Base 16)</h4>
+                    <p>Sixteen symbols: <strong>0–9, A–F</strong>. Most popular number system for data processing in digital systems. Binary numbers are long; hex provides compact representation.</p>
+                </div>
+            </div>
         </div>
-        <div class="phasor-demo">
-          <div class="phasor-box">R: V & I → <i class="fas fa-arrow-right"></i> </div>
-          <div class="phasor-box">L: I ↓ V → <i class="fas fa-arrow-down"></i> </div>
-          <div class="phasor-box">C: I ↑ V → <i class="fas fa-arrow-up"></i> </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: SERIES CIRCUITS (R-L, R-C, R-L-C) ========= -->
-    <section id="series" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-arrow-right-arrow-left"></i> Series R-L, R-C, R-L-C Circuits
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">R-L Series</div>
-          <p>Z = √(R² + X<sub>L</sub>²), X<sub>L</sub> = ωL</p>
-          <p>Phase angle φ = tan⁻¹(X<sub>L</sub>/R) (current lags)</p>
-        </div>
-        <div class="definition-box">
-          <div class="box-title">R-C Series</div>
-          <p>Z = √(R² + X<sub>C</sub>²), X<sub>C</sub> = 1/ωC</p>
-          <p>Phase angle φ = tan⁻¹(-X<sub>C</sub>/R) (current leads)</p>
-        </div>
-        <div class="definition-box">
-          <div class="box-title">R-L-C Series</div>
-          <p>Z = √(R² + (X<sub>L</sub> - X<sub>C</sub>)²)</p>
-          <p>φ = tan⁻¹((X<sub>L</sub>-X<sub>C</sub>)/R)</p>
-        </div>
+    <!-- ===== NUMBER CONVERSION ===== -->
+    <section class="section" id="conversion">
+        <h2 class="section-title"><i class="fas fa-exchange-alt"></i> 3.1.3 Number Conversions <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
 
-        <div class="exercise-area">
-          <p><strong>Problem:</strong> A series R-L circuit has R=10Ω, L=0.1H, f=50Hz, V=100V. Find current and phase angle.</p>
+            <h3>3.1.3.1 Binary to Decimal Conversion</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Method: Positional Weight System</div>
+                <p>Each binary bit is multiplied by the corresponding position weight and the results are added.</p>
+            </div>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example: Convert 1101.11₂ to decimal</div>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="formula">
+                    1101.11 = 1×2<sup>3</sup> + 1×2<sup>2</sup> + 0×2<sup>1</sup> + 1×2<sup>0</sup> + 1×2<sup>-1</sup> + 1×2<sup>-2</sup>
+                </div>
+                <div class="formula answer">
+                    = 8 + 4 + 0 + 1 + 0.5 + 0.25 = <strong>13.75<sub>10</sub></strong>
+                </div>
+            </div>
+
+            <h3>3.1.3.2 Decimal to Binary Conversion</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Method</div>
+                <p><strong>Integer part:</strong> Successively divide by 2 till quotient is zero. The last remainder is the MSB. Read remainders bottom to top.</p>
+                <p><strong>Fractional part:</strong> Successively multiply by 2 till product is zero or desired accuracy is reached. Read integer parts top to bottom.</p>
+            </div>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example: Convert 35.875₁₀ to binary</div>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p><strong>Integer part (35 ÷ 2 repeatedly):</strong></p>
+                <div class="binary-calc"><pre>35 ÷ 2 = 17  remainder 1
+17 ÷ 2 = 8   remainder 1
+ 8 ÷ 2 = 4   remainder 0
+ 4 ÷ 2 = 2   remainder 0
+ 2 ÷ 2 = 1   remainder 0
+ 1 ÷ 2 = 0   remainder 1 (MSB)
+Reading bottom→top: 100011</pre></div>
+                <p><strong>Fractional part (0.875 × 2 repeatedly):</strong></p>
+                <div class="binary-calc"><pre>0.875 × 2 = 1.75  → Integer = 1
+0.750 × 2 = 1.50  → Integer = 1
+0.500 × 2 = 1.00  → Integer = 1
+Reading top→bottom: .111</pre></div>
+                <div class="formula answer">
+                    <strong>35.875<sub>10</sub> = 100011.111<sub>2</sub></strong>
+                </div>
+            </div>
         </div>
-        <button class="toggle-btn" data-target="solSeries"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="solSeries">
-          <div class="formula answer">
-            X<sub>L</sub> = 2π×50×0.1 = 31.42Ω<br>
-            Z = √(10² + 31.42²) = √(100 + 987) = √1087 = <strong>32.97Ω</strong><br>
-            I = V/Z = 100/32.97 = <strong>3.03 A</strong><br>
-            φ = tan⁻¹(31.42/10) = tan⁻¹(3.142) = <strong>72.3°</strong> (current lags)
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 5: PARALLEL CIRCUITS ========= -->
-    <section id="parallel" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-code-branch"></i> Parallel R-L, R-C, R-L-C Circuits
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title">Parallel AC circuits</div>
-          <p>Use admittance Y = 1/Z = G + jB. For R-L: Y = 1/R - j(1/X<sub>L</sub>). For R-C: Y = 1/R + j(1/X<sub>C</sub>).</p>
+    <!-- ===== BINARY ARITHMETIC ===== -->
+    <section class="section" id="arithmetic">
+        <h2 class="section-title"><i class="fas fa-calculator"></i> 3.1.4 Binary Arithmetic <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <h3>3.1.4.1 Binary Addition</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-plus"></i> Rules</div>
+                <p><strong>0 + 0 = 0; &nbsp; 0 + 1 = 1; &nbsp; 1 + 0 = 1; &nbsp; 1 + 1 = 0 and carry 1</strong></p>
+            </div>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Add: 1011.011 + 111.010</div>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="binary-calc"><pre>  1 0 1 1 . 0 1 1
++ 0 1 1 1 . 0 1 0
+─────────────────
+1 0 0 1 0 . 1 0 1</pre></div>
+            </div>
+
+            <h3>3.1.4.2 Binary Subtraction</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-minus"></i> Rules</div>
+                <p><strong>0 − 0 = 0; &nbsp; 1 − 0 = 1; &nbsp; 1 − 1 = 0; &nbsp; 0 − 1 = 1 with a borrow of 1</strong> (i.e. equivalent to 10 − 1)</p>
+            </div>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Subtract: 1010.010 − 111.110</div>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="binary-calc"><pre>  1 0 1 0 . 0 1 0
+- 0 1 1 1 . 1 1 0
+─────────────────
+  0 0 1 0 . 1 0 0</pre></div>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Complements</div>
+                <p>In digital computers, for simplifying subtraction, <strong>complements</strong> are used. For a base-b system: <strong>(b−1)'s complement</strong> and <strong>b's complement</strong>. For binary: <strong>1's complement</strong> and <strong>2's complement</strong>.</p>
+            </div>
         </div>
-        <div class="example-box">
-          <div class="box-title">R-L parallel example</div>
-          <p>R=20Ω, X<sub>L</sub>=15Ω, V=100∠0°. Find total current.</p>
-          <div class="solution-box">
-            I<sub>R</sub> = 100/20 = 5∠0°, I<sub>L</sub> = 100/15 = 6.67∠-90°<br>
-            I<sub>total</sub> = 5 - j6.67 = √(5²+6.67²) ∠ tan⁻¹(-6.67/5) = <strong>8.33 ∠ -53.1° A</strong>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 6: POWER CONCEPTS (IMPEDANCE TRIANGLE, POWER TRIANGLE) ========= -->
-    <section id="power" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-bar"></i> Impedance Triangle · Power Triangle
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card"><h4>Impedance Triangle</h4>Z² = R² + X², φ = tan⁻¹(X/R)</div>
-          <div class="card"><h4>Power Factor</h4>cosφ = R/Z = P/S</div>
-          <div class="card"><h4>Active Power (P)</h4>P = VI cosφ (Watts)</div>
-          <div class="card"><h4>Reactive Power (Q)</h4>Q = VI sinφ (VAR)</div>
-          <div class="card"><h4>Apparent Power (S)</h4>S = VI (VA)</div>
-          <div class="card"><h4>Power Triangle</h4>S² = P² + Q²</div>
+    <!-- ===== BOOLEAN LAWS ===== -->
+    <section class="section" id="boolean">
+        <h2 class="section-title"><i class="fas fa-code-branch"></i> 3.1.5 Boolean Laws &amp; Theorems <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Boolean Algebra</div>
+                <p>An algebraic system developed for systematic treatment of logic. Defined with a set of elements, operators and postulates. Unlike ordinary algebra, <strong>negative numbers and fractions do not exist</strong>. No subtraction or division operations.</p>
+            </div>
+
+            <h3><i class="fas fa-balance-scale"></i> Commutative Law</h3>
+            <div class="formula-box">
+                <p>1. A + B = B + A &nbsp;&nbsp;&nbsp; 2. A · B = B · A</p>
+            </div>
+
+            <h3><i class="fas fa-layer-group"></i> Associative Law</h3>
+            <div class="formula-box">
+                <p>1. (A + B) + C = A + (B + C) &nbsp;&nbsp;&nbsp; 2. (A · B) · C = A · (B · C)</p>
+            </div>
+
+            <h3><i class="fas fa-expand-arrows-alt"></i> Distributive Law</h3>
+            <div class="formula-box">
+                <p>1. (A + B) · C = A · C + B · C &nbsp;&nbsp;&nbsp; 2. A + (B · C) = (A + B) · (A + C)</p>
+            </div>
+
+            <h3><i class="fas fa-table"></i> AND, OR and NOT Laws</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.No.</th><th>OR Law</th><th>AND Law</th><th>NOT (Complement) Law</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>A + 0 = A</td><td>A · 0 = 0</td><td>A'' = A</td></tr>
+                        <tr><td>2</td><td>A + 1 = 1</td><td>A · 1 = A</td><td>If A = 0, then A' = 1</td></tr>
+                        <tr><td>3</td><td>A + A = A</td><td>A · A = A</td><td>If A = 1, then A' = 0</td></tr>
+                        <tr><td>4</td><td>A + A' = 1</td><td>A · A' = 0</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><em>Table 3.1: Basic Boolean Laws (where A = {0,1} and complement of A is A')</em></p>
+
+            <h3><i class="fas fa-not-equal"></i> De Morgan's Theorem</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-star"></i> Two Laws</div>
+                <p><strong>Law 1:</strong> (A + B)' = A' · B' — The complement of a <em>sum</em> equals the <em>product</em> of individual complements.</p>
+                <p><strong>Law 2:</strong> (A · B)' = A' + B' — The complement of a <em>product</em> equals the <em>sum</em> of individual complements.</p>
+            </div>
         </div>
-        <div class="exercise-area">
-          <p><strong>Problem:</strong> A load draws 5A at 230V with power factor 0.8 lagging. Find P, Q, S.</p>
-        </div>
-        <button class="toggle-btn" data-target="solPower"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="solPower">
-          <div class="formula answer">
-            S = V·I = 230×5 = <strong>1150 VA</strong><br>
-            P = S·cosφ = 1150×0.8 = <strong>920 W</strong><br>
-            Q = S·sinφ = 1150×0.6 = <strong>690 VAR</strong> (since sin⁻¹0.8=36.87°, sin=0.6)
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 7: STAR AND DELTA CONNECTIONS ========= -->
-    <section id="star" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-star"></i> Star and Delta Connections
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="connection-grid">
-          <div style="text-align:center;">
-            <h4>Star (Y)</h4>
-            <div><span class="connection-node">R</span> <span class="connection-node">Y</span> <span class="connection-node">B</span></div>
-            <p>V<sub>L</sub> = √3 V<sub>ph</sub>, I<sub>L</sub> = I<sub>ph</sub></p>
-          </div>
-          <div style="text-align:center;">
-            <h4>Delta (Δ)</h4>
-            <div><span class="connection-node">R</span>─<span class="connection-node">Y</span>─<span class="connection-node">B</span>─R</div>
-            <p>V<sub>L</sub> = V<sub>ph</sub>, I<sub>L</sub> = √3 I<sub>ph</sub></p>
-          </div>
-        </div>
+    <!-- ===== LOGIC GATES ===== -->
+    <section class="section" id="gates">
+        <h2 class="section-title"><i class="fas fa-door-open"></i> 3.2 Logic Gates <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
 
-        <div class="exercise-area">
-          <p><strong>Problem:</strong> A balanced star-connected load has phase voltage 230V. Find line voltage. If same load is delta-connected, find phase current if line current is 10A.</p>
+            <p>A Boolean function is an expression formed with binary variables using the binary operators AND, OR, NOT. A Boolean function may be represented by a <strong>truth table</strong>. A truth table of an n-variable function consists of 2<sup>n</sup> combinations.</p>
+
+            <h3>3.2.1 Positive and Negative Logic</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4><i class="fas fa-plus-circle"></i> Positive Logic</h4>
+                    <p>Higher voltage (e.g. +5V) = Logic-<strong>1</strong>; Lower voltage (0V) = Logic-<strong>0</strong>.</p>
+                </div>
+                <div class="card">
+                    <h4><i class="fas fa-minus-circle"></i> Negative Logic</h4>
+                    <p>Higher voltage (+5V) = Logic-<strong>0</strong>; Lower voltage (0V) = Logic-<strong>1</strong>.</p>
+                </div>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=positive+logic+negative+logic+voltage+levels+digital+electronics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.1:</strong> Logic signal — Positive logic (High=1, Low=0) and Negative logic (High=0, Low=1)</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <p>In general: voltage between <strong>0V and 0.8V</strong> = Logic-0; voltage between <strong>3V to 5V</strong> = Logic-1.</p>
+            </div>
+
+            <h3>3.2.2 Types of Logic Gates</h3>
+            <p>The fundamental building blocks of any digital system. Three basic gates: <strong>AND, OR, NOT</strong>. Two levels: Logic-1 (HIGH/TRUE) and Logic-0 (LOW/FALSE).</p>
+
+            <!-- AND Gate -->
+            <div class="gate-card">
+                <h4><i class="fas fa-circle"></i> 3.2.2.1 AND Gate</h4>
+                <p>Output is logic-1 <strong>only when ALL inputs are logic-1</strong>. Even one input at logic-0 makes output 0.</p>
+                <div class="formula">Z = A · B</div>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
+                    <tbody>
+                        <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr>
+                        <tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr>
+                    </tbody></table>
+                </div>
+                <a href="https://www.google.com/search?tbm=isch&q=AND+gate+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.2:</strong> AND Gate — Symbol and Truth Table</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <!-- OR Gate -->
+            <div class="gate-card">
+                <h4><i class="fas fa-circle"></i> 3.2.2.2 OR Gate</h4>
+                <p>Output is logic-0 <strong>only when ALL inputs are logic-0</strong>. Even one input at logic-1 makes output 1.</p>
+                <div class="formula">Z = A + B</div>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
+                    <tbody>
+                        <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr>
+                    </tbody></table>
+                </div>
+                <a href="https://www.google.com/search?tbm=isch&q=OR+gate+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.3:</strong> OR Gate — Symbol and Truth Table</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <!-- NOT Gate -->
+            <div class="gate-card">
+                <h4><i class="fas fa-circle"></i> 3.2.2.3 NOT Gate (Inverter)</h4>
+                <p>Has <strong>one input and one output</strong>. Output is always the <strong>complement</strong> of the input.</p>
+                <div class="formula">Z = A'</div>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>A</th><th>Z</th></tr></thead>
+                    <tbody><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></tbody></table>
+                </div>
+                <a href="https://www.google.com/search?tbm=isch&q=NOT+gate+inverter+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.4:</strong> NOT Gate — Symbol and Truth Table</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <!-- Universal Gates -->
+            <h3>3.2.2.4 Universal Gates (NAND &amp; NOR)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Why Universal?</div>
+                <p>NAND and NOR gates can <strong>realize the logic function of all three basic gates</strong> (AND, OR, NOT). Therefore, they are called <strong>Universal gates</strong>.</p>
+            </div>
+
+            <div class="gate-card">
+                <h4><i class="fas fa-circle"></i> NOR Gate</h4>
+                <div class="formula">Z = (A + B)'</div>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
+                    <tbody>
+                        <tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td></tr>
+                        <tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
+                    </tbody></table>
+                </div>
+            </div>
+
+            <div class="gate-card">
+                <h4><i class="fas fa-circle"></i> NAND Gate</h4>
+                <div class="formula">Z = (A · B)'</div>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
+                    <tbody>
+                        <tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
+                    </tbody></table>
+                </div>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=NAND+NOR+gate+universal+gates+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.5:</strong> NOR and NAND Gate — Symbols and Truth Tables</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-        <button class="toggle-btn" data-target="solStar"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="solStar">
-          <div class="formula answer">
-            <strong>Star:</strong> V<sub>L</sub> = √3 × 230 = <strong>398.4 V</strong><br>
-            <strong>Delta:</strong> I<sub>ph</sub> = I<sub>L</sub> / √3 = 10 / 1.732 = <strong>5.77 A</strong>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- quick formula reference -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> AC Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">V<sub>rms</sub> = V<sub>m</sub>/√2</div>
-          <div class="tag">V<sub>avg</sub> = 2V<sub>m</sub>/π</div>
-          <div class="tag">Form factor = 1.11</div>
-          <div class="tag">Peak factor = √2</div>
-          <div class="tag">X<sub>L</sub> = ωL</div>
-          <div class="tag">X<sub>C</sub> = 1/ωC</div>
-          <div class="tag">Z = √(R² + (X<sub>L</sub>-X<sub>C</sub>)²)</div>
-          <div class="tag">P = VI cosφ</div>
-          <div class="tag">Q = VI sinφ</div>
-          <div class="tag">S = VI</div>
+    <!-- ===== FLIP-FLOPS ===== -->
+    <section class="section" id="flipflops">
+        <h2 class="section-title"><i class="fas fa-memory"></i> 3.3 Flip-Flops <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <p>Digital circuits are broadly classified as <strong>combinational circuits</strong> and <strong>sequential circuits</strong>.</p>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-bolt"></i> Combinational</h4><p>Output depends <strong>only on present inputs</strong>. Examples: Adders, Subtractors, Encoders, Decoders, Multiplexers.</p></div>
+                <div class="card"><h4><i class="fas fa-history"></i> Sequential</h4><p>Output depends on <strong>present input + past state</strong> stored in memory. Examples: Flip-flops, Registers, Counters.</p></div>
+            </div>
+
+            <h3><i class="fas fa-table"></i> Synchronous vs Asynchronous</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.No.</th><th>Asynchronous Sequential</th><th>Synchronous Sequential</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Memory elements are <strong>unclocked</strong> flip-flops.</td><td>Memory elements are <strong>clocked</strong> flip-flops.</td></tr>
+                        <tr><td>2</td><td>Change in input can affect memory at <strong>any instant</strong>.</td><td>Change affects memory <strong>only when clock signal is present</strong>.</td></tr>
+                        <tr><td>3</td><td>Absence of clock makes operation <strong>faster</strong>.</td><td>Speed depends on <strong>clock frequency</strong>.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3.3.1 Types of Flip-Flops</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Flip-Flop</div>
+                <p>The most important memory element and basic building block of sequential circuits. Has <strong>two stable states</strong> — can remain indefinitely. State changes only with proper input signals. Also called a <strong>one-bit memory element</strong>. Made using two cross-coupled NAND or NOR gates.</p>
+            </div>
+
+            <!-- SR Latch -->
+            <div class="gate-card">
+                <h4><i class="fas fa-toggle-on"></i> 3.3.1.1 S-R Latch (Basic Flip-Flop)</h4>
+                <p>Simplest type. Two inputs: <strong>S (SET)</strong> and <strong>R (RESET)</strong>. Two outputs: Q and Q'.</p>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>S</th><th>R</th><th>Q</th><th>State</th></tr></thead>
+                    <tbody>
+                        <tr><td>0</td><td>1</td><td>1</td><td>SET (Q=1)</td></tr>
+                        <tr><td>1</td><td>0</td><td>0</td><td>RESET (Q=0)</td></tr>
+                        <tr><td>1</td><td>1</td><td>No change</td><td>Hold state</td></tr>
+                        <tr><td>0</td><td>0</td><td>Undefined</td><td><span class="text-danger">Invalid — Not used</span></td></tr>
+                    </tbody></table>
+                </div>
+                <a href="https://www.google.com/search?tbm=isch&q=SR+latch+NAND+gate+circuit+diagram+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.6:</strong> S-R latch using NAND gates</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <!-- Clocked SR -->
+            <div class="gate-card">
+                <h4><i class="fas fa-clock"></i> 3.3.1.2 Clocked S-R Flip-Flop</h4>
+                <p>Requires a <strong>clock signal</strong> — changes state only when clock is HIGH (logic-1). Also called <strong>level triggered</strong> or <strong>synchronous</strong> flip-flop.</p>
+                <p>When clock is LOW: output of both input NAND gates is HIGH → flip-flop state <strong>unchanged</strong>. When clock is HIGH: S and R signals pass through and Q changes accordingly.</p>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>CLK</th><th>S</th><th>R</th><th>Q<sub>t+1</sub></th><th>State</th></tr></thead>
+                    <tbody>
+                        <tr><td rowspan="4">1</td><td>0</td><td>0</td><td>Q<sub>t</sub></td><td>No Change</td></tr>
+                        <tr><td>0</td><td>1</td><td>0</td><td>RESET</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td><td>SET</td></tr>
+                        <tr><td>1</td><td>1</td><td>X</td><td class="text-danger">Undefined</td></tr>
+                    </tbody></table>
+                </div>
+                <a href="https://www.google.com/search?tbm=isch&q=clocked+SR+flip+flop+NAND+gates+logic+diagram+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.7:</strong> Clocked S-R flip-flop — Logic diagram, symbol and truth table</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <!-- D Flip-Flop -->
+            <div class="gate-card">
+                <h4><i class="fas fa-database"></i> 3.3.1.3 D Flip-Flop (Delay/Data)</h4>
+                <p>To avoid the undefined state (S=R=1), a single input flip-flop is created where <strong>R is the complement of S</strong>. When <strong>D=1</strong>: S=1, R=0 → SET. When <strong>D=0</strong>: S=0, R=1 → RESET.</p>
+                <a href="https://www.google.com/search?tbm=isch&q=D+flip+flop+delay+data+circuit+diagram+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.8:</strong> D flip-flop — Single input with inverter</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <!-- JK Flip-Flop -->
+            <div class="gate-card">
+                <h4><i class="fas fa-star"></i> 3.3.1.4 J-K Flip-Flop</h4>
+                <p>The <strong>most popular and widely used</strong> flip-flop. Working is identical to clocked S-R flip-flop but with <strong>no undefined states</strong>. When <strong>J=K=1</strong>, the flip-flop <strong>toggles</strong> — changes its present state.</p>
+                <div class="table-wrapper truth-table">
+                    <table class="data-table"><thead><tr><th>CLK</th><th>J</th><th>K</th><th>Q<sub>t</sub></th><th>Q<sub>t+1</sub></th><th>State</th></tr></thead>
+                    <tbody>
+                        <tr><td rowspan="8">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td rowspan="2">No Change</td></tr>
+                        <tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>0</td><td>1</td><td>0</td><td>0</td><td rowspan="2">RESET</td></tr>
+                        <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td rowspan="2">SET</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>1</td><td>0</td><td>1</td><td rowspan="2"><strong>Toggle</strong></td></tr>
+                        <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                    </tbody></table>
+                </div>
+                <a href="https://www.google.com/search?tbm=isch&q=JK+flip+flop+logic+diagram+symbol+truth+table+toggle" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.9:</strong> J-K Flip-Flop — Logic diagram, symbol and truth table</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <!-- T Flip-Flop -->
+            <div class="gate-card">
+                <h4><i class="fas fa-sync-alt"></i> 3.3.1.5 T Flip-Flop (Toggle)</h4>
+                <p>Both inputs of a J-K are connected together and labelled <strong>T</strong>. When <strong>T=0</strong>: J=K=0 → state unchanged. When <strong>T=1</strong>: J=K=1 → <strong>toggles</strong>. Also known as <strong>Toggle flip-flop</strong>.</p>
+                <a href="https://www.google.com/search?tbm=isch&q=T+flip+flop+toggle+logic+symbol+circuit+diagram" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.10:</strong> T flip-flop — Logic symbol (J and K tied together)</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    <!-- ===== COUNTERS ===== -->
+    <section class="section" id="counters">
+        <h2 class="section-title"><i class="fas fa-sort-numeric-up"></i> 3.3.2 Counters <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Counter</div>
+                <p>A <strong>sequential circuit</strong> used to count clock pulses. Consists of a set of flip-flops whose state changes in response to the clock pulse. Each count is called a <strong>state</strong>. The <strong>modulus</strong> of an N-bit counter is <strong>2<sup>N</sup></strong>.</p>
+                <p>Example: A 2-bit counter requires 2 flip-flops and has 4 states (mod-4 counter).</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=2+bit+up+counter+down+counter+state+diagram+00+01+10+11" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.11:</strong> State Diagram — (a) 2-bit UP counter: 00→01→10→11→00; (b) 2-bit DOWN counter: 11→10→01→00→11</p><span class="click-hint">🔍 Click to view</span></div>
+            </a>
+
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-wave-square"></i> Asynchronous (Ripple)</h4><p>Output of first FF becomes clock for second FF. Main drawback: <strong>low speed</strong>.</p></div>
+                <div class="card"><h4><i class="fas fa-bolt"></i> Synchronous (Parallel)</h4><p>All flip-flops clocked by <strong>same clock pulse simultaneously</strong>. <strong>Faster</strong> than asynchronous.</p></div>
+            </div>
+
+            <h3>3.3.2.1 Asynchronous Counter</h3>
+            <p>A 2-bit up counter uses two J-K flip-flops with J=K=1. Flip-flops toggle whenever clock is HIGH. Counts from 00 (State 0) to 11 (State 3).</p>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=2+bit+asynchronous+up+counter+JK+flip+flop+circuit+diagram" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.12:</strong> 2-bit UP Asynchronous counter — Q₀' feeds CLK of FF1</p><span class="click-hint">🔍 Click to view</span></div></a>
+                <a href="https://www.google.com/search?tbm=isch&q=2+bit+asynchronous+down+counter+JK+flip+flop+circuit" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.13:</strong> 2-bit DOWN Asynchronous counter — Q₀ feeds CLK of FF1</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <h3>3.3.2.2 Mod-10 Asynchronous Counter (Decade Counter)</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Decade Counter</div>
+                <p>Requires <strong>4 flip-flops</strong> (16 possible states). Only <strong>10 valid states</strong>: 0000₂ to 1001₂. Remaining (1010₂ to 1111₂) are invalid. A <strong>feedback logic circuit</strong> clears/resets all flip-flops when count reaches 1010₂.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=4+bit+decade+counter+mod+10+asynchronous+feedback+clear+circuit" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.14:</strong> 4-bit Decade counter — 4 J-K flip-flops (FF0-FF3) with NAND gate feedback to CLR lines; Q₃ = MSB, Q₀ = LSB</p><span class="click-hint">🔍 Click to view</span></div></a>
+        </div>
+    </section>
+
+    <!-- ===== DIGITAL ICs ===== -->
+    <section class="section" id="digitalic">
+        <h2 class="section-title"><i class="fas fa-microchip"></i> 3.4 Digital ICs <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <h3>3.4.1 Introduction to Integrated Circuits</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> IC</div>
+                <p>Small silicon semiconductor crystal having components like resistors, diodes, capacitors, transistors, FETs interconnected to form an electronic circuit. Mounted on a metal, plastic or ceramic package.</p>
+                <p><strong>Advantages:</strong> Small size, reduced power consumption, high reliability, high speed, low cost.</p>
+                <p><strong>Packages:</strong> Flat pin and Dual In Line (DIP).</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-wave-square"></i> Linear ICs</h4><p>Operate with <strong>continuous signals</strong>. Used as amplifiers, filters, comparators, converters.</p></div>
+                <div class="card"><h4><i class="fas fa-digital-tachograph"></i> Digital ICs</h4><p>Operate with <strong>binary signals</strong>. Made of interconnected digital gates.</p></div>
+            </div>
+
+            <h4>Logic Circuit Families</h4>
+            <div class="tag-grid">
+                <div class="tag"><strong>TTL</strong> — Transistor-Transistor Logic</div>
+                <div class="tag"><strong>DTL</strong> — Diode Transistor Logic</div>
+                <div class="tag"><strong>RTL</strong> — Resistor Transistor Logic</div>
+                <div class="tag"><strong>ECL</strong> — Emitter Coupled Logic</div>
+                <div class="tag"><strong>MOS</strong> — Metal Oxide Semiconductor</div>
+                <div class="tag"><strong>CMOS</strong> — Complementary MOS</div>
+                <div class="tag"><strong>I²L</strong> — Integrated Injection Logic</div>
+            </div>
+
+            <h3>3.4.2 Digital IC Specification Terminology</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Threshold Voltage</div><p>Voltage level at the input that causes a change in the output voltage level.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Power Dissipation</div><p>Power required by the gate to operate at a specified frequency (milliwatts).</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Propagation Delay</div><p>Time taken by the input signal to propagate from gate input to output.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Fan-in</div><p>Number of inputs that the gate is designed to handle.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Fan-out</div><p>Maximum number of loads (inputs of other gates) the output can handle without overloading.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Noise Margin</div><p>Measure of noise immunity in terms of voltage level — ability to tolerate noise at input terminals.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Operating Temperature</div><p>For commercial digital IC: <strong>0 to 70°C</strong>.</p></div>
+
+            <h3>3.4.3 Transistor Transistor Logic (TTL)</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> TTL Family</div>
+                <p>Most popular logic family. Basic logic operation performed by transistors (cut-off or saturation). <strong>Advantages:</strong> Low cost, good speed. <strong>Disadvantages:</strong> High power dissipation, low noise immunity. Basic TTL circuit: <strong>NAND gate</strong>.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=two+input+TTL+NAND+gate+circuit+diagram+transistors+Q1+Q2+Q3" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.15:</strong> Two input TTL logic NAND gate — Multi-emitter transistor Q1, phase splitter Q2, totem-pole output Q3</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <h3>3.4.4 TTL Sub-families</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Specification</th><th>74</th><th>74L</th><th>74H</th><th>74S</th><th>74LS</th><th>74F</th></tr></thead>
+                    <tbody>
+                        <tr><td>Propagation delay (ns)</td><td>9</td><td>33</td><td>6</td><td>3</td><td>9.5</td><td>4</td></tr>
+                        <tr><td>Power dissipation (mW)</td><td>10</td><td>1</td><td>23</td><td>20</td><td>2</td><td>1.2</td></tr>
+                        <tr><td>Max clock freq (MHz)</td><td>35</td><td>3</td><td>50</td><td>125</td><td>45</td><td>70</td></tr>
+                        <tr><td>Fan out</td><td>10</td><td>20</td><td>10</td><td>20</td><td>20</td><td>20</td></tr>
+                        <tr><td>Noise margin (V)</td><td>0.4</td><td>0.4</td><td>0.4</td><td>0.7</td><td>0.5</td><td>0.5</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><em>Table 3.2: Comparison of TTL subfamilies</em></p>
+
+            <h3><i class="fas fa-list"></i> Popular Digital TTL ICs</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Sr.</th><th>IC</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>7402</td><td>Quad 2-Input NOR gate</td></tr>
+                        <tr><td>2</td><td>74F00</td><td>Quad 2-Input NAND gate</td></tr>
+                        <tr><td>3</td><td>74LS08</td><td>Quad 2-Input AND gate</td></tr>
+                        <tr><td>4</td><td>74LS32</td><td>Quad 2-Input OR gate</td></tr>
+                        <tr><td>5</td><td>7404</td><td>Hex Inverter</td></tr>
+                        <tr><td>6</td><td>74LS83</td><td>4-bit full adder</td></tr>
+                        <tr><td>7</td><td>74LS138</td><td>3-to-8 bit binary decoder</td></tr>
+                        <tr><td>8</td><td>74F74</td><td>D type flip-flop</td></tr>
+                        <tr><td>9</td><td>7473</td><td>Dual J-K flip-flop</td></tr>
+                        <tr><td>10</td><td>7490</td><td>Decade counter</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3.4.5 Digital IC Applications &amp; IC Classification</h3>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-memory"></i> Flip-flops</h4></div>
+                <div class="card"><h4><i class="fas fa-clock"></i> Timers</h4></div>
+                <div class="card"><h4><i class="fas fa-sort-numeric-up"></i> Counters</h4></div>
+                <div class="card"><h4><i class="fas fa-random"></i> Multiplexers</h4></div>
+                <div class="card"><h4><i class="fas fa-microchip"></i> Memory Chips</h4></div>
+                <div class="card"><h4><i class="fas fa-cog"></i> Microprocessors</h4></div>
+                <div class="card"><h4><i class="fas fa-robot"></i> Microcontrollers</h4></div>
+                <div class="card"><h4><i class="fas fa-project-diagram"></i> PLDs</h4></div>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-layer-group"></i> IC Classification by Scale of Integration</div>
+                <ul>
+                    <li><strong>SSI</strong> (Small Scale Integration) — Less than 12 gates. Ex: flip-flops.</li>
+                    <li><strong>MSI</strong> (Medium Scale Integration) — 12 to 100 gates. Ex: counters, registers.</li>
+                    <li><strong>LSI</strong> (Large Scale Integration) — 100 to 9,999 gates. Ex: RAM, ROM.</li>
+                    <li><strong>VLSI</strong> (Very Large Scale Integration) — 10,000 to 99,999 gates. Ex: microprocessor.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOLVED PROBLEMS ===== -->
+    <section class="section" id="solved">
+        <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Solved Problems <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.1.1</div><p>Convert the decimal number 452₁₀ to binary.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="binary-calc"><pre>452 ÷ 2 = 225 r 0
+225 ÷ 2 = 112 r 1
+112 ÷ 2 = 56  r 0
+ 56 ÷ 2 = 28  r 0
+ 28 ÷ 2 = 14  r 0
+ 14 ÷ 2 = 7   r 0
+  7 ÷ 2 = 3   r 1
+  3 ÷ 2 = 1   r 1
+  1 ÷ 2 = 0   r 1 (MSB)</pre></div>
+                <div class="formula answer"><strong>452₁₀ = (111000100)₂</strong></div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.1.2</div><p>Write the first ten decimal digits to base 3.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Base 3 symbols: 0, 1, 2</p>
+                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Decimal</th><th>Base 3</th><th>Decimal</th><th>Base 3</th></tr></thead>
+                <tbody>
+                    <tr><td>0</td><td>0</td><td>5</td><td>12</td></tr>
+                    <tr><td>1</td><td>1</td><td>6</td><td>20</td></tr>
+                    <tr><td>2</td><td>2</td><td>7</td><td>21</td></tr>
+                    <tr><td>3</td><td>10</td><td>8</td><td>22</td></tr>
+                    <tr><td>4</td><td>11</td><td>9</td><td>100</td></tr>
+                </tbody></table></div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.2.1</div><p>Which logic gate is represented by Z = (A' + B')'?</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Using De Morgan's Law 1: (A' + B')' = A'' · B'' = <strong>A · B</strong></p>
+                <div class="formula answer">This is an <strong>AND gate</strong>.</div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.2.2</div><p>Implement Z = A + A'B using OR gate.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Applying Distributive law: Z = (A+A') · (A+B)</p>
+                <p>As per OR law: A + A' = 1</p>
+                <div class="formula answer">Z = 1 · (A + B) = <strong>A + B</strong> → Implemented with an <strong>OR gate</strong>.</div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.3.1</div><p>State number of flip-flops required to make a MOD-16 counter.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>2<sup>n</sup> = N, where N = 16</p>
+                <div class="formula answer">2<sup>n</sup> = 16 → n = <strong>4 flip-flops</strong></div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.4.1</div><p>Describe the evolution of ICs from SSI to VLSI.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <ul>
+                    <li><strong>SSI</strong> — &lt;12 gates (flip-flops)</li>
+                    <li><strong>MSI</strong> — 12–100 gates (counters, registers)</li>
+                    <li><strong>LSI</strong> — 100–9,999 gates (RAM, ROM)</li>
+                    <li><strong>VLSI</strong> — 10,000–99,999 gates (microprocessor)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXERCISES ===== -->
+    <section class="section" id="exercises">
+        <h2 class="section-title"><i class="fas fa-pen"></i> Exercises <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-tasks"></i> A. MCQs</h3>
+            <div class="mcq-grid">
+                <div class="mcq-item"><h4>Q 3.1</h4><p>The longest out of the following is:</p><ul class="options"><li>a. Byte</li><li>b. Nibble</li><li>c. Word</li><li>d. Bit</li></ul>
+                    <button class="toggle-btn" data-target="m31"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m31"><strong>Answer: c. Word</strong><p>Word (16/32/64 bits) > Byte (8 bits) > Nibble (4 bits) > Bit (1 bit).</p></div></div>
+
+                <div class="mcq-item"><h4>Q 3.2</h4><p>"Z is FALSE only if A is TRUE and B is TRUE":</p><ul class="options"><li>a. NAND</li><li>b. NOR</li><li>c. AND</li><li>d. OR</li></ul>
+                    <button class="toggle-btn" data-target="m32"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m32"><strong>Answer: a. NAND</strong><p>NAND output is 0 only when both inputs are 1. Z = (A·B)'.</p></div></div>
+
+                <div class="mcq-item"><h4>Q 3.3</h4><p>Flip flops are:</p><ul class="options"><li>a. Chip</li><li>b. Memory element</li><li>c. Adders</li><li>d. Comparators</li></ul>
+                    <button class="toggle-btn" data-target="m33"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m33"><strong>Answer: b. Memory element</strong><p>Flip-flop is a one-bit memory element with two stable states.</p></div></div>
+
+                <div class="mcq-item"><h4>Q 3.4</h4><p>SR flip-flop using NAND gates cannot accept:</p><ul class="options"><li>a. S=R=0</li><li>b. S=1, R=0</li><li>c. S=R=1</li><li>d. S=0, R=1</li></ul>
+                    <button class="toggle-btn" data-target="m34"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m34"><strong>Answer: a. S=R=0</strong><p>For NAND-based SR latch, S=R=0 gives Q=Q'=1 which is undefined/invalid.</p></div></div>
+
+                <div class="mcq-item"><h4>Q 3.5</h4><p>Counter is used to count the number of:</p><ul class="options"><li>a. Flip flops</li><li>b. Registers</li><li>c. Bits</li><li>d. Pulse</li></ul>
+                    <button class="toggle-btn" data-target="m35"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m35"><strong>Answer: d. Pulse</strong><p>Counter counts clock pulses applied at its input.</p></div></div>
+
+                <div class="mcq-item"><h4>Q 3.6</h4><p>ICs used in watch and calculators are:</p><ul class="options"><li>a. TTL</li><li>b. ECL</li><li>c. MOS</li><li>d. CMOS</li></ul>
+                    <button class="toggle-btn" data-target="m36"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m36"><strong>Answer: d. CMOS</strong><p>CMOS ICs have very low power consumption, ideal for battery-powered devices like watches and calculators.</p></div></div>
+            </div>
+
+            <h3><i class="fas fa-edit"></i> B. Subjective Questions</h3>
+
+            <div class="exercise-area"><p><strong>Q1.</strong> State why binary number system is used in digital systems.</p>
+                <button class="toggle-btn" data-target="s1"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s1"><p>Binary system uses only two digits (0 and 1), which directly correspond to two voltage levels (LOW and HIGH) in electronic circuits. This makes circuits simpler, more reliable, less affected by noise, and easier to design and fabricate on IC chips.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q2.</strong> What procedures are adopted in converting a decimal number into a number with base b?</p>
+                <button class="toggle-btn" data-target="s2"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s2"><p><strong>Integer part:</strong> Successively divide by base b until quotient is 0. Read remainders from bottom to top (last remainder = MSB). <strong>Fractional part:</strong> Successively multiply by base b. Read integer parts from top to bottom.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q3.</strong> Perform: (a) 10111.101 + 110111.01 &nbsp; (b) 10001.01 − 1111.11</p>
+                <button class="toggle-btn" data-target="s3"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s3">
+                    <p><strong>(a)</strong></p><div class="binary-calc"><pre>  010111.101
++ 110111.010
+───────────
+ 1001110.111</pre></div>
+                    <p><strong>(b)</strong></p><div class="binary-calc"><pre>  10001.010
+-  1111.110
+───────────
+  00001.100</pre></div>
+                </div></div>
+
+            <div class="exercise-area"><p><strong>Q4.</strong> Verify by truth table: A + A'B + AB = A + B</p>
+                <button class="toggle-btn" data-target="s4"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s4">
+                    <div class="table-wrapper"><table class="data-table"><thead><tr><th>A</th><th>B</th><th>A'</th><th>A'B</th><th>AB</th><th>A+A'B+AB</th><th>A+B</th></tr></thead>
+                    <tbody>
+                        <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                    </tbody></table></div><p>Both columns are identical. <strong>Verified ✓</strong></p></div></div>
+
+            <div class="exercise-area"><p><strong>Q5.</strong> Demonstrate by truth table: (a) Associative law (b) Distributive law</p>
+                <button class="toggle-btn" data-target="s5"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s5"><p><strong>(a) Associative:</strong> (A+B)+C = A+(B+C). Construct truth table for 3 variables (8 rows) and verify both sides match. Similarly for (A·B)·C = A·(B·C).</p><p><strong>(b) Distributive:</strong> A·(B+C) = A·B + A·C. 8-row truth table shows both sides identical.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q6.</strong> Explain positive logic and negative logic in digital circuits.</p>
+                <button class="toggle-btn" data-target="s6"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s6"><p><strong>Positive logic:</strong> Higher voltage (+5V) = Logic-1, lower voltage (0V) = Logic-0. <strong>Negative logic:</strong> Higher voltage = Logic-0, lower voltage = Logic-1. Most digital systems use positive logic.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q7.</strong> Verify by truth table that output of NAND gate (a) and NOR gate with inverted inputs (b) are the same.</p>
+                <button class="toggle-btn" data-target="s7"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s7"><p>By De Morgan's theorem: (A·B)' = A'+B'. Both produce the same truth table output: 1,1,1,0 for inputs (0,0), (0,1), (1,0), (1,1). <strong>Verified ✓</strong></p></div></div>
+
+            <div class="exercise-area"><p><strong>Q8.</strong> Draw logic diagram and truth table for D and T type flip-flop.</p>
+                <button class="toggle-btn" data-target="s8"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s8"><p><strong>D flip-flop:</strong> Single input D with inverter to create S and R. When D=1→Q=1 (SET), D=0→Q=0 (RESET).<br><strong>T flip-flop:</strong> J and K tied together as T. T=0→no change, T=1→toggle. Refer Figs 3.8 and 3.10.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q9.</strong> Draw the circuit diagram for a 3-bit ripple counter using T flip-flop.</p>
+                <button class="toggle-btn" data-target="s9"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s9"><p>Three T flip-flops cascaded: T=1 for all. CLK drives FF0. Q₀' drives CLK of FF1. Q₁' drives CLK of FF2. Counts from 000 to 111 (0 to 7, mod-8 counter). Outputs: Q₂(MSB), Q₁, Q₀(LSB).</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q10.</strong> State the differences between a linear IC and digital IC.</p>
+                <button class="toggle-btn" data-target="s10"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s10">
+                    <div class="table-wrapper"><table class="data-table"><thead><tr><th>Linear IC</th><th>Digital IC</th></tr></thead>
+                    <tbody>
+                        <tr><td>Operates with continuous signals</td><td>Operates with binary (discrete) signals</td></tr>
+                        <tr><td>Used as amplifiers, filters, comparators</td><td>Used as gates, flip-flops, counters</td></tr>
+                        <tr><td>Example: IC 741 Op Amp</td><td>Example: IC 7400 NAND gate</td></tr>
+                        <tr><td>Output proportional to input</td><td>Output is either HIGH or LOW</td></tr>
+                    </tbody></table></div></div></div>
+        </div>
+    </section>
+
+    <!-- ===== SUMMARY ===== -->
+    <section class="section" id="summary">
+        <h2 class="section-title"><i class="fas fa-list"></i> Unit Summary <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-clipboard-list"></i> Key Takeaways</div>
+                <ul>
+                    <li>Digital systems are <strong>more reliable, less affected by noise</strong>, easier to design and fabricated on IC chips.</li>
+                    <li>The digital system uses <strong>binary number system</strong>.</li>
+                    <li>Boolean algebra is an algebraic system with a set of elements, operators and postulates.</li>
+                    <li>The fundamental building blocks are <strong>logic gates</strong>: AND, OR, NOT.</li>
+                    <li>Inputs/outputs occur in two levels: Logic-1 (HIGH/TRUE) and Logic-0 (LOW/FALSE).</li>
+                    <li><strong>NAND and NOR</strong> are <strong>Universal gates</strong>.</li>
+                    <li>Digital circuits: <strong>combinational</strong> (output depends on present inputs) and <strong>sequential</strong> (output depends on present input + past state).</li>
+                    <li>Sequential circuits: <strong>Synchronous</strong> (clocked) and <strong>Asynchronous</strong> (unclocked).</li>
+                    <li>Basic sequential building block: <strong>flip-flop</strong> (one-bit memory element with two stable states).</li>
+                    <li>Simplest flip-flop: <strong>S-R latch</strong> (SET/RESET inputs, Q and Q' outputs).</li>
+                    <li><strong>J-K flip-flop</strong> is most popular — has no undefined state, supports toggle mode.</li>
+                    <li><strong>Counter</strong>: sequential circuit counting clock pulses. Modulus of N-bit counter = 2<sup>N</sup>.</li>
+                    <li><strong>Asynchronous counters</strong> (ripple): output of FF1 clocks FF2. Slower.</li>
+                    <li><strong>Synchronous counters</strong> (parallel): all FFs clocked simultaneously. Faster.</li>
+                    <li>Digital ICs operate with binary signals. <strong>TTL</strong> is most popular logic family.</li>
+                    <li>IC classification: <strong>SSI → MSI → LSI → VLSI</strong>.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Action completed</span></div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

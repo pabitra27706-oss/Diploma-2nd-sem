@@ -1,440 +1,606 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>FEEE · Unit 5 · Semiconductor Devices</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: semiconductor / silicon / green-blue -->
-  <style>
-    :root {
-      --primary: #2d6a4f;          /* semiconductor green */
-      --primary-light: #40916c;
-      --accent: #1e6091;            /* silicon blue */
-      --accent-light: #34a0a4;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #00acc1;
-      --header-bg: linear-gradient(145deg, #1a3b2e, #2d6a4f, #1e6091);
-    }
-    /* header emoji: semiconductor symbols */
-    .header::after {
-      content: "🔬⚛️💻🔌";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* energy band diagrams */
-    .band-diagram {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 20px 0;
-    }
-    .band-card {
-      background: var(--card-bg);
-      border: 2px solid var(--accent);
-      border-radius: var(--radius-md);
-      padding: 15px;
-      width: 180px;
-      text-align: center;
-    }
-    .band-gap {
-      height: 60px;
-      width: 100%;
-      background: linear-gradient(to bottom, #ccc 0%, #ccc 45%, white 45%, white 55%, #ccc 55%, #ccc 100%);
-      margin: 10px 0;
-      border-radius: 4px;
-    }
-    .conductor-band {
-      background: linear-gradient(to bottom, #ccc 0%, #ccc 100%);
-      height: 60px;
-    }
-    .insulator-band {
-      background: linear-gradient(to bottom, #ccc 0%, #ccc 30%, white 30%, white 70%, #ccc 70%, #ccc 100%);
-      height: 60px;
-    }
-    /* doping illustration */
-    .doping-demo {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .atom {
-      display: inline-block;
-      background: var(--light);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      font-weight: bold;
-      margin: 2px;
-      border: 2px solid var(--primary);
-    }
-    .p-type .atom {
-      background: #ffcccb;
-      border-color: var(--danger);
-    }
-    .n-type .atom {
-      background: #b8e0d4;
-      border-color: var(--success);
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
-
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Explain') ? 'Show Explanation' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Explain') ? 'Hide Explanation' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5 - AC Circuits | FEEE</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+    MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}};
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <style>
+        .figure-link{text-decoration:none;color:inherit;display:block;cursor:pointer}
+        .figure-link .diagram-placeholder{transition:all var(--transition);border:2px dashed var(--gray);position:relative}
+        .figure-link:hover .diagram-placeholder{border-color:var(--accent);background:var(--formula-bg);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+        .diagram-placeholder .click-hint{display:block;margin-top:8px;font-size:.78rem;color:var(--accent);font-weight:500}
+        .figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}
+        @media(max-width:768px){.figure-row{grid-template-columns:1fr}}
+        .mcq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin:20px 0}
+        .mcq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;border-left:4px solid var(--accent)}
+        .mcq-item h4{color:var(--primary);margin-bottom:12px;font-size:.95rem}
+        .mcq-item .options{list-style:none;padding:0}
+        .mcq-item .options li{padding:6px 0;font-size:.9rem}
+        @media(max-width:768px){.mcq-grid{grid-template-columns:1fr}}
+        [data-theme="dark"] .mcq-item{background:#1a2332}
+        .bio-box{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;padding:20px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-left:5px solid var(--primary);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:20px 0}
+        [data-theme="dark"] .bio-box{background:linear-gradient(135deg,#1a237e33,#28359333)}
+        .bio-box .bio-text{flex:1;min-width:250px}
+        .bio-box .bio-text h4{color:var(--primary);margin-bottom:8px}
+        .outcome-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:16px 0}
+        .outcome-item{background:var(--formula-bg);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem}
+        .outcome-item strong{color:var(--accent)}
+        .eq-num{float:right;color:var(--gray);font-size:.9rem}
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+<header class="header">
     <div class="header-content">
-      <h1>🔬 FEEE · Unit 5 🔬</h1>
-      <h2>Semiconductor Devices · P-N Junction · Transistors</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
-        <span class="info-item"><i class="fas fa-microchip"></i> Energy Bands</span>
-        <span class="info-item"><i class="fas fa-bolt"></i> P-N Diode</span>
-        <span class="info-item"><i class="fas fa-transistor"></i> BJT, FET, MOSFET, CMOS</span>
-      </div>
+        <h1><i class="fas fa-wave-square"></i> AC Circuits</h1>
+        <h2>Unit 5 — Fundamentals of Electrical and Electronics Engineering</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> ES110</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 5</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> Diploma — Sem I</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-microchip"></i> FEEE·UNIT5</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#energy"><i class="fas fa-chart-bar"></i> Energy Bands</a>
-        <a href="#semi-concepts"><i class="fas fa-atom"></i> Intrinsic/Extrinsic</a>
-        <a href="#pn"><i class="fas fa-bolt"></i> P-N Junction</a>
-        <a href="#bjt"><i class="fas fa-transistor"></i> BJT (PNP/NPN)</a>
-        <a href="#fet"><i class="fas fa-field"></i> FET, MOSFET, CMOS</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>⚡ FEEE U5</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+            <a href="#acfund"><i class="fas fa-wave-square"></i> AC Fundamentals</a>
+            <a href="#terms"><i class="fas fa-list-ol"></i> AC Terms</a>
+            <a href="#phase"><i class="fas fa-arrows-alt-h"></i> Phase</a>
+            <a href="#pureRLC"><i class="fas fa-circle"></i> Pure R, L, C</a>
+            <a href="#rlseries"><i class="fas fa-link"></i> RL Series</a>
+            <a href="#rcseries"><i class="fas fa-link"></i> RC Series</a>
+            <a href="#rlcseries"><i class="fas fa-project-diagram"></i> RLC Series</a>
+            <a href="#parallel"><i class="fas fa-columns"></i> Parallel RLC</a>
+            <a href="#resonance"><i class="fas fa-broadcast-tower"></i> Resonance</a>
+            <a href="#threephase"><i class="fas fa-plug"></i> 3-Phase</a>
+            <a href="#power"><i class="fas fa-bolt"></i> Power Triangle</a>
+            <a href="#solved"><i class="fas fa-calculator"></i> Solved</a>
+            <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
+            <a href="#summary"><i class="fas fa-list"></i> Summary</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
-
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <h3><i class="fas fa-microchip"></i> FEEE Unit 5</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
-    </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header"><h3>⚡ FEEE U5</h3><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#energy"><i class="fas fa-chart-bar"></i> Energy bands: Insulator, Conductor, Semiconductor</a>
-      <a href="#semi-concepts"><i class="fas fa-atom"></i> Intrinsic/Extrinsic, Doping, P/N type</a>
-      <a href="#pn"><i class="fas fa-bolt"></i> P-N Junction Diode</a>
-      <a href="#bjt"><i class="fas fa-transistor"></i> PNP & NPN Transistors</a>
-      <a href="#fet"><i class="fas fa-field"></i> FET, MOSFET, CMOS</a>
+        <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+        <a href="#acfund"><i class="fas fa-wave-square"></i> AC Fundamentals</a>
+        <a href="#terms"><i class="fas fa-list-ol"></i> AC Terms</a>
+        <a href="#phase"><i class="fas fa-arrows-alt-h"></i> Phase</a>
+        <a href="#pureRLC"><i class="fas fa-circle"></i> Pure R, L, C</a>
+        <a href="#rlseries"><i class="fas fa-link"></i> RL Series</a>
+        <a href="#rcseries"><i class="fas fa-link"></i> RC Series</a>
+        <a href="#rlcseries"><i class="fas fa-project-diagram"></i> RLC Series</a>
+        <a href="#parallel"><i class="fas fa-columns"></i> Parallel RLC</a>
+        <a href="#resonance"><i class="fas fa-broadcast-tower"></i> Resonance</a>
+        <a href="#threephase"><i class="fas fa-plug"></i> 3-Phase</a>
+        <a href="#power"><i class="fas fa-bolt"></i> Power Triangle</a>
+        <a href="#solved"><i class="fas fa-calculator"></i> Solved</a>
+        <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
+        <a href="#summary"><i class="fas fa-list"></i> Summary</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: ENERGY LEVEL DIAGRAMS ========= -->
-    <section id="energy" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-bar"></i> Energy Level Diagrams: Insulator · Conductor · Semiconductor
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-microchip"></i> Band Theory</div>
-          <p>In solids, energy bands are formed due to overlapping of atomic orbitals.</p>
-          <ul>
-            <li><strong>Valence band:</strong> Outermost electrons</li>
-            <li><strong>Conduction band:</strong> Free electrons for conduction</li>
-            <li><strong>Band gap (E<sub>g</sub>):</strong> Energy difference between bands</li>
-          </ul>
-        </div>
+<div class="container">
 
-        <div class="band-diagram">
-          <div class="band-card">
-            <h4>Conductor</h4>
-            <div class="conductor-band"></div>
-            <p>No band gap (overlap). Electrons freely move.</p>
-          </div>
-          <div class="band-card">
-            <h4>Insulator</h4>
-            <div class="insulator-band"></div>
-            <p>Large band gap > 5 eV. No conduction.</p>
-          </div>
-          <div class="band-card">
-            <h4>Semiconductor</h4>
-            <div class="band-gap"></div>
-            <p>Small band gap ~1 eV. (Si: 1.1 eV, Ge: 0.7 eV)</p>
-          </div>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Explanation</div>
-          <p><strong>Conductor:</strong> Valence and conduction bands overlap → free electrons.</p>
-          <p><strong>Insulator:</strong> Large forbidden gap → electrons cannot jump.</p>
-          <p><strong>Semiconductor:</strong> Small gap → at room temp, some electrons gain energy and jump to conduction band.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 2: SEMICONDUCTOR CONCEPTS (INTRINSIC/EXTRINSIC, DOPING, P-TYPE, N-TYPE) ========= -->
-    <section id="semi-concepts" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-atom"></i> Intrinsic/Extrinsic · Doping · P-Type · N-Type
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-leaf"></i> Intrinsic Semiconductor</h4>
-            <p>Pure semiconductor (Si, Ge). Equal number of electrons and holes. Conductivity low.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-flask"></i> Extrinsic Semiconductor</h4>
-            <p>Doped with impurities to increase conductivity. Two types: N-type and P-type.</p>
-          </div>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-eyedropper"></i> Doping Concentration</div>
-          <p>Doping is adding impurity atoms (pentavalent or trivalent) to intrinsic semiconductor. Concentration: 10<sup>16</sup> to 10<sup>18</sup> atoms/cm³.</p>
-        </div>
-
-        <div class="doping-demo">
-          <div class="p-type">
-            <h4>P-Type (Trivalent impurity - Boron)</h4>
-            <div>
-              <span class="atom">Si</span><span class="atom" style="background:#ffaaa0;">B</span><span class="atom">Si</span>
+    <!-- ===== OVERVIEW ===== -->
+    <section class="section" id="overview">
+        <h2 class="section-title"><i class="fas fa-eye"></i> Unit Overview &amp; Outcomes <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-bullseye"></i> Unit Specifics</div>
+                <ul>
+                    <li>Terms related with an alternating quantity: cycle, frequency, periodic time, amplitude, angular velocity, RMS value, average value, form factor, peak factor, impedance, phase angle, power factor</li>
+                    <li>Mathematical and phasor representation of alternating emf and current</li>
+                    <li>Voltage and current relationship in star and delta connections</li>
+                    <li>AC in resistors, inductors and capacitors</li>
+                    <li>AC in R-L series, R-C series, R-L-C series and parallel circuits</li>
+                    <li>Power in AC circuits and power triangle</li>
+                </ul>
             </div>
-            <p><span class="text-danger">Holes</span> are majority carriers. Accepts electrons.</p>
-          </div>
-          <div class="n-type">
-            <h4>N-Type (Pentavalent impurity - Phosphorus)</h4>
-            <div>
-              <span class="atom">Si</span><span class="atom" style="background:#a0d6b4;">P</span><span class="atom">Si</span>
+            <div class="tip-box"><div class="box-title"><i class="fas fa-lightbulb"></i> Rationale</div>
+                <p>Alternating Current (AC) plays a vital role in today's energy generation, distribution and consumption. The value of the magnitude and the direction of current and voltages is not constant in an AC circuit — it changes at a regular interval of time. AC is used for household and industrial applications such as television sets, computers, microwave ovens, fans, to the large motors used in industry.</p>
             </div>
-            <p><span class="text-success">Electrons</span> are majority carriers. Donates electrons.</p>
-          </div>
+            <div class="important-note"><div class="box-title"><i class="fas fa-book-reader"></i> Pre-Requisites</div>
+                <ol><li>Applied Physics-1: Work, Power and Energy (Semester I)</li><li>Mathematics-I: Trigonometry, Algebra (Semester I)</li></ol>
+            </div>
+            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+            <div class="outcome-grid">
+                <div class="outcome-item"><strong>U5-O1:</strong> Describe the various basic terms related to AC signals.</div>
+                <div class="outcome-item"><strong>U5-O2:</strong> Represent the alternating e.m.f. and current in mathematical and phasor terms.</div>
+                <div class="outcome-item"><strong>U5-O3:</strong> Analyse R-L series, R-C series, R-L-C series and parallel circuits with single phase AC.</div>
+                <div class="outcome-item"><strong>U5-O4:</strong> Determine the voltage and current relationship in 3 phase AC system using Star/Delta transformations.</div>
+                <div class="outcome-item"><strong>U5-O5:</strong> Use the power triangle to determine AC circuit parameters.</div>
+            </div>
+            <h3><i class="fas fa-table"></i> CO Mapping</h3>
+            <div class="table-wrapper"><table class="data-table"><thead><tr><th>Outcomes</th><th>CO-1</th><th>CO-2</th><th>CO-3</th><th>CO-4</th><th>CO-5</th><th>CO-6</th></tr></thead>
+            <tbody>
+                <tr><td>U5-O1</td><td>1</td><td>-</td><td>-</td><td>-</td><td>3</td><td>3</td></tr>
+                <tr><td>U5-O2</td><td>1</td><td>-</td><td>-</td><td>-</td><td>3</td><td>3</td></tr>
+                <tr><td>U5-O3</td><td>1</td><td>-</td><td>-</td><td>-</td><td>3</td><td>1</td></tr>
+                <tr><td>U5-O4</td><td>2</td><td>-</td><td>-</td><td>-</td><td>3</td><td>1</td></tr>
+                <tr><td>U5-O5</td><td>1</td><td>-</td><td>-</td><td>-</td><td>3</td><td>1</td></tr>
+            </tbody></table></div>
+            <div class="bio-box"><div class="bio-text">
+                <h4><i class="fas fa-user-graduate"></i> George Westinghouse (1846–1914)</h4>
+                <p>One of the most prolific inventors during the Industrial Revolution 2.0, best known for promoting <strong>alternating current technology</strong>, which revolutionized the world's illumination and power industries, and for inventing an air brake system that made railroads safe. He started the <strong>Westinghouse Electric and Manufacturing Company</strong> to improve AC power generation.</p>
+            </div></div>
         </div>
-
-        <div class="definition-box">
-          <div class="box-title">Properties</div>
-          <ul>
-            <li><strong>P-Type:</strong> Holes (positive charge carriers) dominate. Formed by doping with trivalent atoms (B, Al, Ga).</li>
-            <li><strong>N-Type:</strong> Electrons dominate. Formed by doping with pentavalent atoms (P, As, Sb).</li>
-            <li>Extrinsic semiconductors are electrically neutral overall.</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: P-N JUNCTION DIODE ========= -->
-    <section id="pn" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-bolt"></i> P-N Junction Diode · Formation · Properties
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-compress-alt"></i> Formation</div>
-          <p>When P-type and N-type semiconductors are joined, a P-N junction is formed. At the junction, diffusion occurs: electrons from N side cross to P side, holes from P side cross to N side.</p>
-          <p>This creates a <strong>depletion region</strong> (no free carriers) and a built-in potential barrier (~0.7V for Si, ~0.3V for Ge).</p>
-        </div>
+    <!-- ===== AC FUNDAMENTALS ===== -->
+    <section class="section" id="acfund">
+        <h2 class="section-title"><i class="fas fa-wave-square"></i> 5.1 AC Fundamentals <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>5.1.1 Introduction</h3>
+            <p>Alternating current (AC) or alternating voltage is a <strong>sinusoidal varying</strong> current or voltage. Almost all electrical power supply systems involve sinusoidal AC current derived from sinusoidal AC voltage. A <strong>generator</strong> is used to produce AC voltage.</p>
 
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-arrow-right"></i> Forward Bias</h4>
-            <p>P to +, N to -. Depletion width decreases. Current flows when V > barrier potential.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-arrow-left"></i> Reverse Bias</h4>
-            <p>P to -, N to +. Depletion width increases. Very small leakage current (until breakdown).</p>
-          </div>
-        </div>
+            <h3>5.1.2 Alternating Quantity</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Definition</div>
+                <p>An alternating quantity changes <strong>continuously in magnitude</strong> and <strong>alternates in direction</strong> at regular intervals of time. The sine wave is the ideal form and accepted standard. Waves deviating from the standard are called <strong>distorted waves</strong>.</p>
+            </div>
 
-        <div class="definition-box">
-          <div class="box-title">Diode Properties</div>
-          <ul>
-            <li>Allows current only in one direction (rectifier).</li>
-            <li>Used in power supplies, clippers, clampers, voltage regulators (Zener), etc.</li>
-            <li>I-V characteristic: exponential in forward, almost zero in reverse.</li>
-          </ul>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Generation of AC Voltage</div>
+                <p>When a coil is rotated in a magnetic field, an alternating emf is induced. The value depends on: number of turns, strength of magnetic field, and speed of rotation. At positions a and c (parallel to field) → emf = 0. At positions b and d (perpendicular to field) → emf = maximum. EMF varies as a <strong>sine function</strong>.</p>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=EMF+generated+coil+rotating+magnetic+field+positions+a+b+c+d" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.1:</strong> EMF generated in a coil rotating in a magnetic field — showing positions a, b, c, d</p><span class="click-hint">🔍 Click to view</span></div></a>
+                <a href="https://www.google.com/search?tbm=isch&q=sinusoidal+wave+one+complete+cycle+AC+voltage" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.2:</strong> Sinusoidal wave — one complete cycle showing positions a, b, c, d on waveform</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <h3>Comparison: AC vs DC System</h3>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-check"></i> Advantages of AC over DC</h4>
+                    <ol><li>AC voltages can be efficiently stepped up/down using <strong>transformer</strong></li>
+                    <li>AC motors are <strong>cheaper and simpler</strong> in construction</li>
+                    <li>Switchgear for AC is <strong>simpler</strong></li>
+                    <li><strong>Easier and cheaper</strong> generation and transmission</li></ol>
+                </div>
+                <div class="card"><h4><i class="fas fa-info-circle"></i> Single-Phase vs Three-Phase</h4>
+                    <p><strong>Single-phase:</strong> Used for small demands (homes).</p>
+                    <p><strong>Three-phase:</strong> Used where heavy load is required (industry). Three overlapping AC cycles, each offset by <strong>120°</strong>.</p>
+                </div>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=three+phase+sine+wave+120+degrees+offset+VA+VB+VC" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.5:</strong> Three-Phase Sine Wave — V<sub>A</sub>, V<sub>B</sub>, V<sub>C</sub> offset by 120°</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: TRANSISTORS (PNP, NPN) ========= -->
-    <section id="bjt" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-transistor"></i> Bipolar Junction Transistors: PNP · NPN
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-microchip"></i> PNP Transistor</div>
-          <p>Two P-type layers sandwiching an N-type base. Emitter (P), Base (N), Collector (P).</p>
-          <ul>
-            <li>Majority carriers: holes</li>
-            <li>Arrow on emitter points IN (→P)</li>
-            <li>Applications: Amplifiers, switching circuits (less common than NPN)</li>
-          </ul>
-        </div>
+    <!-- ===== AC TERMS ===== -->
+    <section class="section" id="terms">
+        <h2 class="section-title"><i class="fas fa-list-ol"></i> 5.1.3 Important AC Terms <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-microchip"></i> NPN Transistor</div>
-          <p>Two N-type layers sandwiching a P-type base. Emitter (N), Base (P), Collector (N).</p>
-          <ul>
-            <li>Majority carriers: electrons</li>
-            <li>Arrow on emitter points OUT (N→)</li>
-            <li>Applications: Most common in amplifiers, switches, digital logic</li>
-          </ul>
-        </div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 1. Cycle</div>
+                <p>One complete set of positive and negative values of alternating quantity. Spread over <strong>360° or 2π radians</strong>.</p>
+            </div>
 
-        <div class="example-box">
-          <div class="box-title">Common Applications of BJT</div>
-          <ul>
-            <li>Amplifiers (audio, RF)</li>
-            <li>Switching circuits (LED drivers, relay drivers)</li>
-            <li>Darlington pairs for high current gain</li>
-            <li>Oscillators</li>
-          </ul>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 2. Frequency (f)</div>
+                <p>Number of cycles that occur in <strong>one second</strong>. Unit: <strong>Hz</strong> (cycles/sec). Example: 50 Hz = 50 cycles per second.</p>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 3. Time Period (T)</div>
+                <p>Time taken in seconds to complete one cycle.</p>
+                <div class="formula">\[ T = \frac{1}{f} \] <span class="eq-num">...(5.1)</span></div>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 4. Amplitude</div>
+                <p>Maximum value (positive or negative) attained by an alternating quantity. Also called <strong>maximum or peak value</strong>.</p>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 5. Average Value</div>
+                <p>Arithmetic average over <strong>half a cycle</strong> (full cycle average = 0). Defined as that steady current which transfers the same charge as the alternating current.</p>
+                <div class="formula">\[ I_{av} = \frac{1}{\pi}\int_{0}^{\pi}I_m\sin\omega t\,d(\omega t) = \frac{2I_m}{\pi} = 0.637 I_m \] <span class="eq-num">...(5.3)</span></div>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 6. RMS Value (Root Mean Square)</div>
+                <p>That steady current which produces the <strong>same amount of heat</strong> as the alternating current in the same time. Also called <strong>Effective Value</strong>. Value measured by an ammeter.</p>
+                <div class="formula">\[ I_{rms} = \frac{I_m}{\sqrt{2}} = 0.707\,I_m \] <span class="eq-num">...(5.4)</span></div>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 7. Form Factor</div>
+                <p>Ratio of RMS value to Average value.</p>
+                <div class="formula">\[ \text{Form Factor} = \frac{0.707\,I_m}{0.637\,I_m} = 1.11 \] <span class="eq-num">...(5.5)</span></div>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 8. Peak Factor (Crest Factor)</div>
+                <p>Ratio of Maximum value to RMS value.</p>
+                <div class="formula">\[ \text{Peak Factor} = \frac{\text{Maximum value}}{\text{RMS value}} = 1.414 \] <span class="eq-num">...(5.6)</span></div>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 9. Angular Velocity (ω)</div>
+                <p>Number of radians covered in one second.</p>
+                <div class="formula">\[ \omega = \frac{2\pi}{T} = 2\pi f \quad \text{rad/sec} \] <span class="eq-num">...(5.7)</span></div>
+            </div>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> 10. Instantaneous Value</div>
+                <p>Value of the quantity at <strong>any instant</strong>.</p>
+            </div>
+
+            <h3>Mathematical Representation</h3>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Alternating Voltage &amp; Current Equations</div>
+                <div class="formula">\[ v = V_m\sin\theta = V_m\sin\omega t = V_m\sin 2\pi ft = V_m\sin\frac{2\pi}{T}t \] <span class="eq-num">...(5.8)</span></div>
+                <div class="formula">\[ i = I_m\sin 2\pi ft = I_m\sin\omega t = I_m\sin\frac{2\pi}{T}t \] <span class="eq-num">...(5.9)</span></div>
+                <p>From equation 5.8: Peak value = coefficient of sine; Frequency = coefficient of t ÷ 2π.</p>
+                <p><strong>Example:</strong> v = 20 sin 314t → V<sub>m</sub> = 20V, f = 314/2π = 50 Hz.</p>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 5: FET, MOSFET, CMOS ========= -->
-    <section id="fet" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-field"></i> FET · MOSFET · CMOS
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-field"></i> FET (Field Effect Transistor)</h4>
-            <p>Voltage-controlled device. Input impedance very high. Types: JFET (junction FET) and MOSFET.</p>
-            <p>Applications: Low-noise amplifiers, analog switches, buffer amplifiers.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-microchip"></i> MOSFET</h4>
-            <p>Metal-Oxide-Semiconductor FET. Most common transistor in digital/analog ICs.</p>
-            <p>Types: Enhancement mode, Depletion mode. N-channel and P-channel.</p>
-            <p>Applications: Microprocessors, memory, power electronics (switching).</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-cogs"></i> CMOS</h4>
-            <p>Complementary MOS – uses both N-channel and P-channel MOSFETs on same chip.</p>
-            <p>Very low power consumption (only dissipates during switching).</p>
-            <p>Applications: Almost all digital ICs (CPUs, RAM, logic gates), microcontrollers.</p>
-          </div>
-        </div>
+    <!-- ===== PHASE ===== -->
+    <section class="section" id="phase">
+        <h2 class="section-title"><i class="fas fa-arrows-alt-h"></i> 5.1.4 Phase, Phase Difference &amp; Power Factor <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Phase</div>
+                <p>The fraction of the time period which has elapsed since the quantity last passed through zero. Two waves are <strong>in phase</strong> when they reach maximum and zero values at the same time.</p>
+            </div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Phase Difference</div>
+                <p>The relative difference between two alternating quantities, expressed in terms of <strong>phase angle</strong>. A plus (+) sign denotes <strong>lead</strong>; minus (−) sign denotes <strong>lag</strong>.</p>
+                <p><strong>Leading:</strong> Reaches maximum value earlier. <strong>Lagging:</strong> Reaches maximum value later.</p>
+            </div>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Three-Coil EMF Equations</div>
+                <div class="formula">\[ e_A = E_m\sin\omega t \quad\text{(reference)} \] <span class="eq-num">...(5.10b)</span></div>
+                <div class="formula">\[ e_B = E_m\sin(\omega t - \beta) \] <span class="eq-num">...(5.10a)</span></div>
+                <div class="formula">\[ e_C = E_m\sin[\omega t - (\alpha+\beta)] \] <span class="eq-num">...(5.10c)</span></div>
+            </div>
 
-        <div class="important-note">
-          <div class="box-title">Comparison</div>
-          <table class="data-table">
-            <tr><th>Device</th><th>Control</th><th>Input Impedance</th><th>Application</th></tr>
-            <tr><td>BJT</td><td>Current</td><td>Low</td><td>Amplifiers, switches</td></tr>
-            <tr><td>FET</td><td>Voltage</td><td>High</td><td>Analog switches, amplifiers</td></tr>
-            <tr><td>MOSFET</td><td>Voltage</td><td>Very high</td><td>Digital ICs, power supplies</td></tr>
-            <tr><td>CMOS</td><td>Voltage</td><td>Extremely high</td><td>Microprocessors, logic</td></tr>
-          </table>
+            <h3>5.1.5 Phasor</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Phasor Representation</div>
+                <p>A <strong>phasor</strong> is a vector representing a sinusoidal function. It rotates about the origin with angular speed ω in <strong>anti-clockwise direction</strong>. Length = magnitude (peak value); arrow = direction. The projection on the vertical axis gives the instantaneous value.</p>
+            </div>
         </div>
-
-        <!-- Quick check exercise -->
-        <div class="exercise-area">
-          <p><strong>Quick Check:</strong> Which device is used in almost all modern microprocessors and why?</p>
-        </div>
-        <button class="toggle-btn" data-target="ansCmos"><i class="fas fa-eye"></i> Show Explanation</button>
-        <div class="answer-reveal" id="ansCmos">
-          <div class="formula answer">
-            <strong>CMOS</strong> (Complementary Metal-Oxide-Semiconductor) is used because of its extremely low static power consumption, high noise immunity, and scalability. It uses complementary pairs of p-type and n-type MOSFETs.
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Semiconductor Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">Intrinsic: pure</div>
-          <div class="tag">Extrinsic: doped</div>
-          <div class="tag">P-type: holes</div>
-          <div class="tag">N-type: electrons</div>
-          <div class="tag">PN diode: 1-way</div>
-          <div class="tag">BJT: current control</div>
-          <div class="tag">FET: voltage control</div>
-          <div class="tag">CMOS: low power</div>
+    <!-- ===== PURE R, L, C ===== -->
+    <section class="section" id="pureRLC">
+        <h2 class="section-title"><i class="fas fa-circle"></i> 5.1.6 AC in Pure R, L, C Circuits <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <h3>5.1.6.1 Pure Resistive Circuit</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Pure R</div>
+                <p>V = IR. When v = V<sub>m</sub> sin 2πft, then i = I<sub>m</sub> sin 2πft where I<sub>m</sub> = V<sub>m</sub>/R.</p>
+                <p>Voltage and current are <strong>in phase</strong> (phase difference = 0°). Power factor <strong>cos φ = 1</strong>.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=pure+resistive+AC+circuit+voltage+current+in+phase+waveform+phasor" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.9–5.11:</strong> Pure resistive circuit, waveform (V & I in phase), phasor diagram (V∠0°, I∠0°)</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <h3>5.1.6.2 Pure Inductive Circuit</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Pure L</div>
+                <p>Current <strong>lags</strong> voltage by <strong>90°</strong> (π/2). i = I<sub>m</sub> sin(2πft − π/2) = −I<sub>m</sub> cos 2πft.</p>
+                <p>I<sub>m</sub> = V<sub>m</sub>/ωL where <strong>X<sub>L</sub> = ωL = 2πfL</strong> (Inductive Reactance, in Ω). Power factor <strong>cos φ = 0</strong>.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=pure+inductive+AC+circuit+current+lags+voltage+90+degrees+phasor" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.12–5.14:</strong> Pure inductive circuit, waveform (I lags V by 90°), phasor (V∠0°, I∠−90°)</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <h3>5.1.6.3 Pure Capacitive Circuit</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Pure C</div>
+                <p>Current <strong>leads</strong> voltage by <strong>90°</strong> (π/2). i = I<sub>m</sub> sin(2πft + π/2).</p>
+                <p>I<sub>m</sub> = V<sub>m</sub>/(1/ωC) where <strong>X<sub>C</sub> = 1/ωC = 1/(2πfC)</strong> (Capacitive Reactance, in Ω). Power factor <strong>cos φ = 0</strong>.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=pure+capacitive+AC+circuit+current+leads+voltage+90+degrees+phasor" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.15–5.17:</strong> Pure capacitive circuit, waveform (I leads V by 90°), phasor (I∠90°, V∠0°)</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-brain"></i> Memory Aid: "CIVIL"</div>
+                <p><strong>C-I-V-I-L:</strong> In a <strong>C</strong>apacitor, <strong>I</strong> leads <strong>V</strong>; In an Inductor (<strong>L</strong>), <strong>V</strong> leads <strong>I</strong>.</p>
+            </div>
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    <!-- ===== RL SERIES ===== -->
+    <section class="section" id="rlseries">
+        <h2 class="section-title"><i class="fas fa-link"></i> 5.2.2 R-L Series Circuit <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <p>R and L in series — same current flows through both. Taking current as reference: i = I<sub>m</sub> sin ωt.</p>
+            <a href="https://www.google.com/search?tbm=isch&q=RL+series+circuit+AC+resistor+inductor+impedance+triangle" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.18–5.19:</strong> R-L series circuit and waveform (voltage leads current)</p><span class="click-hint">🔍 Click to view</span></div></a>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> R-L Series Formulas</div>
+                <div class="formula">\[ V_R = I_m R\sin\omega t \] <span class="eq-num">...(5.11)</span></div>
+                <div class="formula">\[ V_L = I_m\omega L\cos\omega t \] <span class="eq-num">...(5.12)</span></div>
+                <p>Substituting R = Z cos θ, X<sub>L</sub> = Z sin θ:</p>
+                <div class="formula">\[ v = V_m\sin(\omega t + \theta) \] <span class="eq-num">...(5.14)</span></div>
+                <p>Voltage <strong>leads</strong> current by angle θ (current lags voltage).</p>
+                <div class="formula">\[ \theta = \tan^{-1}\frac{\omega L}{R} = \tan^{-1}\frac{X_L}{R} \] <span class="eq-num">...(5.15)</span></div>
+                <div class="formula">\[ Z = \sqrt{R^2 + \omega^2 L^2} = \sqrt{R^2 + X_L^2} \] <span class="eq-num">...(5.16)</span></div>
+                <p>Total power: <strong>P = VI cos θ</strong> (V, I are RMS values)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RC SERIES ===== -->
+    <section class="section" id="rcseries">
+        <h2 class="section-title"><i class="fas fa-link"></i> 5.2.3 R-C Series Circuit <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <a href="https://www.google.com/search?tbm=isch&q=RC+series+circuit+AC+resistor+capacitor+waveform+current+leads" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.20–5.21:</strong> R-C series circuit and waveform (current leads voltage by φ)</p><span class="click-hint">🔍 Click to view</span></div></a>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> R-C Series Formulas</div>
+                <div class="formula">\[ Z = \sqrt{R^2 + X_C^2} = \sqrt{R^2 + \frac{1}{\omega^2 C^2}} \] <span class="eq-num">...(5.17)</span></div>
+                <div class="formula">\[ \theta = \tan^{-1}\frac{X_C}{R} = \tan^{-1}\frac{1}{\omega CR} \] <span class="eq-num">...(5.18)</span></div>
+                <div class="formula">\[ i = I_m\sin(2\pi ft + \phi) \] <span class="eq-num">...(5.19)</span></div>
+                <p>Current <strong>leads</strong> voltage by angle φ. cos φ = R/Z. Power: P = VI cos φ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RLC SERIES ===== -->
+    <section class="section" id="rlcseries">
+        <h2 class="section-title"><i class="fas fa-project-diagram"></i> 5.2.4 R-L-C Series Circuit <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <a href="https://www.google.com/search?tbm=isch&q=RLC+series+circuit+AC+resistor+inductor+capacitor+impedance" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.22:</strong> R-L-C series circuit — R, L, C in series with AC source</p><span class="click-hint">🔍 Click to view</span></div></a>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Net Reactance</div>
+                <p>X = X<sub>L</sub> − X<sub>C</sub> (when X<sub>L</sub> > X<sub>C</sub>) → inductive circuit, current lags.</p>
+                <p>X = X<sub>C</sub> − X<sub>L</sub> (when X<sub>C</sub> > X<sub>L</sub>) → capacitive circuit, current leads.</p>
+            </div>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> RLC Series Formulas</div>
+                <div class="formula">\[ Z = \sqrt{R^2 + (X_L - X_C)^2} \] <span class="eq-num">...(5.20)</span></div>
+                <div class="formula">\[ I_m = \frac{V_m}{Z};\quad \cos\phi = \frac{R}{Z};\quad \phi = \cos^{-1}\frac{R}{Z} \]</div>
+            </div>
+            <h3>Impedance Triangle</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-drafting-compass"></i> Impedance Triangle</div>
+                <p>A right-angled triangle: <strong>Base</strong> = Resistance R, <strong>Perpendicular</strong> = Net Reactance X, <strong>Hypotenuse</strong> = Impedance Z. Geometrical representation of circuit impedance.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=impedance+triangle+resistance+reactance+impedance+phase+angle" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.23:</strong> Impedance Triangle — R (base), X (perpendicular), Z (hypotenuse), angle φ</p><span class="click-hint">🔍 Click to view</span></div></a>
+        </div>
+    </section>
+
+    <!-- ===== PARALLEL RLC ===== -->
+    <section class="section" id="parallel">
+        <h2 class="section-title"><i class="fas fa-columns"></i> 5.2.4 Parallel RLC Circuit <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Parallel RLC</div>
+                <p>R, L, C connected in parallel. <strong>Voltage</strong> across each element is the <strong>same</strong>. Current divides depending on impedance. Dual relationship with series RLC.</p>
+                <p>Total current: \( I_S^2 = I_R^2 + (I_L - I_C)^2 \)</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=parallel+RLC+circuit+AC+resistor+inductor+capacitor+phasor+diagram" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.24–5.25:</strong> Parallel RLC circuit and phasor diagram</p><span class="click-hint">🔍 Click to view</span></div></a>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Admittance</div>
+                <div class="formula">\[ Y = \frac{1}{Z} = \frac{I_S}{V} = \sqrt{\left(\frac{1}{R}\right)^2 + \left(\frac{1}{X_L} - \frac{1}{X_C}\right)^2} \] <span class="eq-num">...(5.21)</span></div>
+                <p>Admittance Y is the reciprocal of impedance. Total admittance = sum of branch admittances.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RESONANCE ===== -->
+    <section class="section" id="resonance">
+        <h2 class="section-title"><i class="fas fa-broadcast-tower"></i> Resonance <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>Resonance in Series RLC</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Series Resonance</div>
+                <p>When X<sub>L</sub> = X<sub>C</sub>, net reactance = 0. The circuit is in <strong>"Electrical Resonance"</strong>.</p>
+                <div class="formula">\[ f_r = \frac{1}{2\pi\sqrt{LC}} \] <span class="eq-num">...(5.22)</span></div>
+                <p>At resonance: Z = R (minimum impedance), current is <strong>maximum</strong>, phase angle = 0°.</p>
+            </div>
+            <h3>Resonance in Parallel RLC</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Parallel Resonance</div>
+                <p>At resonant frequency, X<sub>L</sub> = X<sub>C</sub> but unlike series circuit: impedance becomes <strong>maximum</strong>, circuit behaves as purely resistive, power factor = <strong>unity</strong>.</p>
+            </div>
+            <div class="workshop-box"><div class="box-title"><i class="fas fa-cogs"></i> Applications of RC &amp; RLC Circuits</div>
+                <ul><li>RF Amplifiers</li><li>Filtering Circuits</li><li>Oscillator Circuits</li><li>Signal Processing</li><li>Current/Voltage Magnification</li><li>Frequency/Amplitude Modulation</li><li>Radio Wave Transmitters</li><li>Tuners, Mixers, Contactless cards</li></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== THREE PHASE ===== -->
+    <section class="section" id="threephase">
+        <h2 class="section-title"><i class="fas fa-plug"></i> 5.3 Three-Phase Circuits <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>5.3.2 Advantages of Three-Phase System</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-check-circle"></i> Advantages over Single-Phase</div>
+                <ol>
+                    <li>Power is about <strong>three times</strong> that of single-phase</li>
+                    <li>Two types of voltages available: <strong>phase and line</strong></li>
+                    <li><strong>Large power</strong> can be transmitted</li>
+                    <li><strong>Higher power factor</strong> of 3-phase motors</li>
+                    <li>Three-phase currents produce <strong>rotating magnetic field</strong> (required for AC motors); single-phase produces only pulsating field</li>
+                </ol>
+            </div>
+
+            <h3>5.3.3 Star and Delta Connection</h3>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-star"></i> Star (Y) Connection</h4>
+                    <p>Three ends shorted together → neutral point N. Remaining 3 ends = supply terminals R, Y, B.</p>
+                </div>
+                <div class="card"><h4><i class="fas fa-play"></i> Delta (Δ) Connection</h4>
+                    <p>End of one coil joined to start of next. Forms 3 junctions = supply terminals R, Y, B. No neutral point.</p>
+                </div>
+            </div>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=star+connection+three+phase+neutral+point+R+Y+B" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.26:</strong> Star Connection — N (neutral), R, Y, B terminals</p><span class="click-hint">🔍 Click to view</span></div></a>
+                <a href="https://www.google.com/search?tbm=isch&q=delta+connection+three+phase+R+Y+B+no+neutral" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.27:</strong> Delta Connection — R, Y, B terminals</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+
+            <h3>5.3.4 Line and Phase Relationships</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-star"></i> Star Connection</div>
+                <div class="formula">\[ I_L = I_P \] <span class="eq-num">...(5.23)</span></div>
+                <div class="formula">\[ V_L = \sqrt{3}\,V_P \quad\text{or}\quad V_P = \frac{V_L}{\sqrt{3}} \] <span class="eq-num">...(5.24)</span></div>
+                <div class="formula">\[ I_P = \frac{V_P}{Z} \] <span class="eq-num">...(5.25)</span></div>
+            </div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-play"></i> Delta Connection</div>
+                <div class="formula">\[ V_L = V_P \] <span class="eq-num">...(5.26)</span></div>
+                <div class="formula">\[ I_L = \sqrt{3}\,I_P \quad\text{or}\quad I_P = \frac{I_L}{\sqrt{3}} \] <span class="eq-num">...(5.27)</span></div>
+                <div class="formula">\[ I_P = \frac{V_P}{Z} \] <span class="eq-num">...(5.28)</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== POWER TRIANGLE ===== -->
+    <section class="section" id="power">
+        <h2 class="section-title"><i class="fas fa-bolt"></i> 5.3.5–5.3.7 Power &amp; Power Triangle <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>5.3.5 Electric Power</h3>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Power Formulas</div>
+                <div class="formula">\[ P = V \times I = I^2R = \frac{V^2}{R} \] <span class="eq-num">...(5.29)</span></div>
+            </div>
+
+            <h3>5.3.6 Power Triangle</h3>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-drafting-compass"></i> Power Triangle</div>
+                <p>Right-angled triangle: <strong>Base</strong> = Active/True Power P (Watts), <strong>Perpendicular</strong> = Reactive Power Q (VAR), <strong>Hypotenuse</strong> = Apparent Power S (VA).</p>
+                <div class="formula">\[ \text{Power Factor} = \frac{\text{Active Power}}{\text{Apparent Power}} = \frac{kW}{kVA} = \cos\phi \] <span class="eq-num">...(5.30)</span></div>
+                <div class="formula">\[ P = VI\cos\phi \quad\text{(True Power)} \] <span class="eq-num">...(5.31)</span></div>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=power+triangle+active+reactive+apparent+power+cos+phi" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 5.30:</strong> Power Triangle — P (active, W), Q (reactive, VAR), S (apparent, VA), angle φ</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <h3>5.3.7 Power in Three-Phase</h3>
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Three-Phase Power</div>
+                <div class="formula">\[ W = 3V_P I_P\cos\phi \] <span class="eq-num">...(5.32)</span></div>
+                <p>Converting to line values (valid for both star and delta):</p>
+                <div class="formula">\[ W = \sqrt{3}\,V_L I_L\cos\phi \] <span class="eq-num">...(5.33)</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOLVED PROBLEMS ===== -->
+    <section class="section" id="solved">
+        <h2 class="section-title"><i class="fas fa-calculator"></i> Solved Problems <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 5.1.1</div><p>i = 141.4 sin 314t. Find (i) I<sub>m</sub> (ii) Frequency (iii) Time Period (iv) Value at t = 5ms.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>i) I<sub>m</sub> = <strong>141.4 A</strong></p>
+                <p>ii) ω = 314 → f = 314/(2π) = <strong>50 Hz</strong></p>
+                <p>iii) T = 1/f = <strong>0.02 sec</strong></p>
+                <p>iv) i = 141.4 sin(314 × 0.005) = 141.4 sin(1.57) = 141.4 × sin(90°) ≈ <strong>141.4 A</strong> (at peak)</p>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 5.2.1</div><p>R-L series: R = 6Ω, X<sub>L</sub> = 8Ω, V = 141.4V rms. At instant v = +100V (increasing), find (i) current (ii) V<sub>R</sub> (iii) V<sub>L</sub>.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Z = 6 + j8 = 10∠53.1°. v = 200 sin ωt, i = 20 sin(ωt − 53.1°).</p>
+                <p>When v = 100V: sin ωt = 0.5 → ωt = 30°.</p>
+                <p>i) i = 20 sin(30° − 53.1°) = −20 sin 23.1° = <strong>−7.85 A</strong></p>
+                <p>ii) V<sub>R</sub> = −7.85 × 6 = <strong>−47 V</strong></p>
+                <p>iii) V<sub>L max</sub> = 20 × 8 = 160V, leads current by 90°, leads voltage by 36.9°. V<sub>L</sub> = 160 sin(30° + 36.9°) = <strong>147.2 V</strong></p>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 5.2.2</div><p>5A through non-inductive resistance + choking coil, 250V 50Hz. V<sub>R</sub> = 125V, V<sub>coil</sub> = 200V. Find impedance, reactance, resistance of coil, power absorbed, total power.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>a) Coil impedance = 200/5 = <strong>40 Ω</strong>. R<sub>coil</sub> = 27.5/5 = <strong>5.5 Ω</strong>. X<sub>L</sub> = 198.1/5 = <strong>39.62 Ω</strong>.</p>
+                <p>b) Power by coil = I²R = 5² × 5.5 = <strong>137.5 W</strong></p>
+                <p>c) Total R = 25 + 5.5 = 30.5 Ω. Total power = 5² × 30.5 = <strong>762.5 W</strong></p>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 5.3.1</div><p>Star-connected 3-phase: V<sub>L</sub> = 400V, R = 23Ω per phase. Find I<sub>P</sub>, I<sub>L</sub>, cos φ, total power.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>V<sub>P</sub> = 400/√3 = <strong>230V</strong>. I<sub>P</sub> = 230/23 = <strong>10A</strong>. I<sub>L</sub> = √3 × 10 = <strong>17.3A</strong>. cos φ = 1 (resistive).</p>
+                <p>P = √3 × 400 × 17.3 × 1 = <strong>12 kW</strong></p>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 5.3.2</div><p>Delta-connected: Z = 8 + j6 per phase, V<sub>L</sub> = 400V. Find V<sub>P</sub>, I<sub>P</sub>, I<sub>L</sub>, total power.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>V<sub>P</sub> = V<sub>L</sub> = <strong>400V</strong>. Z = √(64+36) = <strong>10Ω</strong>. I<sub>P</sub> = 400/10 = <strong>40A</strong>. I<sub>L</sub> = √3 × 40 = <strong>69.2A</strong>.</p>
+                <p>cos φ = R/Z = 8/10 = 0.8. P = √3 × 400 × 69.2 × 0.8 = <strong>38.4 kW</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXERCISES ===== -->
+    <section class="section" id="exercises">
+        <h2 class="section-title"><i class="fas fa-pen"></i> Exercises <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3><i class="fas fa-tasks"></i> A. MCQs</h3>
+            <div class="mcq-grid">
+                <div class="mcq-item"><h4>Q 5.1</h4><p>Peak value of sine wave occurs:</p><ul class="options"><li>a. Once at positive max</li><li>b. Once at negative max</li><li>c. Twice at positive and negative max</li><li>d. Twice at positive max</li></ul>
+                    <button class="toggle-btn" data-target="m51"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m51"><strong>Answer: c.</strong> Peak occurs twice per cycle — once positive max and once negative max.</div></div>
+
+                <div class="mcq-item"><h4>Q 5.2</h4><p>Imaginary part of impedance is:</p><ul class="options"><li>a. Resistance</li><li>b. Reactance</li><li>c. Admittance</li><li>d. Conductance</li></ul>
+                    <button class="toggle-btn" data-target="m52"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m52"><strong>Answer: b. Reactance</strong>. Z = R + jX where X (reactance) is the imaginary part.</div></div>
+
+                <div class="mcq-item"><h4>Q 5.3</h4><p>50 Hz sine wave angular frequency (rad/sec):</p><ul class="options"><li>a. 50/π</li><li>b. 50/2π</li><li>c. 50π</li><li>d. 100π</li></ul>
+                    <button class="toggle-btn" data-target="m53"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m53"><strong>Answer: d. 100π</strong>. ω = 2πf = 2π × 50 = 100π rad/sec.</div></div>
+
+                <div class="mcq-item"><h4>Q 5.4</h4><p>i(t) = 100 sin 314t achieves 86.6A after how many seconds from zero?</p><ul class="options"><li>a. 1/300 sec</li><li>b. 1/600 sec</li><li>c. 1/1200 sec</li><li>d. 1/150 sec</li></ul>
+                    <button class="toggle-btn" data-target="m54"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m54"><strong>Answer: a. 1/300 sec</strong>. 86.6 = 100 sin(314t) → sin(314t) = 0.866 → 314t = π/3 → t = π/(3×314) ≈ 1/300 sec.</div></div>
+
+                <div class="mcq-item"><h4>Q 5.5</h4><p>If v₁ = A sin ωt and v₂ = B sin(ωt − φ):</p><ul class="options"><li>a. v₁ lags v₂ by φ</li><li>b. v₂ lags v₁ by φ</li><li>c. v₂ leads v₁ by φ</li><li>d. v₁ in phase with v₂</li></ul>
+                    <button class="toggle-btn" data-target="m55"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m55"><strong>Answer: b. v₂ lags v₁ by φ</strong>. The negative angle (−φ) means v₂ reaches its peak later.</div></div>
+
+                <div class="mcq-item"><h4>Q 5.6</h4><p>Star connection, I<sub>L</sub> = 15A. Phase current = ?</p><ul class="options"><li>a. 10 A</li><li>b. 12.5 A</li><li>c. 15 A</li><li>d. 17 A</li></ul>
+                    <button class="toggle-btn" data-target="m56"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m56"><strong>Answer: c. 15 A</strong>. In star connection, I<sub>L</sub> = I<sub>P</sub>.</div></div>
+            </div>
+
+            <h3><i class="fas fa-edit"></i> B. Subjective Questions</h3>
+            <div class="exercise-area"><p><strong>Q1.</strong> Define "Power factor". Value for pure inductive circuit?</p>
+                <button class="toggle-btn" data-target="sq1"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq1"><p>Power factor = cos φ = ratio of true power to apparent power = R/Z. For pure inductive circuit, φ = 90°, so <strong>cos φ = 0</strong>.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q2.</strong> v = 300 sin ωt across pure C (X<sub>C</sub> = 15Ω). Find: (a) i expression (b) power factor (c) phase angle, power consumed.</p>
+                <button class="toggle-btn" data-target="sq2"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq2"><p>(a) I<sub>m</sub> = V<sub>m</sub>/X<sub>C</sub> = 300/15 = 20A. <strong>i = 20 sin(ωt + 90°)</strong></p><p>(b) cos φ = <strong>0</strong> (pure capacitive)</p><p>(c) Phase angle = <strong>90°</strong> (current leads). Power = VI cos φ = <strong>0 W</strong>.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q3.</strong> R = 12Ω, L = 0.15H, C = 100μF, series, 100V 50Hz. Find Z, I, phase difference.</p>
+                <button class="toggle-btn" data-target="sq3"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq3">
+                    <p>X<sub>L</sub> = 2π×50×0.15 = 47.12Ω. X<sub>C</sub> = 1/(2π×50×100×10⁻⁶) = 31.83Ω.</p>
+                    <p>X = X<sub>L</sub> − X<sub>C</sub> = 15.29Ω. Z = √(12² + 15.29²) = <strong>19.44Ω</strong></p>
+                    <p>I = 100/19.44 = <strong>5.14A</strong>. φ = tan⁻¹(15.29/12) = <strong>51.87°</strong> (current lags).</p>
+                </div></div>
+
+            <div class="exercise-area"><p><strong>Q4.</strong> Z₁ = 10 + j15Ω, Z₂ = 6 − j8Ω in parallel, I<sub>S</sub> = 20A. Find power in each branch.</p>
+                <button class="toggle-btn" data-target="sq4"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq4"><p>|Z₁| = √(100+225) = 18.03Ω, |Z₂| = √(36+64) = 10Ω. By current divider: I₁ = I<sub>S</sub>×Z₂/(Z₁+Z₂), I₂ = I<sub>S</sub>×Z₁/(Z₁+Z₂). Then P₁ = |I₁|²×R₁, P₂ = |I₂|²×R₂.</p></div></div>
+
+            <div class="exercise-area"><p><strong>Q5.</strong> Delta system: V<sub>P</sub> = 500V, I<sub>P</sub> = 20A, cos φ = 0.8. Total power?</p>
+                <button class="toggle-btn" data-target="sq5"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq5"><p>P = 3 × V<sub>P</sub> × I<sub>P</sub> × cos φ = 3 × 500 × 20 × 0.8 = <strong>24,000 W = 24 kW</strong></p></div></div>
+        </div>
+    </section>
+
+    <!-- ===== SUMMARY ===== -->
+    <section class="section" id="summary">
+        <h2 class="section-title"><i class="fas fa-list"></i> Unit Summary <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-clipboard-list"></i> Key Takeaways</div>
+                <ul>
+                    <li><strong>RMS value</strong> = steady DC current producing same heat. Effective value = 0.707 × I<sub>m</sub>.</li>
+                    <li><strong>Phase</strong> is the relative position measured in time or angle.</li>
+                    <li>One complete set of +ve and −ve values = <strong>cycle</strong>.</li>
+                    <li>Phase angle between V and I found by dividing R by Z.</li>
+                    <li><strong>Power factor</strong> ranges from −1 to 1.</li>
+                    <li><strong>3-phase advantages:</strong> ~3× power, rotating magnetic field, less conductor material, higher motor pf.</li>
+                    <li>R, C, L can be combined as RC, RL, LC, RLC circuits.</li>
+                    <li><strong>Star:</strong> I<sub>L</sub> = I<sub>P</sub>; V<sub>L</sub> = √3 V<sub>P</sub>.</li>
+                    <li><strong>Delta:</strong> V<sub>L</sub> = V<sub>P</sub>; I<sub>L</sub> = √3 I<sub>P</sub>.</li>
+                    <li>Total 3-phase power: W = √3 V<sub>L</sub> I<sub>L</sub> cos φ.</li>
+                    <li><strong>Power Triangle:</strong> Base = Active (W), Perpendicular = Reactive (VAR), Hypotenuse = Apparent (VA).</li>
+                </ul>
+            </div>
+            <div class="important-note"><div class="box-title"><i class="fas fa-brain"></i> Quick Formula Reference</div>
+                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Quantity</th><th>Formula</th></tr></thead>
+                <tbody>
+                    <tr><td>RMS Value</td><td>I<sub>rms</sub> = I<sub>m</sub>/√2 = 0.707 I<sub>m</sub></td></tr>
+                    <tr><td>Average Value</td><td>I<sub>av</sub> = 2I<sub>m</sub>/π = 0.637 I<sub>m</sub></td></tr>
+                    <tr><td>Form Factor</td><td>1.11</td></tr>
+                    <tr><td>Peak Factor</td><td>1.414</td></tr>
+                    <tr><td>X<sub>L</sub></td><td>2πfL (Ω)</td></tr>
+                    <tr><td>X<sub>C</sub></td><td>1/(2πfC) (Ω)</td></tr>
+                    <tr><td>Z (RL)</td><td>√(R² + X<sub>L</sub>²)</td></tr>
+                    <tr><td>Z (RC)</td><td>√(R² + X<sub>C</sub>²)</td></tr>
+                    <tr><td>Z (RLC)</td><td>√(R² + (X<sub>L</sub>−X<sub>C</sub>)²)</td></tr>
+                    <tr><td>Resonant freq</td><td>1/(2π√LC)</td></tr>
+                    <tr><td>Star: V<sub>L</sub></td><td>√3 × V<sub>P</sub></td></tr>
+                    <tr><td>Delta: I<sub>L</sub></td><td>√3 × I<sub>P</sub></td></tr>
+                    <tr><td>3-Phase Power</td><td>√3 V<sub>L</sub> I<sub>L</sub> cos φ</td></tr>
+                </tbody></table></div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Action completed</span></div>
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

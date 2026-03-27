@@ -1,412 +1,457 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>FEEE · Unit 4 · Transformer & Machines</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: transformer / machines / industrial copper -->
-  <style>
-    :root {
-      --primary: #b43e2b;          /* transformer copper */
-      --primary-light: #d45d4a;
-      --accent: #2a6f8d;            /* motor blue */
-      --accent-light: #4a9fc0;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #00acc1;
-      --header-bg: linear-gradient(145deg, #4a251c, #b43e2b, #2a6f8d);
-    }
-    /* header emoji: transformer and motor symbols */
-    .header::after {
-      content: "⚡🔄🔧⚙️";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* transformer construction placeholder */
-    .transformer-demo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-    .core-box {
-      background: var(--light);
-      border: 4px solid var(--primary);
-      padding: 20px;
-      border-radius: 50% 20% / 40% 60%;
-      font-weight: bold;
-    }
-    .coil {
-      background: #ffd966;
-      padding: 10px 25px;
-      border-radius: 30px;
-      color: #333;
-      font-weight: bold;
-    }
-    /* motor types grid */
-    .motor-card {
-      background: var(--formula-bg);
-      border-left: 5px solid var(--accent);
-      padding: 15px;
-      border-radius: var(--radius-sm);
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
-
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Solution') ? 'Show Solution' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Solution') ? 'Hide Solution' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4 - Electric and Magnetic Circuits | FEEE</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+    MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}};
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <style>
+        .figure-link{text-decoration:none;color:inherit;display:block;cursor:pointer}
+        .figure-link .diagram-placeholder{transition:all var(--transition);border:2px dashed var(--gray);position:relative}
+        .figure-link:hover .diagram-placeholder{border-color:var(--accent);background:var(--formula-bg);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+        .diagram-placeholder .click-hint{display:block;margin-top:8px;font-size:.78rem;color:var(--accent);font-weight:500}
+        .figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}
+        @media(max-width:768px){.figure-row{grid-template-columns:1fr}}
+        .mcq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin:20px 0}
+        .mcq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;border-left:4px solid var(--accent)}
+        .mcq-item h4{color:var(--primary);margin-bottom:12px;font-size:.95rem}
+        .mcq-item .options{list-style:none;padding:0}
+        .mcq-item .options li{padding:6px 0;font-size:.9rem}
+        @media(max-width:768px){.mcq-grid{grid-template-columns:1fr}}
+        [data-theme="dark"] .mcq-item{background:#1a2332}
+        .bio-box{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;padding:20px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-left:5px solid var(--primary);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:20px 0}
+        [data-theme="dark"] .bio-box{background:linear-gradient(135deg,#1a237e33,#28359333)}
+        .bio-box .bio-text{flex:1;min-width:250px}
+        .bio-box .bio-text h4{color:var(--primary);margin-bottom:8px}
+        .outcome-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:16px 0}
+        .outcome-item{background:var(--formula-bg);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem}
+        .outcome-item strong{color:var(--accent)}
+        .eq-num{float:right;color:var(--gray);font-size:.9rem}
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+<header class="header">
     <div class="header-content">
-      <h1>⚡ FEEE · Unit 4 ⚡</h1>
-      <h2>Transformers · Motors · EMF Equation · Auto Transformer</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> BCA / B.Sc. CS</span>
-        <span class="info-item"><i class="fas fa-exchange-alt"></i> Transformers</span>
-        <span class="info-item"><i class="fas fa-fan"></i> Motors & Types</span>
-        <span class="info-item"><i class="fas fa-calculator"></i> Simple Problems</span>
-      </div>
+        <h1><i class="fas fa-magnet"></i> Electric and Magnetic Circuits</h1>
+        <h2>Unit 4 — Fundamentals of Electrical and Electronics Engineering</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> ES110</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 4</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> Diploma — Sem I</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+        </div>
     </div>
-  </header>
-
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+</header>
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> FEEE·UNIT4</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#overview"><i class="fas fa-circle"></i> Overview</a>
-        <a href="#transformers"><i class="fas fa-exchange-alt"></i> Transformers</a>
-        <a href="#auto"><i class="fas fa-arrow-right-arrow-left"></i> Auto Transformer</a>
-        <a href="#motors"><i class="fas fa-fan"></i> Motors</a>
-        <a href="#problems"><i class="fas fa-pencil"></i> Problems</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>⚡ FEEE U4</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+            <a href="#current"><i class="fas fa-bolt"></i> Current/Voltage</a>
+            <a href="#terminology"><i class="fas fa-project-diagram"></i> Terminology</a>
+            <a href="#kirchhoff"><i class="fas fa-balance-scale"></i> Kirchhoff's Laws</a>
+            <a href="#magnetic"><i class="fas fa-magnet"></i> Magnetic Params</a>
+            <a href="#magcircuit"><i class="fas fa-circle-notch"></i> Magnetic Circuits</a>
+            <a href="#faraday"><i class="fas fa-wave-square"></i> EM Induction</a>
+            <a href="#inductance"><i class="fas fa-coil"></i> Inductance</a>
+            <a href="#analogy"><i class="fas fa-arrows-alt-h"></i> Analogy</a>
+            <a href="#solved"><i class="fas fa-calculator"></i> Solved</a>
+            <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
+            <a href="#summary"><i class="fas fa-list"></i> Summary</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
-
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <h3><i class="fas fa-bolt"></i> FEEE Unit 4</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
-    </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header"><h3>⚡ FEEE U4</h3><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#overview"><i class="fas fa-circle"></i> Overview - Transformer & Machines</a>
-      <a href="#transformers"><i class="fas fa-exchange-alt"></i> Transformer Construction, EMF, Ratio</a>
-      <a href="#auto"><i class="fas fa-arrow-right-arrow-left"></i> Auto Transformer</a>
-      <a href="#motors"><i class="fas fa-fan"></i> Motors: Construction, Types, Applications</a>
-      <a href="#problems"><i class="fas fa-pencil"></i> Simple Problems</a>
+        <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
+        <a href="#current"><i class="fas fa-bolt"></i> Current/Voltage</a>
+        <a href="#terminology"><i class="fas fa-project-diagram"></i> Terminology</a>
+        <a href="#kirchhoff"><i class="fas fa-balance-scale"></i> Kirchhoff's Laws</a>
+        <a href="#magnetic"><i class="fas fa-magnet"></i> Magnetic Params</a>
+        <a href="#magcircuit"><i class="fas fa-circle-notch"></i> Magnetic Circuits</a>
+        <a href="#faraday"><i class="fas fa-wave-square"></i> EM Induction</a>
+        <a href="#inductance"><i class="fas fa-coil"></i> Inductance</a>
+        <a href="#analogy"><i class="fas fa-arrows-alt-h"></i> Analogy</a>
+        <a href="#solved"><i class="fas fa-calculator"></i> Solved</a>
+        <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
+        <a href="#summary"><i class="fas fa-list"></i> Summary</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: OVERVIEW ========= -->
-    <section id="overview" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-circle"></i> Transformer and Machines - Overview
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-microchip"></i> Introduction</div>
-          <p><strong>Transformers</strong> and <strong>electrical machines</strong> (motors and generators) are fundamental electromechanical energy conversion devices.</p>
-          <ul>
-            <li><strong>Transformer:</strong> Static device, transfers electrical energy between circuits via electromagnetic induction.</li>
-            <li><strong>Motor:</strong> Converts electrical energy into mechanical energy (motion).</li>
-            <li><strong>Generator:</strong> Converts mechanical energy into electrical energy.</li>
-          </ul>
+<div class="container">
+
+    <!-- ===== OVERVIEW ===== -->
+    <section class="section" id="overview">
+        <h2 class="section-title"><i class="fas fa-eye"></i> Unit Overview & Outcomes <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-bullseye"></i> Unit Specifics</div>
+                <ul><li>Definition of current, voltage, power and energy</li><li>Electric circuit parameters and laws</li><li>Parameters of a magnetic circuit</li><li>Comparison between electric and magnetic circuits</li></ul>
+            </div>
+            <div class="tip-box"><div class="box-title"><i class="fas fa-lightbulb"></i> Rationale</div>
+                <p>The phenomena of electricity and magnetism are interconnected. Electric field produces magnetic effect and vice versa. The magnetic field forms a necessary connection between electrical and mechanical energy. All electromechanical devices depend on the magnetic field for interchange of energy. This unit deals with the law governing the magnetic field, magnetization characteristic, emf induction and correlation between simple magnetic and electrical circuits.</p>
+            </div>
+            <div class="important-note"><div class="box-title"><i class="fas fa-book-reader"></i> Pre-Requisites</div>
+                <ol><li>Science: Electricity, Magnetic Effects of Electric Current (Class X)</li><li>Mathematics: Pair of Linear Equations, Quadratic Equations (Class X)</li></ol>
+            </div>
+            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+            <div class="outcome-grid">
+                <div class="outcome-item"><strong>U4-O1:</strong> Explain the basic parameters of an electrical circuit.</div>
+                <div class="outcome-item"><strong>U4-O2:</strong> Describe the basic parameters of a magnetic circuit.</div>
+                <div class="outcome-item"><strong>U4-O3:</strong> Explain laws of electromagnetic induction.</div>
+                <div class="outcome-item"><strong>U4-O4:</strong> Interpret electric and magnetic circuits.</div>
+            </div>
+            <h3><i class="fas fa-table"></i> CO Mapping</h3>
+            <div class="table-wrapper"><table class="data-table"><thead><tr><th>Outcomes</th><th>CO-1</th><th>CO-2</th><th>CO-3</th><th>CO-4</th><th>CO-5</th><th>CO-6</th></tr></thead>
+            <tbody>
+                <tr><td>U4-O1</td><td>2</td><td>-</td><td>-</td><td>3</td><td>2</td><td>2</td></tr>
+                <tr><td>U4-O2</td><td>1</td><td>-</td><td>-</td><td>3</td><td>1</td><td>2</td></tr>
+                <tr><td>U4-O3</td><td>1</td><td>-</td><td>-</td><td>3</td><td>1</td><td>3</td></tr>
+                <tr><td>U4-O4</td><td>1</td><td>-</td><td>-</td><td>3</td><td>1</td><td>1</td></tr>
+            </tbody></table></div>
+            <div class="bio-box"><div class="bio-text">
+                <h4><i class="fas fa-user-graduate"></i> Michael Faraday (1791–1867)</h4>
+                <p>The most influential scientist in history, contributed to the study of electromagnetism and electrochemistry. He received very little formal education, but was an excellent experimentalist. His research on the magnetic field around a conductor carrying a direct current established the basis for the concept of the electromagnetic field. The breakthrough came when Faraday found that a <strong>changing magnetic field produces an electric field</strong>. This relation was later modeled mathematically by James Maxwell and is known as <strong>Faraday's law</strong>. This led to the discovery of the <strong>electric dynamo</strong>. The SI unit of capacitance is named <strong>farad</strong> in his honor.</p>
+            </div></div>
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 2: TRANSFORMERS (CONSTRUCTION, PRINCIPLE, EMF, RATIO) ========= -->
-    <section id="transformers" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-exchange-alt"></i> Transformers: Construction · Principle · EMF Equation
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-hard-hat"></i> General Construction</div>
-          <p>Transformer consists of:</p>
-          <ul>
-            <li><strong>Core:</strong> Laminated silicon steel to reduce eddy currents</li>
-            <li><strong>Windings:</strong> Primary and secondary coils (copper or aluminum)</li>
-            <li><strong>Insulation:</strong> Between windings and core</li>
-            <li><strong>Tank and bushings:</strong> For cooling and connections (in large transformers)</li>
-          </ul>
-          <div class="transformer-demo">
-            <span class="coil">Primary (N₁)</span>
-            <span class="core">⬅️ Core ➡️</span>
-            <span class="coil">Secondary (N₂)</span>
-          </div>
-        </div>
+    <!-- ===== CURRENT, VOLTAGE, POWER ===== -->
+    <section class="section" id="current">
+        <h2 class="section-title"><i class="fas fa-bolt"></i> 4.1.2 Current, Voltage, Power & Energy <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>Current</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Electric Current</div>
+                <p>The fundamental electrical quantity is <strong>charge</strong> (unit: Coulomb). The smallest charge: electron = −1.602×10⁻¹⁹ C; proton = +1.602×10⁻¹⁹ C. Electric current is the <strong>time rate of change of charged particles</strong> flowing through a predetermined area.</p>
+                <div class="formula">\[ i = \frac{\Delta Q}{\Delta t} \]</div>
+                <p>Unit: <strong>Ampere (A)</strong> = 1 Coulomb / 1 second</p>
+            </div>
 
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-flask"></i> Working Principle</div>
-          <p>Based on <strong>mutual induction</strong>. When AC applied to primary, alternating flux is set up in core. This flux links with secondary winding and induces EMF (Faraday's law).</p>
-          <p>Frequency remains same; voltage/current levels change based on turns ratio.</p>
-        </div>
+            <h3>Voltage (Potential Difference)</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Voltage</div>
+                <p>The <strong>work done in moving a unit charge</strong> from point a to point b. Unit: <strong>Volt (V)</strong> = 1 Joule / 1 Coulomb. The potential difference between two points is <strong>independent of the path</strong> chosen. If voltage of point a is higher than b (V<sub>ab</sub>), work must be done moving charge from b to a (energy input). V<sub>ba</sub> = −V<sub>ab</sub>.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=voltage+potential+difference+representation+point+a+b+polarity" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.1:</strong> (a) Representation of voltage difference V<sub>ab</sub> (b) Alternate representation with + and − signs</p><span class="click-hint">🔍 Click to view on Google Images</span></div></a>
 
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-calculator"></i> EMF Equation of Transformer</div>
-          <p>RMS EMF per turn: E = 4.44 f Φ<sub>m</sub> N</p>
-          <p>Where: f = frequency, Φ<sub>m</sub> = maximum flux in core (Wb), N = number of turns</p>
-          <div class="formula">E₁ = 4.44 f Φ<sub>m</sub> N₁  (primary EMF)</div>
-          <div class="formula">E₂ = 4.44 f Φ<sub>m</sub> N₂  (secondary EMF)</div>
+            <h3>Power and Energy</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Power</div>
+                <p>Defined as <strong>work done per unit time</strong>.</p>
+                <div class="formula">\[ P = \frac{\text{Work}}{\text{time}} = \frac{\text{Work}}{\text{charge}} \times \frac{\text{charge}}{\text{time}} = V \times I \]</div>
+                <p>Unit: <strong>Watts (W)</strong> = Joules/second. If V and I are constant over time t, Energy E = V × I × t joules.</p>
+            </div>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Passive Sign Convention</div>
+                <p><strong>Power absorbed (positive):</strong> Current I flows <em>into</em> the positive terminal of V.</p>
+                <p><strong>Power delivered (negative):</strong> Current I flows <em>out of</em> the positive terminal of V.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=passive+sign+convention+power+absorbed+delivered+current+direction" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.2:</strong> (a) Power dissipated (absorbed) — current into + terminal (b) Power generated (delivered) — current out of + terminal</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-ratio"></i> Transformation Ratio (K)</h4>
-            <p>K = E₂ / E₁ = N₂ / N₁</p>
-            <p>K < 1 : Step-down<br>K > 1 : Step-up</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-arrows-spin"></i> Voltage/Current Relation</h4>
-            <p>V₂ / V₁ = N₂ / N₁ = K (ideal)</p>
-            <p>I₂ / I₁ = N₁ / N₂ = 1/K (for ideal, neglecting losses)</p>
-          </div>
-        </div>
-
-        <div class="workshop-box">
-          <div class="box-title"><i class="fas fa-layer-group"></i> Types of Transformers</div>
-          <ul>
-            <li><strong>Power transformer:</strong> Used in transmission network</li>
-            <li><strong>Distribution transformer:</strong> Used for local distribution</li>
-            <li><strong>Instrument transformer:</strong> CT (current transformer), PT (potential transformer)</li>
-            <li><strong>Isolation transformer:</strong> 1:1 ratio for safety</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: AUTO TRANSFORMERS ========= -->
-    <section id="auto" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-arrow-right-arrow-left"></i> Auto Transformers
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-code-branch"></i> What is an Auto Transformer?</div>
-          <p>An <strong>auto transformer</strong> has a single continuous winding with a tap point. Part of winding is common to both primary and secondary.</p>
-          <p>Advantages: Smaller, cheaper, higher efficiency than two-winding transformer for same KVA.</p>
-          <p>Disadvantage: No electrical isolation between primary and secondary.</p>
-          <div class="formula">Voltage ratio: V₁/V₂ = N₁/N₂</div>
-          <div class="formula">Currents: I₁·N₁ = I₂·N₂ + (I₂ - I₁)·N₂? simpler: I₁/I₂ = N₂/N₁</div>
+    <!-- ===== CIRCUIT TERMINOLOGY ===== -->
+    <section class="section" id="terminology">
+        <h2 class="section-title"><i class="fas fa-project-diagram"></i> 4.1.3 Electric Circuit Terminology <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Branch</div><p>Any portion of a circuit with two terminals connected to it. May consist of more than one circuit element.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Node</div><p>A junction of two or more branches. Any connection of two or more branch terminals forms a node.</p></div>
+            <a href="https://www.google.com/search?tbm=isch&q=electric+circuit+node+branch+definition+diagram+current+directions" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.3:</strong> Definition of node — showing Node a, b, c with currents I₀ through I₅</p><span class="click-hint">🔍 Click to view</span></div></a>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Loop</div><p>A <strong>closed connection</strong> of branches.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Mesh</div><p>A loop that does <strong>not contain any other loop</strong> within it. Important aid for circuit analysis.</p></div>
+            <a href="https://www.google.com/search?tbm=isch&q=electric+circuit+mesh+loop+definition+diagram+Loop1+Loop2" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.4:</strong> Definition of mesh — two non-overlapping loops (Loop 1 and Loop 2)</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: MOTORS (CONSTRUCTION, WORKING, TYPES, APPLICATIONS) ========= -->
-    <section id="motors" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-fan"></i> Motors: Construction · Working · Types · Applications
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-gear"></i> Construction and Working Principle</div>
-          <p><strong>Electric motor</strong> converts electrical energy to mechanical energy using the principle that a current-carrying conductor in a magnetic field experiences a force (F = BIL).</p>
-          <p>Basic parts: Stator (stationary part), Rotor (rotating part), Commutator (in DC motors), Brushes, Bearings.</p>
+    <!-- ===== KIRCHHOFF'S LAWS ===== -->
+    <section class="section" id="kirchhoff">
+        <h2 class="section-title"><i class="fas fa-balance-scale"></i> 4.1.4 Kirchhoff's Laws <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Kirchhoff's Current Law (KCL)</div>
+                <p>Since charge cannot be created but must be conserved, the <strong>sum of the currents at a node must be zero</strong>.</p>
+                <div class="formula">\[ \sum_{k=1}^{N} i_k = 0 \] <span class="eq-num">...(4.1)</span></div>
+                <p>Convention: Current entering a node = <strong>negative</strong>; current leaving = <strong>positive</strong>.</p>
+                <div class="formula">\[ i_1 + i_2 + (-i_3) + (-i_4) = 0 \] <span class="eq-num">...(4.2)</span></div>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=kirchhoff+current+law+KCL+node+illustration+currents+entering+leaving" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.5:</strong> Illustration of KCL — Node A with currents i₁, i₂ (entering), i₃, i₄ (leaving)</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Kirchhoff's Voltage Law (KVL)</div>
+                <p>No energy is lost or created in an electric circuit. In a <strong>closed circuit, the sum of all voltages</strong> associated with sources must equal the sum of load voltages, so the <strong>net voltage around the circuit is zero</strong>.</p>
+                <div class="formula">\[ \sum_{k=1}^{N} V_k = 0 \] <span class="eq-num">...(4.3)</span></div>
+            </div>
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Reference Node</div>
+                <p>Any node can be chosen as a reference. The reference voltage is typically assigned <strong>zero volts</strong>. Other node voltages are measured relative to this reference.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=KVL+kirchhoff+voltage+law+reference+node+simple+circuit+V+R" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.6:</strong> Illustration of reference node — V source, resistor R, nodes 1 and 2</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-diagram-project"></i> Types of Motors and Applications</div>
-          
-          <h4>DC Motors</h4>
-          <div class="motor-card">
-            <ul>
-              <li><strong>Series motor:</strong> High starting torque (cranes, hoists)</li>
-              <li><strong>Shunt motor:</strong> Constant speed (lathes, fans)</li>
-              <li><strong>Compound motor:</strong> Intermediate characteristics (elevators, conveyors)</li>
-              <li><strong>PMDC (permanent magnet):</strong> Small toys, automotive</li>
-            </ul>
-          </div>
-
-          <h4 style="margin-top:15px;">AC Motors</h4>
-          <div class="motor-card">
-            <ul>
-              <li><strong>Induction motor (squirrel cage):</strong> Most common industrial motor (pumps, compressors, fans)</li>
-              <li><strong>Slip ring induction motor:</strong> High starting torque (cranes, lifts)</li>
-              <li><strong>Single-phase induction motor:</strong> Domestic appliances (fans, washing machines, ACs)</li>
-              <li><strong>Synchronous motor:</strong> Constant speed, power factor correction</li>
-            </ul>
-          </div>
-
-          <h4 style="margin-top:15px;">Special Motors</h4>
-          <div class="motor-card">
-            <ul>
-              <li><strong>Stepper motor:</strong> Precise positioning (robotics, printers)</li>
-              <li><strong>Servo motor:</strong> Closed-loop control (CNC, robotics)</li>
-              <li><strong>BLDC motor:</strong> Efficient, long life (EVs, fans)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 5: SIMPLE PROBLEMS ========= -->
-    <section id="problems" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-pencil"></i> Simple Problems on Transformer & Machines
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <!-- Problem 1 -->
-        <div class="exercise-area">
-          <p><strong>Problem 1:</strong> A 50 Hz transformer has 500 turns on primary and 100 turns on secondary. Maximum flux in core is 0.02 Wb. Calculate primary and secondary induced EMF.</p>
-        </div>
-        <button class="toggle-btn" data-target="prob1"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="prob1">
-          <div class="formula answer">
-            E₁ = 4.44 f Φ<sub>m</sub> N₁ = 4.44 × 50 × 0.02 × 500<br>
-            = 4.44 × 50 × 10 = 4.44 × 500 = <strong>2220 V</strong><br>
-            E₂ = 4.44 f Φ<sub>m</sub> N₂ = 4.44 × 50 × 0.02 × 100<br>
-            = 4.44 × 50 × 2 = 4.44 × 100 = <strong>444 V</strong><br>
-            Turns ratio K = N₂/N₁ = 100/500 = 0.2 (step-down)
-          </div>
-        </div>
+    <!-- ===== MAGNETIC PARAMETERS ===== -->
+    <section class="section" id="magnetic">
+        <h2 class="section-title"><i class="fas fa-magnet"></i> 4.2.1 Magnetic Parameters <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <p>A current-carrying conductor creates a magnetic field in the surrounding space. The circular closed paths are known as <strong>lines of flux</strong>. Direction given by the <strong>right-hand rule</strong>.</p>
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+field+flux+lines+current+carrying+conductor+right+hand+rule" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.7:</strong> Flux lines surrounding current-carrying conductor — concentric circles, denser near conductor</p><span class="click-hint">🔍 Click to view</span></div></a>
 
-        <!-- Problem 2 -->
-        <div class="exercise-area">
-          <p><strong>Problem 2:</strong> A single phase transformer has 600 primary turns and 150 secondary turns. Primary is connected to 2300 V, 50 Hz supply. Find secondary voltage and transformation ratio.</p>
-        </div>
-        <button class="toggle-btn" data-target="prob2"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="prob2">
-          <div class="formula answer">
-            K = N₂/N₁ = 150/600 = 0.25<br>
-            V₂ = K × V₁ = 0.25 × 2300 = <strong>575 V</strong>
-          </div>
-        </div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Magnetizing Force (H)</div>
+                <p>Current flowing through a conductor per unit length of flux line. For circular flux line with radius r:</p>
+                <div class="formula">\[ H = \frac{i}{2\pi r} \quad \text{A/m} \] <span class="eq-num">...(4.4)</span></div>
+                <p>H is <strong>independent of material properties</strong>.</p>
+            </div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Flux Density (B)</div>
+                <p>Depends on material properties:</p>
+                <div class="formula">\[ B = \mu_0 \mu_r H \quad \text{Wb/m}^2 \text{ or Tesla} \] <span class="eq-num">...(4.5)</span></div>
+                <p>Where μ = permeability, μ₀ = 4π×10⁻⁷ (free space), μᵣ = relative permeability. Unit of permeability: Wb/(A·m).</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=B-H+curve+ferromagnetic+paramagnetic+diamagnetic+free+space" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.8:</strong> B-H curve of different magnetic materials — ferromagnetic (μf), paramagnetic (μp), free space (μ₀), diamagnetic (μd)</p><span class="click-hint">🔍 Click to view</span></div></a>
 
-        <!-- Problem 3 -->
-        <div class="exercise-area">
-          <p><strong>Problem 3:</strong> An auto transformer supplies a load of 10 kW at 200 V from a 400 V supply. Neglecting losses, find the current in the common winding.</p>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Magnetomotive Force (MMF)</div>
+                <p>A tightly wound coil with N turns carrying current I increases field intensity N-fold. <strong>MMF = N × I</strong> (unit: Ampere-turns, AT).</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=flux+lines+solenoid+coil+N+turns+ferromagnetic+core+leakage+flux" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.9:</strong> Flux in a coil wound on ferromagnetic core — showing main flux and leakage flux</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-        <button class="toggle-btn" data-target="prob3"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="prob3">
-          <div class="formula answer">
-            Load current I₂ = P / V₂ = 10000 / 200 = 50 A<br>
-            Input current I₁ = P / V₁ = 10000 / 400 = 25 A<br>
-            In auto transformer, common winding current = I₂ - I₁ = 50 - 25 = <strong>25 A</strong>
-          </div>
-        </div>
-
-        <!-- Problem 4 (Motor) -->
-        <div class="exercise-area">
-          <p><strong>Problem 4:</strong> A 230V DC shunt motor draws an armature current of 30A. Armature resistance is 0.5Ω. Find back EMF and power developed.</p>
-        </div>
-        <button class="toggle-btn" data-target="prob4"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="prob4">
-          <div class="formula answer">
-            Back EMF E<sub>b</sub> = V - I<sub>a</sub>R<sub>a</sub> = 230 - 30×0.5 = 230 - 15 = <strong>215 V</strong><br>
-            Power developed = E<sub>b</sub> × I<sub>a</sub> = 215 × 30 = <strong>6450 W</strong> (6.45 kW)
-          </div>
-        </div>
-
-        <!-- Problem 5 (Induction motor slip) -->
-        <div class="exercise-area">
-          <p><strong>Problem 5:</strong> A 4-pole, 50 Hz induction motor runs at 1440 rpm. Find slip and rotor frequency.</p>
-        </div>
-        <button class="toggle-btn" data-target="prob5"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="prob5">
-          <div class="formula answer">
-            Synchronous speed N<sub>s</sub> = 120f/P = 120×50/4 = 1500 rpm<br>
-            Slip s = (N<sub>s</sub> - N) / N<sub>s</sub> = (1500 - 1440)/1500 = 60/1500 = <strong>0.04 (4%)</strong><br>
-            Rotor frequency f<sub>r</sub> = s·f = 0.04 × 50 = <strong>2 Hz</strong>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">E = 4.44 f Φ<sub>m</sub> N</div>
-          <div class="tag">K = N₂/N₁ = V₂/V₁</div>
-          <div class="tag">I₂/I₁ = N₁/N₂</div>
-          <div class="tag">Auto: I<sub>common</sub> = I₂ - I₁</div>
-          <div class="tag">E<sub>b</sub> = V - I<sub>a</sub>R<sub>a</sub></div>
-          <div class="tag">N<sub>s</sub> = 120f/P</div>
-          <div class="tag">Slip s = (N<sub>s</sub>-N)/N<sub>s</sub></div>
+    <!-- ===== MAGNETIC CIRCUITS ===== -->
+    <section class="section" id="magcircuit">
+        <h2 class="section-title"><i class="fas fa-circle-notch"></i> 4.2.2 Magnetic Circuits <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Flux Density Equations</div>
+                <div class="formula">\[ B = \frac{\mu N I}{l} \] <span class="eq-num">...(4.6)</span></div>
+                <div class="formula">\[ B = \frac{\phi}{A} \] <span class="eq-num">...(4.7)</span></div>
+                <p>Equating (4.6) and (4.7):</p>
+                <div class="formula">\[ N I = \phi \cdot \frac{l}{\mu A} \] <span class="eq-num">...(4.8)</span></div>
+                <p>The term \(\frac{l}{\mu A}\) is the <strong>reluctance (ℛ)</strong> of the magnetic circuit. Thus: <strong>MMF = φ × ℛ</strong> (analogous to V = I × R).</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=ring+ferromagnetic+material+toroid+exciting+coil+magnetic+circuit" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.10:</strong> Ring of ferromagnetic material with exciting coil — toroidal core with N-turn winding</p><span class="click-hint">🔍 Click to view</span></div></a>
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    <!-- ===== ELECTROMAGNETIC INDUCTION ===== -->
+    <section class="section" id="faraday">
+        <h2 class="section-title"><i class="fas fa-wave-square"></i> 4.3 Electromagnetic Induction <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>4.3.1 Faraday's Law</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Faraday's Law</div>
+                <p>A <strong>time-varying magnetic flux</strong> causes an induced electromotive force (emf):</p>
+                <div class="formula">\[ e = -\frac{d\phi}{dt} \] <span class="eq-num">...(4.9)</span></div>
+                <p>For an N-turn coil:</p>
+                <div class="formula">\[ e = -N\frac{d\phi}{dt} = -\frac{d\lambda}{dt} \] <span class="eq-num">...(4.10)</span></div>
+                <p>Where λ = Nφ = flux linkage of the coil.</p>
+            </div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Lenz's Law</div>
+                <p>The negative sign means the induced emf tends to cause a current that <strong>opposes the change in flux</strong>.</p>
+            </div>
+            <h3>Three Cases of Flux Linkage Change</h3>
+            <div class="card-grid">
+                <div class="card"><h4><i class="fas fa-running"></i> Case I: Motional EMF</h4><p>Flux constant, coil moves relative to it. EMF = <strong>Blv</strong> volts. Direction: <strong>Fleming's right-hand rule</strong>. Associated with electromechanical energy conversion.</p>
+                    <div class="formula">\[ e = Blv \] <span class="eq-num">...(4.11)</span></div></div>
+                <div class="card"><h4><i class="fas fa-sync-alt"></i> Case II: Transformer EMF</h4><p>Coil stationary, flux varies (pulsations). No motion, no energy conversion. EMF = −dφ/dt (same as Eq. 4.9). Also called <strong>statically induced emf</strong>.</p></div>
+                <div class="card"><h4><i class="fas fa-arrows-alt"></i> Case III: Both</h4><p>Coil moves through varying flux. Both motional and transformer emf are induced.</p></div>
+            </div>
+        </div>
+    </section>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <!-- ===== SELF & MUTUAL INDUCTANCE ===== -->
+    <section class="section" id="inductance">
+        <h2 class="section-title"><i class="fas fa-link"></i> 4.3.2 Self & Mutual Inductance <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3>Self-Inductance</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Self-Inductance (L)</div>
+                <p>Measures the voltage induced in a coil by the magnetic field created by current flowing in the <strong>same coil</strong>.</p>
+                <div class="formula">\[ e = N\frac{d\phi}{dt} = N\frac{d\phi}{di}\frac{di}{dt} = L\frac{di}{dt} \] <span class="eq-num">...(4.12)</span></div>
+                <p>Where \(L = N\frac{d\phi}{di}\). For linear B-H: \(L = \frac{N\phi}{i} = \frac{\lambda}{i}\) H.</p>
+                <div class="formula">\[ L = N^2\mu\frac{A}{l} = \frac{N^2}{\mathcal{R}} \] <span class="eq-num">...(4.13)</span></div>
+                <p>Unit: <strong>Henry (H)</strong>. Depends only on geometry, permeability, and number of turns.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=self+inductance+coil+N+turns+flux+phi+linking+turns" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.11:</strong> Self Inductance — coil with N turns, current i, flux φ linking all turns</p><span class="click-hint">🔍 Click to view</span></div></a>
+
+            <h3>Mutual Inductance</h3>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Mutual Inductance (M)</div>
+                <p>When two coils share flux (wound on common core or placed close), a part of flux from one coil links the other, creating <strong>magnetic coupling</strong>.</p>
+                <div class="formula">\[ M_{12} = N\frac{d\phi_{12}}{dt} = \frac{\lambda_{12}}{i_1} \text{ H} \] <span class="eq-num">...(4.14)</span></div>
+                <div class="formula">\[ M_{21} = N\frac{d\phi_{21}}{dt} = \frac{\lambda_{21}}{i_2} \text{ H} \] <span class="eq-num">...(4.15)</span></div>
+                <p>For tightly coupled coil (no flux leakage): <strong>M₁₂ = M₂₁ = M</strong>. Unit: Henry.</p>
+            </div>
+            <a href="https://www.google.com/search?tbm=isch&q=mutual+inductance+two+coils+common+core+flux+phi12+phi21+coupling" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.12:</strong> Mutual inductance — Coil 1 (i₁, φ₁₂) and Coil 2 (i₂, φ₂₁) on common core</p><span class="click-hint">🔍 Click to view</span></div></a>
+        </div>
+    </section>
+
+    <!-- ===== ANALOGY ===== -->
+    <section class="section" id="analogy">
+        <h2 class="section-title"><i class="fas fa-arrows-alt-h"></i> 4.4 Analogy: Electric vs Magnetic <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <p>The analysis of a magnetic circuit is <strong>analogous to a resistive electric circuit</strong>. Kirchhoff's laws apply equally to magnetic circuits.</p>
+            <div class="table-wrapper"><table class="data-table"><thead><tr><th>Electrical Quantity</th><th>Magnetic Quantity</th></tr></thead>
+            <tbody>
+                <tr><td>Electrical field intensity E, V/m</td><td>Magnetic field intensity H, A-turns/m</td></tr>
+                <tr><td>Voltage V, Volts</td><td>Magneto motive force F, A-turns</td></tr>
+                <tr><td>Current i, Amp</td><td>Magnetic flux φ, Wb</td></tr>
+                <tr><td>Current density J, A/m²</td><td>Magnetic flux density B, Wb/m²</td></tr>
+                <tr><td>Resistance R, Ω</td><td>Reluctance ℛ, A-turns/Wb</td></tr>
+            </tbody></table></div>
+            <p><em>Table 4.1: Analogy between electrical and magnetic circuits</em></p>
+
+            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Kirchhoff's Laws for Magnetic Circuits</div>
+                <p><strong>KVL analogy:</strong> MMF of a mesh = sum of MMF drops in various parts.</p>
+                <p><strong>KCL analogy:</strong> Incoming fluxes = outgoing fluxes at a junction.</p>
+                <p><strong>Series circuit:</strong> Total reluctance ℛ = ℛ<sub>C</sub> + ℛ<sub>ag</sub>. Flux φ = F/ℛ.</p>
+            </div>
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=magnetic+core+air+gap+series+magnetic+circuit+reluctance" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.13:</strong> (a) Magnetic core with air gap (b) Electric circuit analogy — R<sub>C</sub> and R<sub>ag</sub> in series</p><span class="click-hint">🔍 Click to view</span></div></a>
+                <a href="https://www.google.com/search?tbm=isch&q=parallel+magnetic+circuit+three+limbs+electrical+analogy+reluctance" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.14:</strong> (a) Magnetic structure with three limbs (b) Electrical analogy — parallel reluctances</p><span class="click-hint">🔍 Click to view</span></div></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOLVED PROBLEMS ===== -->
+    <section class="section" id="solved">
+        <h2 class="section-title"><i class="fas fa-calculator"></i> Solved Problems <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.1.1</div><p>For the circuit shown (5V source, 3V and 10V resistors, 3A current source), determine power absorbed by R and power delivered by the current source.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">KVL in mesh-1: 5 − 3 − V₂ = 0 → V₂ = 2V</div>
+                <div class="step" data-step="Step 2">KVL in mesh-2: V₂ + 10 − V₁ = 0 → V₁ = 2 + 10 = 12V</div>
+                <div class="step" data-step="Step 3">Power delivered by current source = 12 × 3 = <strong>36 W</strong></div>
+                <div class="step" data-step="Step 4">Power absorbed by R = 10 × 3 = <strong>30 W</strong></div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.2.1</div><p>Calculate flux and flux density. A = 0.0001 m², N = 500 turns, I = 0.1A, μᵣ = 1000, core 0.1m × 0.1m square.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="MMF">F = NI = 500 × 0.1 = 50 AT</div>
+                <div class="step" data-step="Length">Mean length l = 4 × 0.1 = 0.4 m</div>
+                <div class="step" data-step="Reluctance">\(\mathcal{R} = \frac{l}{\mu_0\mu_r A} = \frac{0.4}{1000 \times 0.0001 \times 4\pi \times 10^{-7}} = 3.18 \times 10^6\) AT/Wb</div>
+                <div class="step" data-step="Flux">\(\phi = \frac{F}{\mathcal{R}} = \frac{50}{3.18 \times 10^6} = 1.57 \times 10^{-5}\) Wb</div>
+                <div class="formula answer">\(B = \frac{\phi}{A} = \frac{1.57 \times 10^{-5}}{0.0001}\) = <strong>0.157 Wb/m²</strong></div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.3.1</div><p>A bar magnet with total flux 500 × 10⁻⁶ Wb is withdrawn through a 1000-turn coil in 1/10 sec. Find the emf.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="formula">\[e = N\frac{d\phi}{dt} = 1000 \times \frac{500 \times 10^{-6}}{1/10} = 1000 \times 5000 \times 10^{-6}\]</div>
+                <div class="formula answer"><strong>e = 5 V</strong></div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.3.2</div><p>Find inductance of solenoid: length 1000mm, 3000 turns, cylindrical tube diameter 60mm, μᵣ = 1.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Area">\(A = \pi\frac{0.060^2}{4} = 2.83 \times 10^{-3}\) m²</div>
+                <div class="step" data-step="Formula">\(L = N^2\mu_0\mu_r\frac{A}{l}\)</div>
+                <div class="formula">\[L = 3000^2 \times 4\pi \times 10^{-7} \times 1 \times \frac{2.83 \times 10^{-3}}{1}\]</div>
+                <div class="formula answer"><strong>L = 32 mH</strong></div>
+            </div>
+
+            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.4.1</div><p>Iron ring: circumference 140 cm, area 12 cm², 500 turns, 2A current, flux = 1.2 mWb. Find μᵣ.</p></div>
+            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="MMF">F = NI = 500 × 2 = 1000 AT</div>
+                <div class="step" data-step="Reluctance">\(\mathcal{R} = \frac{F}{\phi} = \frac{1000}{1.2 \times 10^{-3}} = 833.33 \times 10^3\)</div>
+                <div class="step" data-step="Solve">\(\mathcal{R} = \frac{l}{\mu_0\mu_r A}\) → \(833.33 \times 10^3 = \frac{1.4}{12 \times 10^{-4} \times \mu_r \times 4\pi \times 10^{-7}}\)</div>
+                <div class="formula answer"><strong>μᵣ ≈ 1115</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXERCISES ===== -->
+    <section class="section" id="exercises">
+        <h2 class="section-title"><i class="fas fa-pen"></i> Exercises <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <h3><i class="fas fa-tasks"></i> A. MCQs</h3>
+            <div class="mcq-grid">
+                <div class="mcq-item"><h4>Q 4.1</h4><p>Sources of steady magnetic field include:</p><ul class="options"><li>a. 1, 3 and 4 only</li><li>b. 3 and 4 only</li><li>c. 1, 2, 3 and 4</li><li>d. 1, 2 and 4 only</li></ul>
+                    <button class="toggle-btn" data-target="m41"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m41"><strong>Answer: c. 1, 2, 3 and 4</strong><p>A permanent magnet, charged disc rotating at uniform speed, accelerating charge, and linearly changing electric field all produce magnetic fields.</p></div></div>
+                <div class="mcq-item"><h4>Q 4.2</h4><p>Magnetic field by infinite linear current-carrying conductor (A/m):</p><ul class="options"><li>a. H = μI/(2πR)</li><li>b. H = I/(2πR)</li><li>c. H = μI/(2r)</li><li>d. H = I/r</li></ul>
+                    <button class="toggle-btn" data-target="m42"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m42"><strong>Answer: b. H = I/(2πR)</strong><p>Magnetic field intensity H = i/(2πr) — independent of material (no μ term).</p></div></div>
+                <div class="mcq-item"><h4>Q 4.3</h4><p>Faraday and Lenz's law are summarized by:</p><ul class="options"><li>a. e = LR</li><li>b. e = L di/dt</li><li>c. e = −dφ/dt</li><li>d. None</li></ul>
+                    <button class="toggle-btn" data-target="m43"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m43"><strong>Answer: c. e = −dφ/dt</strong><p>Faraday's law states emf = negative rate of change of flux; the negative sign represents Lenz's law.</p></div></div>
+                <div class="mcq-item"><h4>Q 4.4</h4><p>An emf is induced in a conductor if it:</p><ul class="options"><li>a. Lies in a magnetic field</li><li>b. Lies perpendicular to field</li><li>c. Cuts the magnetic flux</li><li>d. Moves parallel to field</li></ul>
+                    <button class="toggle-btn" data-target="m44"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m44"><strong>Answer: c. Cuts the magnetic flux</strong><p>EMF is induced only when conductor cuts (moves across) magnetic flux lines.</p></div></div>
+                <div class="mcq-item"><h4>Q 4.5</h4><p>Reluctance depends on:</p><ul class="options"><li>a. Nature of material</li><li>b. Length of flux path</li><li>c. Cross-sectional area</li><li>d. All the above</li></ul>
+                    <button class="toggle-btn" data-target="m45"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m45"><strong>Answer: d. All the above</strong><p>ℛ = l/(μ₀μᵣA) — depends on material (μᵣ), length (l), and area (A).</p></div></div>
+                <div class="mcq-item"><h4>Q 4.6</h4><p>Coil 250 turns, 50V DC, resistance 10Ω. MMF developed is:</p><ul class="options"><li>a. 500</li><li>b. 1250</li><li>c. 2500</li><li>d. 250</li></ul>
+                    <button class="toggle-btn" data-target="m46"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m46"><strong>Answer: b. 1250</strong><p>I = V/R = 50/10 = 5A. MMF = NI = 250 × 5 = 1250 AT.</p></div></div>
+            </div>
+
+            <h3><i class="fas fa-edit"></i> B. Subjective Questions</h3>
+            <div class="exercise-area"><p><strong>Q1.</strong> A magnetic circuit: 150 turns, A = 5×10⁻⁴ m², l = 25×10⁻² m, I = 2A, φ = 0.3×10⁻³ Wb. Find H and μᵣ.</p>
+                <button class="toggle-btn" data-target="sq1"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq1"><p>H = NI/l = 150×2/0.25 = <strong>1200 A/m</strong>. B = φ/A = 0.3×10⁻³/5×10⁻⁴ = 0.6 T. μᵣ = B/(μ₀H) = 0.6/(4π×10⁻⁷×1200) = <strong>397.9</strong></p></div></div>
+            <div class="exercise-area"><p><strong>Q2.</strong> For the circuit shown, determine which components absorb/deliver power.</p>
+                <button class="toggle-btn" data-target="sq2"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq2"><p>Apply passive sign convention: If current enters the + terminal → element absorbs power. If current exits + terminal → element delivers power. Using KCL/KVL to find unknown voltages/currents, then compute P = VI for each element and check the sign.</p></div></div>
+            <div class="exercise-area"><p><strong>Q3.</strong> Apply KVL and KCL to find V₁, V₂ and I₁ for the circuit (5V source, 3V & 10V drops, 2Ω resistor, 3A source).</p>
+                <button class="toggle-btn" data-target="sq3"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq3"><p>KVL mesh-1: 5 − 3 − V₂ = 0 → V₂ = 2V. KVL mesh-2: V₂ + 10 − V₁ = 0 → V₁ = 12V. I₁ = V₂/(2Ω) = 2/2 = <strong>1A</strong>.</p></div></div>
+            <div class="exercise-area"><p><strong>Q4.</strong> 230V, 100W lamp. Find (i) resistance (ii) current (iii) energy in 8 hrs.</p>
+                <button class="toggle-btn" data-target="sq4"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq4"><p>(i) R = V²/P = 230²/100 = <strong>529 Ω</strong> (ii) I = P/V = 100/230 = <strong>0.435 A</strong> (iii) E = P×t = 100×8 = 800 Wh = <strong>0.8 kWh</strong></p></div></div>
+            <div class="exercise-area"><p><strong>Q5.</strong> Electromagnetic circuit: Find flux density, sketch flux lines, indicate N and S poles. A = 0.01 m².</p>
+                <button class="toggle-btn" data-target="sq5"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq5"><p>Calculate B = φ/A. Flux lines form closed paths through the core. N pole is where flux exits (determined by right-hand rule wrapping around the coil — thumb points to N).</p></div></div>
+            <div class="exercise-area"><p><strong>Q6.</strong> Magnetic structure: draw analogy, find total reluctance and self-inductance. N=100, μᵣ=3000μ₀, A₁=A₃=100cm², A₂=25cm², l₁=l₃=30cm, l₂=10cm.</p>
+                <button class="toggle-btn" data-target="sq6"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq6"><p>ℛ₁ = l₁/(μ₀μᵣA₁), ℛ₂ = l₂/(μ₀μᵣA₂), ℛ₃ = l₃/(μ₀μᵣA₃). For parallel structure: ℛ₂ ∥ ℛ₃ + ℛ₁. Then L = N²/ℛ<sub>total</sub>.</p></div></div>
+            <div class="exercise-area"><p><strong>Q7.</strong> Explain statically induced and dynamically induced emf with one application each.</p>
+                <button class="toggle-btn" data-target="sq7"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq7"><p><strong>Statically induced:</strong> Coil stationary, flux varies (transformer emf). Application: <strong>Transformer</strong>. <strong>Dynamically induced:</strong> Conductor moves through stationary field (motional emf, e=Blv). Application: <strong>Generator/Dynamo</strong>.</p></div></div>
+            <div class="exercise-area"><p><strong>Q8.</strong> Compare magnetic circuits and electric circuits.</p>
+                <button class="toggle-btn" data-target="sq8"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq8"><p>Refer Table 4.1: EMF↔MMF, Current↔Flux, Resistance↔Reluctance, E-field↔H-field, J↔B. Kirchhoff's laws apply to both. Key difference: flux doesn't "flow" and dissipate energy like current.</p></div></div>
+            <div class="exercise-area"><p><strong>Q9.</strong> Derive expression for self-inductance of a coil.</p>
+                <button class="toggle-btn" data-target="sq9"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq9"><p>From Faraday's law: e = N(dφ/dt) = N(dφ/di)(di/dt) = L(di/dt). So L = N(dφ/di). For linear material: L = Nφ/i = λ/i. Since φ = NI·μA/l, L = N²μA/l = N²/ℛ henrys.</p></div></div>
+        </div>
+    </section>
+
+    <!-- ===== SUMMARY ===== -->
+    <section class="section" id="summary">
+        <h2 class="section-title"><i class="fas fa-list"></i> Unit Summary <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <div class="section-content">
+            <div class="concept-box"><div class="box-title"><i class="fas fa-clipboard-list"></i> Key Takeaways</div>
+                <ul>
+                    <li>The fundamental electrical quantity is <strong>charge</strong>.</li>
+                    <li>Current = time rate of change of charge flow.</li>
+                    <li>Voltage = work done in moving a unit charge.</li>
+                    <li>Power = work done per unit time = V × I.</li>
+                    <li>Circuit terminologies: <strong>branch, node, mesh, loop</strong>.</li>
+                    <li><strong>KCL:</strong> sum of currents at a node = 0.</li>
+                    <li><strong>KVL:</strong> sum of voltages around a closed loop = 0.</li>
+                    <li>Current-carrying conductor creates a <strong>magnetic field</strong>.</li>
+                    <li>Flux density: <strong>B = μ₀μᵣH</strong>.</li>
+                    <li>Materials classified as ferromagnetic, paramagnetic, diamagnetic based on μᵣ.</li>
+                    <li>Time-varying flux induces emf (<strong>Faraday's law</strong>).</li>
+                    <li><strong>Lenz's law:</strong> induced current opposes change in flux.</li>
+                    <li><strong>Self-inductance:</strong> L = N²/ℛ (henry).</li>
+                    <li><strong>Mutual inductance:</strong> magnetic coupling between neighboring coils.</li>
+                    <li>Magnetic circuit analysis is analogous to resistive electric circuits.</li>
+                    <li>Reluctance ∝ mean length, ∝ 1/cross-sectional area.</li>
+                </ul>
+            </div>
+            <div class="important-note"><div class="box-title"><i class="fas fa-brain"></i> Quick Formula Reference</div>
+                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Quantity</th><th>Formula</th><th>Unit</th></tr></thead>
+                <tbody>
+                    <tr><td>Current</td><td>i = ΔQ/Δt</td><td>Ampere (A)</td></tr>
+                    <tr><td>Power</td><td>P = V × I</td><td>Watt (W)</td></tr>
+                    <tr><td>Magnetizing Force</td><td>H = i/(2πr)</td><td>A/m</td></tr>
+                    <tr><td>Flux Density</td><td>B = μ₀μᵣH</td><td>Tesla (Wb/m²)</td></tr>
+                    <tr><td>MMF</td><td>F = NI</td><td>AT</td></tr>
+                    <tr><td>Reluctance</td><td>ℛ = l/(μA)</td><td>AT/Wb</td></tr>
+                    <tr><td>Faraday's Law</td><td>e = −N(dφ/dt)</td><td>Volt</td></tr>
+                    <tr><td>Motional EMF</td><td>e = Blv</td><td>Volt</td></tr>
+                    <tr><td>Self-Inductance</td><td>L = N²/ℛ</td><td>Henry (H)</td></tr>
+                </tbody></table></div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Action completed</span></div>
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

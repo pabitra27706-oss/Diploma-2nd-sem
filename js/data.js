@@ -169,12 +169,12 @@ const subjects = {
                 color: "#FF9800",
                 items: [
                     { name: "Unit 1", file: "FEEE-Unit-1.html", desc: "Overview of Electrical Components" },
-                    { name: "Unit 2", file: "FEEE-Unit-2.html", desc: "Electric & Magnetic Circuits" },
-                    { name: "Unit 3", file: "FEEE-Unit-3.html", desc: "A.C Circuits" },
-                    { name: "Unit 4", file: "FEEE-Unit-4.html", desc: "Transformer & Machines" },
-                    { name: "Unit 5", file: "FEEE-Unit-5.html", desc: "Overview of Basic Semiconductor Devices" },
-                    { name: "Unit 6", file: "FEEE-Unit-6.html", desc: "Overview of Analog Circuits" },
-                    { name: "Unit 7", file: "FEEE-Unit-7.html", desc: "Overview of Digital Electronics" }
+                    { name: "Unit 2", file: "FEEE-Unit-2.html", desc: "Overview of Analog Circuits" },
+                    { name: "Unit 3", file: "FEEE-Unit-3.html", desc: "Overview of Digital Electronics" },
+                    { name: "Unit 4", file: "FEEE-Unit-4.html", desc: "Electric and Magnetic Circuits" },
+                    { name: "Unit 5", file: "FEEE-Unit-5.html", desc: "AC Circuits" },
+                    { name: "Unit 6", file: "FEEE-Unit-6.html", desc: "Transformer and Machines" },
+                    { name: "Unit 7", file: "FEEE-Unit-7.html", desc: "Semiconductor Fundamentals" }
                 ]
             },
             pyq: {
