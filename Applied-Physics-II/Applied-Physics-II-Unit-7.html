@@ -1,412 +1,2644 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Physics · Unit 7 · Modern Physics</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: modern physics / atomic / quantum -->
-  <style>
-    :root {
-      --primary: #9c4d8c;          /* quantum purple */
-      --primary-light: #b86aa8;
-      --accent: #3a8fb0;            /* laser blue */
-      --accent-light: #5aa9c9;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #4a2e5a, #9c4d8c, #3a8fb0);
-    }
-    /* header emoji: modern physics symbols */
-    .header::after {
-      content: "⚛️🔬💡🔭";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* atom model */
-    .atom-demo {
-      width: 150px;
-      height: 150px;
-      border: 4px solid var(--accent);
-      border-radius: 50%;
-      position: relative;
-      margin: 20px auto;
-    }
-    .electron {
-      width: 15px;
-      height: 15px;
-      background: var(--danger);
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .orbit {
-      position: absolute;
-      border: 2px dashed var(--primary-light);
-      border-radius: 50%;
-    }
-    /* x-ray tube */
-    .coolidge {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
-    }
-    .glass-tube {
-      width: 300px;
-      height: 100px;
-      background: #c0e0ff;
-      border-radius: 50px;
-      position: relative;
-    }
-    .target {
-      width: 30px;
-      height: 30px;
-      background: #c0c0c0;
-      position: absolute;
-      right: 20px;
-      top: 35px;
-    }
-    .filament {
-      width: 20px;
-      height: 40px;
-      background: #ffaa00;
-      position: absolute;
-      left: 20px;
-      top: 30px;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 7 - Modern Physics | Applied Physics-II</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Potential') ? 'Show Potential' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Potential') ? 'Hide Potential' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; }
+        .fraction .den { padding:3px 6px 0; }
+
+        .atom-diagram {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            gap:12px;
+            padding:20px;
+            background:var(--formula-bg);
+            border-radius:var(--radius-md);
+            margin:16px 0;
+            min-width:0;
+        }
+        .orbit-tag {
+            display:inline-block;
+            padding:8px 14px;
+            border-radius:999px;
+            background:rgba(41,98,255,0.12);
+            border:1px solid var(--accent);
+            font-weight:600;
+            margin:4px;
+        }
+        .topic-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:16px;
+            margin:16px 0;
+        }
+        .topic-card {
+            background:var(--card-bg);
+            border-radius:var(--radius-md);
+            padding:18px;
+            box-shadow:var(--shadow-sm);
+            border-top:4px solid var(--purple);
+            min-width:0;
+        }
+        [data-theme="dark"] .topic-card { background:#1a2332; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>⚛️ Physics · Unit 7 ⚛️</h1>
-      <h2>Modern Physics · X-Rays · Lasers · Fiber Optics · Nanotechnology</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-atom"></i> Bohr's Model</span>
-        <span class="info-item"><i class="fas fa-x-ray"></i> X-Rays</span>
-        <span class="info-item"><i class="fas fa-laser"></i> Lasers</span>
-        <span class="info-item"><i class="fas fa-fiber"></i> Fiber Optics</span>
-      </div>
+        <h1><i class="fas fa-atom"></i> Modern Physics</h1>
+        <h2>Unit 7 — Applied Physics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS104</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 7</span>
+            <span class="info-item"><i class="fas fa-calendar"></i> Semester 2</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-atom"></i> PHYS·UNIT7</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#atomic"><i class="fas fa-atom"></i> Atomic Model</a>
-        <a href="#xrays"><i class="fas fa-x-ray"></i> X-Rays</a>
-        <a href="#lasers"><i class="fas fa-laser"></i> Lasers</a>
-        <a href="#fiber"><i class="fas fa-fiber"></i> Fiber Optics</a>
-        <a href="#nano"><i class="fas fa-microchip"></i> Nanoscience</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>⚛️ Physics U7</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#bohr-model"><i class="fas fa-atom"></i> Bohr Model</a>
+            <a href="#potentials"><i class="fas fa-bolt"></i> Potentials</a>
+            <a href="#xrays"><i class="fas fa-x-ray"></i> X-Rays</a>
+            <a href="#laser-basics"><i class="fas fa-lightbulb"></i> Laser Basics</a>
+            <a href="#hene-laser"><i class="fas fa-bullseye"></i> He-Ne Laser</a>
+            <a href="#fiber-optics"><i class="fas fa-network-wired"></i> Fiber Optics</a>
+            <a href="#nanotech"><i class="fas fa-microscope"></i> Nanotech</a>
+            <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+            <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+            <a href="#short-questions"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#long-questions"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+            <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-atom"></i> PHYS Unit 7</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>⚛️ Physics U7</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#atomic"><i class="fas fa-atom"></i> Bohr's model, energy levels, ionization/excitation potential</a>
-      <a href="#xrays"><i class="fas fa-x-ray"></i> X-ray production, Coolidge tube, continuous/characteristic, hard/soft, uses</a>
-      <a href="#lasers"><i class="fas fa-laser"></i> Spontaneous/stimulated emission, He-Ne laser, applications</a>
-      <a href="#fiber"><i class="fas fa-fiber"></i> Optical fiber: propagation, applications</a>
-      <a href="#nano"><i class="fas fa-microchip"></i> Nanoscience & Nanotechnology (introduction)</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#bohr-model"><i class="fas fa-atom"></i> Bohr Model</a>
+        <a href="#potentials"><i class="fas fa-bolt"></i> Potentials</a>
+        <a href="#xrays"><i class="fas fa-x-ray"></i> X-Rays</a>
+        <a href="#laser-basics"><i class="fas fa-lightbulb"></i> Laser Basics</a>
+        <a href="#hene-laser"><i class="fas fa-bullseye"></i> He-Ne Laser</a>
+        <a href="#fiber-optics"><i class="fas fa-network-wired"></i> Fiber Optics</a>
+        <a href="#nanotech"><i class="fas fa-microscope"></i> Nanotech</a>
+        <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+        <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+        <a href="#short-questions"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#long-questions"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+        <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: ATOMIC MODEL ========= -->
-    <section id="atomic" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-atom"></i> Bohr's Atom Model · Energy Levels · Ionization & Excitation Potential
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="atom-demo">
-          <div class="electron"></div>
-          <div class="orbit" style="width:100px; height:100px; top:25px; left:25px;"></div>
-          <div class="orbit" style="width:140px; height:140px; top:5px; left:5px;"></div>
-        </div>
+<div class="container">
 
-        <div class="definition-box">
-          <div class="box-title">Bohr's Model</div>
-          <ul>
-            <li>Electrons revolve in discrete orbits (energy levels) without radiating energy.</li>
-            <li>Angular momentum is quantized: mvr = nh/2π.</li>
-            <li>Energy is emitted/absorbed when electron jumps between levels: ΔE = hf.</li>
-          </ul>
-        </div>
+    <!-- ==================== SECTION 1: OVERVIEW ==================== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="card-grid">
-          <div class="card">
-            <h4>Energy Levels</h4>
-            <p>E<sub>n</sub> = -13.6/n² eV (for hydrogen). Ground state (n=1): -13.6 eV.</p>
-          </div>
-          <div class="card">
-            <h4>Ionization Potential</h4>
-            <p>Energy required to remove electron from ground state to infinity (n=∞). For H: 13.6 eV.</p>
-          </div>
-          <div class="card">
-            <h4>Excitation Potential</h4>
-            <p>Energy required to raise electron from ground state to an excited state. e.g., 1st excitation potential = 10.2 eV (n=1 to n=2).</p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem</div>
-          <p>Find ionization potential of hydrogen in eV and joules.</p>
-          <button class="toggle-btn" data-target="atomic1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="atomic1">
-            <div class="formula answer">
-              Ionization potential = 13.6 eV<br>
-              In joules: 13.6 × 1.6×10⁻¹⁹ = <strong>2.176×10⁻¹⁸ J</strong>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> What This Unit Covers</div>
+                <p>This unit introduces the world of <strong>Modern Physics</strong> — the branch of physics that explains atoms, radiation, X-rays, lasers, optical fibers, and nanotechnology. These topics are very important because they are the foundation of modern medical equipment, communication systems, manufacturing, electronics, and advanced technology.</p>
+                <p>You will study <strong>Bohr's atomic model</strong>, <strong>X-rays</strong>, <strong>laser</strong>, <strong>fiber optics</strong>, and an introduction to <strong>nanoscience and nanotechnology</strong>.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ========== SECTION 2: X-RAYS ========= -->
-    <section id="xrays" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-x-ray"></i> X-Rays: Production, Types, Uses
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="coolidge">
-          <div class="glass-tube">
-            <div class="filament"></div>
-            <div class="target"></div>
-          </div>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Production (Coolidge Tube)</div>
-          <p>Electrons from hot cathode accelerated by high voltage strike metal target (W, Mo). X-rays produced via two processes:</p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4>Continuous X-rays</h4>
-            <p>Due to deceleration of electrons (bremsstrahlung). Produces continuous spectrum up to a maximum energy corresponding to tube voltage.</p>
-          </div>
-          <div class="card">
-            <h4>Characteristic X-rays</h4>
-            <p>When high-energy electrons knock out inner shell electrons, outer electrons fill vacancies emitting X-rays of specific wavelengths (characteristic of target material).</p>
-          </div>
-        </div>
-
-        <div class="concept-box">
-          <div class="box-title">Soft vs Hard X-rays</div>
-          <p><strong>Soft X-rays:</strong> Lower energy, longer wavelength (less penetrating).</p>
-          <p><strong>Hard X-rays:</strong> Higher energy, shorter wavelength (highly penetrating).</p>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title">Uses of X-rays</div>
-          <ul>
-            <li>Medical imaging (radiography, CT scans)</li>
-            <li>Cancer therapy (radiation treatment)</li>
-            <li>Industrial inspection (crack detection)</li>
-            <li>Security (airport baggage scanners)</li>
-            <li>X-ray crystallography (structure determination)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 3: LASERS ========= -->
-    <section id="lasers" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-laser"></i> Lasers: Spontaneous & Stimulated Emission · He-Ne Laser · Applications
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Spontaneous Emission</div>
-          <p>Atoms in excited state randomly decay to lower state, emitting photons in random directions and phases (ordinary light).</p>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Stimulated Emission</div>
-          <p>An incoming photon triggers an excited atom to emit a second photon identical in phase, direction, and polarization (laser light).</p>
-        </div>
-
-        <div class="concept-box">
-          <div class="box-title">Laser Light Characteristics</div>
-          <ul>
-            <li>Monochromatic (single wavelength)</li>
-            <li>Coherent (constant phase difference)</li>
-            <li>Directional (low divergence)</li>
-            <li>High intensity</li>
-          </ul>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4>He-Ne Laser</h4>
-            <p>Gas laser: Helium-Neon mixture. Common red laser (632.8 nm). Continuous wave output.</p>
-          </div>
-          <div class="card">
-            <h4>Applications of Lasers</h4>
+            <h3><i class="fas fa-bullseye"></i> Why This Unit Matters</h3>
             <ul>
-              <li>Medicine: surgery, eye correction</li>
-              <li>Communication: fiber optics</li>
-              <li>Industry: cutting, welding</li>
-              <li>Military: range finders</li>
-              <li>Entertainment: light shows</li>
-              <li>Barcode scanners</li>
+                <li>🏥 X-rays are used in hospitals for diagnosis</li>
+                <li>🔦 Lasers are used in industry, communication, and surgery</li>
+                <li>🌐 Optical fibers are the backbone of internet communication</li>
+                <li>🔬 Nanotechnology is used in advanced materials, medicine, and electronics</li>
+                <li>⚛️ Bohr model helps us understand atomic structure and energy levels</li>
             </ul>
-          </div>
+
+            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+            <div class="tag-grid">
+                <span class="info-item"><i class="fas fa-check"></i> Explain Bohr model</span>
+                <span class="info-item"><i class="fas fa-check"></i> Define excitation & ionization potential</span>
+                <span class="info-item"><i class="fas fa-check"></i> Describe X-ray production</span>
+                <span class="info-item"><i class="fas fa-check"></i> Distinguish soft & hard X-rays</span>
+                <span class="info-item"><i class="fas fa-check"></i> Explain laser action</span>
+                <span class="info-item"><i class="fas fa-check"></i> Describe He-Ne laser</span>
+                <span class="info-item"><i class="fas fa-check"></i> Explain optical fiber working</span>
+                <span class="info-item"><i class="fas fa-check"></i> Describe nanotechnology basics</span>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Prerequisites</div>
+                <ul>
+                    <li>Basic idea of atomic structure</li>
+                    <li>Simple understanding of energy and electrons</li>
+                    <li>Basic optics concepts from Unit 2</li>
+                    <li>Semiconductor concept from Unit 6 will help in understanding laser and optical devices</li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: FIBER OPTICS ========= -->
-    <section id="fiber" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-fiber"></i> Fiber Optics: Introduction, Propagation, Applications
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Optical Fibers</div>
-          <p>Thin, flexible glass/plastic fibers that transmit light using total internal reflection.</p>
-        </div>
+    <!-- ==================== SECTION 2: BOHR MODEL ==================== -->
+    <section class="section" id="bohr-model">
+        <h2 class="section-title">
+            <i class="fas fa-atom"></i> Bohr’s Atom Model ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title">Mechanism of Light Propagation</div>
-          <p>Core (high refractive index) surrounded by cladding (lower index). Light guided by successive total internal reflections.</p>
-          <p>Acceptance angle and numerical aperture determine light-gathering ability.</p>
-        </div>
+            <h3><i class="fas fa-history"></i> Why Bohr's Model Was Needed</h3>
+            <p>Before Bohr, Rutherford gave the nuclear model of atom. According to Rutherford, electrons revolve around the nucleus just like planets revolve around the Sun. But this model had a serious problem.</p>
+            <p>According to classical electromagnetic theory, an accelerating charged particle should continuously radiate energy. Since an electron moving in a circular orbit is accelerating, it should lose energy continuously and finally fall into the nucleus. If that happened, atoms would collapse. But atoms are stable in reality. So Rutherford’s model could not explain atomic stability.</p>
 
-        <div class="important-note">
-          <div class="box-title">Applications</div>
-          <ul>
-            <li>Telecommunications (high bandwidth, low loss)</li>
-            <li>Medical endoscopy (minimally invasive surgery)</li>
-            <li>Sensors (temperature, pressure, strain)</li>
-            <li>Illumination and imaging</li>
-          </ul>
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Why Bohr Model Became Important</div>
+                <p>Bohr solved the stability problem by introducing the idea of <strong>stationary orbits</strong> or <strong>quantized energy levels</strong>. This was a revolutionary step in modern physics.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Bohr’s Atom Model</div>
+                <p><strong>Bohr’s atomic model</strong> states that electrons revolve around the nucleus only in certain permitted circular orbits of fixed energy called <strong>stationary orbits</strong> or <strong>energy levels</strong>, and they do not radiate energy while moving in those allowed orbits.</p>
+            </div>
+
+            <h3><i class="fas fa-list-ol"></i> Postulates of Bohr’s Atomic Model 🔥</h3>
+
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h4>1. Central Nucleus</h4>
+                    <p>The atom has a small, dense, positively charged nucleus at the center. Almost all the mass of the atom is concentrated in the nucleus.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>2. Electrons Revolve Around Nucleus</h4>
+                    <p>Electrons revolve around the nucleus in circular orbits under the electrostatic force of attraction.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>3. Stationary Orbits</h4>
+                    <p>Electrons can revolve only in certain fixed permitted orbits called stationary orbits. In these orbits, they do not emit or absorb energy.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>4. Quantization of Angular Momentum</h4>
+                    <p>The angular momentum of an electron in a permitted orbit is quantized and is given by:
+                    <strong>mvr = nh / 2π</strong>, where n = 1, 2, 3...</p>
+                </div>
+                <div class="topic-card">
+                    <h4>5. Radiation During Transition</h4>
+                    <p>An electron emits or absorbs radiation only when it jumps from one orbit to another orbit.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>6. Frequency of Radiation</h4>
+                    <p>The frequency of emitted or absorbed radiation is given by:
+                    <strong>hν = E<sub>2</sub> − E<sub>1</sub></strong></p>
+                </div>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Bohr+atomic+model+diagram+hydrogen+atom" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.1:</strong> Bohr model of atom showing nucleus and permitted circular orbits K, L, M, N</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="atom-diagram">
+                <div>
+                    <span class="orbit-tag">K shell → n = 1</span>
+                    <span class="orbit-tag">L shell → n = 2</span>
+                    <span class="orbit-tag">M shell → n = 3</span>
+                    <span class="orbit-tag">N shell → n = 4</span>
+                </div>
+                <p><strong>Lower orbit = lower energy</strong> | <strong>Higher orbit = higher energy</strong></p>
+            </div>
+
+            <h3><i class="fas fa-bolt"></i> Quantization of Angular Momentum</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Bohr Quantization Condition</div>
+                <div class="formula">mvr = <span class="fraction"><span class="num">nh</span><span class="den">2π</span></span></div>
+                <p>Where:</p>
+                <ul>
+                    <li>m = mass of electron</li>
+                    <li>v = velocity of electron</li>
+                    <li>r = radius of orbit</li>
+                    <li>n = principal quantum number = 1, 2, 3, ...</li>
+                    <li>h = Planck’s constant = 6.63 × 10<sup>−34</sup> J·s</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-circle-notch"></i> Radius of Bohr Orbit</h3>
+            <p>For hydrogen atom, the radius of the nth orbit is given by:</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Radius of nth Orbit</div>
+                <div class="formula">r<sub>n</sub> = n<sup>2</sup> a<sub>0</sub></div>
+                <p>Where:</p>
+                <ul>
+                    <li>r<sub>n</sub> = radius of nth orbit</li>
+                    <li>n = orbit number</li>
+                    <li>a<sub>0</sub> = radius of first Bohr orbit = 0.529 Å = 5.29 × 10<sup>−11</sup> m</li>
+                </ul>
+                <p>So:</p>
+                <ul>
+                    <li>r<sub>1</sub> = 1² × 0.529 Å = 0.529 Å</li>
+                    <li>r<sub>2</sub> = 4 × 0.529 Å = 2.116 Å</li>
+                    <li>r<sub>3</sub> = 9 × 0.529 Å = 4.761 Å</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-layer-group"></i> Energy of Electron in nth Orbit</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Energy Level</div>
+                <p>The fixed amount of energy possessed by an electron in a permitted orbit is called an <strong>energy level</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Energy of nth Orbit</div>
+                <div class="formula">E<sub>n</sub> = <span class="fraction"><span class="num">−13.6</span><span class="den">n<sup>2</sup></span></span> eV</div>
+                <p>Where:</p>
+                <ul>
+                    <li>E<sub>n</sub> = energy of electron in nth orbit</li>
+                    <li>n = principal quantum number</li>
+                </ul>
+                <p>Examples:</p>
+                <ul>
+                    <li>E<sub>1</sub> = −13.6 eV</li>
+                    <li>E<sub>2</sub> = −3.4 eV</li>
+                    <li>E<sub>3</sub> = −1.51 eV</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why is Energy Negative?</div>
+                <p>The energy is negative because the electron is bound to the nucleus. To remove the electron completely from the atom, energy must be supplied from outside. At infinite distance from the nucleus, the energy is taken as zero.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Bohr+energy+level+diagram+hydrogen+atom" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.2:</strong> Energy level diagram of hydrogen atom showing ground state and excited states</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-exchange-alt"></i> Emission and Absorption of Radiation</h3>
+            <p>An electron can move from one orbit to another by absorbing or emitting energy.</p>
+
+            <ul>
+                <li>If electron goes from lower orbit to higher orbit → it <strong>absorbs energy</strong></li>
+                <li>If electron goes from higher orbit to lower orbit → it <strong>emits energy</strong></li>
+            </ul>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Energy Difference and Frequency</div>
+                <div class="formula">hν = E<sub>2</sub> − E<sub>1</sub></div>
+                <p>Where:</p>
+                <ul>
+                    <li>h = Planck’s constant</li>
+                    <li>ν = frequency of emitted or absorbed radiation</li>
+                    <li>E<sub>2</sub>, E<sub>1</sub> = energies of two levels</li>
+                </ul>
+                <p>If E<sub>2</sub> > E<sub>1</sub>, then absorption occurs. If electron falls from E<sub>2</sub> to E<sub>1</sub>, emission occurs.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=electron+transition+emission+absorption+diagram+Bohr+model" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.3:</strong> Electron transition between energy levels showing absorption and emission of radiation</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-check-circle"></i> Achievements / Success of Bohr Model</h3>
+            <ul>
+                <li>Explained <strong>stability of atom</strong></li>
+                <li>Explained <strong>discrete line spectrum of hydrogen</strong></li>
+                <li>Introduced the important idea of <strong>quantized energy levels</strong></li>
+                <li>Correctly calculated radius and energy of hydrogen atom</li>
+            </ul>
+
+            <h3><i class="fas fa-times-circle"></i> Limitations of Bohr Model</h3>
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Limitations</div>
+                <ul>
+                    <li>Applicable only to <strong>hydrogen atom</strong> and hydrogen-like atoms</li>
+                    <li>Could not explain spectra of <strong>multi-electron atoms</strong></li>
+                    <li>Could not explain fine structure of spectral lines</li>
+                    <li>Could not explain Zeeman effect and Stark effect</li>
+                    <li>Contradicts modern wave nature of electron</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Important</div>
+                <p>For WBSCTE exams, the most important Bohr model points are:</p>
+                <ul>
+                    <li>Postulates of Bohr model</li>
+                    <li>Energy level formula: <strong>E<sub>n</sub> = −13.6/n² eV</strong></li>
+                    <li>Radius formula: <strong>r<sub>n</sub> = n²a<sub>0</sub></strong></li>
+                    <li>Concept of ground state and excited state</li>
+                    <li>Emission and absorption process</li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 5: NANOSCIENCE AND NANOTECHNOLOGY ========= -->
-    <section id="nano" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-microchip"></i> Nanoscience and Nanotechnology (Introduction)
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Introduction</div>
-          <p><strong>Nanoscience</strong> is the study of structures and materials at the nanoscale (1–100 nm).</p>
-          <p><strong>Nanotechnology</strong> is the manipulation of matter at atomic/molecular scale to create new materials and devices.</p>
-          <p>Properties change dramatically at nanoscale due to quantum effects and high surface-to-volume ratio.</p>
-          <p><strong>Examples:</strong> Nanoparticles, carbon nanotubes, quantum dots, nanocomposites.</p>
-          <p><strong>Applications:</strong> Electronics, medicine (drug delivery), energy (solar cells), cosmetics.</p>
+    <!-- ==================== SECTION 3: EXCITATION & IONIZATION POTENTIAL ==================== -->
+    <section class="section" id="potentials">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> Ionization & Excitation Potentials ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-stairs"></i> Ground State and Excited State</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ground State</div>
+                <p>The <strong>lowest energy state</strong> of an atom is called the <strong>ground state</strong>. In hydrogen atom, the ground state corresponds to n = 1 and energy = −13.6 eV.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Excited State</div>
+                <p>When an atom absorbs energy and an electron jumps from the ground state to a higher energy level, the atom is said to be in an <strong>excited state</strong>.</p>
+            </div>
+
+            <h3><i class="fas fa-arrow-up"></i> Excitation Potential</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Excitation Potential</div>
+                <p><strong>Excitation Potential</strong> is the minimum potential difference required to excite an atom from its ground state to a higher energy state without removing the electron completely from the atom.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Simple Meaning</div>
+                <p>If we give a small amount of energy to an atom, its electron can jump to a higher orbit. The minimum voltage needed for this jump is called the <strong>excitation potential</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Excitation Energy and Excitation Potential</div>
+                <div class="formula">eV<sub>exc</sub> = E<sub>2</sub> − E<sub>1</sub></div>
+                <div class="formula">V<sub>exc</sub> = <span class="fraction"><span class="num">E<sub>2</sub> − E<sub>1</sub></span><span class="den">e</span></span></div>
+                <p>In electron volt system, numerically:</p>
+                <div class="formula">V<sub>exc</sub> (in volt) = Excitation energy (in eV)</div>
+            </div>
+
+            <h4>Example: First Excitation Potential of Hydrogen</h4>
+            <p>For hydrogen atom:</p>
+            <ul>
+                <li>Energy of first orbit, E<sub>1</sub> = −13.6 eV</li>
+                <li>Energy of second orbit, E<sub>2</sub> = −3.4 eV</li>
+            </ul>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Calculation</div>
+                <div class="formula">Excitation energy = E<sub>2</sub> − E<sub>1</sub> = (−3.4) − (−13.6)</div>
+                <div class="formula">= 10.2 eV</div>
+                <div class="formula answer">First excitation potential of hydrogen = 10.2 V</div>
+            </div>
+
+            <h3><i class="fas fa-sign-out-alt"></i> Ionization Potential</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Ionization Potential</div>
+                <p><strong>Ionization Potential</strong> is the minimum potential difference required to remove the most loosely bound electron completely from an isolated gaseous atom in its ground state to infinity.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Simple Meaning</div>
+                <p>Excitation means the electron is still inside the atom but goes to a higher orbit. <strong>Ionization</strong> means the electron is completely removed from the atom. Then the atom becomes an ion.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Ionization Energy and Ionization Potential</div>
+                <div class="formula">eV<sub>ion</sub> = 0 − E<sub>1</sub></div>
+                <p>Because energy at infinity is taken as zero.</p>
+                <div class="formula">V<sub>ion</sub> (in volt) = Ionization energy (in eV)</div>
+            </div>
+
+            <h4>Example: Ionization Potential of Hydrogen</h4>
+            <p>For hydrogen atom, ground state energy:</p>
+            <div class="formula">E<sub>1</sub> = −13.6 eV</div>
+            <div class="formula">Ionization energy = 0 − (−13.6) = 13.6 eV</div>
+            <div class="formula answer">Ionization potential of hydrogen = 13.6 V</div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=excitation+and+ionization+potential+energy+level+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.4:</strong> Energy level diagram showing excitation from n=1 to n=2 and ionization to infinity</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-table"></i> Difference Between Excitation Potential and Ionization Potential ⭐</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Excitation Potential</th>
+                            <th>Ionization Potential</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Meaning</strong></td>
+                            <td>Minimum voltage to move electron to higher orbit</td>
+                            <td>Minimum voltage to remove electron completely</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Electron position after process</strong></td>
+                            <td>Still remains inside atom</td>
+                            <td>Leaves atom completely</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energy required</strong></td>
+                            <td>Less</td>
+                            <td>More</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Final state</strong></td>
+                            <td>Excited state</td>
+                            <td>Ionized state</td>
+                        </tr>
+                        <tr>
+                            <td><strong>For hydrogen</strong></td>
+                            <td>10.2 V (first excitation)</td>
+                            <td>13.6 V</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Atom after process</strong></td>
+                            <td>Neutral atom remains</td>
+                            <td>Positive ion formed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Common Mistake</div>
+                <p>Do not write that excitation potential and ionization potential are the same. They are different. <strong>Excitation</strong> only raises the electron to a higher orbit. <strong>Ionization</strong> removes it completely.</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Must Remember</div>
+                <ul>
+                    <li>First excitation potential of hydrogen = <strong>10.2 V</strong></li>
+                    <li>Ionization potential of hydrogen = <strong>13.6 V</strong></li>
+                    <li>Ionization potential is always <strong>greater than excitation potential</strong></li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">Bohr: E<sub>n</sub> = -13.6/n² eV</div>
-          <div class="tag">Ionization potential: 13.6 eV</div>
-          <div class="tag">X-rays: Coolidge tube</div>
-          <div class="tag">Continuous & Characteristic</div>
-          <div class="tag">Laser: coherent, monochromatic</div>
-          <div class="tag">He-Ne: 632.8 nm</div>
-          <div class="tag">Fiber optics: TIR</div>
-          <div class="tag">Nano: 1-100 nm</div>
+    <!-- ==================== SECTION 4: X-RAYS ==================== -->
+    <section class="section" id="xrays">
+        <h2 class="section-title">
+            <i class="fas fa-x-ray"></i> X-Rays — Production, Types and Uses ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-discovery"></i> Introduction to X-Rays</h3>
+            <p>X-rays were discovered in 1895 by the German scientist <strong>Wilhelm Conrad Röntgen</strong>. They are invisible electromagnetic waves of very short wavelength and very high frequency.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — X-Rays</div>
+                <p><strong>X-rays</strong> are electromagnetic radiations of very short wavelength (about 10<sup>−8</sup> m to 10<sup>−12</sup> m) produced when high-speed electrons strike a heavy metal target or when inner shell electrons of atoms undergo transitions.</p>
+            </div>
+
+            <h3><i class="fas fa-star"></i> Properties of X-Rays</h3>
+            <ul>
+                <li>They are <strong>electromagnetic waves</strong></li>
+                <li>They travel with the <strong>speed of light</strong></li>
+                <li>They have <strong>very short wavelength</strong> and <strong>high penetrating power</strong></li>
+                <li>They are <strong>electrically neutral</strong>, so they are not deflected by electric or magnetic fields</li>
+                <li>They affect photographic plates</li>
+                <li>They can ionize gases</li>
+                <li>They produce fluorescence in certain substances</li>
+                <li>They can damage living tissues in large doses</li>
+            </ul>
+
+            <h3><i class="fas fa-industry"></i> Production of X-Rays — Coolidge Tube ⭐🔥</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Coolidge Tube</div>
+                <p><strong>Coolidge tube</strong> is a modern X-ray tube used for producing X-rays. It consists of a heated cathode that emits electrons and a heavy metal target (anode) on which these electrons strike to produce X-rays.</p>
+            </div>
+
+            <h4>Construction of Coolidge Tube</h4>
+            <ul>
+                <li>A highly evacuated glass tube</li>
+                <li><strong>Cathode:</strong> Tungsten filament in a focusing cup</li>
+                <li><strong>Anode / Target:</strong> Heavy metal like tungsten, molybdenum or platinum</li>
+                <li>High voltage supply between cathode and anode</li>
+                <li>Cooling arrangement to remove heat from target</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Coolidge+tube+diagram+X-ray+tube" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.5:</strong> Coolidge tube showing cathode filament, focusing cup, anode target, high voltage supply, and X-ray output</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Working of Coolidge Tube</h4>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Step-by-Step Working</div>
+                <ol>
+                    <li>When current passes through the tungsten filament, it becomes hot and emits electrons by <strong>thermionic emission</strong>.</li>
+                    <li>The focusing cup directs these electrons towards the target.</li>
+                    <li>A high potential difference (in kV) is applied between cathode and anode.</li>
+                    <li>The electrons are accelerated to very high speed towards the heavy metal target.</li>
+                    <li>When these high-speed electrons strike the target:
+                        <ul>
+                            <li>Most of their energy converts into <strong>heat</strong></li>
+                            <li>A small part converts into <strong>X-rays</strong></li>
+                        </ul>
+                    </li>
+                    <li>The emitted X-rays come out through a suitable window in the tube.</li>
+                </ol>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Important Fact</div>
+                <p>About <strong>99% energy becomes heat</strong> and only about <strong>1% energy becomes X-rays</strong>. That is why heavy cooling of the target is necessary.</p>
+            </div>
+
+            <h3><i class="fas fa-wave-square"></i> Continuous X-Rays (Bremsstrahlung)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Continuous X-Rays</div>
+                <p><strong>Continuous X-rays</strong> are produced when high-speed electrons are suddenly decelerated on striking the target. Because the electrons can lose different amounts of energy, a continuous spectrum of X-rays is obtained.</p>
+            </div>
+
+            <p>The German word <strong>Bremsstrahlung</strong> means “braking radiation”.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why Continuous?</div>
+                <p>Different electrons lose different amounts of energy during collision. So the emitted X-rays have different wavelengths, forming a continuous range.</p>
+            </div>
+
+            <h3><i class="fas fa-gem"></i> Characteristic X-Rays</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Characteristic X-Rays</div>
+                <p><strong>Characteristic X-rays</strong> are produced when an incoming high-speed electron knocks out an inner shell electron of the target atom. Then an electron from a higher shell falls into the vacant lower shell and emits X-ray photons of definite energies.</p>
+            </div>
+
+            <p>Since the energy levels depend on the target material, the wavelengths are characteristic of that material. Hence they are called <strong>characteristic X-rays</strong>.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=continuous+and+characteristic+X-rays+spectrum+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.6:</strong> X-ray spectrum showing continuous spectrum and sharp characteristic lines</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=characteristic+X-ray+production+inner+shell+transition+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.7:</strong> Production of characteristic X-rays by inner shell vacancy and electron transition</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-calculator"></i> Important X-Ray Formula</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Duane-Hunt Law</div>
+                <p>The minimum wavelength of X-rays produced in an X-ray tube is given by:</p>
+                <div class="formula">λ<sub>min</sub> = <span class="fraction"><span class="num">hc</span><span class="den">eV</span></span></div>
+                <p>Where:</p>
+                <ul>
+                    <li>λ<sub>min</sub> = minimum wavelength</li>
+                    <li>h = Planck’s constant</li>
+                    <li>c = speed of light</li>
+                    <li>e = electronic charge</li>
+                    <li>V = accelerating voltage</li>
+                </ul>
+                <p>This formula shows that higher accelerating voltage gives smaller wavelength X-rays.</p>
+            </div>
+
+            <h3><i class="fas fa-balance-scale"></i> Soft X-Rays and Hard X-Rays ⭐</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Soft X-Rays</th>
+                            <th>Hard X-Rays</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Wavelength</strong></td>
+                            <td>Longer</td>
+                            <td>Shorter</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Frequency</strong></td>
+                            <td>Lower</td>
+                            <td>Higher</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energy</strong></td>
+                            <td>Lower</td>
+                            <td>Higher</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Penetrating power</strong></td>
+                            <td>Less</td>
+                            <td>More</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Production voltage</strong></td>
+                            <td>Lower accelerating voltage</td>
+                            <td>Higher accelerating voltage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uses</strong></td>
+                            <td>Surface studies, therapy in some cases</td>
+                            <td>Medical diagnosis, industrial inspection</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Uses of X-Rays</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Practical and Engineering Applications</div>
+                <ol>
+                    <li><strong>Medical diagnosis:</strong> Detecting bone fractures, chest problems, dental issues</li>
+                    <li><strong>Radiotherapy:</strong> Treatment of cancer cells</li>
+                    <li><strong>Industrial radiography:</strong> Detecting cracks and defects in welded joints and castings</li>
+                    <li><strong>Security scanning:</strong> Luggage scanning at airports and railway stations</li>
+                    <li><strong>Crystal structure analysis:</strong> X-ray diffraction studies</li>
+                    <li><strong>Scientific research:</strong> Studying atomic and molecular structure</li>
+                    <li><strong>Art restoration:</strong> Examining hidden layers in paintings</li>
+                </ol>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+</div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+
+    <!-- ==================== SECTION 5: LASER BASICS ==================== -->
+    <section class="section" id="laser-basics">
+        <h2 class="section-title">
+            <i class="fas fa-lightbulb"></i> Laser Basics — Spontaneous & Stimulated Emission ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-quote-left"></i> What is LASER?</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Full Form of LASER</div>
+                <p><strong>LASER</strong> stands for <strong>Light Amplification by Stimulated Emission of Radiation</strong>.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Laser</div>
+                <p>A <strong>laser</strong> is a device that produces a highly intense, highly directional, monochromatic and coherent beam of light by the process of <strong>stimulated emission</strong>.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why Laser is Different from Ordinary Light</div>
+                <p>Ordinary light from a bulb spreads in all directions, contains many colours (wavelengths), and the light waves are not in step with each other. Laser light is very special:</p>
+                <ul>
+                    <li>It goes in <strong>one direction</strong></li>
+                    <li>It has <strong>one colour / one wavelength</strong> nearly</li>
+                    <li>Its waves are <strong>in phase</strong></li>
+                    <li>It is very <strong>intense</strong></li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-layer-group"></i> Energy Levels and Radiation Processes</h3>
+            <p>To understand laser action, we must first understand how atoms emit radiation. Consider an atom having two energy levels:</p>
+            <ul>
+                <li><strong>Lower energy level:</strong> E<sub>1</sub></li>
+                <li><strong>Higher energy level:</strong> E<sub>2</sub></li>
+            </ul>
+            <p>If an electron is in the higher level, it can come down to the lower level by releasing energy in the form of a photon.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Energy of Emitted Photon</div>
+                <div class="formula">hν = E<sub>2</sub> − E<sub>1</sub></div>
+                <p>Where:</p>
+                <ul>
+                    <li>h = Planck's constant</li>
+                    <li>ν = frequency of emitted radiation</li>
+                    <li>E<sub>2</sub> = upper energy level</li>
+                    <li>E<sub>1</sub> = lower energy level</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-random"></i> Spontaneous Emission</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Spontaneous Emission</div>
+                <p><strong>Spontaneous emission</strong> is the process in which an excited atom returns to a lower energy state on its own and emits a photon without any external influence.</p>
+            </div>
+
+            <p>When an atom is in the excited state, it cannot remain there forever. After a short time (called lifetime), it comes back to a lower state and emits radiation automatically.</p>
+
+            <h4>Characteristics of Spontaneous Emission:</h4>
+            <ul>
+                <li>Occurs <strong>naturally</strong> on its own</li>
+                <li>Emitted photons go in <strong>random directions</strong></li>
+                <li>Photons have <strong>random phase</strong></li>
+                <li>Not suitable for producing laser light</li>
+                <li>Ordinary light sources like bulb and candle mainly work due to spontaneous emission</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=spontaneous+emission+energy+level+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.8:</strong> Spontaneous emission showing excited atom falling to lower level and emitting photon in random direction</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-bullseye"></i> Stimulated Emission ⭐🔥</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Stimulated Emission</div>
+                <p><strong>Stimulated emission</strong> is the process in which an excited atom, when struck by a photon of proper energy, is forced to return to a lower energy state and emits a second photon identical to the first photon.</p>
+            </div>
+
+            <p>This is the most important process in laser action.</p>
+
+            <h4>What happens in stimulated emission?</h4>
+            <ol>
+                <li>An atom is already in the <strong>excited state</strong></li>
+                <li>A photon of energy <strong>hν = E<sub>2</sub> − E<sub>1</sub></strong> approaches the atom</li>
+                <li>This photon forces the excited atom to return to the lower state</li>
+                <li>The atom emits another photon</li>
+                <li>The emitted photon is exactly identical to the incident photon</li>
+            </ol>
+
+            <h4>The two photons are identical in:</h4>
+            <ul>
+                <li>Frequency</li>
+                <li>Wavelength</li>
+                <li>Phase</li>
+                <li>Direction</li>
+                <li>Speed</li>
+                <li>Polarization</li>
+            </ul>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Why Stimulated Emission is Important</div>
+                <p>Because the emitted photon is exactly identical to the incident photon, the number of identical photons increases. This causes <strong>amplification of light</strong>. This is the basic principle of LASER.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=stimulated+emission+energy+level+diagram+laser" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.9:</strong> Stimulated emission showing one incident photon causing emission of a second identical photon</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-upload"></i> Absorption</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Absorption</div>
+                <p><strong>Absorption</strong> is the process in which an atom in the lower energy state absorbs a photon of proper energy and moves to a higher energy state.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Condition for Absorption</div>
+                <div class="formula">hν = E<sub>2</sub> − E<sub>1</sub></div>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=absorption+energy+level+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.10:</strong> Absorption process showing atom taking energy and moving from lower to higher level</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-users"></i> Population Inversion</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Population Inversion</div>
+                <p><strong>Population inversion</strong> is the condition in which the number of atoms in the excited state becomes greater than the number of atoms in the lower energy state.</p>
+            </div>
+
+            <p>Normally, most atoms stay in the lower energy state. For laser action, we need more atoms in the excited state than in the lower state. This special condition is called population inversion.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why Population Inversion is Necessary</div>
+                <p>If most atoms are in the lower level, incoming photons will be mostly absorbed. But if more atoms are in the excited state, then stimulated emission will dominate and light amplification will take place.</p>
+            </div>
+
+            <h3><i class="fas fa-plug"></i> Pumping</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Pumping</div>
+                <p><strong>Pumping</strong> is the process of supplying energy to the active medium to achieve population inversion.</p>
+            </div>
+
+            <p>Methods of pumping include:</p>
+            <ul>
+                <li>Optical pumping</li>
+                <li>Electrical discharge pumping</li>
+                <li>Chemical pumping</li>
+                <li>Current injection pumping</li>
+            </ul>
+
+            <h3><i class="fas fa-gem"></i> Active Medium and Resonator</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Active Medium</div>
+                <p>The material in which population inversion is created and laser action takes place is called the <strong>active medium</strong>.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Resonator</div>
+                <p>The arrangement of two mirrors placed at the ends of the active medium to reflect photons back and forth for amplification is called the <strong>optical resonator</strong>.</p>
+            </div>
+
+            <h3><i class="fas fa-table"></i> Spontaneous Emission vs Stimulated Emission ⭐</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Spontaneous Emission</th>
+                            <th>Stimulated Emission</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cause</strong></td>
+                            <td>Occurs naturally without outside influence</td>
+                            <td>Caused by an incident photon</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Photon direction</strong></td>
+                            <td>Random</td>
+                            <td>Same direction as incident photon</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase</strong></td>
+                            <td>Random</td>
+                            <td>Same phase</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Frequency</strong></td>
+                            <td>May be same but uncontrolled</td>
+                            <td>Exactly same as incident photon</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coherence</strong></td>
+                            <td>Not coherent</td>
+                            <td>Coherent</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Use in laser</strong></td>
+                            <td>Not suitable</td>
+                            <td>Basic principle of laser</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3><i class="fas fa-sun"></i> Properties of Laser Light ⭐🔥</h3>
+
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h4>1. Monochromatic</h4>
+                    <p>Laser light has almost a single wavelength or single colour. Ordinary light has many wavelengths.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>2. Coherent</h4>
+                    <p>The waves of laser light are in the same phase. This means the crests and troughs move together.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>3. Highly Directional</h4>
+                    <p>Laser beam travels in a very narrow path and spreads very little.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>4. Highly Intense</h4>
+                    <p>A large amount of energy is concentrated in a very small area, so the intensity is very high.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>5. Polarized</h4>
+                    <p>Laser light is often polarized, which means vibrations occur in a particular plane.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>6. Can Travel Long Distance</h4>
+                    <p>Because of low divergence, laser light can travel long distances without spreading much.</p>
+                </div>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Applications of Laser in General</div>
+                <ol>
+                    <li>Medical surgery (eye surgery, dental treatment, cancer therapy)</li>
+                    <li>Industrial cutting, welding and drilling</li>
+                    <li>Optical fiber communication</li>
+                    <li>Barcode readers</li>
+                    <li>CD/DVD players</li>
+                    <li>Range finding and target designation</li>
+                    <li>Holography</li>
+                    <li>Printing and scanning devices</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 6: HE-NE LASER ==================== -->
+    <section class="section" id="hene-laser">
+        <h2 class="section-title">
+            <i class="fas fa-bullseye"></i> He-Ne Laser — Construction, Working & Applications ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — He-Ne Laser</div>
+                <p><strong>He-Ne laser</strong> is a gas laser in which the active medium is a mixture of helium and neon gases. It generally produces red laser light of wavelength <strong>632.8 nm</strong>.</p>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Construction of He-Ne Laser</h3>
+            <p>The He-Ne laser consists of the following parts:</p>
+            <ul>
+                <li>A narrow glass discharge tube containing a mixture of <strong>helium and neon gases</strong></li>
+                <li>Gas pressure is kept low</li>
+                <li>Electrodes connected to a high voltage power supply</li>
+                <li>Two mirrors at the ends forming an optical resonator:
+                    <ul>
+                        <li>One mirror is <strong>fully reflecting</strong></li>
+                        <li>The other is <strong>partially reflecting</strong></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=He-Ne+laser+construction+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.11:</strong> Construction of He-Ne laser showing discharge tube, electrodes, helium-neon gas mixture, and mirrors</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-cogs"></i> Working of He-Ne Laser</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Step-by-Step Working</div>
+                <ol>
+                    <li>An electric discharge is passed through the gas mixture.</li>
+                    <li>Helium atoms get excited to higher metastable energy states.</li>
+                    <li>These excited helium atoms collide with neon atoms.</li>
+                    <li>During collision, helium transfers its energy to neon atoms because their energy levels are nearly equal.</li>
+                    <li>Thus neon atoms get excited to higher energy states and population inversion is achieved in neon.</li>
+                    <li>Now stimulated emission starts in neon atoms.</li>
+                    <li>Photons move back and forth between the two mirrors, causing amplification.</li>
+                    <li>Finally, a part of the light escapes through the partially reflecting mirror as the laser beam.</li>
+                </ol>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=He-Ne+laser+energy+level+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.12:</strong> Energy level diagram of He-Ne laser showing energy transfer from helium to neon and laser transition</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Important Working Idea</div>
+                <p>In He-Ne laser, <strong>helium atoms help in exciting neon atoms</strong>. Neon is the actual laser-active atom producing laser radiation, while helium helps in pumping.</p>
+            </div>
+
+            <h3><i class="fas fa-gem"></i> Elementary Characteristics of He-Ne Laser</h3>
+            <ul>
+                <li>Produces <strong>continuous laser beam</strong></li>
+                <li>Common output wavelength = <strong>632.8 nm</strong> (red colour)</li>
+                <li>Highly monochromatic</li>
+                <li>Highly coherent</li>
+                <li>Highly directional</li>
+                <li>Output power is usually low</li>
+                <li>Very stable beam</li>
+            </ul>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Wavelength of Common He-Ne Laser</div>
+                <div class="formula">λ = 632.8 nm = 632.8 × 10<sup>−9</sup> m</div>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Applications of He-Ne Laser</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Practical Applications</div>
+                <ol>
+                    <li>Holography</li>
+                    <li>Scientific measurements and laboratory experiments</li>
+                    <li>Alignment of machines in industry</li>
+                    <li>Barcode scanning</li>
+                    <li>Interferometry</li>
+                    <li>Surveying instruments</li>
+                    <li>Educational demonstration of laser principles</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 7: FIBER OPTICS ==================== -->
+    <section class="section" id="fiber-optics">
+        <h2 class="section-title">
+            <i class="fas fa-network-wired"></i> Fiber Optics — Introduction, Propagation & Applications ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-info-circle"></i> Introduction to Optical Fiber</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Optical Fiber</div>
+                <p>An <strong>optical fiber</strong> is a thin, flexible, transparent fiber made of glass or plastic through which light can travel from one end to the other by the phenomenon of <strong>total internal reflection</strong>.</p>
+            </div>
+
+            <p>Optical fibers are used to transmit information in the form of light pulses. They form the backbone of modern telecommunication systems.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Simple Analogy</div>
+                <p>Think of an optical fiber like a smooth pipe for light. Just as water flows through a pipe, light pulses travel through the fiber. But instead of physical walls forcing the light to move, the light is trapped inside by <strong>total internal reflection</strong>.</p>
+            </div>
+
+            <h3><i class="fas fa-layer-group"></i> Basic Structure of Optical Fiber</h3>
+            <ul>
+                <li><strong>Core:</strong> Central inner part through which light travels</li>
+                <li><strong>Cladding:</strong> Surrounding layer having slightly lower refractive index than the core</li>
+                <li><strong>Protective coating / jacket:</strong> Outer layer to protect the fiber from damage</li>
+            </ul>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Key Condition</div>
+                <p>For optical fiber to work properly:</p>
+                <div class="formula">n<sub>core</sub> &gt; n<sub>cladding</sub></div>
+                <p>The refractive index of the core must be greater than that of the cladding.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=optical+fiber+structure+core+cladding+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.13:</strong> Structure of optical fiber showing core, cladding and protective coating</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-arrows-alt"></i> Mechanism of Light Propagation — Total Internal Reflection ⭐🔥</h3>
+            <p>The working of optical fiber is based on <strong>total internal reflection (TIR)</strong>.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Total Internal Reflection</div>
+                <p>When a ray of light travels from a denser medium to a rarer medium and the angle of incidence is greater than the critical angle, the light is reflected completely back into the denser medium. This is called <strong>total internal reflection</strong>.</p>
+            </div>
+
+            <h4>Conditions for Total Internal Reflection:</h4>
+            <ol>
+                <li>Light must travel from <strong>denser medium to rarer medium</strong></li>
+                <li>Angle of incidence must be <strong>greater than critical angle</strong></li>
+            </ol>
+
+            <p>In an optical fiber:</p>
+            <ul>
+                <li>Core acts as denser medium</li>
+                <li>Cladding acts as rarer medium</li>
+                <li>Light ray strikes the core-cladding boundary at angle greater than critical angle</li>
+                <li>So it is totally internally reflected and continues to move through the fiber</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=optical+fiber+light+propagation+total+internal+reflection+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.14:</strong> Light propagation in optical fiber by repeated total internal reflection</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-angle-double-right"></i> Acceptance Angle</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Acceptance Angle</div>
+                <p>The <strong>acceptance angle</strong> is the maximum angle with the fiber axis at which light can enter the fiber and still travel through it by total internal reflection.</p>
+            </div>
+
+            <p>If the incident angle is greater than the acceptance angle, the light will not remain trapped inside the fiber.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=acceptance+angle+optical+fiber+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.15:</strong> Acceptance angle of optical fiber showing maximum angle for guided light</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-calculator"></i> Numerical Aperture (NA) ⭐🔥</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Numerical Aperture</div>
+                <p><strong>Numerical aperture (NA)</strong> is the light gathering ability of an optical fiber. It determines how much light can enter the fiber and be guided through it.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Numerical Aperture Formula</div>
+                <div class="formula">NA = sin θ<sub>a</sub> = √(n<sub>1</sub><sup>2</sup> − n<sub>2</sub><sup>2</sup>)</div>
+                <p>Where:</p>
+                <ul>
+                    <li>θ<sub>a</sub> = acceptance angle</li>
+                    <li>n<sub>1</sub> = refractive index of core</li>
+                    <li>n<sub>2</sub> = refractive index of cladding</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Acceptance Angle from NA</div>
+                <div class="formula">θ<sub>a</sub> = sin<sup>−1</sup>(NA)</div>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Meaning of NA</div>
+                <p>Higher numerical aperture means the fiber can accept light over a wider angle. So it can collect more light easily.</p>
+            </div>
+
+            <h3><i class="fas fa-stream"></i> Types of Optical Fiber (Basic Idea)</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Basis</th>
+                            <th>Feature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Single-mode fiber</td>
+                            <td>Number of modes</td>
+                            <td>Only one light path, used for long-distance communication</td>
+                        </tr>
+                        <tr>
+                            <td>Multimode fiber</td>
+                            <td>Number of modes</td>
+                            <td>Many light paths, used for shorter distance</td>
+                        </tr>
+                        <tr>
+                            <td>Step-index fiber</td>
+                            <td>Refractive index profile</td>
+                            <td>Sudden change in refractive index between core and cladding</td>
+                        </tr>
+                        <tr>
+                            <td>Graded-index fiber</td>
+                            <td>Refractive index profile</td>
+                            <td>Refractive index changes gradually from center outward</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Applications of Optical Fiber ⭐</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Practical Applications</div>
+                <ol>
+                    <li><strong>Telecommunication:</strong> Telephone, internet, cable TV</li>
+                    <li><strong>Medical endoscopy:</strong> Viewing internal organs</li>
+                    <li><strong>Industrial inspection:</strong> Checking internal parts of machines and engines</li>
+                    <li><strong>Military communication:</strong> Secure and high-speed communication</li>
+                    <li><strong>Computer networking:</strong> LAN and data centers</li>
+                    <li><strong>Sensors:</strong> Temperature, pressure, strain and chemical sensors</li>
+                    <li><strong>Decorative lighting:</strong> Illumination and decoration</li>
+                    <li><strong>Undersea communication cables:</strong> Intercontinental communication</li>
+                </ol>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Advantages of Optical Fiber</div>
+                <ul>
+                    <li>Very high bandwidth</li>
+                    <li>Low transmission loss</li>
+                    <li>Light weight and small size</li>
+                    <li>Immune to electromagnetic interference</li>
+                    <li>Secure communication</li>
+                    <li>No spark hazard</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 8: NANOSCIENCE & NANOTECHNOLOGY ==================== -->
+    <section class="section" id="nanotech">
+        <h2 class="section-title">
+            <i class="fas fa-microscope"></i> Nanoscience & Nanotechnology — Introduction ⭐
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-ruler-combined"></i> What Does “Nano” Mean?</h3>
+            <p>The word <strong>nano</strong> means one-billionth.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Nano Scale</div>
+                <div class="formula">1 nanometer (1 nm) = 10<sup>−9</sup> m</div>
+            </div>
+
+            <p>To understand how small this is:</p>
+            <ul>
+                <li>Human hair diameter ≈ 80,000 to 100,000 nm</li>
+                <li>Red blood cell ≈ 7000 nm</li>
+                <li>DNA width ≈ 2 nm</li>
+            </ul>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Nanoscience</div>
+                <p><strong>Nanoscience</strong> is the study of materials, structures, and devices at the nanoscale, usually between <strong>1 nm and 100 nm</strong>.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Nanotechnology</div>
+                <p><strong>Nanotechnology</strong> is the science and technology of designing, producing, and using materials and devices by controlling matter at the nanoscale.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why Nano Materials Behave Differently</div>
+                <p>When the size of a material becomes extremely small, its properties can change. At nanoscale:</p>
+                <ul>
+                    <li>Surface area becomes very large</li>
+                    <li>Quantum effects become important</li>
+                    <li>Mechanical, electrical, optical and chemical properties may change</li>
+                </ul>
+                <p>For example, a bulk material may be dull, but its nanoparticles may show bright colours or higher reactivity.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=nanoscience+size+comparison+diagram+1+to+100+nm" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.16:</strong> Size comparison diagram showing nanoscale objects from 1 nm to 100 nm</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-cubes"></i> Examples of Nanomaterials</h3>
+            <ul>
+                <li>Carbon nanotubes</li>
+                <li>Quantum dots</li>
+                <li>Nanowires</li>
+                <li>Nanoparticles of gold, silver, zinc oxide etc.</li>
+                <li>Graphene</li>
+            </ul>
+
+            <h3><i class="fas fa-tools"></i> Applications of Nanotechnology</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Practical Applications</div>
+                <ol>
+                    <li><strong>Electronics:</strong> Smaller and faster chips, memory devices</li>
+                    <li><strong>Medicine:</strong> Targeted drug delivery, cancer treatment, diagnostics</li>
+                    <li><strong>Materials science:</strong> Stronger and lighter materials</li>
+                    <li><strong>Textiles:</strong> Water-proof, stain-resistant fabrics</li>
+                    <li><strong>Energy:</strong> Better batteries, solar cells, fuel cells</li>
+                    <li><strong>Environment:</strong> Water purification and pollution control</li>
+                    <li><strong>Cosmetics:</strong> Sunscreens and skin-care products</li>
+                    <li><strong>Coatings:</strong> Scratch-resistant and anti-corrosion coatings</li>
+                </ol>
+            </div>
+
+            <h3><i class="fas fa-star"></i> Importance of Nanotechnology</h3>
+            <ul>
+                <li>Helps in miniaturization of devices</li>
+                <li>Improves performance of materials</li>
+                <li>Saves energy and resources</li>
+                <li>Creates new possibilities in medicine and electronics</li>
+                <li>Important field for future engineering and industry</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=nanotechnology+applications+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.17:</strong> Applications of nanotechnology in electronics, medicine, materials, and environment</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Tip</div>
+                <p>Your syllabus says <strong>“Introduction only”</strong>. So for exam purposes, remember:</p>
+                <ul>
+                    <li>Definition of nanoscience</li>
+                    <li>Definition of nanotechnology</li>
+                    <li>Nanoscale = 1 to 100 nm</li>
+                    <li>At least 4–5 applications</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: SOLVED NUMERICALS ==================== -->
+    <section class="section" id="numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Solved Numerical Examples 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 1 — Energy of Second Orbit of Hydrogen</div>
+                <p>Calculate the energy of an electron in the second orbit of hydrogen atom.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">E<sub>n</sub> = <span class="fraction"><span class="num">−13.6</span><span class="den">n<sup>2</sup></span></span> eV</div>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <p>For second orbit, n = 2</p>
+                    <div class="formula">E<sub>2</sub> = <span class="fraction"><span class="num">−13.6</span><span class="den">2<sup>2</sup></span></span> = <span class="fraction"><span class="num">−13.6</span><span class="den">4</span></span></div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">E<sub>2</sub> = −3.4 eV</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 2 — Radius of Third Orbit</div>
+                <p>Find the radius of the third Bohr orbit of hydrogen atom. Take a<sub>0</sub> = 0.529 Å.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">r<sub>n</sub> = n<sup>2</sup> a<sub>0</sub></div>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <p>For third orbit, n = 3</p>
+                    <div class="formula">r<sub>3</sub> = 3<sup>2</sup> × 0.529 = 9 × 0.529</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">r<sub>3</sub> = 4.761 Å</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 3 — Excitation Potential of Hydrogen</div>
+                <p>Calculate the first excitation potential of hydrogen atom.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>E<sub>1</sub> = −13.6 eV, E<sub>2</sub> = −3.4 eV</p>
+                </div>
+                <div class="step" data-step="Calculation">
+                    <div class="formula">Excitation energy = E<sub>2</sub> − E<sub>1</sub></div>
+                    <div class="formula">= (−3.4) − (−13.6) = 10.2 eV</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <p>Numerically, excitation energy in eV = excitation potential in volt.</p>
+                    <div class="formula answer">First excitation potential = 10.2 V</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 4 — Ionization Potential of Hydrogen</div>
+                <p>Find the ionization potential of hydrogen atom.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>Ground state energy E<sub>1</sub> = −13.6 eV</p>
+                </div>
+                <div class="step" data-step="Calculation">
+                    <p>At infinity, energy = 0</p>
+                    <div class="formula">Ionization energy = 0 − (−13.6) = 13.6 eV</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">Ionization potential = 13.6 V</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 5 — X-ray Minimum Wavelength</div>
+                <p>An X-ray tube is operated at 20 kV. Find the minimum wavelength of the X-rays produced.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">λ<sub>min</sub> = <span class="fraction"><span class="num">hc</span><span class="den">eV</span></span></div>
+                </div>
+                <div class="step" data-step="Shortcut Formula">
+                    <p>Using practical formula:</p>
+                    <div class="formula">λ<sub>min</sub> (in Å) = <span class="fraction"><span class="num">12400</span><span class="den">V (in volt)</span></span></div>
+                    <p>Or in meter:</p>
+                    <div class="formula">λ<sub>min</sub> = <span class="fraction"><span class="num">1.24 × 10<sup>−6</sup></span><span class="den">V</span></span> m</div>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <p>V = 20 kV = 20,000 V</p>
+                    <div class="formula">λ<sub>min</sub> = <span class="fraction"><span class="num">1.24 × 10<sup>−6</sup></span><span class="den">20000</span></span></div>
+                    <div class="formula">= 6.2 × 10<sup>−11</sup> m</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">Minimum wavelength = 6.2 × 10<sup>−11</sup> m</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 6 — Photon Energy of He-Ne Laser</div>
+                <p>Calculate the energy of a photon emitted by a He-Ne laser of wavelength 632.8 nm.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">E = <span class="fraction"><span class="num">hc</span><span class="den">λ</span></span></div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>h = 6.63 × 10<sup>−34</sup> J·s</p>
+                    <p>c = 3 × 10<sup>8</sup> m/s</p>
+                    <p>λ = 632.8 nm = 632.8 × 10<sup>−9</sup> m</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">E = <span class="fraction"><span class="num">6.63 × 10<sup>−34</sup> × 3 × 10<sup>8</sup></span><span class="den">632.8 × 10<sup>−9</sup></span></span></div>
+                    <div class="formula">E = 3.14 × 10<sup>−19</sup> J (approximately)</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">Energy of photon ≈ 3.14 × 10<sup>−19</sup> J</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 7 — Numerical Aperture</div>
+                <p>An optical fiber has refractive indices 1.50 for core and 1.47 for cladding. Find its numerical aperture.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">NA = √(n<sub>1</sub><sup>2</sup> − n<sub>2</sub><sup>2</sup>)</div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>n<sub>1</sub> = 1.50, n<sub>2</sub> = 1.47</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">NA = √(1.50<sup>2</sup> − 1.47<sup>2</sup>)</div>
+                    <div class="formula">= √(2.25 − 2.1609)</div>
+                    <div class="formula">= √(0.0891)</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">NA = 0.298 ≈ 0.30</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 8 — Acceptance Angle</div>
+                <p>An optical fiber has numerical aperture 0.4. Calculate its acceptance angle.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">NA = sin θ<sub>a</sub></div>
+                    <div class="formula">θ<sub>a</sub> = sin<sup>−1</sup>(NA)</div>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">θ<sub>a</sub> = sin<sup>−1</sup>(0.4)</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">θ<sub>a</sub> ≈ 23.6°</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 10: FORMULAS ==================== -->
+    <section class="section" id="formulas">
+        <h2 class="section-title">
+            <i class="fas fa-square-root-alt"></i> Key Formulas Summary 📐
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Formula Name</th>
+                            <th>Formula</th>
+                            <th>Units</th>
+                            <th>Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bohr angular momentum</td>
+                            <td>mvr = nh / 2π</td>
+                            <td>kg·m²/s</td>
+                            <td>Bohr quantization condition</td>
+                        </tr>
+                        <tr>
+                            <td>Radius of nth orbit</td>
+                            <td>r<sub>n</sub> = n²a<sub>0</sub></td>
+                            <td>m or Å</td>
+                            <td>Radius of Bohr orbit</td>
+                        </tr>
+                        <tr>
+                            <td>Energy of nth orbit</td>
+                            <td>E<sub>n</sub> = −13.6 / n² eV</td>
+                            <td>eV</td>
+                            <td>Energy level of hydrogen atom</td>
+                        </tr>
+                        <tr>
+                            <td>Transition energy</td>
+                            <td>hν = E<sub>2</sub> − E<sub>1</sub></td>
+                            <td>J or eV</td>
+                            <td>Emission or absorption of radiation</td>
+                        </tr>
+                        <tr>
+                            <td>Excitation potential</td>
+                            <td>V<sub>exc</sub> = (E<sub>2</sub> − E<sub>1</sub>) / e</td>
+                            <td>V</td>
+                            <td>Potential needed to excite atom</td>
+                        </tr>
+                        <tr>
+                            <td>Ionization potential</td>
+                            <td>V<sub>ion</sub> = (0 − E<sub>1</sub>) / e</td>
+                            <td>V</td>
+                            <td>Potential needed to ionize atom</td>
+                        </tr>
+                        <tr>
+                            <td>Minimum X-ray wavelength</td>
+                            <td>λ<sub>min</sub> = hc / eV</td>
+                            <td>m</td>
+                            <td>Duane-Hunt law</td>
+                        </tr>
+                        <tr>
+                            <td>Photon energy</td>
+                            <td>E = hν = hc / λ</td>
+                            <td>J or eV</td>
+                            <td>Laser and X-ray photon energy</td>
+                        </tr>
+                        <tr>
+                            <td>Numerical Aperture</td>
+                            <td>NA = √(n<sub>1</sub>² − n<sub>2</sub>²)</td>
+                            <td>Dimensionless</td>
+                            <td>Light gathering power of fiber</td>
+                        </tr>
+                        <tr>
+                            <td>NA and acceptance angle</td>
+                            <td>NA = sin θ<sub>a</sub></td>
+                            <td>Dimensionless</td>
+                            <td>To find acceptance angle</td>
+                        </tr>
+                        <tr>
+                            <td>Acceptance angle</td>
+                            <td>θ<sub>a</sub> = sin<sup>−1</sup>(NA)</td>
+                            <td>degree</td>
+                            <td>Maximum angle for light entry</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 11: DEFINITIONS ==================== -->
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-book-open"></i> Important Definitions 📝
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 1. Bohr’s Atomic Model</div>
+                <p>The model which states that electrons revolve around the nucleus only in certain fixed circular orbits of definite energy called stationary orbits.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 2. Ground State</div>
+                <p>The lowest energy state of an atom is called the ground state.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 3. Excited State</div>
+                <p>The higher energy state of an atom obtained when an electron absorbs energy and jumps to a higher orbit.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 4. Excitation Potential</div>
+                <p>The minimum potential difference required to raise an electron from ground state to a higher energy state without removing it from the atom.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 5. Ionization Potential</div>
+                <p>The minimum potential difference required to remove an electron completely from an isolated gaseous atom in its ground state.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 6. X-Rays</div>
+                <p>Electromagnetic radiations of very short wavelength and high frequency produced when high-speed electrons strike a heavy metal target.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 7. Continuous X-Rays</div>
+                <p>X-rays produced due to sudden deceleration of high-speed electrons on striking the target. They form a continuous spectrum.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 8. Characteristic X-Rays</div>
+                <p>X-rays of definite wavelength emitted when electrons from higher shells fill vacancies in lower shells of target atoms.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 9. Spontaneous Emission</div>
+                <p>The emission of radiation by an excited atom on its own without any external cause.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 10. Stimulated Emission</div>
+                <p>The emission of radiation by an excited atom under the influence of an incident photon of proper energy.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 11. Population Inversion</div>
+                <p>The condition in which the number of atoms in the excited state is greater than the number in the lower state.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 12. Laser</div>
+                <p>A device that produces a highly intense, monochromatic, coherent and directional beam of light by stimulated emission.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 13. Optical Fiber</div>
+                <p>A thin transparent fiber made of glass or plastic through which light travels by total internal reflection.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 14. Acceptance Angle</div>
+                <p>The maximum angle at which light can enter the fiber and still propagate through it by total internal reflection.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 15. Numerical Aperture</div>
+                <p>The light gathering ability of an optical fiber.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 16. Nanoscience</div>
+                <p>The study of structures and materials in the size range of about 1 to 100 nm.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 17. Nanotechnology</div>
+                <p>The science and technology of designing and using materials and devices by controlling matter at nanoscale.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 12: COMPARISONS ==================== -->
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables ⚖️
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1. Excitation Potential vs Ionization Potential</h3>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-arrow-up"></i> See Full Table</div>
+                <p>Detailed comparison available in <a href="#potentials">Ionization & Excitation Potentials</a> section.</p>
+            </div>
+
+            <h3>2. Continuous X-Rays vs Characteristic X-Rays</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Continuous X-Rays</th>
+                            <th>Characteristic X-Rays</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Origin</strong></td>
+                            <td>Produced by sudden deceleration of electrons</td>
+                            <td>Produced by electronic transitions in target atoms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spectrum</strong></td>
+                            <td>Continuous spectrum</td>
+                            <td>Line spectrum</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dependence on target material</strong></td>
+                            <td>Less dependent</td>
+                            <td>Strongly dependent</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wavelength</strong></td>
+                            <td>Wide range</td>
+                            <td>Definite wavelengths</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Other name</strong></td>
+                            <td>Bremsstrahlung</td>
+                            <td>Characteristic lines</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cause</strong></td>
+                            <td>Loss of kinetic energy</td>
+                            <td>Loss of atomic energy level difference</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3. Soft X-Rays vs Hard X-Rays</h3>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-arrow-up"></i> See Full Table</div>
+                <p>Detailed comparison available in <a href="#xrays">X-Rays</a> section.</p>
+            </div>
+
+            <h3>4. Spontaneous Emission vs Stimulated Emission</h3>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-arrow-up"></i> See Full Table</div>
+                <p>Detailed comparison available in <a href="#laser-basics">Laser Basics</a> section.</p>
+            </div>
+
+            <h3>5. Ordinary Light vs Laser Light</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Ordinary Light</th>
+                            <th>Laser Light</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Wavelength</strong></td>
+                            <td>Many wavelengths</td>
+                            <td>Nearly single wavelength</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nature</strong></td>
+                            <td>Incoherent</td>
+                            <td>Coherent</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Direction</strong></td>
+                            <td>Spreads in all directions</td>
+                            <td>Highly directional</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intensity</strong></td>
+                            <td>Low</td>
+                            <td>Very high</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monochromaticity</strong></td>
+                            <td>Poor</td>
+                            <td>Excellent</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Source</strong></td>
+                            <td>Spontaneous emission</td>
+                            <td>Stimulated emission</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>6. Single Mode Fiber vs Multimode Fiber</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Single Mode Fiber</th>
+                            <th>Multimode Fiber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Number of modes</strong></td>
+                            <td>One</td>
+                            <td>Many</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Core diameter</strong></td>
+                            <td>Small</td>
+                            <td>Larger</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dispersion</strong></td>
+                            <td>Less</td>
+                            <td>More</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Distance of transmission</strong></td>
+                            <td>Long distance</td>
+                            <td>Short distance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost</strong></td>
+                            <td>More expensive</td>
+                            <td>Less expensive</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Application</strong></td>
+                            <td>Long distance telecom</td>
+                            <td>Local networks</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ==================== SECTION 13: MCQ BANK ==================== -->
+    <section class="section" id="mcqs">
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i> MCQ Bank ❓
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q 7.1</h4>
+                    <p>According to Bohr’s model, the angular momentum of an electron is:</p>
+                    <ul class="options">
+                        <li>a. Continuous</li>
+                        <li>b. Zero always</li>
+                        <li>c. Quantized</li>
+                        <li>d. Infinite</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq701"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq701">
+                        <strong>Answer: c. Quantized</strong>
+                        <p>Bohr proposed that the angular momentum of the electron is quantized: mvr = nh/2π.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.2</h4>
+                    <p>The energy of electron in the first Bohr orbit is:</p>
+                    <ul class="options">
+                        <li>a. −13.6 eV</li>
+                        <li>b. −3.4 eV</li>
+                        <li>c. 0 eV</li>
+                        <li>d. +13.6 eV</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq702"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq702">
+                        <strong>Answer: a. −13.6 eV</strong>
+                        <p>For hydrogen atom, E<sub>1</sub> = −13.6 eV.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.3</h4>
+                    <p>The first excitation potential of hydrogen is:</p>
+                    <ul class="options">
+                        <li>a. 13.6 V</li>
+                        <li>b. 10.2 V</li>
+                        <li>c. 3.4 V</li>
+                        <li>d. 1.5 V</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq703"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq703">
+                        <strong>Answer: b. 10.2 V</strong>
+                        <p>The energy difference between n=1 and n=2 for hydrogen is 10.2 eV, so the first excitation potential is 10.2 V.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.4</h4>
+                    <p>The ionization potential of hydrogen atom is:</p>
+                    <ul class="options">
+                        <li>a. 10.2 V</li>
+                        <li>b. 3.4 V</li>
+                        <li>c. 13.6 V</li>
+                        <li>d. 1 V</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq704"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq704">
+                        <strong>Answer: c. 13.6 V</strong>
+                        <p>13.6 eV is needed to remove the electron completely from ground state hydrogen atom.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.5</h4>
+                    <p>X-rays are:</p>
+                    <ul class="options">
+                        <li>a. Sound waves</li>
+                        <li>b. Electromagnetic waves</li>
+                        <li>c. Matter waves</li>
+                        <li>d. Water waves</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq705"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq705">
+                        <strong>Answer: b. Electromagnetic waves</strong>
+                        <p>X-rays are electromagnetic radiations of very short wavelength.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.6</h4>
+                    <p>Continuous X-rays are also called:</p>
+                    <ul class="options">
+                        <li>a. Alpha rays</li>
+                        <li>b. Beta rays</li>
+                        <li>c. Bremsstrahlung</li>
+                        <li>d. Cathode rays</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq706"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq706">
+                        <strong>Answer: c. Bremsstrahlung</strong>
+                        <p>Continuous X-rays are produced due to braking of high-speed electrons, so they are called bremsstrahlung.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.7</h4>
+                    <p>Hard X-rays have:</p>
+                    <ul class="options">
+                        <li>a. Longer wavelength</li>
+                        <li>b. Lower penetrating power</li>
+                        <li>c. Higher wavelength</li>
+                        <li>d. Greater penetrating power</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq707"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq707">
+                        <strong>Answer: d. Greater penetrating power</strong>
+                        <p>Hard X-rays have shorter wavelength, higher energy, and greater penetrating power.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.8</h4>
+                    <p>LASER stands for:</p>
+                    <ul class="options">
+                        <li>a. Light Amplification by Simple Emission of Radiation</li>
+                        <li>b. Light Amplification by Stimulated Emission of Radiation</li>
+                        <li>c. Light Application by Stimulated Emission of Radiation</li>
+                        <li>d. Long Amplification by Stimulated Emission of Radiation</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq708"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq708">
+                        <strong>Answer: b. Light Amplification by Stimulated Emission of Radiation</strong>
+                        <p>This is the full form of LASER.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.9</h4>
+                    <p>The basic principle of laser is:</p>
+                    <ul class="options">
+                        <li>a. Spontaneous emission</li>
+                        <li>b. Diffraction</li>
+                        <li>c. Stimulated emission</li>
+                        <li>d. Reflection</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq709"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq709">
+                        <strong>Answer: c. Stimulated emission</strong>
+                        <p>Laser action is based on stimulated emission and population inversion.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.10</h4>
+                    <p>In He-Ne laser, the active laser atom is mainly:</p>
+                    <ul class="options">
+                        <li>a. Helium</li>
+                        <li>b. Neon</li>
+                        <li>c. Hydrogen</li>
+                        <li>d. Nitrogen</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq710"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq710">
+                        <strong>Answer: b. Neon</strong>
+                        <p>Helium helps in excitation, but neon is the actual laser-active atom producing laser radiation.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.11</h4>
+                    <p>The wavelength of common He-Ne laser is:</p>
+                    <ul class="options">
+                        <li>a. 500 nm</li>
+                        <li>b. 632.8 nm</li>
+                        <li>c. 1000 nm</li>
+                        <li>d. 10 nm</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq711"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq711">
+                        <strong>Answer: b. 632.8 nm</strong>
+                        <p>He-Ne laser commonly produces red light of wavelength 632.8 nm.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.12</h4>
+                    <p>Optical fiber works on the principle of:</p>
+                    <ul class="options">
+                        <li>a. Refraction</li>
+                        <li>b. Diffraction</li>
+                        <li>c. Interference</li>
+                        <li>d. Total internal reflection</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq712"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq712">
+                        <strong>Answer: d. Total internal reflection</strong>
+                        <p>Light propagates through optical fiber by repeated total internal reflection at core-cladding interface.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.13</h4>
+                    <p>For an optical fiber, the refractive index of core is:</p>
+                    <ul class="options">
+                        <li>a. Equal to cladding</li>
+                        <li>b. Less than cladding</li>
+                        <li>c. Greater than cladding</li>
+                        <li>d. Zero</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq713"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq713">
+                        <strong>Answer: c. Greater than cladding</strong>
+                        <p>For total internal reflection, n<sub>core</sub> must be greater than n<sub>cladding</sub>.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.14</h4>
+                    <p>Numerical aperture of optical fiber indicates its:</p>
+                    <ul class="options">
+                        <li>a. Weight</li>
+                        <li>b. Strength</li>
+                        <li>c. Light gathering ability</li>
+                        <li>d. Length</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq714"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq714">
+                        <strong>Answer: c. Light gathering ability</strong>
+                        <p>Numerical aperture tells how much light can enter the fiber and still be guided through it.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.15</h4>
+                    <p>The size range of nanoscience is approximately:</p>
+                    <ul class="options">
+                        <li>a. 1 m to 100 m</li>
+                        <li>b. 1 mm to 100 mm</li>
+                        <li>c. 1 nm to 100 nm</li>
+                        <li>d. 1 cm to 100 cm</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq715"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq715">
+                        <strong>Answer: c. 1 nm to 100 nm</strong>
+                        <p>Nanoscience deals with the study of materials in the approximate size range of 1–100 nm.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 14: SHORT ANSWER QUESTIONS ==================== -->
+    <section class="section" id="short-questions">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions (2 Marks Style) 📝
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+
+                <div class="mcq-item">
+                    <h4>Q 7.16</h4>
+                    <p>State Bohr’s quantization condition.</p>
+                    <button class="toggle-btn" data-target="sa701"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa701">
+                        <p>According to Bohr’s quantization condition, the angular momentum of an electron in a permitted orbit is quantized:</p>
+                        <div class="formula">mvr = nh / 2π</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.17</h4>
+                    <p>Define ionization potential.</p>
+                    <button class="toggle-btn" data-target="sa702"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa702">
+                        <p>Ionization potential is the minimum potential difference required to remove an electron completely from an isolated gaseous atom in its ground state.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.18</h4>
+                    <p>What are X-rays?</p>
+                    <button class="toggle-btn" data-target="sa703"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa703">
+                        <p>X-rays are electromagnetic radiations of very short wavelength and high frequency produced when high-speed electrons strike a heavy metal target.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.19</h4>
+                    <p>What is spontaneous emission?</p>
+                    <button class="toggle-btn" data-target="sa704"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa704">
+                        <p>Spontaneous emission is the process in which an excited atom returns to a lower energy state on its own and emits a photon without any external cause.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.20</h4>
+                    <p>What is stimulated emission?</p>
+                    <button class="toggle-btn" data-target="sa705"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa705">
+                        <p>Stimulated emission is the process in which an excited atom, under the influence of an incident photon of proper energy, emits a second identical photon.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.21</h4>
+                    <p>Define population inversion.</p>
+                    <button class="toggle-btn" data-target="sa706"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa706">
+                        <p>Population inversion is the condition in which the number of atoms in the excited state becomes greater than the number of atoms in the lower energy state.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.22</h4>
+                    <p>What is acceptance angle in optical fiber?</p>
+                    <button class="toggle-btn" data-target="sa707"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa707">
+                        <p>The acceptance angle is the maximum angle with the fiber axis at which light can enter the fiber and still be guided through it by total internal reflection.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.23</h4>
+                    <p>Define numerical aperture.</p>
+                    <button class="toggle-btn" data-target="sa708"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa708">
+                        <p>Numerical aperture is the light gathering ability of an optical fiber and is given by NA = √(n<sub>1</sub>² − n<sub>2</sub>²).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.24</h4>
+                    <p>What is nanotechnology?</p>
+                    <button class="toggle-btn" data-target="sa709"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa709">
+                        <p>Nanotechnology is the science and technology of designing, producing, and using materials and devices by controlling matter at nanoscale.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.25</h4>
+                    <p>Write one application each of laser and optical fiber.</p>
+                    <button class="toggle-btn" data-target="sa710"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa710">
+                        <p><strong>Laser:</strong> Used in medical surgery.<br><strong>Optical fiber:</strong> Used in telecommunication and internet data transmission.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 15: LONG ANSWER QUESTIONS ==================== -->
+    <section class="section" id="long-questions">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks Style) 📄
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+
+                <div class="mcq-item">
+                    <h4>Q 7.26</h4>
+                    <p>State and explain the postulates of Bohr’s atomic model.</p>
+                    <button class="toggle-btn" data-target="la701"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la701">
+                        <p>Bohr’s atomic model was proposed to explain the stability of atom and the line spectrum of hydrogen.</p>
+                        <p><strong>Postulates:</strong></p>
+                        <ol>
+                            <li>The atom has a small, dense, positively charged nucleus at the center.</li>
+                            <li>Electrons revolve around the nucleus in certain permitted circular orbits.</li>
+                            <li>These orbits are called stationary orbits. While moving in these orbits, electrons do not radiate energy.</li>
+                            <li>The angular momentum of electron is quantized:
+                                <div class="formula">mvr = nh / 2π</div>
+                            </li>
+                            <li>Electrons emit or absorb radiation only when they jump from one orbit to another.</li>
+                            <li>The frequency of emitted or absorbed radiation is given by:
+                                <div class="formula">hν = E<sub>2</sub> − E<sub>1</sub></div>
+                            </li>
+                        </ol>
+                        <p>This model explained atomic stability and the hydrogen spectrum successfully.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.27</h4>
+                    <p>Explain excitation potential and ionization potential. Distinguish between them.</p>
+                    <button class="toggle-btn" data-target="la702"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la702">
+                        <p><strong>Excitation potential</strong> is the minimum potential difference required to move an electron from ground state to a higher orbit without removing it from the atom.</p>
+                        <p><strong>Ionization potential</strong> is the minimum potential difference required to remove the electron completely from the atom.</p>
+                        <p><strong>Difference:</strong></p>
+                        <ul>
+                            <li>Excitation → electron remains inside atom; Ionization → electron leaves atom</li>
+                            <li>Excitation requires less energy; Ionization requires more energy</li>
+                            <li>Excitation leads to excited state; Ionization leads to ion formation</li>
+                        </ul>
+                        <p>For hydrogen:</p>
+                        <ul>
+                            <li>First excitation potential = 10.2 V</li>
+                            <li>Ionization potential = 13.6 V</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.28</h4>
+                    <p>Describe the construction and working of Coolidge tube.</p>
+                    <button class="toggle-btn" data-target="la703"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la703">
+                        <p>Coolidge tube is a modern X-ray tube used to produce X-rays.</p>
+                        <p><strong>Construction:</strong></p>
+                        <ul>
+                            <li>A highly evacuated glass tube</li>
+                            <li>Tungsten filament as cathode inside focusing cup</li>
+                            <li>Heavy metal target like tungsten as anode</li>
+                            <li>High voltage supply between cathode and anode</li>
+                            <li>Cooling arrangement</li>
+                        </ul>
+                        <p><strong>Working:</strong></p>
+                        <ol>
+                            <li>The filament is heated and emits electrons by thermionic emission.</li>
+                            <li>High voltage accelerates these electrons towards the target.</li>
+                            <li>When electrons strike the target, they are suddenly decelerated.</li>
+                            <li>A small part of their kinetic energy is converted into X-rays and most into heat.</li>
+                            <li>X-rays come out through the window of the tube.</li>
+                        </ol>
+                        <p>Coolidge tube produces both continuous and characteristic X-rays.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.29</h4>
+                    <p>What are X-rays? Explain continuous and characteristic X-rays. Also distinguish between soft and hard X-rays.</p>
+                    <button class="toggle-btn" data-target="la704"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la704">
+                        <p>X-rays are electromagnetic radiations of very short wavelength and high frequency.</p>
+                        <p><strong>Continuous X-rays:</strong> Produced due to sudden deceleration of high-speed electrons striking the target. They form a continuous spectrum and are also called bremsstrahlung.</p>
+                        <p><strong>Characteristic X-rays:</strong> Produced when inner shell electrons of target atoms are knocked out and outer electrons fall into the vacancy, emitting photons of definite energies.</p>
+                        <p><strong>Soft X-rays:</strong> Longer wavelength, lower energy, lower penetrating power.</p>
+                        <p><strong>Hard X-rays:</strong> Shorter wavelength, higher energy, greater penetrating power.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.30</h4>
+                    <p>Explain spontaneous emission and stimulated emission. Why is stimulated emission important for laser action?</p>
+                    <button class="toggle-btn" data-target="la705"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la705">
+                        <p><strong>Spontaneous emission</strong> occurs when an excited atom returns to lower state on its own and emits a photon. The emitted photons have random phase and direction.</p>
+                        <p><strong>Stimulated emission</strong> occurs when an excited atom is struck by an incident photon of proper energy and emits a second identical photon.</p>
+                        <p><strong>Importance:</strong></p>
+                        <ul>
+                            <li>The emitted photon is identical to the incident photon</li>
+                            <li>Both photons move in same direction and phase</li>
+                            <li>This causes amplification of light</li>
+                            <li>Hence stimulated emission is the basic principle of laser action</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.31</h4>
+                    <p>What is laser? Write the properties and applications of laser light.</p>
+                    <button class="toggle-btn" data-target="la706"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la706">
+                        <p>LASER means Light Amplification by Stimulated Emission of Radiation. It is a device that produces a highly intense, coherent, monochromatic, and directional beam of light.</p>
+                        <p><strong>Properties:</strong></p>
+                        <ul>
+                            <li>Monochromatic</li>
+                            <li>Coherent</li>
+                            <li>Highly directional</li>
+                            <li>Highly intense</li>
+                            <li>Often polarized</li>
+                        </ul>
+                        <p><strong>Applications:</strong></p>
+                        <ul>
+                            <li>Medical surgery</li>
+                            <li>Cutting and welding</li>
+                            <li>Optical communication</li>
+                            <li>Barcode reading</li>
+                            <li>Holography</li>
+                            <li>Scientific measurement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.32</h4>
+                    <p>Describe the construction, working and applications of He-Ne laser.</p>
+                    <button class="toggle-btn" data-target="la707"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la707">
+                        <p>He-Ne laser is a gas laser containing a mixture of helium and neon gases.</p>
+                        <p><strong>Construction:</strong></p>
+                        <ul>
+                            <li>Glass discharge tube containing helium-neon gas mixture</li>
+                            <li>Electrodes with high voltage supply</li>
+                            <li>Two mirrors at ends, one fully reflecting and one partially reflecting</li>
+                        </ul>
+                        <p><strong>Working:</strong></p>
+                        <ol>
+                            <li>Electric discharge excites helium atoms.</li>
+                            <li>Excited helium transfers energy to neon atoms by collision.</li>
+                            <li>Neon atoms get excited and population inversion is achieved.</li>
+                            <li>Stimulated emission occurs in neon.</li>
+                            <li>Amplified light emerges through partially reflecting mirror.</li>
+                        </ol>
+                        <p><strong>Applications:</strong> Holography, alignment, interferometry, laboratory use, barcode scanning.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.33</h4>
+                    <p>Explain the construction and working principle of optical fiber. Mention its applications.</p>
+                    <button class="toggle-btn" data-target="la708"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la708">
+                        <p>An optical fiber is a thin transparent glass or plastic fiber through which light travels by total internal reflection.</p>
+                        <p><strong>Construction:</strong></p>
+                        <ul>
+                            <li>Core of refractive index n<sub>1</sub></li>
+                            <li>Cladding of refractive index n<sub>2</sub></li>
+                            <li>Protective outer coating</li>
+                        </ul>
+                        <p>For proper working: n<sub>1</sub> &gt; n<sub>2</sub>.</p>
+                        <p><strong>Working Principle:</strong></p>
+                        <ul>
+                            <li>Light enters the core within the acceptance angle</li>
+                            <li>It strikes the core-cladding interface at angle greater than critical angle</li>
+                            <li>Thus it suffers total internal reflection repeatedly</li>
+                            <li>So the light travels through the fiber</li>
+                        </ul>
+                        <p><strong>Applications:</strong> Telecommunication, medical endoscopy, industrial inspection, sensors, internet communication, undersea cables.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 16: PRACTICE NUMERICALS ==================== -->
+    <section class="section" id="practice">
+        <h2 class="section-title">
+            <i class="fas fa-dumbbell"></i> Practice Numericals 🔢
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+
+                <div class="mcq-item">
+                    <h4>Q 7.34</h4>
+                    <p>Calculate the energy of electron in the third orbit of hydrogen atom.</p>
+                    <button class="toggle-btn" data-target="pn701"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn701">
+                        <div class="formula">E<sub>3</sub> = −13.6 / 3² = −13.6 / 9 = −1.51 eV</div>
+                        <div class="formula answer">Answer: −1.51 eV</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.35</h4>
+                    <p>Find the radius of the second Bohr orbit if a<sub>0</sub> = 0.529 Å.</p>
+                    <button class="toggle-btn" data-target="pn702"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn702">
+                        <div class="formula">r<sub>2</sub> = 2² × 0.529 = 4 × 0.529 = 2.116 Å</div>
+                        <div class="formula answer">Answer: 2.116 Å</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.36</h4>
+                    <p>The accelerating voltage of an X-ray tube is 25 kV. Find the minimum wavelength of X-rays.</p>
+                    <button class="toggle-btn" data-target="pn703"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn703">
+                        <div class="formula">λ<sub>min</sub> = 1.24 × 10<sup>−6</sup> / V</div>
+                        <div class="formula">= 1.24 × 10<sup>−6</sup> / 25000</div>
+                        <div class="formula">= 4.96 × 10<sup>−11</sup> m</div>
+                        <div class="formula answer">Answer: 4.96 × 10<sup>−11</sup> m</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.37</h4>
+                    <p>Calculate the numerical aperture of an optical fiber having n<sub>1</sub> = 1.48 and n<sub>2</sub> = 1.46.</p>
+                    <button class="toggle-btn" data-target="pn704"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn704">
+                        <div class="formula">NA = √(1.48² − 1.46²)</div>
+                        <div class="formula">= √(2.1904 − 2.1316)</div>
+                        <div class="formula">= √0.0588 = 0.242</div>
+                        <div class="formula answer">Answer: 0.242</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.38</h4>
+                    <p>If the numerical aperture of a fiber is 0.5, find the acceptance angle.</p>
+                    <button class="toggle-btn" data-target="pn705"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn705">
+                        <div class="formula">θ<sub>a</sub> = sin<sup>−1</sup>(0.5)</div>
+                        <div class="formula answer">Answer: 30°</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 7.39</h4>
+                    <p>Find the photon energy of light of wavelength 500 nm.</p>
+                    <button class="toggle-btn" data-target="pn706"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn706">
+                        <div class="formula">E = hc / λ</div>
+                        <div class="formula">= (6.63 × 10<sup>−34</sup> × 3 × 10<sup>8</sup>) / (500 × 10<sup>−9</sup>)</div>
+                        <div class="formula">= 3.98 × 10<sup>−19</sup> J</div>
+                        <div class="formula answer">Answer: 3.98 × 10<sup>−19</sup> J</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 17: QUICK REVISION ==================== -->
+    <section class="section" id="revision">
+        <h2 class="section-title">
+            <i class="fas fa-bullseye"></i> Quick Revision / Unit Summary 🎯
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-sync-alt"></i> Quick Revision Points</div>
+                <ul>
+                    <li>Bohr stated that electrons revolve in fixed <strong>stationary orbits</strong>.</li>
+                    <li>Bohr quantization condition: <strong>mvr = nh / 2π</strong>.</li>
+                    <li>Radius of nth orbit: <strong>r<sub>n</sub> = n²a<sub>0</sub></strong>.</li>
+                    <li>Energy of nth orbit: <strong>E<sub>n</sub> = −13.6 / n² eV</strong>.</li>
+                    <li>First excitation potential of hydrogen = <strong>10.2 V</strong>.</li>
+                    <li>Ionization potential of hydrogen = <strong>13.6 V</strong>.</li>
+                    <li>X-rays are electromagnetic waves of short wavelength.</li>
+                    <li>Coolidge tube is used to produce X-rays.</li>
+                    <li>Continuous X-rays are due to deceleration of electrons; characteristic X-rays are due to atomic transitions.</li>
+                    <li>Hard X-rays are more penetrating than soft X-rays.</li>
+                    <li>LASER = <strong>Light Amplification by Stimulated Emission of Radiation</strong>.</li>
+                    <li>Laser action needs <strong>stimulated emission</strong> and <strong>population inversion</strong>.</li>
+                    <li>Laser light is <strong>monochromatic, coherent, directional, and intense</strong>.</li>
+                    <li>He-Ne laser produces red light of wavelength <strong>632.8 nm</strong>.</li>
+                    <li>Optical fiber works on <strong>total internal reflection</strong>.</li>
+                    <li>For fiber: <strong>n<sub>core</sub> &gt; n<sub>cladding</sub></strong>.</li>
+                    <li>Numerical aperture: <strong>NA = √(n<sub>1</sub>² − n<sub>2</sub>²)</strong>.</li>
+                    <li>Nanoscience deals with materials of size <strong>1 nm to 100 nm</strong>.</li>
+                    <li>Nanotechnology is important in electronics, medicine, materials, and energy.</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Must Memorize Before Exam</div>
+                <ul>
+                    <li>Bohr energy formula</li>
+                    <li>Excitation potential = 10.2 V (hydrogen)</li>
+                    <li>Ionization potential = 13.6 V (hydrogen)</li>
+                    <li>Duane-Hunt law for X-rays</li>
+                    <li>LASER full form</li>
+                    <li>632.8 nm for He-Ne laser</li>
+                    <li>NA formula of optical fiber</li>
+                    <li>Nanoscale = 1–100 nm</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Common Mistakes to Avoid</div>
+                <ul>
+                    <li>Do not confuse <strong>excitation</strong> with <strong>ionization</strong>.</li>
+                    <li>Do not say X-rays are particles only — at this level treat them as electromagnetic waves.</li>
+                    <li>Do not confuse spontaneous emission with stimulated emission.</li>
+                    <li>Do not forget that laser requires <strong>population inversion</strong>.</li>
+                    <li>In fiber optics, always mention <strong>total internal reflection</strong>.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

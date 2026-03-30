@@ -1,443 +1,2547 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Physics · Unit 5 · Electromagnetism</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: electromagnetism / purple-magnetic -->
-  <style>
-    :root {
-      --primary: #6a4c9c;          /* magnetic purple */
-      --primary-light: #8e6ab8;
-      --accent: #c44536;            /* current red */
-      --accent-light: #e06e5a;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #3a2b5a, #6a4c9c, #c44536);
-    }
-    /* header emoji: magnetic symbols */
-    .header::after {
-      content: "🧲⚡🔄🔋";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* coil illustration */
-    .coil-demo {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .coil {
-      width: 100px;
-      height: 60px;
-      border: 4px solid var(--accent);
-      border-radius: 50%;
-      position: relative;
-    }
-    .coil::after {
-      content: '';
-      width: 20px;
-      height: 20px;
-      background: var(--danger);
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    /* galvanometer */
-    .galvano {
-      width: 150px;
-      height: 150px;
-      border: 4px solid var(--primary);
-      border-radius: 50%;
-      position: relative;
-      margin: 20px auto;
-    }
-    .pointer {
-      width: 60px;
-      height: 4px;
-      background: var(--danger);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform-origin: left center;
-      transform: rotate(30deg);
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5 - Electromagnetism | Applied Physics-II</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Field') ? 'Show Field' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Field') ? 'Hide Field' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; }
+        .fraction .den { padding:3px 6px 0; }
+
+        .topic-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:16px;
+            margin:16px 0;
+        }
+        .topic-card {
+            background:var(--card-bg);
+            border-radius:var(--radius-md);
+            padding:18px;
+            box-shadow:var(--shadow-sm);
+            border-top:4px solid var(--accent);
+            min-width:0;
+        }
+        [data-theme="dark"] .topic-card { background:#1a2332; }
+
+        .vector-note {
+            display:inline-block;
+            padding:3px 8px;
+            border-radius:999px;
+            border:1px solid var(--accent);
+            background:rgba(41,98,255,0.08);
+            font-size:0.85rem;
+            font-weight:600;
+            margin:2px;
+        }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>🧲 Physics · Unit 5 🧲</h1>
-      <h2>Electromagnetism · Lorentz Force · Galvanometer · Magnetic Materials</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-field"></i> Magnetic Field</span>
-        <span class="info-item"><i class="fas fa-bolt"></i> Biot-Savart</span>
-        <span class="info-item"><i class="fas fa-microscope"></i> Galvanometer</span>
-      </div>
+        <h1><i class="fas fa-magnet"></i> Electromagnetism</h1>
+        <h2>Unit 5 — Applied Physics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS104</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 5</span>
+            <span class="info-item"><i class="fas fa-calendar"></i> Semester 2</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-magnet"></i> PHYS·UNIT5</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#field"><i class="fas fa-field"></i> Magnetic Field</a>
-        <a href="#biot"><i class="fas fa-chart-line"></i> Biot-Savart</a>
-        <a href="#force"><i class="fas fa-bolt"></i> Force on Conductor</a>
-        <a href="#induction"><i class="fas fa-sync-alt"></i> Induction</a>
-        <a href="#galvano"><i class="fas fa-microscope"></i> Galvanometer</a>
-        <a href="#materials"><i class="fas fa-cubes"></i> Magnetic Materials</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>🧲 Physics U5</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#magnetic-field"><i class="fas fa-magnet"></i> Magnetic Field</a>
+            <a href="#lorentz-force"><i class="fas fa-bolt"></i> Lorentz Force</a>
+            <a href="#biot-savart"><i class="fas fa-wave-square"></i> Biot-Savart Law</a>
+            <a href="#straight-conductor"><i class="fas fa-grip-lines-vertical"></i> Straight Conductor</a>
+            <a href="#circular-loop"><i class="fas fa-circle-notch"></i> Circular Loop</a>
+            <a href="#magnetic-dipole"><i class="fas fa-compass"></i> Magnetic Dipole</a>
+            <a href="#force-conductor"><i class="fas fa-arrows-alt"></i> Force on Conductor</a>
+            <a href="#torque-coil"><i class="fas fa-sync-alt"></i> Torque on Coil</a>
+            <a href="#emi"><i class="fas fa-industry"></i> EMI</a>
+            <a href="#faraday-laws"><i class="fas fa-scroll"></i> Faraday Laws</a>
+            <a href="#galvanometer"><i class="fas fa-gauge"></i> Galvanometer</a>
+            <a href="#ammeter-voltmeter"><i class="fas fa-tachometer-alt"></i> Ammeter/Voltmeter</a>
+            <a href="#magnetic-materials"><i class="fas fa-cubes"></i> Magnetic Materials</a>
+            <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+            <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+            <a href="#short-questions"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#long-questions"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+            <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-magnet"></i> PHYS Unit 5</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>🧲 Physics U5</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#field"><i class="fas fa-field"></i> Magnetic field, Lorentz force</a>
-      <a href="#biot"><i class="fas fa-chart-line"></i> Biot-Savart: straight wire, circular loop</a>
-      <a href="#force"><i class="fas fa-bolt"></i> Force on conductor, torque on coil</a>
-      <a href="#induction"><i class="fas fa-sync-alt"></i> Electromagnetic induction, Faraday's laws</a>
-      <a href="#galvano"><i class="fas fa-microscope"></i> Moving coil galvanometer, ammeter, voltmeter</a>
-      <a href="#materials"><i class="fas fa-cubes"></i> Dia, Para, Ferro magnetic materials</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#magnetic-field"><i class="fas fa-magnet"></i> Magnetic Field</a>
+        <a href="#lorentz-force"><i class="fas fa-bolt"></i> Lorentz Force</a>
+        <a href="#biot-savart"><i class="fas fa-wave-square"></i> Biot-Savart Law</a>
+        <a href="#straight-conductor"><i class="fas fa-grip-lines-vertical"></i> Straight Conductor</a>
+        <a href="#circular-loop"><i class="fas fa-circle-notch"></i> Circular Loop</a>
+        <a href="#magnetic-dipole"><i class="fas fa-compass"></i> Magnetic Dipole</a>
+        <a href="#force-conductor"><i class="fas fa-arrows-alt"></i> Force on Conductor</a>
+        <a href="#torque-coil"><i class="fas fa-sync-alt"></i> Torque on Coil</a>
+        <a href="#emi"><i class="fas fa-industry"></i> EMI</a>
+        <a href="#faraday-laws"><i class="fas fa-scroll"></i> Faraday Laws</a>
+        <a href="#galvanometer"><i class="fas fa-gauge"></i> Galvanometer</a>
+        <a href="#ammeter-voltmeter"><i class="fas fa-tachometer-alt"></i> Ammeter/Voltmeter</a>
+        <a href="#magnetic-materials"><i class="fas fa-cubes"></i> Magnetic Materials</a>
+        <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+        <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+        <a href="#short-questions"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#long-questions"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+        <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: MAGNETIC FIELD & LORENTZ FORCE ========= -->
-    <section id="field" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-field"></i> Magnetic Field · Lorentz Force
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-circle"></i> Magnetic Field (B)</div>
-          <p><strong>Origin:</strong> Moving charges (currents) and permanent magnets.</p>
-          <p><strong>Units:</strong> Tesla (T) = N/(A·m). Also Gauss (1 G = 10⁻⁴ T).</p>
-        </div>
+<div class="container">
 
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-rocket"></i> Lorentz Force</div>
-          <p>Force on a charge q moving with velocity v in magnetic field B:</p>
-          <div class="formula">F = q (v × B)</div>
-          <p>Magnitude: F = q v B sinθ. Direction: perpendicular to both v and B (right-hand rule).</p>
-        </div>
+    <!-- ==================== SECTION 1: OVERVIEW ==================== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 1</div>
-          <p>An electron (q = -1.6×10⁻¹⁹ C) moves at 2×10⁶ m/s perpendicular to 0.5T field. Find force.</p>
-          <button class="toggle-btn" data-target="lorentz1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="lorentz1">
-            <div class="formula answer">
-              F = q v B sin90° = 1.6×10⁻¹⁹ × 2×10⁶ × 0.5 = 1.6×10⁻¹⁹ × 10⁶ = <strong>1.6×10⁻¹³ N</strong>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> What This Unit Covers</div>
+                <p>This unit deals with <strong>electromagnetism</strong>, which connects electricity and magnetism. You will learn how moving charges produce magnetic fields, how magnetic fields act on moving charges and current carrying conductors, and how changing magnetic field can produce electricity.</p>
+                <p>This unit is extremely important for understanding motors, generators, transformers, galvanometers, ammeters, voltmeters, relays, speakers, induction cookers, and many other electrical devices.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ========== SECTION 2: BIOT-SAVART LAW ========= -->
-    <section id="biot" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-line"></i> Biot-Savart Law · Straight Conductor · Circular Loop
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-pencil"></i> Biot-Savart Law</div>
-          <p>dB = (μ₀/4π) (I dl × r̂) / r²</p>
-          <p>Magnetic field due to a current element.</p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4>Straight Conductor (long wire)</h4>
-            <p>B = (μ₀ I) / (2π r) (at distance r from wire)</p>
-          </div>
-          <div class="card">
-            <h4>Circular Loop (center)</h4>
-            <p>B = (μ₀ I) / (2R) (for N turns, multiply by N)</p>
-          </div>
-        </div>
-
-        <div class="concept-box">
-          <div class="box-title">Magnetic Dipole</div>
-          <p>A current loop behaves as a magnetic dipole with dipole moment m = I × A (area).</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 2</div>
-          <p>A long straight wire carries 10A. Find B at 5cm from wire. (μ₀/4π = 10⁻⁷)</p>
-          <button class="toggle-btn" data-target="biot1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="biot1">
-            <div class="formula answer">
-              B = (μ₀ I)/(2π r) = (2×10⁻⁷ × 10) / (0.05) = 2×10⁻⁶ / 0.05 = <strong>4×10⁻⁵ T</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 3</div>
-          <p>A circular coil of radius 10cm, 20 turns carries 2A. Find B at center.</p>
-          <button class="toggle-btn" data-target="biot2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="biot2">
-            <div class="formula answer">
-              B = (μ₀ N I)/(2R) = (4π×10⁻⁷ × 20 × 2) / (2×0.1) = (4π×10⁻⁷ × 40) / 0.2<br>
-              = (160π×10⁻⁷)/0.2 = 800π×10⁻⁷ = <strong>2.51×10⁻⁴ T</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 3: FORCE ON CONDUCTORS & TORQUE ON COIL ========= -->
-    <section id="force" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-bolt"></i> Force on Current Carrying Conductor · Torque on Coil
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-arrow-right"></i> Force on a Current-Carrying Conductor</div>
-          <p>F = I (L × B)  (for straight wire in uniform field)</p>
-          <p>Magnitude: F = B I L sinθ</p>
-        </div>
-
-        <div class="concept-box">
-          <div class="box-title">Torque on Rectangular Coil in Magnetic Field</div>
-          <p>τ = N I A B sinθ (where θ is angle between normal to coil and B)</p>
-          <p>For N turns, area A, current I. This is the principle of moving coil galvanometer.</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 4</div>
-          <p>A 0.5m wire carries 3A perpendicular to 0.2T field. Find force.</p>
-          <button class="toggle-btn" data-target="force1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="force1">
-            <div class="formula answer">
-              F = B I L = 0.2 × 3 × 0.5 = <strong>0.3 N</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 4: ELECTROMAGNETIC INDUCTION ========= -->
-    <section id="induction" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-sync-alt"></i> Electromagnetic Induction · Faraday's Laws
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-bolt"></i> Concept</div>
-          <p>Changing magnetic flux through a coil induces an EMF (electromagnetic induction).</p>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Faraday's Laws</div>
-          <p><strong>First Law:</strong> EMF is induced whenever flux linked with circuit changes.</p>
-          <p><strong>Second Law:</strong> Induced EMF = - rate of change of flux linkage.</p>
-          <div class="formula">ε = -N dΦ/dt</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 5: MOVING COIL GALVANOMETER & CONVERSION ========= -->
-    <section id="galvano" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-microscope"></i> Moving Coil Galvanometer · Ammeter · Voltmeter
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="galvano">
-          <div class="pointer"></div>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Principle, Construction & Working</div>
-          <p><strong>Principle:</strong> Torque on current-carrying coil in magnetic field: τ = N B I A.</p>
-          <p><strong>Construction:</strong> Coil suspended between poles of permanent magnet, with spring providing restoring torque.</p>
-          <p><strong>Working:</strong> Current causes deflection θ ∝ I (since τ ∝ I and spring τ ∝ θ).</p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4>Conversion to Ammeter</h4>
-            <p>Connect a low resistance <strong>shunt</strong> in parallel with galvanometer.</p>
-            <p>S = I<sub>g</sub> G / (I - I<sub>g</sub>) where G = galvanometer resistance, I<sub>g</sub> = full scale current.</p>
-          </div>
-          <div class="card">
-            <h4>Conversion to Voltmeter</h4>
-            <p>Connect a high resistance <strong>series</strong> with galvanometer.</p>
-            <p>R = V/I<sub>g</sub> - G</p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Ammeter Conversion</div>
-          <p>A galvanometer of resistance 50Ω gives full deflection at 10mA. Convert to ammeter reading 5A. Find shunt resistance.</p>
-          <button class="toggle-btn" data-target="conv1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="conv1">
-            <div class="formula answer">
-              S = I<sub>g</sub> G / (I - I<sub>g</sub>) = (0.01 × 50) / (5 - 0.01) = 0.5 / 4.99 = <strong>0.1002 Ω</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Voltmeter Conversion</div>
-          <p>Same galvanometer (50Ω, 10mA) to measure 10V. Find series resistance.</p>
-          <button class="toggle-btn" data-target="conv2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="conv2">
-            <div class="formula answer">
-              R = V/I<sub>g</sub> - G = 10/0.01 - 50 = 1000 - 50 = <strong>950 Ω</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 6: MAGNETIC MATERIALS ========= -->
-    <section id="materials" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-cubes"></i> Magnetic Materials: Dia · Para · Ferro
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4>Diamagnetic</h4>
+            <h3><i class="fas fa-bullseye"></i> Why This Unit Matters</h3>
             <ul>
-              <li>Weakly repelled by magnet</li>
-              <li>χ < 0, small negative susceptibility</li>
-              <li>Examples: Bi, Cu, Au, H₂O</li>
-              <li>No permanent dipole</li>
+                <li>⚡ Electric motors work because a current carrying conductor experiences force in a magnetic field</li>
+                <li>🔄 Generators work due to electromagnetic induction</li>
+                <li>📟 Galvanometer, ammeter and voltmeter are based on magnetic effect of current</li>
+                <li>🧲 Electromagnets are used in bells, cranes, relays and machines</li>
+                <li>🏭 This unit is the base of electrical engineering, electronics and instrumentation</li>
             </ul>
-          </div>
-          <div class="card">
-            <h4>Paramagnetic</h4>
-            <ul>
-              <li>Weakly attracted</li>
-              <li>χ > 0, small positive</li>
-              <li>Examples: Al, Pt, Na, O₂</li>
-              <li>Permanent dipoles align with field</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4>Ferromagnetic</h4>
-            <ul>
-              <li>Strongly attracted</li>
-              <li>χ >> 0, large, depends on field</li>
-              <li>Examples: Fe, Ni, Co, Gd</li>
-              <li>Exhibit hysteresis, Curie temperature</li>
-            </ul>
-          </div>
+
+            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+            <div class="tag-grid">
+                <span class="info-item"><i class="fas fa-check"></i> Explain magnetic field</span>
+                <span class="info-item"><i class="fas fa-check"></i> Apply Lorentz force law</span>
+                <span class="info-item"><i class="fas fa-check"></i> State Biot-Savart law</span>
+                <span class="info-item"><i class="fas fa-check"></i> Find B due to wire/loop</span>
+                <span class="info-item"><i class="fas fa-check"></i> Explain magnetic dipole</span>
+                <span class="info-item"><i class="fas fa-check"></i> Explain EMI & Faraday laws</span>
+                <span class="info-item"><i class="fas fa-check"></i> Describe galvanometer</span>
+                <span class="info-item"><i class="fas fa-check"></i> Convert galvanometer into ammeter/voltmeter</span>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Prerequisites</div>
+                <ul>
+                    <li>Basic concept of current and voltage</li>
+                    <li>Simple idea of vectors</li>
+                    <li>Basic trigonometric concept of sin θ</li>
+                    <li>Some formulas from current electricity unit</li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">F = qvB sinθ</div>
-          <div class="tag">B (wire) = μ₀I/(2πr)</div>
-          <div class="tag">B (loop) = μ₀I/(2R)</div>
-          <div class="tag">F = BIL sinθ</div>
-          <div class="tag">τ = NIAB sinθ</div>
-          <div class="tag">ε = -N dΦ/dt</div>
-          <div class="tag">Ammeter shunt: S = I<sub>g</sub>G/(I - I<sub>g</sub>)</div>
-          <div class="tag">Voltmeter: R = V/I<sub>g</sub> - G</div>
+    <!-- ==================== SECTION 2: MAGNETIC FIELD ==================== -->
+    <section class="section" id="magnetic-field">
+        <h2 class="section-title">
+            <i class="fas fa-magnet"></i> Magnetic Field and Its Origin ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-compass"></i> What is a Magnetic Field?</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Magnetic Field</div>
+                <p>A <strong>magnetic field</strong> is the region around a magnet, current carrying conductor, or moving charge where a magnetic force can be experienced.</p>
+            </div>
+
+            <p>Just as an electric field exists around a charge, a magnetic field exists around a magnet or moving charge.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Simple Analogy</div>
+                <p>Imagine a magnet like a person spraying perfume. You cannot see the perfume directly, but you know it is present because you can smell it nearby. Similarly, magnetic field is invisible, but we know it exists because it exerts force on magnetic materials and moving charges.</p>
+            </div>
+
+            <h3><i class="fas fa-bolt"></i> Origin of Magnetic Field</h3>
+            <p>Magnetic field can arise due to:</p>
+            <ol>
+                <li><strong>Permanent magnets</strong> (like bar magnets)</li>
+                <li><strong>Moving electric charges</strong></li>
+                <li><strong>Current carrying conductors</strong></li>
+                <li><strong>Electrons revolving and spinning inside atoms</strong></li>
+            </ol>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Very Important Concept</div>
+                <p><strong>Electric charge at rest</strong> produces electric field only.  
+                <strong>Electric charge in motion</strong> produces both electric field and magnetic field.</p>
+            </div>
+
+            <h3><i class="fas fa-project-diagram"></i> Magnetic Lines of Force</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Magnetic Lines of Force</div>
+                <p>Magnetic lines of force are imaginary lines drawn in a magnetic field such that the tangent at any point gives the direction of the magnetic field at that point.</p>
+            </div>
+
+            <h4>Properties of Magnetic Lines of Force</h4>
+            <ul>
+                <li>They form <strong>closed continuous curves</strong></li>
+                <li>Outside the magnet, they go from <strong>North pole to South pole</strong></li>
+                <li>Inside the magnet, they go from <strong>South pole to North pole</strong></li>
+                <li>Two magnetic field lines never intersect each other</li>
+                <li>Closer the lines, stronger the magnetic field</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+field+lines+bar+magnet+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.1:</strong> Magnetic field lines around a bar magnet showing direction from North to South outside the magnet</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+field+around+current+carrying+wire+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.2:</strong> Circular magnetic field lines around a straight current carrying conductor</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-ruler"></i> Magnetic Field Strength and Unit</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Magnetic Flux Density</div>
+                <p>The intensity or strength of magnetic field is represented by <strong>B</strong> and is called <strong>magnetic flux density</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> SI Unit of Magnetic Field</div>
+                <div class="formula">SI unit of B = tesla (T)</div>
+                <p>Other smaller unit sometimes used: <strong>gauss</strong></p>
+                <div class="formula">1 tesla = 10<sup>4</sup> gauss</div>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Symbol Reminder</div>
+                <p>Magnetic field is often represented by <span class="vector-note">B</span>.  
+                It is a <strong>vector quantity</strong>, meaning it has both magnitude and direction.</p>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    <!-- ==================== SECTION 3: LORENTZ FORCE ==================== -->
+    <section class="section" id="lorentz-force">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> Lorentz Force — Force on Moving Charge ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Lorentz Force</div>
+                <p>The force experienced by a charged particle moving in electric and magnetic fields is called <strong>Lorentz force</strong>.</p>
+            </div>
+
+            <p>In this syllabus, the focus is on the magnetic part: <strong>force on a moving charge in a magnetic field</strong>.</p>
+
+            <h3><i class="fas fa-running"></i> Force on a Moving Charge in Magnetic Field</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Lorentz Force Formula (Magnetic Part)</div>
+                <div class="formula">F = qvB sin θ</div>
+                <p>Where:</p>
+                <ul>
+                    <li>F = magnetic force on the charged particle (newton, N)</li>
+                    <li>q = charge of particle (coulomb, C)</li>
+                    <li>v = velocity of particle (m/s)</li>
+                    <li>B = magnetic flux density (tesla, T)</li>
+                    <li>θ = angle between velocity and magnetic field</li>
+                </ul>
+            </div>
+
+            <h4>Special Cases</h4>
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h4>Case 1: θ = 0°</h4>
+                    <p><strong>F = qvB sin 0° = 0</strong></p>
+                    <p>If the charge moves parallel to the magnetic field, no magnetic force acts on it.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>Case 2: θ = 90°</h4>
+                    <p><strong>F = qvB</strong></p>
+                    <p>If the charge moves perpendicular to the magnetic field, force is maximum.</p>
+                </div>
+                <div class="topic-card">
+                    <h4>Case 3: 0° &lt; θ &lt; 90°</h4>
+                    <p><strong>F = qvB sin θ</strong></p>
+                    <p>Force has intermediate value.</p>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-hand-paper"></i> Direction of Lorentz Force</h3>
+            <p>The direction of force on a <strong>positive charge</strong> is given by <strong>Fleming’s left hand rule</strong> or the vector rule <strong>F = q (v × B)</strong>.</p>
+            <p>For a <strong>negative charge</strong>, the direction of force is opposite to that for a positive charge.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-hand-paper"></i> Fleming’s Left Hand Rule</div>
+                <p>Stretch the thumb, forefinger, and middle finger of the left hand mutually perpendicular to each other:</p>
+                <ul>
+                    <li><strong>Forefinger</strong> → direction of magnetic field (B)</li>
+                    <li><strong>Middle finger</strong> → direction of current or motion of positive charge</li>
+                    <li><strong>Thumb</strong> → direction of force (F)</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=lorentz+force+moving+charge+magnetic+field+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.3:</strong> Moving charge in magnetic field showing velocity, magnetic field, and force directions</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Fleming+left+hand+rule+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.4:</strong> Fleming’s left hand rule for finding direction of force on a moving charge/current carrying conductor</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-sync-alt"></i> Path of Charged Particle in Magnetic Field</h3>
+            <ul>
+                <li>If velocity is <strong>parallel</strong> to B → particle moves in straight line</li>
+                <li>If velocity is <strong>perpendicular</strong> to B → particle moves in circular path</li>
+                <li>If velocity makes some angle with B → particle moves in helical path</li>
+            </ul>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Important Point</div>
+                <p>The magnetic force is always <strong>perpendicular</strong> to both the velocity and the magnetic field. Therefore, magnetic force changes only the <strong>direction</strong> of motion, not the speed, when only magnetic field is present.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 4: BIOT-SAVART LAW ==================== -->
+    <section class="section" id="biot-savart">
+        <h2 class="section-title">
+            <i class="fas fa-wave-square"></i> Biot–Savart Law ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-book"></i> Statement of Biot–Savart Law</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Biot–Savart Law</div>
+                <p>The magnetic field produced at a point by a small current element is directly proportional to the current, directly proportional to the length of the current element, directly proportional to the sine of angle between the element and the line joining the point, and inversely proportional to the square of the distance of the point from the current element.</p>
+            </div>
+
+            <h3><i class="fas fa-calculator"></i> Mathematical Form</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Biot–Savart Law Formula</div>
+                <div class="formula">dB = <span class="fraction"><span class="num">μ<sub>0</sub></span><span class="den">4π</span></span> × <span class="fraction"><span class="num">I dl sin θ</span><span class="den">r<sup>2</sup></span></span></div>
+                <p>Where:</p>
+                <ul>
+                    <li>dB = small magnetic field due to current element dl</li>
+                    <li>μ<sub>0</sub> = permeability of free space = 4π × 10<sup>−7</sup> H/m</li>
+                    <li>I = current through conductor</li>
+                    <li>dl = small current element</li>
+                    <li>r = distance of point from current element</li>
+                    <li>θ = angle between dl and r</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> What This Law Means Physically</div>
+                <ul>
+                    <li>More current → stronger magnetic field</li>
+                    <li>Longer current element → stronger magnetic contribution</li>
+                    <li>Closer point → stronger field</li>
+                    <li>Maximum field when θ = 90°</li>
+                    <li>Zero field contribution when θ = 0°</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-location-arrow"></i> Direction of dB</h3>
+            <p>The direction of magnetic field due to current element is given by the <strong>right hand thumb rule</strong>.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Right Hand Thumb Rule</div>
+                <p>If we hold the current carrying conductor in the right hand with the thumb pointing in the direction of current, then the curled fingers give the direction of magnetic field around the conductor.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Biot+Savart+law+diagram+current+element" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.5:</strong> Biot-Savart law showing current element dl, point P, angle θ, distance r and field dB</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=right+hand+thumb+rule+current+magnetic+field+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.6:</strong> Right hand thumb rule for direction of magnetic field around a current carrying conductor</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Why Biot-Savart Law is Important</div>
+                <p>Biot-Savart law is the magnetic equivalent of Coulomb’s law in electrostatics. It is used to derive the magnetic field due to:</p>
+                <ul>
+                    <li>Long straight conductor</li>
+                    <li>Circular loop</li>
+                    <li>Solenoid (advanced level)</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 5: MAGNETIC FIELD DUE TO STRAIGHT CONDUCTOR ==================== -->
+    <section class="section" id="straight-conductor">
+        <h2 class="section-title">
+            <i class="fas fa-grip-lines-vertical"></i> Magnetic Field Due to a Straight Conductor ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-info-circle"></i> Field Around a Long Straight Current Carrying Conductor</h3>
+            <p>When current flows through a long straight conductor, concentric circular magnetic field lines are produced around it.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Magnetic Field at Distance r</div>
+                <div class="formula">B = <span class="fraction"><span class="num">μ<sub>0</sub> I</span><span class="den">2πr</span></span></div>
+                <p>Where:</p>
+                <ul>
+                    <li>B = magnetic flux density at distance r</li>
+                    <li>μ<sub>0</sub> = permeability of free space</li>
+                    <li>I = current in conductor</li>
+                    <li>r = perpendicular distance from conductor</li>
+                </ul>
+            </div>
+
+            <h4>Important Observations</h4>
+            <ul>
+                <li>B is directly proportional to current I</li>
+                <li>B is inversely proportional to distance r</li>
+                <li>If current doubles, magnetic field doubles</li>
+                <li>If distance doubles, magnetic field becomes half</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+field+due+to+long+straight+conductor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.7:</strong> Magnetic field around a long straight conductor showing concentric circular field lines</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=right+hand+thumb+rule+straight+conductor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.8:</strong> Direction of magnetic field around straight conductor using right hand thumb rule</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Memory Tip</div>
+                <p>For a straight wire:</p>
+                <div class="formula">B ∝ <span class="fraction"><span class="num">I</span><span class="den">r</span></span></div>
+                <p>More current means stronger field, more distance means weaker field.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 6: MAGNETIC FIELD DUE TO CIRCULAR LOOP ==================== -->
+    <section class="section" id="circular-loop">
+        <h2 class="section-title">
+            <i class="fas fa-circle-notch"></i> Magnetic Field Due to a Circular Loop ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-info-circle"></i> Field at the Center of Circular Loop</h3>
+            <p>When current flows through a circular loop, each small element of the loop produces a magnetic field at the center. The combined effect gives the total magnetic field at the center.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Magnetic Field at Center of Circular Loop</div>
+                <div class="formula">B = <span class="fraction"><span class="num">μ<sub>0</sub> I</span><span class="den">2R</span></span></div>
+                <p>Where:</p>
+                <ul>
+                    <li>B = magnetic field at center</li>
+                    <li>μ<sub>0</sub> = permeability of free space</li>
+                    <li>I = current in loop</li>
+                    <li>R = radius of circular loop</li>
+                </ul>
+            </div>
+
+            <h4>For N turns circular coil</h4>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Magnetic Field at Center of N-turn Coil</div>
+                <div class="formula">B = <span class="fraction"><span class="num">μ<sub>0</sub> N I</span><span class="den">2R</span></span></div>
+                <p>Where N = number of turns</p>
+            </div>
+
+            <h4>Important Observations</h4>
+            <ul>
+                <li>B is directly proportional to current I</li>
+                <li>B is directly proportional to number of turns N</li>
+                <li>B is inversely proportional to radius R</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+field+at+center+of+circular+loop+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.9:</strong> Circular current loop showing magnetic field at the center</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=right+hand+rule+circular+loop+magnetic+field+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.10:</strong> Direction of magnetic field at center of circular loop using right hand grip rule</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Important Difference</div>
+                <ul>
+                    <li>For long straight wire: <strong>B = μ<sub>0</sub>I / 2πr</strong></li>
+                    <li>For circular loop center: <strong>B = μ<sub>0</sub>I / 2R</strong></li>
+                </ul>
+                <p>Do not mix up the two formulas in numericals.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 7: MAGNETIC DIPOLE ==================== -->
+    <section class="section" id="magnetic-dipole">
+        <h2 class="section-title">
+            <i class="fas fa-compass"></i> Concept of Magnetic Dipole ⭐
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-magnet"></i> What is a Magnetic Dipole?</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Magnetic Dipole</div>
+                <p>A <strong>magnetic dipole</strong> is a system having two equal and opposite magnetic poles separated by a small distance. A bar magnet is a simple example of a magnetic dipole.</p>
+            </div>
+
+            <p>A current carrying circular loop also behaves like a magnetic dipole.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why Current Loop is a Magnetic Dipole</div>
+                <p>When current flows in a circular loop, one face behaves like a North pole and the opposite face behaves like a South pole. Thus the loop acts like a tiny bar magnet or magnetic dipole.</p>
+            </div>
+
+            <h3><i class="fas fa-calculator"></i> Magnetic Dipole Moment</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Magnetic Dipole Moment</div>
+                <p>The magnetic dipole moment is the product of pole strength and magnetic length in case of a bar magnet, or current and area in case of a current loop.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> For Bar Magnet</div>
+                <div class="formula">M = m × 2l</div>
+                <p>Where:</p>
+                <ul>
+                    <li>M = magnetic dipole moment</li>
+                    <li>m = pole strength</li>
+                    <li>2l = magnetic length</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> For Current Carrying Circular Loop</div>
+                <div class="formula">M = N I A</div>
+                <p>Where:</p>
+                <ul>
+                    <li>M = magnetic dipole moment</li>
+                    <li>N = number of turns</li>
+                    <li>I = current through loop</li>
+                    <li>A = area of loop</li>
+                </ul>
+            </div>
+
+            <p>For circular loop of radius R:</p>
+            <div class="formula">A = πR<sup>2</sup></div>
+            <div class="formula">Therefore, M = N I πR<sup>2</sup></div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+dipole+bar+magnet+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.11:</strong> Magnetic dipole represented by a bar magnet with North and South poles</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=current+loop+behaves+as+magnetic+dipole+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.12:</strong> Current carrying circular loop behaving as a magnetic dipole</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Important Point</div>
+                <p>The direction of magnetic dipole moment is from <strong>South pole to North pole</strong> inside the magnet, or normal to the plane of the current loop according to the right hand rule.</p>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+
+    <!-- ==================== SECTION 8: FORCE ON CURRENT CARRYING CONDUCTOR ==================== -->
+    <section class="section" id="force-conductor">
+        <h2 class="section-title">
+            <i class="fas fa-arrows-alt"></i> Force on Current Carrying Conductor ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-info-circle"></i> Basic Idea</h3>
+            <p>When a conductor carrying current is placed in a magnetic field, it experiences a force. This is the basic principle behind <strong>electric motors</strong>, <strong>loudspeakers</strong>, <strong>moving coil galvanometers</strong>, and many electromechanical devices.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition</div>
+                <p>A current carrying conductor placed in a magnetic field experiences a mechanical force. The direction of force is perpendicular to both the direction of current and magnetic field.</p>
+            </div>
+
+            <h3><i class="fas fa-calculator"></i> Formula for Force</h3>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Force on Conductor</div>
+                <div class="formula">F = B I l sin θ</div>
+                <p>Where:</p>
+                <ul>
+                    <li>F = force on conductor (newton, N)</li>
+                    <li>B = magnetic flux density (tesla, T)</li>
+                    <li>I = current through conductor (ampere, A)</li>
+                    <li>l = length of conductor in magnetic field (m)</li>
+                    <li>θ = angle between current and magnetic field</li>
+                </ul>
+            </div>
+
+            <h4>Special Cases</h4>
+            <ul>
+                <li>When θ = 90°, <strong>F = BIl</strong> (maximum force)</li>
+                <li>When θ = 0°, <strong>F = 0</strong> (no force)</li>
+            </ul>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-hand-paper"></i> Direction of Force</div>
+                <p>The direction of force is given by <strong>Fleming’s Left Hand Rule</strong>:</p>
+                <ul>
+                    <li><strong>Forefinger</strong> → magnetic field</li>
+                    <li><strong>Middle finger</strong> → current</li>
+                    <li><strong>Thumb</strong> → force/motion</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=force+on+current+carrying+conductor+in+magnetic+field+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.13:</strong> Current carrying conductor placed in magnetic field showing force direction</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Fleming+left+hand+rule+current+carrying+conductor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.14:</strong> Fleming’s left hand rule for force on current carrying conductor</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Practical Applications</div>
+                <ol>
+                    <li>Electric motors</li>
+                    <li>Loudspeakers</li>
+                    <li>Moving coil galvanometers</li>
+                    <li>Relay mechanisms</li>
+                    <li>Magnetic levitation systems</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: TORQUE ON RECTANGULAR COIL ==================== -->
+    <section class="section" id="torque-coil">
+        <h2 class="section-title">
+            <i class="fas fa-sync-alt"></i> Torque on Rectangular Coil in Magnetic Field ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-info-circle"></i> Concept</h3>
+            <p>If a rectangular coil carrying current is placed in a magnetic field, opposite forces act on the two sides of the coil. These equal and opposite forces form a <strong>couple</strong> and produce a <strong>torque</strong>, causing the coil to rotate.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Torque on Coil</div>
+                <p>The turning effect experienced by a current carrying rectangular coil placed in a magnetic field is called <strong>torque</strong>.</p>
+            </div>
+
+            <h3><i class="fas fa-calculator"></i> Formula for Torque</h3>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Torque on Coil</div>
+                <div class="formula">τ = N B I A sin θ</div>
+                <p>Where:</p>
+                <ul>
+                    <li>τ = torque (N·m)</li>
+                    <li>N = number of turns of coil</li>
+                    <li>B = magnetic flux density</li>
+                    <li>I = current through coil</li>
+                    <li>A = area of coil</li>
+                    <li>θ = angle between normal to the coil and magnetic field</li>
+                </ul>
+            </div>
+
+            <h4>Maximum Torque</h4>
+            <p>When θ = 90°,</p>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Maximum Torque</div>
+                <div class="formula">τ<sub>max</sub> = N B I A</div>
+            </div>
+
+            <h4>Meaning of Area A</h4>
+            <p>For a rectangular coil of length l and breadth b:</p>
+            <div class="formula">A = l × b</div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=torque+on+rectangular+coil+in+magnetic+field+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.15:</strong> Rectangular current carrying coil in magnetic field showing couple and torque</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=rectangular+coil+magnetic+field+forces+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.16:</strong> Forces on opposite sides of rectangular coil producing rotation</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Important Use</div>
+                <p>This principle is used in:</p>
+                <ul>
+                    <li>Electric motor</li>
+                    <li>Moving coil galvanometer</li>
+                    <li>Analog measuring instruments</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 10: ELECTROMAGNETIC INDUCTION ==================== -->
+    <section class="section" id="emi">
+        <h2 class="section-title">
+            <i class="fas fa-industry"></i> Electromagnetic Induction ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-history"></i> Introduction</h3>
+            <p>Electromagnetic induction was discovered by <strong>Michael Faraday</strong>. He found that electricity can be produced from magnetism.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electromagnetic Induction</div>
+                <p>The phenomenon of producing an electromotive force (emf) in a conductor or coil due to change in magnetic flux linked with it is called <strong>electromagnetic induction</strong>.</p>
+            </div>
+
+            <h3><i class="fas fa-bolt"></i> Induced EMF and Induced Current</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Induced EMF</div>
+                <p>The emf produced in a conductor due to electromagnetic induction is called <strong>induced emf</strong>.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Induced Current</div>
+                <p>If the circuit is closed, the current produced due to induced emf is called <strong>induced current</strong>.</p>
+            </div>
+
+            <h3><i class="fas fa-magnet"></i> Magnetic Flux</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Magnetic Flux</div>
+                <p>The total number of magnetic field lines passing normally through a surface is called <strong>magnetic flux</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Magnetic Flux Formula</div>
+                <div class="formula">Φ = B A cos θ</div>
+                <p>Where:</p>
+                <ul>
+                    <li>Φ = magnetic flux (weber, Wb)</li>
+                    <li>B = magnetic flux density (tesla)</li>
+                    <li>A = area of surface (m²)</li>
+                    <li>θ = angle between magnetic field and normal to surface</li>
+                </ul>
+            </div>
+
+            <h4>How to Change Magnetic Flux?</h4>
+            <p>Induced emf is produced only when flux changes. Flux can be changed by:</p>
+            <ol>
+                <li>Changing magnetic field strength B</li>
+                <li>Changing area A of the coil</li>
+                <li>Changing angle θ</li>
+                <li>Moving magnet towards or away from coil</li>
+                <li>Moving coil in magnetic field</li>
+            </ol>
+
+            <a href="https://www.google.com/search?tbm=isch&q=electromagnetic+induction+moving+magnet+coil+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.17:</strong> Electromagnetic induction by moving a bar magnet towards and away from a coil</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+flux+through+coil+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.18:</strong> Magnetic flux passing through a coil surface</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Important Understanding</div>
+                <p>If a magnet and coil are both at rest relative to each other, there is no change in flux, so no induced emf is produced. Relative motion or changing field is necessary.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 11: FARADAY LAWS ==================== -->
+    <section class="section" id="faraday-laws">
+        <h2 class="section-title">
+            <i class="fas fa-scroll"></i> Faraday’s Laws of Electromagnetic Induction ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-book"></i> First Law of Faraday</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Faraday’s First Law</div>
+                <p>Whenever the magnetic flux linked with a circuit changes, an emf is induced in the circuit. If the circuit is closed, an induced current flows.</p>
+            </div>
+
+            <h3><i class="fas fa-book"></i> Second Law of Faraday</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Faraday’s Second Law</div>
+                <p>The magnitude of induced emf is directly proportional to the rate of change of magnetic flux linked with the circuit.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Faraday’s Law Formula</div>
+                <div class="formula">e = − N <span class="fraction"><span class="num">dΦ</span><span class="den">dt</span></span></div>
+                <p>Where:</p>
+                <ul>
+                    <li>e = induced emf (volt)</li>
+                    <li>N = number of turns in coil</li>
+                    <li>dΦ/dt = rate of change of magnetic flux</li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-minus-circle"></i> Meaning of Negative Sign</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Lenz’s Law</div>
+                <p>The direction of induced emf or induced current is such that it opposes the cause that produces it. This is called <strong>Lenz’s law</strong>.</p>
+            </div>
+
+            <p>The negative sign in Faraday’s law represents Lenz’s law.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Easy Explanation of Lenz’s Law</div>
+                <p>If you move a magnet towards a coil, the induced current in the coil will produce its own magnetic field to oppose the motion of the magnet. Nature always opposes the cause of change.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Faraday+law+electromagnetic+induction+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.19:</strong> Faraday’s law illustration showing induced emf due to changing magnetic flux</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Lenz+law+moving+magnet+coil+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.20:</strong> Lenz’s law showing induced current opposing the motion of the magnet</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Applications of Faraday’s Laws</div>
+                <ul>
+                    <li>Electric generators</li>
+                    <li>Transformers</li>
+                    <li>Induction coils</li>
+                    <li>Induction cookers</li>
+                    <li>Bicycle dynamos</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 12: MOVING COIL GALVANOMETER ==================== -->
+    <section class="section" id="galvanometer">
+        <h2 class="section-title">
+            <i class="fas fa-gauge"></i> Moving Coil Galvanometer ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-info-circle"></i> What is a Galvanometer?</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Galvanometer</div>
+                <p>A <strong>moving coil galvanometer</strong> is a sensitive instrument used to detect and measure small electric currents.</p>
+            </div>
+
+            <h3><i class="fas fa-lightbulb"></i> Principle</h3>
+            <p>It works on the principle that a <strong>current carrying coil placed in a magnetic field experiences a torque</strong>.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Deflecting Torque</div>
+                <div class="formula">τ = N B I A</div>
+                <p>For a radial magnetic field, sin θ = 1 always.</p>
+            </div>
+
+            <h3><i class="fas fa-tools"></i> Construction</h3>
+            <ul>
+                <li>A rectangular coil of many turns of fine insulated copper wire</li>
+                <li>The coil is wound on a light metallic frame</li>
+                <li>Placed between the poles of a strong horseshoe permanent magnet</li>
+                <li>Soft iron cylindrical core used to make magnetic field radial and strong</li>
+                <li>Suspended by phosphor bronze strip or spring</li>
+                <li>Pointer attached to coil moving over a scale</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=moving+coil+galvanometer+construction+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.21:</strong> Construction of moving coil galvanometer showing coil, magnet, soft iron core, spring and pointer</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-cogs"></i> Working</h3>
+            <ol>
+                <li>When current flows through the coil, a torque acts on it.</li>
+                <li>The coil rotates and the pointer deflects over the scale.</li>
+                <li>The spring provides restoring torque.</li>
+                <li>At equilibrium:
+                    <div class="formula">Deflecting torque = Restoring torque</div>
+                </li>
+                <li>The deflection is proportional to the current.</li>
+            </ol>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Current-Deflection Relation</div>
+                <div class="formula">I ∝ θ</div>
+                <p>This means galvanometer has a <strong>uniform linear scale</strong>.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=moving+coil+galvanometer+working+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.22:</strong> Working of moving coil galvanometer showing coil rotation and pointer deflection</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Limitation</div>
+                <p>A moving coil galvanometer can measure only <strong>small currents</strong>. If large current passes through it, the coil may be damaged. Therefore it is converted into an ammeter or voltmeter for practical use.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 13: CONVERSION TO AMMETER & VOLTMETER ==================== -->
+    <section class="section" id="ammeter-voltmeter">
+        <h2 class="section-title">
+            <i class="fas fa-tachometer-alt"></i> Conversion of Galvanometer into Ammeter & Voltmeter ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-arrow-right"></i> Conversion of Galvanometer into Ammeter</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ammeter</div>
+                <p>An <strong>ammeter</strong> is an instrument used to measure electric current in a circuit. It is always connected in <strong>series</strong>.</p>
+            </div>
+
+            <p>To convert a galvanometer into an ammeter, a small resistance called <strong>shunt</strong> is connected in parallel with the galvanometer.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Shunt</div>
+                <p>A <strong>shunt</strong> is a very low resistance connected in parallel with a galvanometer so that most of the current bypasses the galvanometer.</p>
+            </div>
+
+            <h4>Why Shunt is Needed?</h4>
+            <p>The galvanometer can carry only a small current I<sub>g</sub>. To measure a larger current I, the excess current is sent through the shunt.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Shunt Resistance Formula</div>
+                <div class="formula">S = <span class="fraction"><span class="num">I<sub>g</sub> G</span><span class="den">I − I<sub>g</sub></span></span></div>
+                <p>Where:</p>
+                <ul>
+                    <li>S = shunt resistance</li>
+                    <li>G = resistance of galvanometer</li>
+                    <li>I<sub>g</sub> = maximum current that galvanometer can carry</li>
+                    <li>I = current range of ammeter</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=galvanometer+converted+into+ammeter+diagram+shunt" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.23:</strong> Galvanometer converted into ammeter using low shunt resistance in parallel</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Key Properties of Ammeter</div>
+                <ul>
+                    <li>Connected in <strong>series</strong></li>
+                    <li>Should have <strong>very low resistance</strong></li>
+                    <li>Uses <strong>shunt resistance in parallel</strong></li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <h3><i class="fas fa-arrow-up"></i> Conversion of Galvanometer into Voltmeter</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Voltmeter</div>
+                <p>A <strong>voltmeter</strong> is an instrument used to measure potential difference between two points. It is always connected in <strong>parallel</strong>.</p>
+            </div>
+
+            <p>To convert a galvanometer into a voltmeter, a high resistance is connected in series with it.</p>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Multiplier Resistance</div>
+                <p>The high resistance connected in series with galvanometer to convert it into a voltmeter is called <strong>multiplier resistance</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Series Resistance Formula</div>
+                <div class="formula">R = <span class="fraction"><span class="num">V</span><span class="den">I<sub>g</sub></span></span> − G</div>
+                <p>Where:</p>
+                <ul>
+                    <li>R = series resistance</li>
+                    <li>V = voltage range of voltmeter</li>
+                    <li>I<sub>g</sub> = galvanometer full scale current</li>
+                    <li>G = galvanometer resistance</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=galvanometer+converted+into+voltmeter+diagram+series+resistance" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.24:</strong> Galvanometer converted into voltmeter using high resistance in series</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Key Properties of Voltmeter</div>
+                <ul>
+                    <li>Connected in <strong>parallel</strong></li>
+                    <li>Should have <strong>very high resistance</strong></li>
+                    <li>Uses <strong>high series resistance</strong></li>
+                </ul>
+            </div>
+
+            <h3><i class="fas fa-table"></i> Ammeter vs Voltmeter ⭐</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Ammeter</th>
+                            <th>Voltmeter</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Measures</strong></td>
+                            <td>Current</td>
+                            <td>Potential difference</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Connection</strong></td>
+                            <td>Series</td>
+                            <td>Parallel</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resistance</strong></td>
+                            <td>Very low</td>
+                            <td>Very high</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conversion from galvanometer</strong></td>
+                            <td>By shunt in parallel</td>
+                            <td>By high resistance in series</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Range increase</strong></td>
+                            <td>By decreasing total resistance</td>
+                            <td>By increasing total resistance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Use</strong></td>
+                            <td>Measure circuit current</td>
+                            <td>Measure voltage between two points</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 14: MAGNETIC MATERIALS ==================== -->
+    <section class="section" id="magnetic-materials">
+        <h2 class="section-title">
+            <i class="fas fa-cubes"></i> Types of Magnetic Materials — Dia, Para & Ferromagnetic ⭐🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3><i class="fas fa-info-circle"></i> Introduction</h3>
+            <p>Different materials respond differently when placed in a magnetic field. Based on their magnetic behavior, they are classified into:</p>
+            <ol>
+                <li><strong>Diamagnetic materials</strong></li>
+                <li><strong>Paramagnetic materials</strong></li>
+                <li><strong>Ferromagnetic materials</strong></li>
+            </ol>
+
+            <h3><i class="fas fa-circle"></i> Diamagnetic Materials</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Diamagnetic Material</div>
+                <p>Materials which are weakly repelled by a magnetic field are called <strong>diamagnetic materials</strong>.</p>
+            </div>
+            <h4>Properties</h4>
+            <ul>
+                <li>Weakly repelled by magnetic field</li>
+                <li>Magnetic susceptibility is small and negative</li>
+                <li>Relative permeability is slightly less than 1</li>
+                <li>Do not retain magnetism after removal of field</li>
+            </ul>
+            <p><strong>Examples:</strong> Bismuth, Copper, Silver, Gold, Water, Mercury</p>
+
+            <h3><i class="fas fa-adjust"></i> Paramagnetic Materials</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Paramagnetic Material</div>
+                <p>Materials which are weakly attracted by a magnetic field are called <strong>paramagnetic materials</strong>.</p>
+            </div>
+            <h4>Properties</h4>
+            <ul>
+                <li>Weakly attracted by magnetic field</li>
+                <li>Magnetic susceptibility is small and positive</li>
+                <li>Relative permeability is slightly more than 1</li>
+                <li>Do not retain magnetism strongly</li>
+            </ul>
+            <p><strong>Examples:</strong> Aluminium, Platinum, Oxygen, Manganese, Chromium</p>
+
+            <h3><i class="fas fa-magnet"></i> Ferromagnetic Materials</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ferromagnetic Material</div>
+                <p>Materials which are strongly attracted by a magnetic field and can be permanently magnetized are called <strong>ferromagnetic materials</strong>.</p>
+            </div>
+            <h4>Properties</h4>
+            <ul>
+                <li>Strongly attracted by magnetic field</li>
+                <li>Very large positive susceptibility</li>
+                <li>Relative permeability is very high</li>
+                <li>Can retain magnetism even after field is removed</li>
+                <li>Used to make permanent magnets and electromagnets</li>
+            </ul>
+            <p><strong>Examples:</strong> Iron, Cobalt, Nickel, Steel</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=dia+para+ferromagnetic+materials+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.25:</strong> Comparison of diamagnetic, paramagnetic and ferromagnetic materials in magnetic field</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <a href="https://www.google.com/search?tbm=isch&q=magnetic+domains+ferromagnetic+material+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 5.26:</strong> Magnetic domains in ferromagnetic material before and after magnetization</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3><i class="fas fa-table"></i> Comparison Table ⭐</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Diamagnetic</th>
+                            <th>Paramagnetic</th>
+                            <th>Ferromagnetic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nature in magnetic field</strong></td>
+                            <td>Weakly repelled</td>
+                            <td>Weakly attracted</td>
+                            <td>Strongly attracted</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Susceptibility</strong></td>
+                            <td>Small negative</td>
+                            <td>Small positive</td>
+                            <td>Very large positive</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relative permeability</strong></td>
+                            <td>&lt; 1</td>
+                            <td>&gt; 1 slightly</td>
+                            <td>≫ 1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Retentivity</strong></td>
+                            <td>Absent</td>
+                            <td>Very small</td>
+                            <td>Large</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Examples</strong></td>
+                            <td>Cu, Ag, Bi</td>
+                            <td>Al, Pt, O<sub>2</sub></td>
+                            <td>Fe, Co, Ni</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Use</strong></td>
+                            <td>Special scientific uses</td>
+                            <td>Weak magnetic applications</td>
+                            <td>Magnets, transformers, motors</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 15: SOLVED NUMERICALS ==================== -->
+    <section class="section" id="numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Solved Numerical Examples 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 1 — Lorentz Force</div>
+                <p>A charge of 2 × 10<sup>−6</sup> C moves with velocity 3 × 10<sup>5</sup> m/s perpendicular to a magnetic field of 0.4 T. Find the magnetic force acting on it.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">F = qvB sin θ</div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>q = 2 × 10<sup>−6</sup> C, v = 3 × 10<sup>5</sup> m/s, B = 0.4 T, θ = 90°</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">F = 2 × 10<sup>−6</sup> × 3 × 10<sup>5</sup> × 0.4 × sin 90°</div>
+                    <div class="formula">F = 2 × 3 × 0.4 × 10<sup>−1</sup></div>
+                    <div class="formula">F = 2.4 × 10<sup>−1</sup></div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">F = 0.24 N</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 2 — Magnetic Field Due to Straight Conductor</div>
+                <p>Find the magnetic field at a point 5 cm away from a long straight conductor carrying current 10 A.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">B = <span class="fraction"><span class="num">μ<sub>0</sub> I</span><span class="den">2πr</span></span></div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>I = 10 A, r = 5 cm = 0.05 m, μ<sub>0</sub> = 4π × 10<sup>−7</sup></p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">B = <span class="fraction"><span class="num">4π × 10<sup>−7</sup> × 10</span><span class="den">2π × 0.05</span></span></div>
+                    <div class="formula">B = <span class="fraction"><span class="num">4 × 10<sup>−6</sup></span><span class="den">0.1</span></span></div>
+                    <div class="formula">B = 4 × 10<sup>−5</sup> T</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">B = 4 × 10<sup>−5</sup> T</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 3 — Field at Center of Circular Loop</div>
+                <p>A circular loop of radius 10 cm carries current 5 A. Find the magnetic field at its center.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">B = <span class="fraction"><span class="num">μ<sub>0</sub> I</span><span class="den">2R</span></span></div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>I = 5 A, R = 10 cm = 0.1 m</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">B = <span class="fraction"><span class="num">4π × 10<sup>−7</sup> × 5</span><span class="den">2 × 0.1</span></span></div>
+                    <div class="formula">B = 10π × 10<sup>−6</sup> T</div>
+                    <div class="formula">B ≈ 3.14 × 10<sup>−5</sup> T</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">B ≈ 3.14 × 10<sup>−5</sup> T</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 4 — Force on Conductor</div>
+                <p>A conductor of length 0.2 m carries current 4 A and is placed perpendicular to a magnetic field of 0.5 T. Find the force on it.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">F = B I l sin θ</div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>B = 0.5 T, I = 4 A, l = 0.2 m, θ = 90°</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">F = 0.5 × 4 × 0.2 × sin 90°</div>
+                    <div class="formula">F = 0.5 × 4 × 0.2</div>
+                    <div class="formula">F = 0.4 N</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">F = 0.4 N</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 5 — Torque on Coil</div>
+                <p>A rectangular coil of 50 turns and area 0.02 m² carries current 0.5 A in a magnetic field of 0.4 T. Calculate maximum torque.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">τ<sub>max</sub> = N B I A</div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>N = 50, B = 0.4 T, I = 0.5 A, A = 0.02 m²</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">τ = 50 × 0.4 × 0.5 × 0.02</div>
+                    <div class="formula">τ = 0.2 N·m</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">Maximum torque = 0.2 N·m</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 6 — Induced EMF by Faraday’s Law</div>
+                <p>A coil of 200 turns is linked with magnetic flux changing from 0.005 Wb to 0.001 Wb in 0.2 s. Find the induced emf.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">e = N <span class="fraction"><span class="num">ΔΦ</span><span class="den">Δt</span></span></div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>N = 200, ΔΦ = 0.005 − 0.001 = 0.004 Wb, Δt = 0.2 s</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">e = 200 × <span class="fraction"><span class="num">0.004</span><span class="den">0.2</span></span></div>
+                    <div class="formula">e = 200 × 0.02</div>
+                    <div class="formula">e = 4 V</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">Induced emf = 4 V</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 7 — Ammeter Conversion</div>
+                <p>A galvanometer of resistance 50 Ω gives full scale deflection at 2 mA. Calculate the shunt required to convert it into an ammeter of range 2 A.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">S = <span class="fraction"><span class="num">I<sub>g</sub> G</span><span class="den">I − I<sub>g</sub></span></span></div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>G = 50 Ω, I<sub>g</sub> = 2 mA = 0.002 A, I = 2 A</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">S = <span class="fraction"><span class="num">0.002 × 50</span><span class="den">2 − 0.002</span></span></div>
+                    <div class="formula">S = <span class="fraction"><span class="num">0.1</span><span class="den">1.998</span></span></div>
+                    <div class="formula">S ≈ 0.050 Ω</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">Required shunt ≈ 0.05 Ω</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 8 — Voltmeter Conversion</div>
+                <p>A galvanometer has resistance 100 Ω and full scale deflection current 1 mA. Find the resistance required to convert it into a voltmeter of range 10 V.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Formula">
+                    <div class="formula">R = <span class="fraction"><span class="num">V</span><span class="den">I<sub>g</sub></span></span> − G</div>
+                </div>
+                <div class="step" data-step="Given">
+                    <p>V = 10 V, I<sub>g</sub> = 1 mA = 0.001 A, G = 100 Ω</p>
+                </div>
+                <div class="step" data-step="Substitute">
+                    <div class="formula">R = <span class="fraction"><span class="num">10</span><span class="den">0.001</span></span> − 100</div>
+                    <div class="formula">R = 10000 − 100</div>
+                    <div class="formula">R = 9900 Ω</div>
+                </div>
+                <div class="step" data-step="Answer">
+                    <div class="formula answer">Required series resistance = 9900 Ω = 9.9 kΩ</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 16: FORMULAS ==================== -->
+    <section class="section" id="formulas">
+        <h2 class="section-title">
+            <i class="fas fa-square-root-alt"></i> Key Formulas Summary 📐
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Formula Name</th>
+                            <th>Formula</th>
+                            <th>Units</th>
+                            <th>Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lorentz force</td>
+                            <td>F = qvB sin θ</td>
+                            <td>N</td>
+                            <td>Force on moving charge in magnetic field</td>
+                        </tr>
+                        <tr>
+                            <td>Biot-Savart law</td>
+                            <td>dB = (μ₀/4π) × (I dl sin θ / r²)</td>
+                            <td>T</td>
+                            <td>Field due to small current element</td>
+                        </tr>
+                        <tr>
+                            <td>Field due to straight conductor</td>
+                            <td>B = μ₀I / 2πr</td>
+                            <td>T</td>
+                            <td>Field at distance r from long wire</td>
+                        </tr>
+                        <tr>
+                            <td>Field at center of circular loop</td>
+                            <td>B = μ₀I / 2R</td>
+                            <td>T</td>
+                            <td>Single loop</td>
+                        </tr>
+                        <tr>
+                            <td>Field at center of N-turn coil</td>
+                            <td>B = μ₀NI / 2R</td>
+                            <td>T</td>
+                            <td>N-turn circular coil</td>
+                        </tr>
+                        <tr>
+                            <td>Magnetic dipole moment of bar magnet</td>
+                            <td>M = m × 2l</td>
+                            <td>A·m²</td>
+                            <td>Bar magnet</td>
+                        </tr>
+                        <tr>
+                            <td>Magnetic dipole moment of current loop</td>
+                            <td>M = NIA</td>
+                            <td>A·m²</td>
+                            <td>Current carrying loop</td>
+                        </tr>
+                        <tr>
+                            <td>Force on conductor</td>
+                            <td>F = BIl sin θ</td>
+                            <td>N</td>
+                            <td>Current carrying conductor in magnetic field</td>
+                        </tr>
+                        <tr>
+                            <td>Torque on coil</td>
+                            <td>τ = NBIA sin θ</td>
+                            <td>N·m</td>
+                            <td>Rectangular coil in magnetic field</td>
+                        </tr>
+                        <tr>
+                            <td>Maximum torque</td>
+                            <td>τ<sub>max</sub> = NBIA</td>
+                            <td>N·m</td>
+                            <td>When θ = 90°</td>
+                        </tr>
+                        <tr>
+                            <td>Magnetic flux</td>
+                            <td>Φ = BA cos θ</td>
+                            <td>Wb</td>
+                            <td>Flux through a surface</td>
+                        </tr>
+                        <tr>
+                            <td>Faraday’s law</td>
+                            <td>e = −N(dΦ/dt)</td>
+                            <td>V</td>
+                            <td>Induced emf due to changing flux</td>
+                        </tr>
+                        <tr>
+                            <td>Shunt resistance</td>
+                            <td>S = I<sub>g</sub>G / (I − I<sub>g</sub>)</td>
+                            <td>Ω</td>
+                            <td>Convert galvanometer to ammeter</td>
+                        </tr>
+                        <tr>
+                            <td>Series resistance</td>
+                            <td>R = V/I<sub>g</sub> − G</td>
+                            <td>Ω</td>
+                            <td>Convert galvanometer to voltmeter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 17: DEFINITIONS ==================== -->
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-book-open"></i> Important Definitions 📝
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 1. Magnetic Field</div>
+                <p>The region around a magnet or current carrying conductor where magnetic force can be experienced is called magnetic field.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 2. Magnetic Lines of Force</div>
+                <p>Imaginary lines drawn in a magnetic field such that tangent at any point gives the direction of the field at that point.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 3. Lorentz Force</div>
+                <p>The force experienced by a charged particle moving in electric and magnetic fields is called Lorentz force.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 4. Biot-Savart Law</div>
+                <p>The magnetic field due to a current element is directly proportional to current, length element, sin θ and inversely proportional to square of distance.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 5. Magnetic Dipole</div>
+                <p>A system having two equal and opposite magnetic poles separated by a small distance is called a magnetic dipole.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 6. Magnetic Dipole Moment</div>
+                <p>The product of pole strength and magnetic length, or for a current loop the product NIA, is called magnetic dipole moment.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 7. Electromagnetic Induction</div>
+                <p>The phenomenon of production of induced emf due to change in magnetic flux linked with a circuit.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 8. Magnetic Flux</div>
+                <p>The total number of magnetic field lines passing normally through a surface is called magnetic flux.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 9. Induced EMF</div>
+                <p>The emf produced in a conductor or coil due to electromagnetic induction is called induced emf.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 10. Faraday’s Laws</div>
+                <p>The laws stating that induced emf is produced when magnetic flux changes and its magnitude is proportional to the rate of change of flux.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 11. Lenz’s Law</div>
+                <p>The direction of induced current is such that it opposes the cause producing it.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 12. Moving Coil Galvanometer</div>
+                <p>A sensitive instrument used for detecting and measuring small electric currents.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 13. Ammeter</div>
+                <p>An instrument used to measure electric current, connected in series and having low resistance.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 14. Voltmeter</div>
+                <p>An instrument used to measure potential difference, connected in parallel and having high resistance.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 15. Diamagnetic Material</div>
+                <p>A material weakly repelled by a magnetic field.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 16. Paramagnetic Material</div>
+                <p>A material weakly attracted by a magnetic field.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> 17. Ferromagnetic Material</div>
+                <p>A material strongly attracted by magnetic field and capable of permanent magnetization.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 18: COMPARISONS ==================== -->
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables ⚖️
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1. Straight Conductor vs Circular Loop</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Straight Conductor</th>
+                            <th>Circular Loop</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Field formula</strong></td>
+                            <td>B = μ₀I / 2πr</td>
+                            <td>B = μ₀I / 2R</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shape of field lines</strong></td>
+                            <td>Concentric circles</td>
+                            <td>Lines similar to bar magnet</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Depends on</strong></td>
+                            <td>Distance from wire</td>
+                            <td>Radius of loop</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Use</strong></td>
+                            <td>Basic magnetic field generation</td>
+                            <td>Electromagnets, coils</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Direction rule</strong></td>
+                            <td>Right hand thumb rule</td>
+                            <td>Right hand grip rule</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Turns effect</strong></td>
+                            <td>No turns</td>
+                            <td>For N turns, field multiplies by N</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>2. Ammeter vs Voltmeter</h3>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-arrow-up"></i> See Full Table</div>
+                <p>Detailed comparison available in <a href="#ammeter-voltmeter">Ammeter/Voltmeter</a> section.</p>
+            </div>
+
+            <h3>3. Diamagnetic vs Paramagnetic vs Ferromagnetic</h3>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-arrow-up"></i> See Full Table</div>
+                <p>Detailed comparison available in <a href="#magnetic-materials">Magnetic Materials</a> section.</p>
+            </div>
+
+            <h3>4. Galvanometer vs Ammeter vs Voltmeter</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Point</th>
+                            <th>Galvanometer</th>
+                            <th>Ammeter</th>
+                            <th>Voltmeter</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Use</strong></td>
+                            <td>Detect small current</td>
+                            <td>Measure current</td>
+                            <td>Measure voltage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Connection</strong></td>
+                            <td>Usually in branch for small current</td>
+                            <td>Series</td>
+                            <td>Parallel</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resistance</strong></td>
+                            <td>Moderate</td>
+                            <td>Low</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Current handling</strong></td>
+                            <td>Small only</td>
+                            <td>Large current</td>
+                            <td>Very small internal current</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conversion</strong></td>
+                            <td>Base instrument</td>
+                            <td>Galvanometer + shunt</td>
+                            <td>Galvanometer + series resistance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scale</strong></td>
+                            <td>Current detection scale</td>
+                            <td>Current scale</td>
+                            <td>Voltage scale</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ==================== SECTION 19: MCQ BANK ==================== -->
+    <section class="section" id="mcqs">
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i> MCQ Bank ❓
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q 5.1</h4>
+                    <p>The SI unit of magnetic flux density is:</p>
+                    <ul class="options">
+                        <li>a. weber</li>
+                        <li>b. tesla</li>
+                        <li>c. henry</li>
+                        <li>d. newton</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq501"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq501">
+                        <strong>Answer: b. tesla</strong>
+                        <p>The SI unit of magnetic field or magnetic flux density B is tesla (T).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.2</h4>
+                    <p>Lorentz force on a charge moving parallel to magnetic field is:</p>
+                    <ul class="options">
+                        <li>a. maximum</li>
+                        <li>b. zero</li>
+                        <li>c. half</li>
+                        <li>d. infinite</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq502"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq502">
+                        <strong>Answer: b. zero</strong>
+                        <p>F = qvB sin θ. When the charge moves parallel to B, θ = 0°, so sin 0° = 0 and force is zero.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.3</h4>
+                    <p>The magnetic field at distance r from a long straight conductor carrying current I is:</p>
+                    <ul class="options">
+                        <li>a. μ₀I/2R</li>
+                        <li>b. μ₀I/2πr</li>
+                        <li>c. BIl</li>
+                        <li>d. qvB</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq503"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq503">
+                        <strong>Answer: b. μ₀I/2πr</strong>
+                        <p>This is the standard formula for magnetic field due to a long straight current carrying wire.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.4</h4>
+                    <p>Biot-Savart law gives magnetic field due to:</p>
+                    <ul class="options">
+                        <li>a. stationary charge</li>
+                        <li>b. magnetic pole</li>
+                        <li>c. current element</li>
+                        <li>d. resistor</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq504"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq504">
+                        <strong>Answer: c. current element</strong>
+                        <p>Biot-Savart law gives the magnetic field produced by a small current element dl.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.5</h4>
+                    <p>The magnetic field at the center of a circular loop of radius R carrying current I is:</p>
+                    <ul class="options">
+                        <li>a. μ₀I/2R</li>
+                        <li>b. μ₀I/2πR</li>
+                        <li>c. μ₀R/2I</li>
+                        <li>d. qvB</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq505"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq505">
+                        <strong>Answer: a. μ₀I/2R</strong>
+                        <p>This is the field at the center of a single circular current loop.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.6</h4>
+                    <p>The force on a current carrying conductor is maximum when angle between current and magnetic field is:</p>
+                    <ul class="options">
+                        <li>a. 0°</li>
+                        <li>b. 30°</li>
+                        <li>c. 60°</li>
+                        <li>d. 90°</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq506"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq506">
+                        <strong>Answer: d. 90°</strong>
+                        <p>F = BIl sin θ is maximum when sin θ = 1, i.e., θ = 90°.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.7</h4>
+                    <p>The phenomenon of producing emf due to change in magnetic flux is called:</p>
+                    <ul class="options">
+                        <li>a. electrolysis</li>
+                        <li>b. electromagnetic induction</li>
+                        <li>c. self induction only</li>
+                        <li>d. conduction</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq507"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq507">
+                        <strong>Answer: b. electromagnetic induction</strong>
+                        <p>Electromagnetic induction is the production of induced emf when magnetic flux linked with a circuit changes.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.8</h4>
+                    <p>Faraday’s law of electromagnetic induction is:</p>
+                    <ul class="options">
+                        <li>a. e = IR</li>
+                        <li>b. e = qvB</li>
+                        <li>c. e = −N(dΦ/dt)</li>
+                        <li>d. τ = NBIA</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq508"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq508">
+                        <strong>Answer: c. e = −N(dΦ/dt)</strong>
+                        <p>This is the mathematical form of Faraday’s second law of electromagnetic induction.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.9</h4>
+                    <p>The direction of induced current is given by:</p>
+                    <ul class="options">
+                        <li>a. Ohm’s law</li>
+                        <li>b. Coulomb’s law</li>
+                        <li>c. Lenz’s law</li>
+                        <li>d. Ampere’s law</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq509"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq509">
+                        <strong>Answer: c. Lenz’s law</strong>
+                        <p>Lenz’s law gives the direction of induced current such that it opposes the cause producing it.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.10</h4>
+                    <p>A moving coil galvanometer works on the principle of:</p>
+                    <ul class="options">
+                        <li>a. electrostatic attraction</li>
+                        <li>b. heating effect of current</li>
+                        <li>c. torque on current carrying coil in magnetic field</li>
+                        <li>d. chemical effect of current</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq510"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq510">
+                        <strong>Answer: c. torque on current carrying coil in magnetic field</strong>
+                        <p>Galvanometer works because a current carrying coil experiences torque in a magnetic field.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.11</h4>
+                    <p>To convert a galvanometer into an ammeter, we connect:</p>
+                    <ul class="options">
+                        <li>a. high resistance in series</li>
+                        <li>b. low resistance in series</li>
+                        <li>c. high resistance in parallel</li>
+                        <li>d. low resistance in parallel</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq511"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq511">
+                        <strong>Answer: d. low resistance in parallel</strong>
+                        <p>A low resistance shunt is connected in parallel to convert galvanometer into ammeter.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.12</h4>
+                    <p>To convert a galvanometer into a voltmeter, we connect:</p>
+                    <ul class="options">
+                        <li>a. high resistance in series</li>
+                        <li>b. low resistance in series</li>
+                        <li>c. low resistance in parallel</li>
+                        <li>d. shunt only</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq512"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq512">
+                        <strong>Answer: a. high resistance in series</strong>
+                        <p>A high resistance is connected in series to convert galvanometer into voltmeter.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.13</h4>
+                    <p>Ferromagnetic materials are:</p>
+                    <ul class="options">
+                        <li>a. weakly repelled by magnetic field</li>
+                        <li>b. weakly attracted by magnetic field</li>
+                        <li>c. strongly attracted by magnetic field</li>
+                        <li>d. not affected by magnetic field</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq513"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq513">
+                        <strong>Answer: c. strongly attracted by magnetic field</strong>
+                        <p>Ferromagnetic materials like iron, cobalt, and nickel are strongly attracted by magnetic fields.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.14</h4>
+                    <p>Diamagnetic materials are:</p>
+                    <ul class="options">
+                        <li>a. strongly attracted</li>
+                        <li>b. weakly repelled</li>
+                        <li>c. strongly repelled</li>
+                        <li>d. permanent magnets</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq514"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq514">
+                        <strong>Answer: b. weakly repelled</strong>
+                        <p>Diamagnetic materials are weakly repelled by magnetic fields.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.15</h4>
+                    <p>The unit of magnetic flux is:</p>
+                    <ul class="options">
+                        <li>a. tesla</li>
+                        <li>b. ampere</li>
+                        <li>c. weber</li>
+                        <li>d. coulomb</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq515"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq515">
+                        <strong>Answer: c. weber</strong>
+                        <p>The SI unit of magnetic flux is weber (Wb).</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 20: SHORT ANSWER QUESTIONS ==================== -->
+    <section class="section" id="short-questions">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions (2 Marks Style) 📝
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+
+                <div class="mcq-item">
+                    <h4>Q 5.16</h4>
+                    <p>Define magnetic field.</p>
+                    <button class="toggle-btn" data-target="sa501"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa501">
+                        <p>The region around a magnet or current carrying conductor where magnetic force can be experienced is called magnetic field.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.17</h4>
+                    <p>State Biot-Savart law.</p>
+                    <button class="toggle-btn" data-target="sa502"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa502">
+                        <p>Biot-Savart law states that the magnetic field due to a small current element is directly proportional to current, current element, sin θ and inversely proportional to square of distance.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.18</h4>
+                    <p>Write the formula for magnetic field due to a long straight conductor.</p>
+                    <button class="toggle-btn" data-target="sa503"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa503">
+                        <div class="formula">B = μ₀I / 2πr</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.19</h4>
+                    <p>What is magnetic flux?</p>
+                    <button class="toggle-btn" data-target="sa504"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa504">
+                        <p>The total number of magnetic field lines passing normally through a surface is called magnetic flux.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.20</h4>
+                    <p>State Faraday’s first law.</p>
+                    <button class="toggle-btn" data-target="sa505"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa505">
+                        <p>Whenever the magnetic flux linked with a circuit changes, an emf is induced in the circuit. If the circuit is closed, an induced current flows.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.21</h4>
+                    <p>What is Lenz’s law?</p>
+                    <button class="toggle-btn" data-target="sa506"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa506">
+                        <p>Lenz’s law states that the direction of induced current is such that it opposes the cause producing it.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.22</h4>
+                    <p>Write the principle of moving coil galvanometer.</p>
+                    <button class="toggle-btn" data-target="sa507"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa507">
+                        <p>A current carrying coil placed in a magnetic field experiences a torque. This is the principle of moving coil galvanometer.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.23</h4>
+                    <p>Why is a shunt connected in parallel with galvanometer to make an ammeter?</p>
+                    <button class="toggle-btn" data-target="sa508"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa508">
+                        <p>A shunt of low resistance is connected in parallel so that most of the current bypasses the galvanometer and only a small safe current passes through it.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.24</h4>
+                    <p>Name one diamagnetic, one paramagnetic and one ferromagnetic material.</p>
+                    <button class="toggle-btn" data-target="sa509"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa509">
+                        <p>Diamagnetic: Copper<br>Paramagnetic: Aluminium<br>Ferromagnetic: Iron</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.25</h4>
+                    <p>Write the formula for torque on a rectangular coil in magnetic field.</p>
+                    <button class="toggle-btn" data-target="sa510"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="sa510">
+                        <div class="formula">τ = NBIA sin θ</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 21: LONG ANSWER QUESTIONS ==================== -->
+    <section class="section" id="long-questions">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks Style) 📄
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+
+                <div class="mcq-item">
+                    <h4>Q 5.26</h4>
+                    <p>Define magnetic field. What are magnetic lines of force? Write their properties.</p>
+                    <button class="toggle-btn" data-target="la501"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la501">
+                        <p>A magnetic field is the region around a magnet or current carrying conductor where magnetic force can be experienced.</p>
+                        <p>Magnetic lines of force are imaginary lines drawn in a magnetic field such that the tangent at any point gives the direction of the magnetic field.</p>
+                        <p><strong>Properties:</strong></p>
+                        <ul>
+                            <li>They form closed curves</li>
+                            <li>Outside magnet they go from North to South</li>
+                            <li>Inside magnet they go from South to North</li>
+                            <li>They never intersect each other</li>
+                            <li>Closer lines indicate stronger magnetic field</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.27</h4>
+                    <p>State Biot-Savart law and derive the expression for magnetic field due to a long straight conductor.</p>
+                    <button class="toggle-btn" data-target="la502"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la502">
+                        <p>Biot-Savart law states that the magnetic field due to a current element is directly proportional to current, current element and sin θ, and inversely proportional to square of distance.</p>
+                        <div class="formula">dB = (μ₀/4π) × (I dl sin θ / r²)</div>
+                        <p>On integrating for a long straight conductor, we get:</p>
+                        <div class="formula">B = μ₀I / 2πr</div>
+                        <p>This shows that the magnetic field is directly proportional to current and inversely proportional to distance from the wire.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.28</h4>
+                    <p>Derive the formula for magnetic field at the center of a circular loop.</p>
+                    <button class="toggle-btn" data-target="la503"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la503">
+                        <p>Using Biot-Savart law, the field due to a small element dl of a circular loop at the center is:</p>
+                        <div class="formula">dB = (μ₀/4π) × (I dl / R²)</div>
+                        <p>Since every element contributes in the same direction, integrating over the whole circumference:</p>
+                        <div class="formula">B = (μ₀I/4πR²) ∫dl</div>
+                        <p>But ∫dl = 2πR</p>
+                        <div class="formula">B = (μ₀I/4πR²) × 2πR = μ₀I/2R</div>
+                        <p>Thus the magnetic field at the center of a circular loop is:</p>
+                        <div class="formula answer">B = μ₀I / 2R</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.29</h4>
+                    <p>Explain force on a current carrying conductor placed in magnetic field. Mention Fleming’s left hand rule.</p>
+                    <button class="toggle-btn" data-target="la504"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la504">
+                        <p>When a current carrying conductor is placed in a magnetic field, it experiences a force because moving charges in the conductor interact with the magnetic field.</p>
+                        <div class="formula">F = BIl sin θ</div>
+                        <p>The force is maximum when the conductor is perpendicular to the magnetic field and zero when parallel.</p>
+                        <p><strong>Fleming’s Left Hand Rule:</strong></p>
+                        <ul>
+                            <li>Forefinger → magnetic field</li>
+                            <li>Middle finger → current</li>
+                            <li>Thumb → force or motion</li>
+                        </ul>
+                        <p>This principle is used in electric motors and galvanometers.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.30</h4>
+                    <p>What is electromagnetic induction? State and explain Faraday’s laws.</p>
+                    <button class="toggle-btn" data-target="la505"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la505">
+                        <p>Electromagnetic induction is the phenomenon of production of induced emf when magnetic flux linked with a circuit changes.</p>
+                        <p><strong>Faraday’s First Law:</strong> Whenever magnetic flux linked with a circuit changes, an emf is induced in it.</p>
+                        <p><strong>Faraday’s Second Law:</strong> The magnitude of induced emf is directly proportional to the rate of change of magnetic flux.</p>
+                        <div class="formula">e = −N(dΦ/dt)</div>
+                        <p>The negative sign indicates Lenz’s law, which gives the direction of induced current.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.31</h4>
+                    <p>Describe the principle, construction and working of moving coil galvanometer.</p>
+                    <button class="toggle-btn" data-target="la506"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la506">
+                        <p><strong>Principle:</strong> A current carrying coil in magnetic field experiences a torque.</p>
+                        <p><strong>Construction:</strong></p>
+                        <ul>
+                            <li>Rectangular coil of many turns</li>
+                            <li>Strong permanent magnet</li>
+                            <li>Soft iron core</li>
+                            <li>Suspension spring</li>
+                            <li>Pointer and scale</li>
+                        </ul>
+                        <p><strong>Working:</strong></p>
+                        <ul>
+                            <li>When current flows, the coil experiences torque and rotates</li>
+                            <li>The pointer attached to coil deflects</li>
+                            <li>The spring provides restoring torque</li>
+                            <li>At equilibrium, deflection is proportional to current</li>
+                        </ul>
+                        <p>It is used for measuring small currents.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.32</h4>
+                    <p>Explain how a galvanometer is converted into an ammeter and a voltmeter.</p>
+                    <button class="toggle-btn" data-target="la507"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la507">
+                        <p><strong>Galvanometer to Ammeter:</strong></p>
+                        <ul>
+                            <li>A low resistance shunt is connected in parallel</li>
+                            <li>Most current passes through shunt</li>
+                            <li>The galvanometer measures only small current</li>
+                            <li>Shunt formula:
+                                <div class="formula">S = I<sub>g</sub>G / (I − I<sub>g</sub>)</div>
+                            </li>
+                        </ul>
+                        <p><strong>Galvanometer to Voltmeter:</strong></p>
+                        <ul>
+                            <li>A high resistance is connected in series</li>
+                            <li>This limits current through galvanometer</li>
+                            <li>Series resistance formula:
+                                <div class="formula">R = V/I<sub>g</sub> − G</div>
+                            </li>
+                        </ul>
+                        <p>Ammeter is connected in series and has low resistance, whereas voltmeter is connected in parallel and has high resistance.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.33</h4>
+                    <p>Classify magnetic materials. Distinguish between diamagnetic, paramagnetic and ferromagnetic materials.</p>
+                    <button class="toggle-btn" data-target="la508"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="la508">
+                        <p>Magnetic materials are classified as:</p>
+                        <ol>
+                            <li>Diamagnetic materials</li>
+                            <li>Paramagnetic materials</li>
+                            <li>Ferromagnetic materials</li>
+                        </ol>
+                        <p><strong>Diamagnetic:</strong> Weakly repelled by magnetic field. Example: copper, bismuth.</p>
+                        <p><strong>Paramagnetic:</strong> Weakly attracted by magnetic field. Example: aluminium, platinum.</p>
+                        <p><strong>Ferromagnetic:</strong> Strongly attracted and can be permanently magnetized. Example: iron, cobalt, nickel.</p>
+                        <p>Ferromagnetic materials have very high permeability and are used in magnets, motors, and transformers.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 22: PRACTICE NUMERICALS ==================== -->
+    <section class="section" id="practice">
+        <h2 class="section-title">
+            <i class="fas fa-dumbbell"></i> Practice Numericals 🔢
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+
+                <div class="mcq-item">
+                    <h4>Q 5.34</h4>
+                    <p>A charge 5 × 10<sup>−6</sup> C moves with speed 2 × 10<sup>5</sup> m/s at right angle to a magnetic field 0.3 T. Find the force.</p>
+                    <button class="toggle-btn" data-target="pn501"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn501">
+                        <div class="formula">F = qvB = 5 × 10<sup>−6</sup> × 2 × 10<sup>5</sup> × 0.3</div>
+                        <div class="formula">F = 3 × 10<sup>−1</sup></div>
+                        <div class="formula answer">Answer: 0.3 N</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.35</h4>
+                    <p>Find the magnetic field at 2 cm from a wire carrying 8 A current.</p>
+                    <button class="toggle-btn" data-target="pn502"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn502">
+                        <div class="formula">B = μ₀I / 2πr</div>
+                        <div class="formula">= (4π × 10<sup>−7</sup> × 8) / (2π × 0.02)</div>
+                        <div class="formula">= 8 × 10<sup>−5</sup> T</div>
+                        <div class="formula answer">Answer: 8 × 10<sup>−5</sup> T</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.36</h4>
+                    <p>A circular loop of radius 0.05 m carries current 2 A. Find magnetic field at center.</p>
+                    <button class="toggle-btn" data-target="pn503"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn503">
+                        <div class="formula">B = μ₀I / 2R</div>
+                        <div class="formula">= (4π × 10<sup>−7</sup> × 2) / (2 × 0.05)</div>
+                        <div class="formula">= 8π × 10<sup>−6</sup> T</div>
+                        <div class="formula answer">Answer: 2.51 × 10<sup>−5</sup> T (approx.)</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.37</h4>
+                    <p>A conductor 0.5 m long carries 3 A current in a field of 0.2 T perpendicular to it. Find the force.</p>
+                    <button class="toggle-btn" data-target="pn504"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn504">
+                        <div class="formula">F = BIl = 0.2 × 3 × 0.5</div>
+                        <div class="formula answer">Answer: 0.3 N</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.38</h4>
+                    <p>A coil of 20 turns, area 0.01 m², carrying 1 A current is placed in 0.5 T field. Find maximum torque.</p>
+                    <button class="toggle-btn" data-target="pn505"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn505">
+                        <div class="formula">τ = NBIA = 20 × 0.5 × 1 × 0.01</div>
+                        <div class="formula answer">Answer: 0.1 N·m</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.39</h4>
+                    <p>A 100-turn coil experiences flux change of 0.02 Wb in 0.5 s. Find induced emf.</p>
+                    <button class="toggle-btn" data-target="pn506"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn506">
+                        <div class="formula">e = N(ΔΦ/Δt) = 100 × (0.02 / 0.5)</div>
+                        <div class="formula">e = 100 × 0.04</div>
+                        <div class="formula answer">Answer: 4 V</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.40</h4>
+                    <p>A galvanometer of 40 Ω resistance gives full scale deflection at 1 mA. Find the series resistance to convert it into 5 V voltmeter.</p>
+                    <button class="toggle-btn" data-target="pn507"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn507">
+                        <div class="formula">R = V/I<sub>g</sub> − G = 5/0.001 − 40</div>
+                        <div class="formula">R = 5000 − 40</div>
+                        <div class="formula answer">Answer: 4960 Ω</div>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 5.41</h4>
+                    <p>A galvanometer of 20 Ω resistance gives full scale deflection at 2 mA. Find shunt required to make 1 A ammeter.</p>
+                    <button class="toggle-btn" data-target="pn508"><i class="fas fa-eye"></i> Show Solution</button>
+                    <div class="answer-reveal" id="pn508">
+                        <div class="formula">S = I<sub>g</sub>G / (I − I<sub>g</sub>)</div>
+                        <div class="formula">= (0.002 × 20) / (1 − 0.002)</div>
+                        <div class="formula">= 0.04 / 0.998</div>
+                        <div class="formula answer">Answer: 0.040 Ω (approx.)</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 23: QUICK REVISION ==================== -->
+    <section class="section" id="revision">
+        <h2 class="section-title">
+            <i class="fas fa-bullseye"></i> Quick Revision / Unit Summary 🎯
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-sync-alt"></i> Full Unit in Short</div>
+                <ul>
+                    <li>Magnetic field is the region where magnetic force is experienced.</li>
+                    <li>Moving charges and current produce magnetic field.</li>
+                    <li>Lorentz force on moving charge: <strong>F = qvB sin θ</strong>.</li>
+                    <li>Biot-Savart law gives magnetic field due to current element.</li>
+                    <li>For long straight conductor: <strong>B = μ₀I / 2πr</strong>.</li>
+                    <li>For circular loop center: <strong>B = μ₀I / 2R</strong>.</li>
+                    <li>Magnetic dipole moment of loop: <strong>M = NIA</strong>.</li>
+                    <li>Force on current carrying conductor: <strong>F = BIl sin θ</strong>.</li>
+                    <li>Torque on coil: <strong>τ = NBIA sin θ</strong>.</li>
+                    <li>Electromagnetic induction is production of emf due to change in flux.</li>
+                    <li>Magnetic flux: <strong>Φ = BA cos θ</strong>.</li>
+                    <li>Faraday’s law: <strong>e = −N(dΦ/dt)</strong>.</li>
+                    <li>Lenz’s law gives direction of induced current.</li>
+                    <li>Moving coil galvanometer works on torque on current carrying coil in magnetic field.</li>
+                    <li>Galvanometer + shunt → ammeter.</li>
+                    <li>Galvanometer + high series resistance → voltmeter.</li>
+                    <li>Diamagnetic materials are weakly repelled.</li>
+                    <li>Paramagnetic materials are weakly attracted.</li>
+                    <li>Ferromagnetic materials are strongly attracted and can be magnetized permanently.</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Must Remember for Exam</div>
+                <ul>
+                    <li>Fleming’s left hand rule</li>
+                    <li>Right hand thumb rule</li>
+                    <li>B due to wire and loop formulas</li>
+                    <li>Faraday’s laws + Lenz’s law</li>
+                    <li>Shunt formula for ammeter</li>
+                    <li>Series resistance formula for voltmeter</li>
+                    <li>Diamagnetic vs paramagnetic vs ferromagnetic</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Common Mistakes</div>
+                <ul>
+                    <li>Do not confuse <strong>tesla</strong> (unit of B) with <strong>weber</strong> (unit of flux).</li>
+                    <li>Do not use the straight wire formula for circular loop numericals.</li>
+                    <li>Do not forget the negative sign in Faraday’s law indicates <strong>Lenz’s law</strong>.</li>
+                    <li>Ammeter is connected in <strong>series</strong>, voltmeter in <strong>parallel</strong>.</li>
+                    <li>Ammeter has <strong>low resistance</strong>, voltmeter has <strong>high resistance</strong>.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

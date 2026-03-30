@@ -1,443 +1,2690 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Physics · Unit 2 · Optics</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: optics / light / rainbow -->
-  <style>
-    :root {
-      --primary: #b85e8c;          /* magenta/pink for optics */
-      --primary-light: #d47aa8;
-      --accent: #3a8fb0;            /* blue for light */
-      --accent-light: #5aa9c9;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #4a2e5a, #b85e8c, #3a8fb0);
-    }
-    /* header emoji: optics symbols */
-    .header::after {
-      content: "🔭🔬💡🌈";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* lens illustration */
-    .lens-demo {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .lens-card {
-      background: var(--card-bg);
-      border: 2px solid var(--primary);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      width: 200px;
-      text-align: center;
-    }
-    .lens-icon {
-      font-size: 3rem;
-    }
-    /* ray diagram placeholders */
-    .ray-diagram {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .diagram-box {
-      background: #f0f0f0;
-      padding: 20px;
-      border-radius: var(--radius-sm);
-      font-family: monospace;
-      text-align: center;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 - Optics | Applied Physics-II BS104</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Magnification') ? 'Show Magnification' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Magnification') ? 'Hide Magnification' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; text-align:center; }
+        .fraction .den { padding:3px 6px 0; text-align:center; }
+
+        .outcome-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:12px; margin:16px 0; }
+        .outcome-badge { background: linear-gradient(135deg, var(--accent-light), var(--accent)); color:#fff; padding:14px 18px; border-radius:var(--radius-md); font-size:0.92rem; font-weight:500; display:flex; align-items:center; gap:10px; }
+        .outcome-badge i { font-size:1.1rem; }
+
+        .prereq-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin:12px 0; }
+        .prereq-item { background:var(--formula-bg); padding:10px 14px; border-radius:var(--radius-sm); border-left:3px solid var(--warning); font-size:0.9rem; }
+
+        .formula-card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin:16px 0; }
+        .formula-card { background:var(--formula-bg); border:1px solid var(--accent); border-radius:var(--radius-md); padding:16px; }
+        .formula-card h4 { color:var(--primary); margin-bottom:8px; font-size:0.95rem; }
+        [data-theme="dark"] .formula-card { background:#1a2332; }
+
+        .definition-grid { display:grid; gap:16px; margin:16px 0; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
     <div class="header-content">
-      <h1>🔭 Physics · Unit 2 🔭</h1>
-      <h2>Optics · Lenses · TIR · Instruments · Wave Optics</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-lightbulb"></i> Reflection/Refraction</span>
-        <span class="info-item"><i class="fas fa-microscope"></i> Microscope</span>
-        <span class="info-item"><i class="fas fa-telescope"></i> Telescope</span>
-      </div>
+        <h1><i class="fas fa-eye"></i> Optics</h1>
+        <h2>Unit 2 — Applied Physics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS104</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 2</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma Sem-II</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive Guide</span>
+            <span class="info-item"><i class="fas fa-atom"></i> Basic Science</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-lightbulb"></i> PHYS·UNIT2</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#basics"><i class="fas fa-circle"></i> Basic Laws</a>
-        <a href="#lenses"><i class="fas fa-glasses"></i> Lenses</a>
-        <a href="#tir"><i class="fas fa-exchange-alt"></i> TIR & Fiber</a>
-        <a href="#instruments"><i class="fas fa-microscope"></i> Instruments</a>
-        <a href="#wave"><i class="fas fa-wave-square"></i> Wave Optics</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>🔬 Physics U2</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#optical-laws"><i class="fas fa-arrows-alt-h"></i> Optical Laws</a>
+            <a href="#lenses"><i class="fas fa-glasses"></i> Lenses</a>
+            <a href="#lens-formula"><i class="fas fa-square-root-variable"></i> Lens Formula</a>
+            <a href="#tir"><i class="fas fa-angle-double-right"></i> TIR</a>
+            <a href="#optical-fiber"><i class="fas fa-network-wired"></i> Optical Fiber</a>
+            <a href="#microscopes"><i class="fas fa-microscope"></i> Microscopes</a>
+            <a href="#telescope"><i class="fas fa-binoculars"></i> Telescope</a>
+            <a href="#interference-diffraction"><i class="fas fa-wave-square"></i> Interference</a>
+            <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+            <a href="#formulas"><i class="fas fa-superscript"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-spell-check"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+            <a href="#short-qa"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#long-qa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+            <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<!-- Mobile Drawer -->
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-lightbulb"></i> PHYS Unit 2</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>🔬 Physics U2</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#basics"><i class="fas fa-circle"></i> Reflection, Refraction, Refractive index</a>
-      <a href="#lenses"><i class="fas fa-glasses"></i> Lens formula, Power, Magnification</a>
-      <a href="#tir"><i class="fas fa-exchange-alt"></i> Total Internal Reflection, Optical Fiber</a>
-      <a href="#instruments"><i class="fas fa-microscope"></i> Simple/Compound Microscope, Telescope</a>
-      <a href="#wave"><i class="fas fa-wave-square"></i> Interference & Diffraction (qualitative)</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#optical-laws"><i class="fas fa-arrows-alt-h"></i> Optical Laws</a>
+        <a href="#lenses"><i class="fas fa-glasses"></i> Lenses</a>
+        <a href="#lens-formula"><i class="fas fa-square-root-variable"></i> Lens Formula</a>
+        <a href="#tir"><i class="fas fa-angle-double-right"></i> TIR</a>
+        <a href="#optical-fiber"><i class="fas fa-network-wired"></i> Optical Fiber</a>
+        <a href="#microscopes"><i class="fas fa-microscope"></i> Microscopes</a>
+        <a href="#telescope"><i class="fas fa-binoculars"></i> Telescope</a>
+        <a href="#interference-diffraction"><i class="fas fa-wave-square"></i> Interference</a>
+        <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+        <a href="#formulas"><i class="fas fa-superscript"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-spell-check"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+        <a href="#short-qa"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#long-qa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+        <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: BASIC OPTICAL LAWS ========= -->
-    <section id="basics" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-circle"></i> Basic Optical Laws: Reflection · Refraction · Refractive Index
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-arrow-right"></i> Reflection</div>
-          <p>Angle of incidence = Angle of reflection. Incident ray, reflected ray, and normal lie in same plane.</p>
+<!-- ========== MAIN CONTENT ========== -->
+<div class="container">
+
+    <!-- ==================== SECTION 1: OVERVIEW ==================== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> What This Unit Covers</div>
+                <p>This unit is all about <strong>Light</strong> — how it behaves when it hits surfaces (reflection), passes through different materials (refraction), bends through lenses, bounces back completely inside glass (total internal reflection), and how we use these properties to build powerful instruments like <strong>microscopes, telescopes, and optical fibers</strong>.</p>
+                <p><strong>Real-life connection:</strong> Every time you wear spectacles, use a camera, look through a magnifying glass, browse the internet (data travels through optical fibers!), or get an eye checkup — you are experiencing the optics covered in this unit!</p>
+            </div>
+
+            <h3>🎯 Unit Outcomes — After studying this unit, you will be able to:</h3>
+            <div class="outcome-grid">
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> State laws of reflection & refraction</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Define refractive index & apply Snell's law</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Find image position using lens formula</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Apply lens maker's formula & calculate power of lens</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Explain total internal reflection & critical angle</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Describe working of optical fiber</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Draw ray diagrams for microscopes & telescope</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Calculate magnifying power of optical instruments</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Explain interference & diffraction qualitatively</div>
+            </div>
+
+            <h3>📚 Prerequisites:</h3>
+            <div class="prereq-list">
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Basic concept of light</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Angles and trigonometry (sin, cos)</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Mirror basics from Class 10</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Ray diagram basics</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Concept of waves (Unit 1)</div>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Importance</div>
+                <p>This unit is <strong>heavily numerical-based</strong>. Topics like <strong>lens formula</strong>, <strong>power of lens</strong>, <strong>magnification</strong>, <strong>TIR & optical fiber</strong>, and <strong>ray diagrams of microscope/telescope</strong> appear every year. Master formulas and ray diagrams for guaranteed marks! 🔥</p>
+            </div>
+
         </div>
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-water"></i> Refraction (Snell's Law)</div>
-          <p>n₁ sinθ₁ = n₂ sinθ₂</p>
-          <p>where n = refractive index of medium.</p>
-        </div>
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-ruler"></i> Refractive Index</div>
-          <p>n = speed of light in vacuum / speed of light in medium = c/v</p>
-          <p>Also n₂₁ = n₂/n₁ (relative refractive index).</p>
-        </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 2: LENSES ========= -->
-    <section id="lenses" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-glasses"></i> Thin Lenses · Lens Formula · Power · Magnification
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="lens-demo">
-          <div class="lens-card">
-            <div class="lens-icon">🔍</div>
-            <h4>Convex (Converging)</h4>
-          </div>
-          <div class="lens-card">
-            <div class="lens-icon">🔎</div>
-            <h4>Concave (Diverging)</h4>
-          </div>
-        </div>
+    <!-- ==================== SECTION 2: OPTICAL LAWS ==================== -->
+    <section class="section" id="optical-laws">
+        <h2 class="section-title">
+            <i class="fas fa-arrows-alt-h"></i> Basic Optical Laws — Reflection & Refraction 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-calculator"></i> Lens Formula</div>
-          <div class="formula">1/f = 1/v - 1/u</div>
-          <p>where f = focal length, v = image distance, u = object distance (sign convention: u is negative for real object).</p>
-        </div>
+            <h3>Nature of Light</h3>
+            <p>Light is a form of <strong>electromagnetic radiation</strong> that is visible to the human eye. It is a <strong>transverse wave</strong> that does not need a medium to travel. The speed of light in vacuum is approximately <strong>3 × 10⁸ m/s</strong> (the fastest speed in the universe!).</p>
 
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-microchip"></i> Lens Maker's Formula (no deduction)</div>
-          <div class="formula">1/f = (μ - 1)(1/R₁ - 1/R₂)</div>
-          <p>where μ = refractive index of lens material, R₁, R₂ = radii of curvature.</p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-bolt"></i> Power of Lens</h4>
-            <p>P = 1/f (in meters). Unit: Diopter (D).</p>
-            <p>Convex: P positive; Concave: P negative.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-arrows-up-down"></i> Magnification (m)</h4>
-            <p>m = height of image / height of object = v/u</p>
-            <p>For lens, m = f / (f+u) etc.</p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 1</div>
-          <p>An object is placed 30cm from a convex lens of focal length 20cm. Find image distance and magnification.</p>
-          <button class="toggle-btn" data-target="lens1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="lens1">
-            <div class="formula answer">
-              1/f = 1/v - 1/u, with u = -30cm, f = +20cm<br>
-              1/20 = 1/v - 1/(-30) ⇒ 1/20 = 1/v + 1/30<br>
-              1/v = 1/20 - 1/30 = (3-2)/60 = 1/60 ⇒ v = <strong>60 cm</strong> (real image)<br>
-              m = v/u = 60/(-30) = <strong>-2</strong> (inverted, magnified)
+            <h3>Important Terms in Optics</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ray of Light</div>
+                <p>A <strong>ray</strong> is the straight-line path along which light energy travels. It is represented by a straight line with an arrow showing the direction of propagation.</p>
             </div>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 2</div>
-          <p>A concave lens has focal length -15cm. Object at 25cm. Find image position and magnification.</p>
-          <button class="toggle-btn" data-target="lens2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="lens2">
-            <div class="formula answer">
-              u = -25cm, f = -15cm<br>
-              1/f = 1/v - 1/u ⇒ 1/(-15) = 1/v - 1/(-25)<br>
-              -1/15 = 1/v + 1/25 ⇒ 1/v = -1/15 - 1/25 = -(5+3)/75 = -8/75<br>
-              v = <strong>-9.375 cm</strong> (virtual image on same side)<br>
-              m = v/u = (-9.375)/(-25) = <strong>+0.375</strong> (erect, diminished)
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Beam of Light</div>
+                <p>A <strong>beam</strong> is a collection (bundle) of rays. It can be parallel, convergent, or divergent.</p>
             </div>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Power of Lens</div>
-          <p>Two lenses of powers +2D and -1D are in contact. Find net power and focal length.</p>
-          <button class="toggle-btn" data-target="lens3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="lens3">
-            <div class="formula answer">
-              P = P₁ + P₂ = 2 + (-1) = <strong>+1 D</strong><br>
-              f = 1/P = 1/1 = <strong>1 m = 100 cm</strong> (convex)
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Normal</div>
+                <p>The <strong>normal</strong> is an imaginary line drawn <strong>perpendicular (at 90°)</strong> to the surface at the point where the ray hits the surface. All angles in optics are measured from the normal.</p>
             </div>
-          </div>
+
+            <!-- REFLECTION -->
+            <h3>⭐ Reflection of Light</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Reflection</div>
+                <p><strong>Reflection</strong> is the phenomenon of <strong>bouncing back of light</strong> into the same medium when it strikes a surface (like a mirror).</p>
+            </div>
+
+            <p><strong>Key terms:</strong></p>
+            <ul>
+                <li><strong>Incident ray:</strong> The ray of light that falls on the surface.</li>
+                <li><strong>Reflected ray:</strong> The ray of light that bounces back from the surface.</li>
+                <li><strong>Angle of incidence (i):</strong> Angle between the incident ray and the normal.</li>
+                <li><strong>Angle of reflection (r):</strong> Angle between the reflected ray and the normal.</li>
+                <li><strong>Point of incidence:</strong> The point where the incident ray meets the surface.</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=laws+of+reflection+of+light+diagram+incident+reflected+ray+normal" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.1:</strong> Reflection of light — incident ray, reflected ray, normal, and angles</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Laws of Reflection</h4>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-gavel"></i> Laws of Reflection</div>
+                <ol>
+                    <li><strong>First Law:</strong> The incident ray, the reflected ray, and the normal at the point of incidence, all lie in the <strong>same plane</strong>.</li>
+                    <li><strong>Second Law:</strong> The <strong>angle of incidence is equal to the angle of reflection</strong>. i.e., <strong>∠i = ∠r</strong></li>
+                </ol>
+                <p>These laws are valid for all types of reflecting surfaces — plane mirrors, curved mirrors, and even rough surfaces.</p>
+            </div>
+
+            <!-- REFRACTION -->
+            <h3>⭐ Refraction of Light</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Refraction</div>
+                <p><strong>Refraction</strong> is the phenomenon of <strong>change in the direction (bending) of light</strong> when it passes from one transparent medium to another (e.g., from air to glass, or from water to air). This bending occurs because <strong>the speed of light is different in different media</strong>.</p>
+            </div>
+
+            <p><strong>Real-life examples of refraction:</strong></p>
+            <ul>
+                <li>A stick appears bent when partially dipped in water</li>
+                <li>A coin at the bottom of a water-filled bowl appears raised up</li>
+                <li>Twinkling of stars</li>
+                <li>A swimming pool appears shallower than it actually is</li>
+                <li>Mirage in deserts</li>
+            </ul>
+
+            <p><strong>Key terms:</strong></p>
+            <ul>
+                <li><strong>Incident ray:</strong> The ray entering the second medium.</li>
+                <li><strong>Refracted ray:</strong> The ray that bends as it enters the second medium.</li>
+                <li><strong>Angle of incidence (i):</strong> Angle between incident ray and normal (in medium 1).</li>
+                <li><strong>Angle of refraction (r):</strong> Angle between refracted ray and normal (in medium 2).</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=refraction+of+light+diagram+Snells+law+angle+incidence+refraction" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.2:</strong> Refraction of light — bending at boundary, incident ray, refracted ray, angles</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Laws of Refraction (Snell's Law)</h4>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-gavel"></i> Laws of Refraction</div>
+                <ol>
+                    <li><strong>First Law:</strong> The incident ray, the refracted ray, and the normal at the point of incidence, all lie in the <strong>same plane</strong>.</li>
+                    <li><strong>Second Law (Snell's Law):</strong> The <strong>ratio of the sine of the angle of incidence to the sine of the angle of refraction is a constant</strong> for a given pair of media. This constant is called the <strong>refractive index (μ or n)</strong>.</li>
+                </ol>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 2.1 — Snell's Law:</strong></p>
+                <p>\[ \frac{\sin i}{\sin r} = \mu = \text{constant (refractive index)} \]</p>
+                <p>Or more generally: \( n_1 \sin i = n_2 \sin r \)</p>
+                <p>where n₁ = refractive index of medium 1 (where light comes from), n₂ = refractive index of medium 2 (where light goes into).</p>
+            </div>
+
+            <h3>⭐ Refractive Index</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Refractive Index (μ or n)</div>
+                <p>The <strong>refractive index</strong> of a medium is the <strong>ratio of the speed of light in vacuum (or air) to the speed of light in that medium</strong>.</p>
+                <p>\[ \mu = \frac{c}{v} = \frac{\text{Speed of light in vacuum}}{\text{Speed of light in medium}} \]</p>
+                <p>It is a <strong>dimensionless quantity</strong> (no unit). It is always <strong>≥ 1</strong>.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points about Refractive Index</div>
+                <ul>
+                    <li>Refractive index of vacuum = 1 (exactly)</li>
+                    <li>Refractive index of air ≈ 1.0003 ≈ 1 (for practical purposes)</li>
+                    <li>Higher μ means light travels <strong>slower</strong> in that medium (denser medium)</li>
+                    <li>A medium with higher μ is called <strong>optically denser</strong></li>
+                    <li>When light goes from rarer to denser medium → it bends <strong>towards</strong> the normal (r < i)</li>
+                    <li>When light goes from denser to rarer medium → it bends <strong>away from</strong> the normal (r > i)</li>
+                </ul>
+            </div>
+
+            <h3>Refractive Indices of Common Materials</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Refractive Index (approx.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Vacuum</td><td>1.000 (exactly)</td></tr>
+                        <tr><td>Air</td><td>1.0003 ≈ 1</td></tr>
+                        <tr><td>Water</td><td>1.33</td></tr>
+                        <tr><td>Glass (ordinary)</td><td>1.50</td></tr>
+                        <tr><td>Crown glass</td><td>1.52</td></tr>
+                        <tr><td>Flint glass</td><td>1.65</td></tr>
+                        <tr><td>Diamond</td><td>2.42</td></tr>
+                        <tr><td>Ice</td><td>1.31</td></tr>
+                        <tr><td>Kerosene</td><td>1.44</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Memory Trick</div>
+                <p><strong>Diamond</strong> has the highest refractive index (2.42) among common materials. That's why diamonds sparkle so much — light bends a lot inside and gets trapped by total internal reflection! Water = 4/3 ≈ 1.33, Glass = 3/2 = 1.5 — these fractions are easy to remember.</p>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistake</div>
+                <p>Students often confuse: light bends towards normal when entering a <strong>denser</strong> medium (not rarer!). Remember: <strong>Denser = towards, Rarer = away</strong>.</p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: TOTAL INTERNAL REFLECTION & OPTICAL FIBER ========= -->
-    <section id="tir" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-exchange-alt"></i> Total Internal Reflection · Critical Angle · Optical Fiber
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-angle-double-right"></i> Critical Angle (C)</div>
-          <p>sin C = n₂/n₁ &nbsp; (for n₁ > n₂, when angle in denser medium gives 90° in rarer).</p>
-        </div>
+    <!-- ==================== SECTION 3: LENSES ==================== -->
+    <section class="section" id="lenses">
+        <h2 class="section-title">
+            <i class="fas fa-glasses"></i> Thin Lenses & Image Formation 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-check-circle"></i> Conditions for TIR</div>
-          <ul>
-            <li>Light must travel from denser to rarer medium.</li>
-            <li>Angle of incidence > critical angle.</li>
-          </ul>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-fiber"></i> Applications in Optical Fiber</div>
-          <p>Optical fibers use TIR to guide light along core (high refractive index) surrounded by cladding (lower index).</p>
-          <p>Used in telecommunications, endoscopy, sensors.</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 3</div>
-          <p>Refractive index of glass is 1.5. Find critical angle for glass-air interface.</p>
-          <button class="toggle-btn" data-target="tir1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="tir1">
-            <div class="formula answer">
-              sin C = 1/μ = 1/1.5 = 0.6667<br>
-              C = sin⁻¹(0.6667) = <strong>41.8°</strong>
+            <h3>What is a Lens?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Lens</div>
+                <p>A <strong>lens</strong> is a transparent optical medium (usually glass) bounded by <strong>two curved surfaces</strong> (or one curved and one plane surface). A lens refracts light to form images. A <strong>thin lens</strong> is one whose thickness is very small compared to its radius of curvature.</p>
             </div>
-          </div>
+
+            <h3>Types of Lenses</h3>
+
+            <h4>1. Convex Lens (Converging Lens)</h4>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Convex Lens</div>
+                <p>A lens that is <strong>thicker at the centre and thinner at the edges</strong>. It <strong>converges</strong> (brings together) parallel rays of light to a point called the focus. Also called a <strong>converging lens</strong> or <strong>positive lens</strong>.</p>
+                <p>Types: Double convex (biconvex), plano-convex, concavo-convex.</p>
+            </div>
+
+            <h4>2. Concave Lens (Diverging Lens)</h4>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Concave Lens</div>
+                <p>A lens that is <strong>thinner at the centre and thicker at the edges</strong>. It <strong>diverges</strong> (spreads out) parallel rays of light. The diverging rays appear to come from a point called the virtual focus. Also called a <strong>diverging lens</strong> or <strong>negative lens</strong>.</p>
+                <p>Types: Double concave (biconcave), plano-concave, convexo-concave.</p>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=convex+lens+types+biconvex+plano+convex+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 2.3a:</strong> Types of convex lenses</p>
+                        <span class="click-hint">🔍 Click to view</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=concave+lens+types+biconcave+plano+concave+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 2.3b:</strong> Types of concave lenses</p>
+                        <span class="click-hint">🔍 Click to view</span>
+                    </div>
+                </a>
+            </div>
+
+            <h3>Important Terms for Lenses</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Optical Centre (O)</div>
+                <p>The <strong>central point</strong> of the lens. A ray passing through the optical centre goes straight without bending.</p>
+            </div>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Principal Axis</div>
+                <p>The imaginary straight line passing through the <strong>optical centre</strong> and <strong>perpendicular to the lens surface</strong>. It connects the two centres of curvature.</p>
+            </div>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Principal Focus (F)</div>
+                <p>For a <strong>convex lens:</strong> The point on the principal axis where parallel rays of light <strong>converge</strong> after refraction. It is a <strong>real focus</strong>.</p>
+                <p>For a <strong>concave lens:</strong> The point on the principal axis from which parallel rays <strong>appear to diverge</strong> after refraction. It is a <strong>virtual focus</strong>.</p>
+                <p>Every lens has <strong>two foci</strong> (F₁ and F₂), one on each side.</p>
+            </div>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Focal Length (f)</div>
+                <p>The <strong>distance between the optical centre (O) and the principal focus (F)</strong>. <strong>SI Unit:</strong> metre (m).</p>
+                <p>Convex lens: f is <strong>positive</strong>. Concave lens: f is <strong>negative</strong>.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=convex+concave+lens+optical+centre+focus+focal+length+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.4:</strong> Parts of convex and concave lenses — optical centre, focus, focal length, principal axis</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Sign Convention (New Cartesian Convention) 🔥</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-ruler-combined"></i> Sign Convention Rules</div>
+                <ol>
+                    <li>All distances are measured from the <strong>optical centre (O)</strong> of the lens.</li>
+                    <li>Distances measured in the <strong>direction of incident light</strong> (usually left to right) are <strong>positive (+)</strong>.</li>
+                    <li>Distances measured <strong>opposite to the direction of incident light</strong> (right to left) are <strong>negative (−)</strong>.</li>
+                    <li>Heights measured <strong>above</strong> the principal axis are <strong>positive (+)</strong>.</li>
+                    <li>Heights measured <strong>below</strong> the principal axis are <strong>negative (−)</strong>.</li>
+                </ol>
+                <p><strong>Practical implications:</strong></p>
+                <ul>
+                    <li>Object distance (u) is always <strong>negative</strong> (object is on the left of lens).</li>
+                    <li>For convex lens: f is <strong>positive</strong>. For concave lens: f is <strong>negative</strong>.</li>
+                    <li>Real image: v is <strong>positive</strong>. Virtual image: v is <strong>negative</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Most Common Exam Mistake!</div>
+                <p>Forgetting sign convention is the #1 reason students get wrong answers in optics numericals. <strong>ALWAYS apply sign convention before substituting values</strong> into the lens formula. Object distance u is always negative!</p>
+            </div>
+
+            <h3>Image Formation by Convex Lens</h3>
+            <p>A convex lens can form <strong>both real and virtual images</strong> depending on the position of the object:</p>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Object Position</th>
+                            <th>Image Position</th>
+                            <th>Image Nature</th>
+                            <th>Image Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>At infinity (∞)</td><td>At F₂</td><td>Real, inverted</td><td>Point-sized (highly diminished)</td></tr>
+                        <tr><td>Beyond 2F₁</td><td>Between F₂ and 2F₂</td><td>Real, inverted</td><td>Diminished</td></tr>
+                        <tr><td>At 2F₁</td><td>At 2F₂</td><td>Real, inverted</td><td>Same size</td></tr>
+                        <tr><td>Between F₁ and 2F₁</td><td>Beyond 2F₂</td><td>Real, inverted</td><td>Magnified</td></tr>
+                        <tr><td>At F₁</td><td>At infinity (∞)</td><td>Real, inverted</td><td>Highly magnified</td></tr>
+                        <tr><td><strong>Between O and F₁</strong></td><td>Same side as object</td><td><strong>Virtual, erect</strong></td><td><strong>Magnified</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=image+formation+by+convex+lens+all+positions+ray+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.5:</strong> Image formation by convex lens for different object positions (ray diagrams)</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Image Formation by Concave Lens</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Concave Lens — Always Forms Same Type of Image</div>
+                <p>A concave lens <strong>always</strong> forms a <strong>virtual, erect (upright), and diminished (smaller)</strong> image, regardless of the object position. The image is always formed on the <strong>same side as the object</strong>, between O and F.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=image+formation+by+concave+lens+ray+diagram+virtual+erect" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.6:</strong> Image formation by concave lens — virtual, erect, diminished image</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Rules for Drawing Ray Diagrams (Lenses)</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-pencil-ruler"></i> Three Rules for Ray Diagrams</div>
+                <ol>
+                    <li><strong>Rule 1:</strong> A ray <strong>parallel to the principal axis</strong>, after refraction, passes through the principal focus F₂ (convex) or appears to come from F₁ (concave).</li>
+                    <li><strong>Rule 2:</strong> A ray passing through the <strong>optical centre O</strong> goes straight without bending.</li>
+                    <li><strong>Rule 3:</strong> A ray passing through the <strong>focus F₁</strong>, after refraction, becomes parallel to the principal axis.</li>
+                </ol>
+                <p>To locate the image, draw any <strong>two of these three rays</strong>. Where they meet (or appear to meet) is the image point.</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Tip</div>
+                <p>For 5-mark ray diagram questions: Draw a <strong>neat, large diagram</strong> with all labels (O, F₁, F₂, 2F₁, 2F₂, object, image). Use a <strong>ruler</strong>. Show at least <strong>2 rays</strong> from the top of the object. Mention nature of image (real/virtual, erect/inverted, magnified/diminished). Diagrams carry marks!</p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: OPTICAL INSTRUMENTS ========= -->
-    <section id="instruments" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-microscope"></i> Optical Instruments: Microscope & Telescope
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <!-- Simple Microscope -->
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-search"></i> Simple Microscope</h4>
-            <p>Single convex lens. Magnification when image at D (25cm):</p>
-            <div class="formula">m = 1 + D/f</div>
-            <p>When image at infinity: m = D/f</p>
-            <div class="ray-diagram">
-              <div class="diagram-box">[Object within focal point → virtual image]</div>
+    <!-- ==================== SECTION 4: LENS FORMULA ==================== -->
+    <section class="section" id="lens-formula">
+        <h2 class="section-title">
+            <i class="fas fa-square-root-variable"></i> Lens Formula, Lens Maker's Formula & Power of Lens 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>⭐ Thin Lens Formula</h3>
+            <div class="formula-box">
+                <p><strong>Formula 2.2 — Lens Formula:</strong></p>
+                <p>\[ \frac{1}{v} - \frac{1}{u} = \frac{1}{f} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>v</strong> = image distance (from optical centre to image) (m)</li>
+                    <li><strong>u</strong> = object distance (from optical centre to object) (m)</li>
+                    <li><strong>f</strong> = focal length of the lens (m)</li>
+                </ul>
+                <p><strong>Sign convention must be applied!</strong></p>
             </div>
-          </div>
 
-          <div class="card">
-            <h4><i class="fas fa-microscope"></i> Compound Microscope</h4>
-            <p>Two lenses: objective (f₀) and eyepiece (fₑ). Magnification:</p>
-            <div class="formula">m = m₀ × mₑ = (L/f₀) × (D/fₑ)</div>
-            <p>where L = tube length (distance between lenses).</p>
-          </div>
-
-          <div class="card">
-            <h4><i class="fas fa-telescope"></i> Astronomical Telescope (Refracting)</h4>
-            <p>Objective (large f₀) and eyepiece (small fₑ). Magnification for normal adjustment:</p>
-            <div class="formula">m = f₀ / fₑ</div>
-            <p>Image at infinity, inverted.</p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Simple Microscope</div>
-          <p>A simple microscope has focal length 5cm. Find magnification at D = 25cm (near point).</p>
-          <button class="toggle-btn" data-target="inst1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="inst1">
-            <div class="formula answer">
-              m = 1 + D/f = 1 + 25/5 = 1 + 5 = <strong>6</strong>
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Most Important Formula of This Unit!</div>
+                <p>The lens formula <strong>1/v − 1/u = 1/f</strong> is used in almost every numerical. Remember: it's <strong>1/v MINUS 1/u</strong> (not plus!). The mirror formula is 1/v + 1/u = 1/f — don't confuse them!</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Compound Microscope</div>
-          <p>Focal lengths: f₀ = 1cm, fₑ = 2cm, tube length L = 15cm. Find magnification.</p>
-          <button class="toggle-btn" data-target="inst2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="inst2">
-            <div class="formula answer">
-              m = (L/f₀) × (D/fₑ) = (15/1) × (25/2) = 15 × 12.5 = <strong>187.5</strong>
+            <h3>⭐ Magnification</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Linear Magnification (m)</div>
+                <p><strong>Magnification</strong> is the ratio of the size (height) of the image to the size (height) of the object. It tells us how many times larger or smaller the image is compared to the object.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Astronomical Telescope</div>
-          <p>f₀ = 100cm, fₑ = 5cm. Find magnification.</p>
-          <button class="toggle-btn" data-target="inst3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="inst3">
-            <div class="formula answer">
-              m = f₀/fₑ = 100/5 = <strong>20</strong>
+            <div class="formula-box">
+                <p><strong>Formula 2.3 — Magnification:</strong></p>
+                <p>\[ m = \frac{h_i}{h_o} = \frac{v}{u} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>m</strong> = linear magnification (no unit)</li>
+                    <li><strong>h<sub>i</sub></strong> = height of image (m)</li>
+                    <li><strong>h<sub>o</sub></strong> = height of object (m)</li>
+                    <li><strong>v</strong> = image distance (m)</li>
+                    <li><strong>u</strong> = object distance (m)</li>
+                </ul>
             </div>
-          </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Interpreting Magnification</div>
+                <ul>
+                    <li>|m| > 1 → Image is <strong>magnified</strong> (larger than object)</li>
+                    <li>|m| = 1 → Image is <strong>same size</strong> as object</li>
+                    <li>|m| < 1 → Image is <strong>diminished</strong> (smaller than object)</li>
+                    <li>m is <strong>positive</strong> → Image is <strong>erect</strong> (virtual)</li>
+                    <li>m is <strong>negative</strong> → Image is <strong>inverted</strong> (real)</li>
+                </ul>
+            </div>
+
+            <h3>⭐ Lens Maker's Formula (No Derivation — Formula Only)</h3>
+            <div class="formula-box">
+                <p><strong>Formula 2.4 — Lens Maker's Formula:</strong></p>
+                <p>\[ \frac{1}{f} = (\mu - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>f</strong> = focal length of the lens (m)</li>
+                    <li><strong>μ</strong> = refractive index of the lens material</li>
+                    <li><strong>R₁</strong> = radius of curvature of the first surface (m)</li>
+                    <li><strong>R₂</strong> = radius of curvature of the second surface (m)</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Why is it called "Lens Maker's Formula"?</div>
+                <p>This formula is used by <strong>lens manufacturers</strong> to design lenses. By knowing the required focal length and the refractive index of the glass, they can calculate what radii of curvature to grind the surfaces to. It connects the <strong>physical properties</strong> of the lens (material and shape) to its <strong>optical property</strong> (focal length).</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Sign Convention for R₁ and R₂</div>
+                <p>For a <strong>convex lens</strong>: R₁ is positive (centre of curvature on right) and R₂ is negative (centre of curvature on left).</p>
+                <p>For a <strong>concave lens</strong>: R₁ is negative and R₂ is positive.</p>
+                <p>For a <strong>plane surface</strong>: R = ∞, so 1/R = 0.</p>
+            </div>
+
+            <h3>⭐ Power of a Lens</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Power of Lens</div>
+                <p>The <strong>power of a lens</strong> is the <strong>ability of the lens to converge or diverge rays of light</strong>. It is defined as the <strong>reciprocal of the focal length</strong> (when focal length is in metres).</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 2.5 — Power of Lens:</strong></p>
+                <p>\[ P = \frac{1}{f} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>P</strong> = power of lens</li>
+                    <li><strong>f</strong> = focal length in <strong>metres</strong></li>
+                    <li><strong>SI Unit:</strong> <strong>Dioptre (D)</strong></li>
+                    <li>1 D = 1 m⁻¹</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points about Power</div>
+                <ul>
+                    <li><strong>Convex lens:</strong> P is <strong>positive</strong> (converging power). Example: +2D, +5D</li>
+                    <li><strong>Concave lens:</strong> P is <strong>negative</strong> (diverging power). Example: −3D, −1.5D</li>
+                    <li><strong>Shorter focal length</strong> = <strong>higher power</strong> = stronger lens = more bending</li>
+                    <li><strong>Longer focal length</strong> = <strong>lower power</strong> = weaker lens = less bending</li>
+                    <li>When your eye doctor prescribes spectacles as "+2.5D" or "−3D", they are specifying the power!</li>
+                </ul>
+            </div>
+
+            <h3>Power of Combination of Lenses</h3>
+            <p>When two thin lenses are placed in contact, the combined power is:</p>
+            <div class="formula-box">
+                <p><strong>Formula 2.6 — Combination of Lenses:</strong></p>
+                <p>\[ P = P_1 + P_2 \]</p>
+                <p>Or equivalently: \[ \frac{1}{f} = \frac{1}{f_1} + \frac{1}{f_2} \]</p>
+                <p>This works for any number of thin lenses in contact: P = P₁ + P₂ + P₃ + ...</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Quick Conversion</div>
+                <p>If f is given in <strong>cm</strong>, convert to m first: f(m) = f(cm)/100. Then P = 1/f(m).</p>
+                <p>Or directly: <strong>P = 100/f(cm)</strong> dioptre.</p>
+                <p>Example: f = 20 cm → P = 100/20 = <strong>+5 D</strong> (convex)</p>
+                <p>Example: f = −50 cm → P = 100/(−50) = <strong>−2 D</strong> (concave)</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Favourite</div>
+                <p>Numericals on <strong>lens formula</strong>, <strong>power</strong>, and <strong>magnification</strong> are asked every year. Always remember:</p>
+                <ul>
+                    <li>Lens formula: 1/v − 1/u = 1/f</li>
+                    <li>Magnification: m = v/u = h<sub>i</sub>/h<sub>o</sub></li>
+                    <li>Power: P = 1/f (f in metres!) = 100/f(cm)</li>
+                    <li>Apply sign convention FIRST, calculate, then interpret</li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 5: WAVE OPTICS (QUALITATIVE) ========= -->
-    <section id="wave" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-wave-square"></i> Wave Optics: Interference & Diffraction (Qualitative)
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-layer-group"></i> Interference of Light</div>
-          <p>Superposition of two coherent light waves produces alternate bright and dark fringes (constructive and destructive interference).</p>
-          <p>Condition for constructive: path difference = nλ</p>
-          <p>Destructive: path difference = (2n+1)λ/2</p>
-          <p>Example: Young's double slit experiment.</p>
-        </div>
+    <!-- ==================== SECTION 5: TIR ==================== -->
+    <section class="section" id="tir">
+        <h2 class="section-title">
+            <i class="fas fa-angle-double-right"></i> Total Internal Reflection & Critical Angle 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-sliders-h"></i> Diffraction of Light</div>
-          <p>Bending of light around obstacles or through apertures. Central maximum is brightest with secondary maxima/minima.</p>
-          <p>Single slit diffraction: width of central maximum = 2λD/d</p>
-          <p>Examples: Diffraction grating, CD/DVD reflection colors.</p>
-        </div>
+            <h3>Understanding the Concept Step by Step</h3>
+            <p>When light travels from a <strong>denser medium to a rarer medium</strong> (e.g., glass to air, water to air), it bends <strong>away from the normal</strong> (angle of refraction > angle of incidence).</p>
+            <p>Now imagine increasing the angle of incidence gradually:</p>
 
-        <div class="important-note">
-          <div class="box-title">Comparison</div>
-          <p><strong>Interference:</strong> from two separate sources; fringes equally spaced.</p>
-          <p><strong>Diffraction:</strong> from single source/wavefront; central maximum wider, intensity falls off.</p>
+            <ol>
+                <li><strong>Small angle of incidence:</strong> Light refracts and goes into the rarer medium, bending away from normal. Some light is also reflected back (partial reflection).</li>
+                <li><strong>Increasing angle:</strong> The refracted ray bends further away from normal. The angle of refraction increases.</li>
+                <li><strong>At a certain angle (Critical Angle):</strong> The refracted ray travels <strong>along the surface</strong> (angle of refraction = 90°). This is the limit.</li>
+                <li><strong>Beyond the critical angle:</strong> No refraction at all! The light is <strong>completely reflected back</strong> into the denser medium. This is <strong>Total Internal Reflection</strong>!</li>
+            </ol>
+
+            <a href="https://www.google.com/search?tbm=isch&q=total+internal+reflection+critical+angle+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.7:</strong> Progressive increase of angle of incidence leading to critical angle and total internal reflection</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Critical Angle</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Critical Angle (θ<sub>c</sub> or i<sub>c</sub>)</div>
+                <p>The <strong>critical angle</strong> is the <strong>angle of incidence in the denser medium</strong> for which the <strong>angle of refraction in the rarer medium is exactly 90°</strong> (i.e., the refracted ray grazes along the surface boundary).</p>
+            </div>
+
+            <h4>Relation between Critical Angle and Refractive Index</h4>
+            <p>Applying Snell's law at the critical angle:</p>
+            <p>\( n_1 \sin \theta_c = n_2 \sin 90° \)</p>
+            <p>Since sin 90° = 1:</p>
+            <p>\( n_1 \sin \theta_c = n_2 \)</p>
+
+            <div class="formula-box">
+                <p><strong>Formula 2.7 — Critical Angle:</strong></p>
+                <p>\[ \sin \theta_c = \frac{n_2}{n_1} = \frac{n_{rarer}}{n_{denser}} \]</p>
+                <p>If the rarer medium is air (n₂ ≈ 1):</p>
+                <p>\[ \sin \theta_c = \frac{1}{\mu} \quad \text{or} \quad \theta_c = \sin^{-1}\left(\frac{1}{\mu}\right) \]</p>
+                <p>where μ = refractive index of the denser medium.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Critical Angles of Common Materials (with air)</div>
+                <ul>
+                    <li>Water (μ = 1.33): θ<sub>c</sub> = sin⁻¹(1/1.33) ≈ <strong>48.8°</strong></li>
+                    <li>Glass (μ = 1.5): θ<sub>c</sub> = sin⁻¹(1/1.5) ≈ <strong>41.8°</strong></li>
+                    <li>Diamond (μ = 2.42): θ<sub>c</sub> = sin⁻¹(1/2.42) ≈ <strong>24.4°</strong></li>
+                </ul>
+                <p>Note: Higher refractive index → smaller critical angle → easier to achieve TIR!</p>
+            </div>
+
+            <h3>⭐ Total Internal Reflection (TIR)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Total Internal Reflection</div>
+                <p><strong>Total Internal Reflection (TIR)</strong> is the phenomenon in which a ray of light travelling from a <strong>denser medium to a rarer medium</strong> is <strong>completely reflected back</strong> into the denser medium when the angle of incidence exceeds the critical angle.</p>
+            </div>
+
+            <h3>⭐ Conditions for Total Internal Reflection</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-check-double"></i> Two Necessary Conditions for TIR</div>
+                <ol>
+                    <li><strong>Condition 1:</strong> Light must travel from an <strong>optically denser medium</strong> to an <strong>optically rarer medium</strong> (e.g., glass to air, water to air, glass to water).</li>
+                    <li><strong>Condition 2:</strong> The <strong>angle of incidence</strong> must be <strong>greater than the critical angle</strong> (i > θ<sub>c</sub>) for that pair of media.</li>
+                </ol>
+                <p><strong>BOTH conditions must be satisfied simultaneously</strong> for TIR to occur.</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Very Important for Exam!</div>
+                <p>The two conditions for TIR are asked very frequently. Many students write only one condition. You MUST write BOTH: (1) denser to rarer medium, AND (2) angle of incidence > critical angle.</p>
+            </div>
+
+            <h3>Why "Total"?</h3>
+            <p>In ordinary reflection (like from a mirror), some light is absorbed by the surface. But in TIR, <strong>100% of the light is reflected</strong> — no light is lost. That's why it's called <strong>"total"</strong> internal reflection. This makes it ideal for transmitting light without loss.</p>
+
+            <h3>Everyday Examples of TIR</h3>
+            <ul>
+                <li><strong>Sparkling of diamond:</strong> Diamond has a very small critical angle (24.4°), so light entering the diamond undergoes multiple TIR inside before coming out, creating intense sparkle.</li>
+                <li><strong>Mirage:</strong> On hot roads, layers of air have different densities. Light from sky undergoes TIR near the hot road surface, creating an illusion of water.</li>
+                <li><strong>Shining of air bubble in water:</strong> Light hits the air bubble (rarer) from water (denser) at angles > critical angle → TIR → bubble appears shiny.</li>
+                <li><strong>Optical fiber:</strong> Uses TIR to transmit light signals over long distances (covered in next section).</li>
+                <li><strong>Prism binoculars:</strong> Use TIR in prisms instead of mirrors for reflecting light.</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=total+internal+reflection+examples+diamond+mirage+optical+fiber" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.8:</strong> Examples of TIR — diamond sparkle, mirage, prism binoculars</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
         </div>
-      </div>
+    </section>
+    
+    <!-- ==================== SECTION 6: OPTICAL FIBER ==================== -->
+    <section class="section" id="optical-fiber">
+        <h2 class="section-title">
+            <i class="fas fa-network-wired"></i> Optical Fiber — Application of TIR 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>What is Optical Fiber?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Optical Fiber</div>
+                <p>An <strong>optical fiber</strong> is a thin, flexible, transparent strand (wire) of <strong>glass or plastic</strong> that can transmit light signals over very long distances with minimal loss by using the principle of <strong>Total Internal Reflection (TIR)</strong>.</p>
+            </div>
+
+            <p><strong>Real-world analogy:</strong> Think of a water slide at a park. Once you enter the tube, you keep sliding inside until you reach the bottom — you can't escape from the sides. Similarly, once light enters an optical fiber, it keeps bouncing inside the fiber by TIR and travels from one end to the other without escaping!</p>
+
+            <h3>⭐ Structure of Optical Fiber</h3>
+            <p>An optical fiber has <strong>three main parts</strong>:</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-layer-group"></i> Parts of Optical Fiber</div>
+                <ol>
+                    <li><strong>Core:</strong> The innermost cylindrical part made of high-purity glass or plastic. It has a <strong>higher refractive index (n₁)</strong>. This is where <strong>light actually travels</strong>. Diameter: 8–100 μm (micrometres).</li>
+                    <li><strong>Cladding:</strong> A layer surrounding the core, also made of glass or plastic but with a <strong>lower refractive index (n₂)</strong> (n₂ < n₁). The cladding ensures that TIR occurs at the core-cladding boundary. Diameter: ~125 μm.</li>
+                    <li><strong>Jacket (Buffer Coating):</strong> An outer protective plastic layer that protects the fiber from physical damage, moisture, and external forces. It does not play any optical role.</li>
+                </ol>
+                <p><strong>Key condition:</strong> n₁ (core) > n₂ (cladding) — This is essential for TIR to work!</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=optical+fiber+structure+core+cladding+jacket+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.9:</strong> Structure of optical fiber — core, cladding, and protective jacket</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Mechanism of Light Propagation in Optical Fiber</h3>
+            <p>Here is how light travels through an optical fiber step by step:</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bolt"></i> Working Principle</div>
+                <ol>
+                    <li>A <strong>light signal</strong> (usually from a laser or LED) enters one end of the fiber at a suitable angle.</li>
+                    <li>The light enters the <strong>core</strong> (denser medium, higher refractive index n₁).</li>
+                    <li>When this light hits the <strong>core-cladding boundary</strong>, it is going from a denser medium (core) to a rarer medium (cladding) — the first condition for TIR is satisfied.</li>
+                    <li>If the light hits the boundary at an angle <strong>greater than the critical angle</strong> (θ > θ<sub>c</sub>), <strong>Total Internal Reflection</strong> occurs — the second condition is also satisfied.</li>
+                    <li>The light is completely reflected back into the core. It then hits the opposite side of the core-cladding boundary and again undergoes TIR.</li>
+                    <li>This process repeats continuously — the light keeps <strong>zigzagging</strong> inside the core by repeated TIR.</li>
+                    <li>The light finally emerges from the <strong>other end of the fiber</strong> with very little energy loss.</li>
+                </ol>
+                <p><strong>Result:</strong> Light (carrying information/data) travels from one end to the other through the fiber, even if the fiber is bent or curved!</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=light+propagation+in+optical+fiber+total+internal+reflection+zigzag+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.10:</strong> Light propagation through optical fiber by repeated Total Internal Reflection</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Types of Optical Fibers</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Core Diameter</th>
+                            <th>Refractive Index Profile</th>
+                            <th>Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Single-mode fiber</strong></td><td>~8–10 μm (very thin)</td><td>Step index</td><td>Long-distance, high-speed telecom</td></tr>
+                        <tr><td><strong>Multi-mode step-index fiber</strong></td><td>~50–100 μm</td><td>Uniform core with sudden change at cladding</td><td>Short-distance, LANs</td></tr>
+                        <tr><td><strong>Multi-mode graded-index fiber</strong></td><td>~50–100 μm</td><td>Gradually decreasing from centre</td><td>Medium-distance telecom</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>⭐ Applications of Optical Fiber</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Applications of Optical Fiber</div>
+                <ol>
+                    <li><strong>Telecommunication:</strong> Optical fibers carry internet data, telephone signals, and cable TV signals at the speed of light over thousands of kilometres. They are the backbone of the internet!</li>
+                    <li><strong>Medical Endoscopy:</strong> Thin optical fiber bundles are inserted into the body through mouth, nose, or small cuts. Doctors can see internal organs on a screen without surgery. Used for stomach, intestine, and joint examinations.</li>
+                    <li><strong>Computer Networking (LAN/WAN):</strong> Used for high-speed data transfer between computers in offices, data centres, and buildings.</li>
+                    <li><strong>Military & Defence:</strong> Used in guided missiles, secure communication systems (hard to tap).</li>
+                    <li><strong>Decorative lighting:</strong> Fiber optic lamps and decorative displays use fibers to create beautiful light effects.</li>
+                    <li><strong>Sensors:</strong> Optical fiber sensors measure temperature, pressure, strain, and chemical concentrations in industrial and scientific applications.</li>
+                    <li><strong>CCTV & Security:</strong> Fiber optic cables transmit security camera signals.</li>
+                    <li><strong>Submarine cables:</strong> Undersea optical fiber cables connect continents for global internet connectivity.</li>
+                </ol>
+            </div>
+
+            <h3>Advantages of Optical Fiber over Copper Wire</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Optical Fiber</th>
+                            <th>Copper Wire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Bandwidth</strong></td><td>Very high (GHz to THz)</td><td>Limited (MHz range)</td></tr>
+                        <tr><td><strong>Data speed</strong></td><td>Very fast (Gbps)</td><td>Slower (Mbps)</td></tr>
+                        <tr><td><strong>Signal loss</strong></td><td>Very low</td><td>Higher (resistance losses)</td></tr>
+                        <tr><td><strong>Weight</strong></td><td>Very light</td><td>Heavy</td></tr>
+                        <tr><td><strong>EMI (interference)</strong></td><td>Not affected</td><td>Affected by electromagnetic interference</td></tr>
+                        <tr><td><strong>Security</strong></td><td>Difficult to tap</td><td>Easy to tap</td></tr>
+                        <tr><td><strong>Distance</strong></td><td>Very long distances</td><td>Short/medium distances</td></tr>
+                        <tr><td><strong>Cost</strong></td><td>Installation costly initially</td><td>Lower initial cost</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Tip</div>
+                <p>"Explain the principle of optical fiber with diagram" and "Applications of optical fiber" are <strong>very common 5-7 mark questions</strong>. Always mention: (1) TIR principle, (2) Core has higher RI than cladding, (3) Draw diagram showing zigzag path, (4) List at least 5 applications.</p>
+            </div>
+
+        </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">n₁ sinθ₁ = n₂ sinθ₂</div>
-          <div class="tag">1/f = 1/v - 1/u</div>
-          <div class="tag">P = 1/f (m)</div>
-          <div class="tag">m = v/u</div>
-          <div class="tag">sin C = 1/μ</div>
-          <div class="tag">Simple Micro: m = 1 + D/f</div>
-          <div class="tag">Compound: m = (L/f₀)(D/fₑ)</div>
-          <div class="tag">Telescope: m = f₀/fₑ</div>
+    <!-- ==================== SECTION 7: MICROSCOPES ==================== -->
+    <section class="section" id="microscopes">
+        <h2 class="section-title">
+            <i class="fas fa-microscope"></i> Optical Instruments — Simple & Compound Microscope 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>What are Optical Instruments?</h3>
+            <p><strong>Optical instruments</strong> are devices that use lenses (and/or mirrors) to produce magnified images of objects that are too small or too far away to see clearly with the naked eye. They help us see things better!</p>
+            <p>Examples: Magnifying glass, microscope, telescope, camera, binoculars, spectacles.</p>
+
+            <h3>Least Distance of Distinct Vision (D)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Least Distance of Distinct Vision (D)</div>
+                <p>The <strong>minimum distance from the eye</strong> at which an object can be seen <strong>clearly and comfortably</strong> without strain. For a normal human eye, this distance is approximately <strong>25 cm (0.25 m)</strong>. This is also called the <strong>near point</strong> of the eye.</p>
+                <p><strong>D = 25 cm</strong> (standard value used in all formulas)</p>
+            </div>
+
+            <!-- SIMPLE MICROSCOPE -->
+            <h3>⭐ Simple Microscope (Magnifying Glass)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Simple Microscope</div>
+                <p>A <strong>simple microscope</strong> is a single <strong>convex lens</strong> of short focal length used to see <strong>magnified, erect, and virtual</strong> images of small objects. It is essentially a magnifying glass.</p>
+            </div>
+
+            <h4>Construction</h4>
+            <p>A simple microscope consists of just a <strong>single convex lens</strong> of short focal length (typically 2 cm to 10 cm) mounted in a frame with a handle.</p>
+
+            <h4>Working</h4>
+            <ol>
+                <li>The object to be viewed is placed <strong>between the optical centre (O) and the focus (F)</strong> of the convex lens (i.e., within the focal length: u < f).</li>
+                <li>When the object is placed this way, the convex lens forms a <strong>virtual, erect, and magnified image</strong> on the same side as the object.</li>
+                <li>For comfortable viewing, the image should be formed at the least distance of distinct vision (D = 25 cm) from the eye.</li>
+                <li>The eye sees this magnified virtual image clearly.</li>
+            </ol>
+
+            <a href="https://www.google.com/search?tbm=isch&q=simple+microscope+magnifying+glass+ray+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.11:</strong> Ray diagram of simple microscope — object between O and F, virtual magnified image at D</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Magnifying Power (Magnification)</h4>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Magnifying Power</div>
+                <p>The <strong>magnifying power (M)</strong> of an optical instrument is the ratio of the <strong>angle subtended by the image at the eye</strong> when seen through the instrument to the <strong>angle subtended by the object at the naked eye</strong> when placed at the least distance of distinct vision (D = 25 cm).</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 2.8 — Magnifying Power of Simple Microscope:</strong></p>
+                <p><strong>When image is formed at D (25 cm):</strong></p>
+                <p>\[ M = 1 + \frac{D}{f} \]</p>
+                <p><strong>When image is formed at infinity (∞) — for relaxed eye:</strong></p>
+                <p>\[ M = \frac{D}{f} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>M</strong> = magnifying power (no unit)</li>
+                    <li><strong>D</strong> = least distance of distinct vision = 25 cm</li>
+                    <li><strong>f</strong> = focal length of the convex lens (in same unit as D, usually cm)</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Which Formula to Use?</div>
+                <p>If the question says "image at near point" or "image at D" → use <strong>M = 1 + D/f</strong></p>
+                <p>If the question says "normal adjustment" or "image at infinity" → use <strong>M = D/f</strong></p>
+                <p>If nothing is specified, use <strong>M = 1 + D/f</strong> (maximum magnification).</p>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Uses of Simple Microscope</div>
+                <ul>
+                    <li>Reading small print (magnifying glass)</li>
+                    <li>Watchmakers examining tiny watch parts</li>
+                    <li>Jewellers examining gems and jewellery</li>
+                    <li>Biologists examining specimens</li>
+                    <li>Stamp and coin collectors examining details</li>
+                    <li>Forensic investigators examining evidence</li>
+                </ul>
+            </div>
+
+            <!-- COMPOUND MICROSCOPE -->
+            <h3>⭐ Compound Microscope 🔥</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Compound Microscope</div>
+                <p>A <strong>compound microscope</strong> is an optical instrument that uses <strong>two convex lenses</strong> — an <strong>objective lens</strong> and an <strong>eyepiece (ocular) lens</strong> — to produce a <strong>highly magnified image</strong> of very small objects that cannot be seen by a simple microscope.</p>
+            </div>
+
+            <h4>Construction</h4>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Parts of Compound Microscope</div>
+                <ol>
+                    <li><strong>Objective Lens (O):</strong> A convex lens of <strong>very short focal length (f<sub>o</sub>)</strong> and <strong>small aperture</strong>. Placed near the object. It creates the first (intermediate) image.</li>
+                    <li><strong>Eyepiece Lens (E):</strong> A convex lens of <strong>short focal length (f<sub>e</sub>)</strong> (but larger than f<sub>o</sub>) and <strong>large aperture</strong>. Placed near the eye. It magnifies the intermediate image further.</li>
+                    <li><strong>Tube:</strong> Both lenses are mounted in a metal tube at fixed positions. The tube length (distance between the lenses) is denoted by <strong>L</strong>.</li>
+                </ol>
+                <p><strong>Key:</strong> f<sub>o</sub> < f<sub>e</sub> (objective has shorter focal length than eyepiece)</p>
+            </div>
+
+            <h4>Working</h4>
+            <ol>
+                <li>The object (AB) is placed <strong>slightly beyond the focus of the objective lens</strong> (between F<sub>o</sub> and 2F<sub>o</sub>).</li>
+                <li>The <strong>objective lens</strong> forms a <strong>real, inverted, and magnified intermediate image (A'B')</strong> on the other side of the objective lens (inside the tube).</li>
+                <li>This intermediate image A'B' acts as the <strong>object for the eyepiece lens</strong>.</li>
+                <li>The eyepiece is adjusted so that A'B' falls <strong>within the focal length of the eyepiece</strong> (between O and F<sub>e</sub>).</li>
+                <li>The <strong>eyepiece</strong> then acts as a simple microscope and forms a <strong>final virtual, magnified image (A''B'')</strong> at the least distance of distinct vision (D = 25 cm).</li>
+                <li>The final image is <strong>highly magnified, virtual, and inverted</strong> (with respect to the original object).</li>
+            </ol>
+
+            <a href="https://www.google.com/search?tbm=isch&q=compound+microscope+ray+diagram+objective+eyepiece+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.12:</strong> Ray diagram of compound microscope showing objective, eyepiece, intermediate image, and final image</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Magnifying Power of Compound Microscope</h4>
+            <p>The total magnification = magnification by objective × magnification by eyepiece.</p>
+
+            <div class="formula-box">
+                <p><strong>Formula 2.9 — Magnifying Power of Compound Microscope:</strong></p>
+                <p><strong>When final image is at D (25 cm):</strong></p>
+                <p>\[ M = m_o \times M_e = \frac{v_o}{u_o} \times \left(1 + \frac{D}{f_e}\right) \]</p>
+                <p>Approximately (for large magnification):</p>
+                <p>\[ M \approx \frac{L}{f_o} \times \frac{D}{f_e} \]</p>
+                <p><strong>When final image is at infinity (normal adjustment):</strong></p>
+                <p>\[ M = \frac{L}{f_o} \times \frac{D}{f_e} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>M</strong> = total magnifying power</li>
+                    <li><strong>m<sub>o</sub></strong> = magnification of objective = v<sub>o</sub>/u<sub>o</sub></li>
+                    <li><strong>M<sub>e</sub></strong> = magnifying power of eyepiece</li>
+                    <li><strong>L</strong> = length of the microscope tube (distance between lenses) ≈ v<sub>o</sub></li>
+                    <li><strong>f<sub>o</sub></strong> = focal length of objective lens</li>
+                    <li><strong>f<sub>e</sub></strong> = focal length of eyepiece lens</li>
+                    <li><strong>D</strong> = 25 cm (least distance of distinct vision)</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points about Compound Microscope</div>
+                <ul>
+                    <li>The final image is <strong>inverted</strong> (upside-down) with respect to the object.</li>
+                    <li>The total magnification is the <strong>product</strong> of the two individual magnifications.</li>
+                    <li>To get high magnification, both f<sub>o</sub> and f<sub>e</sub> should be <strong>small</strong>.</li>
+                    <li>f<sub>o</sub> should be <strong>much smaller</strong> than f<sub>e</sub> for best results.</li>
+                    <li>Typical magnification: 50× to 2000×.</li>
+                    <li>Used to observe bacteria, cells, blood samples, tissue structure, etc.</li>
+                </ul>
+            </div>
+
+            <h3>⚖️ Comparison: Simple vs Compound Microscope</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Simple Microscope</th>
+                            <th>Compound Microscope</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Number of lenses</strong></td><td>One convex lens</td><td>Two convex lenses (objective + eyepiece)</td></tr>
+                        <tr><td><strong>Magnifying power</strong></td><td>Low (up to ~10×)</td><td>High (50× to 2000×)</td></tr>
+                        <tr><td><strong>Image nature</strong></td><td>Virtual, erect, magnified</td><td>Virtual, inverted, highly magnified</td></tr>
+                        <tr><td><strong>Magnification formula</strong></td><td>M = 1 + D/f</td><td>M = (L/f<sub>o</sub>) × (D/f<sub>e</sub>)</td></tr>
+                        <tr><td><strong>Object placement</strong></td><td>Between O and F</td><td>Slightly beyond F<sub>o</sub> of objective</td></tr>
+                        <tr><td><strong>Cost</strong></td><td>Low</td><td>Higher</td></tr>
+                        <tr><td><strong>Applications</strong></td><td>Reading, watch repair</td><td>Biology labs, medical research</td></tr>
+                        <tr><td><strong>Complexity</strong></td><td>Simple</td><td>Complex (needs focusing)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    <!-- ==================== SECTION 8: TELESCOPE ==================== -->
+    <section class="section" id="telescope">
+        <h2 class="section-title">
+            <i class="fas fa-binoculars"></i> Astronomical Telescope (Refracting) 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+            <h3>What is a Telescope?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Telescope</div>
+                <p>A <strong>telescope</strong> is an optical instrument used to see <strong>distant objects</strong> (like stars, planets, moon, far-away buildings) that appear too small to the naked eye. It makes distant objects appear <strong>closer and larger</strong>.</p>
+            </div>
+
+            <p>We will study the <strong>refracting astronomical telescope</strong> (the simplest type), which uses <strong>only lenses</strong> (no mirrors).</p>
+
+            <h3>⭐ Construction of Refracting Astronomical Telescope</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Parts</div>
+                <ol>
+                    <li><strong>Objective Lens (O):</strong> A convex lens of <strong>large focal length (f<sub>o</sub>)</strong> and <strong>large aperture</strong>. Placed towards the distant object. It collects light from the distant object and forms the first image.</li>
+                    <li><strong>Eyepiece Lens (E):</strong> A convex lens of <strong>short focal length (f<sub>e</sub>)</strong> and <strong>small aperture</strong>. Placed near the eye. It magnifies the first image for viewing.</li>
+                    <li><strong>Tube:</strong> Both lenses mounted in two concentric tubes (one slides inside the other for focusing).</li>
+                </ol>
+                <p><strong>Key:</strong> f<sub>o</sub> >> f<sub>e</sub> (objective has MUCH larger focal length than eyepiece) — this is <strong>opposite</strong> to the compound microscope!</p>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Don't Confuse!</div>
+                <p>In a <strong>microscope</strong>: f<sub>o</sub> < f<sub>e</sub> (objective short, eyepiece longer)</p>
+                <p>In a <strong>telescope</strong>: f<sub>o</sub> > f<sub>e</sub> (objective long, eyepiece short)</p>
+                <p>This is a common exam trick question!</p>
+            </div>
+
+            <h3>⭐ Working (Normal Adjustment — Image at Infinity)</h3>
+            <ol>
+                <li>Light from a very <strong>distant object</strong> (at infinity) reaches the objective lens as <strong>parallel rays</strong>.</li>
+                <li>The <strong>objective lens</strong> converges these parallel rays and forms a <strong>real, inverted, and diminished image (A'B')</strong> at its focus F<sub>o</sub>.</li>
+                <li>The eyepiece is positioned such that this intermediate image A'B' falls at <strong>the focus of the eyepiece (F<sub>e</sub>)</strong>.</li>
+                <li>Since the intermediate image is at the focus of the eyepiece, the <strong>eyepiece</strong> acts like a magnifying glass and produces the <strong>final image at infinity</strong> (parallel rays emerge from eyepiece).</li>
+                <li>The final image is <strong>magnified, virtual, and inverted</strong> with respect to the object.</li>
+                <li>In normal adjustment, the distance between the two lenses = f<sub>o</sub> + f<sub>e</sub> (length of telescope).</li>
+            </ol>
+
+            <a href="https://www.google.com/search?tbm=isch&q=astronomical+refracting+telescope+ray+diagram+normal+adjustment+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.13:</strong> Ray diagram of astronomical refracting telescope in normal adjustment (final image at infinity)</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Magnifying Power of Astronomical Telescope</h3>
+
+            <div class="formula-box">
+                <p><strong>Formula 2.10 — Magnifying Power (Normal Adjustment — image at ∞):</strong></p>
+                <p>\[ M = -\frac{f_o}{f_e} \]</p>
+                <p><strong>Length of telescope in normal adjustment:</strong></p>
+                <p>\[ L = f_o + f_e \]</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 2.11 — Magnifying Power (Image at D = 25 cm):</strong></p>
+                <p>\[ M = -\frac{f_o}{f_e}\left(1 + \frac{f_e}{D}\right) \]</p>
+                <p><strong>Length of telescope when image at D:</strong></p>
+                <p>\[ L = f_o + \frac{f_e \cdot D}{f_e + D} \]</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points</div>
+                <ul>
+                    <li>The <strong>negative sign</strong> in M indicates the image is <strong>inverted</strong>.</li>
+                    <li>For <strong>high magnification</strong>: f<sub>o</sub> should be <strong>large</strong> and f<sub>e</sub> should be <strong>small</strong>.</li>
+                    <li>The <strong>objective</strong> has a <strong>large aperture</strong> to collect maximum light from distant objects (which are faint).</li>
+                    <li>The image is <strong>inverted</strong> — this is acceptable for astronomy (stars look the same upside down!), but for terrestrial use, an additional lens is needed to erect the image.</li>
+                    <li>In normal adjustment, the eye is relaxed (rays entering eye are parallel) — most comfortable for extended viewing.</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Shortcut</div>
+                <p>Most exam questions use the <strong>normal adjustment</strong> formula: <strong>M = f<sub>o</sub>/f<sub>e</sub></strong> and <strong>L = f<sub>o</sub> + f<sub>e</sub></strong>. Remember these two and you can solve most telescope numericals!</p>
+            </div>
+
+            <h3>⚖️ Comparison: Microscope vs Telescope</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Compound Microscope</th>
+                            <th>Astronomical Telescope</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Purpose</strong></td><td>See tiny nearby objects</td><td>See distant large objects</td></tr>
+                        <tr><td><strong>Objective f<sub>o</sub></strong></td><td>Very short</td><td>Very long</td></tr>
+                        <tr><td><strong>Eyepiece f<sub>e</sub></strong></td><td>Short (but > f<sub>o</sub>)</td><td>Short (much < f<sub>o</sub>)</td></tr>
+                        <tr><td><strong>Objective aperture</strong></td><td>Small</td><td>Large (to gather light)</td></tr>
+                        <tr><td><strong>Magnification formula</strong></td><td>M = (L/f<sub>o</sub>)(D/f<sub>e</sub>)</td><td>M = f<sub>o</sub>/f<sub>e</sub></td></tr>
+                        <tr><td><strong>Object distance</strong></td><td>Very close (mm to cm)</td><td>Very far (infinity)</td></tr>
+                        <tr><td><strong>Final image</strong></td><td>Virtual, inverted, magnified</td><td>Virtual, inverted, magnified</td></tr>
+                        <tr><td><strong>Tube length</strong></td><td>Short (~15–20 cm)</td><td>Long (can be metres)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Tip</div>
+                <p>Ray diagram of telescope is a <strong>very common 5-7 mark question</strong>. Draw a neat diagram showing: distant object → parallel rays → objective → intermediate image at F<sub>o</sub> = F<sub>e</sub> → eyepiece → parallel rays to eye. Label everything. Write the magnification formula.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: INTERFERENCE & DIFFRACTION ==================== -->
+    <section class="section" id="interference-diffraction">
+        <h2 class="section-title">
+            <i class="fas fa-wave-square"></i> Interference and Diffraction of Light (Qualitative) 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Syllabus Note</div>
+                <p>The syllabus mentions "Qualitative ideas only" — meaning you need to understand the basic concept, definition, examples, and differences. No mathematical derivations or complex theory is needed for the exam.</p>
+            </div>
+
+            <!-- INTERFERENCE -->
+            <h3>⭐ Interference of Light</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Interference</div>
+                <p><strong>Interference of light</strong> is the phenomenon of <strong>redistribution of light energy</strong> in a medium due to the <strong>superposition of two coherent light waves</strong>. It results in the formation of <strong>alternate bright and dark bands (fringes)</strong> on a screen.</p>
+            </div>
+
+            <p><strong>Simple explanation:</strong> When two light waves from the same source meet at a point, they can either <strong>add up</strong> (constructive interference → bright) or <strong>cancel out</strong> (destructive interference → dark). The result is a pattern of alternating bright and dark bands.</p>
+
+            <h4>Types of Interference</h4>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Constructive & Destructive Interference</div>
+                <p><strong>Constructive Interference:</strong></p>
+                <ul>
+                    <li>Occurs when <strong>crest meets crest</strong> (or trough meets trough).</li>
+                    <li>Waves are <strong>in phase</strong> (phase difference = 0, 2π, 4π...)</li>
+                    <li>Path difference = nλ (n = 0, 1, 2, 3...)</li>
+                    <li>Resultant amplitude is <strong>maximum</strong> → <strong>BRIGHT fringe</strong></li>
+                </ul>
+                <p><strong>Destructive Interference:</strong></p>
+                <ul>
+                    <li>Occurs when <strong>crest meets trough</strong>.</li>
+                    <li>Waves are <strong>out of phase</strong> (phase difference = π, 3π, 5π...)</li>
+                    <li>Path difference = (2n+1)λ/2 or (n + ½)λ</li>
+                    <li>Resultant amplitude is <strong>minimum</strong> (zero if equal amplitudes) → <strong>DARK fringe</strong></li>
+                </ul>
+            </div>
+
+            <h4>Conditions for Sustained Interference</h4>
+            <ol>
+                <li>The two light sources must be <strong>coherent</strong> (same frequency, constant phase difference).</li>
+                <li>The sources should be <strong>monochromatic</strong> (single wavelength/colour).</li>
+                <li>The sources should be <strong>close together</strong>.</li>
+                <li>The amplitudes should be <strong>equal or nearly equal</strong> for best contrast.</li>
+            </ol>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Coherent Sources</div>
+                <p><strong>Coherent sources</strong> are two light sources that emit waves of the <strong>same frequency</strong> (or wavelength) and have a <strong>constant phase difference</strong> between them. Two independent light bulbs are NOT coherent. Coherent sources can be obtained by splitting light from a single source (e.g., Young's double-slit experiment).</p>
+            </div>
+
+            <h4>Young's Double Slit Experiment</h4>
+            <p>The most famous demonstration of interference. A single light source illuminates two narrow parallel slits (S₁ and S₂) close together. On a screen placed behind, <strong>alternate bright and dark fringes</strong> are observed. This proves that light behaves as a <strong>wave</strong>.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Young+double+slit+experiment+interference+pattern+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.14:</strong> Young's double slit experiment — interference fringes (bright and dark bands)</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Examples of Interference in Daily Life</h4>
+            <ul>
+                <li>Colours seen in <strong>thin soap bubbles</strong></li>
+                <li>Colours on an <strong>oil film on water</strong> (petrol on wet road)</li>
+                <li>Colours in a <strong>CD/DVD surface</strong></li>
+                <li>Anti-reflection coatings on camera lenses and spectacles</li>
+            </ul>
+
+            <!-- DIFFRACTION -->
+            <h3>⭐ Diffraction of Light</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Diffraction</div>
+                <p><strong>Diffraction of light</strong> is the phenomenon of <strong>bending of light around the edges of an obstacle or through a narrow opening (slit)</strong>, causing it to spread into regions where it should not reach as per straight-line propagation (shadow region).</p>
+            </div>
+
+            <p><strong>Simple explanation:</strong> Light normally travels in straight lines. But when light passes through a very narrow slit (comparable to its wavelength), it spreads out and bends around the edges. This is diffraction. It's like sound going around corners — you can hear someone talking even if they are around the corner of a wall.</p>
+
+            <h4>Key Points about Diffraction</h4>
+            <ul>
+                <li>Diffraction is most noticeable when the <strong>size of the opening/obstacle is comparable to the wavelength</strong> of light.</li>
+                <li>Since the wavelength of visible light is very small (400–700 nm), diffraction of light is observed only through <strong>very narrow slits</strong>.</li>
+                <li>Diffraction produces a pattern of <strong>bright and dark bands</strong>, but unlike interference, the central bright band is <strong>widest and brightest</strong>, and the intensity decreases for higher-order bands.</li>
+                <li>Diffraction is evidence that <strong>light is a wave</strong>.</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=single+slit+diffraction+pattern+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 2.15:</strong> Single slit diffraction — light spreading after passing through narrow slit, diffraction pattern</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>Examples of Diffraction in Daily Life</h4>
+            <ul>
+                <li><strong>Colourful pattern on a CD/DVD</strong> — due to diffraction of light from closely spaced grooves</li>
+                <li><strong>Slight spreading of light</strong> from a torchlight beam</li>
+                <li><strong>Halo/ring around the sun/moon</strong> — due to diffraction by tiny water droplets/ice crystals</li>
+                <li><strong>Shadow edges not being perfectly sharp</strong></li>
+                <li>Sound heard around corners (sound diffraction — easier because longer wavelength)</li>
+            </ul>
+
+            <h3>⚖️ Comparison: Interference vs Diffraction</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Interference</th>
+                            <th>Diffraction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cause</strong></td><td>Superposition of waves from two coherent sources</td><td>Bending of waves around edges of obstacle/slit</td></tr>
+                        <tr><td><strong>Sources needed</strong></td><td>Two coherent sources</td><td>Single source + narrow slit/obstacle</td></tr>
+                        <tr><td><strong>Fringe width</strong></td><td>All fringes have equal width</td><td>Central fringe is widest, others narrower</td></tr>
+                        <tr><td><strong>Fringe intensity</strong></td><td>All bright fringes are equally bright</td><td>Central is brightest, intensity decreases outward</td></tr>
+                        <tr><td><strong>Dark fringes</strong></td><td>Perfectly dark (if equal amplitudes)</td><td>Not perfectly dark</td></tr>
+                        <tr><td><strong>Minimum number of sources</strong></td><td>Two</td><td>One</td></tr>
+                        <tr><td><strong>Condition</strong></td><td>Slit separation > wavelength</td><td>Slit width ≈ wavelength</td></tr>
+                        <tr><td><strong>Example</strong></td><td>Young's double slit, soap film colours</td><td>CD colours, shadow edge spreading</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Tip</div>
+                <p>For the exam, focus on: <strong>definitions</strong> of interference and diffraction, <strong>examples</strong> (2-3 each), constructive vs destructive interference conditions, and the <strong>comparison table</strong>. No formula-based questions expected since it says "qualitative ideas only."</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 10: SOLVED NUMERICALS ==================== -->
+    <section class="section" id="numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Solved Numerical Problems 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Numerical Solving Strategy for Optics</div>
+                <ol>
+                    <li>Read problem carefully → identify lens type (convex/concave)</li>
+                    <li>Write Given, To Find</li>
+                    <li><strong>Apply sign convention FIRST</strong> — this is crucial!</li>
+                    <li>Choose correct formula</li>
+                    <li>Substitute and solve</li>
+                    <li>Interpret the answer (positive v = real image, negative v = virtual image)</li>
+                </ol>
+            </div>
+
+            <!-- Numerical 1 -->
+            <h3>Numerical 1: Lens Formula — Convex Lens</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>An object is placed 30 cm from a convex lens of focal length 20 cm. Find the position and nature of the image. Also find the magnification.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>u = −30 cm (negative by sign convention — object on left)</p>
+                    <p>f = +20 cm (positive for convex lens)</p>
+                </div>
+                <div class="step" data-step="Formula">
+                    <p>Lens formula: 1/v − 1/u = 1/f</p>
+                </div>
+                <div class="step" data-step="Substitution">
+                    <p>1/v − 1/(−30) = 1/20</p>
+                    <p>1/v + 1/30 = 1/20</p>
+                    <p>1/v = 1/20 − 1/30 = (3 − 2)/60 = 1/60</p>
+                </div>
+                <div class="step" data-step="Image Distance">
+                    <p class="formula answer"><strong>v = +60 cm</strong></p>
+                    <p>Positive v → Image is <strong>real</strong>, formed on the other side of the lens, 60 cm from the lens.</p>
+                </div>
+                <div class="step" data-step="Magnification">
+                    <p>m = v/u = 60/(−30) = −2</p>
+                    <p class="formula answer"><strong>m = −2</strong></p>
+                    <p>|m| = 2 → Image is <strong>magnified</strong> (2 times the object size).</p>
+                    <p>Negative m → Image is <strong>inverted</strong>.</p>
+                    <p><strong>Nature: Real, inverted, magnified, at 60 cm on the other side.</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 2 -->
+            <h3>Numerical 2: Lens Formula — Concave Lens</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>An object is placed 20 cm in front of a concave lens of focal length 15 cm. Find the position, nature, and size of the image if the object height is 5 cm.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>u = −20 cm, f = −15 cm (concave lens → negative f)</p>
+                    <p>h<sub>o</sub> = 5 cm</p>
+                </div>
+                <div class="step" data-step="Using Lens Formula">
+                    <p>1/v − 1/u = 1/f</p>
+                    <p>1/v − 1/(−20) = 1/(−15)</p>
+                    <p>1/v + 1/20 = −1/15</p>
+                    <p>1/v = −1/15 − 1/20 = (−4 − 3)/60 = −7/60</p>
+                    <p class="formula answer"><strong>v = −60/7 = −8.57 cm</strong></p>
+                    <p>Negative v → Image is <strong>virtual</strong>, formed on the <strong>same side as the object</strong>.</p>
+                </div>
+                <div class="step" data-step="Magnification & Image Height">
+                    <p>m = v/u = (−8.57)/(−20) = +0.4286</p>
+                    <p>h<sub>i</sub> = m × h<sub>o</sub> = 0.4286 × 5</p>
+                    <p class="formula answer"><strong>h<sub>i</sub> = +2.14 cm</strong></p>
+                    <p>Positive h<sub>i</sub> → Image is <strong>erect</strong>.</p>
+                    <p>|m| = 0.43 < 1 → Image is <strong>diminished</strong>.</p>
+                    <p><strong>Nature: Virtual, erect, diminished, 8.57 cm from lens on same side as object.</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 3 -->
+            <h3>Numerical 3: Power of Lens</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>(a) Find the power of a convex lens of focal length 25 cm.</p>
+                <p>(b) Find the power of a concave lens of focal length 50 cm.</p>
+                <p>(c) If both lenses are placed in contact, find the combined power and the focal length of the combination.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="(a) Convex Lens">
+                    <p>f₁ = +25 cm = +0.25 m</p>
+                    <p>P₁ = 1/f₁ = 1/0.25</p>
+                    <p class="formula answer"><strong>P₁ = +4 D</strong></p>
+                </div>
+                <div class="step" data-step="(b) Concave Lens">
+                    <p>f₂ = −50 cm = −0.50 m</p>
+                    <p>P₂ = 1/f₂ = 1/(−0.50)</p>
+                    <p class="formula answer"><strong>P₂ = −2 D</strong></p>
+                </div>
+                <div class="step" data-step="(c) Combination">
+                    <p>P = P₁ + P₂ = +4 + (−2) = +2 D</p>
+                    <p class="formula answer"><strong>P = +2 D (acts as convex lens)</strong></p>
+                    <p>f = 1/P = 1/2 = 0.5 m = 50 cm</p>
+                    <p class="formula answer"><strong>f = 50 cm (convex)</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 4 -->
+            <h3>Numerical 4: Lens Maker's Formula</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A double convex lens is made of glass of refractive index 1.5. Its two surfaces have radii of curvature 20 cm and 30 cm. Find its focal length.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>μ = 1.5, R₁ = +20 cm (first surface convex), R₂ = −30 cm (second surface convex → R₂ negative)</p>
+                </div>
+                <div class="step" data-step="Using Lens Maker's Formula">
+                    <p>\(\frac{1}{f} = (\mu - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right)\)</p>
+                    <p>\(\frac{1}{f} = (1.5 - 1)\left(\frac{1}{20} - \frac{1}{-30}\right)\)</p>
+                    <p>\(\frac{1}{f} = 0.5 \times \left(\frac{1}{20} + \frac{1}{30}\right)\)</p>
+                    <p>\(\frac{1}{f} = 0.5 \times \left(\frac{3 + 2}{60}\right) = 0.5 \times \frac{5}{60} = 0.5 \times \frac{1}{12}\)</p>
+                    <p>\(\frac{1}{f} = \frac{1}{24}\)</p>
+                    <p class="formula answer"><strong>f = 24 cm</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 5 -->
+            <h3>Numerical 5: Critical Angle</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>The refractive index of glass is 1.5. Calculate the critical angle for glass-air interface.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>μ = 1.5 (glass), rarer medium = air (n = 1)</p>
+                </div>
+                <div class="step" data-step="Using Formula">
+                    <p>sin θ<sub>c</sub> = 1/μ = 1/1.5 = 0.6667</p>
+                    <p>θ<sub>c</sub> = sin⁻¹(0.6667)</p>
+                    <p class="formula answer"><strong>θ<sub>c</sub> = 41.8° ≈ 42°</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 6 -->
+            <h3>Numerical 6: Simple Microscope</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A simple microscope has a focal length of 5 cm. Calculate the magnifying power when (a) image is at the near point (D = 25 cm), (b) image is at infinity.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>f = 5 cm, D = 25 cm</p>
+                </div>
+                <div class="step" data-step="(a) Image at D">
+                    <p>M = 1 + D/f = 1 + 25/5 = 1 + 5</p>
+                    <p class="formula answer"><strong>M = 6</strong></p>
+                </div>
+                <div class="step" data-step="(b) Image at infinity">
+                    <p>M = D/f = 25/5</p>
+                    <p class="formula answer"><strong>M = 5</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 7 -->
+            <h3>Numerical 7: Compound Microscope</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A compound microscope has an objective of focal length 1 cm and an eyepiece of focal length 5 cm. The tube length is 20 cm. Calculate the magnifying power in normal adjustment. (D = 25 cm)</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>f<sub>o</sub> = 1 cm, f<sub>e</sub> = 5 cm, L = 20 cm, D = 25 cm</p>
+                </div>
+                <div class="step" data-step="Using Formula">
+                    <p>M = (L/f<sub>o</sub>) × (D/f<sub>e</sub>) = (20/1) × (25/5)</p>
+                    <p>M = 20 × 5</p>
+                    <p class="formula answer"><strong>M = 100</strong></p>
+                    <p>The microscope magnifies the object 100 times.</p>
+                </div>
+            </div>
+
+            <!-- Numerical 8 -->
+            <h3>Numerical 8: Astronomical Telescope</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>An astronomical telescope has an objective of focal length 100 cm and an eyepiece of focal length 5 cm. Calculate (a) the magnifying power in normal adjustment, (b) the length of the telescope.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>f<sub>o</sub> = 100 cm, f<sub>e</sub> = 5 cm</p>
+                </div>
+                <div class="step" data-step="(a) Magnifying Power">
+                    <p>M = f<sub>o</sub>/f<sub>e</sub> = 100/5</p>
+                    <p class="formula answer"><strong>M = 20</strong></p>
+                </div>
+                <div class="step" data-step="(b) Length of Telescope">
+                    <p>L = f<sub>o</sub> + f<sub>e</sub> = 100 + 5</p>
+                    <p class="formula answer"><strong>L = 105 cm</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 9 -->
+            <h3>Numerical 9: Snell's Law</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A ray of light passes from air into a glass slab of refractive index 1.5. If the angle of incidence is 30°, find the angle of refraction.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>n₁ = 1 (air), n₂ = 1.5 (glass), i = 30°</p>
+                </div>
+                <div class="step" data-step="Using Snell's Law">
+                    <p>n₁ sin i = n₂ sin r</p>
+                    <p>1 × sin 30° = 1.5 × sin r</p>
+                    <p>0.5 = 1.5 × sin r</p>
+                    <p>sin r = 0.5/1.5 = 0.3333</p>
+                    <p>r = sin⁻¹(0.3333)</p>
+                    <p class="formula answer"><strong>r = 19.47° ≈ 19.5°</strong></p>
+                    <p>The ray bends towards the normal (r < i) because it goes from rarer to denser medium. ✓</p>
+                </div>
+            </div>
+
+            <!-- Numerical 10 -->
+            <h3>Numerical 10: Magnification & Image Height</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>An object 6 cm high is placed at 15 cm from a convex lens of focal length 10 cm. Find the position, nature, and height of the image.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>h<sub>o</sub> = 6 cm, u = −15 cm, f = +10 cm</p>
+                </div>
+                <div class="step" data-step="Using Lens Formula">
+                    <p>1/v − 1/(−15) = 1/10</p>
+                    <p>1/v + 1/15 = 1/10</p>
+                    <p>1/v = 1/10 − 1/15 = (3 − 2)/30 = 1/30</p>
+                    <p class="formula answer"><strong>v = +30 cm</strong> (real image, on opposite side)</p>
+                </div>
+                <div class="step" data-step="Magnification">
+                    <p>m = v/u = 30/(−15) = −2</p>
+                    <p>h<sub>i</sub> = m × h<sub>o</sub> = −2 × 6</p>
+                    <p class="formula answer"><strong>h<sub>i</sub> = −12 cm</strong></p>
+                    <p>Negative height → Image is <strong>inverted</strong>.</p>
+                    <p>|h<sub>i</sub>| = 12 cm > 6 cm → Image is <strong>magnified</strong> (2 times).</p>
+                    <p><strong>Nature: Real, inverted, magnified, 12 cm tall, 30 cm from lens.</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 11 -->
+            <h3>Numerical 11: Refractive Index from Critical Angle</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>The critical angle for a medium with air is 30°. Find the refractive index of the medium. Also find the speed of light in this medium. (Speed of light in vacuum = 3 × 10⁸ m/s)</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>θ<sub>c</sub> = 30°, c = 3 × 10⁸ m/s</p>
+                </div>
+                <div class="step" data-step="Refractive Index">
+                    <p>sin θ<sub>c</sub> = 1/μ</p>
+                    <p>sin 30° = 1/μ</p>
+                    <p>0.5 = 1/μ</p>
+                    <p class="formula answer"><strong>μ = 2</strong></p>
+                </div>
+                <div class="step" data-step="Speed of Light in Medium">
+                    <p>μ = c/v → v = c/μ = (3 × 10⁸)/2</p>
+                    <p class="formula answer"><strong>v = 1.5 × 10⁸ m/s</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 12 -->
+            <h3>Numerical 12: Combination of Lenses</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Two thin lenses of focal lengths +20 cm and −30 cm are placed in contact. Find the focal length and power of the combination. Is the combination converging or diverging?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>f₁ = +20 cm, f₂ = −30 cm</p>
+                </div>
+                <div class="step" data-step="Combined Focal Length">
+                    <p>1/f = 1/f₁ + 1/f₂ = 1/20 + 1/(−30) = 1/20 − 1/30</p>
+                    <p>1/f = (3 − 2)/60 = 1/60</p>
+                    <p class="formula answer"><strong>f = +60 cm</strong></p>
+                </div>
+                <div class="step" data-step="Power">
+                    <p>P = 100/f(cm) = 100/60</p>
+                    <p class="formula answer"><strong>P = +1.67 D</strong></p>
+                </div>
+                <div class="step" data-step="Nature">
+                    <p>Since f is positive and P is positive, the combination acts as a <strong>converging (convex) lens</strong>.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ==================== SECTION 11: KEY FORMULAS ==================== -->
+    <section class="section" id="formulas">
+        <h2 class="section-title">
+            <i class="fas fa-superscript"></i> Key Formulas Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Formula Sheet</div>
+                <p>All important formulas from Unit 2 in one place. Keep this handy for last-minute revision before the exam! Print (Ctrl+P) if needed.</p>
+            </div>
+
+            <h3>A. Basic Optics & Refraction</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>1. Snell's Law 🔥</h4>
+                    <p>\( n_1 \sin i = n_2 \sin r \)</p>
+                    <p><small>n₁, n₂ = refractive indices; i = angle of incidence; r = angle of refraction</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>2. Refractive Index</h4>
+                    <p>\( \mu = \frac{c}{v} = \frac{\text{Speed in vacuum}}{\text{Speed in medium}} \)</p>
+                    <p><small>c = 3×10⁸ m/s; always ≥ 1; dimensionless</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>3. Critical Angle 🔥</h4>
+                    <p>\( \sin \theta_c = \frac{1}{\mu} \)</p>
+                    <p><small>μ = refractive index of denser medium (w.r.t. air)</small></p>
+                </div>
+            </div>
+
+            <h3>B. Lens Formulas</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>4. Lens Formula 🔥🔥</h4>
+                    <p>\( \frac{1}{v} - \frac{1}{u} = \frac{1}{f} \)</p>
+                    <p><small>v = image distance; u = object distance; f = focal length. Apply sign convention!</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>5. Lens Maker's Formula</h4>
+                    <p>\( \frac{1}{f} = (\mu - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) \)</p>
+                    <p><small>μ = refractive index; R₁, R₂ = radii of curvature</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>6. Power of Lens 🔥</h4>
+                    <p>\( P = \frac{1}{f(\text{in m})} = \frac{100}{f(\text{in cm})} \)</p>
+                    <p><small>Unit: Dioptre (D). Convex: +ve, Concave: −ve</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>7. Magnification 🔥</h4>
+                    <p>\( m = \frac{v}{u} = \frac{h_i}{h_o} \)</p>
+                    <p><small>+ve m = erect; −ve m = inverted; |m|>1 = magnified</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>8. Combination of Lenses</h4>
+                    <p>\( P = P_1 + P_2 \) or \( \frac{1}{f} = \frac{1}{f_1} + \frac{1}{f_2} \)</p>
+                    <p><small>For thin lenses in contact</small></p>
+                </div>
+            </div>
+
+            <h3>C. Optical Instruments</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>9. Simple Microscope (at D) 🔥</h4>
+                    <p>\( M = 1 + \frac{D}{f} \)</p>
+                    <p><small>D = 25 cm; f = focal length of lens</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>10. Simple Microscope (at ∞)</h4>
+                    <p>\( M = \frac{D}{f} \)</p>
+                    <p><small>Normal adjustment (relaxed eye)</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>11. Compound Microscope 🔥</h4>
+                    <p>\( M = \frac{L}{f_o} \times \frac{D}{f_e} \)</p>
+                    <p><small>L = tube length; f<sub>o</sub> = objective FL; f<sub>e</sub> = eyepiece FL</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>12. Astronomical Telescope (at ∞) 🔥</h4>
+                    <p>\( M = \frac{f_o}{f_e} \)</p>
+                    <p><small>Normal adjustment. f<sub>o</sub> >> f<sub>e</sub></small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>13. Telescope Length (Normal Adj.)</h4>
+                    <p>\( L = f_o + f_e \)</p>
+                    <p><small>Distance between objective and eyepiece</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>14. Telescope (Image at D)</h4>
+                    <p>\( M = \frac{f_o}{f_e}\left(1 + \frac{f_e}{D}\right) \)</p>
+                    <p><small>D = 25 cm</small></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 12: DEFINITIONS ==================== -->
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-spell-check"></i> Important Definitions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Strategy</div>
+                <p>Definition questions carry 2 marks. Write the <strong>definition</strong>, add the <strong>formula</strong> (if any), mention the <strong>SI unit</strong>, and give <strong>one example</strong> if possible. This guarantees full marks!</p>
+            </div>
+
+            <div class="definition-grid">
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 1. Reflection of Light</div>
+                    <p>The phenomenon of bouncing back of light into the same medium when it strikes a surface. Laws: (i) Incident ray, reflected ray and normal lie in the same plane. (ii) Angle of incidence = angle of reflection (∠i = ∠r).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 2. Refraction of Light</div>
+                    <p>The phenomenon of change in direction (bending) of light when it passes from one transparent medium to another, due to the change in speed of light. Governed by Snell's law: n₁ sin i = n₂ sin r.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 3. Refractive Index (μ or n)</div>
+                    <p>The ratio of the speed of light in vacuum to the speed of light in the medium. μ = c/v. It is dimensionless and always ≥ 1. Higher μ means optically denser medium. Example: Glass μ = 1.5, Water μ = 1.33.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 4. Lens</div>
+                    <p>A transparent optical medium bounded by two curved surfaces (or one curved and one plane surface) that refracts light to form images. Two types: convex (converging) and concave (diverging).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 5. Focal Length (f)</div>
+                    <p>The distance between the optical centre and the principal focus of a lens. For convex lens, f is positive; for concave lens, f is negative. SI Unit: metre (m).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 6. Power of a Lens</div>
+                    <p>The ability of a lens to converge or diverge light rays. It is the reciprocal of the focal length in metres. P = 1/f. SI Unit: Dioptre (D). Convex → +ve power; Concave → −ve power.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 7. Linear Magnification (m)</div>
+                    <p>The ratio of the height (size) of the image to the height (size) of the object. m = h<sub>i</sub>/h<sub>o</sub> = v/u. Positive m means erect image; negative m means inverted image. |m| > 1 means magnified.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 8. Critical Angle (θ<sub>c</sub>)</div>
+                    <p>The angle of incidence in the denser medium for which the angle of refraction in the rarer medium is exactly 90° (refracted ray grazes along the surface). sin θ<sub>c</sub> = 1/μ. It exists only when light goes from denser to rarer medium.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 9. Total Internal Reflection (TIR)</div>
+                    <p>The phenomenon in which a ray of light travelling from a denser medium to a rarer medium is completely reflected back into the denser medium when the angle of incidence exceeds the critical angle. Conditions: (1) Light from denser to rarer medium. (2) Angle of incidence > critical angle.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 10. Optical Fiber</div>
+                    <p>A thin, flexible strand of glass or plastic that transmits light signals over long distances by the principle of Total Internal Reflection. It has a core (higher RI), cladding (lower RI), and protective jacket.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 11. Magnifying Power</div>
+                    <p>The ratio of the angle subtended by the image at the eye (when using the instrument) to the angle subtended by the object at the naked eye when placed at the least distance of distinct vision (D = 25 cm).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 12. Least Distance of Distinct Vision (D)</div>
+                    <p>The minimum distance from the eye at which an object can be seen clearly without strain. For a normal human eye, D = 25 cm. Also called the near point of the eye.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 13. Simple Microscope</div>
+                    <p>A single convex lens of short focal length used to see magnified, erect, and virtual images of small nearby objects. Magnifying power: M = 1 + D/f (at near point). Also called magnifying glass.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 14. Compound Microscope</div>
+                    <p>An optical instrument using two convex lenses (objective: short f<sub>o</sub> and eyepiece: longer f<sub>e</sub>) to produce a highly magnified, virtual, inverted image of very small objects. M = (L/f<sub>o</sub>)(D/f<sub>e</sub>).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 15. Astronomical Telescope</div>
+                    <p>An optical instrument using two convex lenses (objective: large f<sub>o</sub> and eyepiece: short f<sub>e</sub>) to see magnified images of distant objects like stars and planets. M = f<sub>o</sub>/f<sub>e</sub> (normal adjustment). Tube length L = f<sub>o</sub> + f<sub>e</sub>.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 16. Interference of Light</div>
+                    <p>The phenomenon of redistribution of light energy due to superposition of two coherent light waves, producing alternate bright (constructive) and dark (destructive) fringes. Example: Young's double-slit experiment, soap film colours.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 17. Diffraction of Light</div>
+                    <p>The phenomenon of bending of light around the edges of an obstacle or through a narrow opening (comparable to wavelength), causing it to spread into the shadow region. Example: Colours on CD surface.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 18. Coherent Sources</div>
+                    <p>Two light sources that emit waves of the same frequency and maintain a constant phase difference between them. Required for sustained interference pattern. Obtained by splitting light from a single source.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 13: COMPARISONS ==================== -->
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1. Convex Lens vs Concave Lens 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Convex Lens</th>
+                            <th>Concave Lens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Shape</td><td>Thicker at centre, thinner at edges</td><td>Thinner at centre, thicker at edges</td></tr>
+                        <tr><td>2</td><td>Nature</td><td>Converging lens</td><td>Diverging lens</td></tr>
+                        <tr><td>3</td><td>Focus</td><td>Real focus (rays actually converge)</td><td>Virtual focus (rays appear to diverge from)</td></tr>
+                        <tr><td>4</td><td>Focal length sign</td><td>Positive (+)</td><td>Negative (−)</td></tr>
+                        <tr><td>5</td><td>Power sign</td><td>Positive (+)</td><td>Negative (−)</td></tr>
+                        <tr><td>6</td><td>Image type</td><td>Both real and virtual (depending on object position)</td><td>Always virtual, erect, diminished</td></tr>
+                        <tr><td>7</td><td>Used for</td><td>Magnifying glass, camera, projector, correcting hypermetropia</td><td>Correcting myopia (short-sightedness), peephole</td></tr>
+                        <tr><td>8</td><td>Action on parallel rays</td><td>Converges them to a point (focus)</td><td>Diverges them (appear to come from virtual focus)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>2. Real Image vs Virtual Image 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Real Image</th>
+                            <th>Virtual Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Formation</td><td>Formed by actual convergence of rays</td><td>Formed where rays appear to meet (extensions)</td></tr>
+                        <tr><td>2</td><td>Screen</td><td>Can be obtained on a screen</td><td>Cannot be obtained on a screen</td></tr>
+                        <tr><td>3</td><td>Orientation</td><td>Inverted (upside-down)</td><td>Erect (upright)</td></tr>
+                        <tr><td>4</td><td>Position (lens)</td><td>On opposite side of object</td><td>On same side as object</td></tr>
+                        <tr><td>5</td><td>Sign of v</td><td>Positive (+)</td><td>Negative (−)</td></tr>
+                        <tr><td>6</td><td>Sign of m</td><td>Negative (−)</td><td>Positive (+)</td></tr>
+                        <tr><td>7</td><td>Example</td><td>Cinema projector image on screen</td><td>Image in a plane mirror</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3. Simple Microscope vs Compound Microscope 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Simple Microscope</th>
+                            <th>Compound Microscope</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Lenses</td><td>Single convex lens</td><td>Two convex lenses (objective + eyepiece)</td></tr>
+                        <tr><td>2</td><td>Magnification</td><td>Low (up to ~10×)</td><td>High (50× to 2000×)</td></tr>
+                        <tr><td>3</td><td>Image</td><td>Virtual, erect, magnified</td><td>Virtual, inverted, highly magnified</td></tr>
+                        <tr><td>4</td><td>Formula (at D)</td><td>M = 1 + D/f</td><td>M = (L/f<sub>o</sub>)(D/f<sub>e</sub>)</td></tr>
+                        <tr><td>5</td><td>Object position</td><td>Between O and F</td><td>Slightly beyond F<sub>o</sub></td></tr>
+                        <tr><td>6</td><td>Cost & Complexity</td><td>Simple, low cost</td><td>Complex, higher cost</td></tr>
+                        <tr><td>7</td><td>Applications</td><td>Reading, watch repair, jewellery</td><td>Biology labs, medical research</td></tr>
+                        <tr><td>8</td><td>Resolution</td><td>Low</td><td>Much higher</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>4. Compound Microscope vs Astronomical Telescope 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Compound Microscope</th>
+                            <th>Astronomical Telescope</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Purpose</td><td>View tiny nearby objects</td><td>View distant large objects</td></tr>
+                        <tr><td>2</td><td>Objective focal length</td><td>Very short (f<sub>o</sub> small)</td><td>Very long (f<sub>o</sub> large)</td></tr>
+                        <tr><td>3</td><td>Eyepiece focal length</td><td>Short (but f<sub>e</sub> > f<sub>o</sub>)</td><td>Short (f<sub>e</sub> << f<sub>o</sub>)</td></tr>
+                        <tr><td>4</td><td>Objective aperture</td><td>Small</td><td>Large (collects more light)</td></tr>
+                        <tr><td>5</td><td>Magnification formula</td><td>M = (L/f<sub>o</sub>)(D/f<sub>e</sub>)</td><td>M = f<sub>o</sub>/f<sub>e</sub></td></tr>
+                        <tr><td>6</td><td>Object distance</td><td>Very close (few cm)</td><td>Very far (at infinity)</td></tr>
+                        <tr><td>7</td><td>Length</td><td>Short (~15-20 cm)</td><td>Long (can be metres)</td></tr>
+                        <tr><td>8</td><td>Final image</td><td>Virtual, inverted, magnified</td><td>Virtual, inverted, magnified</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5. Interference vs Diffraction</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Interference</th>
+                            <th>Diffraction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Cause</td><td>Superposition of two coherent waves</td><td>Bending of wave around edges/slit</td></tr>
+                        <tr><td>2</td><td>Sources</td><td>Two coherent sources needed</td><td>Single source + narrow slit</td></tr>
+                        <tr><td>3</td><td>Fringe width</td><td>All fringes equal width</td><td>Central fringe widest</td></tr>
+                        <tr><td>4</td><td>Intensity</td><td>All bright fringes equally bright</td><td>Central brightest, decreases outward</td></tr>
+                        <tr><td>5</td><td>Dark fringes</td><td>Perfectly dark (equal amplitudes)</td><td>Not perfectly dark</td></tr>
+                        <tr><td>6</td><td>Example</td><td>Young's double slit, soap film</td><td>CD surface colours, shadow edges</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 14: MCQ BANK ==================== -->
+    <section class="section" id="mcqs">
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i> MCQ Bank (Multiple Choice Questions)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q 2.1</h4>
+                    <p>The refractive index of a medium is 1.5. The speed of light in this medium is:</p>
+                    <ul class="options">
+                        <li>a. 4.5 × 10⁸ m/s</li>
+                        <li>b. 3 × 10⁸ m/s</li>
+                        <li>c. 2 × 10⁸ m/s</li>
+                        <li>d. 1.5 × 10⁸ m/s</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_1">
+                        <strong>Answer: c. 2 × 10⁸ m/s</strong>
+                        <p>μ = c/v → v = c/μ = (3 × 10⁸)/1.5 = 2 × 10⁸ m/s.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.2</h4>
+                    <p>The power of a concave lens of focal length 50 cm is:</p>
+                    <ul class="options">
+                        <li>a. +2 D</li>
+                        <li>b. −2 D</li>
+                        <li>c. +5 D</li>
+                        <li>d. −0.5 D</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_2">
+                        <strong>Answer: b. −2 D</strong>
+                        <p>Concave lens → f = −50 cm = −0.5 m. P = 1/f = 1/(−0.5) = −2 D.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.3</h4>
+                    <p>Total internal reflection occurs when light travels from:</p>
+                    <ul class="options">
+                        <li>a. Rarer to denser medium</li>
+                        <li>b. Denser to rarer medium</li>
+                        <li>c. Any medium to vacuum</li>
+                        <li>d. Vacuum to any medium</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_3">
+                        <strong>Answer: b. Denser to rarer medium</strong>
+                        <p>TIR requires light to go from denser to rarer medium AND angle of incidence > critical angle.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.4</h4>
+                    <p>The lens formula is:</p>
+                    <ul class="options">
+                        <li>a. 1/v + 1/u = 1/f</li>
+                        <li>b. 1/v − 1/u = 1/f</li>
+                        <li>c. 1/u − 1/v = 1/f</li>
+                        <li>d. v − u = f</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_4">
+                        <strong>Answer: b. 1/v − 1/u = 1/f</strong>
+                        <p>The lens formula is 1/v − 1/u = 1/f. Don't confuse with mirror formula which is 1/v + 1/u = 1/f.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.5</h4>
+                    <p>A concave lens always forms an image that is:</p>
+                    <ul class="options">
+                        <li>a. Real, inverted, magnified</li>
+                        <li>b. Virtual, erect, diminished</li>
+                        <li>c. Real, inverted, diminished</li>
+                        <li>d. Virtual, inverted, magnified</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_5">
+                        <strong>Answer: b. Virtual, erect, diminished</strong>
+                        <p>A concave (diverging) lens always forms a virtual, erect, and diminished image regardless of object position.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.6</h4>
+                    <p>In an optical fiber, the refractive index of core is:</p>
+                    <ul class="options">
+                        <li>a. Equal to that of cladding</li>
+                        <li>b. Less than that of cladding</li>
+                        <li>c. Greater than that of cladding</li>
+                        <li>d. Not related to cladding</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_6">
+                        <strong>Answer: c. Greater than that of cladding</strong>
+                        <p>For TIR to occur at core-cladding boundary, core must be denser (higher RI) and cladding must be rarer (lower RI).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.7</h4>
+                    <p>The SI unit of power of a lens is:</p>
+                    <ul class="options">
+                        <li>a. Watt</li>
+                        <li>b. Dioptre</li>
+                        <li>c. Metre</li>
+                        <li>d. Hertz</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_7">
+                        <strong>Answer: b. Dioptre</strong>
+                        <p>Power of lens P = 1/f (in metres). Unit is Dioptre (D) = m⁻¹. Don't confuse with Watt (unit of electrical power).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.8</h4>
+                    <p>In a compound microscope, the focal length of the objective lens is:</p>
+                    <ul class="options">
+                        <li>a. Greater than eyepiece</li>
+                        <li>b. Equal to eyepiece</li>
+                        <li>c. Less than eyepiece</li>
+                        <li>d. Not important</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_8">
+                        <strong>Answer: c. Less than eyepiece</strong>
+                        <p>In a compound microscope, f<sub>o</sub> < f<sub>e</sub>. The objective has a very short focal length. In telescope, it's reversed: f<sub>o</sub> > f<sub>e</sub>.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.9</h4>
+                    <p>The magnifying power of an astronomical telescope in normal adjustment is:</p>
+                    <ul class="options">
+                        <li>a. f<sub>e</sub>/f<sub>o</sub></li>
+                        <li>b. f<sub>o</sub>/f<sub>e</sub></li>
+                        <li>c. f<sub>o</sub> × f<sub>e</sub></li>
+                        <li>d. f<sub>o</sub> + f<sub>e</sub></li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_9">
+                        <strong>Answer: b. f<sub>o</sub>/f<sub>e</sub></strong>
+                        <p>M = f<sub>o</sub>/f<sub>e</sub>. Objective has larger focal length, so M is large when f<sub>o</sub> >> f<sub>e</sub>.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.10</h4>
+                    <p>The critical angle for glass (μ = 1.5) with air is approximately:</p>
+                    <ul class="options">
+                        <li>a. 90°</li>
+                        <li>b. 60°</li>
+                        <li>c. 42°</li>
+                        <li>d. 24°</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_10">
+                        <strong>Answer: c. 42°</strong>
+                        <p>sin θ<sub>c</sub> = 1/μ = 1/1.5 = 0.667 → θ<sub>c</sub> = sin⁻¹(0.667) ≈ 41.8° ≈ 42°.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.11</h4>
+                    <p>The least distance of distinct vision for a normal human eye is:</p>
+                    <ul class="options">
+                        <li>a. 10 cm</li>
+                        <li>b. 15 cm</li>
+                        <li>c. 25 cm</li>
+                        <li>d. 50 cm</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_11"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_11">
+                        <strong>Answer: c. 25 cm</strong>
+                        <p>D = 25 cm is the standard value used in all magnification calculations for optical instruments.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.12</h4>
+                    <p>Interference of light proves that light is:</p>
+                    <ul class="options">
+                        <li>a. A particle</li>
+                        <li>b. A wave</li>
+                        <li>c. Neither particle nor wave</li>
+                        <li>d. Both particle and wave simultaneously</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_12"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_12">
+                        <strong>Answer: b. A wave</strong>
+                        <p>Interference and diffraction are wave phenomena. They provide strong evidence that light behaves as a wave.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.13</h4>
+                    <p>Colours seen in a thin soap film are due to:</p>
+                    <ul class="options">
+                        <li>a. Diffraction</li>
+                        <li>b. Reflection</li>
+                        <li>c. Interference</li>
+                        <li>d. Refraction</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_13"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_13">
+                        <strong>Answer: c. Interference</strong>
+                        <p>Light reflecting from the top and bottom surfaces of the thin film creates coherent waves that interfere, producing colours (thin film interference).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.14</h4>
+                    <p>An optical fiber works on the principle of:</p>
+                    <ul class="options">
+                        <li>a. Refraction</li>
+                        <li>b. Diffraction</li>
+                        <li>c. Total internal reflection</li>
+                        <li>d. Interference</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_14"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_14">
+                        <strong>Answer: c. Total internal reflection</strong>
+                        <p>Light enters the fiber core (denser) and undergoes repeated TIR at the core-cladding boundary, travelling from one end to the other.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 2.15</h4>
+                    <p>When light goes from a denser to a rarer medium, it bends:</p>
+                    <ul class="options">
+                        <li>a. Towards the normal</li>
+                        <li>b. Away from the normal</li>
+                        <li>c. Does not bend</li>
+                        <li>d. Reflects completely</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2_15"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2_15">
+                        <strong>Answer: b. Away from the normal</strong>
+                        <p>Denser to rarer: light bends away from normal (r > i). Rarer to denser: towards normal (r < i). Complete reflection (TIR) happens only beyond the critical angle.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 15: SHORT ANSWER QUESTIONS ==================== -->
+    <section class="section" id="short-qa">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions (2 Marks)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. State the laws of refraction of light.</h4>
+                <button class="toggle-btn" data-target="sa2_1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_1">
+                    <p><strong>First Law:</strong> The incident ray, refracted ray, and the normal at the point of incidence all lie in the same plane.</p>
+                    <p><strong>Second Law (Snell's Law):</strong> The ratio of the sine of the angle of incidence to the sine of the angle of refraction is a constant for a given pair of media. n₁ sin i = n₂ sin r.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. Define refractive index. What is its SI unit?</h4>
+                <button class="toggle-btn" data-target="sa2_2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_2">
+                    <p><strong>Refractive index (μ)</strong> of a medium is the ratio of the speed of light in vacuum to the speed of light in that medium. μ = c/v. It is a <strong>dimensionless</strong> quantity (no unit). It is always ≥ 1. Higher μ means optically denser medium (light travels slower).</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Define power of a lens and give its unit.</h4>
+                <button class="toggle-btn" data-target="sa2_3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_3">
+                    <p><strong>Power of a lens</strong> is the ability of the lens to converge or diverge light rays. It is defined as the reciprocal of the focal length in metres: <strong>P = 1/f</strong>. Its SI unit is <strong>Dioptre (D)</strong>, where 1 D = 1 m⁻¹. Convex lens has positive power, concave lens has negative power.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. State the two conditions for Total Internal Reflection.</h4>
+                <button class="toggle-btn" data-target="sa2_4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_4">
+                    <p><strong>Condition 1:</strong> Light must travel from an optically <strong>denser medium to a rarer medium</strong> (e.g., glass to air).</p>
+                    <p><strong>Condition 2:</strong> The <strong>angle of incidence must be greater than the critical angle</strong> (i > θ<sub>c</sub>) for that pair of media.</p>
+                    <p>Both conditions must be satisfied simultaneously for TIR to occur.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. What is critical angle? How is it related to refractive index?</h4>
+                <button class="toggle-btn" data-target="sa2_5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_5">
+                    <p><strong>Critical angle (θ<sub>c</sub>)</strong> is the angle of incidence in the denser medium for which the angle of refraction in the rarer medium is exactly 90° (the refracted ray grazes along the surface).</p>
+                    <p>Relation: <strong>sin θ<sub>c</sub> = 1/μ</strong>, where μ is the refractive index of the denser medium with respect to the rarer medium. Higher μ → smaller θ<sub>c</sub>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. What is the difference between the objective and eyepiece in a compound microscope?</h4>
+                <button class="toggle-btn" data-target="sa2_6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_6">
+                    <p><strong>Objective:</strong> Convex lens of very short focal length (f<sub>o</sub>) and small aperture. Placed near the object. Creates the first real, inverted, magnified intermediate image.</p>
+                    <p><strong>Eyepiece:</strong> Convex lens of short focal length (f<sub>e</sub>) but f<sub>e</sub> > f<sub>o</sub>, with larger aperture. Placed near the eye. Magnifies the intermediate image further to produce the final virtual image.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q7. Define interference of light. Give two examples.</h4>
+                <button class="toggle-btn" data-target="sa2_7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_7">
+                    <p><strong>Interference</strong> is the phenomenon of redistribution of light energy due to superposition of two coherent light waves, resulting in alternate bright and dark fringes.</p>
+                    <p><strong>Examples:</strong> (1) Colours seen in thin soap bubbles. (2) Colours of oil film on water surface. (3) Young's double-slit experiment.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q8. What is an optical fiber? Name its three parts.</h4>
+                <button class="toggle-btn" data-target="sa2_8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_8">
+                    <p><strong>Optical fiber</strong> is a thin, flexible strand of glass or plastic that transmits light signals over long distances using Total Internal Reflection.</p>
+                    <p><strong>Three parts:</strong> (1) <strong>Core</strong> — innermost, higher refractive index, carries light. (2) <strong>Cladding</strong> — surrounds core, lower refractive index, causes TIR. (3) <strong>Jacket</strong> — outer protective plastic covering.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q9. Why does a diamond sparkle so much?</h4>
+                <button class="toggle-btn" data-target="sa2_9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_9">
+                    <p>Diamond has a very <strong>high refractive index (μ = 2.42)</strong>, which means its <strong>critical angle is very small (about 24.4°)</strong>. When light enters a well-cut diamond, it undergoes <strong>multiple total internal reflections</strong> inside the diamond before finally emerging. This repeated TIR causes the diamond to <strong>sparkle brilliantly</strong>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q10. What is the difference between interference and diffraction?</h4>
+                <button class="toggle-btn" data-target="sa2_10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2_10">
+                    <p><strong>Interference:</strong> Caused by superposition of waves from two coherent sources. All fringes have equal width and equal brightness. Needs two sources.</p>
+                    <p><strong>Diffraction:</strong> Caused by bending of waves around edges of an obstacle or through a narrow slit. Central fringe is widest and brightest. Needs only one source and a slit/obstacle.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 16: LONG ANSWER QUESTIONS ==================== -->
+    <section class="section" id="long-qa">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. What is Total Internal Reflection? State its conditions. Explain with diagram. Give three examples. [7 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la2_1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_1">
+                    <p><strong>Total Internal Reflection (TIR)</strong> is the complete reflection of a light ray back into the denser medium when it hits the boundary of a rarer medium at an angle greater than the critical angle.</p>
+                    <p><strong>Conditions:</strong></p>
+                    <ol>
+                        <li>Light must travel from an optically <strong>denser medium to a rarer medium</strong>.</li>
+                        <li>The <strong>angle of incidence must be greater than the critical angle</strong> (i > θ<sub>c</sub>).</li>
+                    </ol>
+                    <p><strong>Critical angle (θ<sub>c</sub>):</strong> The angle of incidence for which the angle of refraction is 90°. sin θ<sub>c</sub> = 1/μ.</p>
+                    <p><strong>Explanation:</strong> When light goes from denser to rarer medium, it bends away from normal. As angle of incidence increases, angle of refraction increases faster. At critical angle, refracted ray travels along the surface (r = 90°). Beyond critical angle, no refraction occurs — all light reflects back into the denser medium.</p>
+                    <p>[Draw diagram showing 3 cases: (a) i < θ<sub>c</sub>: partial refraction, (b) i = θ<sub>c</sub>: ray along surface, (c) i > θ<sub>c</sub>: total internal reflection]</p>
+                    <p><strong>Examples:</strong> (1) Sparkling of diamond (2) Optical fiber communication (3) Mirage in deserts (4) Shining of air bubble in water.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. Explain the principle and working of an optical fiber with a neat diagram. State its applications. [7 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la2_2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_2">
+                    <p><strong>Principle:</strong> Optical fiber works on the principle of <strong>Total Internal Reflection (TIR)</strong>.</p>
+                    <p><strong>Structure:</strong> Three parts — (1) Core: high RI (n₁), carries light; (2) Cladding: low RI (n₂ < n₁), causes TIR; (3) Jacket: protective outer covering.</p>
+                    <p><strong>Working:</strong></p>
+                    <ol>
+                        <li>Light enters the core from one end at a suitable angle.</li>
+                        <li>At the core-cladding boundary, light goes from denser (core) to rarer (cladding) → first condition for TIR satisfied.</li>
+                        <li>If the angle of incidence at the boundary > critical angle → TIR occurs.</li>
+                        <li>Light bounces back into the core, hits the other side, again TIR.</li>
+                        <li>This zigzag path by repeated TIR continues along the entire fiber.</li>
+                        <li>Light emerges from the other end with minimal loss.</li>
+                    </ol>
+                    <p>[Draw diagram: cylindrical fiber with core (shaded) and cladding, showing zigzag light path inside core by repeated TIR]</p>
+                    <p><strong>Applications:</strong> (1) Telecommunication/Internet (2) Medical endoscopy (3) Computer networking (4) CCTV and security (5) Decorative lighting (6) Sensors for temperature/pressure.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Draw a neat ray diagram of a compound microscope and derive the expression for its magnifying power. [7 marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la2_3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_3">
+                    <p><strong>Construction:</strong> Two convex lenses — Objective (short f<sub>o</sub>, small aperture, near object) and Eyepiece (f<sub>e</sub> > f<sub>o</sub>, larger aperture, near eye).</p>
+                    <p><strong>Working:</strong></p>
+                    <ol>
+                        <li>Object AB placed slightly beyond F<sub>o</sub> of objective.</li>
+                        <li>Objective forms a real, inverted, magnified intermediate image A'B' inside the tube.</li>
+                        <li>A'B' falls within focal length of eyepiece.</li>
+                        <li>Eyepiece acts as a simple microscope and forms final virtual, magnified image A''B'' at D = 25 cm.</li>
+                    </ol>
+                    <p>[Draw ray diagram showing: Object AB → Objective lens → Intermediate image A'B' (real, inverted, magnified) → Eyepiece lens → Final image A''B'' (virtual, magnified)]</p>
+                    <p><strong>Magnifying Power:</strong></p>
+                    <p>M = m<sub>o</sub> × M<sub>e</sub></p>
+                    <p>m<sub>o</sub> (magnification of objective) = v<sub>o</sub>/u<sub>o</sub> ≈ L/f<sub>o</sub></p>
+                    <p>M<sub>e</sub> (magnifying power of eyepiece) = 1 + D/f<sub>e</sub> (at D) or D/f<sub>e</sub> (at ∞)</p>
+                    <p><strong>At D:</strong> M = (L/f<sub>o</sub>)(1 + D/f<sub>e</sub>)</p>
+                    <p><strong>At ∞:</strong> M = (L/f<sub>o</sub>)(D/f<sub>e</sub>)</p>
+                    <p>For high M: both f<sub>o</sub> and f<sub>e</sub> should be small.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. Draw a neat ray diagram of an astronomical refracting telescope in normal adjustment. Derive expression for magnifying power and tube length. [7 marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la2_4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_4">
+                    <p><strong>Construction:</strong> Two convex lenses — Objective (large f<sub>o</sub>, large aperture, towards distant object) and Eyepiece (small f<sub>e</sub>, small aperture, near eye). f<sub>o</sub> >> f<sub>e</sub>.</p>
+                    <p><strong>Normal Adjustment (image at ∞):</strong></p>
+                    <ol>
+                        <li>Parallel rays from distant object enter the objective.</li>
+                        <li>Objective forms a real, inverted, diminished image A'B' at its focus F<sub>o</sub>.</li>
+                        <li>Eyepiece is positioned so that A'B' lies at F<sub>e</sub> (focus of eyepiece).</li>
+                        <li>Since object for eyepiece is at its focus, final image is formed at infinity (parallel rays emerge).</li>
+                        <li>Eye sees a magnified, virtual, inverted image at infinity.</li>
+                    </ol>
+                    <p>[Draw diagram: Parallel rays → Objective → converge at F<sub>o</sub> = F<sub>e</sub> → Eyepiece → Parallel rays to eye]</p>
+                    <p><strong>Magnifying Power:</strong></p>
+                    <p>M = angle subtended by image / angle subtended by object = β/α</p>
+                    <p>tan α ≈ α = A'B'/f<sub>o</sub> and tan β ≈ β = A'B'/f<sub>e</sub></p>
+                    <p><strong>M = f<sub>o</sub>/f<sub>e</sub></strong></p>
+                    <p><strong>Length of telescope:</strong> L = f<sub>o</sub> + f<sub>e</sub></p>
+                    <p>For high M: f<sub>o</sub> should be large and f<sub>e</sub> should be small.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. State the lens formula and lens maker's formula. Explain each term. Solve: An object is placed 40 cm from a convex lens of focal length 15 cm. Find image position, nature, and magnification. [7 marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la2_5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_5">
+                    <p><strong>Lens Formula:</strong> 1/v − 1/u = 1/f</p>
+                    <p>v = image distance, u = object distance, f = focal length. Apply sign convention.</p>
+                    <p><strong>Lens Maker's Formula:</strong> 1/f = (μ − 1)(1/R₁ − 1/R₂)</p>
+                    <p>μ = refractive index, R₁ and R₂ = radii of curvature. Used by lens manufacturers.</p>
+                    <p><strong>Numerical Solution:</strong></p>
+                    <p>Given: u = −40 cm, f = +15 cm (convex)</p>
+                    <p>1/v − 1/(−40) = 1/15</p>
+                    <p>1/v + 1/40 = 1/15</p>
+                    <p>1/v = 1/15 − 1/40 = (8 − 3)/120 = 5/120 = 1/24</p>
+                    <p><strong>v = +24 cm</strong> (positive → real image, on opposite side)</p>
+                    <p>m = v/u = 24/(−40) = <strong>−0.6</strong></p>
+                    <p>|m| < 1 → diminished. Negative m → inverted.</p>
+                    <p><strong>Image: Real, inverted, diminished, at 24 cm from lens on opposite side.</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. Distinguish between convex and concave lenses. Draw diagrams. Give applications. [5 marks]</h4>
+                <button class="toggle-btn" data-target="la2_6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_6">
+                    <p>[Draw shapes of both lenses and their action on parallel rays]</p>
+                    <p><strong>Convex Lens:</strong> Thicker at centre, converges light, real focus, +ve focal length, forms both real and virtual images. Used in magnifying glass, camera, projector, correcting hypermetropia (far-sightedness).</p>
+                    <p><strong>Concave Lens:</strong> Thinner at centre, diverges light, virtual focus, −ve focal length, always forms virtual, erect, diminished images. Used in correcting myopia (short-sightedness), peepholes in doors.</p>
+                    <p>[Include comparison table with 6+ points covering: shape, nature, focus, f sign, image type, applications]</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q7. Explain constructive and destructive interference. What conditions are needed for sustained interference? [5 marks]</h4>
+                <button class="toggle-btn" data-target="la2_7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_7">
+                    <p><strong>Constructive Interference:</strong> When two waves meet in phase (crest with crest), they reinforce each other. Resultant amplitude = sum of individual amplitudes. Produces bright fringe. Path difference = nλ.</p>
+                    <p><strong>Destructive Interference:</strong> When two waves meet out of phase (crest with trough), they cancel each other. Resultant amplitude = difference. Produces dark fringe. Path difference = (n + ½)λ.</p>
+                    <p><strong>Conditions for sustained interference:</strong></p>
+                    <ol>
+                        <li>Sources must be <strong>coherent</strong> (same frequency, constant phase difference).</li>
+                        <li>Sources should be <strong>monochromatic</strong> (single wavelength).</li>
+                        <li>Sources should be <strong>close together</strong>.</li>
+                        <li>Amplitudes should be <strong>equal or nearly equal</strong>.</li>
+                    </ol>
+                    <p>Example: Young's double slit experiment demonstrates sustained interference.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q8. Describe a simple microscope. Draw its ray diagram and derive the formula for magnifying power when the image is at the near point. [5 marks]</h4>
+                <button class="toggle-btn" data-target="la2_8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2_8">
+                    <p><strong>Simple Microscope:</strong> A single convex lens of short focal length used as a magnifying glass.</p>
+                    <p><strong>Working:</strong> Object is placed between O and F of the convex lens. A virtual, erect, and magnified image is formed on the same side as the object, at D = 25 cm for comfortable viewing.</p>
+                    <p>[Draw ray diagram: Object between O and F, two refracted rays diverging, extended back to form virtual image at D on the same side]</p>
+                    <p><strong>Derivation:</strong></p>
+                    <p>Magnifying power M = angle with instrument / angle without instrument = β/α</p>
+                    <p>Without instrument: α ≈ h/D (object at D)</p>
+                    <p>With instrument: β ≈ h/u (object at u from lens)</p>
+                    <p>M = (h/u)/(h/D) = D/u</p>
+                    <p>Using lens formula: 1/v − 1/u = 1/f, with v = −D (virtual image at near point):</p>
+                    <p>1/(−D) − 1/u = 1/f → 1/u = −1/D − 1/f = −(1/D + 1/f)</p>
+                    <p>M = D/u = D × (1/D + 1/f) = 1 + D/f</p>
+                    <p><strong>M = 1 + D/f</strong> (when image is at near point D)</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 17: PRACTICE NUMERICALS ==================== -->
+    <section class="section" id="practice">
+        <h2 class="section-title">
+            <i class="fas fa-dumbbell"></i> Practice Numerical Problems
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>P1. An object is placed 12 cm from a convex lens of focal length 18 cm. Find the position and nature of the image. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_1"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_1">
+                    <p><strong>Given:</strong> u = −12 cm, f = +18 cm</p>
+                    <p>1/v − 1/(−12) = 1/18 → 1/v + 1/12 = 1/18</p>
+                    <p>1/v = 1/18 − 1/12 = (2 − 3)/36 = −1/36</p>
+                    <p><strong>v = −36 cm</strong></p>
+                    <p>Negative v → <strong>Virtual image</strong>, same side as object, 36 cm from lens.</p>
+                    <p>m = v/u = (−36)/(−12) = +3 → Erect, magnified (3 times).</p>
+                    <p>(Object is between O and F of convex lens → virtual, erect, magnified image. ✓)</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P2. Find the focal length and nature of a lens whose power is −4 D. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_2"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_2">
+                    <p>P = −4 D</p>
+                    <p>f = 1/P = 1/(−4) = −0.25 m = <strong>−25 cm</strong></p>
+                    <p>Negative focal length → <strong>Concave (diverging) lens</strong>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P3. The critical angle for diamond-air interface is 24.4°. Find the refractive index of diamond. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_3"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_3">
+                    <p>sin θ<sub>c</sub> = 1/μ</p>
+                    <p>sin 24.4° = 1/μ</p>
+                    <p>0.4131 = 1/μ</p>
+                    <p>μ = 1/0.4131 = <strong>2.42</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P4. A compound microscope has f<sub>o</sub> = 0.5 cm and f<sub>e</sub> = 2.5 cm. The tube length is 15 cm. Find the magnifying power. (D = 25 cm) [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_4"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_4">
+                    <p>M = (L/f<sub>o</sub>) × (D/f<sub>e</sub>) = (15/0.5) × (25/2.5) = 30 × 10</p>
+                    <p><strong>M = 300</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P5. An astronomical telescope has magnifying power 25 and tube length 130 cm in normal adjustment. Find f<sub>o</sub> and f<sub>e</sub>. [4 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_5"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_5">
+                    <p><strong>Given:</strong> M = 25, L = 130 cm</p>
+                    <p>M = f<sub>o</sub>/f<sub>e</sub> → f<sub>o</sub> = 25 f<sub>e</sub> ... (i)</p>
+                    <p>L = f<sub>o</sub> + f<sub>e</sub> = 130 ... (ii)</p>
+                    <p>Substituting (i) in (ii): 25f<sub>e</sub> + f<sub>e</sub> = 130 → 26f<sub>e</sub> = 130</p>
+                    <p><strong>f<sub>e</sub> = 5 cm</strong></p>
+                    <p><strong>f<sub>o</sub> = 25 × 5 = 125 cm</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P6. A biconvex lens has radii of curvature 25 cm and 50 cm. The refractive index of glass is 1.5. Find its focal length and power. [4 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_6"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_6">
+                    <p>R₁ = +25 cm, R₂ = −50 cm (biconvex), μ = 1.5</p>
+                    <p>1/f = (1.5 − 1)(1/25 − 1/(−50)) = 0.5 × (1/25 + 1/50)</p>
+                    <p>= 0.5 × (2 + 1)/50 = 0.5 × 3/50 = 3/100</p>
+                    <p><strong>f = 100/3 = 33.33 cm = 0.3333 m</strong></p>
+                    <p>P = 1/f = 1/0.3333 = <strong>+3 D</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P7. A simple microscope has a focal length of 10 cm. Find the magnifying power when the final image is at the least distance of distinct vision. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_7"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_7">
+                    <p>f = 10 cm, D = 25 cm</p>
+                    <p>M = 1 + D/f = 1 + 25/10 = 1 + 2.5 = <strong>3.5</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P8. A ray of light enters water (μ = 4/3) from air at an angle of incidence of 45°. Find the angle of refraction. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn2_8"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2_8">
+                    <p>n₁ = 1 (air), n₂ = 4/3 (water), i = 45°</p>
+                    <p>n₁ sin i = n₂ sin r</p>
+                    <p>1 × sin 45° = (4/3) × sin r</p>
+                    <p>0.7071 = 1.333 × sin r</p>
+                    <p>sin r = 0.7071/1.333 = 0.5303</p>
+                    <p>r = sin⁻¹(0.5303) = <strong>32.03° ≈ 32°</strong></p>
+                    <p>Light bends towards normal (r < i) as it enters denser medium. ✓</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 18: QUICK REVISION ==================== -->
+    <section class="section" id="revision">
+        <h2 class="section-title">
+            <i class="fas fa-bullseye"></i> Quick Revision — Unit Summary 🎯
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bolt"></i> Last-Minute Revision Points</div>
+
+                <h4>🔵 Reflection & Refraction</h4>
+                <ul>
+                    <li>Reflection: ∠i = ∠r, same plane</li>
+                    <li>Refraction: Bending of light due to speed change</li>
+                    <li><strong>Snell's Law: n₁ sin i = n₂ sin r</strong></li>
+                    <li>Refractive index μ = c/v, always ≥ 1, no unit</li>
+                    <li>Denser to rarer → bends AWAY from normal</li>
+                    <li>Rarer to denser → bends TOWARDS normal</li>
+                </ul>
+
+                <h4>🔵 Lenses</h4>
+                <ul>
+                    <li>Convex: thick at centre, converging, +ve f</li>
+                    <li>Concave: thin at centre, diverging, −ve f, always virtual/erect/diminished image</li>
+                    <li><strong>Lens formula: 1/v − 1/u = 1/f</strong> 🔥🔥</li>
+                    <li><strong>Magnification: m = v/u = h<sub>i</sub>/h<sub>o</sub></strong></li>
+                    <li>Lens Maker's: 1/f = (μ−1)(1/R₁ − 1/R₂)</li>
+                    <li><strong>Power: P = 1/f(m) = 100/f(cm) → unit: Dioptre (D)</strong></li>
+                    <li>Combination: P = P₁ + P₂</li>
+                    <li>ALWAYS apply sign convention! u is always negative!</li>
+                </ul>
+
+                <h4>🔵 Total Internal Reflection (TIR)</h4>
+                <ul>
+                    <li>Two conditions: (1) Denser → Rarer, (2) i > θ<sub>c</sub></li>
+                    <li><strong>sin θ<sub>c</sub> = 1/μ</strong></li>
+                    <li>Diamond sparkles due to small θ<sub>c</sub> (24.4°) → multiple TIR</li>
+                    <li>100% reflection → no energy loss</li>
+                </ul>
+
+                <h4>🔵 Optical Fiber</h4>
+                <ul>
+                    <li>Principle: TIR</li>
+                    <li>Structure: Core (high RI) + Cladding (low RI) + Jacket</li>
+                    <li>Light zigzags inside core by repeated TIR</li>
+                    <li>Applications: Internet/telecom, endoscopy, networking, sensors</li>
+                </ul>
+
+                <h4>🔵 Optical Instruments</h4>
+                <ul>
+                    <li>D = 25 cm (least distance of distinct vision)</li>
+                    <li><strong>Simple Microscope: M = 1 + D/f</strong> (at D) or D/f (at ∞)</li>
+                    <li><strong>Compound Microscope: M = (L/f<sub>o</sub>)(D/f<sub>e</sub>)</strong>, f<sub>o</sub> < f<sub>e</sub></li>
+                    <li><strong>Telescope: M = f<sub>o</sub>/f<sub>e</sub></strong>, L = f<sub>o</sub> + f<sub>e</sub>, f<sub>o</sub> >> f<sub>e</sub></li>
+                    <li>Microscope: small nearby objects; Telescope: large distant objects</li>
+                </ul>
+
+                <h4>🔵 Interference & Diffraction</h4>
+                <ul>
+                    <li>Interference: superposition of 2 coherent waves → bright/dark fringes</li>
+                    <li>Constructive: crest + crest, path diff = nλ → bright</li>
+                    <li>Destructive: crest + trough, path diff = (n+½)λ → dark</li>
+                    <li>Diffraction: bending of light around edges/narrow slit</li>
+                    <li>Both prove light is a WAVE</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Don't Forget on Exam Day!</div>
+                <ul>
+                    <li>✅ Lens formula: 1/v − 1/u = 1/f (NOT + sign!)</li>
+                    <li>✅ Apply <strong>sign convention</strong> BEFORE substituting — u is always −ve!</li>
+                    <li>✅ P = 100/f(cm) → quick power calculation trick</li>
+                    <li>✅ sin θ<sub>c</sub> = 1/μ (critical angle formula)</li>
+                    <li>✅ Two conditions for TIR — write BOTH!</li>
+                    <li>✅ Optical fiber: Core RI > Cladding RI</li>
+                    <li>✅ Microscope: f<sub>o</sub> < f<sub>e</sub> | Telescope: f<sub>o</sub> > f<sub>e</sub></li>
+                    <li>✅ Telescope M = f<sub>o</sub>/f<sub>e</sub>, L = f<sub>o</sub> + f<sub>e</sub></li>
+                    <li>✅ Draw NEAT, LABELLED diagrams — they carry marks!</li>
+                    <li>✅ Always write UNITS with final answers!</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-medal"></i> Confidence Booster</div>
+                <p>Optics numericals follow a pattern — once you learn sign convention and the 3-4 key formulas, every problem becomes substitution! Practice the solved examples, understand sign convention deeply, and draw diagrams clearly. You've got this! <strong>All the best! 💪🎓</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+</div> <!-- END CONTAINER -->
+
+<!-- ========== FABs ========== -->
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

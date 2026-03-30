@@ -1,406 +1,2341 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Physics · Unit 4 · Current Electricity</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: current electricity / red-yellow -->
-  <style>
-    :root {
-      --primary: #c44536;          /* current red */
-      --primary-light: #e06e5a;
-      --accent: #f9a826;            /* energy amber */
-      --accent-light: #ffc107;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #4a1e1e, #c44536, #f9a826);
-    }
-    /* header emoji: current symbols */
-    .header::after {
-      content: "⚡🔌💡🔥";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* resistor color bands */
-    .color-code {
-      display: flex;
-      gap: 5px;
-      justify-content: center;
-      margin: 10px 0;
-    }
-    .band {
-      width: 30px;
-      height: 60px;
-      border-radius: 5px;
-    }
-    .band.black { background: #000; }
-    .band.brown { background: #8b4513; }
-    .band.red { background: #f00; }
-    .band.orange { background: #ff8c00; }
-    .band.yellow { background: #ff0; }
-    .band.green { background: #0f0; }
-    .band.blue { background: #00f; }
-    .band.violet { background: #9400d3; }
-    .band.gray { background: #808080; }
-    .band.white { background: #fff; border:1px solid #ccc; }
-    .band.gold { background: #d4af37; }
-    .band.silver { background: #c0c0c0; }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4 - Current Electricity | Applied Physics-II BS104</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Resistance') ? 'Show Resistance' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Resistance') ? 'Hide Resistance' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+        options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link{text-decoration:none;color:inherit;display:block;cursor:pointer}
+        .figure-link .diagram-placeholder{transition:all var(--transition);border:2px dashed var(--gray);position:relative}
+        .figure-link:hover .diagram-placeholder{border-color:var(--accent);background:var(--formula-bg);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+        .diagram-placeholder .click-hint{display:block;margin-top:8px;font-size:.78rem;color:var(--accent);font-weight:500}
+        .figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}
+        @media(max-width:768px){.figure-row{grid-template-columns:1fr}}
+
+        .mcq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin:20px 0}
+        .mcq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;border-left:4px solid var(--accent)}
+        .mcq-item h4{color:var(--primary);margin-bottom:12px;font-size:.95rem}
+        .mcq-item .options{list-style:none;padding:0}
+        .mcq-item .options li{padding:6px 0;font-size:.9rem}
+        @media(max-width:768px){.mcq-grid{grid-template-columns:1fr}}
+        [data-theme="dark"] .mcq-item{background:#1a2332}
+
+        .fraction{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px}
+        .fraction .num{border-bottom:2px solid currentColor;padding:0 6px 3px;text-align:center}
+        .fraction .den{padding:3px 6px 0;text-align:center}
+
+        .outcome-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:16px 0}
+        .outcome-badge{background:linear-gradient(135deg,var(--accent-light),var(--accent));color:#fff;padding:14px 18px;border-radius:var(--radius-md);font-size:.92rem;font-weight:500;display:flex;align-items:center;gap:10px}
+        .outcome-badge i{font-size:1.1rem}
+
+        .prereq-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
+        .prereq-item{background:var(--formula-bg);padding:10px 14px;border-radius:var(--radius-sm);border-left:3px solid var(--warning);font-size:.9rem}
+
+        .formula-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin:16px 0}
+        .formula-card{background:var(--formula-bg);border:1px solid var(--accent);border-radius:var(--radius-md);padding:16px}
+        .formula-card h4{color:var(--primary);margin-bottom:8px;font-size:.95rem}
+        [data-theme="dark"] .formula-card{background:#1a2332}
+
+        .definition-grid{display:grid;gap:16px;margin:16px 0}
+
+        .color-band{display:inline-block;width:22px;height:16px;border-radius:3px;vertical-align:middle;margin:0 2px;border:1px solid #999}
+        .color-table td{vertical-align:middle}
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>⚡ Physics · Unit 4 ⚡</h1>
-      <h2>Current Electricity · Ohm's Law · Bridges · Heating Effect</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-bolt"></i> Current, Resistance</span>
-        <span class="info-item"><i class="fas fa-microchip"></i> Kirchhoff's Laws</span>
-        <span class="info-item"><i class="fas fa-fire"></i> Heating Effect</span>
-      </div>
+        <h1><i class="fas fa-plug"></i> Current Electricity</h1>
+        <h2>Unit 4 — Applied Physics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS104</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 4</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma Sem-II</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive Guide</span>
+            <span class="info-item"><i class="fas fa-atom"></i> Basic Science</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> PHYS·UNIT4</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#basics"><i class="fas fa-circle"></i> Basic Concepts</a>
-        <a href="#laws"><i class="fas fa-gavel"></i> Ohm's & Kirchhoff</a>
-        <a href="#bridges"><i class="fas fa-bridge"></i> Bridges</a>
-        <a href="#heating"><i class="fas fa-fire"></i> Heating Effect</a>
-        <a href="#thermo"><i class="fas fa-temperature-high"></i> Thermoelectric</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>🔌 Physics U4</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#current"><i class="fas fa-bolt"></i> Current</a>
+            <a href="#resistance"><i class="fas fa-ban"></i> Resistance</a>
+            <a href="#colour-code"><i class="fas fa-palette"></i> Colour Code</a>
+            <a href="#combinations"><i class="fas fa-network-wired"></i> Combinations</a>
+            <a href="#ohm"><i class="fas fa-balance-scale"></i> Ohm's Law</a>
+            <a href="#kirchhoff"><i class="fas fa-project-diagram"></i> Kirchhoff</a>
+            <a href="#wheatstone"><i class="fas fa-diamond"></i> Wheatstone</a>
+            <a href="#carey-foster"><i class="fas fa-ruler-horizontal"></i> Carey Foster</a>
+            <a href="#emf"><i class="fas fa-battery-full"></i> EMF</a>
+            <a href="#heating"><i class="fas fa-fire"></i> Heating Effect</a>
+            <a href="#thermoelectric"><i class="fas fa-thermometer-half"></i> Thermoelectric</a>
+            <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+            <a href="#formulas"><i class="fas fa-superscript"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-spell-check"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+            <a href="#short-qa"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#long-qa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+            <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-bolt"></i> PHYS Unit 4</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>🔌 Physics U4</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#basics"><i class="fas fa-circle"></i> Current, AC/DC, Resistance, Conductance, Color Code</a>
-      <a href="#laws"><i class="fas fa-gavel"></i> Ohm's Law, Kirchhoff's Laws</a>
-      <a href="#bridges"><i class="fas fa-bridge"></i> Wheatstone Bridge, Carrey Foster Bridge</a>
-      <a href="#heating"><i class="fas fa-fire"></i> EMF, Terminal PD, Heating Effect, Power, Energy</a>
-      <a href="#thermo"><i class="fas fa-temperature-high"></i> Seebeck & Peltier Effect</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#current"><i class="fas fa-bolt"></i> Current</a>
+        <a href="#resistance"><i class="fas fa-ban"></i> Resistance</a>
+        <a href="#colour-code"><i class="fas fa-palette"></i> Colour Code</a>
+        <a href="#combinations"><i class="fas fa-network-wired"></i> Combinations</a>
+        <a href="#ohm"><i class="fas fa-balance-scale"></i> Ohm's Law</a>
+        <a href="#kirchhoff"><i class="fas fa-project-diagram"></i> Kirchhoff</a>
+        <a href="#wheatstone"><i class="fas fa-diamond"></i> Wheatstone</a>
+        <a href="#carey-foster"><i class="fas fa-ruler-horizontal"></i> Carey Foster</a>
+        <a href="#emf"><i class="fas fa-battery-full"></i> EMF</a>
+        <a href="#heating"><i class="fas fa-fire"></i> Heating Effect</a>
+        <a href="#thermoelectric"><i class="fas fa-thermometer-half"></i> Thermoelectric</a>
+        <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+        <a href="#formulas"><i class="fas fa-superscript"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-spell-check"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+        <a href="#short-qa"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#long-qa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+        <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: BASIC CONCEPTS ========= -->
-    <section id="basics" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-circle"></i> Basic Concepts: Current, Resistance, Conductance, Color Coding
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-bolt"></i> Electric Current (I)</div>
-          <p>I = dQ/dt (rate of flow of charge). Unit: Ampere (A).</p>
-          <p><strong>Direct Current (DC):</strong> constant direction. <strong>Alternating Current (AC):</strong> periodically reverses.</p>
-        </div>
+<div class="container">
 
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-resistance"></i> Resistance (R)</h4>
-            <p>R = V/I. Unit: Ohm (Ω).</p>
-            <p><strong>Specific resistance (ρ):</strong> ρ = R A / l, unit Ω·m.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-water"></i> Conductance (G) & Specific Conductance (σ)</h4>
-            <p>G = 1/R (Siemens, S). σ = 1/ρ (S/m).</p>
-          </div>
-        </div>
-
-        <div class="concept-box">
-          <div class="box-title">Factors Affecting Resistance</div>
-          <ul>
-            <li>Length (R ∝ l)</li>
-            <li>Cross-sectional area (R ∝ 1/A)</li>
-            <li>Material (ρ)</li>
-            <li>Temperature (R increases with temp for metals)</li>
-          </ul>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title">Carbon Resistance & Colour Coding</div>
-          <p>4-band code: Band1 (1st digit), Band2 (2nd digit), Band3 (multiplier), Band4 (tolerance).</p>
-          <div class="color-code">
-            <span class="band brown"></span>
-            <span class="band black"></span>
-            <span class="band red"></span>
-            <span class="band gold"></span>
-          </div>
-          <p>Brown(1), Black(0), Red(×100) = 10×100 = 1000Ω = 1kΩ, Gold(±5%)</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Color Code Example</div>
-          <p>Find resistance for Yellow-Violet-Orange-Gold.</p>
-          <button class="toggle-btn" data-target="color1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="color1">
-            <div class="formula answer">
-              Yellow=4, Violet=7, Orange=×1000 = 47×1000 = <strong>47 kΩ</strong>, Gold=±5%
+    <!-- ==================== SECTION 1: OVERVIEW ==================== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> What This Unit Covers</div>
+                <p>This unit covers <strong>Current Electricity</strong> — the study of <strong>electric charges in motion</strong>. While Unit 3 dealt with charges at rest (electrostatics), this unit deals with what happens when charges flow through conductors. You'll learn about resistance, Ohm's law, Kirchhoff's laws, measuring bridges, heating effects, and thermoelectricity.</p>
+                <p><strong>Real-life connection:</strong> Every time you switch on a light, charge your phone, use a heater, or measure your body temperature with a digital thermometer — you are using principles from this unit!</p>
             </div>
-          </div>
+
+            <h3>🎯 Unit Outcomes:</h3>
+            <div class="outcome-grid">
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Define current, resistance, and related quantities</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Read carbon resistor colour codes</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Apply Ohm's law & solve circuit problems</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Apply Kirchhoff's laws to circuits</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Explain Wheatstone bridge & Carey Foster bridge</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Distinguish EMF and terminal PD</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Calculate electric power & energy</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Explain Seebeck & Peltier effects</div>
+            </div>
+
+            <h3>📚 Prerequisites:</h3>
+            <div class="prereq-list">
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Concept of charge (Unit 3)</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Electric potential difference</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Basic algebra & fractions</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Concept of energy & power</div>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Importance</div>
+                <p>This is one of the <strong>most important units</strong> — highly numerical-based. <strong>Ohm's law</strong>, <strong>Kirchhoff's laws</strong>, <strong>Wheatstone bridge</strong>, <strong>colour coding</strong>, <strong>series-parallel resistance</strong>, and <strong>heating effect numericals</strong> are asked every year. Master these and you'll score very well! 🔥</p>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 2: CIRCUIT LAWS (OHM, KIRCHHOFF) ========= -->
-    <section id="laws" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-gavel"></i> Ohm's Law · Kirchhoff's Laws
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Ohm's Law</div>
-          <p>At constant temperature, current through a conductor is proportional to voltage across it.</p>
-          <div class="formula">V = I R</div>
-        </div>
+    <!-- ==================== SECTION 2: ELECTRIC CURRENT ==================== -->
+    <section class="section" id="current">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> Electric Current & Its Units 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-arrow-right"></i> Series Combination</h4>
-            <p>R_eq = R₁ + R₂ + ...</p>
-            <p>Current same, voltage divides.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-arrow-down"></i> Parallel Combination</h4>
-            <p>1/R_eq = 1/R₁ + 1/R₂ + ...</p>
-            <p>Voltage same, current divides.</p>
-          </div>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Kirchhoff's Laws</div>
-          <p><strong>KCL (Current Law):</strong> Sum of currents entering a junction = sum leaving.</p>
-          <p><strong>KVL (Voltage Law):</strong> Sum of EMFs = sum of IR drops in any closed loop.</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Series-Parallel Problem</div>
-          <p>Three resistors 10Ω, 20Ω, 30Ω: first two in parallel, then series with third. Find equivalent resistance.</p>
-          <button class="toggle-btn" data-target="law1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="law1">
-            <div class="formula answer">
-              R_parallel = (10×20)/(10+20) = 200/30 = 6.67Ω<br>
-              R_eq = 6.67 + 30 = <strong>36.67Ω</strong>
+            <h3>⭐ Electric Current</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Current</div>
+                <p><strong>Electric current</strong> is the <strong>rate of flow of electric charge</strong> through a conductor. It tells us how much charge passes through a cross-section of the conductor per unit time.</p>
             </div>
-          </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.1 — Electric Current:</strong></p>
+                <p>\[ I = \frac{Q}{t} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>I</strong> = electric current (Ampere, A)</li>
+                    <li><strong>Q</strong> = charge flowing (Coulomb, C)</li>
+                    <li><strong>t</strong> = time (second, s)</li>
+                </ul>
+                <p><strong>SI Unit:</strong> <strong>Ampere (A)</strong>. 1 Ampere = 1 Coulomb per second.</p>
+            </div>
+
+            <p><strong>Analogy:</strong> Electric current is like water flowing through a pipe. The amount of water passing per second is the "current." The pressure pushing the water is like voltage. The pipe's narrowness is like resistance.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Important Facts about Current</div>
+                <ul>
+                    <li>Current is a <strong>scalar quantity</strong> (though we assign direction by convention).</li>
+                    <li><strong>Conventional current direction:</strong> From positive terminal to negative terminal (outside the cell). This is the direction positive charges would move.</li>
+                    <li><strong>Actual electron flow:</strong> From negative to positive (opposite to conventional current).</li>
+                    <li>Current flows only when there is a <strong>potential difference</strong> (voltage) across the conductor AND a <strong>closed circuit</strong>.</li>
+                    <li>Ampere is a <strong>base unit</strong> in SI system.</li>
+                </ul>
+            </div>
+
+            <h3>⭐ Direct Current (DC) vs Alternating Current (AC)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Direct Current (DC)</div>
+                <p><strong>Direct current</strong> is the electric current that flows in <strong>one direction only</strong> and has a <strong>constant magnitude</strong> (or changes magnitude but not direction). Source: Battery, cell, DC generator, solar cell.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Alternating Current (AC)</div>
+                <p><strong>Alternating current</strong> is the electric current that <strong>changes its direction periodically</strong> (flows forward, then backward, then forward again). Its magnitude also varies sinusoidally. Source: AC generator, mains power supply (230V, 50Hz in India).</p>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Property</th><th>DC</th><th>AC</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Direction</strong></td><td>One direction only</td><td>Changes direction periodically</td></tr>
+                        <tr><td><strong>Magnitude</strong></td><td>Constant</td><td>Varies sinusoidally</td></tr>
+                        <tr><td><strong>Frequency</strong></td><td>Zero (0 Hz)</td><td>50 Hz (India), 60 Hz (USA)</td></tr>
+                        <tr><td><strong>Source</strong></td><td>Battery, cell, solar cell</td><td>AC generator, mains supply</td></tr>
+                        <tr><td><strong>Transmission</strong></td><td>Difficult over long distance</td><td>Easy (can step up/down voltage)</td></tr>
+                        <tr><td><strong>Symbol</strong></td><td>— (straight line)</td><td>~ (wavy line)</td></tr>
+                        <tr><td><strong>Uses</strong></td><td>Electronics, charging, electroplating</td><td>Home appliances, industries, motors</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=DC+vs+AC+current+waveform+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 4.1:</strong> DC (constant line) vs AC (sinusoidal wave) waveforms</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: BRIDGES (WHEATSTONE, CARREY FOSTER) ========= -->
-    <section id="bridges" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-bridge"></i> Wheatstone Bridge · Carrey Foster Bridge
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Wheatstone Bridge</div>
-          <p>Used to measure unknown resistance. Balance condition:</p>
-          <div class="formula">P/Q = R/S</div>
-          <p>where P, Q are known ratio arms, R unknown, S variable standard.</p>
-        </div>
+    <!-- ==================== SECTION 3: RESISTANCE ==================== -->
+    <section class="section" id="resistance">
+        <h2 class="section-title">
+            <i class="fas fa-ban"></i> Resistance, Specific Resistance, Conductance 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="definition-box">
-          <div class="box-title">Carrey Foster Bridge</div>
-          <p>Modified Wheatstone bridge to measure small resistance differences. Used to compare nearly equal resistances and determine specific resistance.</p>
-          <p><strong>Applications:</strong> Measuring low resistances, temperature coefficient, calibration of wires.</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Wheatstone Bridge Problem</div>
-          <p>In a Wheatstone bridge, P=100Ω, Q=200Ω, S=150Ω at balance. Find R.</p>
-          <button class="toggle-btn" data-target="bridge1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="bridge1">
-            <div class="formula answer">
-              R = (P/Q) × S = (100/200) × 150 = 0.5 × 150 = <strong>75Ω</strong>
+            <h3>⭐ Resistance (R)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Resistance</div>
+                <p><strong>Resistance</strong> is the <strong>opposition</strong> offered by a conductor to the flow of electric current through it. It is the property of a material that resists (hinders) the movement of electrons.</p>
+                <p><strong>SI Unit:</strong> Ohm (Ω). <strong>Symbol:</strong> R.</p>
             </div>
-          </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.2 — Resistance (from Ohm's law):</strong></p>
+                <p>\[ R = \frac{V}{I} \]</p>
+                <p>1 Ohm = 1 Volt / 1 Ampere</p>
+            </div>
+
+            <p><strong>Analogy:</strong> Resistance is like the narrowness of a water pipe. A narrow pipe resists water flow (high resistance). A wide pipe allows easy flow (low resistance).</p>
+
+            <h3>⭐ Factors Affecting Resistance of a Wire</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-list-ol"></i> Factors (Very Important!)</div>
+                <p>The resistance of a wire depends on:</p>
+                <ol>
+                    <li><strong>Length (l):</strong> R ∝ l — longer wire = more resistance. (Longer pipe = more friction.)</li>
+                    <li><strong>Cross-sectional Area (A):</strong> R ∝ 1/A — thicker wire = less resistance. (Wider pipe = less friction.)</li>
+                    <li><strong>Material:</strong> Different materials have different resistivities. Copper has low resistance (good conductor). Nichrome has high resistance (used in heaters).</li>
+                    <li><strong>Temperature:</strong> For metals, resistance increases with temperature. For semiconductors, resistance decreases with temperature.</li>
+                </ol>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.3 — Resistance of a Wire:</strong></p>
+                <p>\[ R = \rho \frac{l}{A} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>R</strong> = resistance (Ω)</li>
+                    <li><strong>ρ (rho)</strong> = resistivity / specific resistance (Ω·m)</li>
+                    <li><strong>l</strong> = length of wire (m)</li>
+                    <li><strong>A</strong> = cross-sectional area of wire (m²)</li>
+                </ul>
+            </div>
+
+            <h3>⭐ Specific Resistance / Resistivity (ρ)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Specific Resistance (Resistivity)</div>
+                <p><strong>Specific resistance (ρ)</strong> is the <strong>resistance offered by a conductor of unit length and unit cross-sectional area</strong>. It is a property of the <strong>material</strong> itself, not its dimensions.</p>
+                <p>From R = ρl/A: \(\rho = \frac{RA}{l}\)</p>
+                <p><strong>SI Unit:</strong> Ohm-metre (Ω·m).</p>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Material</th><th>Resistivity (Ω·m) at 20°C</th><th>Nature</th></tr></thead>
+                    <tbody>
+                        <tr><td>Silver</td><td>1.59 × 10⁻⁸</td><td>Best conductor</td></tr>
+                        <tr><td>Copper</td><td>1.68 × 10⁻⁸</td><td>Excellent conductor</td></tr>
+                        <tr><td>Aluminium</td><td>2.65 × 10⁻⁸</td><td>Good conductor</td></tr>
+                        <tr><td>Iron</td><td>9.71 × 10⁻⁸</td><td>Moderate conductor</td></tr>
+                        <tr><td>Nichrome</td><td>1.1 × 10⁻⁶</td><td>High resistance alloy</td></tr>
+                        <tr><td>Glass</td><td>10¹⁰ − 10¹⁴</td><td>Insulator</td></tr>
+                        <tr><td>Rubber</td><td>10¹³</td><td>Insulator</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>⭐ Conductance (G)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Conductance</div>
+                <p><strong>Conductance</strong> is the <strong>reciprocal of resistance</strong>. It measures how easily a material allows current to flow through it.</p>
+                <p>\[ G = \frac{1}{R} \]</p>
+                <p><strong>SI Unit:</strong> Siemens (S) or Mho (Ω⁻¹ or ℧).</p>
+            </div>
+
+            <h3>⭐ Specific Conductance / Conductivity (σ)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Specific Conductance (Conductivity)</div>
+                <p><strong>Specific conductance (σ)</strong> is the <strong>reciprocal of specific resistance (resistivity)</strong>.</p>
+                <p>\[ \sigma = \frac{1}{\rho} \]</p>
+                <p><strong>SI Unit:</strong> Siemens per metre (S/m).</p>
+                <p>High σ = good conductor. Low σ = poor conductor (insulator).</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Summary Table</div>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>Quantity</th><th>Symbol</th><th>Formula</th><th>SI Unit</th></tr></thead>
+                        <tbody>
+                            <tr><td>Resistance</td><td>R</td><td>V/I = ρl/A</td><td>Ohm (Ω)</td></tr>
+                            <tr><td>Resistivity</td><td>ρ</td><td>RA/l</td><td>Ohm·metre (Ω·m)</td></tr>
+                            <tr><td>Conductance</td><td>G</td><td>1/R</td><td>Siemens (S)</td></tr>
+                            <tr><td>Conductivity</td><td>σ</td><td>1/ρ</td><td>S/m</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: EMF, TERMINAL POTENTIAL, HEATING EFFECT ========= -->
-    <section id="heating" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-fire"></i> EMF · Terminal PD · Heating Effect · Power · Energy
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">EMF & Terminal Potential</div>
-          <p><strong>EMF (ε):</strong> energy supplied per coulomb by source (open circuit voltage).</p>
-          <p><strong>Terminal potential difference (V):</strong> voltage across terminals when current flows. V = ε - I r (r = internal resistance).</p>
-        </div>
+    <!-- ==================== SECTION 4: COLOUR CODING ==================== -->
+    <section class="section" id="colour-code">
+        <h2 class="section-title">
+            <i class="fas fa-palette"></i> Carbon Resistance & Colour Coding 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title">Heating Effect (Joule's Law)</div>
-          <p>Heat produced: H = I² R t (Joules).</p>
-          <p><strong>Electric Power:</strong> P = V I = I² R = V²/R (Watts).</p>
-          <p><strong>Electric Energy:</strong> E = P × t. Unit: Joule or kWh (1 kWh = 3.6×10⁶ J).</p>
-        </div>
+            <h3>What is a Carbon Resistor?</h3>
+            <p>A <strong>carbon resistor</strong> is a small cylindrical component made of carbon mixed with a binder. Its resistance value is indicated by <strong>coloured bands</strong> painted on its body — this is the <strong>colour code system</strong>. Carbon resistors are the most commonly used resistors in electronic circuits.</p>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 1</div>
-          <p>A 220V heater draws 5A. Find power and energy consumed in 2 hours.</p>
-          <button class="toggle-btn" data-target="heat1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="heat1">
-            <div class="formula answer">
-              P = V I = 220 × 5 = <strong>1100 W</strong><br>
-              Energy = P × t = 1.1 kW × 2 h = <strong>2.2 kWh</strong>
+            <a href="https://www.google.com/search?tbm=isch&q=carbon+resistor+4+band+colour+code+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.2:</strong> Carbon resistor with 4 colour bands — reading left to right</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Resistor Colour Code Table</h3>
+            <div class="table-wrapper">
+                <table class="data-table color-table">
+                    <thead>
+                        <tr>
+                            <th>Colour</th>
+                            <th>Band</th>
+                            <th>Digit Value</th>
+                            <th>Multiplier (3rd band)</th>
+                            <th>Tolerance (4th band)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="color-band" style="background:#000"></span> Black</td><td style="background:#000;color:#fff">■</td><td>0</td><td>×10⁰ = ×1</td><td>—</td></tr>
+                        <tr><td><span class="color-band" style="background:#8B4513"></span> Brown</td><td style="background:#8B4513;color:#fff">■</td><td>1</td><td>×10¹ = ×10</td><td>±1%</td></tr>
+                        <tr><td><span class="color-band" style="background:#FF0000"></span> Red</td><td style="background:#f00;color:#fff">■</td><td>2</td><td>×10² = ×100</td><td>±2%</td></tr>
+                        <tr><td><span class="color-band" style="background:#FFA500"></span> Orange</td><td style="background:#FFA500">■</td><td>3</td><td>×10³ = ×1000</td><td>—</td></tr>
+                        <tr><td><span class="color-band" style="background:#FFFF00;border-color:#999"></span> Yellow</td><td style="background:#FF0">■</td><td>4</td><td>×10⁴ = ×10000</td><td>—</td></tr>
+                        <tr><td><span class="color-band" style="background:#008000"></span> Green</td><td style="background:#008000;color:#fff">■</td><td>5</td><td>×10⁵</td><td>±0.5%</td></tr>
+                        <tr><td><span class="color-band" style="background:#0000FF"></span> Blue</td><td style="background:#00f;color:#fff">■</td><td>6</td><td>×10⁶</td><td>±0.25%</td></tr>
+                        <tr><td><span class="color-band" style="background:#800080"></span> Violet</td><td style="background:#800080;color:#fff">■</td><td>7</td><td>×10⁷</td><td>±0.1%</td></tr>
+                        <tr><td><span class="color-band" style="background:#808080"></span> Grey</td><td style="background:#808080;color:#fff">■</td><td>8</td><td>×10⁸</td><td>—</td></tr>
+                        <tr><td><span class="color-band" style="background:#fff;border-color:#333"></span> White</td><td style="background:#fff;border:1px solid #333">■</td><td>9</td><td>×10⁹</td><td>—</td></tr>
+                        <tr><td><span class="color-band" style="background:gold;border-color:#999"></span> Gold</td><td style="background:gold">■</td><td>—</td><td>×10⁻¹ = ×0.1</td><td>±5%</td></tr>
+                        <tr><td><span class="color-band" style="background:silver;border-color:#999"></span> Silver</td><td style="background:silver">■</td><td>—</td><td>×10⁻² = ×0.01</td><td>±10%</td></tr>
+                        <tr><td>No band</td><td>—</td><td>—</td><td>—</td><td>±20%</td></tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 2</div>
-          <p>A battery of emf 12V, internal resistance 0.5Ω delivers 2A. Find terminal voltage.</p>
-          <button class="toggle-btn" data-target="heat2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="heat2">
-            <div class="formula answer">
-              V = ε - I r = 12 - 2×0.5 = 12 - 1 = <strong>11 V</strong>
+            <h3>⭐ How to Read a 4-Band Resistor</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-eye"></i> Reading Steps</div>
+                <ol>
+                    <li><strong>1st Band (nearest to one end):</strong> First digit of resistance value.</li>
+                    <li><strong>2nd Band:</strong> Second digit of resistance value.</li>
+                    <li><strong>3rd Band:</strong> Multiplier (number of zeros to add, or power of 10).</li>
+                    <li><strong>4th Band (slightly separated):</strong> Tolerance (accuracy).</li>
+                </ol>
+                <p><strong>Resistance = (1st digit)(2nd digit) × Multiplier ± Tolerance</strong></p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 3</div>
-          <p>A 50Ω resistor carries 0.2A. Find heat in 5 minutes.</p>
-          <button class="toggle-btn" data-target="heat3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="heat3">
-            <div class="formula answer">
-              H = I² R t = (0.2)² × 50 × (5×60) = 0.04 × 50 × 300 = 2 × 300 = <strong>600 J</strong>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Memory Mnemonic 🔥</div>
+                <p><strong>"BB ROY of Great Britain has a Very Good Wife"</strong></p>
+                <p>B = Black (0), B = Brown (1), R = Red (2), O = Orange (3), Y = Yellow (4), G = Green (5), B = Blue (6), V = Violet (7), G = Grey (8), W = White (9)</p>
+                <p>This is asked in almost every WBSCTE exam!</p>
             </div>
-          </div>
+
+            <h3>Solved Examples — Colour Coding</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 1</div>
+                <p>A resistor has colour bands: <strong>Red, Violet, Orange, Gold</strong>. Find its resistance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>1st band: Red = 2</p>
+                <p>2nd band: Violet = 7</p>
+                <p>3rd band: Orange = ×10³ = ×1000</p>
+                <p>4th band: Gold = ±5%</p>
+                <p class="formula answer"><strong>R = 27 × 1000 = 27000 Ω = 27 kΩ ± 5%</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 2</div>
+                <p>A resistor has colour bands: <strong>Yellow, Violet, Red, Silver</strong>. Find its resistance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Yellow = 4, Violet = 7, Red = ×10² = ×100, Silver = ±10%</p>
+                <p class="formula answer"><strong>R = 47 × 100 = 4700 Ω = 4.7 kΩ ± 10%</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3 (Reverse — find colour bands)</div>
+                <p>What are the colour bands for a 560 kΩ ± 5% resistor?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>560 kΩ = 560,000 Ω = 56 × 10⁴</p>
+                <p>1st digit: 5 = Green, 2nd digit: 6 = Blue, Multiplier: 10⁴ = Yellow, Tolerance: 5% = Gold</p>
+                <p class="formula answer"><strong>Green, Blue, Yellow, Gold</strong></p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 5: THERMOELECTRIC EFFECT ========= -->
-    <section id="thermo" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-temperature-high"></i> Thermoelectric Effect: Seebeck · Peltier
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Seebeck Effect</div>
-          <p>When two dissimilar metals are joined at two junctions at different temperatures, an EMF is generated (thermocouple).</p>
-          <p>Used in thermocouple thermometers.</p>
-        </div>
+    <!-- ==================== SECTION 5: SERIES & PARALLEL RESISTANCES ==================== -->
+    <section class="section" id="combinations">
+        <h2 class="section-title">
+            <i class="fas fa-network-wired"></i> Series & Parallel Combination of Resistances 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="definition-box">
-          <div class="box-title">Peltier Effect</div>
-          <p>When current flows through a junction of two dissimilar metals, heat is absorbed or released (reverse of Seebeck).</p>
-          <p>Used in thermoelectric cooling (Peltier modules).</p>
-        </div>
+            <h3>⭐ Resistors in Series</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Series Combination</div>
+                <p>Resistors are in <strong>series</strong> when connected <strong>end to end</strong> so that the <strong>same current</strong> flows through each resistor, but the <strong>voltage divides</strong> among them.</p>
+            </div>
 
-        <div class="important-note">
-          <p><strong>Difference:</strong> Seebeck converts temperature difference to voltage; Peltier converts current to temperature difference.</p>
+            <a href="https://www.google.com/search?tbm=isch&q=resistors+in+series+circuit+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.3:</strong> Resistors R₁, R₂, R₃ in series</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.4 — Resistors in Series:</strong></p>
+                <p>\[ R_{eq} = R_1 + R_2 + R_3 + \ldots \]</p>
+                <p><strong>Properties:</strong></p>
+                <ul>
+                    <li>Current: Same through all → I = I₁ = I₂ = I₃</li>
+                    <li>Voltage: Divides → V = V₁ + V₂ + V₃</li>
+                    <li>R<sub>eq</sub> > largest individual resistance (total increases)</li>
+                </ul>
+            </div>
+
+            <h3>⭐ Resistors in Parallel</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Parallel Combination</div>
+                <p>Resistors are in <strong>parallel</strong> when connected <strong>across the same two points</strong> so that the <strong>same voltage</strong> is across each, but the <strong>current divides</strong> among them.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=resistors+in+parallel+circuit+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.4:</strong> Resistors R₁, R₂, R₃ in parallel</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.5 — Resistors in Parallel:</strong></p>
+                <p>\[ \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \ldots \]</p>
+                <p>For <strong>two resistors</strong> in parallel:</p>
+                <p>\[ R_{eq} = \frac{R_1 \times R_2}{R_1 + R_2} \]</p>
+                <p><strong>Properties:</strong></p>
+                <ul>
+                    <li>Voltage: Same across all → V = V₁ = V₂ = V₃</li>
+                    <li>Current: Divides → I = I₁ + I₂ + I₃</li>
+                    <li>R<sub>eq</sub> < smallest individual resistance</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Don't Confuse with Capacitors!</div>
+                <p><strong>Resistors:</strong> Series → ADD, Parallel → reciprocal</p>
+                <p><strong>Capacitors:</strong> Series → reciprocal, Parallel → ADD</p>
+                <p>They are <strong>opposite</strong>! This is the #1 exam trap.</p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">V = IR</div>
-          <div class="tag">P = VI = I²R = V²/R</div>
-          <div class="tag">H = I²Rt</div>
-          <div class="tag">R<sub>s</sub> = ΣRᵢ</div>
-          <div class="tag">1/R<sub>p</sub> = Σ1/Rᵢ</div>
-          <div class="tag">ρ = R A/l</div>
-          <div class="tag">V = ε - Ir</div>
-          <div class="tag">Wheatstone: P/Q = R/S</div>
+    <!-- ==================== SECTION 6: OHM'S LAW ==================== -->
+    <section class="section" id="ohm">
+        <h2 class="section-title">
+            <i class="fas fa-balance-scale"></i> Ohm's Law 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>⭐ Statement of Ohm's Law</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ohm's Law</div>
+                <p><strong>Ohm's Law</strong> states that the <strong>current (I) flowing through a conductor</strong> is <strong>directly proportional</strong> to the <strong>potential difference (V) applied across its ends</strong>, provided the <strong>temperature and other physical conditions remain constant</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.6 — Ohm's Law:</strong></p>
+                <p>\[ V = IR \quad \text{or} \quad I = \frac{V}{R} \quad \text{or} \quad R = \frac{V}{I} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>V</strong> = potential difference / voltage (Volt, V)</li>
+                    <li><strong>I</strong> = current (Ampere, A)</li>
+                    <li><strong>R</strong> = resistance (Ohm, Ω) — constant of proportionality</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> The Most Important Formula!</div>
+                <p><strong>V = IR</strong> is the single most used formula in electricity. Learn all three forms: V = IR, I = V/R, R = V/I. Every numerical starts from here!</p>
+            </div>
+
+            <h3>V-I Characteristics (Graph)</h3>
+            <p>If we plot voltage (V) on the x-axis and current (I) on the y-axis, the graph is a <strong>straight line passing through the origin</strong>. This shows that V and I are directly proportional — confirming Ohm's law.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Ohms+law+V+I+graph+characteristics+straight+line" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.5:</strong> V-I characteristic of an ohmic conductor — straight line through origin</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points</div>
+                <ul>
+                    <li>The <strong>slope of the V-I graph</strong> gives the <strong>resistance</strong> (R = V/I).</li>
+                    <li>Steeper slope = higher resistance.</li>
+                    <li>Materials that obey Ohm's law are called <strong>ohmic conductors</strong> (e.g., metals like copper, aluminium at constant temperature).</li>
+                    <li>Materials that don't obey Ohm's law are called <strong>non-ohmic conductors</strong> (e.g., diodes, transistors, filament bulbs). Their V-I graph is not a straight line.</li>
+                </ul>
+            </div>
+
+            <h3>Limitations of Ohm's Law</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Limitations</div>
+                <ol>
+                    <li>Not valid for <strong>non-ohmic</strong> devices (diodes, LEDs, transistors).</li>
+                    <li>Not valid at <strong>very high temperatures</strong> (resistance changes with temperature).</li>
+                    <li>Not valid for <strong>semiconductors</strong>.</li>
+                    <li>Not valid for <strong>electrolytes</strong> and <strong>gases</strong>.</li>
+                    <li>Valid only when physical conditions (temperature, pressure) remain <strong>constant</strong>.</li>
+                </ol>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Applications of Ohm's Law</div>
+                <ul>
+                    <li>Designing electrical circuits</li>
+                    <li>Calculating required resistance for a circuit</li>
+                    <li>Determining current or voltage in a circuit</li>
+                    <li>Power calculations (P = VI = I²R = V²/R)</li>
+                    <li>Fuse rating calculations</li>
+                    <li>Voltage divider circuits</li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
+    
+    <!-- ==================== SECTION 7: KIRCHHOFF'S LAWS ==================== -->
+    <section class="section" id="kirchhoff">
+        <h2 class="section-title">
+            <i class="fas fa-project-diagram"></i> Kirchhoff's Laws 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+            <p>Ohm's law works for simple circuits with one loop. But for complex circuits with multiple loops and branches, we need <strong>Kirchhoff's Laws</strong> — two powerful rules that can solve ANY circuit!</p>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+            <h3>⭐ Kirchhoff's First Law — KCL (Kirchhoff's Current Law)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> KCL — Junction Rule</div>
+                <p><strong>Kirchhoff's Current Law (KCL)</strong> states that the <strong>algebraic sum of all currents meeting at a junction (node)</strong> in a circuit is <strong>zero</strong>.</p>
+                <p>Or equivalently: <strong>The sum of currents entering a junction = Sum of currents leaving the junction.</strong></p>
+                <p>\[ \sum I_{in} = \sum I_{out} \]</p>
+            </div>
+
+            <p><strong>Analogy:</strong> Think of a water pipe junction. The total water flowing INTO the junction must equal the total water flowing OUT. Water doesn't accumulate or disappear at the junction. Similarly, charge doesn't accumulate at a circuit junction.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> KCL is based on Conservation of Charge</div>
+                <p>Charge cannot be created or destroyed. So whatever charge enters a junction per second (current in) must leave per second (current out).</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Kirchhoffs+current+law+KCL+junction+rule+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.6:</strong> KCL at a junction — currents entering = currents leaving</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Quick Example — KCL</div>
+                <p>At a junction, currents of 3 A and 5 A flow in, and currents of 2 A and I flow out. Find I.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>ΣI<sub>in</sub> = ΣI<sub>out</sub></p>
+                <p>3 + 5 = 2 + I</p>
+                <p>8 = 2 + I</p>
+                <p class="formula answer"><strong>I = 6 A</strong></p>
+            </div>
+
+            <h3>⭐ Kirchhoff's Second Law — KVL (Kirchhoff's Voltage Law)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> KVL — Loop Rule</div>
+                <p><strong>Kirchhoff's Voltage Law (KVL)</strong> states that the <strong>algebraic sum of all the potential differences (voltages)</strong> around any <strong>closed loop</strong> in a circuit is <strong>zero</strong>.</p>
+                <p>\[ \sum V = 0 \quad \text{(around any closed loop)} \]</p>
+                <p>Or equivalently: <strong>Sum of EMFs = Sum of voltage drops (IR products) in a loop.</strong></p>
+                <p>\[ \sum \varepsilon = \sum IR \]</p>
+            </div>
+
+            <p><strong>Analogy:</strong> Imagine walking around a circular hill path. You go up some hills (EMF = voltage rise) and down some slopes (IR drop = voltage fall). When you return to your starting point, your net altitude change is zero. Similarly, going around a closed loop, the total voltage rise must equal the total voltage drop.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> KVL is based on Conservation of Energy</div>
+                <p>Energy supplied by the source (EMF) must equal energy consumed by the resistances (IR drops) in a closed loop.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Kirchhoffs+voltage+law+KVL+loop+rule+diagram+circuit" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.7:</strong> KVL — sum of voltages around a closed loop = 0</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Sign Conventions for KVL</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-ruler-combined"></i> Rules for Traversing a Loop</div>
+                <ol>
+                    <li><strong>Resistor:</strong> If you traverse in the <strong>direction of current</strong> → voltage <strong>drop</strong> = −IR. If against current → voltage <strong>rise</strong> = +IR.</li>
+                    <li><strong>Battery/EMF:</strong> If you traverse from − to + (through battery) → voltage <strong>rise</strong> = +ε. If from + to − → voltage <strong>drop</strong> = −ε.</li>
+                </ol>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Law</th><th>KCL (Current Law)</th><th>KVL (Voltage Law)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Also called</strong></td><td>Junction Rule / Node Rule</td><td>Loop Rule / Mesh Rule</td></tr>
+                        <tr><td><strong>Statement</strong></td><td>ΣI = 0 at junction</td><td>ΣV = 0 around loop</td></tr>
+                        <tr><td><strong>Based on</strong></td><td>Conservation of Charge</td><td>Conservation of Energy</td></tr>
+                        <tr><td><strong>Applied at</strong></td><td>Junctions / Nodes</td><td>Closed loops / Meshes</td></tr>
+                        <tr><td><strong>Simple form</strong></td><td>I<sub>in</sub> = I<sub>out</sub></td><td>ΣE = ΣIR</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Exam Must-Know</div>
+                <p>Statement + basis (conservation law) of both Kirchhoff's laws is a <strong>very common 5-mark question</strong>. Always mention: KCL → conservation of charge; KVL → conservation of energy.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 8: WHEATSTONE BRIDGE ==================== -->
+    <section class="section" id="wheatstone">
+        <h2 class="section-title">
+            <i class="fas fa-diamond"></i> Wheatstone Bridge 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>What is a Wheatstone Bridge?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Wheatstone Bridge</div>
+                <p>A <strong>Wheatstone bridge</strong> is an electrical circuit used to <strong>accurately measure an unknown resistance</strong> by comparing it with known resistances. It consists of <strong>four resistances</strong> arranged in a diamond (bridge) shape, a galvanometer, and a battery.</p>
+            </div>
+
+            <h3>Construction</h3>
+            <p>The Wheatstone bridge has:</p>
+            <ul>
+                <li><strong>Four resistors:</strong> P, Q, R, and S arranged in four arms of a diamond shape.</li>
+                <li><strong>Galvanometer (G):</strong> Connected between junctions B and D (the "bridge").</li>
+                <li><strong>Battery (E):</strong> Connected between junctions A and C.</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Wheatstone+bridge+circuit+diagram+PQRS+galvanometer" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.8:</strong> Wheatstone bridge — four arms P, Q, R, S with galvanometer G and battery E</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Balanced Condition</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-balance-scale"></i> Wheatstone Bridge Balance Condition</div>
+                <p>The bridge is said to be <strong>balanced</strong> when the galvanometer shows <strong>zero deflection</strong> (no current flows through the galvanometer). This happens when:</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.7 — Wheatstone Bridge Balance Condition:</strong></p>
+                <p>\[ \frac{P}{Q} = \frac{R}{S} \]</p>
+                <p>where P, Q, R, S are the four resistances in the arms of the bridge.</p>
+                <p>If S is unknown: \( S = \frac{QR}{P} \)</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Why Zero Current in Galvanometer?</div>
+                <p>At balance, the potential at point B equals the potential at point D. Since there is no potential difference between B and D, no current flows through the galvanometer (bridge). The circuit behaves as if the galvanometer wire is absent.</p>
+            </div>
+
+            <h3>Working Principle</h3>
+            <ol>
+                <li>Connect the unknown resistance S in one arm of the bridge.</li>
+                <li>Adjust the known resistances P, Q, R until the galvanometer shows <strong>zero deflection</strong> (null point).</li>
+                <li>At balance: P/Q = R/S, so <strong>S = QR/P</strong>.</li>
+                <li>This method is very accurate because it is a <strong>null method</strong> — the measurement doesn't depend on the accuracy of the galvanometer.</li>
+            </ol>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Applications of Wheatstone Bridge</div>
+                <ul>
+                    <li>Accurate measurement of unknown resistance</li>
+                    <li>Strain gauge measurements (structural engineering)</li>
+                    <li>Temperature measurement using RTDs (Resistance Temperature Detectors)</li>
+                    <li>Pressure measurement</li>
+                    <li>Light measurement (using LDRs in bridge configuration)</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Favourite</div>
+                <p>"Draw the circuit diagram of a Wheatstone bridge, state the balanced condition, and find the unknown resistance" — this is asked almost every year! Always draw the diamond-shaped diagram neatly with labels P, Q, R, S, G, E.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: CAREY FOSTER BRIDGE ==================== -->
+    <section class="section" id="carey-foster">
+        <h2 class="section-title">
+            <i class="fas fa-ruler-horizontal"></i> Carey Foster Bridge 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>What is a Carey Foster Bridge?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Carey Foster Bridge</div>
+                <p>A <strong>Carey Foster bridge</strong> is a modified form of the Wheatstone bridge used to <strong>compare two nearly equal resistances</strong> or to find the <strong>difference between two resistances</strong> with high accuracy. It uses a <strong>uniform resistance wire (bridge wire)</strong> along which a jockey can slide to find the balance point.</p>
+            </div>
+
+            <h3>Construction</h3>
+            <ul>
+                <li>A <strong>uniform wire</strong> of length 100 cm (usually constantan or manganin) stretched on a meter scale.</li>
+                <li><strong>Two resistances</strong> P and Q connected in two gaps of the bridge.</li>
+                <li><strong>Two known resistances</strong> R and S (or one known + one unknown) in the other two gaps.</li>
+                <li>A <strong>galvanometer</strong> connected between the junction of P, Q and a sliding <strong>jockey</strong> on the wire.</li>
+                <li>A <strong>battery</strong> to supply current.</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Carey+Foster+bridge+circuit+diagram+meter+bridge+wire" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.9:</strong> Carey Foster Bridge — circuit diagram with bridge wire, gaps, galvanometer</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Working Principle</h3>
+            <p>The Carey Foster bridge works on the <strong>Wheatstone bridge principle</strong>. The jockey is slid along the wire until the galvanometer shows zero deflection (balance point). The balance point position is noted.</p>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.8 — Carey Foster Bridge:</strong></p>
+                <p>If the balance point is at distance l₁ from one end with resistances in one arrangement, and at l₂ after interchanging the resistances:</p>
+                <p>\[ S - R = (l_1 - l_2) \times \rho \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>S − R</strong> = difference of the two resistances</li>
+                    <li><strong>l₁, l₂</strong> = balance lengths (in cm)</li>
+                    <li><strong>ρ</strong> = resistance per unit length of the bridge wire (Ω/cm)</li>
+                </ul>
+            </div>
+
+            <h3>⭐ Applications of Carey Foster Bridge</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Applications</div>
+                <ol>
+                    <li><strong>Comparing two nearly equal resistances:</strong> By finding the difference between them accurately.</li>
+                    <li><strong>Finding resistance per unit length (ρ)</strong> of the bridge wire using known resistance standards.</li>
+                    <li><strong>Finding the specific resistance (resistivity)</strong> of the wire material.</li>
+                    <li><strong>Temperature coefficient of resistance</strong> measurement.</li>
+                    <li><strong>Calibration</strong> of resistance standards.</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 10: EMF & TERMINAL PD ==================== -->
+    <section class="section" id="emf">
+        <h2 class="section-title">
+            <i class="fas fa-battery-full"></i> EMF & Terminal Potential Difference 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>⭐ Electromotive Force (EMF)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — EMF</div>
+                <p><strong>Electromotive Force (EMF or ε)</strong> is the <strong>total potential difference</strong> between the terminals of a cell (or battery) when <strong>no current</strong> is drawn from it (i.e., in open circuit condition). It is the maximum voltage a cell can provide.</p>
+                <p>It represents the <strong>work done per unit charge</strong> by the cell in moving a charge through the complete circuit (including inside the cell).</p>
+                <p><strong>SI Unit:</strong> Volt (V).</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Misleading Name!</div>
+                <p>Despite its name, EMF is NOT a force — it is a <strong>voltage</strong> (potential difference). The name is historical and stuck. Always remember: EMF is measured in Volts, not Newtons!</p>
+            </div>
+
+            <h3>⭐ Terminal Potential Difference (TPD)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Terminal Potential Difference</div>
+                <p><strong>Terminal Potential Difference (V)</strong> is the <strong>potential difference between the terminals of a cell</strong> when <strong>current is flowing</strong> (i.e., in closed circuit / when the cell is in use).</p>
+                <p>It is always <strong>less than the EMF</strong> when current flows (because some voltage is "lost" inside the cell due to internal resistance).</p>
+            </div>
+
+            <h3>Internal Resistance (r)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Internal Resistance</div>
+                <p><strong>Internal resistance (r)</strong> is the resistance offered by the <strong>electrolyte and electrodes inside the cell</strong> to the flow of current. Every real cell has some internal resistance.</p>
+            </div>
+
+            <h3>⭐ Relationship between EMF, Terminal PD, and Internal Resistance</h3>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.9 — EMF, TPD & Internal Resistance:</strong></p>
+                <p>\[ \varepsilon = V + Ir = IR + Ir = I(R + r) \]</p>
+                <p>Or: \[ V = \varepsilon - Ir \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>ε</strong> = EMF of the cell (V)</li>
+                    <li><strong>V</strong> = terminal potential difference (V)</li>
+                    <li><strong>I</strong> = current flowing (A)</li>
+                    <li><strong>r</strong> = internal resistance of cell (Ω)</li>
+                    <li><strong>R</strong> = external resistance (Ω)</li>
+                    <li><strong>Ir</strong> = voltage drop across internal resistance (lost voltage)</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points</div>
+                <ul>
+                    <li>When I = 0 (open circuit): V = ε. Terminal PD = EMF.</li>
+                    <li>When I > 0 (closed circuit): V < ε. Terminal PD is less than EMF.</li>
+                    <li>The difference (ε − V) = Ir = voltage drop across internal resistance.</li>
+                    <li>If internal resistance r = 0 (ideal cell): V = ε always.</li>
+                    <li>Larger internal resistance → more voltage lost inside → less voltage available externally.</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=EMF+terminal+potential+difference+internal+resistance+cell+circuit+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.10:</strong> Cell with EMF ε, internal resistance r, external resistance R showing V and Ir</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 11: HEATING EFFECT ==================== -->
+    <section class="section" id="heating">
+        <h2 class="section-title">
+            <i class="fas fa-fire"></i> Heating Effect, Electric Power & Energy 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>⭐ Heating Effect of Current (Joule's Law of Heating)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Heating Effect</div>
+                <p>When electric current flows through a conductor, the conductor gets <strong>heated</strong>. This is because the moving electrons collide with the atoms/ions of the conductor, transferring their kinetic energy as <strong>heat energy</strong>. This is called the <strong>heating effect of current</strong> or <strong>Joule heating</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.10 — Joule's Law of Heating:</strong></p>
+                <p>\[ H = I^2 R t \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>H</strong> = heat produced (Joule, J)</li>
+                    <li><strong>I</strong> = current (Ampere, A)</li>
+                    <li><strong>R</strong> = resistance (Ohm, Ω)</li>
+                    <li><strong>t</strong> = time (second, s)</li>
+                </ul>
+                <p>In calories: H = I²Rt / 4.2 (since 1 cal = 4.2 J)</p>
+            </div>
+
+            <p><strong>Examples of heating effect:</strong> Electric heater, electric iron, electric kettle, toaster, incandescent bulb, fuse wire, electric geyser.</p>
+
+            <h3>⭐ Electric Power (P)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Power</div>
+                <p><strong>Electric power</strong> is the <strong>rate at which electrical energy is consumed</strong> (or converted to other forms of energy) in a circuit.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.11 — Electric Power:</strong></p>
+                <p>\[ P = \frac{W}{t} = VI = I^2R = \frac{V^2}{R} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>P</strong> = power (Watt, W)</li>
+                    <li><strong>V</strong> = voltage (V)</li>
+                    <li><strong>I</strong> = current (A)</li>
+                    <li><strong>R</strong> = resistance (Ω)</li>
+                    <li><strong>W</strong> = energy consumed (J)</li>
+                    <li><strong>t</strong> = time (s)</li>
+                </ul>
+                <p><strong>SI Unit:</strong> <strong>Watt (W)</strong>. 1 Watt = 1 Joule / 1 second = 1 Volt × 1 Ampere.</p>
+                <p>Larger units: <strong>1 kilowatt (kW)</strong> = 1000 W. <strong>1 horsepower (HP)</strong> = 746 W.</p>
+            </div>
+
+            <h3>⭐ Electric Energy (W)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Energy</div>
+                <p><strong>Electric energy</strong> is the <strong>total work done</strong> (or total energy consumed) by the current in a given time.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 4.12 — Electric Energy:</strong></p>
+                <p>\[ W = Pt = VIt = I^2Rt = \frac{V^2}{R} \times t \]</p>
+                <p><strong>SI Unit:</strong> Joule (J).</p>
+                <p><strong>Commercial unit:</strong> <strong>kilowatt-hour (kWh)</strong> = 1 unit of electricity.</p>
+                <p>\[ 1 \text{ kWh} = 1000 \times 3600 = 3.6 \times 10^6 \text{ J} = 3.6 \text{ MJ} \]</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Very Important for Exam!</div>
+                <p><strong>1 kWh = 3.6 × 10⁶ J</strong>. This conversion is asked in every exam. Also remember: <strong>P = VI = I²R = V²/R</strong> — four forms of the same formula!</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Electricity Bill Calculation</div>
+                <p>Electricity bill is calculated in <strong>units (kWh)</strong>:</p>
+                <p>Energy consumed = Power (kW) × Time (hours)</p>
+                <p>Example: A 100 W bulb running for 10 hours = 0.1 kW × 10 h = 1 kWh = 1 unit.</p>
+                <p>If cost per unit = ₹8, then bill = 1 × 8 = <strong>₹8</strong>.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 12: THERMOELECTRIC EFFECT ==================== -->
+    <section class="section" id="thermoelectric">
+        <h2 class="section-title">
+            <i class="fas fa-thermometer-half"></i> Thermoelectric Effects — Seebeck & Peltier 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>What is Thermoelectricity?</h3>
+            <p><strong>Thermoelectricity</strong> deals with the direct conversion of <strong>heat energy into electrical energy</strong> (and vice versa) at the junction of two different metals. There are two main effects:</p>
+
+            <h3>⭐ Seebeck Effect</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Seebeck Effect</div>
+                <p>The <strong>Seebeck effect</strong> states that when the <strong>two junctions</strong> of a circuit made of <strong>two different metals</strong> (called a thermocouple) are maintained at <strong>different temperatures</strong>, an <strong>EMF (voltage) is generated</strong> and a <strong>current flows</strong> in the circuit. This EMF is called <strong>thermo-EMF</strong>.</p>
+                <p>Discovered by <strong>Thomas Seebeck</strong> in 1821.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> How Seebeck Effect Works</div>
+                <ol>
+                    <li>Take two different metal wires (e.g., copper and iron).</li>
+                    <li>Join their ends to form two junctions — creating a loop (thermocouple).</li>
+                    <li>Keep one junction <strong>hot</strong> and the other <strong>cold</strong>.</li>
+                    <li>Due to the temperature difference, free electrons in the two metals move at different rates, creating a potential difference.</li>
+                    <li>This causes a small <strong>current to flow</strong> in the circuit.</li>
+                    <li>The magnitude of thermo-EMF depends on:
+                        <ul>
+                            <li>The temperature difference between the two junctions</li>
+                            <li>The nature (type) of the two metals</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Seebeck+effect+thermocouple+hot+cold+junction+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.11:</strong> Seebeck effect — thermocouple with hot and cold junctions, current flow</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Applications of Seebeck Effect</div>
+                <ol>
+                    <li><strong>Thermocouple thermometer:</strong> Used to measure temperatures (especially high temperatures in furnaces, industrial processes)</li>
+                    <li><strong>Thermoelectric generator (TEG):</strong> Converts waste heat directly into electricity</li>
+                    <li><strong>Power generation in space:</strong> Radioisotope thermoelectric generators (RTGs) used in space probes</li>
+                    <li><strong>Temperature sensing</strong> in industrial and scientific applications</li>
+                </ol>
+            </div>
+
+            <h3>⭐ Peltier Effect</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Peltier Effect</div>
+                <p>The <strong>Peltier effect</strong> is the <strong>reverse of the Seebeck effect</strong>. It states that when an <strong>electric current is passed through a junction</strong> of two different metals (thermocouple), <strong>heat is either absorbed or released</strong> at the junction, depending on the direction of current.</p>
+                <p>One junction gets <strong>heated</strong> and the other gets <strong>cooled</strong>.</p>
+                <p>Discovered by <strong>Jean Peltier</strong> in 1834.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> How Peltier Effect Works</div>
+                <ul>
+                    <li>Pass current through a thermocouple (two different metals joined).</li>
+                    <li>At one junction, heat is <strong>absorbed</strong> (cooling effect).</li>
+                    <li>At the other junction, heat is <strong>released</strong> (heating effect).</li>
+                    <li>If the current direction is <strong>reversed</strong>, the hot and cold junctions <strong>swap</strong>.</li>
+                    <li>The heat absorbed/released is proportional to the current and time.</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Peltier+effect+thermoelectric+cooling+heating+junction+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.12:</strong> Peltier effect — current through thermocouple causing one junction to cool and other to heat</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Applications of Peltier Effect</div>
+                <ol>
+                    <li><strong>Thermoelectric cooler (Peltier cooler):</strong> Used in small refrigerators, portable coolers, CPU coolers in computers</li>
+                    <li><strong>Cooling of electronic components:</strong> Laser diodes, CCD sensors in cameras</li>
+                    <li><strong>Mini-fridges:</strong> in hotel rooms, cars (cigarette lighter powered)</li>
+                    <li><strong>Medical:</strong> Cooling of biological samples, temperature control in lab equipment</li>
+                    <li><strong>Dehumidifiers:</strong> Small Peltier-based dehumidifiers</li>
+                </ol>
+            </div>
+
+            <h3>⚖️ Comparison: Seebeck vs Peltier Effect</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Property</th><th>Seebeck Effect</th><th>Peltier Effect</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Conversion</strong></td><td>Heat → Electricity</td><td>Electricity → Heat/Cooling</td></tr>
+                        <tr><td><strong>Input</strong></td><td>Temperature difference</td><td>Electric current</td></tr>
+                        <tr><td><strong>Output</strong></td><td>EMF (voltage) & current</td><td>Heating at one junction, cooling at other</td></tr>
+                        <tr><td><strong>Discovered by</strong></td><td>Thomas Seebeck (1821)</td><td>Jean Peltier (1834)</td></tr>
+                        <tr><td><strong>Relationship</strong></td><td>Direct effect</td><td>Reverse of Seebeck effect</td></tr>
+                        <tr><td><strong>Application</strong></td><td>Thermocouple thermometer, TEG</td><td>Peltier cooler, mini-fridge</td></tr>
+                        <tr><td><strong>Reversible?</strong></td><td>Yes</td><td>Yes (reverse current → swap hot/cold)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 13: SOLVED NUMERICALS ==================== -->
+    <section class="section" id="numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Solved Numerical Problems 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <!-- Numerical 1 -->
+            <h3>Numerical 1: Ohm's Law</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A current of 2.5 A flows through a resistor when a potential difference of 50 V is applied. Find the resistance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>R = V/I = 50/2.5</p>
+                <p class="formula answer"><strong>R = 20 Ω</strong></p>
+            </div>
+
+            <!-- Numerical 2 -->
+            <h3>Numerical 2: Resistance of a Wire</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A copper wire is 2 m long and has a cross-sectional area of 1 mm². If the resistivity of copper is 1.7 × 10⁻⁸ Ω·m, find its resistance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>l = 2 m, A = 1 mm² = 1 × 10⁻⁶ m², ρ = 1.7 × 10⁻⁸ Ω·m</p>
+                </div>
+                <div class="step" data-step="Using R = ρl/A">
+                    <p>R = (1.7 × 10⁻⁸ × 2) / (1 × 10⁻⁶)</p>
+                    <p>R = 3.4 × 10⁻⁸ / 10⁻⁶ = 3.4 × 10⁻²</p>
+                    <p class="formula answer"><strong>R = 0.034 Ω</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 3 -->
+            <h3>Numerical 3: Resistors in Series & Parallel</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Three resistors of 4 Ω, 6 Ω, and 12 Ω are connected (a) in series, (b) in parallel. Find the equivalent resistance in each case.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="(a) Series">
+                    <p>R<sub>eq</sub> = 4 + 6 + 12 = <strong>22 Ω</strong></p>
+                </div>
+                <div class="step" data-step="(b) Parallel">
+                    <p>1/R<sub>eq</sub> = 1/4 + 1/6 + 1/12 = 3/12 + 2/12 + 1/12 = 6/12 = 1/2</p>
+                    <p class="formula answer"><strong>R<sub>eq</sub> = 2 Ω</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 4 -->
+            <h3>Numerical 4: Wheatstone Bridge ⭐</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>In a Wheatstone bridge, P = 100 Ω, Q = 200 Ω, R = 40 Ω. Find the value of S for the bridge to be balanced.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>At balance: P/Q = R/S</p>
+                <p>100/200 = 40/S</p>
+                <p>S = (200 × 40)/100 = 8000/100</p>
+                <p class="formula answer"><strong>S = 80 Ω</strong></p>
+            </div>
+
+            <!-- Numerical 5 -->
+            <h3>Numerical 5: EMF & Internal Resistance ⭐</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A cell of EMF 2 V and internal resistance 0.5 Ω is connected to an external resistance of 4.5 Ω. Find (a) the current, (b) the terminal potential difference.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="(a) Current">
+                    <p>I = ε/(R + r) = 2/(4.5 + 0.5) = 2/5</p>
+                    <p class="formula answer"><strong>I = 0.4 A</strong></p>
+                </div>
+                <div class="step" data-step="(b) Terminal PD">
+                    <p>V = ε − Ir = 2 − (0.4 × 0.5) = 2 − 0.2</p>
+                    <p class="formula answer"><strong>V = 1.8 V</strong></p>
+                    <p>(Note: V < ε because of internal resistance drop.)</p>
+                </div>
+            </div>
+
+            <!-- Numerical 6 -->
+            <h3>Numerical 6: Electric Power ⭐</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>An electric heater rated 1000 W, 220 V is used for 3 hours. Calculate (a) the current drawn, (b) the resistance, (c) the energy consumed in kWh and Joules.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="(a) Current">
+                    <p>P = VI → I = P/V = 1000/220</p>
+                    <p class="formula answer"><strong>I = 4.545 A ≈ 4.55 A</strong></p>
+                </div>
+                <div class="step" data-step="(b) Resistance">
+                    <p>R = V²/P = (220)²/1000 = 48400/1000</p>
+                    <p class="formula answer"><strong>R = 48.4 Ω</strong></p>
+                </div>
+                <div class="step" data-step="(c) Energy">
+                    <p>In kWh: W = P × t = 1 kW × 3 h = <strong>3 kWh = 3 units</strong></p>
+                    <p>In Joules: W = 3 × 3.6 × 10⁶ = <strong>10.8 × 10⁶ J = 10.8 MJ</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 7 -->
+            <h3>Numerical 7: Heat Produced (Joule's Law)</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A current of 5 A flows through a resistance of 20 Ω for 10 minutes. Calculate the heat generated in Joules and calories.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>I = 5 A, R = 20 Ω, t = 10 min = 600 s</p>
+                </div>
+                <div class="step" data-step="Heat in Joules">
+                    <p>H = I²Rt = (5)² × 20 × 600 = 25 × 20 × 600</p>
+                    <p class="formula answer"><strong>H = 300,000 J = 300 kJ</strong></p>
+                </div>
+                <div class="step" data-step="Heat in Calories">
+                    <p>H = 300000/4.2 = <strong>71428.6 cal ≈ 71.4 kcal</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 8 -->
+            <h3>Numerical 8: Electricity Bill</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A house has: five 60 W bulbs used for 6 hours/day, two 100 W fans for 10 hours/day, and one 1000 W heater for 2 hours/day. Calculate the monthly electricity bill if the rate is ₹7 per unit. (Assume 30 days)</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Daily Consumption">
+                    <p>Bulbs: 5 × 60 × 6 = 1800 Wh = 1.8 kWh</p>
+                    <p>Fans: 2 × 100 × 10 = 2000 Wh = 2.0 kWh</p>
+                    <p>Heater: 1 × 1000 × 2 = 2000 Wh = 2.0 kWh</p>
+                    <p>Total daily = 1.8 + 2.0 + 2.0 = <strong>5.8 kWh/day</strong></p>
+                </div>
+                <div class="step" data-step="Monthly Consumption">
+                    <p>Monthly = 5.8 × 30 = <strong>174 kWh = 174 units</strong></p>
+                </div>
+                <div class="step" data-step="Bill">
+                    <p>Bill = 174 × 7</p>
+                    <p class="formula answer"><strong>Monthly bill = ₹1218</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 9 -->
+            <h3>Numerical 9: KCL Application</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>At a junction, currents of 5 A, 3 A, and 2 A flow in. If two currents of 4 A and I flow out, find I.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>By KCL: ΣI<sub>in</sub> = ΣI<sub>out</sub></p>
+                <p>5 + 3 + 2 = 4 + I</p>
+                <p>10 = 4 + I</p>
+                <p class="formula answer"><strong>I = 6 A</strong></p>
+            </div>
+
+            <!-- Numerical 10 -->
+            <h3>Numerical 10: Mixed Resistance Circuit</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Two resistors of 6 Ω each are in parallel, and this combination is in series with a 3 Ω resistor. A 12 V battery is connected across the circuit. Find (a) total resistance, (b) total current, (c) current through each 6 Ω resistor.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="(a) Total Resistance">
+                    <p>Parallel: R<sub>p</sub> = (6×6)/(6+6) = 36/12 = 3 Ω</p>
+                    <p>Series: R<sub>total</sub> = 3 + 3 = <strong>6 Ω</strong></p>
+                </div>
+                <div class="step" data-step="(b) Total Current">
+                    <p>I = V/R = 12/6 = <strong>2 A</strong></p>
+                </div>
+                <div class="step" data-step="(c) Current through each 6 Ω">
+                    <p>Since both parallel resistors are equal (6 Ω each), current divides equally:</p>
+                    <p class="formula answer"><strong>Each carries 1 A</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ==================== SECTION 14: KEY FORMULAS ==================== -->
+    <section class="section" id="formulas">
+        <h2 class="section-title">
+            <i class="fas fa-superscript"></i> Key Formulas Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Formula Sheet</div>
+                <p>All important formulas from Current Electricity collected in one place for quick revision.</p>
+            </div>
+
+            <h3>A. Current, Resistance & Resistivity</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>1. Electric Current</h4>
+                    <p>\( I = \frac{Q}{t} \)</p>
+                    <p><small>I in Ampere, Q in Coulomb, t in second</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>2. Ohm's Law 🔥🔥</h4>
+                    <p>\( V = IR \)</p>
+                    <p><small>Also: I = V/R, R = V/I</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>3. Resistance of Wire</h4>
+                    <p>\( R = \rho \frac{l}{A} \)</p>
+                    <p><small>ρ = resistivity, l = length, A = area</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>4. Resistivity</h4>
+                    <p>\( \rho = \frac{RA}{l} \)</p>
+                    <p><small>Unit: Ω·m</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>5. Conductance</h4>
+                    <p>\( G = \frac{1}{R} \)</p>
+                    <p><small>Unit: Siemens (S)</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>6. Conductivity</h4>
+                    <p>\( \sigma = \frac{1}{\rho} \)</p>
+                    <p><small>Unit: S/m</small></p>
+                </div>
+            </div>
+
+            <h3>B. Resistance Combinations</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>7. Series Resistance 🔥</h4>
+                    <p>\( R_{eq} = R_1 + R_2 + R_3 + \ldots \)</p>
+                    <p><small>Current same, voltage divides</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>8. Parallel Resistance 🔥</h4>
+                    <p>\( \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \ldots \)</p>
+                    <p><small>Voltage same, current divides</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>9. Two Resistors in Parallel</h4>
+                    <p>\( R_{eq} = \frac{R_1R_2}{R_1 + R_2} \)</p>
+                    <p><small>Shortcut for two resistors only</small></p>
+                </div>
+            </div>
+
+            <h3>C. Kirchhoff & Bridges</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>10. KCL 🔥</h4>
+                    <p>\( \sum I_{in} = \sum I_{out} \)</p>
+                    <p><small>Conservation of charge at junction</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>11. KVL 🔥</h4>
+                    <p>\( \sum V = 0 \) or \( \sum \varepsilon = \sum IR \)</p>
+                    <p><small>Conservation of energy in loop</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>12. Wheatstone Bridge 🔥🔥</h4>
+                    <p>\( \frac{P}{Q} = \frac{R}{S} \)</p>
+                    <p><small>Balanced condition (G = 0)</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>13. Carey Foster Bridge</h4>
+                    <p>\( S - R = (l_1 - l_2)\rho \)</p>
+                    <p><small>For comparing nearly equal resistances</small></p>
+                </div>
+            </div>
+
+            <h3>D. EMF, Power, Heating</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>14. EMF & Internal Resistance 🔥</h4>
+                    <p>\( \varepsilon = V + Ir = I(R+r) \)</p>
+                    <p><small>Also: V = ε − Ir</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>15. Current from Cell</h4>
+                    <p>\( I = \frac{\varepsilon}{R + r} \)</p>
+                    <p><small>R = external resistance, r = internal resistance</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>16. Joule's Heating 🔥</h4>
+                    <p>\( H = I^2Rt \)</p>
+                    <p><small>Heat in Joules</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>17. Electric Power 🔥🔥</h4>
+                    <p>\( P = VI = I^2R = \frac{V^2}{R} \)</p>
+                    <p><small>Unit: Watt (W)</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>18. Electric Energy 🔥</h4>
+                    <p>\( W = Pt = VIt = I^2Rt = \frac{V^2}{R}t \)</p>
+                    <p><small>Unit: Joule (J)</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>19. Commercial Unit</h4>
+                    <p>\( 1 \text{ kWh} = 3.6 \times 10^6 \text{ J} \)</p>
+                    <p><small>1 unit of electricity</small></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 15: DEFINITIONS ==================== -->
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-spell-check"></i> Important Definitions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-grid">
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 1. Electric Current</div>
+                    <p>The rate of flow of electric charge through a conductor. I = Q/t. SI Unit: Ampere (A). 1 A = 1 C/s.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 2. Direct Current (DC)</div>
+                    <p>Current that flows in one direction only and generally has constant magnitude. Source: battery, cell, solar cell.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 3. Alternating Current (AC)</div>
+                    <p>Current that changes direction periodically and whose magnitude varies sinusoidally with time. Source: mains supply, AC generator.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 4. Resistance</div>
+                    <p>The opposition offered by a conductor to the flow of electric current through it. R = V/I. SI Unit: Ohm (Ω).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 5. Specific Resistance / Resistivity</div>
+                    <p>The resistance of a material of unit length and unit cross-sectional area. ρ = RA/l. SI Unit: Ohm-metre (Ω·m).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 6. Conductance</div>
+                    <p>The reciprocal of resistance. G = 1/R. It measures how easily current flows. SI Unit: Siemens (S).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 7. Specific Conductance / Conductivity</div>
+                    <p>The reciprocal of resistivity. σ = 1/ρ. SI Unit: Siemens per metre (S/m).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 8. Ohm's Law</div>
+                    <p>At constant temperature, the current through a conductor is directly proportional to the potential difference across its ends. V = IR.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 9. Kirchhoff's Current Law (KCL)</div>
+                    <p>The algebraic sum of all currents meeting at a junction is zero. Sum of currents entering = sum of currents leaving. Based on conservation of charge.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 10. Kirchhoff's Voltage Law (KVL)</div>
+                    <p>The algebraic sum of all potential differences around any closed loop in a circuit is zero. Based on conservation of energy.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 11. Wheatstone Bridge</div>
+                    <p>An arrangement of four resistances in a diamond shape used to measure an unknown resistance accurately. Balanced condition: P/Q = R/S, when galvanometer shows zero deflection.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 12. Carey Foster Bridge</div>
+                    <p>A modified Wheatstone bridge used to compare two nearly equal resistances or to find their difference using a uniform wire and sliding contact (jockey).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 13. EMF</div>
+                    <p>The total potential difference between the terminals of a cell when no current flows through it (open circuit). SI Unit: Volt (V).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 14. Terminal Potential Difference</div>
+                    <p>The potential difference between the terminals of a cell when current is being drawn from it (closed circuit). V = ε − Ir.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 15. Internal Resistance</div>
+                    <p>The resistance offered to the flow of current by the electrolyte and electrodes inside a cell. Symbol: r. SI Unit: Ohm (Ω).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 16. Heating Effect of Current</div>
+                    <p>The production of heat in a conductor when current flows through it due to collision of electrons with atoms. H = I²Rt.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 17. Electric Power</div>
+                    <p>The rate at which electric energy is consumed or converted in a circuit. P = VI = I²R = V²/R. SI Unit: Watt (W).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 18. Electric Energy</div>
+                    <p>The total electrical work done or energy consumed in a given time. W = Pt = VIt. SI Unit: Joule (J). Commercial unit: kilowatt-hour (kWh).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 19. Seebeck Effect</div>
+                    <p>When two junctions of two dissimilar metals are kept at different temperatures, a thermo-EMF is produced and current flows in the circuit.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 20. Peltier Effect</div>
+                    <p>When current is passed through a junction of two dissimilar metals, heat is absorbed at one junction and released at the other. It is the reverse of the Seebeck effect.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 16: COMPARISONS ==================== -->
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1. DC vs AC 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Property</th><th>DC</th><th>AC</th></tr></thead>
+                    <tbody>
+                        <tr><td>Direction</td><td>One direction only</td><td>Changes periodically</td></tr>
+                        <tr><td>Magnitude</td><td>Constant</td><td>Varies sinusoidally</td></tr>
+                        <tr><td>Frequency</td><td>0 Hz</td><td>50 Hz (India)</td></tr>
+                        <tr><td>Source</td><td>Battery, cell, solar cell</td><td>Mains, AC generator</td></tr>
+                        <tr><td>Transmission</td><td>Difficult over long distance</td><td>Easy and economical</td></tr>
+                        <tr><td>Uses</td><td>Electronics, charging</td><td>Home appliances, industry</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>2. Resistance vs Resistivity</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Property</th><th>Resistance</th><th>Resistivity</th></tr></thead>
+                    <tbody>
+                        <tr><td>Meaning</td><td>Opposition offered by a conductor</td><td>Material property causing resistance</td></tr>
+                        <tr><td>Depends on</td><td>Length, area, material, temperature</td><td>Only material and temperature</td></tr>
+                        <tr><td>Formula</td><td>R = ρl/A</td><td>ρ = RA/l</td></tr>
+                        <tr><td>Symbol</td><td>R</td><td>ρ</td></tr>
+                        <tr><td>Unit</td><td>Ohm (Ω)</td><td>Ohm-metre (Ω·m)</td></tr>
+                        <tr><td>Nature</td><td>For a specific conductor</td><td>For the material itself</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3. Series vs Parallel Resistors 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Property</th><th>Series</th><th>Parallel</th></tr></thead>
+                    <tbody>
+                        <tr><td>Current</td><td>Same through all</td><td>Divides among branches</td></tr>
+                        <tr><td>Voltage</td><td>Divides</td><td>Same across each</td></tr>
+                        <tr><td>Formula</td><td>R = R₁ + R₂ + ...</td><td>1/R = 1/R₁ + 1/R₂ + ...</td></tr>
+                        <tr><td>Equivalent R</td><td>Greater than largest</td><td>Less than smallest</td></tr>
+                        <tr><td>Failure of one resistor</td><td>Whole circuit breaks</td><td>Other branches still work</td></tr>
+                        <tr><td>Use</td><td>Voltage division</td><td>Current division, house wiring</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>4. EMF vs Terminal Potential Difference</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Property</th><th>EMF (ε)</th><th>Terminal PD (V)</th></tr></thead>
+                    <tbody>
+                        <tr><td>Condition</td><td>Open circuit (no current)</td><td>Closed circuit (current flows)</td></tr>
+                        <tr><td>Meaning</td><td>Maximum voltage of cell</td><td>Actual voltage across terminals in use</td></tr>
+                        <tr><td>Relation</td><td>ε = V + Ir</td><td>V = ε − Ir</td></tr>
+                        <tr><td>Magnitude</td><td>Greater</td><td>Less (if current flows)</td></tr>
+                        <tr><td>Internal drop</td><td>Not included</td><td>Reduced by internal drop Ir</td></tr>
+                        <tr><td>If I = 0</td><td>ε = V</td><td>V = ε</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5. Seebeck vs Peltier Effect</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Property</th><th>Seebeck Effect</th><th>Peltier Effect</th></tr></thead>
+                    <tbody>
+                        <tr><td>Conversion</td><td>Heat → Electricity</td><td>Electricity → Heat/Cooling</td></tr>
+                        <tr><td>Cause</td><td>Temperature difference</td><td>Electric current</td></tr>
+                        <tr><td>Output</td><td>Thermo-EMF, current</td><td>Heating and cooling at junctions</td></tr>
+                        <tr><td>Nature</td><td>Direct effect</td><td>Reverse effect</td></tr>
+                        <tr><td>Application</td><td>Thermocouple, TEG</td><td>Peltier cooler, mini-fridge</td></tr>
+                        <tr><td>Discoverer</td><td>Seebeck</td><td>Peltier</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 17: MCQ BANK ==================== -->
+    <section class="section" id="mcqs">
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i> MCQ Bank (Multiple Choice Questions)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q 4.1</h4>
+                    <p>The SI unit of electric current is:</p>
+                    <ul class="options">
+                        <li>a. Volt</li>
+                        <li>b. Coulomb</li>
+                        <li>c. Ampere</li>
+                        <li>d. Ohm</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_1">
+                        <strong>Answer: c. Ampere</strong>
+                        <p>Current I = Q/t. SI unit = Coulomb/second = Ampere (A).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.2</h4>
+                    <p>Ohm's law is given by:</p>
+                    <ul class="options">
+                        <li>a. P = VI</li>
+                        <li>b. V = IR</li>
+                        <li>c. I = Q/t</li>
+                        <li>d. H = I²Rt</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_2">
+                        <strong>Answer: b. V = IR</strong>
+                        <p>Ohm's law relates voltage, current, and resistance: V = IR.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.3</h4>
+                    <p>The resistance of a wire increases with:</p>
+                    <ul class="options">
+                        <li>a. Increase in area</li>
+                        <li>b. Decrease in length</li>
+                        <li>c. Increase in length</li>
+                        <li>d. Decrease in temperature (always)</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_3">
+                        <strong>Answer: c. Increase in length</strong>
+                        <p>R = ρl/A. So resistance is directly proportional to length and inversely proportional to area.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.4</h4>
+                    <p>The colour code for 27 kΩ ± 5% is:</p>
+                    <ul class="options">
+                        <li>a. Red, Violet, Orange, Gold</li>
+                        <li>b. Red, Violet, Red, Gold</li>
+                        <li>c. Orange, Violet, Red, Gold</li>
+                        <li>d. Brown, Black, Orange, Gold</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_4">
+                        <strong>Answer: a. Red, Violet, Orange, Gold</strong>
+                        <p>27 kΩ = 27 × 10³. 2 = Red, 7 = Violet, 10³ = Orange, ±5% = Gold.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.5</h4>
+                    <p>The equivalent resistance of 2 Ω and 3 Ω in series is:</p>
+                    <ul class="options">
+                        <li>a. 1.2 Ω</li>
+                        <li>b. 5 Ω</li>
+                        <li>c. 6 Ω</li>
+                        <li>d. 0.5 Ω</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_5">
+                        <strong>Answer: b. 5 Ω</strong>
+                        <p>Series resistances add directly: R = 2 + 3 = 5 Ω.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.6</h4>
+                    <p>The equivalent resistance of 2 Ω and 3 Ω in parallel is:</p>
+                    <ul class="options">
+                        <li>a. 5 Ω</li>
+                        <li>b. 1.2 Ω</li>
+                        <li>c. 6 Ω</li>
+                        <li>d. 0.67 Ω</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_6">
+                        <strong>Answer: b. 1.2 Ω</strong>
+                        <p>R = R₁R₂/(R₁ + R₂) = 2×3/(2+3) = 6/5 = 1.2 Ω.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.7</h4>
+                    <p>KCL is based on conservation of:</p>
+                    <ul class="options">
+                        <li>a. Energy</li>
+                        <li>b. Charge</li>
+                        <li>c. Momentum</li>
+                        <li>d. Mass</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_7">
+                        <strong>Answer: b. Charge</strong>
+                        <p>Kirchhoff's Current Law says current entering = current leaving at a junction. This is based on conservation of charge.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.8</h4>
+                    <p>KVL is based on conservation of:</p>
+                    <ul class="options">
+                        <li>a. Charge</li>
+                        <li>b. Energy</li>
+                        <li>c. Current</li>
+                        <li>d. Resistance</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_8">
+                        <strong>Answer: b. Energy</strong>
+                        <p>The sum of voltage rises equals sum of voltage drops in a loop. This is conservation of energy.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.9</h4>
+                    <p>In a balanced Wheatstone bridge:</p>
+                    <ul class="options">
+                        <li>a. P + Q = R + S</li>
+                        <li>b. P/Q = R/S</li>
+                        <li>c. P/R = Q/S</li>
+                        <li>d. PQ = RS</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_9">
+                        <strong>Answer: b. P/Q = R/S</strong>
+                        <p>This is the balance condition when the galvanometer shows zero deflection.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.10</h4>
+                    <p>The SI unit of electric power is:</p>
+                    <ul class="options">
+                        <li>a. Joule</li>
+                        <li>b. kWh</li>
+                        <li>c. Watt</li>
+                        <li>d. Volt</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_10">
+                        <strong>Answer: c. Watt</strong>
+                        <p>Power = energy per second. SI unit is Watt (W). 1 W = 1 J/s.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.11</h4>
+                    <p>1 kWh is equal to:</p>
+                    <ul class="options">
+                        <li>a. 1000 J</li>
+                        <li>b. 3600 J</li>
+                        <li>c. 3.6 × 10⁶ J</li>
+                        <li>d. 3.6 × 10³ J</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_11"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_11">
+                        <strong>Answer: c. 3.6 × 10⁶ J</strong>
+                        <p>1 kWh = 1000 W × 3600 s = 3.6 × 10⁶ J. This is the commercial unit of energy = 1 unit.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.12</h4>
+                    <p>The terminal potential difference of a cell is:</p>
+                    <ul class="options">
+                        <li>a. Greater than EMF</li>
+                        <li>b. Equal to EMF always</li>
+                        <li>c. Less than EMF when current flows</li>
+                        <li>d. Independent of current</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_12"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_12">
+                        <strong>Answer: c. Less than EMF when current flows</strong>
+                        <p>V = ε − Ir. When current flows, some voltage is lost across internal resistance, so terminal PD is less than EMF.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.13</h4>
+                    <p>Seebeck effect converts:</p>
+                    <ul class="options">
+                        <li>a. Electricity into heat</li>
+                        <li>b. Heat into electricity</li>
+                        <li>c. Heat into light</li>
+                        <li>d. Current into resistance</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_13"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_13">
+                        <strong>Answer: b. Heat into electricity</strong>
+                        <p>A temperature difference between two junctions of dissimilar metals creates a thermo-EMF. This is heat → electricity conversion.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.14</h4>
+                    <p>Peltier effect is:</p>
+                    <ul class="options">
+                        <li>a. Same as Seebeck effect</li>
+                        <li>b. Reverse of Seebeck effect</li>
+                        <li>c. Related to Ohm's law</li>
+                        <li>d. Used only in heaters</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_14"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_14">
+                        <strong>Answer: b. Reverse of Seebeck effect</strong>
+                        <p>Passing current through a thermocouple causes one junction to heat and the other to cool. It is the reverse of the Seebeck effect.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.15</h4>
+                    <p>The resistance per unit length of a wire depends on:</p>
+                    <ul class="options">
+                        <li>a. Length only</li>
+                        <li>b. Area only</li>
+                        <li>c. Resistivity and cross-sectional area</li>
+                        <li>d. Current only</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4_15"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4_15">
+                        <strong>Answer: c. Resistivity and cross-sectional area</strong>
+                        <p>Resistance per unit length = R/l = ρ/A. It depends on the material (ρ) and area (A), not total length.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 18: SHORT ANSWER QUESTIONS ==================== -->
+    <section class="section" id="short-qa">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions (2 Marks)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. Define electric current and state its SI unit.</h4>
+                <button class="toggle-btn" data-target="sa4_1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_1">
+                    <p>Electric current is the rate of flow of electric charge through a conductor. I = Q/t. Its SI unit is <strong>Ampere (A)</strong>. 1 A = 1 C/s. Conventional current flows from positive to negative terminal, though electrons actually move from negative to positive terminal.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. State Ohm's law and mention one limitation.</h4>
+                <button class="toggle-btn" data-target="sa4_2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_2">
+                    <p>Ohm's law states that the current flowing through a conductor is directly proportional to the potential difference across its ends, provided temperature and other physical conditions remain constant. V = IR.</p>
+                    <p><strong>Limitation:</strong> It is not valid for non-ohmic devices like diodes, transistors, electrolytes, or when temperature changes significantly.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Define resistivity and state its unit.</h4>
+                <button class="toggle-btn" data-target="sa4_3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_3">
+                    <p>Resistivity (specific resistance) is the resistance of a conductor of unit length and unit cross-sectional area. It is a property of the material. ρ = RA/l. SI Unit: <strong>Ohm-metre (Ω·m)</strong>. Low resistivity means good conductor; high resistivity means poor conductor.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. State Kirchhoff's two laws.</h4>
+                <button class="toggle-btn" data-target="sa4_4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_4">
+                    <p><strong>KCL:</strong> The sum of currents entering a junction equals the sum leaving it (ΣI = 0). Based on conservation of charge.</p>
+                    <p><strong>KVL:</strong> The algebraic sum of all voltages around a closed loop is zero (ΣV = 0). Based on conservation of energy.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. What is the balance condition of a Wheatstone bridge?</h4>
+                <button class="toggle-btn" data-target="sa4_5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_5">
+                    <p>A Wheatstone bridge is balanced when the galvanometer shows zero deflection, meaning no current flows through it. The balance condition is:</p>
+                    <p><strong>P/Q = R/S</strong></p>
+                    <p>where P, Q, R, and S are the four resistances in the bridge arms. At balance, potential at the two galvanometer points is equal.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. Distinguish between EMF and terminal potential difference.</h4>
+                <button class="toggle-btn" data-target="sa4_6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_6">
+                    <p><strong>EMF (ε):</strong> Voltage of a cell when no current flows (open circuit). It is the maximum voltage.</p>
+                    <p><strong>Terminal PD (V):</strong> Actual voltage across cell terminals when current flows (closed circuit). It is less than EMF due to internal resistance. Relation: V = ε − Ir.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q7. State Joule's law of heating.</h4>
+                <button class="toggle-btn" data-target="sa4_7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_7">
+                    <p>Joule's law of heating states that the heat produced in a conductor carrying current is directly proportional to the square of current, resistance of the conductor, and time for which current flows. H = I²Rt. SI unit of heat is Joule (J).</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q8. What is the commercial unit of electric energy? Convert it into Joules.</h4>
+                <button class="toggle-btn" data-target="sa4_8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_8">
+                    <p>The commercial unit of electric energy is <strong>kilowatt-hour (kWh)</strong>, also called one "unit" of electricity. It is the energy consumed by a 1 kW device in 1 hour.</p>
+                    <p><strong>1 kWh = 1000 × 3600 = 3.6 × 10⁶ J</strong>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q9. What is Seebeck effect?</h4>
+                <button class="toggle-btn" data-target="sa4_9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_9">
+                    <p>Seebeck effect is the phenomenon in which an EMF is produced in a circuit of two dissimilar metals when their two junctions are maintained at different temperatures. This thermo-EMF causes a current to flow in the circuit. It is used in thermocouples and thermoelectric generators.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q10. What is Peltier effect?</h4>
+                <button class="toggle-btn" data-target="sa4_10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4_10">
+                    <p>Peltier effect is the reverse of Seebeck effect. When current is passed through a junction of two dissimilar metals, heat is absorbed at one junction and released at the other. One junction becomes cold, the other hot. It is used in Peltier coolers and mini-fridges.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 19: LONG ANSWER QUESTIONS ==================== -->
+    <section class="section" id="long-qa">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. State and explain Ohm's law with V-I characteristics. Mention its limitations. [7 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la4_1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_1">
+                    <p><strong>Ohm's Law:</strong> At constant temperature and other physical conditions, current flowing through a conductor is directly proportional to the potential difference across its ends.</p>
+                    <p>V ∝ I → <strong>V = IR</strong>, where R is the constant of proportionality called resistance.</p>
+                    <p><strong>Explanation:</strong> If voltage doubles, current doubles (for same R). If resistance increases, current decreases.</p>
+                    <p><strong>V-I Graph:</strong> A straight line passing through the origin. Slope gives resistance R = V/I. A steeper slope means higher resistance.</p>
+                    <p>[Draw graph with V on x-axis, I on y-axis, straight line through origin]</p>
+                    <p><strong>Limitations:</strong></p>
+                    <ol>
+                        <li>Not valid for non-ohmic devices like diodes and transistors.</li>
+                        <li>Not valid if temperature changes.</li>
+                        <li>Not valid for electrolytes and gases.</li>
+                        <li>Not valid for semiconductors.</li>
+                    </ol>
+                    <p>Ohm's law is one of the most fundamental laws in electricity and is used in almost all circuit calculations.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. State Kirchhoff's laws and explain them with examples. [7 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la4_2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_2">
+                    <p><strong>Kirchhoff's First Law (KCL):</strong> The algebraic sum of currents at a junction is zero. Sum entering = sum leaving. Based on conservation of charge.</p>
+                    <p><strong>Example:</strong> If 3 A and 5 A enter a junction and 2 A and I leave, then 3+5 = 2+I → I = 6 A.</p>
+                    <p><strong>Kirchhoff's Second Law (KVL):</strong> The algebraic sum of all potential differences around a closed loop is zero. Sum of EMF = sum of IR drops. Based on conservation of energy.</p>
+                    <p><strong>Example:</strong> In a loop with battery 12 V and resistors 2 Ω and 4 Ω carrying current I: 12 = 2I + 4I → I = 2 A.</p>
+                    <p><strong>Sign Conventions:</strong></p>
+                    <ul>
+                        <li>Through resistor in direction of current → −IR</li>
+                        <li>Across battery from − to + → +E</li>
+                    </ul>
+                    <p>These laws are used to solve complex multi-loop circuits where Ohm's law alone is insufficient.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Explain Wheatstone bridge with circuit diagram and derive the balance condition. [7 marks] 🔥🔥🔥</h4>
+                <button class="toggle-btn" data-target="la4_3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_3">
+                    <p><strong>Wheatstone Bridge:</strong> An arrangement of four resistances P, Q, R, S in a diamond shape used to measure unknown resistance accurately.</p>
+                    <p>[Draw diamond circuit with A, B, C, D; P in AB, Q in BC, R in AD, S in DC, galvanometer between B and D, battery between A and C]</p>
+                    <p><strong>Balanced Condition:</strong> When galvanometer shows zero deflection, no current flows through BD. Therefore, potential at B = potential at D.</p>
+                    <p>Let current through P and Q branch = I₁ and through R and S branch = I₂.</p>
+                    <p>Potential drop from A to B = I₁P, from A to D = I₂R</p>
+                    <p>At balance: I₁P = I₂R ... (1)</p>
+                    <p>Potential drop from B to C = I₁Q, from D to C = I₂S</p>
+                    <p>At balance: I₁Q = I₂S ... (2)</p>
+                    <p>Dividing (1) by (2): P/Q = R/S</p>
+                    <p><strong>Balance Condition: P/Q = R/S</strong></p>
+                    <p>If S is unknown: S = QR/P</p>
+                    <p>Used for measuring unknown resistance, strain gauges, RTDs, pressure sensors.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. Explain the concept of EMF, terminal potential difference, and internal resistance. Derive the relation between them. [5 marks]</h4>
+                <button class="toggle-btn" data-target="la4_4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_4">
+                    <p><strong>EMF (ε):</strong> The potential difference between the terminals of a cell when no current flows (open circuit). Maximum voltage of the cell.</p>
+                    <p><strong>Terminal Potential Difference (V):</strong> The actual potential difference across the terminals of a cell when current is drawn.</p>
+                    <p><strong>Internal Resistance (r):</strong> The resistance inside the cell due to electrolyte and electrodes.</p>
+                    <p>When current I flows through the cell, a voltage drop Ir occurs inside the cell due to internal resistance.</p>
+                    <p>Therefore, EMF = Terminal PD + internal voltage drop</p>
+                    <p><strong>ε = V + Ir</strong></p>
+                    <p>Or: <strong>V = ε − Ir</strong></p>
+                    <p>If external resistance = R, then V = IR, so:</p>
+                    <p><strong>ε = I(R + r)</strong></p>
+                    <p>When I = 0 (open circuit), V = ε. When current flows, V < ε.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. State Joule's law of heating and derive expressions for electric power and electric energy. [7 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la4_5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_5">
+                    <p><strong>Joule's Law:</strong> Heat produced in a conductor carrying current is proportional to the square of current, resistance, and time.</p>
+                    <p><strong>H = I²Rt</strong></p>
+                    <p><strong>Derivation of Power:</strong></p>
+                    <p>Electrical work done = charge × potential difference = QV</p>
+                    <p>Since Q = It, work W = VIt</p>
+                    <p>Power = W/t = VIt/t = <strong>VI</strong></p>
+                    <p>Using Ohm's law:</p>
+                    <p>P = VI = (IR)I = <strong>I²R</strong></p>
+                    <p>Also, P = VI = V(V/R) = <strong>V²/R</strong></p>
+                    <p>So, <strong>P = VI = I²R = V²/R</strong></p>
+                    <p><strong>Electric Energy:</strong></p>
+                    <p>Energy consumed in time t = Power × time</p>
+                    <p><strong>W = Pt = VIt = I²Rt = (V²/R)t</strong></p>
+                    <p>SI unit: Joule (J). Commercial unit: kWh. 1 kWh = 3.6 × 10⁶ J.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. Explain the carbon resistor colour coding system with examples. [5 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la4_6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_6">
+                    <p>Carbon resistors use coloured bands to indicate their resistance value and tolerance.</p>
+                    <p><strong>4-band system:</strong></p>
+                    <ul>
+                        <li>1st band → first digit</li>
+                        <li>2nd band → second digit</li>
+                        <li>3rd band → multiplier</li>
+                        <li>4th band → tolerance</li>
+                    </ul>
+                    <p><strong>Colour values:</strong> Black 0, Brown 1, Red 2, Orange 3, Yellow 4, Green 5, Blue 6, Violet 7, Grey 8, White 9.</p>
+                    <p><strong>Tolerance:</strong> Gold ±5%, Silver ±10%, No band ±20%</p>
+                    <p><strong>Example 1:</strong> Red, Violet, Orange, Gold → 27 × 10³ = 27 kΩ ±5%</p>
+                    <p><strong>Example 2:</strong> Yellow, Violet, Red, Silver → 47 × 10² = 4.7 kΩ ±10%</p>
+                    <p><strong>Mnemonic:</strong> "BB ROY of Great Britain has a Very Good Wife"</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q7. Explain Seebeck and Peltier effects with applications. [5 marks]</h4>
+                <button class="toggle-btn" data-target="la4_7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_7">
+                    <p><strong>Seebeck Effect:</strong> When two junctions of two dissimilar metals are kept at different temperatures, a thermo-EMF is produced and current flows. This converts heat into electricity. Applications: thermocouple thermometer, thermoelectric generator, temperature sensing.</p>
+                    <p><strong>Peltier Effect:</strong> Reverse of Seebeck effect. When current is passed through a junction of two dissimilar metals, one junction gets heated and the other cooled. Applications: Peltier cooler, mini-fridge, CPU cooling, cooling of electronic components.</p>
+                    <p><strong>Difference:</strong> Seebeck = heat to electricity, Peltier = electricity to heat/cooling.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q8. Compare series and parallel combinations of resistances. [5 marks]</h4>
+                <button class="toggle-btn" data-target="la4_8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4_8">
+                    <p><strong>Series:</strong> Connected end to end. Current same through all. Voltage divides. R = R₁ + R₂ + ... Equivalent resistance greater than largest resistor. Used in voltage division.</p>
+                    <p><strong>Parallel:</strong> Connected across same two points. Voltage same across all. Current divides. 1/R = 1/R₁ + 1/R₂ + ... Equivalent resistance less than smallest. Used in house wiring because each appliance gets full voltage and can work independently.</p>
+                    <p>[Add comparison table with at least 6 points]</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 20: PRACTICE NUMERICALS ==================== -->
+    <section class="section" id="practice">
+        <h2 class="section-title">
+            <i class="fas fa-dumbbell"></i> Practice Numerical Problems
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>P1. A current of 0.5 A flows through a resistor when 12 V is applied. Find the resistance. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_1"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_1">
+                    <p>R = V/I = 12/0.5 = <strong>24 Ω</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P2. Find the equivalent resistance of 8 Ω and 12 Ω in parallel. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_2"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_2">
+                    <p>R = R₁R₂/(R₁ + R₂) = (8 × 12)/(8 + 12) = 96/20 = <strong>4.8 Ω</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P3. A 60 W bulb is connected to a 220 V supply. Find the current drawn and resistance of the bulb. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_3"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_3">
+                    <p>I = P/V = 60/220 = <strong>0.273 A</strong></p>
+                    <p>R = V²/P = (220)²/60 = 48400/60 = <strong>806.7 Ω</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P4. In a Wheatstone bridge, P = 10 Ω, Q = 25 Ω, R = 20 Ω. Find S for balance. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_4"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_4">
+                    <p>P/Q = R/S → 10/25 = 20/S</p>
+                    <p>S = (25 × 20)/10 = <strong>50 Ω</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P5. A current of 3 A flows through a heater of resistance 15 Ω for 20 minutes. Find the heat produced. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_5"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_5">
+                    <p>t = 20 min = 1200 s</p>
+                    <p>H = I²Rt = 3² × 15 × 1200 = 9 × 15 × 1200</p>
+                    <p>H = <strong>162000 J = 162 kJ</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P6. A cell of EMF 1.5 V and internal resistance 0.2 Ω is connected to a 4.8 Ω resistor. Find current and terminal voltage. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_6"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_6">
+                    <p>I = ε/(R+r) = 1.5/(4.8+0.2) = 1.5/5 = <strong>0.3 A</strong></p>
+                    <p>V = ε − Ir = 1.5 − (0.3 × 0.2) = 1.5 − 0.06 = <strong>1.44 V</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P7. Calculate the monthly cost of running a 500 W motor for 4 hours daily for 30 days if rate is ₹8/unit. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_7"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_7">
+                    <p>Power = 500 W = 0.5 kW</p>
+                    <p>Daily energy = 0.5 × 4 = 2 kWh</p>
+                    <p>Monthly energy = 2 × 30 = 60 kWh = 60 units</p>
+                    <p>Cost = 60 × 8 = <strong>₹480</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P8. A resistor has colour bands: Brown, Black, Red, Gold. Find its resistance. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn4_8"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4_8">
+                    <p>Brown = 1, Black = 0, Red = ×10², Gold = ±5%</p>
+                    <p>R = 10 × 100 = <strong>1000 Ω = 1 kΩ ± 5%</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 21: QUICK REVISION ==================== -->
+    <section class="section" id="revision">
+        <h2 class="section-title">
+            <i class="fas fa-bullseye"></i> Quick Revision — Unit Summary 🎯
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bolt"></i> Last-Minute Revision Points</div>
+
+                <h4>🔵 Current & Basic Terms</h4>
+                <ul>
+                    <li>I = Q/t, unit: Ampere (A)</li>
+                    <li>DC → one direction, AC → changes direction periodically</li>
+                    <li>Resistance = opposition to current, unit: Ohm (Ω)</li>
+                    <li>R = ρl/A, ρ = RA/l</li>
+                    <li>G = 1/R, σ = 1/ρ</li>
+                </ul>
+
+                <h4>🔵 Ohm's Law</h4>
+                <ul>
+                    <li><strong>V = IR</strong> 🔥🔥</li>
+                    <li>V-I graph for ohmic conductor = straight line through origin</li>
+                    <li>Not valid for diodes, transistors, electrolytes, high temperature changes</li>
+                </ul>
+
+                <h4>🔵 Resistor Colour Code</h4>
+                <ul>
+                    <li>1st band = first digit, 2nd = second digit, 3rd = multiplier, 4th = tolerance</li>
+                    <li>Mnemonic: <strong>BB ROY of Great Britain has a Very Good Wife</strong></li>
+                    <li>Gold = ±5%, Silver = ±10%</li>
+                </ul>
+
+                <h4>🔵 Series & Parallel</h4>
+                <ul>
+                    <li><strong>Series: R = R₁ + R₂ + ...</strong></li>
+                    <li><strong>Parallel: 1/R = 1/R₁ + 1/R₂ + ...</strong></li>
+                    <li>Series → current same, voltage divides</li>
+                    <li>Parallel → voltage same, current divides</li>
+                </ul>
+
+                <h4>🔵 Kirchhoff's Laws</h4>
+                <ul>
+                    <li><strong>KCL:</strong> Sum current in = sum current out (charge conservation)</li>
+                    <li><strong>KVL:</strong> Sum of voltages in loop = 0 (energy conservation)</li>
+                </ul>
+
+                <h4>🔵 Wheatstone Bridge</h4>
+                <ul>
+                    <li>Used to measure unknown resistance</li>
+                    <li><strong>Balance condition: P/Q = R/S</strong> 🔥🔥</li>
+                    <li>Galvanometer shows zero deflection at balance</li>
+                </ul>
+
+                <h4>🔵 EMF & Internal Resistance</h4>
+                <ul>
+                    <li>EMF = open circuit voltage</li>
+                    <li>Terminal PD = actual voltage when current flows</li>
+                    <li><strong>ε = V + Ir</strong>, so V = ε − Ir</li>
+                </ul>
+
+                <h4>🔵 Heating, Power, Energy</h4>
+                <ul>
+                    <li><strong>H = I²Rt</strong> (Joule heating) 🔥</li>
+                    <li><strong>P = VI = I²R = V²/R</strong> 🔥🔥</li>
+                    <li><strong>W = Pt = VIt</strong></li>
+                    <li><strong>1 kWh = 3.6 × 10⁶ J</strong> = 1 unit</li>
+                </ul>
+
+                <h4>🔵 Thermoelectric Effects</h4>
+                <ul>
+                    <li>Seebeck: heat → electricity</li>
+                    <li>Peltier: electricity → heat/cooling</li>
+                    <li>Peltier is reverse of Seebeck</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Don't Forget on Exam Day!</div>
+                <ul>
+                    <li>✅ V = IR — all electricity starts here</li>
+                    <li>✅ Series resistor → add directly, Parallel → reciprocal</li>
+                    <li>✅ KCL = charge conservation, KVL = energy conservation</li>
+                    <li>✅ Wheatstone balance: P/Q = R/S</li>
+                    <li>✅ P = VI and H = I²Rt</li>
+                    <li>✅ 1 kWh = 3.6 × 10⁶ J</li>
+                    <li>✅ Colour code: Red-Violet-Orange-Gold = 27 kΩ ±5%</li>
+                    <li>✅ Draw diagrams for bridge circuits and thermoelectric effects</li>
+                    <li>✅ Always show units in final answers</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-medal"></i> Confidence Booster</div>
+                <p>This unit is mostly formula-based and scoring. If you know: Ohm's law, resistor combinations, Kirchhoff, Wheatstone bridge, power formulas, and colour coding — you are fully ready. Practice a few numericals and you'll do great. <strong>All the best! 💪🎓</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+</div> <!-- END CONTAINER -->
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

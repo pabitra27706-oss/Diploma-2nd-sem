@@ -1,425 +1,2447 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Physics · Unit 3 · Electrostatics</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: electrostatics / blue-electric -->
-  <style>
-    :root {
-      --primary: #1e5f8e;          /* electric blue */
-      --primary-light: #3a7fb0;
-      --accent: #f9a826;            /* capacitor orange */
-      --accent-light: #ffc107;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #0a2a4a, #1e5f8e, #f9a826);
-    }
-    /* header emoji: electrostatics symbols */
-    .header::after {
-      content: "⚡🔋🧲🔌";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* capacitor illustration */
-    .capacitor-demo {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .cap-plates {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .plate {
-      width: 60px;
-      height: 40px;
-      background: #aaa;
-      border: 2px solid #333;
-    }
-    .plate-left {
-      background: #ffaa00;
-    }
-    .plate-right {
-      background: #00aaff;
-    }
-    /* field lines */
-    .field-demo {
-      position: relative;
-      width: 200px;
-      height: 100px;
-      margin: 20px auto;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3 - Electrostatics | Applied Physics-II BS104</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Capacitance') ? 'Show Capacitance' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Capacitance') ? 'Hide Capacitance' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; text-align:center; }
+        .fraction .den { padding:3px 6px 0; text-align:center; }
+
+        .outcome-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:12px; margin:16px 0; }
+        .outcome-badge { background: linear-gradient(135deg, var(--accent-light), var(--accent)); color:#fff; padding:14px 18px; border-radius:var(--radius-md); font-size:0.92rem; font-weight:500; display:flex; align-items:center; gap:10px; }
+        .outcome-badge i { font-size:1.1rem; }
+
+        .prereq-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin:12px 0; }
+        .prereq-item { background:var(--formula-bg); padding:10px 14px; border-radius:var(--radius-sm); border-left:3px solid var(--warning); font-size:0.9rem; }
+
+        .formula-card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin:16px 0; }
+        .formula-card { background:var(--formula-bg); border:1px solid var(--accent); border-radius:var(--radius-md); padding:16px; }
+        .formula-card h4 { color:var(--primary); margin-bottom:8px; font-size:0.95rem; }
+        [data-theme="dark"] .formula-card { background:#1a2332; }
+
+        .definition-grid { display:grid; gap:16px; margin:16px 0; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
     <div class="header-content">
-      <h1>⚡ Physics · Unit 3 ⚡</h1>
-      <h2>Electrostatics · Gauss Law · Capacitors</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-bolt"></i> Coulomb's Law</span>
-        <span class="info-item"><i class="fas fa-circle"></i> Electric Field</span>
-        <span class="info-item"><i class="fas fa-microchip"></i> Capacitors</span>
-      </div>
+        <h1><i class="fas fa-bolt"></i> Electrostatics</h1>
+        <h2>Unit 3 — Applied Physics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS104</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 3</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma Sem-II</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive Guide</span>
+            <span class="info-item"><i class="fas fa-atom"></i> Basic Science</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-bolt"></i> PHYS·UNIT3</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#fundamentals"><i class="fas fa-circle"></i> Fundamentals</a>
-        <a href="#gauss"><i class="fas fa-square-root-alt"></i> Gauss Law</a>
-        <a href="#capacitors"><i class="fas fa-microchip"></i> Capacitors</a>
-        <a href="#combinations"><i class="fas fa-arrow-right-arrow-left"></i> Series/Parallel</a>
-        <a href="#dielectric"><i class="fas fa-water"></i> Dielectric</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>⚡ Physics U3</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#coulomb"><i class="fas fa-magnet"></i> Coulomb's Law</a>
+            <a href="#electric-field"><i class="fas fa-arrows-alt"></i> Electric Field</a>
+            <a href="#lines-flux"><i class="fas fa-project-diagram"></i> Lines & Flux</a>
+            <a href="#potential"><i class="fas fa-battery-full"></i> Potential</a>
+            <a href="#gauss"><i class="fas fa-globe"></i> Gauss's Law</a>
+            <a href="#capacitor"><i class="fas fa-hdd"></i> Capacitors</a>
+            <a href="#cap-combinations"><i class="fas fa-network-wired"></i> Combinations</a>
+            <a href="#dielectric"><i class="fas fa-layer-group"></i> Dielectric</a>
+            <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+            <a href="#formulas"><i class="fas fa-superscript"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-spell-check"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+            <a href="#short-qa"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#long-qa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+            <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<!-- Mobile Drawer -->
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-bolt"></i> PHYS Unit 3</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>⚡ Physics U3</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#fundamentals"><i class="fas fa-circle"></i> Coulomb, Electric field, flux, potential</a>
-      <a href="#gauss"><i class="fas fa-square-root-alt"></i> Gauss law, field due to sphere</a>
-      <a href="#capacitors"><i class="fas fa-microchip"></i> Capacitor, types, capacitance formula</a>
-      <a href="#combinations"><i class="fas fa-arrow-right-arrow-left"></i> Series & parallel combinations</a>
-      <a href="#dielectric"><i class="fas fa-water"></i> Dielectric effect & breakdown</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#coulomb"><i class="fas fa-magnet"></i> Coulomb's Law</a>
+        <a href="#electric-field"><i class="fas fa-arrows-alt"></i> Electric Field</a>
+        <a href="#lines-flux"><i class="fas fa-project-diagram"></i> Lines & Flux</a>
+        <a href="#potential"><i class="fas fa-battery-full"></i> Potential</a>
+        <a href="#gauss"><i class="fas fa-globe"></i> Gauss's Law</a>
+        <a href="#capacitor"><i class="fas fa-hdd"></i> Capacitors</a>
+        <a href="#cap-combinations"><i class="fas fa-network-wired"></i> Combinations</a>
+        <a href="#dielectric"><i class="fas fa-layer-group"></i> Dielectric</a>
+        <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+        <a href="#formulas"><i class="fas fa-superscript"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-spell-check"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+        <a href="#short-qa"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#long-qa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice"><i class="fas fa-dumbbell"></i> Practice</a>
+        <a href="#revision"><i class="fas fa-bullseye"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: ELECTROSTATICS FUNDAMENTALS ========= -->
-    <section id="fundamentals" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-circle"></i> Electrostatics Fundamentals
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-balance-scale"></i> Coulomb's Law</div>
-          <p>Force between two point charges: F = k q₁q₂ / r²</p>
-          <p>where k = 1/(4πε₀) = 9×10⁹ N·m²/C², ε₀ = permittivity of free space.</p>
-          <p><strong>Unit of charge:</strong> Coulomb (C).</p>
+<!-- ========== MAIN CONTENT ========== -->
+<div class="container">
+
+    <!-- ==================== SECTION 1: OVERVIEW ==================== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> What This Unit Covers</div>
+                <p>This unit introduces <strong>Electrostatics</strong> — the study of <strong>electric charges at rest</strong>. You will learn how charges exert forces on each other (Coulomb's Law), what fields they create around them (Electric Field), how energy is stored (Electric Potential), and how to store charge using devices called <strong>Capacitors</strong>.</p>
+                <p><strong>Real-life connection:</strong> Lightning, static shocks from door handles, photocopiers, laser printers, capacitors in every electronic circuit (your phone has hundreds!), defibrillators that restart hearts — all are electrostatics in action!</p>
+            </div>
+
+            <h3>🎯 Unit Outcomes:</h3>
+            <div class="outcome-grid">
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Apply Coulomb's law to calculate force between charges</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Define electric field and calculate it for point charges</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Draw electric field lines and state their properties</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Define electric potential & potential difference</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> State Gauss's law and apply it to a charged sphere</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Explain working & types of capacitors</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Solve series & parallel capacitor problems</div>
+                <div class="outcome-badge"><i class="fas fa-check-circle"></i> Explain dielectric effect on capacitance</div>
+            </div>
+
+            <h3>📚 Prerequisites:</h3>
+            <div class="prereq-list">
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Concept of charge (+ and −)</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Basic algebra & fractions</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Concept of force (Newton)</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Concept of energy & work</div>
+                <div class="prereq-item"><i class="fas fa-angle-right"></i> Area & volume of simple shapes</div>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Importance</div>
+                <p>This unit is <strong>very numerical-heavy</strong>. Topics like <strong>Coulomb's law</strong>, <strong>electric potential</strong>, <strong>capacitor combinations (series/parallel)</strong>, and <strong>Gauss's law application</strong> are asked every year. Master the formulas and you'll score easily! 🔥</p>
+            </div>
+
         </div>
+    </section>
 
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-field"></i> Electric Field (E)</div>
-          <p>E = F/q₀ = kQ/r² (for point charge). Unit: N/C or V/m.</p>
-        </div>
+    <!-- ==================== SECTION 2: COULOMB'S LAW ==================== -->
+    <section class="section" id="coulomb">
+        <h2 class="section-title">
+            <i class="fas fa-magnet"></i> Coulomb's Law & Unit of Charge 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-arrow-right"></i> Electric Lines of Force</h4>
+            <h3>Electric Charge — Basics</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Charge</div>
+                <p><strong>Electric charge</strong> is a fundamental property of matter that causes it to experience a force when placed near other charged matter. Charge can be <strong>positive (+)</strong> or <strong>negative (−)</strong>.</p>
+                <p><strong>SI Unit:</strong> Coulomb (C). <strong>Symbol:</strong> q or Q.</p>
+            </div>
+
+            <p><strong>Key facts about charge:</strong></p>
             <ul>
-              <li>Start from +ve, end on -ve charges</li>
-              <li>Never intersect</li>
-              <li>Tangent gives direction of E</li>
-              <li>Closer lines → stronger field</li>
-              <li>Perpendicular to conductor surface</li>
+                <li><strong>Like charges repel</strong> each other (+ repels +, − repels −).</li>
+                <li><strong>Unlike charges attract</strong> each other (+ attracts −).</li>
+                <li>Charge is <strong>quantized</strong> — it always exists in integer multiples of the elementary charge: q = ne, where e = 1.6 × 10⁻¹⁹ C.</li>
+                <li>Charge is <strong>conserved</strong> — it cannot be created or destroyed, only transferred.</li>
+                <li>The electron has charge −e = −1.6 × 10⁻¹⁹ C.</li>
+                <li>The proton has charge +e = +1.6 × 10⁻¹⁹ C.</li>
             </ul>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-sun"></i> Electric Flux (Φ)</h4>
-            <p>Φ = E·A = EA cosθ for uniform field. Unit: N·m²/C.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-bolt"></i> Electric Potential (V)</h4>
-            <p>V = W/q₀ (work per unit charge). Potential difference: ΔV = V_B - V_A = -∫ E·dl</p>
-            <p>Unit: Volt (V) = J/C.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ========== SECTION 2: GAUSS LAW & APPLICATION ========= -->
-    <section id="gauss" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-square-root-alt"></i> Gauss Law · Field due to Charged Sphere
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-gavel"></i> Gauss Law (Statement)</div>
-          <p>The net electric flux through any closed surface is equal to 1/ε₀ times the net charge enclosed.</p>
-          <div class="formula">∮ E·dA = Q_enclosed / ε₀</div>
-        </div>
-
-        <div class="concept-box">
-          <div class="box-title">Application: Field due to Charged Sphere</div>
-          <p>For a uniformly charged sphere of radius R, total charge Q:</p>
-          <ul>
-            <li><strong>Outside (r ≥ R):</strong> E = (1/(4πε₀)) Q/r² (like point charge)</li>
-            <li><strong>Inside (r < R):</strong> E = (1/(4πε₀)) Q r / R³ (linearly increasing)</li>
-          </ul>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 1</div>
-          <p>A sphere of radius 0.1m has charge 2μC. Find electric field at distance 0.3m from center.</p>
-          <button class="toggle-btn" data-target="gauss1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="gauss1">
-            <div class="formula answer">
-              Outside, E = kQ/r² = 9×10⁹ × 2×10⁻⁶ / (0.3)² = 9×10⁹ × 2×10⁻⁶ / 0.09<br>
-              = 18000 / 0.09 = <strong>2×10⁵ N/C</strong>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Analogy</div>
+                <p>Think of charges like tiny magnets. Two north poles repel, two south poles repel, but a north and south attract. Similarly, two positive charges repel, two negative repel, but positive and negative attract.</p>
             </div>
-          </div>
+
+            <h3>⭐ Coulomb's Law</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Statement — Coulomb's Law</div>
+                <p><strong>Coulomb's Law</strong> states that the <strong>electrostatic force of attraction or repulsion</strong> between two point charges is:</p>
+                <ol>
+                    <li><strong>Directly proportional</strong> to the <strong>product</strong> of the magnitudes of the two charges.</li>
+                    <li><strong>Inversely proportional</strong> to the <strong>square of the distance</strong> between them.</li>
+                    <li>Acts along the <strong>line joining the two charges</strong>.</li>
+                </ol>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.1 — Coulomb's Law:</strong></p>
+                <p>\[ F = \frac{1}{4\pi\varepsilon_0} \cdot \frac{q_1 q_2}{r^2} = k \cdot \frac{q_1 q_2}{r^2} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>F</strong> = electrostatic force between the charges (in Newton, N)</li>
+                    <li><strong>q₁, q₂</strong> = magnitudes of the two point charges (in Coulomb, C)</li>
+                    <li><strong>r</strong> = distance between the two charges (in metre, m)</li>
+                    <li><strong>k</strong> = Coulomb's constant = \(\frac{1}{4\pi\varepsilon_0}\) = <strong>9 × 10⁹ N m² C⁻²</strong></li>
+                    <li><strong>ε₀</strong> = permittivity of free space = <strong>8.854 × 10⁻¹² C² N⁻¹ m⁻²</strong> (or F/m)</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Coulombs+law+two+point+charges+force+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.1:</strong> Coulomb's Law — two point charges q₁ and q₂ separated by distance r, showing force direction</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Important Points about Coulomb's Law</div>
+                <ol>
+                    <li>The force is <strong>attractive</strong> if charges are of opposite sign, and <strong>repulsive</strong> if same sign.</li>
+                    <li>The force follows <strong>Newton's Third Law</strong> — the force on q₁ due to q₂ is equal and opposite to the force on q₂ due to q₁.</li>
+                    <li>The law applies only to <strong>point charges</strong> (charges whose size is negligible compared to the distance between them).</li>
+                    <li>Coulomb's law is mathematically similar to Newton's law of gravitation: F = Gm₁m₂/r². But gravitational force is always attractive, while electrostatic force can be attractive or repulsive.</li>
+                    <li>In a medium other than vacuum, F = kq₁q₂/(κr²), where κ (kappa) = dielectric constant of the medium. Force is <strong>reduced</strong> in a medium.</li>
+                </ol>
+            </div>
+
+            <h3>Unit of Charge — The Coulomb</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Coulomb</div>
+                <p><strong>One Coulomb (1 C)</strong> is the amount of charge that, when placed at a distance of 1 metre from an equal charge in vacuum, experiences a repulsive force of <strong>9 × 10⁹ Newton</strong>.</p>
+                <p>Alternatively: 1 Coulomb = charge carried by 6.25 × 10¹⁸ electrons.</p>
+                <p>Practically: If 1 ampere current flows for 1 second, the charge transferred = 1 Coulomb. (Q = It)</p>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes</div>
+                <ul>
+                    <li>Don't forget to convert μC (microcoulomb) to C: 1 μC = 10⁻⁶ C</li>
+                    <li>Don't forget to convert cm to m in distance: 1 cm = 10⁻² m</li>
+                    <li>Always use k = 9 × 10⁹ (not 9 × 10⁻⁹)</li>
+                    <li>The formula gives the <strong>magnitude</strong> of force. State direction (attraction/repulsion) separately.</li>
+                </ul>
+            </div>
+
+            <h3>Comparison: Coulomb's Law vs Newton's Gravitational Law</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Coulomb's Law (Electrostatic)</th>
+                            <th>Newton's Law (Gravitational)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Formula</strong></td><td>F = kq₁q₂/r²</td><td>F = Gm₁m₂/r²</td></tr>
+                        <tr><td><strong>Nature</strong></td><td>Attractive OR Repulsive</td><td>Always Attractive</td></tr>
+                        <tr><td><strong>Strength</strong></td><td>Very strong</td><td>Very weak</td></tr>
+                        <tr><td><strong>Constant</strong></td><td>k = 9 × 10⁹ Nm²C⁻²</td><td>G = 6.67 × 10⁻¹¹ Nm²kg⁻²</td></tr>
+                        <tr><td><strong>Depends on medium</strong></td><td>Yes (affected by dielectric)</td><td>No</td></tr>
+                        <tr><td><strong>Between</strong></td><td>Charged particles</td><td>Any masses</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: CAPACITORS BASICS ========= -->
-    <section id="capacitors" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-microchip"></i> Capacitors: Working, Types, Capacitance
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="capacitor-demo">
-          <div class="cap-plates">
-            <div class="plate plate-left"></div>
-            <span style="font-size:1.5rem;">➕   ➖</span>
-            <div class="plate plate-right"></div>
-          </div>
-        </div>
+    <!-- ==================== SECTION 3: ELECTRIC FIELD ==================== -->
+    <section class="section" id="electric-field">
+        <h2 class="section-title">
+            <i class="fas fa-arrows-alt"></i> Electric Field 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-battery-full"></i> Capacitor & Working</div>
-          <p>A capacitor stores electrical energy in an electric field between two conductors separated by insulator (dielectric).</p>
-          <p><strong>Working:</strong> When connected to battery, charge accumulates on plates until potential difference equals battery voltage.</p>
-        </div>
+            <h3>What is an Electric Field?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Field</div>
+                <p>The <strong>electric field</strong> is the region or space around a charged body within which another charged body experiences an <strong>electrostatic force</strong>. It is a <strong>vector quantity</strong> — it has both magnitude and direction.</p>
+            </div>
 
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-list"></i> Types of Capacitors</h4>
+            <p><strong>Analogy:</strong> Imagine a powerful magnet. Even without touching it, iron filings placed near it get pulled. There is an invisible "field" around the magnet that exerts force. Similarly, a charged object creates an invisible electric field around it that exerts force on other charges placed in that region.</p>
+
+            <h3>⭐ Electric Field Intensity (E)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Field Intensity</div>
+                <p>The <strong>electric field intensity (E)</strong> at a point is defined as the <strong>force experienced per unit positive test charge</strong> placed at that point (without disturbing the original field).</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.2 — Electric Field Intensity:</strong></p>
+                <p>\[ E = \frac{F}{q_0} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>E</strong> = electric field intensity (N/C or V/m)</li>
+                    <li><strong>F</strong> = force on the test charge (N)</li>
+                    <li><strong>q₀</strong> = magnitude of the positive test charge (C)</li>
+                </ul>
+                <p><strong>SI Unit:</strong> Newton per Coulomb (N/C) or Volt per metre (V/m). Both are equivalent.</p>
+                <p><strong>Direction:</strong> Same as the direction of force on a positive test charge.</p>
+            </div>
+
+            <h3>Electric Field Due to a Point Charge</h3>
+            <p>The electric field at a distance r from a point charge Q is found by combining Coulomb's law with the definition of E:</p>
+            <p>F = kQq₀/r², so E = F/q₀ = kQ/r²</p>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.3 — Electric Field due to Point Charge:</strong></p>
+                <p>\[ E = \frac{1}{4\pi\varepsilon_0} \cdot \frac{Q}{r^2} = k \cdot \frac{Q}{r^2} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>E</strong> = electric field intensity at distance r (N/C)</li>
+                    <li><strong>Q</strong> = source charge (C)</li>
+                    <li><strong>r</strong> = distance from the charge (m)</li>
+                    <li><strong>k</strong> = 9 × 10⁹ Nm²C⁻²</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Direction of Electric Field</div>
+                <ul>
+                    <li>For a <strong>positive charge (+Q)</strong>: E points <strong>radially outward</strong> (away from the charge).</li>
+                    <li>For a <strong>negative charge (−Q)</strong>: E points <strong>radially inward</strong> (towards the charge).</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=electric+field+due+to+point+charge+positive+negative+direction+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.2:</strong> Electric field around positive charge (outward) and negative charge (inward)</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Relationship between Force and Field</div>
+                <p>If you know the electric field E at a point, the force on any charge q placed at that point is:</p>
+                <p><strong>F = qE</strong></p>
+                <p>This is very useful! Once E is known, you can find force on any charge without using Coulomb's law again.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 4: LINES OF FORCE & FLUX ==================== -->
+    <section class="section" id="lines-flux">
+        <h2 class="section-title">
+            <i class="fas fa-project-diagram"></i> Electric Lines of Force & Electric Flux 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>⭐ Electric Lines of Force (Field Lines)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Lines of Force</div>
+                <p><strong>Electric lines of force</strong> (or electric field lines) are imaginary curves drawn in an electric field such that the <strong>tangent at any point</strong> on the curve gives the <strong>direction of the electric field</strong> at that point. They were introduced by Michael Faraday to visualize electric fields.</p>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=electric+field+lines+positive+charge+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 3.3a:</strong> Field lines around a positive charge (radially outward)</p>
+                        <span class="click-hint">🔍 Click to view</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=electric+field+lines+two+charges+dipole+like+unlike+charges" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 3.3b:</strong> Field lines between like charges & unlike charges</p>
+                        <span class="click-hint">🔍 Click to view</span>
+                    </div>
+                </a>
+            </div>
+
+            <h3>⭐ Properties of Electric Lines of Force</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-list-ol"></i> Properties (Very Important for Exam!)</div>
+                <ol>
+                    <li>Electric lines of force <strong>originate from positive charge</strong> and <strong>terminate on negative charge</strong>.</li>
+                    <li>The <strong>tangent</strong> drawn at any point on a field line gives the <strong>direction of the electric field</strong> at that point.</li>
+                    <li>Two electric lines of force <strong>never cross or intersect</strong> each other. (If they did, there would be two directions of E at the intersection point, which is impossible.)</li>
+                    <li>The lines are <strong>closer together</strong> where the field is <strong>strong</strong> and <strong>farther apart</strong> where the field is <strong>weak</strong>.</li>
+                    <li>Electric field lines are <strong>continuous curves</strong>. They don't break in the middle.</li>
+                    <li>The lines <strong>contract longitudinally</strong> (along their length) — this shows the <strong>attraction</strong> between unlike charges.</li>
+                    <li>The lines <strong>exert lateral (sideways) pressure</strong> — this shows the <strong>repulsion</strong> between like charges.</li>
+                    <li>In a <strong>uniform electric field</strong>, the lines are <strong>parallel, equidistant, and straight</strong>.</li>
+                    <li>Electric lines of force are <strong>perpendicular to the surface</strong> of a conductor at every point.</li>
+                    <li>No electric lines of force exist <strong>inside a conductor</strong> (E = 0 inside a conductor).</li>
+                </ol>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Exam Favourite!</div>
+                <p>"State the properties of electric lines of force" is a <strong>very common 5-mark question</strong>. Write at least 6-7 properties with diagrams (draw field lines for + charge, − charge, and two charges).</p>
+            </div>
+
+            <h3>⭐ Electric Flux (φ or Φ<sub>E</sub>)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Flux</div>
+                <p><strong>Electric flux</strong> is the <strong>total number of electric field lines</strong> passing through a given surface. It is a <strong>scalar quantity</strong> and is a measure of the "flow" of the electric field through a surface.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.4 — Electric Flux:</strong></p>
+                <p>\[ \Phi_E = E \cdot A \cdot \cos\theta = \vec{E} \cdot \vec{A} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>Φ<sub>E</sub></strong> = electric flux (Nm²/C or Vm)</li>
+                    <li><strong>E</strong> = electric field intensity (N/C)</li>
+                    <li><strong>A</strong> = area of the surface (m²)</li>
+                    <li><strong>θ</strong> = angle between E and the normal to the surface</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Special Cases</div>
+                <ul>
+                    <li>When E is <strong>perpendicular to the surface</strong> (θ = 0°): Φ = EA (maximum flux)</li>
+                    <li>When E is <strong>parallel to the surface</strong> (θ = 90°): Φ = 0 (no flux — field lines don't pass through)</li>
+                </ul>
+            </div>
+
+            <p><strong>Analogy:</strong> Think of electric flux like water flowing through a net. If you hold the net perpendicular to the water flow, maximum water passes through. If you tilt the net to be parallel to the flow, no water passes through. Electric flux works the same way with field lines and surfaces.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=electric+flux+through+surface+angle+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.4:</strong> Electric flux through a surface — showing field lines, area vector, and angle θ</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 5: ELECTRIC POTENTIAL ==================== -->
+    <section class="section" id="potential">
+        <h2 class="section-title">
+            <i class="fas fa-battery-full"></i> Electric Potential & Potential Difference 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>⭐ Electric Potential (V)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Electric Potential</div>
+                <p>The <strong>electric potential</strong> at a point in an electric field is defined as the <strong>work done in bringing a unit positive charge</strong> from <strong>infinity</strong> to that point <strong>against the electric field</strong>.</p>
+                <p>Or equivalently: Potential = Work done per unit charge.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.5 — Electric Potential:</strong></p>
+                <p>\[ V = \frac{W}{q} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>V</strong> = electric potential (Volt, V)</li>
+                    <li><strong>W</strong> = work done (Joule, J)</li>
+                    <li><strong>q</strong> = charge (Coulomb, C)</li>
+                </ul>
+                <p><strong>SI Unit:</strong> <strong>Volt (V)</strong>. 1 Volt = 1 Joule / 1 Coulomb.</p>
+                <p>Electric potential is a <strong>scalar quantity</strong> (has magnitude but no direction).</p>
+            </div>
+
+            <h3>Potential Due to a Point Charge</h3>
+            <div class="formula-box">
+                <p><strong>Formula 3.6 — Potential due to Point Charge:</strong></p>
+                <p>\[ V = \frac{1}{4\pi\varepsilon_0} \cdot \frac{Q}{r} = k \cdot \frac{Q}{r} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>V</strong> = electric potential at distance r (Volt)</li>
+                    <li><strong>Q</strong> = charge (C)</li>
+                    <li><strong>r</strong> = distance from the charge (m)</li>
+                    <li><strong>k</strong> = 9 × 10⁹ Nm²/C²</li>
+                </ul>
+                <p><strong>Note:</strong> V is positive for +Q and negative for −Q.</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Easy way to remember</div>
+                <p>Electric <strong>field</strong> E goes as 1/r² (inverse square) and is a <strong>vector</strong>.</p>
+                <p>Electric <strong>potential</strong> V goes as 1/r (inverse) and is a <strong>scalar</strong>.</p>
+            </div>
+
+            <h3>⭐ Potential Difference</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Potential Difference</div>
+                <p>The <strong>potential difference</strong> between two points A and B in an electric field is the <strong>work done in moving a unit positive charge</strong> from point B to point A.</p>
+                <p>\[ V_A - V_B = \frac{W_{B \to A}}{q} \]</p>
+                <p>Potential difference is what drives current in circuits. It is commonly called <strong>voltage</strong>.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points</div>
+                <ul>
+                    <li>A positive charge moves from <strong>higher potential to lower potential</strong> naturally (like a ball rolling downhill).</li>
+                    <li>A negative charge moves from <strong>lower potential to higher potential</strong> naturally.</li>
+                    <li>Work is done <strong>by the field</strong> when charge moves in the direction of the field.</li>
+                    <li>Work is done <strong>against the field</strong> when charge moves opposite to the field direction.</li>
+                    <li><strong>Equipotential surface:</strong> A surface where all points have the same potential. No work is done in moving a charge along an equipotential surface.</li>
+                </ul>
+            </div>
+
+            <h3>Relationship between Electric Field and Potential</h3>
+            <div class="formula-box">
+                <p><strong>Formula 3.7:</strong></p>
+                <p>\[ E = -\frac{dV}{dr} = -\frac{\Delta V}{\Delta r} \]</p>
+                <p>The electric field is the <strong>negative gradient (rate of change) of potential</strong> with distance.</p>
+                <p>For a uniform field: \( E = \frac{V}{d} \) (V = potential difference, d = distance between plates).</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Must-Know</div>
+                <p><strong>1 Volt</strong> = 1 J/C. <strong>1 electron-volt (eV)</strong> = energy gained by 1 electron through 1 V potential difference = 1.6 × 10⁻¹⁹ J. eV is a unit of <strong>energy</strong>, not voltage!</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=electric+potential+due+to+point+charge+equipotential+surface+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.5:</strong> Electric potential around a point charge and equipotential surfaces</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 6: GAUSS'S LAW ==================== -->
+    <section class="section" id="gauss">
+        <h2 class="section-title">
+            <i class="fas fa-globe"></i> Gauss's Law & Application to Charged Sphere 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>⭐ Gauss's Law (Statement Only)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Statement — Gauss's Law</div>
+                <p><strong>Gauss's Law</strong> states that the <strong>total electric flux</strong> through any <strong>closed surface</strong> (called Gaussian surface) is equal to <strong>1/ε₀ times the total charge enclosed</strong> within that surface.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.8 — Gauss's Law:</strong></p>
+                <p>\[ \Phi_E = \oint \vec{E} \cdot d\vec{A} = \frac{q_{enclosed}}{\varepsilon_0} \]</p>
+                <p>In simple terms:</p>
+                <p>\[ \text{Total electric flux through closed surface} = \frac{\text{Total charge inside}}{\varepsilon_0} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>Φ<sub>E</sub></strong> = total electric flux through the closed surface (Nm²/C)</li>
+                    <li><strong>q<sub>enclosed</sub></strong> = total charge enclosed within the surface (C)</li>
+                    <li><strong>ε₀</strong> = permittivity of free space = 8.854 × 10⁻¹² C²N⁻¹m⁻²</li>
+                    <li>∮ represents integration over the entire closed surface</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points about Gauss's Law</div>
+                <ul>
+                    <li>The <strong>Gaussian surface</strong> is an imaginary closed surface chosen for mathematical convenience. It doesn't have to be a physical surface.</li>
+                    <li>The flux depends only on the <strong>charge enclosed inside</strong> the surface, not on charges outside.</li>
+                    <li>The shape of the Gaussian surface can be anything (sphere, cylinder, cube, etc.), but we choose the shape that makes calculation easiest (usually matching the symmetry of the charge distribution).</li>
+                    <li>If no charge is enclosed, the net flux through the surface is <strong>zero</strong> (even if there are charges outside).</li>
+                    <li>Gauss's law is extremely useful for finding electric fields of symmetric charge distributions (sphere, infinite plane, infinite wire, cylinder).</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=Gauss+law+Gaussian+surface+electric+flux+enclosed+charge+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.6:</strong> Gauss's Law — Gaussian surface enclosing charge, showing flux lines</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Application: Electric Field due to a Uniformly Charged Sphere</h3>
+            <p>Consider a sphere of radius R carrying a total charge Q uniformly distributed on its surface (conducting sphere) or throughout its volume (non-conducting sphere). We want to find E at a distance r from the centre.</p>
+
+            <h4>Case 1: At a point OUTSIDE the sphere (r > R)</h4>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-search"></i> Finding E Outside a Charged Sphere</div>
+                <p><strong>Step 1:</strong> Choose a <strong>spherical Gaussian surface</strong> of radius r (r > R) concentric with the charged sphere.</p>
+                <p><strong>Step 2:</strong> By symmetry, E is uniform over this Gaussian surface and directed radially outward (for positive charge).</p>
+                <p><strong>Step 3:</strong> Apply Gauss's Law:</p>
+                <p>\[ \oint \vec{E} \cdot d\vec{A} = \frac{q_{enclosed}}{\varepsilon_0} \]</p>
+                <p>Since E is constant over the Gaussian surface and parallel to dA everywhere:</p>
+                <p>\[ E \times 4\pi r^2 = \frac{Q}{\varepsilon_0} \]</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.9 — E outside charged sphere (r > R):</strong></p>
+                <p>\[ E = \frac{1}{4\pi\varepsilon_0} \cdot \frac{Q}{r^2} = \frac{kQ}{r^2} \]</p>
+                <p>This is <strong>exactly the same</strong> as the field due to a <strong>point charge Q</strong> at the centre! Outside the sphere, the charged sphere behaves like a point charge.</p>
+            </div>
+
+            <h4>Case 2: At a point ON the surface (r = R)</h4>
+            <div class="formula-box">
+                <p><strong>Formula 3.10 — E on the surface (r = R):</strong></p>
+                <p>\[ E_{surface} = \frac{1}{4\pi\varepsilon_0} \cdot \frac{Q}{R^2} = \frac{kQ}{R^2} \]</p>
+                <p>This is the <strong>maximum value</strong> of E for a charged conducting sphere.</p>
+            </div>
+
+            <h4>Case 3: At a point INSIDE a conducting sphere (r < R)</h4>
+            <div class="formula-box">
+                <p><strong>Formula 3.11 — E inside conducting sphere (r < R):</strong></p>
+                <p>\[ E = 0 \]</p>
+                <p>Inside a conductor, all charge resides on the surface. A Gaussian surface inside encloses <strong>no charge</strong>. By Gauss's law, the net flux is zero, so E = 0.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=electric+field+due+to+charged+sphere+Gauss+law+inside+outside+graph+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.7:</strong> Electric field due to a charged conducting sphere — graph of E vs r showing E=0 inside, max at surface, inverse square outside</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Summary: E for Charged Conducting Sphere</div>
+                <ul>
+                    <li><strong>Inside (r < R):</strong> E = 0 (no charge enclosed)</li>
+                    <li><strong>On surface (r = R):</strong> E = kQ/R² (maximum)</li>
+                    <li><strong>Outside (r > R):</strong> E = kQ/r² (decreases as inverse square of distance)</li>
+                    <li>The sphere behaves as a <strong>point charge</strong> for external points.</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Very Important for Exam!</div>
+                <p>"Apply Gauss's law to find the electric field due to a charged sphere" is a <strong>very common 5-7 mark question</strong>. You need to: (1) State Gauss's law, (2) Choose Gaussian surface, (3) Apply the formula for r > R, r = R, and r < R cases, (4) Draw the E vs r graph.</p>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ==================== SECTION 7: CAPACITORS ==================== -->
+    <section class="section" id="capacitor">
+        <h2 class="section-title">
+            <i class="fas fa-hdd"></i> Capacitor — Working, Types & Capacitance 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>What is a Capacitor?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Capacitor</div>
+                <p>A <strong>capacitor</strong> is an electrical device that <strong>stores electric charge</strong> and <strong>electrical energy</strong> in the form of an <strong>electric field</strong>. It consists of <strong>two conducting plates (electrodes)</strong> separated by an <strong>insulating material (dielectric)</strong>.</p>
+            </div>
+
+            <p><strong>Real-world analogy:</strong> Think of a capacitor like a water tank. Just as a tank stores water, a capacitor stores electric charge. The bigger the tank (more capacitance), the more water (charge) it can store. The water pressure (voltage) determines how fast the tank fills up.</p>
+
+            <p><strong>Where are capacitors used?</strong></p>
             <ul>
-              <li>Parallel plate capacitor</li>
-              <li>Cylindrical capacitor</li>
-              <li>Spherical capacitor</li>
-              <li>Electrolytic capacitor</li>
-              <li>Ceramic, Mica, Tantalum</li>
+                <li>Every electronic circuit (phones, TVs, computers, radios)</li>
+                <li>Camera flash (stores energy, releases quickly)</li>
+                <li>Power supply smoothing (removes fluctuations)</li>
+                <li>Tuning circuits in radios</li>
+                <li>Defibrillators in hospitals (stores charge to restart heart)</li>
+                <li>Electric fans (starting capacitor)</li>
+                <li>Air conditioning units</li>
             </ul>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-ruler"></i> Capacitance (C)</h4>
-            <p>C = Q / V (charge per unit potential difference). Unit: Farad (F).</p>
-            <p>1 F = 1 C/V. Practical units: μF, nF, pF.</p>
-          </div>
-        </div>
 
-        <div class="important-note">
-          <div class="box-title">Parallel Plate Capacitor Formula</div>
-          <div class="formula">C = ε₀ A / d &nbsp; (without dielectric)</div>
-          <p>where A = plate area, d = separation, ε₀ = 8.85×10⁻¹² F/m.</p>
-          <p>With dielectric: C = κ ε₀ A / d, where κ = dielectric constant.</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 2</div>
-          <p>Parallel plate capacitor has area 0.1 m², separation 1mm. Find capacitance.</p>
-          <button class="toggle-btn" data-target="cap1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="cap1">
-            <div class="formula answer">
-              C = ε₀ A/d = 8.85×10⁻¹² × 0.1 / 0.001 = 8.85×10⁻¹³ / 10⁻³ = 8.85×10⁻¹⁰ F = <strong>885 pF</strong>
+            <h3>⭐ Working Principle of a Capacitor</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bolt"></i> How a Capacitor Works</div>
+                <ol>
+                    <li>A capacitor has two metal plates separated by an insulator (dielectric).</li>
+                    <li>When connected to a battery (voltage source), electrons flow from the battery to one plate, making it <strong>negatively charged (−Q)</strong>.</li>
+                    <li>Equal number of electrons are pulled away from the other plate by the battery, making it <strong>positively charged (+Q)</strong>.</li>
+                    <li>This creates an <strong>electric field</strong> between the plates (from + to −).</li>
+                    <li>Energy is stored in this electric field.</li>
+                    <li>Charge continues to flow until the <strong>potential difference across the plates equals the battery voltage</strong>. Then current stops.</li>
+                    <li>The capacitor is now <strong>"charged"</strong> — it holds the charge even after the battery is removed.</li>
+                    <li>When the capacitor is connected to a circuit (load), it <strong>releases</strong> (discharges) the stored charge and energy.</li>
+                </ol>
             </div>
-          </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=capacitor+charging+discharging+parallel+plate+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.8:</strong> Working of a capacitor — charging from battery, electric field between plates</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Circuit Symbol of a Capacitor</h3>
+            <p>The circuit symbol of a capacitor consists of <strong>two parallel lines</strong> (representing the plates) with a gap between them (representing the dielectric). One line may be curved for an electrolytic capacitor.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=capacitor+circuit+symbol+fixed+variable+electrolytic" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.9:</strong> Circuit symbols — fixed capacitor, variable capacitor, electrolytic capacitor</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Capacitance</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Capacitance</div>
+                <p><strong>Capacitance (C)</strong> of a capacitor is the <strong>ratio of the charge (Q) stored on either plate</strong> to the <strong>potential difference (V) applied across the plates</strong>.</p>
+                <p>It is a measure of the capacitor's <strong>ability to store charge</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.12 — Capacitance:</strong></p>
+                <p>\[ C = \frac{Q}{V} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>C</strong> = capacitance (Farad, F)</li>
+                    <li><strong>Q</strong> = charge stored (Coulomb, C)</li>
+                    <li><strong>V</strong> = potential difference across the plates (Volt, V)</li>
+                </ul>
+                <p><strong>SI Unit:</strong> <strong>Farad (F)</strong>. 1 Farad = 1 Coulomb / 1 Volt.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Practical Units of Capacitance</div>
+                <p>1 Farad is an extremely large unit. In practice, we use smaller units:</p>
+                <ul>
+                    <li><strong>1 millifarad (mF)</strong> = 10⁻³ F</li>
+                    <li><strong>1 microfarad (μF)</strong> = 10⁻⁶ F</li>
+                    <li><strong>1 nanofarad (nF)</strong> = 10⁻⁹ F</li>
+                    <li><strong>1 picofarad (pF)</strong> = 10⁻¹² F</li>
+                </ul>
+                <p>Most practical capacitors range from pF to mF.</p>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistake</div>
+                <p>Don't confuse C (capacitance, unit: Farad) with C (Coulomb, unit of charge). In formulas, Q represents charge in Coulombs, and C represents capacitance in Farads. Context makes it clear!</p>
+            </div>
+
+            <h3>⭐ Types of Capacitors</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-list"></i> Classification of Capacitors</div>
+
+                <h4>A. Based on Construction:</h4>
+                <ol>
+                    <li><strong>Parallel Plate Capacitor:</strong> Two flat metal plates separated by a dielectric. Most basic type. Used in theory and simple circuits.</li>
+                    <li><strong>Cylindrical Capacitor:</strong> Two coaxial cylinders (one inside the other) with dielectric between them. Used in cables.</li>
+                    <li><strong>Spherical Capacitor:</strong> Two concentric spheres with dielectric between them.</li>
+                </ol>
+
+                <h4>B. Based on Dielectric Material:</h4>
+                <ol>
+                    <li><strong>Air Capacitor:</strong> Air as dielectric. Used in radio tuning circuits. Variable type.</li>
+                    <li><strong>Mica Capacitor:</strong> Mica sheets as dielectric. High stability, low loss. Used in high-frequency circuits.</li>
+                    <li><strong>Paper Capacitor:</strong> Waxed paper as dielectric between aluminium foils. Inexpensive.</li>
+                    <li><strong>Ceramic Capacitor:</strong> Ceramic material as dielectric. Very small, used in PCBs.</li>
+                    <li><strong>Electrolytic Capacitor:</strong> Oxide layer as dielectric. Very high capacitance. Has polarity (+ and − terminals). Used in power supplies.</li>
+                </ol>
+
+                <h4>C. Based on Capacitance Value:</h4>
+                <ol>
+                    <li><strong>Fixed Capacitor:</strong> Capacitance value is fixed during manufacturing.</li>
+                    <li><strong>Variable Capacitor:</strong> Capacitance can be changed (tuning capacitor in radio, trimmer).</li>
+                </ol>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=types+of+capacitors+electrolytic+ceramic+mica+paper+variable" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 3.10:</strong> Types of capacitors — electrolytic, ceramic, mica, paper, variable</p>
+                        <span class="click-hint">🔍 Click to view</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=parallel+plate+capacitor+construction+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 3.11:</strong> Parallel plate capacitor — two plates, dielectric, electric field</p>
+                        <span class="click-hint">🔍 Click to view</span>
+                    </div>
+                </a>
+            </div>
+
+            <h3>⭐ Capacitance of a Parallel Plate Capacitor (Formula Only)</h3>
+            <div class="formula-box">
+                <p><strong>Formula 3.13 — Parallel Plate Capacitor:</strong></p>
+                <p>\[ C = \frac{\varepsilon_0 A}{d} \]</p>
+                <p>With dielectric between the plates:</p>
+                <p>\[ C = \frac{\kappa \varepsilon_0 A}{d} = \frac{\varepsilon_0 \varepsilon_r A}{d} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>C</strong> = capacitance (F)</li>
+                    <li><strong>ε₀</strong> = permittivity of free space = 8.854 × 10⁻¹² F/m</li>
+                    <li><strong>A</strong> = area of each plate (m²)</li>
+                    <li><strong>d</strong> = distance between the plates (m)</li>
+                    <li><strong>κ or ε<sub>r</sub></strong> = dielectric constant (relative permittivity) of the material between plates</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Factors Affecting Capacitance</div>
+                <p>From the formula C = ε₀εᵣA/d, capacitance increases when:</p>
+                <ol>
+                    <li><strong>Area (A) increases</strong> — larger plates store more charge.</li>
+                    <li><strong>Distance (d) decreases</strong> — plates closer together → stronger field → more capacitance.</li>
+                    <li><strong>Dielectric constant (εᵣ) increases</strong> — better insulator between plates → more capacitance.</li>
+                </ol>
+            </div>
+
+            <h3>Energy Stored in a Capacitor</h3>
+            <div class="formula-box">
+                <p><strong>Formula 3.14 — Energy Stored:</strong></p>
+                <p>\[ U = \frac{1}{2}CV^2 = \frac{1}{2}QV = \frac{Q^2}{2C} \]</p>
+                <p>where:</p>
+                <ul>
+                    <li><strong>U</strong> = energy stored (Joule, J)</li>
+                    <li><strong>C</strong> = capacitance (F)</li>
+                    <li><strong>V</strong> = potential difference (V)</li>
+                    <li><strong>Q</strong> = charge stored (C)</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Remember These Three Forms</div>
+                <p>Energy = ½CV² = ½QV = Q²/2C. All three give the same answer — use whichever is convenient based on what data is given in the problem.</p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 4: SERIES & PARALLEL COMBINATIONS ========= -->
-    <section id="combinations" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-arrow-right-arrow-left"></i> Series & Parallel Combinations
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-arrow-right"></i> Series Combination</h4>
-            <div class="formula">1/C_eq = 1/C₁ + 1/C₂ + ...</div>
-            <p>Charge same on each capacitor. Voltage divides.</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-arrow-down"></i> Parallel Combination</h4>
-            <div class="formula">C_eq = C₁ + C₂ + ...</div>
-            <p>Voltage same across each. Charge divides.</p>
-          </div>
-        </div>
+    <!-- ==================== SECTION 8: SERIES & PARALLEL ==================== -->
+    <section class="section" id="cap-combinations">
+        <h2 class="section-title">
+            <i class="fas fa-network-wired"></i> Series & Parallel Combination of Capacitors 🔥🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 3 (Series)</div>
-          <p>Two capacitors 10μF and 20μF are connected in series. Find equivalent capacitance.</p>
-          <button class="toggle-btn" data-target="comb1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="comb1">
-            <div class="formula answer">
-              1/C_eq = 1/10 + 1/20 = 0.1 + 0.05 = 0.15<br>
-              C_eq = 1/0.15 = <strong>6.67 μF</strong>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why Combine Capacitors?</div>
+                <p>In practice, we often need a specific capacitance value that may not be available as a single capacitor. By combining capacitors in series or parallel, we can achieve the desired value. This is similar to combining resistors, but the formulas are <strong>reversed</strong>!</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 4 (Parallel)</div>
-          <p>Three capacitors 5μF, 10μF, 15μF in parallel. Find C_eq.</p>
-          <button class="toggle-btn" data-target="comb2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="comb2">
-            <div class="formula answer">
-              C_eq = 5 + 10 + 15 = <strong>30 μF</strong>
+            <!-- SERIES -->
+            <h3>⭐ Capacitors in Series</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Series Combination</div>
+                <p>Capacitors are said to be in <strong>series</strong> when they are connected <strong>end to end</strong> so that the <strong>same charge (Q) flows through each capacitor</strong>, but the <strong>voltage divides</strong> among them.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 5 (Mixed)</div>
-          <p>Find equivalent capacitance between points: 6μF and 3μF in series, and this combination in parallel with 2μF.</p>
-          <button class="toggle-btn" data-target="comb3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="comb3">
-            <div class="formula answer">
-              Series part: 1/Cs = 1/6 + 1/3 = 0.1667 + 0.3333 = 0.5 ⇒ Cs = 2 μF<br>
-              Parallel with 2μF: C_eq = 2 + 2 = <strong>4 μF</strong>
+            <a href="https://www.google.com/search?tbm=isch&q=capacitors+in+series+circuit+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.12:</strong> Capacitors C₁, C₂, C₃ connected in series</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Properties of Series Combination</div>
+                <ul>
+                    <li><strong>Charge is SAME</strong> on each capacitor: Q = Q₁ = Q₂ = Q₃</li>
+                    <li><strong>Voltage DIVIDES</strong>: V = V₁ + V₂ + V₃</li>
+                    <li>The <strong>equivalent capacitance is LESS</strong> than the smallest individual capacitance.</li>
+                </ul>
             </div>
-          </div>
+
+            <p><strong>Derivation:</strong></p>
+            <p>Total voltage: V = V₁ + V₂ + V₃</p>
+            <p>Since V = Q/C: Q/C<sub>eq</sub> = Q/C₁ + Q/C₂ + Q/C₃</p>
+            <p>Dividing by Q:</p>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.15 — Capacitors in Series:</strong></p>
+                <p>\[ \frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \frac{1}{C_3} + \ldots \]</p>
+                <p>For <strong>two capacitors</strong> in series:</p>
+                <p>\[ C_{eq} = \frac{C_1 \times C_2}{C_1 + C_2} \]</p>
+                <p>(Product divided by sum — easy to remember!)</p>
+            </div>
+
+            <!-- PARALLEL -->
+            <h3>⭐ Capacitors in Parallel</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Parallel Combination</div>
+                <p>Capacitors are said to be in <strong>parallel</strong> when they are connected <strong>across the same two points</strong> so that the <strong>same voltage (V) is applied across each capacitor</strong>, but the <strong>charge divides</strong> among them.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=capacitors+in+parallel+circuit+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.13:</strong> Capacitors C₁, C₂, C₃ connected in parallel</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Properties of Parallel Combination</div>
+                <ul>
+                    <li><strong>Voltage is SAME</strong> across each capacitor: V = V₁ = V₂ = V₃</li>
+                    <li><strong>Charge DIVIDES</strong>: Q = Q₁ + Q₂ + Q₃</li>
+                    <li>The <strong>equivalent capacitance is MORE</strong> than the largest individual capacitance.</li>
+                </ul>
+            </div>
+
+            <p><strong>Derivation:</strong></p>
+            <p>Total charge: Q = Q₁ + Q₂ + Q₃</p>
+            <p>Since Q = CV: C<sub>eq</sub>V = C₁V + C₂V + C₃V</p>
+            <p>Dividing by V:</p>
+
+            <div class="formula-box">
+                <p><strong>Formula 3.16 — Capacitors in Parallel:</strong></p>
+                <p>\[ C_{eq} = C_1 + C_2 + C_3 + \ldots \]</p>
+                <p>Simply ADD the capacitances!</p>
+            </div>
+
+            <h3>⚖️ Comparison: Series vs Parallel Capacitors</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Series Combination</th>
+                            <th>Parallel Combination</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Connection</strong></td><td>End to end</td><td>Across same two points</td></tr>
+                        <tr><td><strong>Charge</strong></td><td>Same on all (Q = Q₁ = Q₂)</td><td>Divides (Q = Q₁ + Q₂)</td></tr>
+                        <tr><td><strong>Voltage</strong></td><td>Divides (V = V₁ + V₂)</td><td>Same across all (V = V₁ = V₂)</td></tr>
+                        <tr><td><strong>Formula</strong></td><td>1/C<sub>eq</sub> = 1/C₁ + 1/C₂</td><td>C<sub>eq</sub> = C₁ + C₂</td></tr>
+                        <tr><td><strong>Equivalent C</strong></td><td>Less than smallest</td><td>More than largest</td></tr>
+                        <tr><td><strong>Purpose</strong></td><td>Handle higher voltage</td><td>Increase total capacitance</td></tr>
+                        <tr><td><strong>Like resistors</strong></td><td>Formula like R in parallel</td><td>Formula like R in series</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> VERY Important — Don't Mix Up!</div>
+                <p>Capacitor formulas are <strong>OPPOSITE</strong> to resistor formulas:</p>
+                <ul>
+                    <li><strong>Capacitors in Series:</strong> 1/C = 1/C₁ + 1/C₂ (like resistors in PARALLEL)</li>
+                    <li><strong>Capacitors in Parallel:</strong> C = C₁ + C₂ (like resistors in SERIES)</li>
+                </ul>
+                <p>This is the #1 mistake students make in exams! Remember: <strong>"Capacitors are opposite to resistors"</strong>.</p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 5: DIELECTRIC & BREAKDOWN ========= -->
-    <section id="dielectric" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-water"></i> Dielectric Effect & Dielectric Breakdown
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-chart-line"></i> Dielectric Constant (κ)</div>
-          <p>When a dielectric is inserted between plates, capacitance increases by factor κ.</p>
-          <div class="formula">C = κ C₀</div>
-          <p>where C₀ = capacitance without dielectric.</p>
-          <p>Dielectric reduces electric field inside: E = E₀/κ.</p>
-        </div>
+    <!-- ==================== SECTION 9: DIELECTRIC ==================== -->
+    <section class="section" id="dielectric">
+        <h2 class="section-title">
+            <i class="fas fa-layer-group"></i> Dielectric & Its Effect on Capacitance 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="important-note">
-          <div class="box-title"><i class="fas fa-bolt"></i> Dielectric Breakdown</div>
-          <p>If electric field exceeds dielectric strength, insulator becomes conductive – spark/arc occurs.</p>
-          <p>Example: Air breakdown ~ 3×10⁶ V/m. Capacitors have maximum voltage rating.</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 6</div>
-          <p>A parallel plate capacitor with air has capacitance 100pF. A dielectric of κ=5 is inserted. Find new capacitance.</p>
-          <button class="toggle-btn" data-target="di1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="di1">
-            <div class="formula answer">
-              C = κ × C₀ = 5 × 100 = <strong>500 pF</strong>
+            <h3>What is a Dielectric?</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Dielectric</div>
+                <p>A <strong>dielectric</strong> is an <strong>insulating material</strong> (non-conducting material) that can be placed between the plates of a capacitor. When placed in an electric field, a dielectric gets <strong>polarized</strong> (positive and negative charges shift slightly within its molecules), which <strong>reduces the net electric field</strong> between the plates and <strong>increases the capacitance</strong>.</p>
             </div>
-          </div>
+
+            <p><strong>Examples of dielectric materials:</strong> Air, vacuum, paper, glass, mica, ceramic, plastic, rubber, oil, wax, porcelain, distilled water.</p>
+
+            <h3>⭐ Dielectric Constant (κ or ε<sub>r</sub>)</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Dielectric Constant</div>
+                <p>The <strong>dielectric constant (κ)</strong> or <strong>relative permittivity (ε<sub>r</sub>)</strong> of a material is the <strong>ratio of the capacitance of a capacitor with the dielectric</strong> to the <strong>capacitance with vacuum (air)</strong> between the plates.</p>
+                <p>\[ \kappa = \varepsilon_r = \frac{C_{with\,dielectric}}{C_{with\,vacuum}} = \frac{C'}{C_0} \]</p>
+                <p>It is a <strong>dimensionless quantity</strong> (no unit) and always <strong>≥ 1</strong>.</p>
+            </div>
+
+            <h3>Dielectric Constants of Common Materials</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Dielectric Constant (κ)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Vacuum</td><td>1.000 (exactly)</td></tr>
+                        <tr><td>Air</td><td>1.0006 ≈ 1</td></tr>
+                        <tr><td>Paper</td><td>3.0 – 4.0</td></tr>
+                        <tr><td>Glass</td><td>4 – 10</td></tr>
+                        <tr><td>Mica</td><td>5 – 8</td></tr>
+                        <tr><td>Rubber</td><td>2 – 3</td></tr>
+                        <tr><td>Ceramic</td><td>10 – 12000</td></tr>
+                        <tr><td>Porcelain</td><td>5 – 7</td></tr>
+                        <tr><td>Pure water</td><td>80</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>⭐ Effect of Dielectric on Capacitance</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-arrow-up"></i> Key Effect: Dielectric INCREASES Capacitance</div>
+                <p>When a dielectric material (κ > 1) is inserted between the plates of a capacitor:</p>
+                <p>\[ C' = \kappa \cdot C_0 = \kappa \cdot \frac{\varepsilon_0 A}{d} \]</p>
+                <p>Since κ > 1, <strong>C' > C₀</strong>. The capacitance increases by a factor of κ.</p>
+                <p><strong>Why?</strong> The dielectric gets polarized, creating an internal field that opposes the original field. This reduces the net field, reduces the voltage (for same charge), and by C = Q/V, capacitance increases.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> What Happens When Dielectric is Inserted?</div>
+                <p><strong>If the capacitor is disconnected from battery (constant Q):</strong></p>
+                <ul>
+                    <li>Charge Q stays the same</li>
+                    <li>Capacitance C increases by factor κ</li>
+                    <li>Voltage V = Q/C decreases by factor κ</li>
+                    <li>Electric field E decreases by factor κ</li>
+                    <li>Energy U = Q²/2C decreases by factor κ</li>
+                </ul>
+                <p><strong>If the capacitor stays connected to battery (constant V):</strong></p>
+                <ul>
+                    <li>Voltage V stays the same</li>
+                    <li>Capacitance C increases by factor κ</li>
+                    <li>Charge Q = CV increases by factor κ</li>
+                    <li>Energy U = ½CV² increases by factor κ</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=effect+of+dielectric+on+capacitor+polarization+diagram+physics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.14:</strong> Effect of dielectric — polarization reducing the internal field, increasing capacitance</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>⭐ Dielectric Breakdown</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Dielectric Breakdown</div>
+                <p><strong>Dielectric breakdown</strong> occurs when the <strong>electric field applied across a dielectric material exceeds a critical value</strong> (called the <strong>dielectric strength</strong>). At this point, the dielectric <strong>loses its insulating property</strong> and starts <strong>conducting electricity</strong>. This can cause sparking, damage to the capacitor, and even fire.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Key Points about Dielectric Breakdown</div>
+                <ul>
+                    <li><strong>Dielectric strength</strong> = maximum electric field a dielectric can withstand without breakdown. Unit: V/m or kV/mm.</li>
+                    <li>Example: Air breaks down at about <strong>3 × 10⁶ V/m</strong> (3 kV/mm). This is why we see sparks and lightning!</li>
+                    <li>Glass: ~10 kV/mm, Mica: ~200 kV/mm, Rubber: ~20 kV/mm</li>
+                    <li>Every capacitor has a <strong>maximum voltage rating</strong>. Exceeding it causes dielectric breakdown and destroys the capacitor.</li>
+                    <li>Lightning is a natural example of dielectric breakdown of air.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Safety Note</div>
+                <p>Never exceed the voltage rating printed on a capacitor! Dielectric breakdown can cause the capacitor to <strong>explode</strong>, especially electrolytic capacitors. Always check polarity for electrolytic capacitors — reversing polarity can also cause breakdown.</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Points</div>
+                <p>Common exam questions: "What is a dielectric? How does it affect capacitance?" and "What is dielectric breakdown?" Write: definition → dielectric constant → C' = κC₀ → capacitance increases → breakdown occurs when field exceeds dielectric strength.</p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">F = kq₁q₂/r²</div>
-          <div class="tag">E = F/q₀</div>
-          <div class="tag">Φ = E·A</div>
-          <div class="tag">V = W/q₀</div>
-          <div class="tag">∮E·dA = Q/ε₀</div>
-          <div class="tag">C = Q/V</div>
-          <div class="tag">C = ε₀A/d</div>
-          <div class="tag">Series: 1/C = Σ1/Cᵢ</div>
-          <div class="tag">Parallel: C = ΣCᵢ</div>
-          <div class="tag">C = κC₀</div>
+    <!-- ==================== SECTION 10: SOLVED NUMERICALS ==================== -->
+    <section class="section" id="numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Solved Numerical Problems 🔥🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Numerical Solving Tips for Electrostatics</div>
+                <ol>
+                    <li>Convert all charges to Coulombs (1 μC = 10⁻⁶ C, 1 nC = 10⁻⁹ C)</li>
+                    <li>Convert all distances to metres (1 cm = 10⁻² m)</li>
+                    <li>Convert all capacitances to Farads (1 μF = 10⁻⁶ F, 1 pF = 10⁻¹² F)</li>
+                    <li>Use k = 9 × 10⁹ Nm²/C²</li>
+                    <li>Be careful with powers of 10!</li>
+                </ol>
+            </div>
+
+            <!-- Numerical 1 -->
+            <h3>Numerical 1: Coulomb's Law ⭐</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Two charges of 3 μC and 5 μC are placed 20 cm apart in air. Calculate the force between them. Is it attractive or repulsive?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>q₁ = 3 μC = 3 × 10⁻⁶ C</p>
+                    <p>q₂ = 5 μC = 5 × 10⁻⁶ C</p>
+                    <p>r = 20 cm = 0.2 m</p>
+                    <p>k = 9 × 10⁹ Nm²/C²</p>
+                </div>
+                <div class="step" data-step="Using Coulomb's Law">
+                    <p>F = kq₁q₂/r²</p>
+                    <p>F = (9 × 10⁹ × 3 × 10⁻⁶ × 5 × 10⁻⁶) / (0.2)²</p>
+                    <p>F = (9 × 10⁹ × 15 × 10⁻¹²) / 0.04</p>
+                    <p>F = (135 × 10⁻³) / 0.04</p>
+                    <p>F = 0.135 / 0.04</p>
+                    <p class="formula answer"><strong>F = 3.375 N</strong></p>
+                </div>
+                <div class="step" data-step="Nature of Force">
+                    <p>Both charges are positive (+3 μC and +5 μC). Like charges → <strong>Repulsive force</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Numerical 2 -->
+            <h3>Numerical 2: Electric Field due to Point Charge</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Calculate the electric field at a distance of 30 cm from a charge of 4 × 10⁻⁸ C in air.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>Q = 4 × 10⁻⁸ C, r = 30 cm = 0.3 m</p>
+                </div>
+                <div class="step" data-step="Using Formula">
+                    <p>E = kQ/r² = (9 × 10⁹ × 4 × 10⁻⁸) / (0.3)²</p>
+                    <p>E = (36 × 10) / 0.09 = 360 / 0.09</p>
+                    <p class="formula answer"><strong>E = 4000 N/C = 4 × 10³ N/C</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 3 -->
+            <h3>Numerical 3: Electric Potential</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Find the electric potential at a distance of 10 cm from a charge of 5 × 10⁻⁷ C.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>Q = 5 × 10⁻⁷ C, r = 10 cm = 0.1 m</p>
+                </div>
+                <div class="step" data-step="Using Formula">
+                    <p>V = kQ/r = (9 × 10⁹ × 5 × 10⁻⁷) / 0.1</p>
+                    <p>V = (45 × 10²) / 0.1 = 4500 / 0.1</p>
+                    <p class="formula answer"><strong>V = 45000 V = 4.5 × 10⁴ V = 45 kV</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 4 -->
+            <h3>Numerical 4: Capacitance Calculation</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A capacitor stores 6 × 10⁻⁴ C of charge when a potential difference of 200 V is applied across it. Find the capacitance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>Q = 6 × 10⁻⁴ C, V = 200 V</p>
+                </div>
+                <div class="step" data-step="Using C = Q/V">
+                    <p>C = Q/V = (6 × 10⁻⁴) / 200</p>
+                    <p>C = 3 × 10⁻⁶ F</p>
+                    <p class="formula answer"><strong>C = 3 μF</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 5 -->
+            <h3>Numerical 5: Capacitors in Series ⭐</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Three capacitors of 4 μF, 6 μF, and 12 μF are connected in series. Find the equivalent capacitance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>C₁ = 4 μF, C₂ = 6 μF, C₃ = 12 μF</p>
+                </div>
+                <div class="step" data-step="Using Series Formula">
+                    <p>1/C<sub>eq</sub> = 1/C₁ + 1/C₂ + 1/C₃</p>
+                    <p>1/C<sub>eq</sub> = 1/4 + 1/6 + 1/12</p>
+                    <p>LCM of 4, 6, 12 = 12</p>
+                    <p>1/C<sub>eq</sub> = 3/12 + 2/12 + 1/12 = 6/12 = 1/2</p>
+                    <p class="formula answer"><strong>C<sub>eq</sub> = 2 μF</strong></p>
+                </div>
+                <div class="step" data-step="Check">
+                    <p>C<sub>eq</sub> = 2 μF < smallest capacitor (4 μF) ✓ (Series capacitance is always less than the smallest.)</p>
+                </div>
+            </div>
+
+            <!-- Numerical 6 -->
+            <h3>Numerical 6: Capacitors in Parallel ⭐</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Three capacitors of 4 μF, 6 μF, and 12 μF are connected in parallel. Find the equivalent capacitance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Using Parallel Formula">
+                    <p>C<sub>eq</sub> = C₁ + C₂ + C₃ = 4 + 6 + 12</p>
+                    <p class="formula answer"><strong>C<sub>eq</sub> = 22 μF</strong></p>
+                </div>
+                <div class="step" data-step="Check">
+                    <p>C<sub>eq</sub> = 22 μF > largest capacitor (12 μF) ✓ (Parallel capacitance is always more than the largest.)</p>
+                </div>
+            </div>
+
+            <!-- Numerical 7 -->
+            <h3>Numerical 7: Mixed (Series + Parallel) Combination ⭐⭐</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Two capacitors of 6 μF each are connected in series, and this series combination is connected in parallel with a 4 μF capacitor. Find the equivalent capacitance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1: Series combination">
+                    <p>C₁ = 6 μF, C₂ = 6 μF in series:</p>
+                    <p>1/C<sub>s</sub> = 1/6 + 1/6 = 2/6 = 1/3</p>
+                    <p>C<sub>s</sub> = 3 μF</p>
+                </div>
+                <div class="step" data-step="Step 2: Parallel with 4 μF">
+                    <p>C<sub>s</sub> = 3 μF in parallel with C₃ = 4 μF:</p>
+                    <p>C<sub>eq</sub> = C<sub>s</sub> + C₃ = 3 + 4</p>
+                    <p class="formula answer"><strong>C<sub>eq</sub> = 7 μF</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 8 -->
+            <h3>Numerical 8: Charge and Energy on Capacitor</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A 10 μF capacitor is charged to 100 V. Calculate (a) the charge stored, and (b) the energy stored.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>C = 10 μF = 10 × 10⁻⁶ F, V = 100 V</p>
+                </div>
+                <div class="step" data-step="(a) Charge">
+                    <p>Q = CV = 10 × 10⁻⁶ × 100 = 1 × 10⁻³ C</p>
+                    <p class="formula answer"><strong>Q = 1 mC = 1000 μC</strong></p>
+                </div>
+                <div class="step" data-step="(b) Energy">
+                    <p>U = ½CV² = ½ × 10 × 10⁻⁶ × (100)²</p>
+                    <p>U = ½ × 10 × 10⁻⁶ × 10000</p>
+                    <p>U = 0.5 × 0.1 = 0.05 J</p>
+                    <p class="formula answer"><strong>U = 0.05 J = 50 mJ</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 9 -->
+            <h3>Numerical 9: Parallel Plate Capacitor</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A parallel plate capacitor has plate area 0.01 m² and plate separation 2 mm. Calculate its capacitance when (a) air is between the plates, (b) a dielectric of constant 5 is inserted. (ε₀ = 8.854 × 10⁻¹² F/m)</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>A = 0.01 m², d = 2 mm = 2 × 10⁻³ m, ε₀ = 8.854 × 10⁻¹² F/m</p>
+                </div>
+                <div class="step" data-step="(a) With Air (κ = 1)">
+                    <p>C₀ = ε₀A/d = (8.854 × 10⁻¹² × 0.01) / (2 × 10⁻³)</p>
+                    <p>C₀ = (8.854 × 10⁻¹⁴) / (2 × 10⁻³)</p>
+                    <p>C₀ = 4.427 × 10⁻¹¹ F</p>
+                    <p class="formula answer"><strong>C₀ = 44.27 pF ≈ 44.3 pF</strong></p>
+                </div>
+                <div class="step" data-step="(b) With Dielectric (κ = 5)">
+                    <p>C' = κ × C₀ = 5 × 44.27</p>
+                    <p class="formula answer"><strong>C' = 221.35 pF ≈ 221.4 pF</strong></p>
+                    <p>The capacitance increases 5 times with the dielectric! ✓</p>
+                </div>
+            </div>
+
+            <!-- Numerical 10 -->
+            <h3>Numerical 10: Force between Charges (Different Signs)</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A charge of +2 μC and a charge of −5 μC are placed 50 cm apart. Calculate the force between them and state its nature.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>q₁ = 2 μC = 2 × 10⁻⁶ C, q₂ = 5 μC = 5 × 10⁻⁶ C (take magnitude)</p>
+                    <p>r = 50 cm = 0.5 m</p>
+                </div>
+                <div class="step" data-step="Using Coulomb's Law">
+                    <p>F = kq₁q₂/r² = (9 × 10⁹ × 2 × 10⁻⁶ × 5 × 10⁻⁶) / (0.5)²</p>
+                    <p>F = (9 × 10⁹ × 10 × 10⁻¹²) / 0.25</p>
+                    <p>F = (90 × 10⁻³) / 0.25 = 0.09 / 0.25</p>
+                    <p class="formula answer"><strong>F = 0.36 N</strong></p>
+                    <p>Charges are of opposite sign (+2 μC and −5 μC) → <strong>Attractive force</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Numerical 11 -->
+            <h3>Numerical 11: Voltage Across Capacitors in Series</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Two capacitors of 3 μF and 6 μF are connected in series across a 90 V supply. Find (a) equivalent capacitance, (b) charge on each, (c) voltage across each.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="(a) Equivalent Capacitance">
+                    <p>1/C<sub>eq</sub> = 1/3 + 1/6 = (2+1)/6 = 3/6 = 1/2</p>
+                    <p class="formula answer"><strong>C<sub>eq</sub> = 2 μF</strong></p>
+                </div>
+                <div class="step" data-step="(b) Charge (same on each in series)">
+                    <p>Q = C<sub>eq</sub> × V = 2 × 10⁻⁶ × 90</p>
+                    <p class="formula answer"><strong>Q = 180 μC</strong> (on both capacitors)</p>
+                </div>
+                <div class="step" data-step="(c) Voltage Across Each">
+                    <p>V₁ = Q/C₁ = 180/3 = <strong>60 V</strong></p>
+                    <p>V₂ = Q/C₂ = 180/6 = <strong>30 V</strong></p>
+                    <p>Check: V₁ + V₂ = 60 + 30 = 90 V = Total supply ✓</p>
+                </div>
+            </div>
+
+            <!-- Numerical 12 -->
+            <h3>Numerical 12: Work Done in Moving Charge</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>How much work is done in moving a charge of 5 μC between two points with a potential difference of 200 V?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>q = 5 μC = 5 × 10⁻⁶ C, V = 200 V</p>
+                </div>
+                <div class="step" data-step="Using W = qV">
+                    <p>W = qV = 5 × 10⁻⁶ × 200</p>
+                    <p>W = 1000 × 10⁻⁶</p>
+                    <p class="formula answer"><strong>W = 10⁻³ J = 1 mJ</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 13 -->
+            <h3>Numerical 13: Electric Field on Sphere Surface (Gauss's Law)</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>A conducting sphere of radius 10 cm carries a charge of 2 × 10⁻⁸ C. Find the electric field (a) on the surface, (b) at 20 cm from the centre, (c) inside the sphere.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>R = 10 cm = 0.1 m, Q = 2 × 10⁻⁸ C</p>
+                </div>
+                <div class="step" data-step="(a) On surface (r = R = 0.1 m)">
+                    <p>E = kQ/R² = (9 × 10⁹ × 2 × 10⁻⁸) / (0.1)²</p>
+                    <p>E = (18 × 10) / 0.01 = 180 / 0.01</p>
+                    <p class="formula answer"><strong>E = 18000 N/C = 1.8 × 10⁴ N/C</strong></p>
+                </div>
+                <div class="step" data-step="(b) At r = 20 cm = 0.2 m (outside)">
+                    <p>E = kQ/r² = (9 × 10⁹ × 2 × 10⁻⁸) / (0.2)²</p>
+                    <p>E = 180 / 0.04</p>
+                    <p class="formula answer"><strong>E = 4500 N/C = 4.5 × 10³ N/C</strong></p>
+                </div>
+                <div class="step" data-step="(c) Inside the sphere (r < R)">
+                    <p>For a conducting sphere, <strong>E = 0</strong> inside (all charge is on surface, no charge enclosed by Gaussian surface inside).</p>
+                    <p class="formula answer"><strong>E = 0 N/C</strong></p>
+                </div>
+            </div>
+
+            <!-- Numerical 14 -->
+            <h3>Numerical 14: Two Capacitors in Series — Finding Individual Capacitances</h3>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Problem</div>
+                <p>Two capacitors when connected in parallel give an equivalent capacitance of 9 μF and when connected in series give 2 μF. Find the individual capacitances.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Given">
+                    <p>Parallel: C₁ + C₂ = 9 ... (i)</p>
+                    <p>Series: C₁C₂/(C₁+C₂) = 2 ... (ii)</p>
+                </div>
+                <div class="step" data-step="From (ii)">
+                    <p>C₁C₂ / 9 = 2 → C₁C₂ = 18 ... (iii)</p>
+                </div>
+                <div class="step" data-step="Solving">
+                    <p>C₁ and C₂ are roots of: x² − 9x + 18 = 0</p>
+                    <p>x² − 9x + 18 = 0</p>
+                    <p>(x − 3)(x − 6) = 0</p>
+                    <p>x = 3 or x = 6</p>
+                    <p class="formula answer"><strong>C₁ = 3 μF and C₂ = 6 μF</strong></p>
+                </div>
+                <div class="step" data-step="Verification">
+                    <p>Parallel: 3 + 6 = 9 μF ✓</p>
+                    <p>Series: (3 × 6)/(3 + 6) = 18/9 = 2 μF ✓</p>
+                </div>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
+    
+    <!-- ==================== SECTION 11: KEY FORMULAS ==================== -->
+    <section class="section" id="formulas">
+        <h2 class="section-title">
+            <i class="fas fa-superscript"></i> Key Formulas Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Formula Sheet</div>
+                <p>All formulas from Unit 3 — Electrostatics. Print this page for last-minute revision!</p>
+            </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+            <h3>A. Charge & Coulomb's Law</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>1. Quantization of Charge</h4>
+                    <p>\( q = ne \)</p>
+                    <p><small>n = integer, e = 1.6 × 10⁻¹⁹ C</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>2. Coulomb's Law 🔥🔥</h4>
+                    <p>\( F = k\frac{q_1 q_2}{r^2} \)</p>
+                    <p><small>k = 9 × 10⁹ Nm²/C²</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>3. Coulomb's Constant</h4>
+                    <p>\( k = \frac{1}{4\pi\varepsilon_0} = 9 \times 10^9 \)</p>
+                    <p><small>ε₀ = 8.854 × 10⁻¹² F/m</small></p>
+                </div>
+            </div>
+
+            <h3>B. Electric Field & Potential</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>4. Electric Field Intensity 🔥</h4>
+                    <p>\( E = \frac{F}{q_0} \)</p>
+                    <p><small>Unit: N/C or V/m</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>5. E due to Point Charge</h4>
+                    <p>\( E = \frac{kQ}{r^2} \)</p>
+                    <p><small>Radially outward for +Q, inward for −Q</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>6. Force from Field</h4>
+                    <p>\( F = qE \)</p>
+                    <p><small>Force on charge q in field E</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>7. Electric Flux</h4>
+                    <p>\( \Phi_E = EA\cos\theta \)</p>
+                    <p><small>Unit: Nm²/C. Max when θ=0°</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>8. Electric Potential 🔥</h4>
+                    <p>\( V = \frac{W}{q} = \frac{kQ}{r} \)</p>
+                    <p><small>Unit: Volt (V). Scalar quantity.</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>9. Work Done</h4>
+                    <p>\( W = qV = q(V_A - V_B) \)</p>
+                    <p><small>Work = charge × potential difference</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>10. E and V relation</h4>
+                    <p>\( E = -\frac{dV}{dr} = \frac{V}{d} \) (uniform)</p>
+                    <p><small>Field = negative gradient of potential</small></p>
+                </div>
+            </div>
+
+            <h3>C. Gauss's Law</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>11. Gauss's Law 🔥</h4>
+                    <p>\( \Phi_E = \frac{q_{enclosed}}{\varepsilon_0} \)</p>
+                    <p><small>Total flux = charge enclosed / ε₀</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>12. E outside sphere (r > R)</h4>
+                    <p>\( E = \frac{kQ}{r^2} \)</p>
+                    <p><small>Behaves like point charge</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>13. E on surface (r = R)</h4>
+                    <p>\( E = \frac{kQ}{R^2} \)</p>
+                    <p><small>Maximum value</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>14. E inside conductor (r < R)</h4>
+                    <p>\( E = 0 \)</p>
+                    <p><small>No charge enclosed inside conductor</small></p>
+                </div>
+            </div>
+
+            <h3>D. Capacitors</h3>
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>15. Capacitance 🔥</h4>
+                    <p>\( C = \frac{Q}{V} \)</p>
+                    <p><small>Unit: Farad (F). 1μF = 10⁻⁶ F</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>16. Parallel Plate Capacitor</h4>
+                    <p>\( C = \frac{\varepsilon_0 \varepsilon_r A}{d} \)</p>
+                    <p><small>A = area, d = separation, εᵣ = dielectric constant</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>17. Capacitors in Series 🔥🔥</h4>
+                    <p>\( \frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \frac{1}{C_3} \)</p>
+                    <p><small>Two caps: C<sub>eq</sub> = C₁C₂/(C₁+C₂)</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>18. Capacitors in Parallel 🔥🔥</h4>
+                    <p>\( C_{eq} = C_1 + C_2 + C_3 \)</p>
+                    <p><small>Just add them!</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>19. Energy Stored 🔥</h4>
+                    <p>\( U = \frac{1}{2}CV^2 = \frac{1}{2}QV = \frac{Q^2}{2C} \)</p>
+                    <p><small>Three equivalent forms</small></p>
+                </div>
+                <div class="formula-card">
+                    <h4>20. Dielectric Effect</h4>
+                    <p>\( C' = \kappa C_0 \)</p>
+                    <p><small>κ = dielectric constant (≥1). C increases.</small></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 12: DEFINITIONS ==================== -->
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-spell-check"></i> Important Definitions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-star"></i> Exam Strategy</div>
+                <p>Definition questions = guaranteed marks. Write: definition → formula → SI unit → one key point.</p>
+            </div>
+
+            <div class="definition-grid">
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 1. Electric Charge</div>
+                    <p>A fundamental property of matter that causes it to experience a force in an electric field. Two types: positive and negative. Like charges repel, unlike attract. SI Unit: Coulomb (C). Quantized: q = ne where e = 1.6 × 10⁻¹⁹ C.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 2. Coulomb's Law</div>
+                    <p>The electrostatic force between two point charges is directly proportional to the product of the charges and inversely proportional to the square of the distance between them. F = kq₁q₂/r², where k = 9 × 10⁹ Nm²/C². The force acts along the line joining the charges.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 3. Electric Field</div>
+                    <p>The region around a charged body where another charge experiences an electrostatic force. It is a vector quantity. SI Unit: N/C or V/m.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 4. Electric Field Intensity (E)</div>
+                    <p>The force experienced per unit positive test charge placed at a point in the electric field. E = F/q₀. For a point charge: E = kQ/r². SI Unit: N/C or V/m.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 5. Electric Lines of Force</div>
+                    <p>Imaginary curves drawn in an electric field such that the tangent at any point gives the direction of electric field at that point. They originate from positive charge and terminate on negative charge. They never cross each other.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 6. Electric Flux</div>
+                    <p>The total number of electric field lines passing through a given surface. Φ = EA cos θ. Maximum when surface is perpendicular to E (θ = 0°). SI Unit: Nm²/C or Vm.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 7. Electric Potential (V)</div>
+                    <p>The work done in bringing a unit positive charge from infinity to a given point against the electric field. V = W/q = kQ/r. It is a scalar quantity. SI Unit: Volt (V). 1 V = 1 J/C.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 8. Potential Difference</div>
+                    <p>The work done in moving a unit positive charge from one point to another in an electric field. V<sub>A</sub> − V<sub>B</sub> = W<sub>B→A</sub>/q. SI Unit: Volt (V). Also called voltage.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 9. Gauss's Law</div>
+                    <p>The total electric flux through any closed surface is equal to 1/ε₀ times the total charge enclosed within that surface. Φ = q<sub>enclosed</sub>/ε₀. Used to find electric field for symmetric charge distributions.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 10. Capacitor</div>
+                    <p>An electrical device consisting of two conducting plates separated by an insulating material (dielectric), used to store electric charge and energy. The stored energy is in the form of an electric field between the plates.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 11. Capacitance (C)</div>
+                    <p>The ratio of charge stored on a capacitor to the potential difference across its plates. C = Q/V. It measures the ability of a capacitor to store charge. SI Unit: Farad (F). 1 F = 1 C/V. Practical units: μF, nF, pF.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 12. Dielectric</div>
+                    <p>An insulating material placed between the plates of a capacitor. When polarized by the electric field, it increases the capacitance by a factor of κ (dielectric constant). Examples: air, mica, glass, paper, ceramic.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 13. Dielectric Constant (κ or ε<sub>r</sub>)</div>
+                    <p>The ratio of capacitance with dielectric to capacitance without dielectric (vacuum/air). κ = C'/C₀. It is dimensionless and always ≥ 1. Higher κ means the dielectric increases capacitance more.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 14. Dielectric Breakdown</div>
+                    <p>The phenomenon in which a dielectric material loses its insulating property and starts conducting electricity when the applied electric field exceeds a critical value called the dielectric strength. Example: Lightning is dielectric breakdown of air.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 15. Equipotential Surface</div>
+                    <p>A surface on which every point has the same electric potential. No work is done in moving a charge along an equipotential surface. Electric field lines are always perpendicular to equipotential surfaces.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title"><i class="fas fa-bookmark"></i> 16. Electron-Volt (eV)</div>
+                    <p>A unit of energy. It is the energy gained by one electron when it moves through a potential difference of 1 volt. 1 eV = 1.6 × 10⁻¹⁹ J. It is a unit of energy, NOT voltage.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 13: COMPARISONS ==================== -->
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1. Coulomb's Law vs Newton's Gravitational Law 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Coulomb's Law</th>
+                            <th>Newton's Gravitational Law</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Formula</td><td>F = kq₁q₂/r²</td><td>F = Gm₁m₂/r²</td></tr>
+                        <tr><td>2</td><td>Nature of force</td><td>Attractive or Repulsive</td><td>Always Attractive</td></tr>
+                        <tr><td>3</td><td>Strength</td><td>Much stronger (10³⁶ times)</td><td>Very weak</td></tr>
+                        <tr><td>4</td><td>Constant</td><td>k = 9 × 10⁹ Nm²C⁻²</td><td>G = 6.67 × 10⁻¹¹ Nm²kg⁻²</td></tr>
+                        <tr><td>5</td><td>Medium dependence</td><td>Depends on medium (dielectric)</td><td>Independent of medium</td></tr>
+                        <tr><td>6</td><td>Between</td><td>Charged bodies</td><td>Any two masses</td></tr>
+                        <tr><td>7</td><td>Variation</td><td>Inverse square law</td><td>Inverse square law</td></tr>
+                        <tr><td>8</td><td>Shielding</td><td>Can be shielded</td><td>Cannot be shielded</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>2. Electric Field vs Electric Potential 🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Electric Field (E)</th>
+                            <th>Electric Potential (V)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Definition</td><td>Force per unit charge (E = F/q₀)</td><td>Work done per unit charge (V = W/q)</td></tr>
+                        <tr><td>2</td><td>Type</td><td>Vector (has direction)</td><td>Scalar (no direction)</td></tr>
+                        <tr><td>3</td><td>SI Unit</td><td>N/C or V/m</td><td>Volt (V) = J/C</td></tr>
+                        <tr><td>4</td><td>For point charge</td><td>E = kQ/r² (inverse square)</td><td>V = kQ/r (inverse)</td></tr>
+                        <tr><td>5</td><td>Direction</td><td>Outward for +Q, inward for −Q</td><td>No direction (scalar)</td></tr>
+                        <tr><td>6</td><td>Relation</td><td>E = −dV/dr</td><td>V = −∫E dr</td></tr>
+                        <tr><td>7</td><td>Visualization</td><td>Electric field lines</td><td>Equipotential surfaces</td></tr>
+                        <tr><td>8</td><td>Superposition</td><td>Vector addition</td><td>Algebraic (scalar) addition</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3. Capacitors in Series vs Parallel 🔥🔥</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Property</th>
+                            <th>Series</th>
+                            <th>Parallel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Connection</td><td>End to end</td><td>Across same two points</td></tr>
+                        <tr><td>2</td><td>Charge</td><td>Same on all: Q = Q₁ = Q₂</td><td>Divides: Q = Q₁ + Q₂</td></tr>
+                        <tr><td>3</td><td>Voltage</td><td>Divides: V = V₁ + V₂</td><td>Same on all: V = V₁ = V₂</td></tr>
+                        <tr><td>4</td><td>Formula</td><td>1/C<sub>eq</sub> = 1/C₁ + 1/C₂</td><td>C<sub>eq</sub> = C₁ + C₂</td></tr>
+                        <tr><td>5</td><td>Equivalent C</td><td>Less than smallest</td><td>More than largest</td></tr>
+                        <tr><td>6</td><td>Purpose</td><td>Withstand higher voltage</td><td>Increase capacitance</td></tr>
+                        <tr><td>7</td><td>Like resistors</td><td>Formula like R in parallel</td><td>Formula like R in series</td></tr>
+                        <tr><td>8</td><td>Two caps shortcut</td><td>C₁C₂/(C₁+C₂)</td><td>C₁ + C₂</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 14: MCQ BANK ==================== -->
+    <section class="section" id="mcqs">
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i> MCQ Bank (Multiple Choice Questions)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q 3.1</h4>
+                    <p>The SI unit of electric charge is:</p>
+                    <ul class="options">
+                        <li>a. Ampere</li>
+                        <li>b. Volt</li>
+                        <li>c. Coulomb</li>
+                        <li>d. Farad</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_1">
+                        <strong>Answer: c. Coulomb</strong>
+                        <p>Charge is measured in Coulombs (C). Ampere is unit of current, Volt of potential, Farad of capacitance.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.2</h4>
+                    <p>The value of Coulomb's constant k is:</p>
+                    <ul class="options">
+                        <li>a. 9 × 10⁻⁹ Nm²/C²</li>
+                        <li>b. 9 × 10⁹ Nm²/C²</li>
+                        <li>c. 6.67 × 10⁻¹¹ Nm²/C²</li>
+                        <li>d. 8.854 × 10⁻¹² Nm²/C²</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_2">
+                        <strong>Answer: b. 9 × 10⁹ Nm²/C²</strong>
+                        <p>k = 1/(4πε₀) = 9 × 10⁹. Option c is the gravitational constant G. Option d is ε₀.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.3</h4>
+                    <p>Electric lines of force:</p>
+                    <ul class="options">
+                        <li>a. Always cross each other</li>
+                        <li>b. Never cross each other</li>
+                        <li>c. Are always circular</li>
+                        <li>d. Originate from negative charge</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_3">
+                        <strong>Answer: b. Never cross each other</strong>
+                        <p>If they crossed, there would be two directions of E at one point, which is impossible. They originate from positive charge (not negative).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.4</h4>
+                    <p>The electric field inside a conducting sphere is:</p>
+                    <ul class="options">
+                        <li>a. Maximum</li>
+                        <li>b. Minimum but not zero</li>
+                        <li>c. Zero</li>
+                        <li>d. Infinity</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_4">
+                        <strong>Answer: c. Zero</strong>
+                        <p>By Gauss's law, since all charge resides on the surface of a conductor, no charge is enclosed by a Gaussian surface inside. So E = 0 inside.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.5</h4>
+                    <p>The SI unit of electric potential is:</p>
+                    <ul class="options">
+                        <li>a. Coulomb</li>
+                        <li>b. Newton</li>
+                        <li>c. Volt</li>
+                        <li>d. Farad</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_5">
+                        <strong>Answer: c. Volt</strong>
+                        <p>V = W/q. Unit: Joule/Coulomb = Volt. 1 V = 1 J/C.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.6</h4>
+                    <p>Three capacitors of 2 μF, 3 μF and 6 μF are connected in series. The equivalent capacitance is:</p>
+                    <ul class="options">
+                        <li>a. 11 μF</li>
+                        <li>b. 1 μF</li>
+                        <li>c. 6 μF</li>
+                        <li>d. 0.5 μF</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_6">
+                        <strong>Answer: b. 1 μF</strong>
+                        <p>1/C = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1. So C = 1 μF.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.7</h4>
+                    <p>When a dielectric is inserted between the plates of a capacitor, the capacitance:</p>
+                    <ul class="options">
+                        <li>a. Decreases</li>
+                        <li>b. Remains same</li>
+                        <li>c. Increases</li>
+                        <li>d. Becomes zero</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_7">
+                        <strong>Answer: c. Increases</strong>
+                        <p>C' = κC₀. Since κ > 1 for any dielectric, capacitance always increases.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.8</h4>
+                    <p>The SI unit of capacitance is:</p>
+                    <ul class="options">
+                        <li>a. Volt</li>
+                        <li>b. Coulomb</li>
+                        <li>c. Ohm</li>
+                        <li>d. Farad</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_8">
+                        <strong>Answer: d. Farad</strong>
+                        <p>C = Q/V. Unit: Coulomb/Volt = Farad (F). Named after Michael Faraday.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.9</h4>
+                    <p>The charge on an electron is:</p>
+                    <ul class="options">
+                        <li>a. +1.6 × 10⁻¹⁹ C</li>
+                        <li>b. −1.6 × 10⁻¹⁹ C</li>
+                        <li>c. +1.6 × 10¹⁹ C</li>
+                        <li>d. −9.1 × 10⁻³¹ C</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_9">
+                        <strong>Answer: b. −1.6 × 10⁻¹⁹ C</strong>
+                        <p>Electron has negative charge. Option d is the mass of electron (not charge). Proton has +1.6 × 10⁻¹⁹ C.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.10</h4>
+                    <p>Electric potential is a:</p>
+                    <ul class="options">
+                        <li>a. Vector quantity</li>
+                        <li>b. Scalar quantity</li>
+                        <li>c. Neither</li>
+                        <li>d. Both</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_10">
+                        <strong>Answer: b. Scalar quantity</strong>
+                        <p>Potential V has magnitude only, no direction. Electric field E is a vector. Don't confuse!</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.11</h4>
+                    <p>Three capacitors of 4 μF each are connected in parallel. The equivalent capacitance is:</p>
+                    <ul class="options">
+                        <li>a. 12 μF</li>
+                        <li>b. 4/3 μF</li>
+                        <li>c. 4 μF</li>
+                        <li>d. 1.33 μF</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_11"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_11">
+                        <strong>Answer: a. 12 μF</strong>
+                        <p>Parallel: C = C₁ + C₂ + C₃ = 4 + 4 + 4 = 12 μF. In parallel, just add!</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.12</h4>
+                    <p>Dielectric breakdown occurs when:</p>
+                    <ul class="options">
+                        <li>a. Capacitance becomes zero</li>
+                        <li>b. Applied field exceeds dielectric strength</li>
+                        <li>c. Charge becomes zero</li>
+                        <li>d. Temperature becomes zero</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_12"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_12">
+                        <strong>Answer: b. Applied field exceeds dielectric strength</strong>
+                        <p>When E exceeds the maximum the dielectric can withstand, the insulator breaks down and starts conducting. Example: lightning in air.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.13</h4>
+                    <p>According to Gauss's law, total electric flux through a closed surface is proportional to:</p>
+                    <ul class="options">
+                        <li>a. Total charge outside</li>
+                        <li>b. Total charge enclosed</li>
+                        <li>c. Area of surface</li>
+                        <li>d. Electric field</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_13"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_13">
+                        <strong>Answer: b. Total charge enclosed</strong>
+                        <p>Φ = q<sub>enclosed</sub>/ε₀. Flux depends only on charge INSIDE the surface.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.14</h4>
+                    <p>1 electron-volt (eV) is equal to:</p>
+                    <ul class="options">
+                        <li>a. 1.6 × 10⁻¹⁹ J</li>
+                        <li>b. 1.6 × 10⁻¹⁹ V</li>
+                        <li>c. 1.6 × 10⁻¹⁹ C</li>
+                        <li>d. 9.1 × 10⁻³¹ J</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_14"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_14">
+                        <strong>Answer: a. 1.6 × 10⁻¹⁹ J</strong>
+                        <p>eV is a unit of ENERGY (not voltage or charge). 1 eV = charge of electron × 1 V = 1.6 × 10⁻¹⁹ J.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.15</h4>
+                    <p>The energy stored in a capacitor is given by:</p>
+                    <ul class="options">
+                        <li>a. U = CV²</li>
+                        <li>b. U = ½CV²</li>
+                        <li>c. U = 2CV²</li>
+                        <li>d. U = CV</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3_15"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3_15">
+                        <strong>Answer: b. U = ½CV²</strong>
+                        <p>Also = ½QV = Q²/2C. Note the ½ factor — it's because the voltage builds up gradually during charging.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 15: SHORT ANSWER QUESTIONS ==================== -->
+    <section class="section" id="short-qa">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions (2 Marks)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. State Coulomb's law.</h4>
+                <button class="toggle-btn" data-target="sa3_1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_1">
+                    <p>Coulomb's law states that the electrostatic force between two point charges is directly proportional to the product of the magnitudes of the charges and inversely proportional to the square of the distance between them. F = kq₁q₂/r², where k = 9 × 10⁹ Nm²/C². The force acts along the line joining the charges and is attractive for unlike charges and repulsive for like charges.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. Define electric field intensity and give its SI unit.</h4>
+                <button class="toggle-btn" data-target="sa3_2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_2">
+                    <p><strong>Electric field intensity (E)</strong> at a point is the force experienced per unit positive test charge placed at that point. E = F/q₀. For a point charge Q: E = kQ/r². SI Unit: Newton per Coulomb (N/C) or Volt per metre (V/m). It is a vector quantity directed outward from positive charge and inward towards negative charge.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Define electric potential and potential difference.</h4>
+                <button class="toggle-btn" data-target="sa3_3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_3">
+                    <p><strong>Electric potential (V):</strong> Work done in bringing a unit positive charge from infinity to a point against the electric field. V = W/q. Unit: Volt (V).</p>
+                    <p><strong>Potential difference:</strong> Work done in moving a unit positive charge from one point to another. V<sub>A</sub> − V<sub>B</sub> = W<sub>B→A</sub>/q. It drives current in circuits.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. What is a capacitor? Give its SI unit of capacitance.</h4>
+                <button class="toggle-btn" data-target="sa3_4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_4">
+                    <p>A <strong>capacitor</strong> is an electrical device consisting of two conducting plates separated by an insulating material (dielectric), used to store electric charge and energy. C = Q/V. SI Unit of capacitance: <strong>Farad (F)</strong>. 1 F = 1 C/V. Practical units: μF (10⁻⁶ F), pF (10⁻¹² F).</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. State Gauss's law.</h4>
+                <button class="toggle-btn" data-target="sa3_5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_5">
+                    <p>Gauss's law states that the total electric flux through any closed surface (Gaussian surface) is equal to 1/ε₀ times the total charge enclosed within that surface. Mathematically: Φ = q<sub>enclosed</sub>/ε₀, where ε₀ = 8.854 × 10⁻¹² F/m is the permittivity of free space. The flux is independent of charges outside the surface.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. What is dielectric breakdown? Give one example.</h4>
+                <button class="toggle-btn" data-target="sa3_6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_6">
+                    <p><strong>Dielectric breakdown</strong> is the phenomenon where a dielectric (insulating) material loses its insulating property and starts conducting electricity when the applied electric field exceeds the dielectric strength of the material. The material may get damaged permanently. <strong>Example:</strong> Lightning — the electric field between clouds and ground exceeds the dielectric strength of air (~3 × 10⁶ V/m), causing air to break down and conduct.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q7. Why do two electric lines of force never cross each other?</h4>
+                <button class="toggle-btn" data-target="sa3_7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_7">
+                    <p>If two electric lines of force crossed at a point, there would be <strong>two tangents</strong> at that point, meaning two different directions of the electric field at the same point. This is physically impossible because the electric field at any point has only <strong>one unique direction</strong>. Therefore, electric lines of force never cross each other.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q8. How does dielectric affect the capacitance of a capacitor?</h4>
+                <button class="toggle-btn" data-target="sa3_8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_8">
+                    <p>When a dielectric material (dielectric constant κ > 1) is inserted between the plates, the capacitance <strong>increases</strong> by a factor of κ. C' = κC₀. This happens because the dielectric gets polarized, creating an opposing field that reduces the net field, reducing the voltage for the same charge, and hence increasing C = Q/V. For example, if κ = 5, capacitance becomes 5 times the original.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q9. Write the formula for capacitors in series and in parallel.</h4>
+                <button class="toggle-btn" data-target="sa3_9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_9">
+                    <p><strong>Series:</strong> 1/C<sub>eq</sub> = 1/C₁ + 1/C₂ + 1/C₃ + ... (Equivalent capacitance is less than the smallest.)</p>
+                    <p><strong>Parallel:</strong> C<sub>eq</sub> = C₁ + C₂ + C₃ + ... (Equivalent capacitance is the sum — more than the largest.)</p>
+                    <p>Note: These are opposite to resistor formulas!</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q10. What is an equipotential surface?</h4>
+                <button class="toggle-btn" data-target="sa3_10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3_10">
+                    <p>An <strong>equipotential surface</strong> is a surface on which every point has the same electric potential. No work is done in moving a charge along an equipotential surface (since ΔV = 0). Electric field lines are always perpendicular to equipotential surfaces. For a point charge, equipotential surfaces are concentric spheres.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 16: LONG ANSWER QUESTIONS ==================== -->
+    <section class="section" id="long-qa">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. State Coulomb's law. Compare it with Newton's gravitational law. Two charges of 4 μC and 8 μC are placed 30 cm apart. Find the force between them. [7 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la3_1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_1">
+                    <p><strong>Coulomb's Law:</strong> The electrostatic force between two point charges is directly proportional to the product of their magnitudes and inversely proportional to the square of the distance between them. F = kq₁q₂/r², k = 9 × 10⁹ Nm²/C².</p>
+                    <p><strong>Comparison:</strong></p>
+                    <p>| Property | Coulomb's | Newton's |</p>
+                    <p>| Nature | Attractive/Repulsive | Always Attractive |</p>
+                    <p>| Strength | Very strong | Very weak |</p>
+                    <p>| Medium dependence | Yes | No |</p>
+                    <p>| Constant | k = 9×10⁹ | G = 6.67×10⁻¹¹ |</p>
+                    <p>| Between | Charges | Masses |</p>
+                    <p>Both follow inverse square law.</p>
+                    <p><strong>Numerical:</strong></p>
+                    <p>q₁ = 4 μC = 4 × 10⁻⁶ C, q₂ = 8 μC = 8 × 10⁻⁶ C, r = 30 cm = 0.3 m</p>
+                    <p>F = (9 × 10⁹ × 4 × 10⁻⁶ × 8 × 10⁻⁶) / (0.3)²</p>
+                    <p>F = (9 × 10⁹ × 32 × 10⁻¹²) / 0.09 = (288 × 10⁻³) / 0.09</p>
+                    <p><strong>F = 3.2 N (repulsive, as both charges are positive)</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. State the properties of electric lines of force with diagrams. [5 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la3_2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_2">
+                    <p><strong>Properties:</strong></p>
+                    <ol>
+                        <li>Originate from +ve charge and terminate on −ve charge.</li>
+                        <li>Tangent at any point gives the direction of E at that point.</li>
+                        <li>Never cross or intersect each other.</li>
+                        <li>Closer together = stronger field; farther = weaker field.</li>
+                        <li>Continuous curves; do not break.</li>
+                        <li>Contract longitudinally (attraction between unlike charges).</li>
+                        <li>Exert lateral pressure (repulsion between like charges).</li>
+                        <li>Perpendicular to conductor surface.</li>
+                        <li>No field lines inside a conductor (E = 0).</li>
+                        <li>Parallel and equidistant in uniform field.</li>
+                    </ol>
+                    <p>[Draw diagrams: (a) Lines from +ve charge radiating outward, (b) Lines going into −ve charge, (c) Lines between +ve and −ve (attraction), (d) Lines between two +ve (repulsion)]</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. State Gauss's law. Apply it to find the electric field due to a uniformly charged conducting sphere for points (a) outside, (b) on the surface, and (c) inside. Draw E vs r graph. [7 marks] 🔥🔥🔥</h4>
+                <button class="toggle-btn" data-target="la3_3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_3">
+                    <p><strong>Gauss's Law:</strong> Total electric flux through any closed surface = q<sub>enclosed</sub>/ε₀.</p>
+                    <p><strong>(a) Outside sphere (r > R):</strong> Choose spherical Gaussian surface of radius r. All charge Q is enclosed.</p>
+                    <p>E × 4πr² = Q/ε₀ → <strong>E = kQ/r²</strong> (same as point charge)</p>
+                    <p><strong>(b) On surface (r = R):</strong></p>
+                    <p><strong>E = kQ/R²</strong> (maximum value)</p>
+                    <p><strong>(c) Inside conductor (r < R):</strong> Gaussian surface inside encloses no charge (all charge on surface).</p>
+                    <p>E × 4πr² = 0 → <strong>E = 0</strong></p>
+                    <p>[Draw E vs r graph: E = 0 for r < R, sharp rise to max at r = R, then decreases as 1/r² for r > R]</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. What is a capacitor? Explain the working of a parallel plate capacitor. Write the formula for capacitance and explain each term. [5 marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la3_4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_4">
+                    <p><strong>Capacitor:</strong> A device with two conducting plates separated by a dielectric, used to store charge and energy.</p>
+                    <p><strong>Working:</strong> When connected to a battery, one plate gets +Q and the other −Q. An electric field is created between plates. Energy is stored in this field. Charging stops when voltage across plates = battery voltage.</p>
+                    <p><strong>Formula:</strong> C = ε₀εᵣA/d</p>
+                    <ul>
+                        <li>C = capacitance (F)</li>
+                        <li>ε₀ = permittivity of free space = 8.854 × 10⁻¹² F/m</li>
+                        <li>εᵣ = dielectric constant of material between plates</li>
+                        <li>A = area of each plate (m²)</li>
+                        <li>d = distance between plates (m)</li>
+                    </ul>
+                    <p>C increases with: larger A, smaller d, higher εᵣ.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. Derive the formula for equivalent capacitance of capacitors in series and in parallel. [7 marks] 🔥🔥</h4>
+                <button class="toggle-btn" data-target="la3_5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_5">
+                    <p><strong>Series Combination:</strong></p>
+                    <p>Same charge Q on each. Voltage divides: V = V₁ + V₂ + V₃</p>
+                    <p>V₁ = Q/C₁, V₂ = Q/C₂, V₃ = Q/C₃</p>
+                    <p>V = Q/C₁ + Q/C₂ + Q/C₃</p>
+                    <p>Q/C<sub>eq</sub> = Q/C₁ + Q/C₂ + Q/C₃</p>
+                    <p><strong>1/C<sub>eq</sub> = 1/C₁ + 1/C₂ + 1/C₃</strong></p>
+                    <p>C<sub>eq</sub> < smallest individual capacitance.</p>
+                    <p><strong>Parallel Combination:</strong></p>
+                    <p>Same voltage V across each. Charge divides: Q = Q₁ + Q₂ + Q₃</p>
+                    <p>Q₁ = C₁V, Q₂ = C₂V, Q₃ = C₃V</p>
+                    <p>C<sub>eq</sub>V = C₁V + C₂V + C₃V</p>
+                    <p><strong>C<sub>eq</sub> = C₁ + C₂ + C₃</strong></p>
+                    <p>C<sub>eq</sub> > largest individual capacitance.</p>
+                    <p>[Draw circuit diagrams for both series and parallel connections]</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. What is a dielectric? Explain dielectric constant and its effect on capacitance. What is dielectric breakdown? [7 marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la3_6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_6">
+                    <p><strong>Dielectric:</strong> An insulating material placed between the plates of a capacitor. Examples: air, glass, mica, paper, ceramic.</p>
+                    <p><strong>Dielectric constant (κ):</strong> Ratio of capacitance with dielectric to capacitance without: κ = C'/C₀. Dimensionless, always ≥ 1.</p>
+                    <p><strong>Effect on capacitance:</strong> C' = κC₀. The capacitance increases by factor κ when dielectric is inserted. This happens because the dielectric gets polarized, reducing the net electric field, reducing voltage for the same charge, and thus increasing capacitance.</p>
+                    <p><strong>Factors:</strong> C = ε₀εᵣA/d — higher εᵣ (= κ) gives higher C.</p>
+                    <p><strong>Dielectric Breakdown:</strong> When the applied electric field exceeds the maximum that a dielectric can withstand (called dielectric strength), the dielectric loses its insulating property and starts conducting. This damages the capacitor. Example: Lightning (breakdown of air at ~3 MV/m). Every capacitor has a maximum voltage rating to prevent breakdown.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q7. Define electric potential. Derive the expression for potential due to a point charge. [5 marks]</h4>
+                <button class="toggle-btn" data-target="la3_7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_7">
+                    <p><strong>Electric Potential (V):</strong> Work done in bringing a unit positive charge from infinity to a given point against the electric field. V = W/q. SI Unit: Volt (V).</p>
+                    <p><strong>Derivation for point charge Q:</strong></p>
+                    <p>Consider bringing a test charge q₀ from infinity to a point at distance r from charge Q.</p>
+                    <p>At distance x, force on q₀: F = kQq₀/x²</p>
+                    <p>Small work done: dW = F dx = kQq₀/x² dx</p>
+                    <p>Total work from ∞ to r: W = ∫(∞ to r) kQq₀/x² dx = kQq₀[-1/x] from ∞ to r</p>
+                    <p>W = kQq₀(−1/r + 1/∞) = kQq₀/r (since 1/∞ = 0)</p>
+                    <p>Potential V = W/q₀ = <strong>kQ/r</strong></p>
+                    <p>V is positive for +Q and negative for −Q. V decreases with increasing distance.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q8. Name different types of capacitors. Explain any two in detail with diagrams. [5 marks]</h4>
+                <button class="toggle-btn" data-target="la3_8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3_8">
+                    <p><strong>Types:</strong> (1) Parallel plate (2) Cylindrical (3) Spherical (4) Electrolytic (5) Mica (6) Ceramic (7) Paper (8) Variable/Air capacitor.</p>
+                    <p><strong>1. Electrolytic Capacitor:</strong></p>
+                    <ul>
+                        <li>Uses a thin oxide layer as dielectric (formed electrochemically).</li>
+                        <li>Has very high capacitance (μF to mF range) in compact size.</li>
+                        <li>Has polarity — must be connected with correct + and − terminals.</li>
+                        <li>Used in power supply filtering, coupling, and decoupling circuits.</li>
+                    </ul>
+                    <p><strong>2. Ceramic Capacitor:</strong></p>
+                    <ul>
+                        <li>Uses ceramic material as dielectric.</li>
+                        <li>Very small, disc-shaped, no polarity.</li>
+                        <li>Low to medium capacitance (pF to μF).</li>
+                        <li>Used in high-frequency circuits, PCBs, timing circuits.</li>
+                    </ul>
+                    <p>[Draw diagrams of both types showing construction]</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 17: PRACTICE NUMERICALS ==================== -->
+    <section class="section" id="practice">
+        <h2 class="section-title">
+            <i class="fas fa-dumbbell"></i> Practice Numerical Problems
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>P1. Two charges of 2 μC and 3 μC are placed 10 cm apart in vacuum. Find the force between them. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_1"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_1">
+                    <p>q₁ = 2 × 10⁻⁶ C, q₂ = 3 × 10⁻⁶ C, r = 0.1 m</p>
+                    <p>F = kq₁q₂/r² = (9 × 10⁹ × 2 × 10⁻⁶ × 3 × 10⁻⁶) / (0.1)²</p>
+                    <p>F = (54 × 10⁻³) / 0.01 = <strong>5.4 N (Repulsive)</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P2. Find the electric potential at a distance of 50 cm from a charge of 2 × 10⁻⁶ C. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_2"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_2">
+                    <p>V = kQ/r = (9 × 10⁹ × 2 × 10⁻⁶) / 0.5</p>
+                    <p>V = (18 × 10³) / 0.5 = <strong>36000 V = 36 kV</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P3. Three capacitors of 2 μF, 4 μF, and 4 μF are connected in series across a 120 V supply. Find (a) equivalent capacitance, (b) charge on each, (c) voltage across each. [5 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_3"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_3">
+                    <p>(a) 1/C = 1/2 + 1/4 + 1/4 = 2/4 + 1/4 + 1/4 = 4/4 = 1</p>
+                    <p><strong>C<sub>eq</sub> = 1 μF</strong></p>
+                    <p>(b) Q = C<sub>eq</sub>V = 1 × 120 = <strong>120 μC</strong> (same on all)</p>
+                    <p>(c) V₁ = Q/C₁ = 120/2 = <strong>60 V</strong></p>
+                    <p>V₂ = Q/C₂ = 120/4 = <strong>30 V</strong></p>
+                    <p>V₃ = Q/C₃ = 120/4 = <strong>30 V</strong></p>
+                    <p>Check: 60 + 30 + 30 = 120 V ✓</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P4. A 5 μF capacitor is charged to 200 V. Find the charge stored and energy stored. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_4"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_4">
+                    <p>Q = CV = 5 × 10⁻⁶ × 200 = <strong>1 × 10⁻³ C = 1 mC</strong></p>
+                    <p>U = ½CV² = ½ × 5 × 10⁻⁶ × (200)² = ½ × 5 × 10⁻⁶ × 40000</p>
+                    <p>U = <strong>0.1 J = 100 mJ</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P5. Find the equivalent capacitance: 3 μF and 6 μF in parallel, then this combination in series with 4 μF. [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_5"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_5">
+                    <p>Step 1: 3 μF ∥ 6 μF: C<sub>p</sub> = 3 + 6 = 9 μF</p>
+                    <p>Step 2: 9 μF in series with 4 μF:</p>
+                    <p>C<sub>eq</sub> = (9 × 4)/(9 + 4) = 36/13 = <strong>2.77 μF</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P6. What is the electric field at a point 20 cm from the surface of a charged sphere of radius 10 cm carrying 5 × 10⁻⁹ C? [3 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_6"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_6">
+                    <p>R = 10 cm, distance from surface = 20 cm</p>
+                    <p>r = R + 20 = 10 + 20 = 30 cm = 0.3 m (distance from centre)</p>
+                    <p>E = kQ/r² = (9 × 10⁹ × 5 × 10⁻⁹) / (0.3)²</p>
+                    <p>E = 45/0.09 = <strong>500 N/C</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P7. How much work is done in moving 3 μC charge from a point at 20 V to a point at 120 V? [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_7"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_7">
+                    <p>q = 3 μC = 3 × 10⁻⁶ C</p>
+                    <p>ΔV = 120 − 20 = 100 V</p>
+                    <p>W = qΔV = 3 × 10⁻⁶ × 100 = <strong>3 × 10⁻⁴ J = 0.3 mJ</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P8. A parallel plate capacitor with air has capacitance 10 pF. If a dielectric of constant 4 is inserted, find the new capacitance. [2 marks]</h4>
+                <button class="toggle-btn" data-target="pn3_8"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3_8">
+                    <p>C₀ = 10 pF, κ = 4</p>
+                    <p>C' = κC₀ = 4 × 10 = <strong>40 pF</strong></p>
+                    <p>Capacitance increases 4 times!</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 18: QUICK REVISION ==================== -->
+    <section class="section" id="revision">
+        <h2 class="section-title">
+            <i class="fas fa-bullseye"></i> Quick Revision — Unit Summary 🎯
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bolt"></i> Last-Minute Revision Points</div>
+
+                <h4>🔵 Charge & Coulomb's Law</h4>
+                <ul>
+                    <li>Charge: +ve and −ve. Like repel, unlike attract.</li>
+                    <li>q = ne, e = 1.6 × 10⁻¹⁹ C</li>
+                    <li><strong>F = kq₁q₂/r²</strong>, k = 9 × 10⁹ Nm²/C² 🔥</li>
+                    <li>1 Coulomb = very large charge. Practical: μC, nC</li>
+                </ul>
+
+                <h4>🔵 Electric Field</h4>
+                <ul>
+                    <li>E = F/q₀ = kQ/r² (vector, unit: N/C or V/m)</li>
+                    <li>F = qE (force on charge in field)</li>
+                    <li>+Q: field outward. −Q: field inward</li>
+                </ul>
+
+                <h4>🔵 Electric Lines of Force</h4>
+                <ul>
+                    <li>Originate from + charge, end on − charge</li>
+                    <li>Never cross each other</li>
+                    <li>Closer = stronger field</li>
+                    <li>Perpendicular to conductor surface. E = 0 inside conductor.</li>
+                </ul>
+
+                <h4>🔵 Electric Flux</h4>
+                <ul>
+                    <li>Φ = EA cos θ. Max when θ = 0° (surface ⊥ E)</li>
+                    <li>Unit: Nm²/C</li>
+                </ul>
+
+                <h4>🔵 Electric Potential</h4>
+                <ul>
+                    <li>V = W/q = kQ/r (scalar, unit: Volt)</li>
+                    <li>1 Volt = 1 J/C</li>
+                    <li>1 eV = 1.6 × 10⁻¹⁹ J (unit of energy!)</li>
+                    <li>E = −dV/dr (field = negative gradient of potential)</li>
+                </ul>
+
+                <h4>🔵 Gauss's Law</h4>
+                <ul>
+                    <li><strong>Φ = q<sub>enclosed</sub>/ε₀</strong> 🔥</li>
+                    <li>Charged sphere: E = 0 (inside), kQ/R² (surface), kQ/r² (outside)</li>
+                    <li>Outside → point charge behavior</li>
+                </ul>
+
+                <h4>🔵 Capacitors</h4>
+                <ul>
+                    <li><strong>C = Q/V</strong> (unit: Farad). 1 μF = 10⁻⁶ F</li>
+                    <li>Parallel plate: <strong>C = ε₀εᵣA/d</strong></li>
+                    <li><strong>Series: 1/C = 1/C₁ + 1/C₂</strong> (C<sub>eq</sub> < smallest) 🔥🔥</li>
+                    <li><strong>Parallel: C = C₁ + C₂</strong> (C<sub>eq</sub> > largest) 🔥🔥</li>
+                    <li>Opposite to resistors! Don't confuse!</li>
+                    <li>Energy: <strong>U = ½CV² = ½QV = Q²/2C</strong></li>
+                </ul>
+
+                <h4>🔵 Dielectric</h4>
+                <ul>
+                    <li>κ = C'/C₀ (dimensionless, ≥1)</li>
+                    <li>Inserting dielectric → C increases by factor κ</li>
+                    <li>Breakdown: insulator → conductor when E exceeds dielectric strength</li>
+                    <li>Lightning = breakdown of air</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-fire"></i> Don't Forget on Exam Day!</div>
+                <ul>
+                    <li>✅ k = 9 × 10⁹ (not 10⁻⁹!)</li>
+                    <li>✅ Convert μC → C (× 10⁻⁶) and cm → m (× 10⁻²)</li>
+                    <li>✅ Capacitors: Series → reciprocal formula, Parallel → add</li>
+                    <li>✅ Opposite to resistors! (This is the #1 mistake)</li>
+                    <li>✅ E = 0 inside a conductor (Gauss's law application)</li>
+                    <li>✅ V is scalar (no direction), E is vector (has direction)</li>
+                    <li>✅ Energy = ½CV² (don't forget the ½)</li>
+                    <li>✅ eV is a unit of ENERGY, not voltage</li>
+                    <li>✅ Draw diagrams — field lines, capacitor circuits. They get marks!</li>
+                    <li>✅ Always write UNITS with final answers!</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-medal"></i> Confidence Booster</div>
+                <p>Electrostatics problems are very formula-based — once you know which formula to apply and convert units correctly, every problem becomes straightforward. Focus on Coulomb's law numericals, capacitor combinations, and Gauss's law theory. You're well prepared! <strong>All the best! 💪🎓</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+</div> <!-- END CONTAINER -->
+
+<!-- ========== FABs ========== -->
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>
