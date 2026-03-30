@@ -3,67 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 4 - Electric and Magnetic Circuits | FEEE</title>
+    <title>Unit 4 - Transformer and Machines | FEEE</title>
     <link rel="stylesheet" href="../units-com/base.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <script>
-    MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}};
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
     <style>
-        .figure-link{text-decoration:none;color:inherit;display:block;cursor:pointer}
-        .figure-link .diagram-placeholder{transition:all var(--transition);border:2px dashed var(--gray);position:relative}
-        .figure-link:hover .diagram-placeholder{border-color:var(--accent);background:var(--formula-bg);transform:translateY(-2px);box-shadow:var(--shadow-md)}
-        .diagram-placeholder .click-hint{display:block;margin-top:8px;font-size:.78rem;color:var(--accent);font-weight:500}
-        .figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}
-        @media(max-width:768px){.figure-row{grid-template-columns:1fr}}
-        .mcq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin:20px 0}
-        .mcq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;border-left:4px solid var(--accent)}
-        .mcq-item h4{color:var(--primary);margin-bottom:12px;font-size:.95rem}
-        .mcq-item .options{list-style:none;padding:0}
-        .mcq-item .options li{padding:6px 0;font-size:.9rem}
-        @media(max-width:768px){.mcq-grid{grid-template-columns:1fr}}
-        [data-theme="dark"] .mcq-item{background:#1a2332}
-        .bio-box{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;padding:20px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-left:5px solid var(--primary);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:20px 0}
-        [data-theme="dark"] .bio-box{background:linear-gradient(135deg,#1a237e33,#28359333)}
-        .bio-box .bio-text{flex:1;min-width:250px}
-        .bio-box .bio-text h4{color:var(--primary);margin-bottom:8px}
-        .outcome-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:16px 0}
-        .outcome-item{background:var(--formula-bg);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem}
-        .outcome-item strong{color:var(--accent)}
-        .eq-num{float:right;color:var(--gray);font-size:.9rem}
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; text-align:center; }
+        .fraction .den { padding:3px 6px 0; text-align:center; }
+
+        .badge-grid { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+        .badge-item { background:var(--formula-bg); border:1px solid var(--accent-light); border-radius:20px; padding:6px 16px; font-size:0.88rem; font-weight:500; color:var(--primary); }
+        [data-theme="dark"] .badge-item { background:#1e3a5f; color:#82b1ff; }
     </style>
 </head>
 <body>
+
 <div class="scroll-progress" id="scrollProgress"></div>
+
 <header class="header">
     <div class="header-content">
-        <h1><i class="fas fa-magnet"></i> Electric and Magnetic Circuits</h1>
-        <h2>Unit 4 — Fundamentals of Electrical and Electronics Engineering</h2>
+        <h1><i class="fas fa-charging-station"></i> Transformer and Machines</h1>
+        <h2>Unit 4 — Fundamental of Electrical & Electronics Engineering</h2>
         <div class="course-info">
-            <span class="info-item"><i class="fas fa-book"></i> ES110</span>
+            <span class="info-item"><i class="fas fa-book"></i> FEEE</span>
             <span class="info-item"><i class="fas fa-layer-group"></i> Unit 4</span>
-            <span class="info-item"><i class="fas fa-graduation-cap"></i> Diploma — Sem I</span>
-            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-calendar"></i> Semester II</span>
+            <span class="info-item"><i class="fas fa-clock"></i> 10 Hours</span>
         </div>
     </div>
 </header>
+
 <nav class="navbar" id="navbar">
     <div class="nav-container">
-        <div class="nav-brand"><h3>⚡ FEEE U4</h3></div>
+        <div class="nav-brand"><h3>🔌 FEEE U4</h3></div>
         <div class="nav-links" id="navLinks">
             <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
-            <a href="#current"><i class="fas fa-bolt"></i> Current/Voltage</a>
-            <a href="#terminology"><i class="fas fa-project-diagram"></i> Terminology</a>
-            <a href="#kirchhoff"><i class="fas fa-balance-scale"></i> Kirchhoff's Laws</a>
-            <a href="#magnetic"><i class="fas fa-magnet"></i> Magnetic Params</a>
-            <a href="#magcircuit"><i class="fas fa-circle-notch"></i> Magnetic Circuits</a>
-            <a href="#faraday"><i class="fas fa-wave-square"></i> EM Induction</a>
-            <a href="#inductance"><i class="fas fa-coil"></i> Inductance</a>
-            <a href="#analogy"><i class="fas fa-arrows-alt-h"></i> Analogy</a>
-            <a href="#solved"><i class="fas fa-calculator"></i> Solved</a>
-            <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
-            <a href="#summary"><i class="fas fa-list"></i> Summary</a>
+            <a href="#intro"><i class="fas fa-info-circle"></i> Intro</a>
+            <a href="#transformer-construction"><i class="fas fa-charging-station"></i> Transformer</a>
+            <a href="#emf-equation"><i class="fas fa-calculator"></i> EMF Equation</a>
+            <a href="#auto-transformer"><i class="fas fa-random"></i> Auto Transformer</a>
+            <a href="#motor-principle"><i class="fas fa-cog"></i> Motor Principle</a>
+            <a href="#motor-types"><i class="fas fa-industry"></i> Motor Types</a>
+            <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+            <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-bookmark"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+            <a href="#shortqa"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#longqa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice"><i class="fas fa-pencil-ruler"></i> Practice</a>
+            <a href="#revision"><i class="fas fa-star"></i> Revision</a>
         </div>
         <div class="nav-right">
             <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
@@ -71,22 +90,30 @@
         </div>
     </div>
 </nav>
+
 <div class="nav-overlay" id="navOverlay"></div>
 <div class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header"><h3>⚡ FEEE U4</h3><button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button></div>
+    <div class="drawer-header">
+        <h3>🔌 FEEE U4</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+    </div>
     <div class="drawer-links" id="drawerLinks">
         <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
-        <a href="#current"><i class="fas fa-bolt"></i> Current/Voltage</a>
-        <a href="#terminology"><i class="fas fa-project-diagram"></i> Terminology</a>
-        <a href="#kirchhoff"><i class="fas fa-balance-scale"></i> Kirchhoff's Laws</a>
-        <a href="#magnetic"><i class="fas fa-magnet"></i> Magnetic Params</a>
-        <a href="#magcircuit"><i class="fas fa-circle-notch"></i> Magnetic Circuits</a>
-        <a href="#faraday"><i class="fas fa-wave-square"></i> EM Induction</a>
-        <a href="#inductance"><i class="fas fa-coil"></i> Inductance</a>
-        <a href="#analogy"><i class="fas fa-arrows-alt-h"></i> Analogy</a>
-        <a href="#solved"><i class="fas fa-calculator"></i> Solved</a>
-        <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
-        <a href="#summary"><i class="fas fa-list"></i> Summary</a>
+        <a href="#intro"><i class="fas fa-info-circle"></i> Intro</a>
+        <a href="#transformer-construction"><i class="fas fa-charging-station"></i> Transformer</a>
+        <a href="#emf-equation"><i class="fas fa-calculator"></i> EMF Equation</a>
+        <a href="#auto-transformer"><i class="fas fa-random"></i> Auto Transformer</a>
+        <a href="#motor-principle"><i class="fas fa-cog"></i> Motor Principle</a>
+        <a href="#motor-types"><i class="fas fa-industry"></i> Motor Types</a>
+        <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+        <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-bookmark"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+        <a href="#shortqa"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#longqa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice"><i class="fas fa-pencil-ruler"></i> Practice</a>
+        <a href="#revision"><i class="fas fa-star"></i> Revision</a>
     </div>
     <div class="drawer-footer">
         <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
@@ -96,351 +123,1705 @@
 
 <div class="container">
 
-    <!-- ===== OVERVIEW ===== -->
     <section class="section" id="overview">
-        <h2 class="section-title"><i class="fas fa-eye"></i> Unit Overview & Outcomes <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <h2 class="section-title">
+            <i class="fas fa-eye"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
         <div class="section-content">
-            <div class="concept-box"><div class="box-title"><i class="fas fa-bullseye"></i> Unit Specifics</div>
-                <ul><li>Definition of current, voltage, power and energy</li><li>Electric circuit parameters and laws</li><li>Parameters of a magnetic circuit</li><li>Comparison between electric and magnetic circuits</li></ul>
-            </div>
-            <div class="tip-box"><div class="box-title"><i class="fas fa-lightbulb"></i> Rationale</div>
-                <p>The phenomena of electricity and magnetism are interconnected. Electric field produces magnetic effect and vice versa. The magnetic field forms a necessary connection between electrical and mechanical energy. All electromechanical devices depend on the magnetic field for interchange of energy. This unit deals with the law governing the magnetic field, magnetization characteristic, emf induction and correlation between simple magnetic and electrical circuits.</p>
-            </div>
-            <div class="important-note"><div class="box-title"><i class="fas fa-book-reader"></i> Pre-Requisites</div>
-                <ol><li>Science: Electricity, Magnetic Effects of Electric Current (Class X)</li><li>Mathematics: Pair of Linear Equations, Quadratic Equations (Class X)</li></ol>
-            </div>
-            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
-            <div class="outcome-grid">
-                <div class="outcome-item"><strong>U4-O1:</strong> Explain the basic parameters of an electrical circuit.</div>
-                <div class="outcome-item"><strong>U4-O2:</strong> Describe the basic parameters of a magnetic circuit.</div>
-                <div class="outcome-item"><strong>U4-O3:</strong> Explain laws of electromagnetic induction.</div>
-                <div class="outcome-item"><strong>U4-O4:</strong> Interpret electric and magnetic circuits.</div>
-            </div>
-            <h3><i class="fas fa-table"></i> CO Mapping</h3>
-            <div class="table-wrapper"><table class="data-table"><thead><tr><th>Outcomes</th><th>CO-1</th><th>CO-2</th><th>CO-3</th><th>CO-4</th><th>CO-5</th><th>CO-6</th></tr></thead>
-            <tbody>
-                <tr><td>U4-O1</td><td>2</td><td>-</td><td>-</td><td>3</td><td>2</td><td>2</td></tr>
-                <tr><td>U4-O2</td><td>1</td><td>-</td><td>-</td><td>3</td><td>1</td><td>2</td></tr>
-                <tr><td>U4-O3</td><td>1</td><td>-</td><td>-</td><td>3</td><td>1</td><td>3</td></tr>
-                <tr><td>U4-O4</td><td>1</td><td>-</td><td>-</td><td>3</td><td>1</td><td>1</td></tr>
-            </tbody></table></div>
-            <div class="bio-box"><div class="bio-text">
-                <h4><i class="fas fa-user-graduate"></i> Michael Faraday (1791–1867)</h4>
-                <p>The most influential scientist in history, contributed to the study of electromagnetism and electrochemistry. He received very little formal education, but was an excellent experimentalist. His research on the magnetic field around a conductor carrying a direct current established the basis for the concept of the electromagnetic field. The breakthrough came when Faraday found that a <strong>changing magnetic field produces an electric field</strong>. This relation was later modeled mathematically by James Maxwell and is known as <strong>Faraday's law</strong>. This led to the discovery of the <strong>electric dynamo</strong>. The SI unit of capacitance is named <strong>farad</strong> in his honor.</p>
-            </div></div>
-        </div>
-    </section>
 
-    <!-- ===== CURRENT, VOLTAGE, POWER ===== -->
-    <section class="section" id="current">
-        <h2 class="section-title"><i class="fas fa-bolt"></i> 4.1.2 Current, Voltage, Power & Energy <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <h3>Current</h3>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Electric Current</div>
-                <p>The fundamental electrical quantity is <strong>charge</strong> (unit: Coulomb). The smallest charge: electron = −1.602×10⁻¹⁹ C; proton = +1.602×10⁻¹⁹ C. Electric current is the <strong>time rate of change of charged particles</strong> flowing through a predetermined area.</p>
-                <div class="formula">\[ i = \frac{\Delta Q}{\Delta t} \]</div>
-                <p>Unit: <strong>Ampere (A)</strong> = 1 Coulomb / 1 second</p>
-            </div>
-
-            <h3>Voltage (Potential Difference)</h3>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Voltage</div>
-                <p>The <strong>work done in moving a unit charge</strong> from point a to point b. Unit: <strong>Volt (V)</strong> = 1 Joule / 1 Coulomb. The potential difference between two points is <strong>independent of the path</strong> chosen. If voltage of point a is higher than b (V<sub>ab</sub>), work must be done moving charge from b to a (energy input). V<sub>ba</sub> = −V<sub>ab</sub>.</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=voltage+potential+difference+representation+point+a+b+polarity" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.1:</strong> (a) Representation of voltage difference V<sub>ab</sub> (b) Alternate representation with + and − signs</p><span class="click-hint">🔍 Click to view on Google Images</span></div></a>
-
-            <h3>Power and Energy</h3>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Power</div>
-                <p>Defined as <strong>work done per unit time</strong>.</p>
-                <div class="formula">\[ P = \frac{\text{Work}}{\text{time}} = \frac{\text{Work}}{\text{charge}} \times \frac{\text{charge}}{\text{time}} = V \times I \]</div>
-                <p>Unit: <strong>Watts (W)</strong> = Joules/second. If V and I are constant over time t, Energy E = V × I × t joules.</p>
-            </div>
-            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Passive Sign Convention</div>
-                <p><strong>Power absorbed (positive):</strong> Current I flows <em>into</em> the positive terminal of V.</p>
-                <p><strong>Power delivered (negative):</strong> Current I flows <em>out of</em> the positive terminal of V.</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=passive+sign+convention+power+absorbed+delivered+current+direction" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.2:</strong> (a) Power dissipated (absorbed) — current into + terminal (b) Power generated (delivered) — current out of + terminal</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== CIRCUIT TERMINOLOGY ===== -->
-    <section class="section" id="terminology">
-        <h2 class="section-title"><i class="fas fa-project-diagram"></i> 4.1.3 Electric Circuit Terminology <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Branch</div><p>Any portion of a circuit with two terminals connected to it. May consist of more than one circuit element.</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Node</div><p>A junction of two or more branches. Any connection of two or more branch terminals forms a node.</p></div>
-            <a href="https://www.google.com/search?tbm=isch&q=electric+circuit+node+branch+definition+diagram+current+directions" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.3:</strong> Definition of node — showing Node a, b, c with currents I₀ through I₅</p><span class="click-hint">🔍 Click to view</span></div></a>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Loop</div><p>A <strong>closed connection</strong> of branches.</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Mesh</div><p>A loop that does <strong>not contain any other loop</strong> within it. Important aid for circuit analysis.</p></div>
-            <a href="https://www.google.com/search?tbm=isch&q=electric+circuit+mesh+loop+definition+diagram+Loop1+Loop2" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.4:</strong> Definition of mesh — two non-overlapping loops (Loop 1 and Loop 2)</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== KIRCHHOFF'S LAWS ===== -->
-    <section class="section" id="kirchhoff">
-        <h2 class="section-title"><i class="fas fa-balance-scale"></i> 4.1.4 Kirchhoff's Laws <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Kirchhoff's Current Law (KCL)</div>
-                <p>Since charge cannot be created but must be conserved, the <strong>sum of the currents at a node must be zero</strong>.</p>
-                <div class="formula">\[ \sum_{k=1}^{N} i_k = 0 \] <span class="eq-num">...(4.1)</span></div>
-                <p>Convention: Current entering a node = <strong>negative</strong>; current leaving = <strong>positive</strong>.</p>
-                <div class="formula">\[ i_1 + i_2 + (-i_3) + (-i_4) = 0 \] <span class="eq-num">...(4.2)</span></div>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=kirchhoff+current+law+KCL+node+illustration+currents+entering+leaving" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.5:</strong> Illustration of KCL — Node A with currents i₁, i₂ (entering), i₃, i₄ (leaving)</p><span class="click-hint">🔍 Click to view</span></div></a>
-
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Kirchhoff's Voltage Law (KVL)</div>
-                <p>No energy is lost or created in an electric circuit. In a <strong>closed circuit, the sum of all voltages</strong> associated with sources must equal the sum of load voltages, so the <strong>net voltage around the circuit is zero</strong>.</p>
-                <div class="formula">\[ \sum_{k=1}^{N} V_k = 0 \] <span class="eq-num">...(4.3)</span></div>
-            </div>
-            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Reference Node</div>
-                <p>Any node can be chosen as a reference. The reference voltage is typically assigned <strong>zero volts</strong>. Other node voltages are measured relative to this reference.</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=KVL+kirchhoff+voltage+law+reference+node+simple+circuit+V+R" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.6:</strong> Illustration of reference node — V source, resistor R, nodes 1 and 2</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== MAGNETIC PARAMETERS ===== -->
-    <section class="section" id="magnetic">
-        <h2 class="section-title"><i class="fas fa-magnet"></i> 4.2.1 Magnetic Parameters <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <p>A current-carrying conductor creates a magnetic field in the surrounding space. The circular closed paths are known as <strong>lines of flux</strong>. Direction given by the <strong>right-hand rule</strong>.</p>
-            <a href="https://www.google.com/search?tbm=isch&q=magnetic+field+flux+lines+current+carrying+conductor+right+hand+rule" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.7:</strong> Flux lines surrounding current-carrying conductor — concentric circles, denser near conductor</p><span class="click-hint">🔍 Click to view</span></div></a>
-
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Magnetizing Force (H)</div>
-                <p>Current flowing through a conductor per unit length of flux line. For circular flux line with radius r:</p>
-                <div class="formula">\[ H = \frac{i}{2\pi r} \quad \text{A/m} \] <span class="eq-num">...(4.4)</span></div>
-                <p>H is <strong>independent of material properties</strong>.</p>
-            </div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Flux Density (B)</div>
-                <p>Depends on material properties:</p>
-                <div class="formula">\[ B = \mu_0 \mu_r H \quad \text{Wb/m}^2 \text{ or Tesla} \] <span class="eq-num">...(4.5)</span></div>
-                <p>Where μ = permeability, μ₀ = 4π×10⁻⁷ (free space), μᵣ = relative permeability. Unit of permeability: Wb/(A·m).</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=B-H+curve+ferromagnetic+paramagnetic+diamagnetic+free+space" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.8:</strong> B-H curve of different magnetic materials — ferromagnetic (μf), paramagnetic (μp), free space (μ₀), diamagnetic (μd)</p><span class="click-hint">🔍 Click to view</span></div></a>
-
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Magnetomotive Force (MMF)</div>
-                <p>A tightly wound coil with N turns carrying current I increases field intensity N-fold. <strong>MMF = N × I</strong> (unit: Ampere-turns, AT).</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=flux+lines+solenoid+coil+N+turns+ferromagnetic+core+leakage+flux" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.9:</strong> Flux in a coil wound on ferromagnetic core — showing main flux and leakage flux</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== MAGNETIC CIRCUITS ===== -->
-    <section class="section" id="magcircuit">
-        <h2 class="section-title"><i class="fas fa-circle-notch"></i> 4.2.2 Magnetic Circuits <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <div class="formula-box"><div class="box-title"><i class="fas fa-square-root-alt"></i> Flux Density Equations</div>
-                <div class="formula">\[ B = \frac{\mu N I}{l} \] <span class="eq-num">...(4.6)</span></div>
-                <div class="formula">\[ B = \frac{\phi}{A} \] <span class="eq-num">...(4.7)</span></div>
-                <p>Equating (4.6) and (4.7):</p>
-                <div class="formula">\[ N I = \phi \cdot \frac{l}{\mu A} \] <span class="eq-num">...(4.8)</span></div>
-                <p>The term \(\frac{l}{\mu A}\) is the <strong>reluctance (ℛ)</strong> of the magnetic circuit. Thus: <strong>MMF = φ × ℛ</strong> (analogous to V = I × R).</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=ring+ferromagnetic+material+toroid+exciting+coil+magnetic+circuit" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.10:</strong> Ring of ferromagnetic material with exciting coil — toroidal core with N-turn winding</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== ELECTROMAGNETIC INDUCTION ===== -->
-    <section class="section" id="faraday">
-        <h2 class="section-title"><i class="fas fa-wave-square"></i> 4.3 Electromagnetic Induction <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <h3>4.3.1 Faraday's Law</h3>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Faraday's Law</div>
-                <p>A <strong>time-varying magnetic flux</strong> causes an induced electromotive force (emf):</p>
-                <div class="formula">\[ e = -\frac{d\phi}{dt} \] <span class="eq-num">...(4.9)</span></div>
-                <p>For an N-turn coil:</p>
-                <div class="formula">\[ e = -N\frac{d\phi}{dt} = -\frac{d\lambda}{dt} \] <span class="eq-num">...(4.10)</span></div>
-                <p>Where λ = Nφ = flux linkage of the coil.</p>
-            </div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Lenz's Law</div>
-                <p>The negative sign means the induced emf tends to cause a current that <strong>opposes the change in flux</strong>.</p>
-            </div>
-            <h3>Three Cases of Flux Linkage Change</h3>
-            <div class="card-grid">
-                <div class="card"><h4><i class="fas fa-running"></i> Case I: Motional EMF</h4><p>Flux constant, coil moves relative to it. EMF = <strong>Blv</strong> volts. Direction: <strong>Fleming's right-hand rule</strong>. Associated with electromechanical energy conversion.</p>
-                    <div class="formula">\[ e = Blv \] <span class="eq-num">...(4.11)</span></div></div>
-                <div class="card"><h4><i class="fas fa-sync-alt"></i> Case II: Transformer EMF</h4><p>Coil stationary, flux varies (pulsations). No motion, no energy conversion. EMF = −dφ/dt (same as Eq. 4.9). Also called <strong>statically induced emf</strong>.</p></div>
-                <div class="card"><h4><i class="fas fa-arrows-alt"></i> Case III: Both</h4><p>Coil moves through varying flux. Both motional and transformer emf are induced.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SELF & MUTUAL INDUCTANCE ===== -->
-    <section class="section" id="inductance">
-        <h2 class="section-title"><i class="fas fa-link"></i> 4.3.2 Self & Mutual Inductance <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <h3>Self-Inductance</h3>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Self-Inductance (L)</div>
-                <p>Measures the voltage induced in a coil by the magnetic field created by current flowing in the <strong>same coil</strong>.</p>
-                <div class="formula">\[ e = N\frac{d\phi}{dt} = N\frac{d\phi}{di}\frac{di}{dt} = L\frac{di}{dt} \] <span class="eq-num">...(4.12)</span></div>
-                <p>Where \(L = N\frac{d\phi}{di}\). For linear B-H: \(L = \frac{N\phi}{i} = \frac{\lambda}{i}\) H.</p>
-                <div class="formula">\[ L = N^2\mu\frac{A}{l} = \frac{N^2}{\mathcal{R}} \] <span class="eq-num">...(4.13)</span></div>
-                <p>Unit: <strong>Henry (H)</strong>. Depends only on geometry, permeability, and number of turns.</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=self+inductance+coil+N+turns+flux+phi+linking+turns" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.11:</strong> Self Inductance — coil with N turns, current i, flux φ linking all turns</p><span class="click-hint">🔍 Click to view</span></div></a>
-
-            <h3>Mutual Inductance</h3>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Mutual Inductance (M)</div>
-                <p>When two coils share flux (wound on common core or placed close), a part of flux from one coil links the other, creating <strong>magnetic coupling</strong>.</p>
-                <div class="formula">\[ M_{12} = N\frac{d\phi_{12}}{dt} = \frac{\lambda_{12}}{i_1} \text{ H} \] <span class="eq-num">...(4.14)</span></div>
-                <div class="formula">\[ M_{21} = N\frac{d\phi_{21}}{dt} = \frac{\lambda_{21}}{i_2} \text{ H} \] <span class="eq-num">...(4.15)</span></div>
-                <p>For tightly coupled coil (no flux leakage): <strong>M₁₂ = M₂₁ = M</strong>. Unit: Henry.</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=mutual+inductance+two+coils+common+core+flux+phi12+phi21+coupling" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.12:</strong> Mutual inductance — Coil 1 (i₁, φ₁₂) and Coil 2 (i₂, φ₂₁) on common core</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== ANALOGY ===== -->
-    <section class="section" id="analogy">
-        <h2 class="section-title"><i class="fas fa-arrows-alt-h"></i> 4.4 Analogy: Electric vs Magnetic <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <p>The analysis of a magnetic circuit is <strong>analogous to a resistive electric circuit</strong>. Kirchhoff's laws apply equally to magnetic circuits.</p>
-            <div class="table-wrapper"><table class="data-table"><thead><tr><th>Electrical Quantity</th><th>Magnetic Quantity</th></tr></thead>
-            <tbody>
-                <tr><td>Electrical field intensity E, V/m</td><td>Magnetic field intensity H, A-turns/m</td></tr>
-                <tr><td>Voltage V, Volts</td><td>Magneto motive force F, A-turns</td></tr>
-                <tr><td>Current i, Amp</td><td>Magnetic flux φ, Wb</td></tr>
-                <tr><td>Current density J, A/m²</td><td>Magnetic flux density B, Wb/m²</td></tr>
-                <tr><td>Resistance R, Ω</td><td>Reluctance ℛ, A-turns/Wb</td></tr>
-            </tbody></table></div>
-            <p><em>Table 4.1: Analogy between electrical and magnetic circuits</em></p>
-
-            <div class="concept-box"><div class="box-title"><i class="fas fa-info-circle"></i> Kirchhoff's Laws for Magnetic Circuits</div>
-                <p><strong>KVL analogy:</strong> MMF of a mesh = sum of MMF drops in various parts.</p>
-                <p><strong>KCL analogy:</strong> Incoming fluxes = outgoing fluxes at a junction.</p>
-                <p><strong>Series circuit:</strong> Total reluctance ℛ = ℛ<sub>C</sub> + ℛ<sub>ag</sub>. Flux φ = F/ℛ.</p>
-            </div>
-            <div class="figure-row">
-                <a href="https://www.google.com/search?tbm=isch&q=magnetic+core+air+gap+series+magnetic+circuit+reluctance" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.13:</strong> (a) Magnetic core with air gap (b) Electric circuit analogy — R<sub>C</sub> and R<sub>ag</sub> in series</p><span class="click-hint">🔍 Click to view</span></div></a>
-                <a href="https://www.google.com/search?tbm=isch&q=parallel+magnetic+circuit+three+limbs+electrical+analogy+reluctance" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 4.14:</strong> (a) Magnetic structure with three limbs (b) Electrical analogy — parallel reluctances</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SOLVED PROBLEMS ===== -->
-    <section class="section" id="solved">
-        <h2 class="section-title"><i class="fas fa-calculator"></i> Solved Problems <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.1.1</div><p>For the circuit shown (5V source, 3V and 10V resistors, 3A current source), determine power absorbed by R and power delivered by the current source.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="step" data-step="Step 1">KVL in mesh-1: 5 − 3 − V₂ = 0 → V₂ = 2V</div>
-                <div class="step" data-step="Step 2">KVL in mesh-2: V₂ + 10 − V₁ = 0 → V₁ = 2 + 10 = 12V</div>
-                <div class="step" data-step="Step 3">Power delivered by current source = 12 × 3 = <strong>36 W</strong></div>
-                <div class="step" data-step="Step 4">Power absorbed by R = 10 × 3 = <strong>30 W</strong></div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.2.1</div><p>Calculate flux and flux density. A = 0.0001 m², N = 500 turns, I = 0.1A, μᵣ = 1000, core 0.1m × 0.1m square.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="step" data-step="MMF">F = NI = 500 × 0.1 = 50 AT</div>
-                <div class="step" data-step="Length">Mean length l = 4 × 0.1 = 0.4 m</div>
-                <div class="step" data-step="Reluctance">\(\mathcal{R} = \frac{l}{\mu_0\mu_r A} = \frac{0.4}{1000 \times 0.0001 \times 4\pi \times 10^{-7}} = 3.18 \times 10^6\) AT/Wb</div>
-                <div class="step" data-step="Flux">\(\phi = \frac{F}{\mathcal{R}} = \frac{50}{3.18 \times 10^6} = 1.57 \times 10^{-5}\) Wb</div>
-                <div class="formula answer">\(B = \frac{\phi}{A} = \frac{1.57 \times 10^{-5}}{0.0001}\) = <strong>0.157 Wb/m²</strong></div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.3.1</div><p>A bar magnet with total flux 500 × 10⁻⁶ Wb is withdrawn through a 1000-turn coil in 1/10 sec. Find the emf.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="formula">\[e = N\frac{d\phi}{dt} = 1000 \times \frac{500 \times 10^{-6}}{1/10} = 1000 \times 5000 \times 10^{-6}\]</div>
-                <div class="formula answer"><strong>e = 5 V</strong></div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.3.2</div><p>Find inductance of solenoid: length 1000mm, 3000 turns, cylindrical tube diameter 60mm, μᵣ = 1.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="step" data-step="Area">\(A = \pi\frac{0.060^2}{4} = 2.83 \times 10^{-3}\) m²</div>
-                <div class="step" data-step="Formula">\(L = N^2\mu_0\mu_r\frac{A}{l}\)</div>
-                <div class="formula">\[L = 3000^2 \times 4\pi \times 10^{-7} \times 1 \times \frac{2.83 \times 10^{-3}}{1}\]</div>
-                <div class="formula answer"><strong>L = 32 mH</strong></div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4.4.1</div><p>Iron ring: circumference 140 cm, area 12 cm², 500 turns, 2A current, flux = 1.2 mWb. Find μᵣ.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="step" data-step="MMF">F = NI = 500 × 2 = 1000 AT</div>
-                <div class="step" data-step="Reluctance">\(\mathcal{R} = \frac{F}{\phi} = \frac{1000}{1.2 \times 10^{-3}} = 833.33 \times 10^3\)</div>
-                <div class="step" data-step="Solve">\(\mathcal{R} = \frac{l}{\mu_0\mu_r A}\) → \(833.33 \times 10^3 = \frac{1.4}{12 \times 10^{-4} \times \mu_r \times 4\pi \times 10^{-7}}\)</div>
-                <div class="formula answer"><strong>μᵣ ≈ 1115</strong></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== EXERCISES ===== -->
-    <section class="section" id="exercises">
-        <h2 class="section-title"><i class="fas fa-pen"></i> Exercises <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <h3><i class="fas fa-tasks"></i> A. MCQs</h3>
-            <div class="mcq-grid">
-                <div class="mcq-item"><h4>Q 4.1</h4><p>Sources of steady magnetic field include:</p><ul class="options"><li>a. 1, 3 and 4 only</li><li>b. 3 and 4 only</li><li>c. 1, 2, 3 and 4</li><li>d. 1, 2 and 4 only</li></ul>
-                    <button class="toggle-btn" data-target="m41"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m41"><strong>Answer: c. 1, 2, 3 and 4</strong><p>A permanent magnet, charged disc rotating at uniform speed, accelerating charge, and linearly changing electric field all produce magnetic fields.</p></div></div>
-                <div class="mcq-item"><h4>Q 4.2</h4><p>Magnetic field by infinite linear current-carrying conductor (A/m):</p><ul class="options"><li>a. H = μI/(2πR)</li><li>b. H = I/(2πR)</li><li>c. H = μI/(2r)</li><li>d. H = I/r</li></ul>
-                    <button class="toggle-btn" data-target="m42"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m42"><strong>Answer: b. H = I/(2πR)</strong><p>Magnetic field intensity H = i/(2πr) — independent of material (no μ term).</p></div></div>
-                <div class="mcq-item"><h4>Q 4.3</h4><p>Faraday and Lenz's law are summarized by:</p><ul class="options"><li>a. e = LR</li><li>b. e = L di/dt</li><li>c. e = −dφ/dt</li><li>d. None</li></ul>
-                    <button class="toggle-btn" data-target="m43"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m43"><strong>Answer: c. e = −dφ/dt</strong><p>Faraday's law states emf = negative rate of change of flux; the negative sign represents Lenz's law.</p></div></div>
-                <div class="mcq-item"><h4>Q 4.4</h4><p>An emf is induced in a conductor if it:</p><ul class="options"><li>a. Lies in a magnetic field</li><li>b. Lies perpendicular to field</li><li>c. Cuts the magnetic flux</li><li>d. Moves parallel to field</li></ul>
-                    <button class="toggle-btn" data-target="m44"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m44"><strong>Answer: c. Cuts the magnetic flux</strong><p>EMF is induced only when conductor cuts (moves across) magnetic flux lines.</p></div></div>
-                <div class="mcq-item"><h4>Q 4.5</h4><p>Reluctance depends on:</p><ul class="options"><li>a. Nature of material</li><li>b. Length of flux path</li><li>c. Cross-sectional area</li><li>d. All the above</li></ul>
-                    <button class="toggle-btn" data-target="m45"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m45"><strong>Answer: d. All the above</strong><p>ℛ = l/(μ₀μᵣA) — depends on material (μᵣ), length (l), and area (A).</p></div></div>
-                <div class="mcq-item"><h4>Q 4.6</h4><p>Coil 250 turns, 50V DC, resistance 10Ω. MMF developed is:</p><ul class="options"><li>a. 500</li><li>b. 1250</li><li>c. 2500</li><li>d. 250</li></ul>
-                    <button class="toggle-btn" data-target="m46"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="m46"><strong>Answer: b. 1250</strong><p>I = V/R = 50/10 = 5A. MMF = NI = 250 × 5 = 1250 AT.</p></div></div>
-            </div>
-
-            <h3><i class="fas fa-edit"></i> B. Subjective Questions</h3>
-            <div class="exercise-area"><p><strong>Q1.</strong> A magnetic circuit: 150 turns, A = 5×10⁻⁴ m², l = 25×10⁻² m, I = 2A, φ = 0.3×10⁻³ Wb. Find H and μᵣ.</p>
-                <button class="toggle-btn" data-target="sq1"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq1"><p>H = NI/l = 150×2/0.25 = <strong>1200 A/m</strong>. B = φ/A = 0.3×10⁻³/5×10⁻⁴ = 0.6 T. μᵣ = B/(μ₀H) = 0.6/(4π×10⁻⁷×1200) = <strong>397.9</strong></p></div></div>
-            <div class="exercise-area"><p><strong>Q2.</strong> For the circuit shown, determine which components absorb/deliver power.</p>
-                <button class="toggle-btn" data-target="sq2"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq2"><p>Apply passive sign convention: If current enters the + terminal → element absorbs power. If current exits + terminal → element delivers power. Using KCL/KVL to find unknown voltages/currents, then compute P = VI for each element and check the sign.</p></div></div>
-            <div class="exercise-area"><p><strong>Q3.</strong> Apply KVL and KCL to find V₁, V₂ and I₁ for the circuit (5V source, 3V & 10V drops, 2Ω resistor, 3A source).</p>
-                <button class="toggle-btn" data-target="sq3"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq3"><p>KVL mesh-1: 5 − 3 − V₂ = 0 → V₂ = 2V. KVL mesh-2: V₂ + 10 − V₁ = 0 → V₁ = 12V. I₁ = V₂/(2Ω) = 2/2 = <strong>1A</strong>.</p></div></div>
-            <div class="exercise-area"><p><strong>Q4.</strong> 230V, 100W lamp. Find (i) resistance (ii) current (iii) energy in 8 hrs.</p>
-                <button class="toggle-btn" data-target="sq4"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq4"><p>(i) R = V²/P = 230²/100 = <strong>529 Ω</strong> (ii) I = P/V = 100/230 = <strong>0.435 A</strong> (iii) E = P×t = 100×8 = 800 Wh = <strong>0.8 kWh</strong></p></div></div>
-            <div class="exercise-area"><p><strong>Q5.</strong> Electromagnetic circuit: Find flux density, sketch flux lines, indicate N and S poles. A = 0.01 m².</p>
-                <button class="toggle-btn" data-target="sq5"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq5"><p>Calculate B = φ/A. Flux lines form closed paths through the core. N pole is where flux exits (determined by right-hand rule wrapping around the coil — thumb points to N).</p></div></div>
-            <div class="exercise-area"><p><strong>Q6.</strong> Magnetic structure: draw analogy, find total reluctance and self-inductance. N=100, μᵣ=3000μ₀, A₁=A₃=100cm², A₂=25cm², l₁=l₃=30cm, l₂=10cm.</p>
-                <button class="toggle-btn" data-target="sq6"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq6"><p>ℛ₁ = l₁/(μ₀μᵣA₁), ℛ₂ = l₂/(μ₀μᵣA₂), ℛ₃ = l₃/(μ₀μᵣA₃). For parallel structure: ℛ₂ ∥ ℛ₃ + ℛ₁. Then L = N²/ℛ<sub>total</sub>.</p></div></div>
-            <div class="exercise-area"><p><strong>Q7.</strong> Explain statically induced and dynamically induced emf with one application each.</p>
-                <button class="toggle-btn" data-target="sq7"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq7"><p><strong>Statically induced:</strong> Coil stationary, flux varies (transformer emf). Application: <strong>Transformer</strong>. <strong>Dynamically induced:</strong> Conductor moves through stationary field (motional emf, e=Blv). Application: <strong>Generator/Dynamo</strong>.</p></div></div>
-            <div class="exercise-area"><p><strong>Q8.</strong> Compare magnetic circuits and electric circuits.</p>
-                <button class="toggle-btn" data-target="sq8"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq8"><p>Refer Table 4.1: EMF↔MMF, Current↔Flux, Resistance↔Reluctance, E-field↔H-field, J↔B. Kirchhoff's laws apply to both. Key difference: flux doesn't "flow" and dissipate energy like current.</p></div></div>
-            <div class="exercise-area"><p><strong>Q9.</strong> Derive expression for self-inductance of a coil.</p>
-                <button class="toggle-btn" data-target="sq9"><i class="fas fa-eye"></i> Answer</button><div class="answer-reveal" id="sq9"><p>From Faraday's law: e = N(dφ/dt) = N(dφ/di)(di/dt) = L(di/dt). So L = N(dφ/di). For linear material: L = Nφ/i = λ/i. Since φ = NI·μA/l, L = N²μA/l = N²/ℛ henrys.</p></div></div>
-        </div>
-    </section>
-
-    <!-- ===== SUMMARY ===== -->
-    <section class="section" id="summary">
-        <h2 class="section-title"><i class="fas fa-list"></i> Unit Summary <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <div class="concept-box"><div class="box-title"><i class="fas fa-clipboard-list"></i> Key Takeaways</div>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> What This Unit Covers</div>
+                <p>This unit introduces two of the most useful electrical devices in daily life and industry:</p>
                 <ul>
-                    <li>The fundamental electrical quantity is <strong>charge</strong>.</li>
-                    <li>Current = time rate of change of charge flow.</li>
-                    <li>Voltage = work done in moving a unit charge.</li>
-                    <li>Power = work done per unit time = V × I.</li>
-                    <li>Circuit terminologies: <strong>branch, node, mesh, loop</strong>.</li>
-                    <li><strong>KCL:</strong> sum of currents at a node = 0.</li>
-                    <li><strong>KVL:</strong> sum of voltages around a closed loop = 0.</li>
-                    <li>Current-carrying conductor creates a <strong>magnetic field</strong>.</li>
-                    <li>Flux density: <strong>B = μ₀μᵣH</strong>.</li>
-                    <li>Materials classified as ferromagnetic, paramagnetic, diamagnetic based on μᵣ.</li>
-                    <li>Time-varying flux induces emf (<strong>Faraday's law</strong>).</li>
-                    <li><strong>Lenz's law:</strong> induced current opposes change in flux.</li>
-                    <li><strong>Self-inductance:</strong> L = N²/ℛ (henry).</li>
-                    <li><strong>Mutual inductance:</strong> magnetic coupling between neighboring coils.</li>
-                    <li>Magnetic circuit analysis is analogous to resistive electric circuits.</li>
-                    <li>Reluctance ∝ mean length, ∝ 1/cross-sectional area.</li>
+                    <li><strong>Transformer</strong> — used to step up or step down voltage</li>
+                    <li><strong>Electrical Machines / Motors</strong> — used to convert electrical energy into mechanical energy</li>
+                </ul>
+                <p>Transformers are used in power systems, chargers, adapters, TV sets, welding sets and substations. Motors are used in fans, pumps, machines, mixers, cranes, trains and industries.</p>
+            </div>
+
+            <div class="important-note">
+                <strong>🔥 Why This Unit Matters:</strong> This unit connects theory with real machines. It is one of the most practical units because transformers and motors are everywhere around us.
+            </div>
+
+            <h3><i class="fas fa-bullseye"></i> Unit Outcomes</h3>
+            <div class="badge-grid">
+                <span class="badge-item">🔌 Explain transformer construction and principle</span>
+                <span class="badge-item">📘 Derive and use transformer EMF equation</span>
+                <span class="badge-item">⚖️ Calculate transformation ratio</span>
+                <span class="badge-item">🔁 Explain auto transformer</span>
+                <span class="badge-item">⚙️ Understand motor working principle</span>
+                <span class="badge-item">🏭 Identify different types of motors</span>
+                <span class="badge-item">🧮 Solve simple numerical problems</span>
+            </div>
+
+            <h3><i class="fas fa-list"></i> Prerequisites</h3>
+            <ul>
+                <li>Basic knowledge of electromagnetic induction</li>
+                <li>Faraday’s law and Fleming’s rules</li>
+                <li>Magnetic circuit concepts</li>
+                <li>AC supply basics</li>
+            </ul>
+
+            <h3><i class="fas fa-list-ol"></i> Syllabus Breakdown</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Topic No.</th><th>Topic</th><th>Importance</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>4.1</td><td>Transformer and Machines introduction</td><td>⭐⭐</td></tr>
+                        <tr><td>4.2</td><td>General construction and principle of transformers</td><td>⭐⭐⭐🔥</td></tr>
+                        <tr><td>4.3</td><td>EMF equation and transformation ratio</td><td>⭐⭐⭐🔥</td></tr>
+                        <tr><td>4.4</td><td>Auto transformers</td><td>⭐⭐⭐</td></tr>
+                        <tr><td>4.5</td><td>Construction and working principle of motors</td><td>⭐⭐⭐🔥</td></tr>
+                        <tr><td>4.6</td><td>Types of motors and applications</td><td>⭐⭐⭐</td></tr>
+                        <tr><td>4.7</td><td>Simple problems</td><td>⭐⭐⭐🔥</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="intro">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> 4.1 Introduction to Transformer and Electrical Machines
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Transformer</div>
+                <p>A <strong>transformer</strong> is a static electrical device that transfers electrical energy from one circuit to another by <strong>electromagnetic induction</strong>, without changing frequency.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Electrical Machine</div>
+                <p>An <strong>electrical machine</strong> is a device that converts energy from one form to another. For example:</p>
+                <ul>
+                    <li><strong>Generator:</strong> Mechanical → Electrical</li>
+                    <li><strong>Motor:</strong> Electrical → Mechanical</li>
+                    <li><strong>Transformer:</strong> Electrical → Electrical (same frequency, different voltage/current level)</li>
                 </ul>
             </div>
-            <div class="important-note"><div class="box-title"><i class="fas fa-brain"></i> Quick Formula Reference</div>
-                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Quantity</th><th>Formula</th><th>Unit</th></tr></thead>
-                <tbody>
-                    <tr><td>Current</td><td>i = ΔQ/Δt</td><td>Ampere (A)</td></tr>
-                    <tr><td>Power</td><td>P = V × I</td><td>Watt (W)</td></tr>
-                    <tr><td>Magnetizing Force</td><td>H = i/(2πr)</td><td>A/m</td></tr>
-                    <tr><td>Flux Density</td><td>B = μ₀μᵣH</td><td>Tesla (Wb/m²)</td></tr>
-                    <tr><td>MMF</td><td>F = NI</td><td>AT</td></tr>
-                    <tr><td>Reluctance</td><td>ℛ = l/(μA)</td><td>AT/Wb</td></tr>
-                    <tr><td>Faraday's Law</td><td>e = −N(dφ/dt)</td><td>Volt</td></tr>
-                    <tr><td>Motional EMF</td><td>e = Blv</td><td>Volt</td></tr>
-                    <tr><td>Self-Inductance</td><td>L = N²/ℛ</td><td>Henry (H)</td></tr>
-                </tbody></table></div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-sync-alt"></i> Energy Conversion Summary</div>
+                <ul>
+                    <li><strong>Transformer:</strong> AC electrical power at one voltage → AC electrical power at another voltage</li>
+                    <li><strong>Motor:</strong> Electrical energy → Mechanical rotation</li>
+                    <li><strong>Generator:</strong> Mechanical rotation → Electrical energy</li>
+                </ul>
             </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=transformer+and+electrical+machine+energy+conversion+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.1:</strong> Energy conversion by transformer, motor and generator</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-industry"></i> Practical Uses</div>
+                <ul>
+                    <li><strong>Transformer:</strong> Mobile charger, substation, TV, inverter, welding machine</li>
+                    <li><strong>Motor:</strong> Fan, water pump, lift, lathe machine, mixer, refrigerator compressor</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="transformer-construction">
+        <h2 class="section-title">
+            <i class="fas fa-charging-station"></i> 4.2 General Construction and Principle of Different Types of Transformers
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>What is a Transformer?</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Basic Working Idea</div>
+                <p>A transformer works on the principle of <strong>mutual induction</strong>. When AC is supplied to the primary winding, it creates alternating magnetic flux in the core. This alternating flux links the secondary winding and induces emf in it.</p>
+            </div>
+
+            <div class="important-note">
+                <strong>🔥 Key Point:</strong> A transformer works only on <strong>AC supply</strong>. It does not work on steady DC because DC does not produce changing flux.
+            </div>
+
+            <h3>Main Parts of a Transformer</h3>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Part</th><th>Function</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Magnetic Core</strong></td><td>Provides low reluctance path for magnetic flux</td></tr>
+                        <tr><td><strong>Primary Winding</strong></td><td>Connected to input AC supply</td></tr>
+                        <tr><td><strong>Secondary Winding</strong></td><td>Provides output voltage to load</td></tr>
+                        <tr><td><strong>Insulation</strong></td><td>Separates windings and protects from short circuit</td></tr>
+                        <tr><td><strong>Tank (for oil transformer)</strong></td><td>Holds core and windings in oil</td></tr>
+                        <tr><td><strong>Transformer Oil</strong></td><td>Cooling and insulation</td></tr>
+                        <tr><td><strong>Bushings</strong></td><td>Take out terminals safely</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=single+phase+transformer+construction+parts+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.2:</strong> Constructional parts of a single-phase transformer</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Working Principle of Transformer</h3>
+
+            <ol>
+                <li>AC supply is given to the <strong>primary winding</strong></li>
+                <li>Alternating current flows and produces alternating magnetic flux in the core</li>
+                <li>This flux links both primary and secondary windings</li>
+                <li>According to <strong>Faraday’s law</strong>, emf is induced in both windings</li>
+                <li>If load is connected to secondary, current flows and power is transferred from primary to secondary</li>
+            </ol>
+
+            <a href="https://www.google.com/search?tbm=isch&q=transformer+working+principle+mutual+induction+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.3:</strong> Working principle of transformer based on mutual induction</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Types of Transformers</h3>
+
+            <h4>1. Based on Voltage Level</h4>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>Step-Up Transformer</h4>
+                    <p>Raises the voltage from primary to secondary.</p>
+                    <ul>
+                        <li>Secondary voltage > Primary voltage</li>
+                        <li>Secondary turns > Primary turns</li>
+                        <li>Used in transmission</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>Step-Down Transformer</h4>
+                    <p>Reduces the voltage from primary to secondary.</p>
+                    <ul>
+                        <li>Secondary voltage < Primary voltage</li>
+                        <li>Secondary turns < Primary turns</li>
+                        <li>Used in chargers, adapters</li>
+                    </ul>
+                </div>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=step+up+and+step+down+transformer+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.4:</strong> Step-up and step-down transformer comparison</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h4>2. Based on Construction</h4>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Core Type Transformer</div>
+                <p>In core type transformer, the windings surround a considerable part of the core.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Shell Type Transformer</div>
+                <p>In shell type transformer, the core surrounds a considerable part of the windings.</p>
+            </div>
+
+            <div class="figure-row">
+                <a href="https://www.google.com/search?tbm=isch&q=core+type+transformer+construction+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 4.5:</strong> Core type transformer construction</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+                <a href="https://www.google.com/search?tbm=isch&q=shell+type+transformer+construction+diagram" target="_blank" rel="noopener" class="figure-link">
+                    <div class="diagram-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p><strong>Fig. 4.6:</strong> Shell type transformer construction</p>
+                        <span class="click-hint">🔍 Click to view on Google Images</span>
+                    </div>
+                </a>
+            </div>
+
+            <h4>3. Based on Application</h4>
+            <ul>
+                <li><strong>Power transformer</strong> — used in transmission and substations</li>
+                <li><strong>Distribution transformer</strong> — used near consumers to supply domestic load</li>
+                <li><strong>Instrument transformer</strong> — used for measurement (CT and PT)</li>
+                <li><strong>Welding transformer</strong> — used for welding purpose</li>
+                <li><strong>Isolation transformer</strong> — used for safety and isolation</li>
+            </ul>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Type</th><th>Main Use</th><th>Output Nature</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Step-up</td><td>Transmission</td><td>Higher voltage</td></tr>
+                        <tr><td>Step-down</td><td>Domestic supply, charger</td><td>Lower voltage</td></tr>
+                        <tr><td>Power transformer</td><td>Power station/substation</td><td>High power</td></tr>
+                        <tr><td>Distribution transformer</td><td>Consumer supply</td><td>Moderate voltage</td></tr>
+                        <tr><td>Instrument transformer</td><td>Measurement and protection</td><td>Reduced safe value</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Ideal Transformer Concept</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ideal Transformer</div>
+                <p>An ideal transformer is one which has no losses, no leakage flux and 100% efficiency.</p>
+            </div>
+
+            <p>In practical transformers, there are:</p>
+            <ul>
+                <li>Copper loss</li>
+                <li>Iron/core loss</li>
+                <li>Leakage flux</li>
+                <li>Voltage drop in windings</li>
+            </ul>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistake</div>
+                <p>Students often write that transformer changes frequency. This is <strong>wrong</strong>. A transformer changes <strong>voltage and current level</strong>, but frequency remains the same.</p>
+            </div>
+
+            <h3>Solved Example</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 1</div>
+                <p>A transformer has 500 turns in primary and 1000 turns in secondary. State whether it is step-up or step-down.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Primary turns N<sub>1</sub> = 500</div>
+                <div class="step" data-step="Step 2">Secondary turns N<sub>2</sub> = 1000</div>
+                <div class="step" data-step="Step 3">Since N<sub>2</sub> > N<sub>1</sub>, secondary voltage will be higher.</div>
+                <p class="formula answer">✅ It is a step-up transformer</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="emf-equation">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> 4.3 EMF Equation and Transformation Ratio of Transformer
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>EMF Equation of Transformer</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-stream"></i> Idea Behind EMF Equation</div>
+                <p>When alternating flux links a winding of <strong>N</strong> turns, emf is induced according to Faraday’s law. For a sinusoidal flux, the RMS induced emf is:</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> EMF Equation</div>
+                <p class="formula">E = 4.44 f N φ<sub>m</sub></p>
+                <ul>
+                    <li><strong>E</strong> = RMS induced emf in volts</li>
+                    <li><strong>f</strong> = frequency in Hz</li>
+                    <li><strong>N</strong> = number of turns</li>
+                    <li><strong>φ<sub>m</sub></strong> = maximum flux in weber</li>
+                </ul>
+            </div>
+
+            <p>Therefore, for primary and secondary:</p>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Primary and Secondary EMF</div>
+                <p class="formula">E<sub>1</sub> = 4.44 f N<sub>1</sub> φ<sub>m</sub></p>
+                <p class="formula">E<sub>2</sub> = 4.44 f N<sub>2</sub> φ<sub>m</sub></p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=transformer+emf+equation+derivation+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.7:</strong> Flux waveform and induced emf relation in transformer</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <strong>🔥 Very Important Formula:</strong> <strong>E = 4.44 f N φ<sub>m</sub></strong> is one of the most asked formulas from this unit.
+            </div>
+
+            <h3>Transformation Ratio</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Transformation Ratio</div>
+                <p>The ratio of secondary voltage to primary voltage is called the <strong>transformation ratio</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Transformation Ratio</div>
+                <p class="formula">k = <span class="fraction"><span class="num">E<sub>2</sub></span><span class="den">E<sub>1</sub></span></span> = <span class="fraction"><span class="num">V<sub>2</sub></span><span class="den">V<sub>1</sub></span></span> = <span class="fraction"><span class="num">N<sub>2</sub></span><span class="den">N<sub>1</sub></span></span></p>
+            </div>
+
+            <p>For an ideal transformer:</p>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Current Relation</div>
+                <p class="formula"><span class="fraction"><span class="num">I<sub>2</sub></span><span class="den">I<sub>1</sub></span></span> = <span class="fraction"><span class="num">N<sub>1</sub></span><span class="den">N<sub>2</sub></span></span></p>
+                <p class="formula">V<sub>1</sub>I<sub>1</sub> = V<sub>2</sub>I<sub>2</sub></p>
+            </div>
+
+            <h3>Cases of Transformation Ratio</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>k > 1</h4>
+                    <p>Secondary voltage is greater than primary voltage.</p>
+                    <p><strong>Step-up transformer</strong></p>
+                </div>
+                <div class="card">
+                    <h4>k < 1</h4>
+                    <p>Secondary voltage is less than primary voltage.</p>
+                    <p><strong>Step-down transformer</strong></p>
+                </div>
+                <div class="card">
+                    <h4>k = 1</h4>
+                    <p>Primary and secondary voltages are equal.</p>
+                    <p><strong>Isolation transformer</strong></p>
+                </div>
+            </div>
+
+            <h3>Turns Ratio, Voltage Ratio and Current Ratio</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Quantity</th><th>Relation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Turns ratio</td><td>N<sub>2</sub>/N<sub>1</sub></td></tr>
+                        <tr><td>Voltage ratio</td><td>V<sub>2</sub>/V<sub>1</sub></td></tr>
+                        <tr><td>EMF ratio</td><td>E<sub>2</sub>/E<sub>1</sub></td></tr>
+                        <tr><td>Current ratio</td><td>I<sub>2</sub>/I<sub>1</sub> = N<sub>1</sub>/N<sub>2</sub></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=transformer+turns+ratio+voltage+ratio+current+ratio+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.8:</strong> Relation between turns ratio, voltage ratio and current ratio in transformer</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 2</div>
+                <p>A transformer has 1000 primary turns and 200 secondary turns. If primary voltage is 220 V, find secondary voltage.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: N<sub>1</sub> = 1000, N<sub>2</sub> = 200, V<sub>1</sub> = 220 V</div>
+                <div class="step" data-step="Step 2">Use: V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub></div>
+                <div class="step" data-step="Step 3">V<sub>2</sub>/220 = 200/1000 = 0.2</div>
+                <div class="step" data-step="Step 4">V<sub>2</sub> = 220 × 0.2 = 44 V</div>
+                <p class="formula answer">✅ Secondary voltage = 44 V</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3</div>
+                <p>A transformer operates at 50 Hz with 500 turns and maximum flux 0.01 Wb. Find induced emf.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: f = 50 Hz, N = 500, φ<sub>m</sub> = 0.01 Wb</div>
+                <div class="step" data-step="Step 2">E = 4.44 f N φ<sub>m</sub></div>
+                <div class="step" data-step="Step 3">E = 4.44 × 50 × 500 × 0.01</div>
+                <div class="step" data-step="Step 4">E = 1110 V</div>
+                <p class="formula answer">✅ Induced emf = 1110 V</p>
+            </div>
+
+        </div>
+    </section>
+        <section class="section" id="auto-transformer">
+        <h2 class="section-title">
+            <i class="fas fa-random"></i> 4.4 Auto Transformer
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Auto Transformer</div>
+                <p>An <strong>auto transformer</strong> is a transformer having only <strong>one continuous winding</strong>, a part of which is common to both primary and secondary circuits.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Basic Idea</div>
+                <p>In an ordinary two-winding transformer, primary and secondary are electrically isolated from each other. But in an <strong>auto transformer</strong>, the same winding acts partly as primary and partly as secondary.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=auto+transformer+construction+diagram+single+winding" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.9:</strong> Auto transformer construction showing single tapped winding</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Construction of Auto Transformer</h3>
+            <ul>
+                <li>It has a laminated iron core</li>
+                <li>Only one copper winding is wound on the core</li>
+                <li>The winding has one or more taps</li>
+                <li>A part of the winding is common to both primary and secondary</li>
+            </ul>
+
+            <h3>Working Principle</h3>
+            <p>It works on the same principle of <strong>electromagnetic induction</strong> as an ordinary transformer.</p>
+            <ol>
+                <li>AC supply is applied to the whole winding or a part of it</li>
+                <li>Alternating flux is produced in the core</li>
+                <li>EMF is induced in the tapped section</li>
+                <li>Output is taken from a suitable tap depending on required voltage</li>
+            </ol>
+
+            <h3>Step-Up and Step-Down Auto Transformer</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>Step-Up Auto Transformer</h4>
+                    <p>Output is taken from a larger number of turns than the input side, so output voltage becomes higher.</p>
+                </div>
+                <div class="card">
+                    <h4>Step-Down Auto Transformer</h4>
+                    <p>Output is taken from a smaller number of turns than the input side, so output voltage becomes lower.</p>
+                </div>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=step+up+and+step+down+auto+transformer+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.10:</strong> Step-up and step-down auto transformer connections</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Advantages of Auto Transformer</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-thumbs-up"></i> Advantages</div>
+                <ul>
+                    <li>Requires less copper</li>
+                    <li>Smaller size</li>
+                    <li>Lighter weight</li>
+                    <li>Less cost</li>
+                    <li>Higher efficiency</li>
+                    <li>Better voltage regulation</li>
+                </ul>
+            </div>
+
+            <h3>Disadvantages of Auto Transformer</h3>
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Disadvantages</div>
+                <ul>
+                    <li>No electrical isolation between primary and secondary</li>
+                    <li>Not safe where isolation is necessary</li>
+                    <li>If common winding breaks, full primary voltage may appear on load side</li>
+                </ul>
+            </div>
+
+            <h3>Applications of Auto Transformer</h3>
+            <ul>
+                <li>Voltage regulator</li>
+                <li>Variac / laboratory variable AC supply</li>
+                <li>Starting of induction motors</li>
+                <li>Interconnecting systems of nearly equal voltages</li>
+                <li>Booster in transmission lines</li>
+            </ul>
+
+            <h3>Comparison: Auto Transformer vs Two-Winding Transformer</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Auto Transformer</th><th>Two-Winding Transformer</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Number of windings</td><td>Single continuous winding</td><td>Two separate windings</td></tr>
+                        <tr><td>Electrical isolation</td><td>Not available</td><td>Available</td></tr>
+                        <tr><td>Copper required</td><td>Less</td><td>More</td></tr>
+                        <tr><td>Cost</td><td>Lower</td><td>Higher</td></tr>
+                        <tr><td>Efficiency</td><td>Higher</td><td>Lower comparatively</td></tr>
+                        <tr><td>Safety</td><td>Less safe</td><td>Safer</td></tr>
+                        <tr><td>Size and weight</td><td>Smaller and lighter</td><td>Larger and heavier</td></tr>
+                        <tr><td>Common use</td><td>Voltage control, motor starting</td><td>Power and distribution use</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="important-note">
+                <strong>🔥 Important Exam Point:</strong> Main difference of auto transformer is that it has <strong>one winding only</strong> and there is <strong>no electrical isolation</strong> between input and output.
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4</div>
+                <p>State one advantage and one disadvantage of auto transformer.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Model Answer</div>
+                <p><strong>Advantage:</strong> It requires less copper and hence is cheaper and more efficient.</p>
+                <p><strong>Disadvantage:</strong> It does not provide electrical isolation between primary and secondary.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="motor-principle">
+        <h2 class="section-title">
+            <i class="fas fa-cog"></i> 4.5 Construction and Working Principle of Motors
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Electric Motor</div>
+                <p>An <strong>electric motor</strong> is an electrical machine that converts <strong>electrical energy into mechanical energy</strong>.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-sync-alt"></i> Principle of Motor Action</div>
+                <p>When a current-carrying conductor is placed in a magnetic field, it experiences a <strong>mechanical force</strong>. This is the principle of motor action.</p>
+                <p>This force causes rotation, and thus electrical energy is converted into mechanical motion.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Force on Conductor</div>
+                <p class="formula">F = B I l sin θ</p>
+                <ul>
+                    <li><strong>F</strong> = force in newton</li>
+                    <li><strong>B</strong> = flux density</li>
+                    <li><strong>I</strong> = current</li>
+                    <li><strong>l</strong> = active length of conductor</li>
+                    <li><strong>θ</strong> = angle between conductor and field</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <strong>🔥 Most Important Concept:</strong> <strong>Motor works on the principle that a current-carrying conductor placed in a magnetic field experiences a force.</strong>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=motor+working+principle+current+carrying+conductor+magnetic+field+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.11:</strong> Motor principle showing force on current carrying conductor in magnetic field</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Main Parts of a Motor</h3>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Part</th><th>Function</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Stator</strong></td><td>Stationary part producing magnetic field</td></tr>
+                        <tr><td><strong>Rotor</strong></td><td>Rotating part that produces mechanical output</td></tr>
+                        <tr><td><strong>Winding</strong></td><td>Carries current and produces magnetic field</td></tr>
+                        <tr><td><strong>Shaft</strong></td><td>Transmits mechanical power</td></tr>
+                        <tr><td><strong>Bearings</strong></td><td>Support smooth rotation</td></tr>
+                        <tr><td><strong>Commutator / Slip rings</strong></td><td>Used in some types of motors</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=main+parts+of+electric+motor+stator+rotor+shaft+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.12:</strong> Main parts of an electric motor</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>General Working Steps of a Motor</h3>
+            <ol>
+                <li>Electrical supply is given to motor winding</li>
+                <li>Magnetic field is produced</li>
+                <li>Current-carrying conductors interact with magnetic field</li>
+                <li>Force is developed on conductors</li>
+                <li>Torque is produced</li>
+                <li>Rotor starts rotating and mechanical output is obtained</li>
+            </ol>
+
+            <h3>Meaning of Torque</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Torque</div>
+                <p><strong>Torque</strong> is the turning or twisting force that causes the motor shaft to rotate.</p>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-industry"></i> Real Examples of Motor Action</div>
+                <ul>
+                    <li>Ceiling fan rotates because its motor produces torque</li>
+                    <li>Water pump lifts water using motor-driven impeller</li>
+                    <li>Lathe machine spindle rotates due to motor</li>
+                    <li>Mixers, grinders and washing machines work with motors</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Memory Tip</div>
+                <p><strong>Transformer:</strong> Electrical to Electrical<br>
+                <strong>Motor:</strong> Electrical to Mechanical</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="motor-types">
+        <h2 class="section-title">
+            <i class="fas fa-industry"></i> 4.6 Types of Motors and Applications
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>Broad Classification of Motors</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>DC Motors</h4>
+                    <p>Operate on direct current supply.</p>
+                </div>
+                <div class="card">
+                    <h4>AC Motors</h4>
+                    <p>Operate on alternating current supply.</p>
+                </div>
+            </div>
+
+            <h3>A. DC Motors</h3>
+            <p>DC motors are used where good speed control is required.</p>
+
+            <h4>Types of DC Motors</h4>
+            <ul>
+                <li><strong>DC Shunt Motor</strong></li>
+                <li><strong>DC Series Motor</strong></li>
+                <li><strong>DC Compound Motor</strong></li>
+            </ul>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Type</th><th>Main Feature</th><th>Common Application</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>DC Shunt Motor</td><td>Nearly constant speed</td><td>Lathes, blowers, fans</td></tr>
+                        <tr><td>DC Series Motor</td><td>Very high starting torque</td><td>Cranes, electric traction, hoists</td></tr>
+                        <tr><td>DC Compound Motor</td><td>Moderate starting torque and fairly constant speed</td><td>Presses, conveyors, elevators</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=types+of+dc+motor+shunt+series+compound+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.13:</strong> Different types of DC motors</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>B. AC Motors</h3>
+            <p>AC motors are widely used because AC supply is easily available.</p>
+
+            <h4>Main Types of AC Motors</h4>
+            <ul>
+                <li><strong>Single-phase induction motor</strong></li>
+                <li><strong>Three-phase induction motor</strong></li>
+                <li><strong>Synchronous motor</strong> (basic idea only)</li>
+            </ul>
+
+            <h4>1. Single-Phase Induction Motor</h4>
+            <p>Used in domestic appliances where only single-phase supply is available.</p>
+            <p><strong>Applications:</strong> Fans, coolers, washing machines, refrigerators, small pumps.</p>
+
+            <h4>2. Three-Phase Induction Motor</h4>
+            <p>Most widely used industrial motor because of simple construction, ruggedness and low maintenance.</p>
+            <p><strong>Applications:</strong> Pumps, compressors, conveyors, machine tools, mills, lifts.</p>
+
+            <h4>3. Synchronous Motor</h4>
+            <p>Runs at constant synchronous speed. Used where constant speed is required.</p>
+            <p><strong>Applications:</strong> Power factor improvement, constant speed drives.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=single+phase+and+three+phase+induction+motor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 4.14:</strong> AC motor types: single-phase and three-phase induction motors</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Applications of Motors in Real Life</h3>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-tools"></i> Motor Applications</div>
+                <ul>
+                    <li><strong>Ceiling fan</strong> — single-phase induction motor</li>
+                    <li><strong>Water pump</strong> — induction motor</li>
+                    <li><strong>Electric train / traction</strong> — series motor / traction motor</li>
+                    <li><strong>Lathe machine</strong> — shunt or induction motor</li>
+                    <li><strong>Lift / elevator</strong> — induction or compound motor</li>
+                    <li><strong>Mixer grinder</strong> — universal/single-phase motor</li>
+                    <li><strong>Conveyor system</strong> — 3-phase induction motor</li>
+                    <li><strong>Compressor</strong> — 3-phase induction motor</li>
+                </ul>
+            </div>
+
+            <h3>Comparison: AC Motor vs DC Motor</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>AC Motor</th><th>DC Motor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Supply</td><td>Alternating current</td><td>Direct current</td></tr>
+                        <tr><td>Construction</td><td>Generally simpler</td><td>More complex due to commutator in many types</td></tr>
+                        <tr><td>Maintenance</td><td>Less</td><td>More</td></tr>
+                        <tr><td>Speed control</td><td>More difficult in basic type</td><td>Easier</td></tr>
+                        <tr><td>Cost</td><td>Usually lower</td><td>Usually higher</td></tr>
+                        <tr><td>Use</td><td>Domestic and industrial AC supply systems</td><td>Traction, speed control drives</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Comparison: Single-Phase vs Three-Phase Motor</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Single-Phase Motor</th><th>Three-Phase Motor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Supply</td><td>Single-phase AC</td><td>Three-phase AC</td></tr>
+                        <tr><td>Starting</td><td>Not self-starting in induction type</td><td>Self-starting</td></tr>
+                        <tr><td>Power rating</td><td>Small</td><td>Medium to large</td></tr>
+                        <tr><td>Efficiency</td><td>Lower</td><td>Higher</td></tr>
+                        <tr><td>Use</td><td>Domestic appliances</td><td>Industrial drives</td></tr>
+                        <tr><td>Examples</td><td>Fan, cooler, pump</td><td>Compressor, conveyor, machine tools</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="important-note">
+                <strong>🔥 Exam Point:</strong> The <strong>three-phase induction motor</strong> is called the <strong>workhorse of industry</strong> because it is rugged, efficient, simple and widely used.
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 5</div>
+                <p>Which motor is suitable for very high starting torque applications like cranes and hoists?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Model Answer</div>
+                <p><strong>DC series motor</strong> is suitable because it provides very high starting torque.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Solved Numericals
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="important-note">
+                <strong>⭐ Exam Strategy:</strong> In this unit, numericals mainly come from:
+                <strong>EMF equation, turns ratio, voltage ratio, and simple transformer relations.</strong>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 1: Transformation Ratio</div>
+                <p>A transformer has 400 turns in primary and 100 turns in secondary. Find transformation ratio and state the type of transformer.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: N<sub>1</sub> = 400, N<sub>2</sub> = 100</div>
+                <div class="step" data-step="Step 2">k = N<sub>2</sub>/N<sub>1</sub> = 100/400 = 0.25</div>
+                <div class="step" data-step="Step 3">Since k &lt; 1, it is a step-down transformer.</div>
+                <p class="formula answer">✅ k = 0.25, Step-down transformer</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 2: Secondary Voltage</div>
+                <p>A transformer has primary voltage 220 V, primary turns 500 and secondary turns 1000. Find secondary voltage.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Use: V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub></div>
+                <div class="step" data-step="Step 2">V<sub>2</sub>/220 = 1000/500 = 2</div>
+                <div class="step" data-step="Step 3">V<sub>2</sub> = 220 × 2 = 440 V</div>
+                <p class="formula answer">✅ Secondary voltage = 440 V</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 3: EMF Equation</div>
+                <p>A transformer has 250 turns, supply frequency 50 Hz and maximum flux 0.02 Wb. Find induced emf.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">E = 4.44 f N φ<sub>m</sub></div>
+                <div class="step" data-step="Step 2">E = 4.44 × 50 × 250 × 0.02</div>
+                <div class="step" data-step="Step 3">E = 1110 V</div>
+                <p class="formula answer">✅ Induced emf = 1110 V</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 4: Current Ratio</div>
+                <p>An ideal transformer has primary current 2 A and turns ratio N<sub>2</sub>/N<sub>1</sub> = 4. Find secondary current.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: I<sub>1</sub> = 2 A, N<sub>2</sub>/N<sub>1</sub> = 4</div>
+                <div class="step" data-step="Step 2">For ideal transformer: I<sub>2</sub>/I<sub>1</sub> = N<sub>1</sub>/N<sub>2</sub></div>
+                <div class="step" data-step="Step 3">I<sub>2</sub>/2 = 1/4</div>
+                <div class="step" data-step="Step 4">I<sub>2</sub> = 0.5 A</div>
+                <p class="formula answer">✅ Secondary current = 0.5 A</p>
+            </div>
+
+        </div>
+    </section>
+        <section class="section" id="formulas">
+        <h2 class="section-title">
+            <i class="fas fa-square-root-alt"></i> Key Formulas Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Formula</th>
+                            <th>Use</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Transformer EMF equation</td><td>E = 4.44 f N φ<sub>m</sub></td><td>Induced RMS emf in transformer winding</td><td>Volt</td></tr>
+                        <tr><td>Primary emf</td><td>E<sub>1</sub> = 4.44 f N<sub>1</sub> φ<sub>m</sub></td><td>Primary induced emf</td><td>Volt</td></tr>
+                        <tr><td>Secondary emf</td><td>E<sub>2</sub> = 4.44 f N<sub>2</sub> φ<sub>m</sub></td><td>Secondary induced emf</td><td>Volt</td></tr>
+                        <tr><td>Transformation ratio</td><td>k = E<sub>2</sub>/E<sub>1</sub> = V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub></td><td>Voltage/turns ratio</td><td>No unit</td></tr>
+                        <tr><td>Voltage ratio</td><td>V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub></td><td>Find secondary or primary voltage</td><td>No unit</td></tr>
+                        <tr><td>Current ratio</td><td>I<sub>2</sub>/I<sub>1</sub> = N<sub>1</sub>/N<sub>2</sub></td><td>Find transformer current relation</td><td>No unit</td></tr>
+                        <tr><td>Ideal transformer power</td><td>V<sub>1</sub>I<sub>1</sub> = V<sub>2</sub>I<sub>2</sub></td><td>Power equality in ideal transformer</td><td>Watt</td></tr>
+                        <tr><td>Force on conductor</td><td>F = B I l sinθ</td><td>Motor principle</td><td>Newton</td></tr>
+                        <tr><td>Torque concept</td><td>T = F × r</td><td>Turning force on shaft</td><td>N-m</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-bookmark"></i> Important Definitions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Transformer</div>
+                <p>A transformer is a static electrical device that transfers AC electrical energy from one circuit to another by electromagnetic induction without changing frequency.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Electrical Machine</div>
+                <p>An electrical machine is a device that converts electrical energy into mechanical energy or mechanical energy into electrical energy.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Step-Up Transformer</div>
+                <p>A step-up transformer is a transformer in which secondary voltage is greater than primary voltage.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Step-Down Transformer</div>
+                <p>A step-down transformer is a transformer in which secondary voltage is less than primary voltage.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Core Type Transformer</div>
+                <p>A core type transformer is one in which the windings surround a considerable part of the magnetic core.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Shell Type Transformer</div>
+                <p>A shell type transformer is one in which the magnetic core surrounds a considerable part of the windings.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Transformation Ratio</div>
+                <p>Transformation ratio is the ratio of secondary voltage to primary voltage and is equal to the ratio of secondary turns to primary turns.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Auto Transformer</div>
+                <p>An auto transformer is a transformer having only one continuous winding, a part of which is common to both input and output.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Motor</div>
+                <p>A motor is an electrical machine that converts electrical energy into mechanical energy.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Motor Principle</div>
+                <p>A motor works on the principle that a current-carrying conductor placed in a magnetic field experiences a mechanical force.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Stator</div>
+                <p>The stator is the stationary part of an electric motor.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Rotor</div>
+                <p>The rotor is the rotating part of an electric motor.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Torque</div>
+                <p>Torque is the turning force that causes the motor shaft to rotate.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> DC Motor</div>
+                <p>A DC motor is a motor that operates on direct current supply.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> AC Motor</div>
+                <p>An AC motor is a motor that operates on alternating current supply.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Single-Phase Motor</div>
+                <p>A single-phase motor is a motor designed to operate on single-phase AC supply.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Three-Phase Motor</div>
+                <p>A three-phase motor is a motor designed to operate on three-phase AC supply.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1. Step-Up vs Step-Down Transformer</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Step-Up Transformer</th><th>Step-Down Transformer</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Voltage relation</td><td>V<sub>2</sub> &gt; V<sub>1</sub></td><td>V<sub>2</sub> &lt; V<sub>1</sub></td></tr>
+                        <tr><td>Turns relation</td><td>N<sub>2</sub> &gt; N<sub>1</sub></td><td>N<sub>2</sub> &lt; N<sub>1</sub></td></tr>
+                        <tr><td>Current relation</td><td>I<sub>2</sub> &lt; I<sub>1</sub></td><td>I<sub>2</sub> &gt; I<sub>1</sub></td></tr>
+                        <tr><td>Main use</td><td>Transmission</td><td>Distribution, chargers</td></tr>
+                        <tr><td>Example</td><td>Power station transformer</td><td>Mobile charger transformer</td></tr>
+                        <tr><td>Transformation ratio</td><td>k &gt; 1</td><td>k &lt; 1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>2. Core Type vs Shell Type Transformer</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Core Type</th><th>Shell Type</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Core and winding arrangement</td><td>Windings surround core</td><td>Core surrounds windings</td></tr>
+                        <tr><td>Magnetic path</td><td>Single magnetic circuit</td><td>Double magnetic circuit</td></tr>
+                        <tr><td>Mechanical strength</td><td>Less</td><td>More</td></tr>
+                        <tr><td>Leakage flux</td><td>More</td><td>Less</td></tr>
+                        <tr><td>Cooling</td><td>Better</td><td>Comparatively less</td></tr>
+                        <tr><td>Use</td><td>High voltage applications</td><td>Low voltage, heavy current</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3. Auto Transformer vs Two-Winding Transformer</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Auto Transformer</th><th>Two-Winding Transformer</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Winding</td><td>Single</td><td>Two separate windings</td></tr>
+                        <tr><td>Isolation</td><td>No electrical isolation</td><td>Electrical isolation available</td></tr>
+                        <tr><td>Cost</td><td>Low</td><td>High</td></tr>
+                        <tr><td>Copper required</td><td>Less</td><td>More</td></tr>
+                        <tr><td>Efficiency</td><td>Higher</td><td>Lower comparatively</td></tr>
+                        <tr><td>Safety</td><td>Lower</td><td>Higher</td></tr>
+                        <tr><td>Weight and size</td><td>Lower</td><td>Higher</td></tr>
+                        <tr><td>Application</td><td>Voltage regulation, motor starting</td><td>General power transfer</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>4. Transformer vs Motor</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Transformer</th><th>Motor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Nature</td><td>Static device</td><td>Rotating machine</td></tr>
+                        <tr><td>Energy conversion</td><td>Electrical to electrical</td><td>Electrical to mechanical</td></tr>
+                        <tr><td>Working principle</td><td>Mutual induction</td><td>Force on current carrying conductor</td></tr>
+                        <tr><td>Main output</td><td>Changed voltage/current</td><td>Rotation/torque</td></tr>
+                        <tr><td>Moving parts</td><td>No</td><td>Yes</td></tr>
+                        <tr><td>Application</td><td>Power transfer</td><td>Drive loads</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5. AC Motor vs DC Motor</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>AC Motor</th><th>DC Motor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Supply</td><td>Alternating current</td><td>Direct current</td></tr>
+                        <tr><td>Construction</td><td>Simpler</td><td>More complex in many types</td></tr>
+                        <tr><td>Maintenance</td><td>Less</td><td>More</td></tr>
+                        <tr><td>Speed control</td><td>Basic control harder</td><td>Easier</td></tr>
+                        <tr><td>Common use</td><td>Industrial and domestic drives</td><td>Traction, variable speed drives</td></tr>
+                        <tr><td>Cost</td><td>Generally lower</td><td>Generally higher</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>6. Single-Phase vs Three-Phase Motor</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Single-Phase Motor</th><th>Three-Phase Motor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Supply</td><td>Single-phase</td><td>Three-phase</td></tr>
+                        <tr><td>Starting</td><td>Generally not self-starting</td><td>Self-starting</td></tr>
+                        <tr><td>Power range</td><td>Small</td><td>Medium to large</td></tr>
+                        <tr><td>Efficiency</td><td>Lower</td><td>Higher</td></tr>
+                        <tr><td>Applications</td><td>Fan, cooler, domestic loads</td><td>Pumps, compressors, machine tools</td></tr>
+                        <tr><td>Use area</td><td>Domestic</td><td>Industrial</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="mcqs">
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i> MCQ Bank
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q 4.1</h4>
+                    <p>A transformer works on the principle of:</p>
+                    <ul class="options">
+                        <li>a. Self induction only</li>
+                        <li>b. Mutual induction</li>
+                        <li>c. Electrolysis</li>
+                        <li>d. Static electricity</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq1">
+                        <strong>Answer: b. Mutual induction</strong>
+                        <p>A transformer transfers energy from primary to secondary by mutual induction.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.2</h4>
+                    <p>A transformer changes:</p>
+                    <ul class="options">
+                        <li>a. Frequency</li>
+                        <li>b. Voltage/current level</li>
+                        <li>c. DC into AC</li>
+                        <li>d. Mechanical energy into electrical energy</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq2">
+                        <strong>Answer: b. Voltage/current level</strong>
+                        <p>Transformer changes voltage and current level but frequency remains the same.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.3</h4>
+                    <p>A transformer works on:</p>
+                    <ul class="options">
+                        <li>a. DC only</li>
+                        <li>b. AC only</li>
+                        <li>c. Both AC and DC equally</li>
+                        <li>d. Battery only</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq3">
+                        <strong>Answer: b. AC only</strong>
+                        <p>Transformer requires changing flux, so it works on AC.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.4</h4>
+                    <p>The EMF equation of transformer is:</p>
+                    <ul class="options">
+                        <li>a. E = 2πfL</li>
+                        <li>b. E = 4.44fNφ<sub>m</sub></li>
+                        <li>c. E = IR</li>
+                        <li>d. E = VI</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq4">
+                        <strong>Answer: b. E = 4.44fNφ<sub>m</sub></strong>
+                        <p>This is the standard transformer emf equation.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.5</h4>
+                    <p>If N<sub>2</sub> &gt; N<sub>1</sub>, the transformer is:</p>
+                    <ul class="options">
+                        <li>a. Step-down</li>
+                        <li>b. Step-up</li>
+                        <li>c. Isolation only</li>
+                        <li>d. Auto only</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq5">
+                        <strong>Answer: b. Step-up</strong>
+                        <p>More turns in secondary means higher secondary voltage.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.6</h4>
+                    <p>An auto transformer has:</p>
+                    <ul class="options">
+                        <li>a. Two separate windings</li>
+                        <li>b. Three windings</li>
+                        <li>c. One common winding</li>
+                        <li>d. No winding</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq6">
+                        <strong>Answer: c. One common winding</strong>
+                        <p>Auto transformer has one continuous winding with tapping.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.7</h4>
+                    <p>Main disadvantage of auto transformer is:</p>
+                    <ul class="options">
+                        <li>a. Large size</li>
+                        <li>b. Low efficiency</li>
+                        <li>c. No electrical isolation</li>
+                        <li>d. High copper requirement</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq7">
+                        <strong>Answer: c. No electrical isolation</strong>
+                        <p>This is the biggest disadvantage of an auto transformer.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.8</h4>
+                    <p>A motor converts:</p>
+                    <ul class="options">
+                        <li>a. Mechanical to electrical energy</li>
+                        <li>b. Electrical to mechanical energy</li>
+                        <li>c. AC to DC</li>
+                        <li>d. Heat to electrical energy</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq8">
+                        <strong>Answer: b. Electrical to mechanical energy</strong>
+                        <p>A motor produces rotational motion from electrical input.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.9</h4>
+                    <p>The working principle of motor is:</p>
+                    <ul class="options">
+                        <li>a. Electrostatic force</li>
+                        <li>b. Mutual induction</li>
+                        <li>c. A current carrying conductor in magnetic field experiences force</li>
+                        <li>d. Chemical reaction</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq9">
+                        <strong>Answer: c. A current carrying conductor in magnetic field experiences force</strong>
+                        <p>This is the fundamental principle of motor action.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.10</h4>
+                    <p>The rotating part of a motor is called:</p>
+                    <ul class="options">
+                        <li>a. Stator</li>
+                        <li>b. Rotor</li>
+                        <li>c. Pole</li>
+                        <li>d. Core</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq10">
+                        <strong>Answer: b. Rotor</strong>
+                        <p>The rotor is the rotating part of the motor.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.11</h4>
+                    <p>The stationary part of a motor is called:</p>
+                    <ul class="options">
+                        <li>a. Rotor</li>
+                        <li>b. Shaft</li>
+                        <li>c. Stator</li>
+                        <li>d. Armature only</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq11"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq11">
+                        <strong>Answer: c. Stator</strong>
+                        <p>The stator is the stationary part of the motor.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.12</h4>
+                    <p>Which motor gives very high starting torque?</p>
+                    <ul class="options">
+                        <li>a. DC Shunt Motor</li>
+                        <li>b. DC Series Motor</li>
+                        <li>c. Synchronous Motor</li>
+                        <li>d. Stepper Motor</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq12"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq12">
+                        <strong>Answer: b. DC Series Motor</strong>
+                        <p>DC series motor is famous for high starting torque.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.13</h4>
+                    <p>The workhorse of industry is:</p>
+                    <ul class="options">
+                        <li>a. DC shunt motor</li>
+                        <li>b. Universal motor</li>
+                        <li>c. Three-phase induction motor</li>
+                        <li>d. Stepper motor</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq13"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq13">
+                        <strong>Answer: c. Three-phase induction motor</strong>
+                        <p>It is called workhorse of industry due to ruggedness and wide use.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.14</h4>
+                    <p>Which transformer is cheaper for nearly equal voltage ratio?</p>
+                    <ul class="options">
+                        <li>a. Core type only</li>
+                        <li>b. Shell type only</li>
+                        <li>c. Auto transformer</li>
+                        <li>d. Instrument transformer</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq14"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq14">
+                        <strong>Answer: c. Auto transformer</strong>
+                        <p>Auto transformer uses less copper and is economical for close voltage ratios.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 4.15</h4>
+                    <p>Transformer frequency at output is:</p>
+                    <ul class="options">
+                        <li>a. Double the input frequency</li>
+                        <li>b. Half the input frequency</li>
+                        <li>c. Same as input frequency</li>
+                        <li>d. Zero</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u4mcq15"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u4mcq15">
+                        <strong>Answer: c. Same as input frequency</strong>
+                        <p>Transformer changes voltage/current level, not frequency.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="shortqa">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions (2 Marks Style)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h3>Q 1. Define transformer.</h3>
+                <button class="toggle-btn" data-target="u4sa1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa1">
+                    <p>A transformer is a static electrical device that transfers AC electrical energy from one circuit to another by electromagnetic induction without changing frequency.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 2. Why does a transformer not work on DC?</h3>
+                <button class="toggle-btn" data-target="u4sa2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa2">
+                    <p>A transformer does not work on DC because DC does not produce changing magnetic flux, and without changing flux no emf is induced in the secondary.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 3. Write the EMF equation of a transformer.</h3>
+                <button class="toggle-btn" data-target="u4sa3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa3">
+                    <p>The EMF equation is E = 4.44fNφ<sub>m</sub>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 4. What is transformation ratio?</h3>
+                <button class="toggle-btn" data-target="u4sa4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa4">
+                    <p>Transformation ratio is the ratio of secondary voltage to primary voltage, equal to V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 5. What is an auto transformer?</h3>
+                <button class="toggle-btn" data-target="u4sa5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa5">
+                    <p>An auto transformer is a transformer having one continuous tapped winding, a part of which is common to both primary and secondary.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 6. State one advantage of auto transformer.</h3>
+                <button class="toggle-btn" data-target="u4sa6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa6">
+                    <p>Auto transformer requires less copper, so it is cheaper and more efficient.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 7. State one disadvantage of auto transformer.</h3>
+                <button class="toggle-btn" data-target="u4sa7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa7">
+                    <p>It does not provide electrical isolation between input and output.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 8. State the principle of motor.</h3>
+                <button class="toggle-btn" data-target="u4sa8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa8">
+                    <p>A motor works on the principle that a current carrying conductor placed in a magnetic field experiences a force.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 9. What is torque?</h3>
+                <button class="toggle-btn" data-target="u4sa9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa9">
+                    <p>Torque is the turning force that causes the motor shaft to rotate.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 10. Name the types of DC motors.</h3>
+                <button class="toggle-btn" data-target="u4sa10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4sa10">
+                    <p>The main types of DC motors are shunt motor, series motor and compound motor.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="longqa">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks Style)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h3>Q 1. Explain the construction and working principle of a transformer.</h3>
+                <button class="toggle-btn" data-target="u4la1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4la1">
+                    <p>A transformer is a static electrical device that transfers AC power from one circuit to another by mutual induction. Its main parts are laminated magnetic core, primary winding, secondary winding, insulation, tank, oil and bushings.</p>
+                    <p>When AC is supplied to the primary winding, alternating current flows and produces alternating magnetic flux in the iron core. This flux links both primary and secondary windings. According to Faraday’s law, emf is induced in both windings. If load is connected across the secondary winding, current flows and power is transferred from primary to secondary.</p>
+                    <p>A transformer works only on AC because changing flux is required for induction.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 2. Derive the EMF equation of a transformer and explain transformation ratio.</h3>
+                <button class="toggle-btn" data-target="u4la2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4la2">
+                    <p>For a transformer with sinusoidal flux, the RMS induced emf in a winding is:</p>
+                    <p class="formula">E = 4.44fNφ<sub>m</sub></p>
+                    <p>Where E is induced emf, f is frequency, N is number of turns and φ<sub>m</sub> is maximum flux.</p>
+                    <p>For primary winding:</p>
+                    <p class="formula">E<sub>1</sub> = 4.44fN<sub>1</sub>φ<sub>m</sub></p>
+                    <p>For secondary winding:</p>
+                    <p class="formula">E<sub>2</sub> = 4.44fN<sub>2</sub>φ<sub>m</sub></p>
+                    <p>So,</p>
+                    <p class="formula">E<sub>2</sub>/E<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub></p>
+                    <p>For ideal transformer:</p>
+                    <p class="formula">V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub></p>
+                    <p>This is called transformation ratio.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 3. Explain auto transformer with advantages, disadvantages and applications.</h3>
+                <button class="toggle-btn" data-target="u4la3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4la3">
+                    <p>An auto transformer is a transformer having only one continuous winding with tapping. A part of the winding is common to both primary and secondary.</p>
+                    <p>It works on electromagnetic induction like a normal transformer.</p>
+                    <p><strong>Advantages:</strong> less copper, smaller size, lighter weight, lower cost, better efficiency, better voltage regulation.</p>
+                    <p><strong>Disadvantages:</strong> no electrical isolation, less safety, full primary voltage may appear on output if winding breaks.</p>
+                    <p><strong>Applications:</strong> variac, voltage control, induction motor starting, interconnection of close voltage systems.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 4. Explain the working principle of an electric motor and mention its main parts.</h3>
+                <button class="toggle-btn" data-target="u4la4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4la4">
+                    <p>An electric motor converts electrical energy into mechanical energy. It works on the principle that a current carrying conductor placed in a magnetic field experiences a force.</p>
+                    <p>This force acts on the conductors and produces torque, which rotates the rotor.</p>
+                    <p><strong>Main parts of a motor:</strong></p>
+                    <ul>
+                        <li>Stator — stationary part</li>
+                        <li>Rotor — rotating part</li>
+                        <li>Windings — carry current</li>
+                        <li>Shaft — gives mechanical output</li>
+                        <li>Bearings — support rotation</li>
+                    </ul>
+                    <p>Thus the motor gives rotational mechanical output from electrical input.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 5. Classify motors and write their applications.</h3>
+                <button class="toggle-btn" data-target="u4la5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4la5">
+                    <p>Motors are broadly classified into <strong>DC motors</strong> and <strong>AC motors</strong>.</p>
+                    <p><strong>DC motors:</strong> Shunt motor, series motor, compound motor.</p>
+                    <ul>
+                        <li>Shunt motor — lathes, fans, blowers</li>
+                        <li>Series motor — cranes, hoists, traction</li>
+                        <li>Compound motor — elevators, conveyors</li>
+                    </ul>
+                    <p><strong>AC motors:</strong> Single-phase induction motor, three-phase induction motor, synchronous motor.</p>
+                    <ul>
+                        <li>Single-phase motor — fans, refrigerators, washing machines</li>
+                        <li>Three-phase motor — pumps, compressors, machine tools</li>
+                        <li>Synchronous motor — constant speed drive, PF improvement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 6. Compare auto transformer and two-winding transformer.</h3>
+                <button class="toggle-btn" data-target="u4la6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u4la6">
+                    <p>An auto transformer has a single continuous winding, while a two-winding transformer has separate primary and secondary windings.</p>
+                    <p>Auto transformer uses less copper, is cheaper, smaller and more efficient. However, it has no electrical isolation between input and output and is less safe.</p>
+                    <p>A two-winding transformer is costlier and larger, but it provides electrical isolation and is safer for general power transfer.</p>
+                    <p>Auto transformer is used for voltage control and motor starting, while two-winding transformers are used for transmission and distribution.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="practice">
+        <h2 class="section-title">
+            <i class="fas fa-pencil-ruler"></i> Practice Numericals with Toggle Solutions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h3>Q 1. A transformer has N<sub>1</sub> = 200 and N<sub>2</sub> = 100. Find transformation ratio.</h3>
+                <button class="toggle-btn" data-target="u4pn1"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn1">
+                    <p>k = N<sub>2</sub>/N<sub>1</sub> = 100/200 = 0.5</p>
+                    <p><strong>Answer:</strong> 0.5</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 2. A transformer has V<sub>1</sub> = 220 V and N<sub>1</sub> = 500, N<sub>2</sub> = 250. Find V<sub>2</sub>.</h3>
+                <button class="toggle-btn" data-target="u4pn2"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn2">
+                    <p>V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub> = 250/500 = 0.5</p>
+                    <p>V<sub>2</sub> = 220 × 0.5 = 110 V</p>
+                    <p><strong>Answer:</strong> 110 V</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 3. A transformer operates at 50 Hz with 300 turns and maximum flux 0.02 Wb. Find induced emf.</h3>
+                <button class="toggle-btn" data-target="u4pn3"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn3">
+                    <p>E = 4.44fNφ<sub>m</sub></p>
+                    <p>= 4.44 × 50 × 300 × 0.02</p>
+                    <p>= 1332 V</p>
+                    <p><strong>Answer:</strong> 1332 V</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 4. A transformer has V<sub>1</sub> = 100 V, V<sub>2</sub> = 400 V. State the type.</h3>
+                <button class="toggle-btn" data-target="u4pn4"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn4">
+                    <p>Since V<sub>2</sub> &gt; V<sub>1</sub>, it is a step-up transformer.</p>
+                    <p><strong>Answer:</strong> Step-up transformer</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 5. An ideal transformer has V<sub>1</sub> = 200 V, I<sub>1</sub> = 4 A and V<sub>2</sub> = 100 V. Find I<sub>2</sub>.</h3>
+                <button class="toggle-btn" data-target="u4pn5"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn5">
+                    <p>For ideal transformer: V<sub>1</sub>I<sub>1</sub> = V<sub>2</sub>I<sub>2</sub></p>
+                    <p>200 × 4 = 100 × I<sub>2</sub></p>
+                    <p>I<sub>2</sub> = 800/100 = 8 A</p>
+                    <p><strong>Answer:</strong> 8 A</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 6. A conductor of length 0.4 m carries 5 A in a magnetic field of 0.8 T at 90°. Find force.</h3>
+                <button class="toggle-btn" data-target="u4pn6"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn6">
+                    <p>F = BIl sinθ = 0.8 × 5 × 0.4 × 1 = 1.6 N</p>
+                    <p><strong>Answer:</strong> 1.6 N</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 7. If N<sub>1</sub> = 1000 and N<sub>2</sub> = 1000, what type of transformer is it?</h3>
+                <button class="toggle-btn" data-target="u4pn7"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn7">
+                    <p>Since N<sub>1</sub> = N<sub>2</sub>, voltage ratio is 1.</p>
+                    <p><strong>Answer:</strong> Isolation transformer / 1:1 transformer</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 8. A transformer has N<sub>1</sub> = 250, N<sub>2</sub> = 500 and I<sub>1</sub> = 2 A. Find I<sub>2</sub> for ideal transformer.</h3>
+                <button class="toggle-btn" data-target="u4pn8"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u4pn8">
+                    <p>I<sub>2</sub>/I<sub>1</sub> = N<sub>1</sub>/N<sub>2</sub> = 250/500 = 0.5</p>
+                    <p>I<sub>2</sub> = 2 × 0.5 = 1 A</p>
+                    <p><strong>Answer:</strong> 1 A</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="revision">
+        <h2 class="section-title">
+            <i class="fas fa-star"></i> Quick Revision / Unit Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bolt"></i> Unit 4 Quick Revision</div>
+                <ul>
+                    <li>A transformer is a <strong>static device</strong> working on <strong>mutual induction</strong>.</li>
+                    <li>Transformer works on <strong>AC only</strong>, not DC.</li>
+                    <li>Main transformer parts: core, primary winding, secondary winding, insulation, tank, oil.</li>
+                    <li>Transformer changes <strong>voltage/current level</strong> but <strong>not frequency</strong>.</li>
+                    <li><strong>Step-up:</strong> N<sub>2</sub> &gt; N<sub>1</sub>, V<sub>2</sub> &gt; V<sub>1</sub></li>
+                    <li><strong>Step-down:</strong> N<sub>2</sub> &lt; N<sub>1</sub>, V<sub>2</sub> &lt; V<sub>1</sub></li>
+                    <li>EMF equation: <strong>E = 4.44fNφ<sub>m</sub></strong></li>
+                    <li>Transformation ratio: <strong>k = V<sub>2</sub>/V<sub>1</sub> = N<sub>2</sub>/N<sub>1</sub></strong></li>
+                    <li>Auto transformer has <strong>one winding</strong> and no electrical isolation.</li>
+                    <li>Motor converts <strong>electrical energy into mechanical energy</strong>.</li>
+                    <li>Motor principle: current carrying conductor in magnetic field experiences force.</li>
+                    <li>Main motor parts: stator, rotor, shaft, winding, bearings.</li>
+                    <li>DC series motor gives <strong>high starting torque</strong>.</li>
+                    <li>Three-phase induction motor is the <strong>workhorse of industry</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Last-Minute Exam Tips</div>
+                <ul>
+                    <li>Memorize <strong>E = 4.44fNφ<sub>m</sub></strong></li>
+                    <li>Remember transformer <strong>does not change frequency</strong></li>
+                    <li>Always compare N<sub>2</sub> with N<sub>1</sub> to identify step-up or step-down</li>
+                    <li>For auto transformer, write both <strong>advantage</strong> and <strong>main disadvantage</strong></li>
+                    <li>For motor principle, mention <strong>force on current carrying conductor</strong></li>
+                    <li>In application answers, write specific examples like fan, pump, crane, lathe</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes</div>
+                <ul>
+                    <li>Writing transformer works on DC — wrong</li>
+                    <li>Confusing step-up and step-down relations</li>
+                    <li>Using wrong turns ratio formula</li>
+                    <li>Forgetting that current ratio is inverse of turns ratio</li>
+                    <li>Writing auto transformer has two separate windings — wrong</li>
+                    <li>Confusing rotor and stator</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
@@ -451,7 +1832,12 @@
     <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
     <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
 </div>
-<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Action completed</span></div>
+
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Action completed</span>
+</div>
+
 <script src="../units-com/engine.js"></script>
 </body>
 </html>

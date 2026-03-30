@@ -3,40 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 3 - Overview of Digital Electronics | FEEE</title>
+    <title>Unit 3 - A.C. Circuits | FEEE</title>
     <link rel="stylesheet" href="../units-com/base.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
     <style>
-        .fraction{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;text-align:center}
-        .fraction .num{border-bottom:2px solid currentColor;padding:0 6px 3px;line-height:1.2}
-        .fraction .den{padding:3px 6px 0;line-height:1.2}
-        .figure-link{text-decoration:none;color:inherit;display:block;cursor:pointer}
-        .figure-link .diagram-placeholder{transition:all var(--transition);border:2px dashed var(--gray);position:relative}
-        .figure-link:hover .diagram-placeholder{border-color:var(--accent);background:var(--formula-bg);transform:translateY(-2px);box-shadow:var(--shadow-md)}
-        .diagram-placeholder .click-hint{display:block;margin-top:8px;font-size:.78rem;color:var(--accent);font-weight:500}
-        .figure-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}
-        @media(max-width:768px){.figure-row{grid-template-columns:1fr}}
-        .mcq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin:20px 0}
-        .mcq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;border-left:4px solid var(--accent)}
-        .mcq-item h4{color:var(--primary);margin-bottom:12px;font-size:.95rem}
-        .mcq-item .options{list-style:none;padding:0}
-        .mcq-item .options li{padding:6px 0;font-size:.9rem}
-        @media(max-width:768px){.mcq-grid{grid-template-columns:1fr}}
-        [data-theme="dark"] .mcq-item{background:#1a2332}
-        .bio-box{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;padding:20px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-left:5px solid var(--primary);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:20px 0}
-        [data-theme="dark"] .bio-box{background:linear-gradient(135deg,#1a237e33,#28359333)}
-        .bio-box .bio-text{flex:1;min-width:250px}
-        .bio-box .bio-text h4{color:var(--primary);margin-bottom:8px}
-        .outcome-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:16px 0}
-        .outcome-item{background:var(--formula-bg);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:.95rem}
-        .outcome-item strong{color:var(--accent)}
-        .binary-calc{background:var(--formula-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;margin:16px 0;font-family:var(--font-mono);overflow-x:auto}
-        .binary-calc pre{margin:0;white-space:pre;overflow-x:auto;font-size:0.95rem}
-        .truth-table{margin:16px 0}
-        .truth-table table{min-width:200px}
-        .gate-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;margin:16px 0;border-top:4px solid var(--accent)}
-        .gate-card h4{color:var(--primary);margin-bottom:12px}
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; text-align:center; }
+        .fraction .den { padding:3px 6px 0; text-align:center; }
+
+        .badge-grid { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+        .badge-item { background:var(--formula-bg); border:1px solid var(--accent-light); border-radius:20px; padding:6px 16px; font-size:0.88rem; font-weight:500; color:var(--primary); }
+        [data-theme="dark"] .badge-item { background:#1e3a5f; color:#82b1ff; }
     </style>
 </head>
 <body>
@@ -45,34 +51,38 @@
 
 <header class="header">
     <div class="header-content">
-        <h1><i class="fas fa-digital-tachograph"></i> Overview of Digital Electronics</h1>
-        <h2>Unit 3 — Fundamentals of Electrical and Electronics Engineering</h2>
+        <h1><i class="fas fa-wave-square"></i> A.C. Circuits</h1>
+        <h2>Unit 3 — Fundamental of Electrical & Electronics Engineering</h2>
         <div class="course-info">
-            <span class="info-item"><i class="fas fa-book"></i> ES110</span>
+            <span class="info-item"><i class="fas fa-book"></i> FEEE</span>
             <span class="info-item"><i class="fas fa-layer-group"></i> Unit 3</span>
-            <span class="info-item"><i class="fas fa-graduation-cap"></i> Diploma — Sem I</span>
-            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-calendar"></i> Semester II</span>
+            <span class="info-item"><i class="fas fa-clock"></i> 10 Hours</span>
         </div>
     </div>
 </header>
 
 <nav class="navbar" id="navbar">
     <div class="nav-container">
-        <div class="nav-brand"><h3>⚡ FEEE U3</h3></div>
+        <div class="nav-brand"><h3>🌊 FEEE U3</h3></div>
         <div class="nav-links" id="navLinks">
             <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
-            <a href="#intro"><i class="fas fa-plug"></i> Intro</a>
-            <a href="#numsys"><i class="fas fa-hashtag"></i> Number Systems</a>
-            <a href="#conversion"><i class="fas fa-exchange-alt"></i> Conversions</a>
-            <a href="#arithmetic"><i class="fas fa-calculator"></i> Arithmetic</a>
-            <a href="#boolean"><i class="fas fa-code-branch"></i> Boolean</a>
-            <a href="#gates"><i class="fas fa-door-open"></i> Logic Gates</a>
-            <a href="#flipflops"><i class="fas fa-memory"></i> Flip-Flops</a>
-            <a href="#counters"><i class="fas fa-sort-numeric-up"></i> Counters</a>
-            <a href="#digitalic"><i class="fas fa-microchip"></i> Digital ICs</a>
-            <a href="#solved"><i class="fas fa-pencil-alt"></i> Solved</a>
-            <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
-            <a href="#summary"><i class="fas fa-list"></i> Summary</a>
+            <a href="#ac-basics"><i class="fas fa-signal"></i> AC Basics</a>
+            <a href="#representation"><i class="fas fa-pen-nib"></i> Representation</a>
+            <a href="#pure-rlc"><i class="fas fa-bolt"></i> Pure R L C</a>
+            <a href="#series-parallel"><i class="fas fa-project-diagram"></i> Series & Parallel</a>
+            <a href="#power-ac"><i class="fas fa-plug"></i> AC Power</a>
+            <a href="#star-delta"><i class="fas fa-draw-polygon"></i> Star & Delta</a>
+            <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+            <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-bookmark"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+            <a href="#shortqa"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#longqa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice"><i class="fas fa-pencil-ruler"></i> Practice</a>
+            <a href="#revision"><i class="fas fa-star"></i> Revision</a>
         </div>
         <div class="nav-right">
             <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
@@ -84,23 +94,26 @@
 <div class="nav-overlay" id="navOverlay"></div>
 <div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-        <h3>⚡ FEEE U3</h3>
+        <h3>🌊 FEEE U3</h3>
         <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
         <a href="#overview"><i class="fas fa-eye"></i> Overview</a>
-        <a href="#intro"><i class="fas fa-plug"></i> Intro</a>
-        <a href="#numsys"><i class="fas fa-hashtag"></i> Number Systems</a>
-        <a href="#conversion"><i class="fas fa-exchange-alt"></i> Conversions</a>
-        <a href="#arithmetic"><i class="fas fa-calculator"></i> Arithmetic</a>
-        <a href="#boolean"><i class="fas fa-code-branch"></i> Boolean</a>
-        <a href="#gates"><i class="fas fa-door-open"></i> Logic Gates</a>
-        <a href="#flipflops"><i class="fas fa-memory"></i> Flip-Flops</a>
-        <a href="#counters"><i class="fas fa-sort-numeric-up"></i> Counters</a>
-        <a href="#digitalic"><i class="fas fa-microchip"></i> Digital ICs</a>
-        <a href="#solved"><i class="fas fa-pencil-alt"></i> Solved</a>
-        <a href="#exercises"><i class="fas fa-pen"></i> Exercises</a>
-        <a href="#summary"><i class="fas fa-list"></i> Summary</a>
+        <a href="#ac-basics"><i class="fas fa-signal"></i> AC Basics</a>
+        <a href="#representation"><i class="fas fa-pen-nib"></i> Representation</a>
+        <a href="#pure-rlc"><i class="fas fa-bolt"></i> Pure R L C</a>
+        <a href="#series-parallel"><i class="fas fa-project-diagram"></i> Series & Parallel</a>
+        <a href="#power-ac"><i class="fas fa-plug"></i> AC Power</a>
+        <a href="#star-delta"><i class="fas fa-draw-polygon"></i> Star & Delta</a>
+        <a href="#numericals"><i class="fas fa-calculator"></i> Numericals</a>
+        <a href="#formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-bookmark"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcqs"><i class="fas fa-tasks"></i> MCQs</a>
+        <a href="#shortqa"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#longqa"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice"><i class="fas fa-pencil-ruler"></i> Practice</a>
+        <a href="#revision"><i class="fas fa-star"></i> Revision</a>
     </div>
     <div class="drawer-footer">
         <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
@@ -110,791 +123,2092 @@
 
 <div class="container">
 
-    <!-- ===== OVERVIEW ===== -->
     <section class="section" id="overview">
-        <h2 class="section-title"><i class="fas fa-eye"></i> Unit Overview &amp; Outcomes <i class="fas fa-chevron-up collapse-icon"></i></h2>
+        <h2 class="section-title">
+            <i class="fas fa-eye"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
         <div class="section-content">
+
             <div class="concept-box">
-                <div class="box-title"><i class="fas fa-bullseye"></i> Unit Specifics</div>
+                <div class="box-title"><i class="fas fa-info-circle"></i> What This Unit Covers</div>
+                <p>This unit introduces <strong>Alternating Current (AC) circuits</strong>, which are used in home supply, industries, motors, transformers and power systems. Unlike DC, AC changes both <strong>magnitude</strong> and <strong>direction</strong> with time.</p>
+                <p>In this unit you will learn:</p>
                 <ul>
-                    <li>Number system and conversions</li>
-                    <li>Boolean laws and theorem</li>
-                    <li>Logic gates</li>
-                    <li>Flip flops and its types</li>
-                    <li>Use of flip flops as counter</li>
-                    <li>Introduction to Integrated Circuits</li>
+                    <li>Basic AC terms like frequency, time period, RMS value and phase</li>
+                    <li>Representation of sinusoidal quantities</li>
+                    <li>Behavior of pure resistor, inductor and capacitor in AC</li>
+                    <li>RL, RC, RLC circuits</li>
+                    <li>Power factor and AC power</li>
+                    <li>Star and delta connection relations</li>
                 </ul>
             </div>
-            <div class="tip-box">
-                <div class="box-title"><i class="fas fa-lightbulb"></i> Rationale</div>
-                <p>Digital systems are extensively used for computation, data processing, communication and in measurement and control. The main reason being Digital systems are <strong>more reliable, less affected by noise, easier to design</strong> and fabricated on IC chips. The unit will aid to understand the fundamental concepts of digital systems and their application in digital devices and integrated circuits.</p>
-            </div>
+
             <div class="important-note">
-                <div class="box-title"><i class="fas fa-book-reader"></i> Pre-Requisite</div>
-                <ol><li>Mathematics: Set, Real Numbers, Proofs in Mathematics (Class X)</li></ol>
+                <strong>🔥 Why This Unit Matters:</strong> AC circuits are the base of power engineering. Household electricity, transformers, motors and 3-phase systems all depend on these ideas.
             </div>
-            <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
-            <div class="outcome-grid">
-                <div class="outcome-item"><strong>U3-O1:</strong> Simplify the given expression using Boolean laws and theorem.</div>
-                <div class="outcome-item"><strong>U3-O2:</strong> Explain the various types of logic gates.</div>
-                <div class="outcome-item"><strong>U3-O3:</strong> Use the given flip-flop to construct the specific type of counter.</div>
-                <div class="outcome-item"><strong>U3-O4:</strong> Suggest appropriate TTL digital IC for gates.</div>
+
+            <h3><i class="fas fa-bullseye"></i> Unit Outcomes</h3>
+            <div class="badge-grid">
+                <span class="badge-item">🌊 Explain AC waveform terms</span>
+                <span class="badge-item">📐 Calculate RMS and average value</span>
+                <span class="badge-item">🧭 Understand phase difference</span>
+                <span class="badge-item">🧮 Represent sinusoidal quantities in complex forms</span>
+                <span class="badge-item">⚡ Analyze pure R, L, C circuits</span>
+                <span class="badge-item">🔺 Understand impedance triangle and power triangle</span>
+                <span class="badge-item">🔌 Solve RL, RC, RLC circuits</span>
+                <span class="badge-item">🔷 Explain star and delta relation</span>
             </div>
-            <h3><i class="fas fa-table"></i> CO Mapping Table</h3>
+
+            <h3><i class="fas fa-list"></i> Prerequisites</h3>
+            <ul>
+                <li>Ohm’s law and basic electrical quantities</li>
+                <li>Knowledge of resistor, capacitor and inductor</li>
+                <li>Basic algebra and trigonometric ideas</li>
+                <li>Simple understanding of vectors/angles is helpful</li>
+            </ul>
+
+            <h3><i class="fas fa-list-ol"></i> Syllabus Breakdown</h3>
             <div class="table-wrapper">
                 <table class="data-table">
-                    <thead><tr><th>Outcomes</th><th>CO-1</th><th>CO-2</th><th>CO-3</th><th>CO-4</th><th>CO-5</th><th>CO-6</th></tr></thead>
+                    <thead>
+                        <tr><th>Topic No.</th><th>Topic</th><th>Importance</th></tr>
+                    </thead>
                     <tbody>
-                        <tr><td>U3-O1</td><td>-</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
-                        <tr><td>U3-O2</td><td>2</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
-                        <tr><td>U3-O3</td><td>2</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
-                        <tr><td>U3-O4</td><td>3</td><td>-</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
+                        <tr><td>3.1</td><td>AC terms: cycle, frequency, RMS, average, form factor, peak factor, phase</td><td>⭐⭐⭐🔥</td></tr>
+                        <tr><td>3.2</td><td>Exponential, complex and polar representation</td><td>⭐⭐⭐</td></tr>
+                        <tr><td>3.3</td><td>Pure R, L, C circuits and phasor relation</td><td>⭐⭐⭐🔥</td></tr>
+                        <tr><td>3.4</td><td>R-L, R-C, R-L-C series and parallel circuits</td><td>⭐⭐⭐🔥</td></tr>
+                        <tr><td>3.5</td><td>Impedance, power factor, active/reactive/apparent power</td><td>⭐⭐⭐🔥</td></tr>
+                        <tr><td>3.6</td><td>Star and Delta relation</td><td>⭐⭐⭐</td></tr>
+                        <tr><td>3.7</td><td>Simple problems</td><td>⭐⭐⭐🔥</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="bio-box">
-                <div class="bio-text">
-                    <h4><i class="fas fa-user-graduate"></i> George Boole (1815–1864)</h4>
-                    <p>Boolean algebra was introduced by George Boole, Professor of Mathematics at University College, Cork, Ireland in his first book <em>'The Mathematical Analysis of Logic'</em> in 1847. Boolean algebra is the branch of algebra in which the values of the variables are the truth values <strong>'true' and 'false'</strong>, usually denoted as '1' and '0', respectively. In elementary algebra, the values of the variables are numbers and the prime operations are addition and multiplication; the main operations of Boolean algebra are the <strong>AND, OR and NOT</strong>. Boolean logic is credited with laying the foundations for all modern electronic digital computers.</p>
-                </div>
-            </div>
+
         </div>
     </section>
 
-    <!-- ===== INTRODUCTION ===== -->
-    <section class="section" id="intro">
-        <h2 class="section-title"><i class="fas fa-plug"></i> 3.1.1 Introduction <i class="fas fa-chevron-up collapse-icon"></i></h2>
+    <section class="section" id="ac-basics">
+        <h2 class="section-title">
+            <i class="fas fa-signal"></i> 3.1 Basic AC Quantities
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
         <div class="section-content">
-            <p>Electronic circuits and systems are of two types: <strong>Analog</strong> and <strong>Digital</strong>.</p>
-            <div class="card-grid">
-                <div class="card">
-                    <h4><i class="fas fa-wave-square"></i> Analog Circuits</h4>
-                    <p>Voltage and current vary <strong>continuously</strong> between a maximum and minimum value.</p>
-                </div>
-                <div class="card">
-                    <h4><i class="fas fa-digital-tachograph"></i> Digital Circuits</h4>
-                    <p>Voltage level assumes a <strong>finite value</strong>. In modern digital systems, there are just <strong>two distinct voltage levels</strong>.</p>
-                </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Alternating Quantity</div>
+                <p>An <strong>alternating quantity</strong> is a voltage or current that changes its <strong>magnitude</strong> and <strong>direction</strong> periodically with time.</p>
             </div>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-info-circle"></i> Key Concepts</div>
+
+            <p>The most common AC waveform is the <strong>sinusoidal waveform</strong>.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> General Sinusoidal Equation</div>
+                <p class="formula">v = V<sub>m</sub> sin ωt</p>
+                <p class="formula">i = I<sub>m</sub> sin ωt</p>
                 <ul>
-                    <li>Binary digit <strong>1</strong> represents a <strong>high voltage level</strong>; binary digit <strong>0</strong> represents a <strong>low voltage level</strong> — this is a <strong>positive logic system</strong>.</li>
-                    <li>Digital systems are also called <strong>switching circuits</strong> or <strong>logic circuits</strong>.</li>
-                    <li>These circuits use <strong>Boolean algebra</strong> — a system of mathematical logic consisting of a set of elements and operators for analysis and synthesis of logic circuits.</li>
+                    <li><strong>V<sub>m</sub></strong> = maximum or peak voltage</li>
+                    <li><strong>I<sub>m</sub></strong> = maximum or peak current</li>
+                    <li><strong>ω</strong> = angular frequency in rad/s</li>
+                    <li><strong>t</strong> = time in second</li>
                 </ul>
             </div>
-        </div>
-    </section>
 
-    <!-- ===== NUMBER SYSTEMS ===== -->
-    <section class="section" id="numsys">
-        <h2 class="section-title"><i class="fas fa-hashtag"></i> 3.1.2 Number Systems <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-            <p>Number system relates quantities and symbols. The number system represents a value of a given number with respect to its given base. The base value determines the unique representation of a given number.</p>
-
-            <h3>3.1.2.1 Decimal Number System (Base 10)</h3>
-            <div class="definition-box">
-                <div class="box-title"><i class="fas fa-bookmark"></i> Decimal System</div>
-                <p>Has a base <strong>10</strong> — uses ten independent symbols: <strong>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</strong>. Each digit position represents a specific power of base 10.</p>
-                <div class="formula">
-                    (3456)<sub>10</sub> = 3 × 10<sup>3</sup> + 4 × 10<sup>2</sup> + 5 × 10<sup>1</sup> + 6 × 10<sup>0</sup>
-                </div>
-                <p>General form: D<sub>3</sub>D<sub>2</sub>D<sub>1</sub>D<sub>0</sub>.D<sub>-1</sub>D<sub>-2</sub></p>
-                <div class="formula">
-                    D<sub>3</sub> × 10<sup>3</sup> + D<sub>2</sub> × 10<sup>2</sup> + D<sub>1</sub> × 10<sup>1</sup> + D<sub>0</sub> × 10<sup>0</sup> + D<sub>-1</sub> × 10<sup>-1</sup> + D<sub>-2</sub> × 10<sup>-2</sup>
-                </div>
-                <p>The right most digit is of the order of 10<sup>0</sup> (units), second of 10<sup>1</sup> (tens), third of 10<sup>2</sup> (hundreds), etc.</p>
-            </div>
-
-            <h3>3.1.2.2 Binary Number System (Base 2)</h3>
-            <div class="definition-box">
-                <div class="box-title"><i class="fas fa-bookmark"></i> Binary System</div>
-                <p>Has <strong>two</strong> independent symbols: <strong>0 and 1</strong>. Base is <strong>2</strong>. A binary digit is called a <strong>bit</strong>.</p>
-                <p>The right most bit is called the <strong>Least Significant Bit (LSB)</strong> and the left most bit is the <strong>Most Significant Bit (MSB)</strong>.</p>
-                <div class="formula">
-                    b<sub>3</sub> × 2<sup>3</sup> + b<sub>2</sub> × 2<sup>2</sup> + b<sub>1</sub> × 2<sup>1</sup> + b<sub>0</sub> × 2<sup>0</sup> + b<sub>-1</sub> × 2<sup>-1</sup> + b<sub>-2</sub> × 2<sup>-2</sup>
-                </div>
-            </div>
-
-            <h3>3.1.2.3 Octal and Hexadecimal Number Systems</h3>
-            <div class="card-grid">
-                <div class="card">
-                    <h4><i class="fas fa-circle"></i> Octal (Base 8)</h4>
-                    <p>Eight independent symbols: <strong>0–7</strong>. Used by early microcomputers. Each digit represents a specific power of base 8.</p>
-                </div>
-                <div class="card">
-                    <h4><i class="fas fa-th"></i> Hexadecimal (Base 16)</h4>
-                    <p>Sixteen symbols: <strong>0–9, A–F</strong>. Most popular number system for data processing in digital systems. Binary numbers are long; hex provides compact representation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== NUMBER CONVERSION ===== -->
-    <section class="section" id="conversion">
-        <h2 class="section-title"><i class="fas fa-exchange-alt"></i> 3.1.3 Number Conversions <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-
-            <h3>3.1.3.1 Binary to Decimal Conversion</h3>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-info-circle"></i> Method: Positional Weight System</div>
-                <p>Each binary bit is multiplied by the corresponding position weight and the results are added.</p>
-            </div>
-            <div class="example-box">
-                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example: Convert 1101.11₂ to decimal</div>
-            </div>
-            <div class="solution-box">
-                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="formula">
-                    1101.11 = 1×2<sup>3</sup> + 1×2<sup>2</sup> + 0×2<sup>1</sup> + 1×2<sup>0</sup> + 1×2<sup>-1</sup> + 1×2<sup>-2</sup>
-                </div>
-                <div class="formula answer">
-                    = 8 + 4 + 0 + 1 + 0.5 + 0.25 = <strong>13.75<sub>10</sub></strong>
-                </div>
-            </div>
-
-            <h3>3.1.3.2 Decimal to Binary Conversion</h3>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-info-circle"></i> Method</div>
-                <p><strong>Integer part:</strong> Successively divide by 2 till quotient is zero. The last remainder is the MSB. Read remainders bottom to top.</p>
-                <p><strong>Fractional part:</strong> Successively multiply by 2 till product is zero or desired accuracy is reached. Read integer parts top to bottom.</p>
-            </div>
-            <div class="example-box">
-                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example: Convert 35.875₁₀ to binary</div>
-            </div>
-            <div class="solution-box">
-                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <p><strong>Integer part (35 ÷ 2 repeatedly):</strong></p>
-                <div class="binary-calc"><pre>35 ÷ 2 = 17  remainder 1
-17 ÷ 2 = 8   remainder 1
- 8 ÷ 2 = 4   remainder 0
- 4 ÷ 2 = 2   remainder 0
- 2 ÷ 2 = 1   remainder 0
- 1 ÷ 2 = 0   remainder 1 (MSB)
-Reading bottom→top: 100011</pre></div>
-                <p><strong>Fractional part (0.875 × 2 repeatedly):</strong></p>
-                <div class="binary-calc"><pre>0.875 × 2 = 1.75  → Integer = 1
-0.750 × 2 = 1.50  → Integer = 1
-0.500 × 2 = 1.00  → Integer = 1
-Reading top→bottom: .111</pre></div>
-                <div class="formula answer">
-                    <strong>35.875<sub>10</sub> = 100011.111<sub>2</sub></strong>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== BINARY ARITHMETIC ===== -->
-    <section class="section" id="arithmetic">
-        <h2 class="section-title"><i class="fas fa-calculator"></i> 3.1.4 Binary Arithmetic <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-
-            <h3>3.1.4.1 Binary Addition</h3>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-plus"></i> Rules</div>
-                <p><strong>0 + 0 = 0; &nbsp; 0 + 1 = 1; &nbsp; 1 + 0 = 1; &nbsp; 1 + 1 = 0 and carry 1</strong></p>
-            </div>
-            <div class="example-box">
-                <div class="box-title"><i class="fas fa-pencil-alt"></i> Add: 1011.011 + 111.010</div>
-            </div>
-            <div class="solution-box">
-                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="binary-calc"><pre>  1 0 1 1 . 0 1 1
-+ 0 1 1 1 . 0 1 0
-─────────────────
-1 0 0 1 0 . 1 0 1</pre></div>
-            </div>
-
-            <h3>3.1.4.2 Binary Subtraction</h3>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-minus"></i> Rules</div>
-                <p><strong>0 − 0 = 0; &nbsp; 1 − 0 = 1; &nbsp; 1 − 1 = 0; &nbsp; 0 − 1 = 1 with a borrow of 1</strong> (i.e. equivalent to 10 − 1)</p>
-            </div>
-            <div class="example-box">
-                <div class="box-title"><i class="fas fa-pencil-alt"></i> Subtract: 1010.010 − 111.110</div>
-            </div>
-            <div class="solution-box">
-                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="binary-calc"><pre>  1 0 1 0 . 0 1 0
-- 0 1 1 1 . 1 1 0
-─────────────────
-  0 0 1 0 . 1 0 0</pre></div>
-            </div>
-
-            <div class="tip-box">
-                <div class="box-title"><i class="fas fa-lightbulb"></i> Complements</div>
-                <p>In digital computers, for simplifying subtraction, <strong>complements</strong> are used. For a base-b system: <strong>(b−1)'s complement</strong> and <strong>b's complement</strong>. For binary: <strong>1's complement</strong> and <strong>2's complement</strong>.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== BOOLEAN LAWS ===== -->
-    <section class="section" id="boolean">
-        <h2 class="section-title"><i class="fas fa-code-branch"></i> 3.1.5 Boolean Laws &amp; Theorems <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-
-            <div class="definition-box">
-                <div class="box-title"><i class="fas fa-bookmark"></i> Boolean Algebra</div>
-                <p>An algebraic system developed for systematic treatment of logic. Defined with a set of elements, operators and postulates. Unlike ordinary algebra, <strong>negative numbers and fractions do not exist</strong>. No subtraction or division operations.</p>
-            </div>
-
-            <h3><i class="fas fa-balance-scale"></i> Commutative Law</h3>
-            <div class="formula-box">
-                <p>1. A + B = B + A &nbsp;&nbsp;&nbsp; 2. A · B = B · A</p>
-            </div>
-
-            <h3><i class="fas fa-layer-group"></i> Associative Law</h3>
-            <div class="formula-box">
-                <p>1. (A + B) + C = A + (B + C) &nbsp;&nbsp;&nbsp; 2. (A · B) · C = A · (B · C)</p>
-            </div>
-
-            <h3><i class="fas fa-expand-arrows-alt"></i> Distributive Law</h3>
-            <div class="formula-box">
-                <p>1. (A + B) · C = A · C + B · C &nbsp;&nbsp;&nbsp; 2. A + (B · C) = (A + B) · (A + C)</p>
-            </div>
-
-            <h3><i class="fas fa-table"></i> AND, OR and NOT Laws</h3>
-            <div class="table-wrapper">
-                <table class="data-table">
-                    <thead><tr><th>Sr.No.</th><th>OR Law</th><th>AND Law</th><th>NOT (Complement) Law</th></tr></thead>
-                    <tbody>
-                        <tr><td>1</td><td>A + 0 = A</td><td>A · 0 = 0</td><td>A'' = A</td></tr>
-                        <tr><td>2</td><td>A + 1 = 1</td><td>A · 1 = A</td><td>If A = 0, then A' = 1</td></tr>
-                        <tr><td>3</td><td>A + A = A</td><td>A · A = A</td><td>If A = 1, then A' = 0</td></tr>
-                        <tr><td>4</td><td>A + A' = 1</td><td>A · A' = 0</td><td>—</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p><em>Table 3.1: Basic Boolean Laws (where A = {0,1} and complement of A is A')</em></p>
-
-            <h3><i class="fas fa-not-equal"></i> De Morgan's Theorem</h3>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-star"></i> Two Laws</div>
-                <p><strong>Law 1:</strong> (A + B)' = A' · B' — The complement of a <em>sum</em> equals the <em>product</em> of individual complements.</p>
-                <p><strong>Law 2:</strong> (A · B)' = A' + B' — The complement of a <em>product</em> equals the <em>sum</em> of individual complements.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== LOGIC GATES ===== -->
-    <section class="section" id="gates">
-        <h2 class="section-title"><i class="fas fa-door-open"></i> 3.2 Logic Gates <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-
-            <p>A Boolean function is an expression formed with binary variables using the binary operators AND, OR, NOT. A Boolean function may be represented by a <strong>truth table</strong>. A truth table of an n-variable function consists of 2<sup>n</sup> combinations.</p>
-
-            <h3>3.2.1 Positive and Negative Logic</h3>
-            <div class="card-grid">
-                <div class="card">
-                    <h4><i class="fas fa-plus-circle"></i> Positive Logic</h4>
-                    <p>Higher voltage (e.g. +5V) = Logic-<strong>1</strong>; Lower voltage (0V) = Logic-<strong>0</strong>.</p>
-                </div>
-                <div class="card">
-                    <h4><i class="fas fa-minus-circle"></i> Negative Logic</h4>
-                    <p>Higher voltage (+5V) = Logic-<strong>0</strong>; Lower voltage (0V) = Logic-<strong>1</strong>.</p>
-                </div>
-            </div>
-
-            <a href="https://www.google.com/search?tbm=isch&q=positive+logic+negative+logic+voltage+levels+digital+electronics" target="_blank" rel="noopener" class="figure-link">
+            <a href="https://www.google.com/search?tbm=isch&q=sinusoidal+ac+waveform+cycle+positive+negative+half+cycle+diagram" target="_blank" rel="noopener" class="figure-link">
                 <div class="diagram-placeholder">
                     <i class="fas fa-image"></i>
-                    <p><strong>Fig. 3.1:</strong> Logic signal — Positive logic (High=1, Low=0) and Negative logic (High=0, Low=1)</p>
+                    <p><strong>Fig. 3.1:</strong> Sinusoidal AC waveform showing positive half cycle, negative half cycle and one complete cycle</p>
                     <span class="click-hint">🔍 Click to view on Google Images</span>
                 </div>
             </a>
 
+            <h3>Cycle</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Cycle</div>
+                <p>One complete set of positive and negative alternation of an AC waveform is called one <strong>cycle</strong>.</p>
+            </div>
+
+            <h3>Time Period</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Time Period (T)</div>
+                <p>The time taken by an AC waveform to complete one cycle is called the <strong>time period</strong>.</p>
+                <p>Unit = second (s)</p>
+            </div>
+
+            <h3>Frequency</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Frequency (f)</div>
+                <p>The number of cycles completed in one second is called the <strong>frequency</strong>.</p>
+                <p>Unit = Hertz (Hz)</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Frequency-Time Period Relation</div>
+                <p class="formula">f = <span class="fraction"><span class="num">1</span><span class="den">T</span></span></p>
+                <p class="formula">T = <span class="fraction"><span class="num">1</span><span class="den">f</span></span></p>
+            </div>
+
             <div class="important-note">
-                <p>In general: voltage between <strong>0V and 0.8V</strong> = Logic-0; voltage between <strong>3V to 5V</strong> = Logic-1.</p>
+                <strong>⭐ Important:</strong> In India, the AC mains supply frequency is <strong>50 Hz</strong>. That means 50 complete cycles per second.
             </div>
 
-            <h3>3.2.2 Types of Logic Gates</h3>
-            <p>The fundamental building blocks of any digital system. Three basic gates: <strong>AND, OR, NOT</strong>. Two levels: Logic-1 (HIGH/TRUE) and Logic-0 (LOW/FALSE).</p>
-
-            <!-- AND Gate -->
-            <div class="gate-card">
-                <h4><i class="fas fa-circle"></i> 3.2.2.1 AND Gate</h4>
-                <p>Output is logic-1 <strong>only when ALL inputs are logic-1</strong>. Even one input at logic-0 makes output 0.</p>
-                <div class="formula">Z = A · B</div>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
-                    <tbody>
-                        <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr>
-                        <tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr>
-                    </tbody></table>
-                </div>
-                <a href="https://www.google.com/search?tbm=isch&q=AND+gate+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.2:</strong> AND Gate — Symbol and Truth Table</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <!-- OR Gate -->
-            <div class="gate-card">
-                <h4><i class="fas fa-circle"></i> 3.2.2.2 OR Gate</h4>
-                <p>Output is logic-0 <strong>only when ALL inputs are logic-0</strong>. Even one input at logic-1 makes output 1.</p>
-                <div class="formula">Z = A + B</div>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
-                    <tbody>
-                        <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr>
-                        <tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr>
-                    </tbody></table>
-                </div>
-                <a href="https://www.google.com/search?tbm=isch&q=OR+gate+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.3:</strong> OR Gate — Symbol and Truth Table</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <!-- NOT Gate -->
-            <div class="gate-card">
-                <h4><i class="fas fa-circle"></i> 3.2.2.3 NOT Gate (Inverter)</h4>
-                <p>Has <strong>one input and one output</strong>. Output is always the <strong>complement</strong> of the input.</p>
-                <div class="formula">Z = A'</div>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>A</th><th>Z</th></tr></thead>
-                    <tbody><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></tbody></table>
-                </div>
-                <a href="https://www.google.com/search?tbm=isch&q=NOT+gate+inverter+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.4:</strong> NOT Gate — Symbol and Truth Table</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <!-- Universal Gates -->
-            <h3>3.2.2.4 Universal Gates (NAND &amp; NOR)</h3>
+            <h3>Angular Speed / Angular Frequency</h3>
             <div class="definition-box">
-                <div class="box-title"><i class="fas fa-bookmark"></i> Why Universal?</div>
-                <p>NAND and NOR gates can <strong>realize the logic function of all three basic gates</strong> (AND, OR, NOT). Therefore, they are called <strong>Universal gates</strong>.</p>
+                <div class="box-title"><i class="fas fa-bookmark"></i> Angular Frequency (ω)</div>
+                <p>Angular frequency is the angular displacement of a sinusoidal waveform per second.</p>
+                <p>Unit = rad/s</p>
             </div>
 
-            <div class="gate-card">
-                <h4><i class="fas fa-circle"></i> NOR Gate</h4>
-                <div class="formula">Z = (A + B)'</div>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
-                    <tbody>
-                        <tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td></tr>
-                        <tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
-                    </tbody></table>
-                </div>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Angular Frequency</div>
+                <p class="formula">ω = 2πf = <span class="fraction"><span class="num">2π</span><span class="den">T</span></span></p>
             </div>
 
-            <div class="gate-card">
-                <h4><i class="fas fa-circle"></i> NAND Gate</h4>
-                <div class="formula">Z = (A · B)'</div>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>A</th><th>B</th><th>Z</th></tr></thead>
-                    <tbody>
-                        <tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr>
-                        <tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
-                    </tbody></table>
-                </div>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=NAND+NOR+gate+universal+gates+logic+symbol+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.5:</strong> NOR and NAND Gate — Symbols and Truth Tables</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== FLIP-FLOPS ===== -->
-    <section class="section" id="flipflops">
-        <h2 class="section-title"><i class="fas fa-memory"></i> 3.3 Flip-Flops <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-
-            <p>Digital circuits are broadly classified as <strong>combinational circuits</strong> and <strong>sequential circuits</strong>.</p>
-            <div class="card-grid">
-                <div class="card"><h4><i class="fas fa-bolt"></i> Combinational</h4><p>Output depends <strong>only on present inputs</strong>. Examples: Adders, Subtractors, Encoders, Decoders, Multiplexers.</p></div>
-                <div class="card"><h4><i class="fas fa-history"></i> Sequential</h4><p>Output depends on <strong>present input + past state</strong> stored in memory. Examples: Flip-flops, Registers, Counters.</p></div>
-            </div>
-
-            <h3><i class="fas fa-table"></i> Synchronous vs Asynchronous</h3>
-            <div class="table-wrapper">
-                <table class="data-table">
-                    <thead><tr><th>Sr.No.</th><th>Asynchronous Sequential</th><th>Synchronous Sequential</th></tr></thead>
-                    <tbody>
-                        <tr><td>1</td><td>Memory elements are <strong>unclocked</strong> flip-flops.</td><td>Memory elements are <strong>clocked</strong> flip-flops.</td></tr>
-                        <tr><td>2</td><td>Change in input can affect memory at <strong>any instant</strong>.</td><td>Change affects memory <strong>only when clock signal is present</strong>.</td></tr>
-                        <tr><td>3</td><td>Absence of clock makes operation <strong>faster</strong>.</td><td>Speed depends on <strong>clock frequency</strong>.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>3.3.1 Types of Flip-Flops</h3>
+            <h3>Amplitude / Maximum Value</h3>
             <div class="definition-box">
-                <div class="box-title"><i class="fas fa-bookmark"></i> Flip-Flop</div>
-                <p>The most important memory element and basic building block of sequential circuits. Has <strong>two stable states</strong> — can remain indefinitely. State changes only with proper input signals. Also called a <strong>one-bit memory element</strong>. Made using two cross-coupled NAND or NOR gates.</p>
+                <div class="box-title"><i class="fas fa-bookmark"></i> Amplitude</div>
+                <p>The maximum value of an alternating quantity measured from zero axis is called the <strong>amplitude</strong> or <strong>peak value</strong>.</p>
             </div>
 
-            <!-- SR Latch -->
-            <div class="gate-card">
-                <h4><i class="fas fa-toggle-on"></i> 3.3.1.1 S-R Latch (Basic Flip-Flop)</h4>
-                <p>Simplest type. Two inputs: <strong>S (SET)</strong> and <strong>R (RESET)</strong>. Two outputs: Q and Q'.</p>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>S</th><th>R</th><th>Q</th><th>State</th></tr></thead>
-                    <tbody>
-                        <tr><td>0</td><td>1</td><td>1</td><td>SET (Q=1)</td></tr>
-                        <tr><td>1</td><td>0</td><td>0</td><td>RESET (Q=0)</td></tr>
-                        <tr><td>1</td><td>1</td><td>No change</td><td>Hold state</td></tr>
-                        <tr><td>0</td><td>0</td><td>Undefined</td><td><span class="text-danger">Invalid — Not used</span></td></tr>
-                    </tbody></table>
-                </div>
-                <a href="https://www.google.com/search?tbm=isch&q=SR+latch+NAND+gate+circuit+diagram+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.6:</strong> S-R latch using NAND gates</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <!-- Clocked SR -->
-            <div class="gate-card">
-                <h4><i class="fas fa-clock"></i> 3.3.1.2 Clocked S-R Flip-Flop</h4>
-                <p>Requires a <strong>clock signal</strong> — changes state only when clock is HIGH (logic-1). Also called <strong>level triggered</strong> or <strong>synchronous</strong> flip-flop.</p>
-                <p>When clock is LOW: output of both input NAND gates is HIGH → flip-flop state <strong>unchanged</strong>. When clock is HIGH: S and R signals pass through and Q changes accordingly.</p>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>CLK</th><th>S</th><th>R</th><th>Q<sub>t+1</sub></th><th>State</th></tr></thead>
-                    <tbody>
-                        <tr><td rowspan="4">1</td><td>0</td><td>0</td><td>Q<sub>t</sub></td><td>No Change</td></tr>
-                        <tr><td>0</td><td>1</td><td>0</td><td>RESET</td></tr>
-                        <tr><td>1</td><td>0</td><td>1</td><td>SET</td></tr>
-                        <tr><td>1</td><td>1</td><td>X</td><td class="text-danger">Undefined</td></tr>
-                    </tbody></table>
-                </div>
-                <a href="https://www.google.com/search?tbm=isch&q=clocked+SR+flip+flop+NAND+gates+logic+diagram+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.7:</strong> Clocked S-R flip-flop — Logic diagram, symbol and truth table</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <!-- D Flip-Flop -->
-            <div class="gate-card">
-                <h4><i class="fas fa-database"></i> 3.3.1.3 D Flip-Flop (Delay/Data)</h4>
-                <p>To avoid the undefined state (S=R=1), a single input flip-flop is created where <strong>R is the complement of S</strong>. When <strong>D=1</strong>: S=1, R=0 → SET. When <strong>D=0</strong>: S=0, R=1 → RESET.</p>
-                <a href="https://www.google.com/search?tbm=isch&q=D+flip+flop+delay+data+circuit+diagram+truth+table" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.8:</strong> D flip-flop — Single input with inverter</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <!-- JK Flip-Flop -->
-            <div class="gate-card">
-                <h4><i class="fas fa-star"></i> 3.3.1.4 J-K Flip-Flop</h4>
-                <p>The <strong>most popular and widely used</strong> flip-flop. Working is identical to clocked S-R flip-flop but with <strong>no undefined states</strong>. When <strong>J=K=1</strong>, the flip-flop <strong>toggles</strong> — changes its present state.</p>
-                <div class="table-wrapper truth-table">
-                    <table class="data-table"><thead><tr><th>CLK</th><th>J</th><th>K</th><th>Q<sub>t</sub></th><th>Q<sub>t+1</sub></th><th>State</th></tr></thead>
-                    <tbody>
-                        <tr><td rowspan="8">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td rowspan="2">No Change</td></tr>
-                        <tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
-                        <tr><td>0</td><td>1</td><td>0</td><td>0</td><td rowspan="2">RESET</td></tr>
-                        <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
-                        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td rowspan="2">SET</td></tr>
-                        <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
-                        <tr><td>1</td><td>1</td><td>0</td><td>1</td><td rowspan="2"><strong>Toggle</strong></td></tr>
-                        <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
-                    </tbody></table>
-                </div>
-                <a href="https://www.google.com/search?tbm=isch&q=JK+flip+flop+logic+diagram+symbol+truth+table+toggle" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.9:</strong> J-K Flip-Flop — Logic diagram, symbol and truth table</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <!-- T Flip-Flop -->
-            <div class="gate-card">
-                <h4><i class="fas fa-sync-alt"></i> 3.3.1.5 T Flip-Flop (Toggle)</h4>
-                <p>Both inputs of a J-K are connected together and labelled <strong>T</strong>. When <strong>T=0</strong>: J=K=0 → state unchanged. When <strong>T=1</strong>: J=K=1 → <strong>toggles</strong>. Also known as <strong>Toggle flip-flop</strong>.</p>
-                <a href="https://www.google.com/search?tbm=isch&q=T+flip+flop+toggle+logic+symbol+circuit+diagram" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.10:</strong> T flip-flop — Logic symbol (J and K tied together)</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== COUNTERS ===== -->
-    <section class="section" id="counters">
-        <h2 class="section-title"><i class="fas fa-sort-numeric-up"></i> 3.3.2 Counters <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-
+            <h3>Instantaneous Value</h3>
             <div class="definition-box">
-                <div class="box-title"><i class="fas fa-bookmark"></i> Counter</div>
-                <p>A <strong>sequential circuit</strong> used to count clock pulses. Consists of a set of flip-flops whose state changes in response to the clock pulse. Each count is called a <strong>state</strong>. The <strong>modulus</strong> of an N-bit counter is <strong>2<sup>N</sup></strong>.</p>
-                <p>Example: A 2-bit counter requires 2 flip-flops and has 4 states (mod-4 counter).</p>
+                <div class="box-title"><i class="fas fa-bookmark"></i> Instantaneous Value</div>
+                <p>The value of alternating voltage or current at any instant of time is called its <strong>instantaneous value</strong>.</p>
             </div>
 
-            <a href="https://www.google.com/search?tbm=isch&q=2+bit+up+counter+down+counter+state+diagram+00+01+10+11" target="_blank" rel="noopener" class="figure-link">
-                <div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.11:</strong> State Diagram — (a) 2-bit UP counter: 00→01→10→11→00; (b) 2-bit DOWN counter: 11→10→01→00→11</p><span class="click-hint">🔍 Click to view</span></div>
+            <h3>RMS Value 🔥</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> RMS Value</div>
+                <p>The <strong>RMS (Root Mean Square) value</strong> of an alternating quantity is the equivalent DC value that produces the same heating effect in a resistor as the AC quantity.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: RMS Value of Sine Wave</div>
+                <p class="formula">V<sub>rms</sub> = <span class="fraction"><span class="num">V<sub>m</sub></span><span class="den">√2</span></span> = 0.707 V<sub>m</sub></p>
+                <p class="formula">I<sub>rms</sub> = <span class="fraction"><span class="num">I<sub>m</sub></span><span class="den">√2</span></span> = 0.707 I<sub>m</sub></p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why RMS is Important</div>
+                <p>When we say household AC supply is <strong>230 V</strong>, we mean <strong>230 V RMS</strong>, not peak voltage. The peak value is about 325 V.</p>
+            </div>
+
+            <h3>Average Value</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Average Value</div>
+                <p>The average value of an AC quantity is the arithmetic mean of all instantaneous values over a half cycle.</p>
+                <p>For a complete sine wave, average value is zero because positive and negative halves cancel each other.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Average Value of Sine Wave</div>
+                <p class="formula">V<sub>avg</sub> = <span class="fraction"><span class="num">2V<sub>m</sub></span><span class="den">π</span></span> = 0.637 V<sub>m</sub></p>
+                <p class="formula">I<sub>avg</sub> = <span class="fraction"><span class="num">2I<sub>m</sub></span><span class="den">π</span></span> = 0.637 I<sub>m</sub></p>
+            </div>
+
+            <h3>Form Factor</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Form Factor</div>
+                <p>Form factor is the ratio of RMS value to average value of an AC waveform.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Form Factor</div>
+                <p class="formula">Form Factor = <span class="fraction"><span class="num">RMS Value</span><span class="den">Average Value</span></span></p>
+                <p>For sine wave:</p>
+                <p class="formula">Form Factor = <span class="fraction"><span class="num">0.707</span><span class="den">0.637</span></span> = 1.11</p>
+            </div>
+
+            <h3>Peak Factor / Crest Factor</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Peak Factor</div>
+                <p>Peak factor is the ratio of maximum value to RMS value of an AC waveform.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Peak Factor</div>
+                <p class="formula">Peak Factor = <span class="fraction"><span class="num">Maximum Value</span><span class="den">RMS Value</span></span></p>
+                <p>For sine wave:</p>
+                <p class="formula">Peak Factor = <span class="fraction"><span class="num">1</span><span class="den">0.707</span></span> = 1.414</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=AC+waveform+showing+peak+rms+average+value+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.2:</strong> AC waveform showing peak value, RMS value and average value</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
             </a>
 
-            <div class="card-grid">
-                <div class="card"><h4><i class="fas fa-wave-square"></i> Asynchronous (Ripple)</h4><p>Output of first FF becomes clock for second FF. Main drawback: <strong>low speed</strong>.</p></div>
-                <div class="card"><h4><i class="fas fa-bolt"></i> Synchronous (Parallel)</h4><p>All flip-flops clocked by <strong>same clock pulse simultaneously</strong>. <strong>Faster</strong> than asynchronous.</p></div>
-            </div>
+            <h3>Phase and Phase Difference 🔥</h3>
 
-            <h3>3.3.2.1 Asynchronous Counter</h3>
-            <p>A 2-bit up counter uses two J-K flip-flops with J=K=1. Flip-flops toggle whenever clock is HIGH. Counts from 00 (State 0) to 11 (State 3).</p>
-            <div class="figure-row">
-                <a href="https://www.google.com/search?tbm=isch&q=2+bit+asynchronous+up+counter+JK+flip+flop+circuit+diagram" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.12:</strong> 2-bit UP Asynchronous counter — Q₀' feeds CLK of FF1</p><span class="click-hint">🔍 Click to view</span></div></a>
-                <a href="https://www.google.com/search?tbm=isch&q=2+bit+asynchronous+down+counter+JK+flip+flop+circuit" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.13:</strong> 2-bit DOWN Asynchronous counter — Q₀ feeds CLK of FF1</p><span class="click-hint">🔍 Click to view</span></div></a>
-            </div>
-
-            <h3>3.3.2.2 Mod-10 Asynchronous Counter (Decade Counter)</h3>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-info-circle"></i> Decade Counter</div>
-                <p>Requires <strong>4 flip-flops</strong> (16 possible states). Only <strong>10 valid states</strong>: 0000₂ to 1001₂. Remaining (1010₂ to 1111₂) are invalid. A <strong>feedback logic circuit</strong> clears/resets all flip-flops when count reaches 1010₂.</p>
-            </div>
-            <a href="https://www.google.com/search?tbm=isch&q=4+bit+decade+counter+mod+10+asynchronous+feedback+clear+circuit" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.14:</strong> 4-bit Decade counter — 4 J-K flip-flops (FF0-FF3) with NAND gate feedback to CLR lines; Q₃ = MSB, Q₀ = LSB</p><span class="click-hint">🔍 Click to view</span></div></a>
-        </div>
-    </section>
-
-    <!-- ===== DIGITAL ICs ===== -->
-    <section class="section" id="digitalic">
-        <h2 class="section-title"><i class="fas fa-microchip"></i> 3.4 Digital ICs <i class="fas fa-chevron-up collapse-icon"></i></h2>
-        <div class="section-content">
-
-            <h3>3.4.1 Introduction to Integrated Circuits</h3>
             <div class="definition-box">
-                <div class="box-title"><i class="fas fa-bookmark"></i> IC</div>
-                <p>Small silicon semiconductor crystal having components like resistors, diodes, capacitors, transistors, FETs interconnected to form an electronic circuit. Mounted on a metal, plastic or ceramic package.</p>
-                <p><strong>Advantages:</strong> Small size, reduced power consumption, high reliability, high speed, low cost.</p>
-                <p><strong>Packages:</strong> Flat pin and Dual In Line (DIP).</p>
+                <div class="box-title"><i class="fas fa-bookmark"></i> Phase</div>
+                <p>Phase indicates the angular position of a sinusoidal quantity with respect to a reference point.</p>
             </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Phase Difference</div>
+                <p>The angular difference between two sinusoidal quantities of same frequency is called <strong>phase difference</strong>.</p>
+            </div>
+
+            <p>If two waveforms reach their maximum and zero values at the same instant, they are <strong>in phase</strong>. If one reaches earlier or later, they are <strong>out of phase</strong>.</p>
 
             <div class="card-grid">
-                <div class="card"><h4><i class="fas fa-wave-square"></i> Linear ICs</h4><p>Operate with <strong>continuous signals</strong>. Used as amplifiers, filters, comparators, converters.</p></div>
-                <div class="card"><h4><i class="fas fa-digital-tachograph"></i> Digital ICs</h4><p>Operate with <strong>binary signals</strong>. Made of interconnected digital gates.</p></div>
+                <div class="card">
+                    <h4>In Phase</h4>
+                    <p>Two quantities are in phase when phase difference is <strong>0°</strong>.</p>
+                </div>
+                <div class="card">
+                    <h4>Leading</h4>
+                    <p>If one waveform reaches its value earlier, it is said to <strong>lead</strong>.</p>
+                </div>
+                <div class="card">
+                    <h4>Lagging</h4>
+                    <p>If one waveform reaches its value later, it is said to <strong>lag</strong>.</p>
+                </div>
             </div>
 
-            <h4>Logic Circuit Families</h4>
-            <div class="tag-grid">
-                <div class="tag"><strong>TTL</strong> — Transistor-Transistor Logic</div>
-                <div class="tag"><strong>DTL</strong> — Diode Transistor Logic</div>
-                <div class="tag"><strong>RTL</strong> — Resistor Transistor Logic</div>
-                <div class="tag"><strong>ECL</strong> — Emitter Coupled Logic</div>
-                <div class="tag"><strong>MOS</strong> — Metal Oxide Semiconductor</div>
-                <div class="tag"><strong>CMOS</strong> — Complementary MOS</div>
-                <div class="tag"><strong>I²L</strong> — Integrated Injection Logic</div>
+            <a href="https://www.google.com/search?tbm=isch&q=phase+difference+between+two+sine+waves+leading+lagging+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.3:</strong> Phase difference between two sine waves showing leading and lagging</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Impedance</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Impedance (Z)</div>
+                <p><strong>Impedance</strong> is the total opposition offered by an AC circuit to the flow of current. It includes both resistance and reactance.</p>
+                <p>Unit = Ohm (Ω)</p>
             </div>
 
-            <h3>3.4.2 Digital IC Specification Terminology</h3>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Threshold Voltage</div><p>Voltage level at the input that causes a change in the output voltage level.</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Power Dissipation</div><p>Power required by the gate to operate at a specified frequency (milliwatts).</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Propagation Delay</div><p>Time taken by the input signal to propagate from gate input to output.</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Fan-in</div><p>Number of inputs that the gate is designed to handle.</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Fan-out</div><p>Maximum number of loads (inputs of other gates) the output can handle without overloading.</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Noise Margin</div><p>Measure of noise immunity in terms of voltage level — ability to tolerate noise at input terminals.</p></div>
-            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Operating Temperature</div><p>For commercial digital IC: <strong>0 to 70°C</strong>.</p></div>
-
-            <h3>3.4.3 Transistor Transistor Logic (TTL)</h3>
-            <div class="concept-box">
-                <div class="box-title"><i class="fas fa-info-circle"></i> TTL Family</div>
-                <p>Most popular logic family. Basic logic operation performed by transistors (cut-off or saturation). <strong>Advantages:</strong> Low cost, good speed. <strong>Disadvantages:</strong> High power dissipation, low noise immunity. Basic TTL circuit: <strong>NAND gate</strong>.</p>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Impedance</div>
+                <p class="formula">Z = V / I</p>
+                <p>For series RL or RC type circuits:</p>
+                <p class="formula">Z = √(R² + X²)</p>
             </div>
-            <a href="https://www.google.com/search?tbm=isch&q=two+input+TTL+NAND+gate+circuit+diagram+transistors+Q1+Q2+Q3" target="_blank" rel="noopener" class="figure-link"><div class="diagram-placeholder"><i class="fas fa-image"></i><p><strong>Fig. 3.15:</strong> Two input TTL logic NAND gate — Multi-emitter transistor Q1, phase splitter Q2, totem-pole output Q3</p><span class="click-hint">🔍 Click to view</span></div></a>
 
-            <h3>3.4.4 TTL Sub-families</h3>
+            <div class="important-note">
+                <strong>🔥 Very Important:</strong> In AC, resistance alone is not enough. Inductor and capacitor also oppose current, and total opposition is called <strong>impedance</strong>.
+            </div>
+
+            <h3>Quick Formula Summary of AC Basics</h3>
             <div class="table-wrapper">
                 <table class="data-table">
-                    <thead><tr><th>Specification</th><th>74</th><th>74L</th><th>74H</th><th>74S</th><th>74LS</th><th>74F</th></tr></thead>
+                    <thead>
+                        <tr><th>Quantity</th><th>Formula</th><th>Unit</th></tr>
+                    </thead>
                     <tbody>
-                        <tr><td>Propagation delay (ns)</td><td>9</td><td>33</td><td>6</td><td>3</td><td>9.5</td><td>4</td></tr>
-                        <tr><td>Power dissipation (mW)</td><td>10</td><td>1</td><td>23</td><td>20</td><td>2</td><td>1.2</td></tr>
-                        <tr><td>Max clock freq (MHz)</td><td>35</td><td>3</td><td>50</td><td>125</td><td>45</td><td>70</td></tr>
-                        <tr><td>Fan out</td><td>10</td><td>20</td><td>10</td><td>20</td><td>20</td><td>20</td></tr>
-                        <tr><td>Noise margin (V)</td><td>0.4</td><td>0.4</td><td>0.4</td><td>0.7</td><td>0.5</td><td>0.5</td></tr>
+                        <tr><td>Time period</td><td>T = 1/f</td><td>s</td></tr>
+                        <tr><td>Frequency</td><td>f = 1/T</td><td>Hz</td></tr>
+                        <tr><td>Angular frequency</td><td>ω = 2πf</td><td>rad/s</td></tr>
+                        <tr><td>RMS value</td><td>0.707 × maximum value</td><td>V or A</td></tr>
+                        <tr><td>Average value</td><td>0.637 × maximum value</td><td>V or A</td></tr>
+                        <tr><td>Form factor</td><td>RMS / average</td><td>No unit</td></tr>
+                        <tr><td>Peak factor</td><td>Maximum / RMS</td><td>No unit</td></tr>
+                        <tr><td>Impedance</td><td>Z = V/I</td><td>Ω</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p><em>Table 3.2: Comparison of TTL subfamilies</em></p>
 
-            <h3><i class="fas fa-list"></i> Popular Digital TTL ICs</h3>
+            <h3>Solved Examples on AC Basics</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 1</div>
+                <p>An AC waveform has frequency 50 Hz. Find its time period and angular frequency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: f = 50 Hz</div>
+                <div class="step" data-step="Step 2">Time period, T = 1/f = 1/50 = 0.02 s</div>
+                <div class="step" data-step="Step 3">Angular frequency, ω = 2πf = 2 × 3.14 × 50 = 314 rad/s</div>
+                <p class="formula answer">✅ T = 0.02 s, ω = 314 rad/s</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 2</div>
+                <p>The maximum value of AC voltage is 100 V. Find its RMS and average value.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: V<sub>m</sub> = 100 V</div>
+                <div class="step" data-step="Step 2">V<sub>rms</sub> = 0.707 × 100 = 70.7 V</div>
+                <div class="step" data-step="Step 3">V<sub>avg</sub> = 0.637 × 100 = 63.7 V</div>
+                <p class="formula answer">✅ RMS value = 70.7 V, Average value = 63.7 V</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3</div>
+                <p>Find form factor and peak factor of a sinusoidal waveform.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">For sine wave, RMS = 0.707 of peak and average = 0.637 of peak</div>
+                <div class="step" data-step="Step 2">Form factor = 0.707 / 0.637 = 1.11</div>
+                <div class="step" data-step="Step 3">Peak factor = 1 / 0.707 = 1.414</div>
+                <p class="formula answer">✅ Form factor = 1.11, Peak factor = 1.414</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="representation">
+        <h2 class="section-title">
+            <i class="fas fa-pen-nib"></i> 3.2 Representation of Sinusoidal Quantities
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Why Representation is Needed</div>
+                <p>In AC circuit analysis, voltage and current are not simple fixed numbers. They have both <strong>magnitude</strong> and <strong>phase angle</strong>. To make calculations easy, we represent sinusoidal quantities in different mathematical forms.</p>
+                <p>The three forms in your syllabus are:</p>
+                <ol>
+                    <li>Exponential form</li>
+                    <li>Complex form</li>
+                    <li>Polar form</li>
+                </ol>
+            </div>
+
+            <h3>Phasor Concept</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Phasor</div>
+                <p>A <strong>phasor</strong> is a rotating vector used to represent a sinusoidal quantity by its magnitude and phase angle.</p>
+            </div>
+
+            <p>For example, a sinusoidal voltage</p>
+            <p class="formula">v = V<sub>m</sub> sin(ωt + φ)</p>
+            <p>can be represented by a phasor of magnitude <strong>V</strong> and angle <strong>φ</strong>.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=phasor+representation+of+sinusoidal+waveform+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.4:</strong> Phasor representation of a sinusoidal quantity</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>1. Polar Form</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Polar Form</div>
+                <p>In polar form, a sinusoidal quantity is written in terms of its magnitude and angle.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Polar Form</div>
+                <p class="formula">V = |V| ∠ θ</p>
+                <p>Example:</p>
+                <p class="formula">20 ∠ 30°</p>
+            </div>
+
+            <p>This means magnitude is 20 and phase angle is 30°.</p>
+
+            <h3>2. Complex / Rectangular Form</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Complex Form</div>
+                <p>In complex form, a phasor is written as the sum of a real part and an imaginary part.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Complex Form</div>
+                <p class="formula">V = a + jb</p>
+                <ul>
+                    <li><strong>a</strong> = real part</li>
+                    <li><strong>jb</strong> = imaginary part</li>
+                    <li><strong>j</strong> = √(-1)</li>
+                </ul>
+            </div>
+
+            <p>Example:</p>
+            <p class="formula">10 + j5</p>
+
+            <div class="important-note">
+                <strong>Important:</strong> In electrical engineering we use <strong>j</strong> instead of <strong>i</strong> because <strong>i</strong> is already used for current.
+            </div>
+
+            <h3>3. Exponential Form</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Exponential Form</div>
+                <p>In exponential form, a phasor is represented using Euler’s formula.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Exponential Form</div>
+                <p class="formula">V = |V| e<sup>jθ</sup></p>
+            </div>
+
+            <p>Example:</p>
+            <p class="formula">20e<sup>j30°</sup></p>
+
+            <h3>Relation Between Forms</h3>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Euler’s Formula</div>
+                <p class="formula">e<sup>jθ</sup> = cos θ + j sin θ</p>
+            </div>
+
+            <p>Therefore,</p>
+            <p class="formula">V ∠ θ = V(cos θ + j sin θ)</p>
+            <p>So rectangular form becomes:</p>
+            <p class="formula">a + jb = V cos θ + j V sin θ</p>
+
+            <h3>Conversion from Polar to Rectangular</h3>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Polar → Rectangular</div>
+                <p class="formula">a = V cos θ</p>
+                <p class="formula">b = V sin θ</p>
+                <p class="formula">V∠θ = a + jb</p>
+            </div>
+
+            <h3>Conversion from Rectangular to Polar</h3>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Rectangular → Polar</div>
+                <p class="formula">V = √(a² + b²)</p>
+                <p class="formula">θ = tan<sup>-1</sup>(b/a)</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=polar+rectangular+complex+phasor+triangle+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.5:</strong> Conversion between polar and rectangular form using right triangle</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Examples of Representation</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 4</div>
+                <p>Convert 10 ∠ 30° into rectangular form.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: V = 10 ∠ 30°</div>
+                <div class="step" data-step="Step 2">Real part = 10 cos 30° = 10 × 0.866 = 8.66</div>
+                <div class="step" data-step="Step 3">Imaginary part = 10 sin 30° = 10 × 0.5 = 5</div>
+                <div class="step" data-step="Step 4">Rectangular form = 8.66 + j5</div>
+                <p class="formula answer">✅ 10 ∠ 30° = 8.66 + j5</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 5</div>
+                <p>Convert 6 + j8 into polar form.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Magnitude = √(6² + 8²) = √(36 + 64) = √100 = 10</div>
+                <div class="step" data-step="Step 2">Angle = tan<sup>-1</sup>(8/6) = tan<sup>-1</sup>(1.333)</div>
+                <div class="step" data-step="Step 3">Angle ≈ 53.13°</div>
+                <p class="formula answer">✅ 6 + j8 = 10 ∠ 53.13°</p>
+            </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Tip</div>
+                <p>In diploma level problems, usually the most useful forms are:</p>
+                <ul>
+                    <li><strong>Polar form</strong> for multiplication and division</li>
+                    <li><strong>Rectangular form</strong> for addition and subtraction</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+        <section class="section" id="pure-rlc">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> 3.3 Pure Resistance, Inductance and Capacitance with Sinusoidal Excitation
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Basic Idea</div>
+                <p>When AC supply is applied to a <strong>pure resistor</strong>, <strong>pure inductor</strong> or <strong>pure capacitor</strong>, the current and voltage do not always behave in the same way.</p>
+                <ul>
+                    <li>In a <strong>pure resistor</strong>, voltage and current are in phase.</li>
+                    <li>In a <strong>pure inductor</strong>, current lags voltage by 90°.</li>
+                    <li>In a <strong>pure capacitor</strong>, current leads voltage by 90°.</li>
+                </ul>
+                <p>This topic is extremely important because all practical AC circuits are built from these three basic elements.</p>
+            </div>
+
+            <h3>A. Pure Resistive Circuit</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Pure Resistive Circuit</div>
+                <p>A circuit containing only resistance and no inductance or capacitance is called a <strong>pure resistive circuit</strong>.</p>
+            </div>
+
+            <p>If AC voltage is applied:</p>
+            <p class="formula">v = V<sub>m</sub> sin ωt</p>
+            <p>Then by Ohm’s law,</p>
+            <p class="formula">i = <span class="fraction"><span class="num">v</span><span class="den">R</span></span> = <span class="fraction"><span class="num">V<sub>m</sub></span><span class="den">R</span></span> sin ωt = I<sub>m</sub> sin ωt</p>
+
+            <div class="important-note">
+                <strong>Key Result:</strong> In a pure resistor, <strong>voltage and current are in phase</strong>. Phase difference = <strong>0°</strong>.
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Resistive Circuit Relations</div>
+                <p class="formula">I = V / R</p>
+                <p class="formula">Z = R</p>
+                <p class="formula">φ = 0°</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=pure+resistive+ac+circuit+waveform+phasor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.6:</strong> Pure resistive AC circuit with waveform and phasor diagram showing V and I in phase</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>B. Pure Inductive Circuit</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Pure Inductive Circuit</div>
+                <p>A circuit containing only inductance and negligible resistance is called a <strong>pure inductive circuit</strong>.</p>
+            </div>
+
+            <p>For an inductor, voltage-current relation is:</p>
+            <p class="formula">v = L <span class="fraction"><span class="num">di</span><span class="den">dt</span></span></p>
+
+            <p>If applied voltage is:</p>
+            <p class="formula">v = V<sub>m</sub> sin ωt</p>
+
+            <p>Then on solving, the current becomes:</p>
+            <p class="formula">i = I<sub>m</sub> sin (ωt - 90°)</p>
+
+            <div class="important-note">
+                <strong>Key Result:</strong> In a pure inductor, <strong>current lags voltage by 90°</strong>.<br>
+                Or, voltage leads current by 90°.
+            </div>
+
+            <h4>Inductive Reactance</h4>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Inductive Reactance</div>
+                <p>The opposition offered by an inductor to AC is called <strong>inductive reactance</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Inductive Reactance</div>
+                <p class="formula">X<sub>L</sub> = ωL = 2πfL</p>
+                <p class="formula">I = V / X<sub>L</sub></p>
+                <p class="formula">Z = X<sub>L</sub></p>
+            </div>
+
+            <p>Thus, higher the frequency, greater is the inductive reactance.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=pure+inductive+ac+circuit+waveform+phasor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.7:</strong> Pure inductive AC circuit with waveform and phasor diagram showing current lagging by 90°</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>C. Pure Capacitive Circuit</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Pure Capacitive Circuit</div>
+                <p>A circuit containing only capacitance and negligible resistance is called a <strong>pure capacitive circuit</strong>.</p>
+            </div>
+
+            <p>For a capacitor, current-voltage relation is:</p>
+            <p class="formula">i = C <span class="fraction"><span class="num">dv</span><span class="den">dt</span></span></p>
+
+            <p>If voltage is:</p>
+            <p class="formula">v = V<sub>m</sub> sin ωt</p>
+
+            <p>Then current becomes:</p>
+            <p class="formula">i = I<sub>m</sub> sin (ωt + 90°)</p>
+
+            <div class="important-note">
+                <strong>Key Result:</strong> In a pure capacitor, <strong>current leads voltage by 90°</strong>.<br>
+                Or, voltage lags current by 90°.
+            </div>
+
+            <h4>Capacitive Reactance</h4>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Capacitive Reactance</div>
+                <p>The opposition offered by a capacitor to AC is called <strong>capacitive reactance</strong>.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Capacitive Reactance</div>
+                <p class="formula">X<sub>C</sub> = <span class="fraction"><span class="num">1</span><span class="den">ωC</span></span> = <span class="fraction"><span class="num">1</span><span class="den">2πfC</span></span></p>
+                <p class="formula">I = V / X<sub>C</sub></p>
+                <p class="formula">Z = X<sub>C</sub></p>
+            </div>
+
+            <p>Thus, higher the frequency, smaller is the capacitive reactance.</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=pure+capacitive+ac+circuit+waveform+phasor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.8:</strong> Pure capacitive AC circuit with waveform and phasor diagram showing current leading by 90°</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Comparison: Pure R, L and C</h3>
             <div class="table-wrapper">
                 <table class="data-table">
-                    <thead><tr><th>Sr.</th><th>IC</th><th>Description</th></tr></thead>
+                    <thead>
+                        <tr><th>Property</th><th>Pure R</th><th>Pure L</th><th>Pure C</th></tr>
+                    </thead>
                     <tbody>
-                        <tr><td>1</td><td>7402</td><td>Quad 2-Input NOR gate</td></tr>
-                        <tr><td>2</td><td>74F00</td><td>Quad 2-Input NAND gate</td></tr>
-                        <tr><td>3</td><td>74LS08</td><td>Quad 2-Input AND gate</td></tr>
-                        <tr><td>4</td><td>74LS32</td><td>Quad 2-Input OR gate</td></tr>
-                        <tr><td>5</td><td>7404</td><td>Hex Inverter</td></tr>
-                        <tr><td>6</td><td>74LS83</td><td>4-bit full adder</td></tr>
-                        <tr><td>7</td><td>74LS138</td><td>3-to-8 bit binary decoder</td></tr>
-                        <tr><td>8</td><td>74F74</td><td>D type flip-flop</td></tr>
-                        <tr><td>9</td><td>7473</td><td>Dual J-K flip-flop</td></tr>
-                        <tr><td>10</td><td>7490</td><td>Decade counter</td></tr>
+                        <tr><td>Phase relation</td><td>V and I in phase</td><td>I lags V by 90°</td><td>I leads V by 90°</td></tr>
+                        <tr><td>Opposition</td><td>Resistance R</td><td>Reactance X<sub>L</sub></td><td>Reactance X<sub>C</sub></td></tr>
+                        <tr><td>Formula</td><td>R</td><td>2πfL</td><td>1/2πfC</td></tr>
+                        <tr><td>Frequency effect</td><td>No effect</td><td>Increases with f</td><td>Decreases with f</td></tr>
+                        <tr><td>Power factor</td><td>1</td><td>0 lagging</td><td>0 leading</td></tr>
+                        <tr><td>Real power</td><td>Consumed</td><td>Zero average</td><td>Zero average</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <h3>3.4.5 Digital IC Applications &amp; IC Classification</h3>
-            <div class="card-grid">
-                <div class="card"><h4><i class="fas fa-memory"></i> Flip-flops</h4></div>
-                <div class="card"><h4><i class="fas fa-clock"></i> Timers</h4></div>
-                <div class="card"><h4><i class="fas fa-sort-numeric-up"></i> Counters</h4></div>
-                <div class="card"><h4><i class="fas fa-random"></i> Multiplexers</h4></div>
-                <div class="card"><h4><i class="fas fa-microchip"></i> Memory Chips</h4></div>
-                <div class="card"><h4><i class="fas fa-cog"></i> Microprocessors</h4></div>
-                <div class="card"><h4><i class="fas fa-robot"></i> Microcontrollers</h4></div>
-                <div class="card"><h4><i class="fas fa-project-diagram"></i> PLDs</h4></div>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Easy Memory Trick</div>
+                <p><strong>ELI the ICE man</strong></p>
+                <ul>
+                    <li><strong>E</strong> leads <strong>I</strong> in <strong>L</strong> (Inductor)</li>
+                    <li><strong>I</strong> leads <strong>E</strong> in <strong>C</strong> (Capacitor)</li>
+                </ul>
+                <p>Here E means voltage and I means current.</p>
+            </div>
+
+            <h3>Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6</div>
+                <p>A pure inductive circuit has L = 0.2 H and frequency 50 Hz. Find inductive reactance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: L = 0.2 H, f = 50 Hz</div>
+                <div class="step" data-step="Step 2">X<sub>L</sub> = 2πfL</div>
+                <div class="step" data-step="Step 3">X<sub>L</sub> = 2 × 3.14 × 50 × 0.2 = 62.8 Ω</div>
+                <p class="formula answer">✅ Inductive reactance = 62.8 Ω</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7</div>
+                <p>A pure capacitive circuit has C = 50 μF and frequency 50 Hz. Find capacitive reactance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: C = 50 μF = 50 × 10<sup>-6</sup> F, f = 50 Hz</div>
+                <div class="step" data-step="Step 2">X<sub>C</sub> = 1 / (2πfC)</div>
+                <div class="step" data-step="Step 3">X<sub>C</sub> = 1 / (2 × 3.14 × 50 × 50 × 10<sup>-6</sup>)</div>
+                <div class="step" data-step="Step 4">X<sub>C</sub> ≈ 63.7 Ω</div>
+                <p class="formula answer">✅ Capacitive reactance = 63.7 Ω</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="series-parallel">
+        <h2 class="section-title">
+            <i class="fas fa-project-diagram"></i> 3.4 R-L, R-C, R-L-C Series and Parallel Circuits
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Practical AC Circuits</div>
+                <p>In real life, AC circuits rarely contain only a pure resistor, only a pure inductor, or only a pure capacitor. Most circuits are combinations like:</p>
+                <ul>
+                    <li>R-L series</li>
+                    <li>R-C series</li>
+                    <li>R-L-C series</li>
+                    <li>Parallel AC circuits</li>
+                </ul>
+            </div>
+
+            <h3>A. Series R-L Circuit</h3>
+
+            <p>In a series RL circuit, resistance and inductance are connected in series across AC supply.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> RL Series Formulas</div>
+                <p class="formula">X<sub>L</sub> = 2πfL</p>
+                <p class="formula">Z = √(R² + X<sub>L</sub>²)</p>
+                <p class="formula">I = V / Z</p>
+                <p class="formula">tan φ = X<sub>L</sub> / R</p>
+                <p class="formula">cos φ = R / Z</p>
+            </div>
+
+            <div class="important-note">
+                <strong>Key Result:</strong> In RL series circuit, current <strong>lags</strong> voltage by angle φ.
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=series+RL+circuit+phasor+diagram+waveform" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.9:</strong> Series RL circuit and phasor diagram showing current lagging voltage</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <p>Voltage across components:</p>
+            <ul>
+                <li><strong>V<sub>R</sub> = IR</strong> (in phase with current)</li>
+                <li><strong>V<sub>L</sub> = IX<sub>L</sub></strong> (leads current by 90°)</li>
+            </ul>
+
+            <p>Supply voltage is vector sum:</p>
+            <p class="formula">V = √(V<sub>R</sub>² + V<sub>L</sub>²)</p>
+
+            <h3>B. Series R-C Circuit</h3>
+
+            <p>In a series RC circuit, resistance and capacitance are connected in series.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> RC Series Formulas</div>
+                <p class="formula">X<sub>C</sub> = <span class="fraction"><span class="num">1</span><span class="den">2πfC</span></span></p>
+                <p class="formula">Z = √(R² + X<sub>C</sub>²)</p>
+                <p class="formula">I = V / Z</p>
+                <p class="formula">tan φ = X<sub>C</sub> / R</p>
+                <p class="formula">cos φ = R / Z</p>
+            </div>
+
+            <div class="important-note">
+                <strong>Key Result:</strong> In RC series circuit, current <strong>leads</strong> voltage by angle φ.
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=series+RC+circuit+phasor+diagram+waveform" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.10:</strong> Series RC circuit and phasor diagram showing current leading voltage</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <p>Voltage across components:</p>
+            <ul>
+                <li><strong>V<sub>R</sub> = IR</strong> (in phase with current)</li>
+                <li><strong>V<sub>C</sub> = IX<sub>C</sub></strong> (lags current by 90°)</li>
+            </ul>
+
+            <p>Supply voltage:</p>
+            <p class="formula">V = √(V<sub>R</sub>² + V<sub>C</sub>²)</p>
+
+            <h3>C. Series R-L-C Circuit</h3>
+
+            <p>In a series RLC circuit, resistance, inductance and capacitance are connected in series.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> RLC Series Formulas</div>
+                <p class="formula">X<sub>L</sub> = 2πfL</p>
+                <p class="formula">X<sub>C</sub> = <span class="fraction"><span class="num">1</span><span class="den">2πfC</span></span></p>
+                <p class="formula">Net Reactance, X = X<sub>L</sub> - X<sub>C</sub></p>
+                <p class="formula">Z = √(R² + (X<sub>L</sub> - X<sub>C</sub>)²)</p>
+                <p class="formula">I = V / Z</p>
+                <p class="formula">tan φ = (X<sub>L</sub> - X<sub>C</sub>) / R</p>
             </div>
 
             <div class="concept-box">
-                <div class="box-title"><i class="fas fa-layer-group"></i> IC Classification by Scale of Integration</div>
+                <div class="box-title"><i class="fas fa-balance-scale"></i> Cases in RLC Circuit</div>
                 <ul>
-                    <li><strong>SSI</strong> (Small Scale Integration) — Less than 12 gates. Ex: flip-flops.</li>
-                    <li><strong>MSI</strong> (Medium Scale Integration) — 12 to 100 gates. Ex: counters, registers.</li>
-                    <li><strong>LSI</strong> (Large Scale Integration) — 100 to 9,999 gates. Ex: RAM, ROM.</li>
-                    <li><strong>VLSI</strong> (Very Large Scale Integration) — 10,000 to 99,999 gates. Ex: microprocessor.</li>
+                    <li>If <strong>X<sub>L</sub> > X<sub>C</sub></strong> → circuit is <strong>inductive</strong>, current lags</li>
+                    <li>If <strong>X<sub>C</sub> > X<sub>L</sub></strong> → circuit is <strong>capacitive</strong>, current leads</li>
+                    <li>If <strong>X<sub>L</sub> = X<sub>C</sub></strong> → circuit behaves as pure resistive, current in phase</li>
                 </ul>
             </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=series+RLC+circuit+phasor+diagram+impedance+triangle" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.11:</strong> Series RLC circuit with phasor diagram and impedance triangle</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>D. Parallel AC Circuits (Basic Idea)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Parallel AC Circuit</div>
+                <p>In a parallel AC circuit, all branches are connected across the same supply voltage, so <strong>voltage is same</strong> across each branch, while branch currents differ.</p>
+            </div>
+
+            <p>At diploma level, you mainly need the concept and simple cases.</p>
+
+            <h4>Parallel RL Circuit</h4>
+            <ul>
+                <li>Voltage same across R and L</li>
+                <li>Current through resistance is in phase with voltage</li>
+                <li>Current through inductance lags voltage by 90°</li>
+                <li>Total current is vector sum of branch currents</li>
+            </ul>
+
+            <h4>Parallel RC Circuit</h4>
+            <ul>
+                <li>Voltage same across R and C</li>
+                <li>Current through R is in phase with voltage</li>
+                <li>Current through capacitor leads voltage by 90°</li>
+                <li>Total current is phasor sum of branch currents</li>
+            </ul>
+
+            <h4>Parallel RLC Circuit</h4>
+            <ul>
+                <li>All branches get same voltage</li>
+                <li>Branch currents depend on R, L and C values</li>
+                <li>Total current is found by phasor addition</li>
+            </ul>
+
+            <a href="https://www.google.com/search?tbm=isch&q=parallel+RL+RC+RLC+circuit+phasor+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.12:</strong> Parallel AC circuits and branch current phasor diagrams</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistake</div>
+                <p>Students often forget:</p>
+                <ul>
+                    <li>In <strong>series circuits</strong>, current is same</li>
+                    <li>In <strong>parallel circuits</strong>, voltage is same</li>
+                </ul>
+            </div>
+
+            <h3>Solved Examples on Series AC Circuits</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 8: RL Series Circuit</div>
+                <p>An RL series circuit has R = 8 Ω, L = 0.05 H and f = 50 Hz. Find X<sub>L</sub>, Z and current when connected to 100 V supply.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: R = 8 Ω, L = 0.05 H, f = 50 Hz, V = 100 V</div>
+                <div class="step" data-step="Step 2">X<sub>L</sub> = 2πfL = 2 × 3.14 × 50 × 0.05 = 15.7 Ω</div>
+                <div class="step" data-step="Step 3">Z = √(R² + X<sub>L</sub>²) = √(8² + 15.7²)</div>
+                <div class="step" data-step="Step 4">Z = √(64 + 246.49) = √310.49 ≈ 17.62 Ω</div>
+                <div class="step" data-step="Step 5">I = V/Z = 100/17.62 ≈ 5.68 A</div>
+                <p class="formula answer">✅ X<sub>L</sub> = 15.7 Ω, Z = 17.62 Ω, I = 5.68 A</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 9: RC Series Circuit</div>
+                <p>An RC series circuit has R = 10 Ω, C = 100 μF and f = 50 Hz. Find X<sub>C</sub> and impedance.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: R = 10 Ω, C = 100 μF = 100 × 10<sup>-6</sup> F, f = 50 Hz</div>
+                <div class="step" data-step="Step 2">X<sub>C</sub> = 1/(2πfC)</div>
+                <div class="step" data-step="Step 3">X<sub>C</sub> = 1 / (2 × 3.14 × 50 × 100 × 10<sup>-6</sup>)</div>
+                <div class="step" data-step="Step 4">X<sub>C</sub> ≈ 31.85 Ω</div>
+                <div class="step" data-step="Step 5">Z = √(R² + X<sub>C</sub>²) = √(10² + 31.85²)</div>
+                <div class="step" data-step="Step 6">Z ≈ √(100 + 1014.42) = √1114.42 ≈ 33.38 Ω</div>
+                <p class="formula answer">✅ X<sub>C</sub> = 31.85 Ω, Z = 33.38 Ω</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 10: RLC Series Circuit</div>
+                <p>A series RLC circuit has R = 6 Ω, X<sub>L</sub> = 10 Ω and X<sub>C</sub> = 4 Ω. Find impedance and phase angle.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Net reactance X = X<sub>L</sub> − X<sub>C</sub> = 10 − 4 = 6 Ω</div>
+                <div class="step" data-step="Step 2">Z = √(R² + X²) = √(6² + 6²) = √72 = 8.49 Ω</div>
+                <div class="step" data-step="Step 3">tan φ = X/R = 6/6 = 1</div>
+                <div class="step" data-step="Step 4">φ = 45°</div>
+                <div class="step" data-step="Step 5">Since X<sub>L</sub> > X<sub>C</sub>, circuit is inductive, so current lags.</div>
+                <p class="formula answer">✅ Z = 8.49 Ω, φ = 45° lagging</p>
+            </div>
+
         </div>
     </section>
 
-    <!-- ===== SOLVED PROBLEMS ===== -->
-    <section class="section" id="solved">
-        <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Solved Problems <i class="fas fa-chevron-up collapse-icon"></i></h2>
+    <section class="section" id="power-ac">
+        <h2 class="section-title">
+            <i class="fas fa-plug"></i> 3.5 Impedance, Power Factor, Active, Reactive and Apparent Power
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
         <div class="section-content">
 
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.1.1</div><p>Convert the decimal number 452₁₀ to binary.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <div class="binary-calc"><pre>452 ÷ 2 = 225 r 0
-225 ÷ 2 = 112 r 1
-112 ÷ 2 = 56  r 0
- 56 ÷ 2 = 28  r 0
- 28 ÷ 2 = 14  r 0
- 14 ÷ 2 = 7   r 0
-  7 ÷ 2 = 3   r 1
-  3 ÷ 2 = 1   r 1
-  1 ÷ 2 = 0   r 1 (MSB)</pre></div>
-                <div class="formula answer"><strong>452₁₀ = (111000100)₂</strong></div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.1.2</div><p>Write the first ten decimal digits to base 3.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <p>Base 3 symbols: 0, 1, 2</p>
-                <div class="table-wrapper"><table class="data-table"><thead><tr><th>Decimal</th><th>Base 3</th><th>Decimal</th><th>Base 3</th></tr></thead>
-                <tbody>
-                    <tr><td>0</td><td>0</td><td>5</td><td>12</td></tr>
-                    <tr><td>1</td><td>1</td><td>6</td><td>20</td></tr>
-                    <tr><td>2</td><td>2</td><td>7</td><td>21</td></tr>
-                    <tr><td>3</td><td>10</td><td>8</td><td>22</td></tr>
-                    <tr><td>4</td><td>11</td><td>9</td><td>100</td></tr>
-                </tbody></table></div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.2.1</div><p>Which logic gate is represented by Z = (A' + B')'?</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <p>Using De Morgan's Law 1: (A' + B')' = A'' · B'' = <strong>A · B</strong></p>
-                <div class="formula answer">This is an <strong>AND gate</strong>.</div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.2.2</div><p>Implement Z = A + A'B using OR gate.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <p>Applying Distributive law: Z = (A+A') · (A+B)</p>
-                <p>As per OR law: A + A' = 1</p>
-                <div class="formula answer">Z = 1 · (A + B) = <strong>A + B</strong> → Implemented with an <strong>OR gate</strong>.</div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.3.1</div><p>State number of flip-flops required to make a MOD-16 counter.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
-                <p>2<sup>n</sup> = N, where N = 16</p>
-                <div class="formula answer">2<sup>n</sup> = 16 → n = <strong>4 flip-flops</strong></div>
-            </div>
-
-            <div class="example-box"><div class="box-title"><i class="fas fa-pencil-alt"></i> Example 3.4.1</div><p>Describe the evolution of ICs from SSI to VLSI.</p></div>
-            <div class="solution-box"><div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Power in AC Circuit</div>
+                <p>In DC circuits, power is simply <strong>P = VI</strong>. But in AC circuits, voltage and current may not be in phase. So all supplied power is not actually used as useful power.</p>
+                <p>That is why we study:</p>
                 <ul>
-                    <li><strong>SSI</strong> — &lt;12 gates (flip-flops)</li>
-                    <li><strong>MSI</strong> — 12–100 gates (counters, registers)</li>
-                    <li><strong>LSI</strong> — 100–9,999 gates (RAM, ROM)</li>
-                    <li><strong>VLSI</strong> — 10,000–99,999 gates (microprocessor)</li>
+                    <li>Active power</li>
+                    <li>Reactive power</li>
+                    <li>Apparent power</li>
+                    <li>Power factor</li>
                 </ul>
             </div>
+
+            <h3>Impedance Triangle</h3>
+            <p>For a series AC circuit, impedance can be shown by a right-angled triangle:</p>
+            <ul>
+                <li>Base = Resistance R</li>
+                <li>Perpendicular = Reactance X</li>
+                <li>Hypotenuse = Impedance Z</li>
+            </ul>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Impedance Triangle Relations</div>
+                <p class="formula">Z = √(R² + X²)</p>
+                <p class="formula">cos φ = R/Z</p>
+                <p class="formula">sin φ = X/Z</p>
+                <p class="formula">tan φ = X/R</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=impedance+triangle+rl+rc+rlc+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.13:</strong> Impedance triangle showing R, X and Z with phase angle φ</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Power Factor</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Power Factor</div>
+                <p><strong>Power factor</strong> is the cosine of the phase angle between voltage and current in an AC circuit.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Power Factor</div>
+                <p class="formula">Power Factor = cos φ = R/Z</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h4>Unity Power Factor</h4>
+                    <p>When φ = 0°, cos φ = 1. This happens in pure resistive circuit.</p>
+                </div>
+                <div class="card">
+                    <h4>Lagging Power Factor</h4>
+                    <p>When current lags voltage, power factor is called lagging. Example: RL circuit.</p>
+                </div>
+                <div class="card">
+                    <h4>Leading Power Factor</h4>
+                    <p>When current leads voltage, power factor is called leading. Example: RC circuit.</p>
+                </div>
+            </div>
+
+            <div class="important-note">
+                <strong>🔥 Exam Important:</strong> Power factor tells how effectively electrical power is being converted into useful work. Higher power factor is better.
+            </div>
+
+            <h3>Active / True / Real Power</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Active Power</div>
+                <p><strong>Active power</strong> is the actual power consumed in the circuit and converted into useful work such as heat, light or mechanical energy.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Active Power</div>
+                <p class="formula">P = VI cos φ</p>
+                <p>Unit = <strong>Watt (W)</strong></p>
+            </div>
+
+            <h3>Reactive Power</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Reactive Power</div>
+                <p><strong>Reactive power</strong> is the power that oscillates between source and reactive components (L and C). It does not perform useful work.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Reactive Power</div>
+                <p class="formula">Q = VI sin φ</p>
+                <p>Unit = <strong>VAR</strong> (Volt-Ampere Reactive)</p>
+            </div>
+
+            <h3>Apparent Power</h3>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Apparent Power</div>
+                <p><strong>Apparent power</strong> is the product of RMS voltage and RMS current, without considering phase angle.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula: Apparent Power</div>
+                <p class="formula">S = VI</p>
+                <p>Unit = <strong>VA</strong> (Volt-Ampere)</p>
+            </div>
+
+            <h3>Power Triangle</h3>
+            <p>The relation between active, reactive and apparent power is shown by power triangle.</p>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Power Triangle Relations</div>
+                <p class="formula">S = √(P² + Q²)</p>
+                <p class="formula">cos φ = P/S</p>
+                <p class="formula">tan φ = Q/P</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=power+triangle+active+reactive+apparent+power+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.14:</strong> Power triangle showing active power P, reactive power Q and apparent power S</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>Comparison of Powers</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Type of Power</th><th>Symbol</th><th>Formula</th><th>Unit</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Active / True Power</td><td>P</td><td>VI cosφ</td><td>W</td><td>Useful power</td></tr>
+                        <tr><td>Reactive Power</td><td>Q</td><td>VI sinφ</td><td>VAR</td><td>Power exchanged with L/C</td></tr>
+                        <tr><td>Apparent Power</td><td>S</td><td>VI</td><td>VA</td><td>Total supplied power</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Solved Examples on AC Power</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 11</div>
+                <p>An AC circuit takes 10 A current from 200 V supply at power factor 0.8 lagging. Find active, reactive and apparent power.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: V = 200 V, I = 10 A, cosφ = 0.8</div>
+                <div class="step" data-step="Step 2">Apparent power, S = VI = 200 × 10 = 2000 VA</div>
+                <div class="step" data-step="Step 3">Active power, P = VI cosφ = 200 × 10 × 0.8 = 1600 W</div>
+                <div class="step" data-step="Step 4">sinφ = √(1 - cos²φ) = √(1 - 0.64) = 0.6</div>
+                <div class="step" data-step="Step 5">Reactive power, Q = VI sinφ = 200 × 10 × 0.6 = 1200 VAR</div>
+                <p class="formula answer">✅ S = 2000 VA, P = 1600 W, Q = 1200 VAR</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 12</div>
+                <p>An AC circuit has R = 12 Ω and X = 5 Ω. Find impedance and power factor.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Z = √(R² + X²) = √(12² + 5²) = √(144 + 25) = √169 = 13 Ω</div>
+                <div class="step" data-step="Step 2">Power factor = cosφ = R/Z = 12/13 = 0.923</div>
+                <p class="formula answer">✅ Z = 13 Ω, Power factor = 0.923</p>
+            </div>
+
         </div>
     </section>
 
-    <!-- ===== EXERCISES ===== -->
-    <section class="section" id="exercises">
-        <h2 class="section-title"><i class="fas fa-pen"></i> Exercises <i class="fas fa-chevron-up collapse-icon"></i></h2>
+    <section class="section" id="star-delta">
+        <h2 class="section-title">
+            <i class="fas fa-draw-polygon"></i> 3.6 Voltage and Current Relationship in Star and Delta Connections
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
         <div class="section-content">
 
-            <h3><i class="fas fa-tasks"></i> A. MCQs</h3>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-info-circle"></i> Introduction</div>
+                <p>In three-phase circuits, loads can be connected in two common ways:</p>
+                <ul>
+                    <li><strong>Star connection (Y)</strong></li>
+                    <li><strong>Delta connection (Δ)</strong></li>
+                </ul>
+                <p>Even though detailed three-phase analysis is advanced, the basic voltage-current relations are very important and often asked in diploma exams.</p>
+            </div>
+
+            <h3>A. Star Connection (Y)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Star Connection</div>
+                <p>In star connection, one end of each of the three phases is connected together to form a common neutral point.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=star+connection+three+phase+diagram+phase+voltage+line+voltage" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.15:</strong> Three-phase star connection showing line voltage and phase voltage</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Star Connection Relations</div>
+                <p class="formula">V<sub>L</sub> = √3 V<sub>ph</sub></p>
+                <p class="formula">I<sub>L</sub> = I<sub>ph</sub></p>
+            </div>
+
+            <ul>
+                <li><strong>V<sub>L</sub></strong> = line voltage</li>
+                <li><strong>V<sub>ph</sub></strong> = phase voltage</li>
+                <li><strong>I<sub>L</sub></strong> = line current</li>
+                <li><strong>I<sub>ph</sub></strong> = phase current</li>
+            </ul>
+
+            <h3>B. Delta Connection (Δ)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Delta Connection</div>
+                <p>In delta connection, the three phases are connected end-to-end so that they form a closed loop like a triangle.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=delta+connection+three+phase+diagram+phase+current+line+current" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 3.16:</strong> Three-phase delta connection showing line current and phase current</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Delta Connection Relations</div>
+                <p class="formula">V<sub>L</sub> = V<sub>ph</sub></p>
+                <p class="formula">I<sub>L</sub> = √3 I<sub>ph</sub></p>
+            </div>
+
+            <h3>Comparison of Star and Delta</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Star Connection</th><th>Delta Connection</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Shape</td><td>Y-shaped</td><td>Triangle-shaped</td></tr>
+                        <tr><td>Neutral point</td><td>Present</td><td>Absent</td></tr>
+                        <tr><td>Line voltage</td><td>√3 times phase voltage</td><td>Equal to phase voltage</td></tr>
+                        <tr><td>Line current</td><td>Equal to phase current</td><td>√3 times phase current</td></tr>
+                        <tr><td>Insulation requirement</td><td>Lower</td><td>Higher</td></tr>
+                        <tr><td>Common use</td><td>Transmission, distribution</td><td>Motors, loads</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="important-note">
+                <strong>🔥 Must Memorize:</strong><br>
+                <strong>Star:</strong> V<sub>L</sub> = √3V<sub>ph</sub>, I<sub>L</sub> = I<sub>ph</sub><br>
+                <strong>Delta:</strong> V<sub>L</sub> = V<sub>ph</sub>, I<sub>L</sub> = √3I<sub>ph</sub>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 13</div>
+                <p>In a star connected system, phase voltage is 230 V. Find line voltage.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: V<sub>ph</sub> = 230 V</div>
+                <div class="step" data-step="Step 2">In star, V<sub>L</sub> = √3V<sub>ph</sub></div>
+                <div class="step" data-step="Step 3">V<sub>L</sub> = 1.732 × 230 = 398.36 V</div>
+                <p class="formula answer">✅ Line voltage = 398.36 V</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 14</div>
+                <p>In a delta connected system, phase current is 5 A. Find line current.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: I<sub>ph</sub> = 5 A</div>
+                <div class="step" data-step="Step 2">In delta, I<sub>L</sub> = √3 I<sub>ph</sub></div>
+                <div class="step" data-step="Step 3">I<sub>L</sub> = 1.732 × 5 = 8.66 A</div>
+                <p class="formula answer">✅ Line current = 8.66 A</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Solved Numericals
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="important-note">
+                <strong>⭐ Exam Tip:</strong> Show all steps in AC numericals. Write formulas clearly and mention units at every stage.
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 1: RMS from Peak</div>
+                <p>The peak current of a sine wave is 14.14 A. Find RMS current.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">I<sub>rms</sub> = I<sub>m</sub>/√2</div>
+                <div class="step" data-step="Step 2">I<sub>rms</sub> = 14.14 / 1.414 = 10 A</div>
+                <p class="formula answer">✅ RMS current = 10 A</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 2: Average Value</div>
+                <p>The peak voltage of a sine wave is 200 V. Find average value.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">V<sub>avg</sub> = 0.637V<sub>m</sub></div>
+                <div class="step" data-step="Step 2">V<sub>avg</sub> = 0.637 × 200 = 127.4 V</div>
+                <p class="formula answer">✅ Average value = 127.4 V</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 3: Frequency from Time Period</div>
+                <p>An AC waveform completes one cycle in 0.01 s. Find frequency and angular frequency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <div class="step" data-step="Step 1">Given: T = 0.01 s</div>
+                <div class="step" data-step="Step 2">f = 1/T = 1/0.01 = 100 Hz</div>
+                <div class="step" data-step="Step 3">ω = 2πf = 2 × 3.14 × 100 = 628 rad/s</div>
+                <p class="formula answer">✅ f = 100 Hz, ω = 628 rad/s</p>
+            </div>
+
+        </div>
+    </section>
+        <section class="section" id="formulas">
+        <h2 class="section-title">
+            <i class="fas fa-square-root-alt"></i> Key Formulas Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Formula</th>
+                            <th>Use</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Frequency</td><td>f = 1/T</td><td>Cycles per second</td><td>Hz</td></tr>
+                        <tr><td>Time period</td><td>T = 1/f</td><td>Time for one cycle</td><td>s</td></tr>
+                        <tr><td>Angular frequency</td><td>ω = 2πf</td><td>Angular speed of sinusoidal quantity</td><td>rad/s</td></tr>
+                        <tr><td>Sinusoidal voltage</td><td>v = V<sub>m</sub> sinωt</td><td>Instantaneous AC voltage</td><td>V</td></tr>
+                        <tr><td>Sinusoidal current</td><td>i = I<sub>m</sub> sinωt</td><td>Instantaneous AC current</td><td>A</td></tr>
+                        <tr><td>RMS voltage</td><td>V<sub>rms</sub> = V<sub>m</sub>/√2 = 0.707V<sub>m</sub></td><td>Heating equivalent voltage</td><td>V</td></tr>
+                        <tr><td>RMS current</td><td>I<sub>rms</sub> = I<sub>m</sub>/√2 = 0.707I<sub>m</sub></td><td>Heating equivalent current</td><td>A</td></tr>
+                        <tr><td>Average voltage</td><td>V<sub>avg</sub> = 2V<sub>m</sub>/π = 0.637V<sub>m</sub></td><td>Average over half cycle</td><td>V</td></tr>
+                        <tr><td>Average current</td><td>I<sub>avg</sub> = 2I<sub>m</sub>/π = 0.637I<sub>m</sub></td><td>Average over half cycle</td><td>A</td></tr>
+                        <tr><td>Form factor</td><td>RMS/Average = 1.11</td><td>Waveform shape factor</td><td>No unit</td></tr>
+                        <tr><td>Peak factor</td><td>Maximum/RMS = 1.414</td><td>Crest factor</td><td>No unit</td></tr>
+                        <tr><td>Impedance</td><td>Z = V/I</td><td>Total opposition in AC</td><td>Ω</td></tr>
+                        <tr><td>Inductive reactance</td><td>X<sub>L</sub> = 2πfL</td><td>Opposition by inductor</td><td>Ω</td></tr>
+                        <tr><td>Capacitive reactance</td><td>X<sub>C</sub> = 1/(2πfC)</td><td>Opposition by capacitor</td><td>Ω</td></tr>
+                        <tr><td>Pure resistor current</td><td>I = V/R</td><td>Current in pure R circuit</td><td>A</td></tr>
+                        <tr><td>Pure inductor current</td><td>I = V/X<sub>L</sub></td><td>Current in pure L circuit</td><td>A</td></tr>
+                        <tr><td>Pure capacitor current</td><td>I = V/X<sub>C</sub></td><td>Current in pure C circuit</td><td>A</td></tr>
+                        <tr><td>RL impedance</td><td>Z = √(R² + X<sub>L</sub>²)</td><td>Series RL circuit</td><td>Ω</td></tr>
+                        <tr><td>RC impedance</td><td>Z = √(R² + X<sub>C</sub>²)</td><td>Series RC circuit</td><td>Ω</td></tr>
+                        <tr><td>RLC impedance</td><td>Z = √(R² + (X<sub>L</sub>-X<sub>C</sub>)²)</td><td>Series RLC circuit</td><td>Ω</td></tr>
+                        <tr><td>Phase angle RL</td><td>tanφ = X<sub>L</sub>/R</td><td>RL phase angle</td><td>Degree</td></tr>
+                        <tr><td>Phase angle RC</td><td>tanφ = X<sub>C</sub>/R</td><td>RC phase angle</td><td>Degree</td></tr>
+                        <tr><td>Phase angle RLC</td><td>tanφ = (X<sub>L</sub>-X<sub>C</sub>)/R</td><td>RLC phase angle</td><td>Degree</td></tr>
+                        <tr><td>Power factor</td><td>cosφ = R/Z</td><td>Effectiveness of AC power use</td><td>No unit</td></tr>
+                        <tr><td>Active power</td><td>P = VIcosφ</td><td>Useful power</td><td>W</td></tr>
+                        <tr><td>Reactive power</td><td>Q = VIsinφ</td><td>Reactive power</td><td>VAR</td></tr>
+                        <tr><td>Apparent power</td><td>S = VI</td><td>Total supplied power</td><td>VA</td></tr>
+                        <tr><td>Power triangle</td><td>S = √(P² + Q²)</td><td>Relation of powers</td><td>VA</td></tr>
+                        <tr><td>Star voltage relation</td><td>V<sub>L</sub> = √3V<sub>ph</sub></td><td>Star connection</td><td>V</td></tr>
+                        <tr><td>Star current relation</td><td>I<sub>L</sub> = I<sub>ph</sub></td><td>Star connection</td><td>A</td></tr>
+                        <tr><td>Delta voltage relation</td><td>V<sub>L</sub> = V<sub>ph</sub></td><td>Delta connection</td><td>V</td></tr>
+                        <tr><td>Delta current relation</td><td>I<sub>L</sub> = √3I<sub>ph</sub></td><td>Delta connection</td><td>A</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-bookmark"></i> Important Definitions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Alternating Current</div>
+                <p>Alternating current is an electric current that changes both magnitude and direction periodically with time.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Cycle</div>
+                <p>One complete positive and negative alternation of an AC waveform is called one cycle.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Time Period</div>
+                <p>Time period is the time taken by an AC waveform to complete one cycle.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Frequency</div>
+                <p>Frequency is the number of cycles completed per second by an AC waveform.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Angular Frequency</div>
+                <p>Angular frequency is the angular speed of a rotating phasor and is given by ω = 2πf.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Amplitude</div>
+                <p>Amplitude is the maximum value of an alternating quantity measured from the zero axis.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> RMS Value</div>
+                <p>RMS value is the equivalent DC value that produces the same heating effect in a resistor as the AC quantity.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Average Value</div>
+                <p>Average value is the arithmetic mean of the instantaneous values of an alternating quantity taken over one half cycle.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Form Factor</div>
+                <p>Form factor is the ratio of RMS value to average value of an AC waveform.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Peak Factor</div>
+                <p>Peak factor is the ratio of maximum value to RMS value of an AC waveform.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Phase</div>
+                <p>Phase is the angular position of a sinusoidal quantity with respect to a reference.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Phase Difference</div>
+                <p>Phase difference is the angular difference between two sinusoidal quantities of the same frequency.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Phasor</div>
+                <p>A phasor is a rotating vector used to represent a sinusoidal quantity by magnitude and phase angle.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Impedance</div>
+                <p>Impedance is the total opposition offered by an AC circuit to the flow of current.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Inductive Reactance</div>
+                <p>Inductive reactance is the opposition offered by an inductor to AC and is given by X<sub>L</sub> = 2πfL.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Capacitive Reactance</div>
+                <p>Capacitive reactance is the opposition offered by a capacitor to AC and is given by X<sub>C</sub> = 1/(2πfC).</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Power Factor</div>
+                <p>Power factor is the cosine of the phase angle between voltage and current in an AC circuit.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Active Power</div>
+                <p>Active power is the actual useful power consumed in an AC circuit and converted into work.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Reactive Power</div>
+                <p>Reactive power is the power exchanged between source and reactive elements and does not do useful work.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Apparent Power</div>
+                <p>Apparent power is the product of RMS voltage and RMS current in an AC circuit.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Star Connection</div>
+                <p>In star connection, one end of each of the three phases is connected to a common neutral point.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Delta Connection</div>
+                <p>In delta connection, the three phases are connected end to end to form a closed triangular loop.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>1. AC vs DC</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>AC</th><th>DC</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Direction</td><td>Changes periodically</td><td>One direction only</td></tr>
+                        <tr><td>Magnitude</td><td>Varies with time</td><td>Generally constant</td></tr>
+                        <tr><td>Frequency</td><td>Non-zero</td><td>0 Hz</td></tr>
+                        <tr><td>Waveform</td><td>Sinusoidal commonly</td><td>Straight line</td></tr>
+                        <tr><td>Transmission</td><td>Easy over long distance</td><td>Less common in basics</td></tr>
+                        <tr><td>Example</td><td>Mains supply</td><td>Battery</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>2. Pure R vs Pure L vs Pure C</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Property</th><th>Pure R</th><th>Pure L</th><th>Pure C</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Phase relation</td><td>V and I in phase</td><td>I lags by 90°</td><td>I leads by 90°</td></tr>
+                        <tr><td>Opposition</td><td>R</td><td>X<sub>L</sub></td><td>X<sub>C</sub></td></tr>
+                        <tr><td>Power factor</td><td>1</td><td>0 lagging</td><td>0 leading</td></tr>
+                        <tr><td>Power consumption</td><td>Real power consumed</td><td>No average real power</td><td>No average real power</td></tr>
+                        <tr><td>Frequency effect</td><td>No effect</td><td>Increases with f</td><td>Decreases with f</td></tr>
+                        <tr><td>Main storage</td><td>No storage</td><td>Magnetic field</td><td>Electric field</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3. RL vs RC Circuit</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>RL Circuit</th><th>RC Circuit</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Reactive element</td><td>Inductor</td><td>Capacitor</td></tr>
+                        <tr><td>Current relation</td><td>Lags voltage</td><td>Leads voltage</td></tr>
+                        <tr><td>Reactance</td><td>X<sub>L</sub> = 2πfL</td><td>X<sub>C</sub> = 1/2πfC</td></tr>
+                        <tr><td>Frequency effect</td><td>X<sub>L</sub> increases with f</td><td>X<sub>C</sub> decreases with f</td></tr>
+                        <tr><td>Power factor</td><td>Lagging</td><td>Leading</td></tr>
+                        <tr><td>Common use</td><td>Motors, coils</td><td>Filters, timing circuits</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>4. Active vs Reactive vs Apparent Power</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Type</th><th>Symbol</th><th>Formula</th><th>Unit</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Active Power</td><td>P</td><td>VIcosφ</td><td>W</td><td>Useful power</td></tr>
+                        <tr><td>Reactive Power</td><td>Q</td><td>VIsinφ</td><td>VAR</td><td>Power in reactive elements</td></tr>
+                        <tr><td>Apparent Power</td><td>S</td><td>VI</td><td>VA</td><td>Total power supplied</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5. Star vs Delta Connection</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Star</th><th>Delta</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Connection shape</td><td>Y</td><td>Δ</td></tr>
+                        <tr><td>Neutral point</td><td>Present</td><td>Absent</td></tr>
+                        <tr><td>Line voltage</td><td>√3 V<sub>ph</sub></td><td>V<sub>ph</sub></td></tr>
+                        <tr><td>Line current</td><td>I<sub>ph</sub></td><td>√3 I<sub>ph</sub></td></tr>
+                        <tr><td>Insulation required</td><td>Less</td><td>More</td></tr>
+                        <tr><td>Use</td><td>Distribution systems</td><td>Motors and load circuits</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>6. Leading vs Lagging Power Factor</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Point</th><th>Leading Power Factor</th><th>Lagging Power Factor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Cause</td><td>Capacitive circuit</td><td>Inductive circuit</td></tr>
+                        <tr><td>Current relation</td><td>Current leads voltage</td><td>Current lags voltage</td></tr>
+                        <tr><td>Typical load</td><td>Capacitor bank</td><td>Motor, choke, transformer</td></tr>
+                        <tr><td>Sign of reactive power</td><td>Capacitive</td><td>Inductive</td></tr>
+                        <tr><td>Example</td><td>RC circuit</td><td>RL circuit</td></tr>
+                        <tr><td>Use in correction</td><td>Used to improve lagging PF</td><td>Common in industry</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="mcqs">
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i> MCQ Bank
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
             <div class="mcq-grid">
-                <div class="mcq-item"><h4>Q 3.1</h4><p>The longest out of the following is:</p><ul class="options"><li>a. Byte</li><li>b. Nibble</li><li>c. Word</li><li>d. Bit</li></ul>
-                    <button class="toggle-btn" data-target="m31"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m31"><strong>Answer: c. Word</strong><p>Word (16/32/64 bits) > Byte (8 bits) > Nibble (4 bits) > Bit (1 bit).</p></div></div>
 
-                <div class="mcq-item"><h4>Q 3.2</h4><p>"Z is FALSE only if A is TRUE and B is TRUE":</p><ul class="options"><li>a. NAND</li><li>b. NOR</li><li>c. AND</li><li>d. OR</li></ul>
-                    <button class="toggle-btn" data-target="m32"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m32"><strong>Answer: a. NAND</strong><p>NAND output is 0 only when both inputs are 1. Z = (A·B)'.</p></div></div>
+                <div class="mcq-item">
+                    <h4>Q 3.1</h4>
+                    <p>The frequency of AC mains supply in India is:</p>
+                    <ul class="options">
+                        <li>a. 25 Hz</li>
+                        <li>b. 50 Hz</li>
+                        <li>c. 60 Hz</li>
+                        <li>d. 100 Hz</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq1">
+                        <strong>Answer: b. 50 Hz</strong>
+                        <p>Indian AC supply frequency is 50 Hz.</p>
+                    </div>
+                </div>
 
-                <div class="mcq-item"><h4>Q 3.3</h4><p>Flip flops are:</p><ul class="options"><li>a. Chip</li><li>b. Memory element</li><li>c. Adders</li><li>d. Comparators</li></ul>
-                    <button class="toggle-btn" data-target="m33"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m33"><strong>Answer: b. Memory element</strong><p>Flip-flop is a one-bit memory element with two stable states.</p></div></div>
+                <div class="mcq-item">
+                    <h4>Q 3.2</h4>
+                    <p>RMS value of a sinusoidal voltage is:</p>
+                    <ul class="options">
+                        <li>a. 0.5V<sub>m</sub></li>
+                        <li>b. 0.637V<sub>m</sub></li>
+                        <li>c. 0.707V<sub>m</sub></li>
+                        <li>d. 1.414V<sub>m</sub></li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq2">
+                        <strong>Answer: c. 0.707V<sub>m</sub></strong>
+                        <p>RMS value of sine wave is peak value divided by √2.</p>
+                    </div>
+                </div>
 
-                <div class="mcq-item"><h4>Q 3.4</h4><p>SR flip-flop using NAND gates cannot accept:</p><ul class="options"><li>a. S=R=0</li><li>b. S=1, R=0</li><li>c. S=R=1</li><li>d. S=0, R=1</li></ul>
-                    <button class="toggle-btn" data-target="m34"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m34"><strong>Answer: a. S=R=0</strong><p>For NAND-based SR latch, S=R=0 gives Q=Q'=1 which is undefined/invalid.</p></div></div>
+                <div class="mcq-item">
+                    <h4>Q 3.3</h4>
+                    <p>Average value of a sinusoidal quantity over half cycle is:</p>
+                    <ul class="options">
+                        <li>a. 0.707 of maximum value</li>
+                        <li>b. 0.637 of maximum value</li>
+                        <li>c. 1.11 of maximum value</li>
+                        <li>d. 1.414 of maximum value</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq3">
+                        <strong>Answer: b. 0.637 of maximum value</strong>
+                        <p>Average value over half cycle of sine wave is 2V<sub>m</sub>/π = 0.637V<sub>m</sub>.</p>
+                    </div>
+                </div>
 
-                <div class="mcq-item"><h4>Q 3.5</h4><p>Counter is used to count the number of:</p><ul class="options"><li>a. Flip flops</li><li>b. Registers</li><li>c. Bits</li><li>d. Pulse</li></ul>
-                    <button class="toggle-btn" data-target="m35"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m35"><strong>Answer: d. Pulse</strong><p>Counter counts clock pulses applied at its input.</p></div></div>
+                <div class="mcq-item">
+                    <h4>Q 3.4</h4>
+                    <p>For a pure resistive AC circuit, current and voltage are:</p>
+                    <ul class="options">
+                        <li>a. 90° out of phase</li>
+                        <li>b. In phase</li>
+                        <li>c. Current leads by 90°</li>
+                        <li>d. Current lags by 90°</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq4">
+                        <strong>Answer: b. In phase</strong>
+                        <p>In pure resistor, voltage and current are in phase.</p>
+                    </div>
+                </div>
 
-                <div class="mcq-item"><h4>Q 3.6</h4><p>ICs used in watch and calculators are:</p><ul class="options"><li>a. TTL</li><li>b. ECL</li><li>c. MOS</li><li>d. CMOS</li></ul>
-                    <button class="toggle-btn" data-target="m36"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="m36"><strong>Answer: d. CMOS</strong><p>CMOS ICs have very low power consumption, ideal for battery-powered devices like watches and calculators.</p></div></div>
+                <div class="mcq-item">
+                    <h4>Q 3.5</h4>
+                    <p>In a pure inductive circuit, current:</p>
+                    <ul class="options">
+                        <li>a. Leads voltage by 90°</li>
+                        <li>b. Lags voltage by 90°</li>
+                        <li>c. Is in phase with voltage</li>
+                        <li>d. Is zero</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq5">
+                        <strong>Answer: b. Lags voltage by 90°</strong>
+                        <p>In pure inductive circuit, current lags the voltage by 90°.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.6</h4>
+                    <p>In a pure capacitive circuit, current:</p>
+                    <ul class="options">
+                        <li>a. Leads voltage by 90°</li>
+                        <li>b. Lags voltage by 90°</li>
+                        <li>c. Is in phase with voltage</li>
+                        <li>d. Is zero</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq6">
+                        <strong>Answer: a. Leads voltage by 90°</strong>
+                        <p>In pure capacitive circuit, current leads voltage by 90°.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.7</h4>
+                    <p>Inductive reactance is given by:</p>
+                    <ul class="options">
+                        <li>a. 1/2πfC</li>
+                        <li>b. 2πfL</li>
+                        <li>c. R/Z</li>
+                        <li>d. VIcosφ</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq7">
+                        <strong>Answer: b. 2πfL</strong>
+                        <p>X<sub>L</sub> = 2πfL.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.8</h4>
+                    <p>Capacitive reactance is given by:</p>
+                    <ul class="options">
+                        <li>a. 2πfL</li>
+                        <li>b. VI</li>
+                        <li>c. 1/2πfC</li>
+                        <li>d. V/I</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq8">
+                        <strong>Answer: c. 1/2πfC</strong>
+                        <p>X<sub>C</sub> = 1/(2πfC).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.9</h4>
+                    <p>Power factor is equal to:</p>
+                    <ul class="options">
+                        <li>a. sinφ</li>
+                        <li>b. tanφ</li>
+                        <li>c. cosφ</li>
+                        <li>d. secφ</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq9">
+                        <strong>Answer: c. cosφ</strong>
+                        <p>Power factor is the cosine of the phase angle between voltage and current.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.10</h4>
+                    <p>Useful power in an AC circuit is called:</p>
+                    <ul class="options">
+                        <li>a. Reactive power</li>
+                        <li>b. Apparent power</li>
+                        <li>c. Active power</li>
+                        <li>d. Blind power</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq10">
+                        <strong>Answer: c. Active power</strong>
+                        <p>Active power is the actual useful power converted into work.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.11</h4>
+                    <p>The unit of reactive power is:</p>
+                    <ul class="options">
+                        <li>a. Watt</li>
+                        <li>b. Joule</li>
+                        <li>c. VAR</li>
+                        <li>d. VA only</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq11"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq11">
+                        <strong>Answer: c. VAR</strong>
+                        <p>Reactive power is measured in volt-ampere reactive (VAR).</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.12</h4>
+                    <p>In star connection:</p>
+                    <ul class="options">
+                        <li>a. V<sub>L</sub> = V<sub>ph</sub></li>
+                        <li>b. I<sub>L</sub> = √3 I<sub>ph</sub></li>
+                        <li>c. V<sub>L</sub> = √3 V<sub>ph</sub></li>
+                        <li>d. No relation</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq12"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq12">
+                        <strong>Answer: c. V<sub>L</sub> = √3 V<sub>ph</sub></strong>
+                        <p>This is the correct relation for star connection.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.13</h4>
+                    <p>In delta connection:</p>
+                    <ul class="options">
+                        <li>a. I<sub>L</sub> = I<sub>ph</sub></li>
+                        <li>b. V<sub>L</sub> = V<sub>ph</sub></li>
+                        <li>c. V<sub>L</sub> = √3 V<sub>ph</sub></li>
+                        <li>d. None</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq13"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq13">
+                        <strong>Answer: b. V<sub>L</sub> = V<sub>ph</sub></strong>
+                        <p>In delta connection, line voltage equals phase voltage.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.14</h4>
+                    <p>For a sinusoidal waveform, form factor is:</p>
+                    <ul class="options">
+                        <li>a. 0.707</li>
+                        <li>b. 1.11</li>
+                        <li>c. 1.414</li>
+                        <li>d. 0.637</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq14"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq14">
+                        <strong>Answer: b. 1.11</strong>
+                        <p>Form factor of sine wave is RMS/Average = 1.11.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q 3.15</h4>
+                    <p>For a sinusoidal waveform, peak factor is:</p>
+                    <ul class="options">
+                        <li>a. 1.11</li>
+                        <li>b. 0.707</li>
+                        <li>c. 1.414</li>
+                        <li>d. 0.637</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="u3mcq15"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="u3mcq15">
+                        <strong>Answer: c. 1.414</strong>
+                        <p>Peak factor of sine wave is maximum/RMS = 1.414.</p>
+                    </div>
+                </div>
+
             </div>
 
-            <h3><i class="fas fa-edit"></i> B. Subjective Questions</h3>
-
-            <div class="exercise-area"><p><strong>Q1.</strong> State why binary number system is used in digital systems.</p>
-                <button class="toggle-btn" data-target="s1"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s1"><p>Binary system uses only two digits (0 and 1), which directly correspond to two voltage levels (LOW and HIGH) in electronic circuits. This makes circuits simpler, more reliable, less affected by noise, and easier to design and fabricate on IC chips.</p></div></div>
-
-            <div class="exercise-area"><p><strong>Q2.</strong> What procedures are adopted in converting a decimal number into a number with base b?</p>
-                <button class="toggle-btn" data-target="s2"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s2"><p><strong>Integer part:</strong> Successively divide by base b until quotient is 0. Read remainders from bottom to top (last remainder = MSB). <strong>Fractional part:</strong> Successively multiply by base b. Read integer parts from top to bottom.</p></div></div>
-
-            <div class="exercise-area"><p><strong>Q3.</strong> Perform: (a) 10111.101 + 110111.01 &nbsp; (b) 10001.01 − 1111.11</p>
-                <button class="toggle-btn" data-target="s3"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s3">
-                    <p><strong>(a)</strong></p><div class="binary-calc"><pre>  010111.101
-+ 110111.010
-───────────
- 1001110.111</pre></div>
-                    <p><strong>(b)</strong></p><div class="binary-calc"><pre>  10001.010
--  1111.110
-───────────
-  00001.100</pre></div>
-                </div></div>
-
-            <div class="exercise-area"><p><strong>Q4.</strong> Verify by truth table: A + A'B + AB = A + B</p>
-                <button class="toggle-btn" data-target="s4"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s4">
-                    <div class="table-wrapper"><table class="data-table"><thead><tr><th>A</th><th>B</th><th>A'</th><th>A'B</th><th>AB</th><th>A+A'B+AB</th><th>A+B</th></tr></thead>
-                    <tbody>
-                        <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                        <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
-                        <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
-                        <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
-                    </tbody></table></div><p>Both columns are identical. <strong>Verified ✓</strong></p></div></div>
-
-            <div class="exercise-area"><p><strong>Q5.</strong> Demonstrate by truth table: (a) Associative law (b) Distributive law</p>
-                <button class="toggle-btn" data-target="s5"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s5"><p><strong>(a) Associative:</strong> (A+B)+C = A+(B+C). Construct truth table for 3 variables (8 rows) and verify both sides match. Similarly for (A·B)·C = A·(B·C).</p><p><strong>(b) Distributive:</strong> A·(B+C) = A·B + A·C. 8-row truth table shows both sides identical.</p></div></div>
-
-            <div class="exercise-area"><p><strong>Q6.</strong> Explain positive logic and negative logic in digital circuits.</p>
-                <button class="toggle-btn" data-target="s6"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s6"><p><strong>Positive logic:</strong> Higher voltage (+5V) = Logic-1, lower voltage (0V) = Logic-0. <strong>Negative logic:</strong> Higher voltage = Logic-0, lower voltage = Logic-1. Most digital systems use positive logic.</p></div></div>
-
-            <div class="exercise-area"><p><strong>Q7.</strong> Verify by truth table that output of NAND gate (a) and NOR gate with inverted inputs (b) are the same.</p>
-                <button class="toggle-btn" data-target="s7"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s7"><p>By De Morgan's theorem: (A·B)' = A'+B'. Both produce the same truth table output: 1,1,1,0 for inputs (0,0), (0,1), (1,0), (1,1). <strong>Verified ✓</strong></p></div></div>
-
-            <div class="exercise-area"><p><strong>Q8.</strong> Draw logic diagram and truth table for D and T type flip-flop.</p>
-                <button class="toggle-btn" data-target="s8"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s8"><p><strong>D flip-flop:</strong> Single input D with inverter to create S and R. When D=1→Q=1 (SET), D=0→Q=0 (RESET).<br><strong>T flip-flop:</strong> J and K tied together as T. T=0→no change, T=1→toggle. Refer Figs 3.8 and 3.10.</p></div></div>
-
-            <div class="exercise-area"><p><strong>Q9.</strong> Draw the circuit diagram for a 3-bit ripple counter using T flip-flop.</p>
-                <button class="toggle-btn" data-target="s9"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s9"><p>Three T flip-flops cascaded: T=1 for all. CLK drives FF0. Q₀' drives CLK of FF1. Q₁' drives CLK of FF2. Counts from 000 to 111 (0 to 7, mod-8 counter). Outputs: Q₂(MSB), Q₁, Q₀(LSB).</p></div></div>
-
-            <div class="exercise-area"><p><strong>Q10.</strong> State the differences between a linear IC and digital IC.</p>
-                <button class="toggle-btn" data-target="s10"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="s10">
-                    <div class="table-wrapper"><table class="data-table"><thead><tr><th>Linear IC</th><th>Digital IC</th></tr></thead>
-                    <tbody>
-                        <tr><td>Operates with continuous signals</td><td>Operates with binary (discrete) signals</td></tr>
-                        <tr><td>Used as amplifiers, filters, comparators</td><td>Used as gates, flip-flops, counters</td></tr>
-                        <tr><td>Example: IC 741 Op Amp</td><td>Example: IC 7400 NAND gate</td></tr>
-                        <tr><td>Output proportional to input</td><td>Output is either HIGH or LOW</td></tr>
-                    </tbody></table></div></div></div>
         </div>
     </section>
 
-    <!-- ===== SUMMARY ===== -->
-    <section class="section" id="summary">
-        <h2 class="section-title"><i class="fas fa-list"></i> Unit Summary <i class="fas fa-chevron-up collapse-icon"></i></h2>
+    <section class="section" id="shortqa">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions (2 Marks Style)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
         <div class="section-content">
+
+            <div class="exercise-area">
+                <h3>Q 1. Define RMS value.</h3>
+                <button class="toggle-btn" data-target="u3sa1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa1">
+                    <p>RMS value is the equivalent DC value of an AC quantity that produces the same heating effect in a resistor as the AC quantity.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 2. What is frequency?</h3>
+                <button class="toggle-btn" data-target="u3sa2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa2">
+                    <p>Frequency is the number of cycles completed in one second by an AC waveform. Its unit is hertz (Hz).</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 3. Write formula of inductive reactance.</h3>
+                <button class="toggle-btn" data-target="u3sa3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa3">
+                    <p>Inductive reactance is given by X<sub>L</sub> = 2πfL.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 4. Write formula of capacitive reactance.</h3>
+                <button class="toggle-btn" data-target="u3sa4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa4">
+                    <p>Capacitive reactance is given by X<sub>C</sub> = 1/(2πfC).</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 5. What is power factor?</h3>
+                <button class="toggle-btn" data-target="u3sa5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa5">
+                    <p>Power factor is the cosine of the phase angle between voltage and current in an AC circuit. It is equal to cosφ.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 6. State one relation for star connection.</h3>
+                <button class="toggle-btn" data-target="u3sa6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa6">
+                    <p>In star connection, V<sub>L</sub> = √3V<sub>ph</sub> and I<sub>L</sub> = I<sub>ph</sub>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 7. State one relation for delta connection.</h3>
+                <button class="toggle-btn" data-target="u3sa7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa7">
+                    <p>In delta connection, V<sub>L</sub> = V<sub>ph</sub> and I<sub>L</sub> = √3I<sub>ph</sub>.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 8. In a pure inductive circuit, what is the phase relation?</h3>
+                <button class="toggle-btn" data-target="u3sa8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa8">
+                    <p>In a pure inductive circuit, current lags voltage by 90°.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 9. In a pure capacitive circuit, what is the phase relation?</h3>
+                <button class="toggle-btn" data-target="u3sa9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa9">
+                    <p>In a pure capacitive circuit, current leads voltage by 90°.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 10. What is apparent power?</h3>
+                <button class="toggle-btn" data-target="u3sa10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3sa10">
+                    <p>Apparent power is the product of RMS voltage and RMS current in an AC circuit. It is measured in VA.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="longqa">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks Style)
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h3>Q 1. Explain the important AC terms: cycle, frequency, time period, RMS value, average value, form factor and peak factor.</h3>
+                <button class="toggle-btn" data-target="u3la1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3la1">
+                    <p><strong>Cycle:</strong> One complete positive and negative alternation of an AC waveform.</p>
+                    <p><strong>Frequency:</strong> Number of cycles per second, measured in hertz. f = 1/T.</p>
+                    <p><strong>Time period:</strong> Time taken to complete one cycle. T = 1/f.</p>
+                    <p><strong>RMS value:</strong> Equivalent DC value producing same heating effect. For sine wave, RMS = 0.707 of maximum value.</p>
+                    <p><strong>Average value:</strong> Mean value over one half cycle. For sine wave, average = 0.637 of maximum value.</p>
+                    <p><strong>Form factor:</strong> Ratio of RMS value to average value. For sine wave, it is 1.11.</p>
+                    <p><strong>Peak factor:</strong> Ratio of maximum value to RMS value. For sine wave, it is 1.414.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 2. Explain pure resistive, pure inductive and pure capacitive AC circuits with phase relation.</h3>
+                <button class="toggle-btn" data-target="u3la2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3la2">
+                    <p><strong>Pure Resistive Circuit:</strong> Contains only resistance. Voltage and current are in phase. Phase angle = 0°.</p>
+                    <p><strong>Pure Inductive Circuit:</strong> Contains only inductance. Current lags voltage by 90°. Inductive reactance X<sub>L</sub> = 2πfL.</p>
+                    <p><strong>Pure Capacitive Circuit:</strong> Contains only capacitance. Current leads voltage by 90°. Capacitive reactance X<sub>C</sub> = 1/(2πfC).</p>
+                    <p>These are the three basic AC circuits from which all practical circuits are formed.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 3. Explain series RL, RC and RLC circuits with impedance relations.</h3>
+                <button class="toggle-btn" data-target="u3la3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3la3">
+                    <p><strong>Series RL Circuit:</strong> Contains resistance and inductance. Impedance is Z = √(R² + X<sub>L</sub>²). Current lags voltage.</p>
+                    <p><strong>Series RC Circuit:</strong> Contains resistance and capacitance. Impedance is Z = √(R² + X<sub>C</sub>²). Current leads voltage.</p>
+                    <p><strong>Series RLC Circuit:</strong> Contains resistance, inductance and capacitance. Net reactance = X<sub>L</sub> − X<sub>C</sub>. Impedance is Z = √(R² + (X<sub>L</sub>-X<sub>C</sub>)²).</p>
+                    <p>If X<sub>L</sub> > X<sub>C</sub>, circuit is inductive. If X<sub>C</sub> > X<sub>L</sub>, circuit is capacitive. If X<sub>L</sub> = X<sub>C</sub>, circuit behaves like pure resistance.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 4. What is power factor? Explain active, reactive and apparent power with power triangle.</h3>
+                <button class="toggle-btn" data-target="u3la4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3la4">
+                    <p><strong>Power factor</strong> is the cosine of the phase angle between voltage and current in an AC circuit. Power factor = cosφ.</p>
+                    <p><strong>Active power</strong> is actual useful power consumed in the circuit, P = VIcosφ, unit watt.</p>
+                    <p><strong>Reactive power</strong> is the power exchanged with reactive elements, Q = VIsinφ, unit VAR.</p>
+                    <p><strong>Apparent power</strong> is total supplied power, S = VI, unit VA.</p>
+                    <p>These form a power triangle where:</p>
+                    <p class="formula">S = √(P² + Q²)</p>
+                    <p class="formula">cosφ = P/S</p>
+                    <p>Higher power factor means better utilization of electrical power.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 5. Explain star and delta connections with voltage-current relations.</h3>
+                <button class="toggle-btn" data-target="u3la5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3la5">
+                    <p><strong>Star connection:</strong> One end of each phase is connected to a common neutral point. Relations are:</p>
+                    <p class="formula">V<sub>L</sub> = √3V<sub>ph</sub>, I<sub>L</sub> = I<sub>ph</sub></p>
+                    <p><strong>Delta connection:</strong> The three phases are connected end-to-end to form a closed triangle. Relations are:</p>
+                    <p class="formula">V<sub>L</sub> = V<sub>ph</sub>, I<sub>L</sub> = √3I<sub>ph</sub></p>
+                    <p>Star connection is commonly used in distribution systems, while delta connection is common in motor load circuits.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 6. Explain phasor representation and the polar, rectangular and exponential forms of sinusoidal quantities.</h3>
+                <button class="toggle-btn" data-target="u3la6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="u3la6">
+                    <p>A <strong>phasor</strong> is a rotating vector used to represent a sinusoidal quantity by its magnitude and phase angle.</p>
+                    <p><strong>Polar form:</strong> V = |V|∠θ. It shows magnitude and angle directly.</p>
+                    <p><strong>Rectangular/complex form:</strong> V = a + jb, where a is real part and jb is imaginary part.</p>
+                    <p><strong>Exponential form:</strong> V = |V|e<sup>jθ</sup>.</p>
+                    <p>Using Euler’s formula e<sup>jθ</sup> = cosθ + jsinθ, conversion between forms is possible. Rectangular form is useful for addition/subtraction and polar form is useful for multiplication/division.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="practice">
+        <h2 class="section-title">
+            <i class="fas fa-pencil-ruler"></i> Practice Numericals with Toggle Solutions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h3>Q 1. The maximum voltage of a sine wave is 325 V. Find RMS voltage.</h3>
+                <button class="toggle-btn" data-target="u3pn1"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn1">
+                    <p>V<sub>rms</sub> = 0.707 × 325 = 229.775 V ≈ 230 V</p>
+                    <p><strong>Answer:</strong> 230 V</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 2. A 0.1 H inductor is connected to 50 Hz supply. Find X<sub>L</sub>.</h3>
+                <button class="toggle-btn" data-target="u3pn2"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn2">
+                    <p>X<sub>L</sub> = 2πfL = 2 × 3.14 × 50 × 0.1 = 31.4 Ω</p>
+                    <p><strong>Answer:</strong> 31.4 Ω</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 3. A 100 μF capacitor is connected to 50 Hz supply. Find X<sub>C</sub>.</h3>
+                <button class="toggle-btn" data-target="u3pn3"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn3">
+                    <p>X<sub>C</sub> = 1/(2πfC)</p>
+                    <p>= 1 / (2 × 3.14 × 50 × 100 × 10<sup>-6</sup>)</p>
+                    <p>≈ 31.85 Ω</p>
+                    <p><strong>Answer:</strong> 31.85 Ω</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 4. In a series RL circuit, R = 3 Ω and X<sub>L</sub> = 4 Ω. Find impedance.</h3>
+                <button class="toggle-btn" data-target="u3pn4"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn4">
+                    <p>Z = √(R² + X<sub>L</sub>²) = √(3² + 4²) = √25 = 5 Ω</p>
+                    <p><strong>Answer:</strong> 5 Ω</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 5. In a series RC circuit, R = 6 Ω and X<sub>C</sub> = 8 Ω. Find impedance.</h3>
+                <button class="toggle-btn" data-target="u3pn5"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn5">
+                    <p>Z = √(R² + X<sub>C</sub>²) = √(6² + 8²) = √100 = 10 Ω</p>
+                    <p><strong>Answer:</strong> 10 Ω</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 6. A circuit takes 5 A from 220 V supply at power factor 0.8. Find active power.</h3>
+                <button class="toggle-btn" data-target="u3pn6"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn6">
+                    <p>P = VIcosφ = 220 × 5 × 0.8 = 880 W</p>
+                    <p><strong>Answer:</strong> 880 W</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 7. In a star system, phase voltage is 240 V. Find line voltage.</h3>
+                <button class="toggle-btn" data-target="u3pn7"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn7">
+                    <p>V<sub>L</sub> = √3V<sub>ph</sub> = 1.732 × 240 = 415.68 V</p>
+                    <p><strong>Answer:</strong> 415.68 V</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h3>Q 8. In a delta system, phase current is 10 A. Find line current.</h3>
+                <button class="toggle-btn" data-target="u3pn8"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="u3pn8">
+                    <p>I<sub>L</sub> = √3I<sub>ph</sub> = 1.732 × 10 = 17.32 A</p>
+                    <p><strong>Answer:</strong> 17.32 A</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="revision">
+        <h2 class="section-title">
+            <i class="fas fa-star"></i> Quick Revision / Unit Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
             <div class="concept-box">
-                <div class="box-title"><i class="fas fa-clipboard-list"></i> Key Takeaways</div>
+                <div class="box-title"><i class="fas fa-bolt"></i> Unit 3 Quick Revision</div>
                 <ul>
-                    <li>Digital systems are <strong>more reliable, less affected by noise</strong>, easier to design and fabricated on IC chips.</li>
-                    <li>The digital system uses <strong>binary number system</strong>.</li>
-                    <li>Boolean algebra is an algebraic system with a set of elements, operators and postulates.</li>
-                    <li>The fundamental building blocks are <strong>logic gates</strong>: AND, OR, NOT.</li>
-                    <li>Inputs/outputs occur in two levels: Logic-1 (HIGH/TRUE) and Logic-0 (LOW/FALSE).</li>
-                    <li><strong>NAND and NOR</strong> are <strong>Universal gates</strong>.</li>
-                    <li>Digital circuits: <strong>combinational</strong> (output depends on present inputs) and <strong>sequential</strong> (output depends on present input + past state).</li>
-                    <li>Sequential circuits: <strong>Synchronous</strong> (clocked) and <strong>Asynchronous</strong> (unclocked).</li>
-                    <li>Basic sequential building block: <strong>flip-flop</strong> (one-bit memory element with two stable states).</li>
-                    <li>Simplest flip-flop: <strong>S-R latch</strong> (SET/RESET inputs, Q and Q' outputs).</li>
-                    <li><strong>J-K flip-flop</strong> is most popular — has no undefined state, supports toggle mode.</li>
-                    <li><strong>Counter</strong>: sequential circuit counting clock pulses. Modulus of N-bit counter = 2<sup>N</sup>.</li>
-                    <li><strong>Asynchronous counters</strong> (ripple): output of FF1 clocks FF2. Slower.</li>
-                    <li><strong>Synchronous counters</strong> (parallel): all FFs clocked simultaneously. Faster.</li>
-                    <li>Digital ICs operate with binary signals. <strong>TTL</strong> is most popular logic family.</li>
-                    <li>IC classification: <strong>SSI → MSI → LSI → VLSI</strong>.</li>
+                    <li>AC changes magnitude and direction periodically.</li>
+                    <li>Time period <strong>T = 1/f</strong> and angular frequency <strong>ω = 2πf</strong>.</li>
+                    <li>For sine wave: <strong>RMS = 0.707 × max</strong>, <strong>Average = 0.637 × max</strong>.</li>
+                    <li>For sine wave: <strong>Form factor = 1.11</strong>, <strong>Peak factor = 1.414</strong>.</li>
+                    <li>Pure R: voltage and current are in phase.</li>
+                    <li>Pure L: current lags voltage by 90°.</li>
+                    <li>Pure C: current leads voltage by 90°.</li>
+                    <li><strong>X<sub>L</sub> = 2πfL</strong>, <strong>X<sub>C</sub> = 1/(2πfC)</strong>.</li>
+                    <li>In RL circuit, current lags. In RC circuit, current leads.</li>
+                    <li>In RLC circuit, behavior depends on X<sub>L</sub> and X<sub>C</sub>.</li>
+                    <li>Impedance triangle gives relation among R, X and Z.</li>
+                    <li>Power factor = cosφ.</li>
+                    <li>Active power = VIcosφ, Reactive power = VIsinφ, Apparent power = VI.</li>
+                    <li>Power triangle: S = √(P² + Q²).</li>
+                    <li>Star: V<sub>L</sub> = √3V<sub>ph</sub>, I<sub>L</sub> = I<sub>ph</sub>.</li>
+                    <li>Delta: V<sub>L</sub> = V<sub>ph</sub>, I<sub>L</sub> = √3I<sub>ph</sub>.</li>
                 </ul>
             </div>
+
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Last-Minute Exam Tips</div>
+                <ul>
+                    <li>Memorize <strong>0.707</strong>, <strong>0.637</strong>, <strong>1.11</strong>, <strong>1.414</strong></li>
+                    <li>Remember <strong>ELI the ICE man</strong></li>
+                    <li>Use <strong>j</strong> for imaginary term in electrical engineering</li>
+                    <li>For RL/RC/RLC numericals, always calculate reactance first, then impedance, then current</li>
+                    <li>Power triangle and impedance triangle are very commonly asked</li>
+                    <li>Star and delta relations should be memorized exactly</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes</div>
+                <ul>
+                    <li>Using average value formula for RMS calculation</li>
+                    <li>Confusing current lead and lag in L and C circuits</li>
+                    <li>Forgetting μF to F conversion in capacitive reactance</li>
+                    <li>Using star formula in delta question</li>
+                    <li>Writing active power as VI without power factor</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
@@ -906,7 +2220,10 @@ Reading top→bottom: .111</pre></div>
     <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
 </div>
 
-<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Action completed</span></div>
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Action completed</span>
+</div>
 
 <script src="../units-com/engine.js"></script>
 </body>
