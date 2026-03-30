@@ -127,7 +127,7 @@ const subjects = {
                     { name: "Unit 1", file: "IT-Systems-Unit-1.html", desc: "Basic Internet Skills & Number Systems" },
                     { name: "Unit 2", file: "IT-Systems-Unit-2.html", desc: "Operating Systems Overview" },
                     { name: "Unit 3", file: "IT-Systems-Unit-3.html", desc: "Algorithm & Flowcharts" },
-                    { name: "HTML5", file: "IT-Systems-HTML5.html", desc: "HTML 5 & Web Technologies" },
+                    
                     { name: "Cybersecurity", file: "IT-Systems-Unit-4-Cybersecurity.html", desc: "Security Concepts & Hacking Techniques" }
                 ]
             },
