@@ -1,374 +1,1875 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Mathematics · Unit 5 · Partial Differentiation</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- MathJax for LaTeX rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: partial derivatives / teal-orange -->
-  <style>
-    :root {
-      --primary: #0f766e;          /* teal */
-      --primary-light: #14b8a6;
-      --accent: #c2410c;            /* partial orange */
-      --accent-light: #ea580c;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #115e59, #0f766e, #c2410c);
-    }
-    /* header emoji: partial derivative symbols */
-    .header::after {
-      content: "∂ƒ/∂x 📐📈";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* formula cards */
-    .formula-card {
-      background: var(--formula-bg);
-      padding: 15px;
-      border-radius: var(--radius-md);
-      border-left: 5px solid var(--accent);
-      margin: 15px 0;
-    }
-    .mjx-chtml {
-      font-size: 1.1rem !important;
-    }
-    .partial-symbol {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--accent);
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5 - Partial Differentiation | Engg. Mathematics-II</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Partial') ? 'Show Partial' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Partial') ? 'Hide Partial' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .method-card {
+            background: var(--card-bg); border:1px solid var(--border-color);
+            border-radius: var(--radius-md); padding:18px; margin:14px 0;
+            border-left: 4px solid var(--purple);
+        }
+        [data-theme="dark"] .method-card { background:#1a2332; }
+        .method-card h4 { color:var(--purple); margin-bottom:10px; }
+
+        .theorem-card {
+            background: linear-gradient(135deg, rgba(123,31,162,0.08), rgba(156,39,176,0.05));
+            border:1px solid var(--purple); border-radius: var(--radius-md);
+            padding:20px; margin:16px 0; border-left: 5px solid var(--purple);
+        }
+        [data-theme="dark"] .theorem-card { background: linear-gradient(135deg, rgba(123,31,162,0.15), rgba(156,39,176,0.08)); }
+        .theorem-card h4 { color:var(--purple); margin-bottom:12px; font-size:1.1rem; }
+
+        .step-method {
+            background: var(--formula-bg); border-radius:var(--radius-sm);
+            padding:16px; margin:12px 0; border-left:3px solid var(--success);
+        }
+        [data-theme="dark"] .step-method { background:#1a2332; }
+
+        .type-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+        .type-card {
+            background:var(--card-bg); border:1px solid var(--border-color);
+            border-radius:var(--radius-md); padding:16px; border-top:3px solid var(--accent);
+            min-width:0; overflow-wrap:break-word;
+        }
+        .type-card h4 { color:var(--accent); margin-bottom:8px; }
+        [data-theme="dark"] .type-card { background:#1a2332; }
+        @media(max-width:480px) { .type-grid { grid-template-columns:1fr; } }
+
+        .outcome-grid { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+        .outcome-badge {
+            background:linear-gradient(135deg,var(--primary),var(--primary-light));
+            color:#fff; padding:8px 16px; border-radius:20px; font-size:0.88rem;
+        }
+
+        .symbol-table td { text-align:center; padding:12px !important; font-size:1rem; }
+        .symbol-table th { background:var(--primary); color:#fff; padding:12px !important; }
+
+        .MathJax { overflow-x:auto !important; overflow-y:hidden !important; }
+
+        .degree-example {
+            background: var(--formula-bg); padding:12px 16px; border-radius:var(--radius-sm);
+            margin:8px 0; border-left:3px solid var(--info);
+        }
+        [data-theme="dark"] .degree-example { background:#1a2332; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>∂ Mathematics · Unit 5 ∂</h1>
-      <h2>Partial Differentiation</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-chart-line"></i> Partial Derivatives</span>
-        <span class="info-item"><i class="fas fa-hashtag"></i> Homogeneous Functions</span>
-        <span class="info-item"><i class="fas fa-crown"></i> Euler's Theorem</span>
-      </div>
+        <h1><i class="fas fa-wave-square"></i> Partial Differentiation</h1>
+        <h2>Unit 5 — Engineering Mathematics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS102/M-II</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 5</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-clock"></i> 3 Hours</span>
+            <span class="info-item"><i class="fas fa-star"></i> Group D</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-chart-line"></i> MATH·UNIT5</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#definition"><i class="fas fa-info-circle"></i> Definition</a>
-        <a href="#evaluation"><i class="fas fa-calculator"></i> Evaluation</a>
-        <a href="#homogeneous"><i class="fas fa-hashtag"></i> Homogeneous Functions</a>
-        <a href="#euler"><i class="fas fa-crown"></i> Euler's Theorem</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>📐 Math-II U5</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#definition"><i class="fas fa-book"></i> Definition</a>
+            <a href="#evaluation"><i class="fas fa-calculator"></i> Evaluation</a>
+            <a href="#higher-order"><i class="fas fa-layer-group"></i> Higher Order</a>
+            <a href="#homogeneous"><i class="fas fa-equals"></i> Homogeneous</a>
+            <a href="#euler"><i class="fas fa-scroll"></i> Euler's Theorem</a>
+            <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+            <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+            <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+            <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-chart-line"></i> MATH Unit 5</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>📐 Math-II U5</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#definition"><i class="fas fa-info-circle"></i> Definition & meaning of partial derivative</a>
-      <a href="#evaluation"><i class="fas fa-calculator"></i> Evaluation of partial derivatives</a>
-      <a href="#homogeneous"><i class="fas fa-hashtag"></i> Homogeneous functions (definition & examples)</a>
-      <a href="#euler"><i class="fas fa-crown"></i> Euler's theorem (1st order) for 2 variables</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#definition"><i class="fas fa-book"></i> Definition</a>
+        <a href="#evaluation"><i class="fas fa-calculator"></i> Evaluation</a>
+        <a href="#higher-order"><i class="fas fa-layer-group"></i> Higher Order</a>
+        <a href="#homogeneous"><i class="fas fa-equals"></i> Homogeneous</a>
+        <a href="#euler"><i class="fas fa-scroll"></i> Euler's Theorem</a>
+        <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+        <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+        <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+        <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: DEFINITION & MEANING ========= -->
-    <section id="definition" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-info-circle"></i> Definition & Meaning of Partial Derivative
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+<div class="container">
+
+<!-- ============================================================== -->
+<!--  SECTION 1 : UNIT OVERVIEW                                     -->
+<!-- ============================================================== -->
+<section class="section" id="overview">
+    <h2 class="section-title">
+        <i class="fas fa-info-circle"></i> Unit Overview
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-bullseye"></i> What This Unit Covers</div>
+            <p>In <strong>ordinary differentiation</strong> (Unit 4), we dealt with functions of <strong>one variable</strong> like y = f(x). But in real engineering problems, quantities often depend on <strong>more than one variable</strong>.</p>
+            <p><strong>Partial Differentiation</strong> is the technique of differentiating functions of <strong>two or more independent variables</strong>.</p>
+            
+            <h4>🌡️ Real-World Example:</h4>
+            <p>Consider the <strong>temperature T</strong> inside a room. It depends on:</p>
+            <ul>
+                <li><strong>x</strong> — horizontal position</li>
+                <li><strong>y</strong> — vertical position (height)</li>
+                <li><strong>t</strong> — time</li>
+            </ul>
+            <p>So T = f(x, y, t) is a function of THREE variables. To study how temperature changes when only ONE variable changes (keeping others constant), we use <strong>partial derivatives</strong>.</p>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Exam Importance</div>
+            <p>This unit is part of <strong>Group D</strong> (Unit 5 + Unit 6 = minimum 20 marks).</p>
+            <ul>
+                <li>At least <strong>5 objective questions</strong> from Group D</li>
+                <li>At least one <strong>10-mark subjective question</strong> from Group D</li>
+                <li><strong>Most common exam questions:</strong> Evaluating partial derivatives, Euler's theorem verification & problems</li>
+            </ul>
+            <p>⚠️ This is a <strong>compact but scoring unit</strong> — master it completely!</p>
+        </div>
+
+        <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+        <div class="outcome-grid">
+            <span class="outcome-badge">📌 Understand partial derivative concept</span>
+            <span class="outcome-badge">📌 Evaluate first order partial derivatives</span>
+            <span class="outcome-badge">📌 Evaluate second order partial derivatives</span>
+            <span class="outcome-badge">📌 Identify homogeneous functions</span>
+            <span class="outcome-badge">📌 Find degree of homogeneous functions</span>
+            <span class="outcome-badge">📌 Apply Euler's theorem</span>
+            <span class="outcome-badge">📌 Verify Euler's theorem</span>
+        </div>
+
+        <h3><i class="fas fa-book-open"></i> Prerequisites</h3>
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> What You Must Know Before This Unit</div>
+            <ul>
+                <li><strong>Ordinary Differentiation</strong> — You must know how to differentiate standard functions (Math-I)</li>
+                <li><strong>Basic rules:</strong> Product rule, quotient rule, chain rule</li>
+                <li><strong>Differentiation formulas:</strong> d/dx(xⁿ), d/dx(eˣ), d/dx(sin x), d/dx(ln x), etc.</li>
+            </ul>
+            <p><strong>Good news:</strong> If you know ordinary differentiation, partial differentiation is just the same — but keeping some variables as constants!</p>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Key Difference: Ordinary vs Partial Derivative</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Ordinary Derivative</th>
+                            <th>Partial Derivative</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Function type</td>
+                            <td>y = f(x) — one variable</td>
+                            <td>z = f(x, y) — two or more variables</td>
+                        </tr>
+                        <tr>
+                            <td>Notation</td>
+                            <td>\(\frac{dy}{dx}\) or f'(x)</td>
+                            <td>\(\frac{\partial z}{\partial x}\) or fₓ</td>
+                        </tr>
+                        <tr>
+                            <td>Symbol</td>
+                            <td>d (straight d)</td>
+                            <td>∂ (curly d / del)</td>
+                        </tr>
+                        <tr>
+                            <td>What varies?</td>
+                            <td>Only x</td>
+                            <td>One variable at a time (others constant)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 2 : DEFINITION OF PARTIAL DERIVATIVE (5.1)            -->
+<!-- ============================================================== -->
+<section class="section" id="definition">
+    <h2 class="section-title">
+        <i class="fas fa-book"></i> 5.1 Definition & Meaning of Partial Derivative 🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title"><span class="partial-symbol">∂/∂x</span> Partial Derivative</div>
-          <p>For a function \( f(x,y) \) of two variables, the partial derivative with respect to \( x \) at \( (a,b) \) is:</p>
-          <div class="formula">
-            \[
-            \frac{\partial f}{\partial x}(a,b) = \lim_{h \to 0} \frac{f(a+h, b) - f(a,b)}{h}
-            \]
-          </div>
-          <p>Similarly, with respect to \( y \):</p>
-          <div class="formula">
-            \[
-            \frac{\partial f}{\partial y}(a,b) = \lim_{k \to 0} \frac{f(a, b+k) - f(a,b)}{k}
-            \]
-          </div>
-          <p><strong>Meaning:</strong> It represents the rate of change of \( f \) as one variable changes while the other is held constant.</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Function of Two Variables</div>
+            <p>A function of two independent variables x and y is written as:</p>
+            <div class="formula">
+                \[ z = f(x, y) \]
+            </div>
+            <p>where z is the <strong>dependent variable</strong> and x, y are <strong>independent variables</strong>.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>\(z = x^2 + y^2\)</li>
+                <li>\(z = x^3 + 3x^2y - 2y^3\)</li>
+                <li>\(z = \sin(x + y)\)</li>
+                <li>\(z = e^{x+y}\)</li>
+                <li>\(u = x^2 + y^2 + z^2\) (function of three variables)</li>
+            </ul>
         </div>
-      </div>
-    </section>
 
-    <!-- ========== SECTION 2: EVALUATION OF PARTIAL DERIVATIVES ========= -->
-    <section id="evaluation" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-calculator"></i> Evaluation of Partial Derivatives
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
         <div class="definition-box">
-          <div class="box-title">How to Compute</div>
-          <p>To find \( \frac{\partial f}{\partial x} \), treat \( y \) as constant and differentiate normally with respect to \( x \).</p>
-          <p>To find \( \frac{\partial f}{\partial y} \), treat \( x \) as constant and differentiate with respect to \( y \).</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Partial Derivative 🔥</div>
+            <p>Let z = f(x, y) be a function of two independent variables x and y.</p>
+            
+            <h4>Partial Derivative with respect to x:</h4>
+            <p>The <strong>partial derivative of z with respect to x</strong> is the derivative of z treating <strong>y as a constant</strong>.</p>
+            <div class="formula">
+                \[ \frac{\partial z}{\partial x} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x, y) - f(x, y)}{\Delta x} \]
+            </div>
+            
+            <h4>Partial Derivative with respect to y:</h4>
+            <p>The <strong>partial derivative of z with respect to y</strong> is the derivative of z treating <strong>x as a constant</strong>.</p>
+            <div class="formula">
+                \[ \frac{\partial z}{\partial y} = \lim_{\Delta y \to 0} \frac{f(x, y + \Delta y) - f(x, y)}{\Delta y} \]
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-pen"></i> Notations for Partial Derivatives</div>
+            <p>There are several equivalent notations used:</p>
+            <div class="table-wrapper">
+                <table class="data-table symbol-table">
+                    <thead>
+                        <tr>
+                            <th>Notation 1</th>
+                            <th>Notation 2</th>
+                            <th>Notation 3</th>
+                            <th>Notation 4</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>\(\frac{\partial z}{\partial x}\)</td>
+                            <td>\(\frac{\partial f}{\partial x}\)</td>
+                            <td>\(f_x\)</td>
+                            <td>\(z_x\)</td>
+                            <td>Partial derivative w.r.t. x</td>
+                        </tr>
+                        <tr>
+                            <td>\(\frac{\partial z}{\partial y}\)</td>
+                            <td>\(\frac{\partial f}{\partial y}\)</td>
+                            <td>\(f_y\)</td>
+                            <td>\(z_y\)</td>
+                            <td>Partial derivative w.r.t. y</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Read as:</strong> "partial z by partial x" or "del z by del x" or "z sub x"</p>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Simple Rule to Remember</div>
+            <p><strong>When finding ∂z/∂x:</strong></p>
+            <ul>
+                <li>✅ Differentiate with respect to x (as usual)</li>
+                <li>✅ Treat y as a <strong>constant</strong> (like the number 5 or π)</li>
+            </ul>
+            <p><strong>When finding ∂z/∂y:</strong></p>
+            <ul>
+                <li>✅ Differentiate with respect to y (as usual)</li>
+                <li>✅ Treat x as a <strong>constant</strong></li>
+            </ul>
+        </div>
+
+        <a href="https://www.google.com/search?tbm=isch&q=partial+derivative+geometric+meaning+surface+tangent+plane" target="_blank" rel="noopener" class="figure-link">
+            <div class="diagram-placeholder">
+                <i class="fas fa-image"></i>
+                <p><strong>Fig. 5.1:</strong> Geometric meaning of partial derivatives — slopes of tangent lines to a surface in x and y directions</p>
+                <span class="click-hint">🔍 Click to view on Google Images</span>
+            </div>
+        </a>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-mountain"></i> Geometric Interpretation</div>
+            <p>If z = f(x, y) represents a <strong>surface</strong> in 3D space:</p>
+            <ul>
+                <li>\(\frac{\partial z}{\partial x}\) = Slope of the surface in the <strong>x-direction</strong> (keeping y constant)</li>
+                <li>\(\frac{\partial z}{\partial y}\) = Slope of the surface in the <strong>y-direction</strong> (keeping x constant)</li>
+            </ul>
+            <p><strong>Analogy:</strong> Imagine walking on a hilly terrain. ∂z/∂x tells you how steep the hill is if you walk <em>east</em>, while ∂z/∂y tells you how steep it is if you walk <em>north</em>.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 3 : EVALUATION OF PARTIAL DERIVATIVES (5.2)           -->
+<!-- ============================================================== -->
+<section class="section" id="evaluation">
+    <h2 class="section-title">
+        <i class="fas fa-calculator"></i> 5.2 Evaluation of Partial Derivatives 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps to Find Partial Derivatives</div>
+            <div class="step" data-step="Step 1">
+                <p>Identify which variable you're differentiating with respect to.</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Treat ALL OTHER variables as constants.</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Apply standard differentiation rules (power rule, chain rule, product rule, etc.).</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Simplify the result if needed.</p>
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Key Differentiation Rules (Quick Recap)</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Function</th><th>Derivative w.r.t. x</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>\(x^n\)</td><td>\(nx^{n-1}\)</td></tr>
+                        <tr><td>\(e^x\)</td><td>\(e^x\)</td></tr>
+                        <tr><td>\(e^{ax}\)</td><td>\(ae^{ax}\)</td></tr>
+                        <tr><td>\(\ln x\)</td><td>\(\frac{1}{x}\)</td></tr>
+                        <tr><td>\(\sin x\)</td><td>\(\cos x\)</td></tr>
+                        <tr><td>\(\cos x\)</td><td>\(-\sin x\)</td></tr>
+                        <tr><td>\(\tan x\)</td><td>\(\sec^2 x\)</td></tr>
+                        <tr><td>Constant</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example 1</div>
-          <p>If \( f(x,y) = x^3 y^2 + 2x + y \), find \( \frac{\partial f}{\partial x} \) and \( \frac{\partial f}{\partial y} \).</p>
-          <button class="toggle-btn" data-target="eval1"><i class="fas fa-eye"></i> Show Partial Derivatives</button>
-          <div class="answer-reveal" id="eval1">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.1 — Basic Partial Derivatives ⭐</div>
+            <p>If \(z = x^3 + 3x^2y + y^3\), find \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Finding ∂z/∂x:</strong> (Treat y as constant)</p>
+            <p>\(\frac{\partial z}{\partial x} = \frac{\partial}{\partial x}(x^3) + \frac{\partial}{\partial x}(3x^2y) + \frac{\partial}{\partial x}(y^3)\)</p>
+            <p>\(= 3x^2 + 3y \cdot 2x + 0\) (y³ is constant w.r.t. x)</p>
             <div class="formula answer">
-              \[
-              \frac{\partial f}{\partial x} = 3x^2 y^2 + 2
-              \]
-              \[
-              \frac{\partial f}{\partial y} = 2x^3 y + 1
-              \]
+                \[ \boxed{\frac{\partial z}{\partial x} = 3x^2 + 6xy} \]
             </div>
-          </div>
+            
+            <p><strong>Finding ∂z/∂y:</strong> (Treat x as constant)</p>
+            <p>\(\frac{\partial z}{\partial y} = \frac{\partial}{\partial y}(x^3) + \frac{\partial}{\partial y}(3x^2y) + \frac{\partial}{\partial y}(y^3)\)</p>
+            <p>\(= 0 + 3x^2 \cdot 1 + 3y^2\) (x³ is constant w.r.t. y)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial y} = 3x^2 + 3y^2} \]
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example 2</div>
-          <p>If \( f(x,y) = e^{xy} \sin x \), find \( \frac{\partial f}{\partial x} \) and \( \frac{\partial f}{\partial y} \).</p>
-          <button class="toggle-btn" data-target="eval2"><i class="fas fa-eye"></i> Show Partial Derivatives</button>
-          <div class="answer-reveal" id="eval2">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.2 — With Product Terms ⭐⭐</div>
+            <p>If \(z = x^2y^3 + 2x^3y^2 - 5xy\), find \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Finding ∂z/∂x:</strong> (y is constant)</p>
+            <p>\(\frac{\partial z}{\partial x} = y^3 \cdot 2x + 2y^2 \cdot 3x^2 - 5y \cdot 1\)</p>
             <div class="formula answer">
-              \[
-              \frac{\partial f}{\partial x} = e^{xy}(y \sin x + \cos x)
-              \]
-              \[
-              \frac{\partial f}{\partial y} = e^{xy} (x \sin x)
-              \]
+                \[ \boxed{\frac{\partial z}{\partial x} = 2xy^3 + 6x^2y^2 - 5y} \]
             </div>
-          </div>
+            
+            <p><strong>Finding ∂z/∂y:</strong> (x is constant)</p>
+            <p>\(\frac{\partial z}{\partial y} = x^2 \cdot 3y^2 + 2x^3 \cdot 2y - 5x \cdot 1\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial y} = 3x^2y^2 + 4x^3y - 5x} \]
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example 3: Second Order</div>
-          <p>For \( f(x,y) = x^2 y + y^2 \), find \( \frac{\partial^2 f}{\partial x^2} \) and \( \frac{\partial^2 f}{\partial y^2} \).</p>
-          <button class="toggle-btn" data-target="eval3"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="eval3">
-            <div class="formula answer">
-              \[
-              \frac{\partial f}{\partial x} = 2xy \quad \Rightarrow \quad \frac{\partial^2 f}{\partial x^2} = 2y
-              \]
-              \[
-              \frac{\partial f}{\partial y} = x^2 + 2y \quad \Rightarrow \quad \frac{\partial^2 f}{\partial y^2} = 2
-              \]
-            </div>
-          </div>
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.3 — Exponential Function ⭐⭐</div>
+            <p>If \(z = e^{x^2 + y^2}\), find \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\).</p>
         </div>
-      </div>
-    </section>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Using chain rule: \(\frac{d}{dx}(e^u) = e^u \cdot \frac{du}{dx}\)</p>
+            
+            <p><strong>Finding ∂z/∂x:</strong></p>
+            <p>Let \(u = x^2 + y^2\), then \(\frac{\partial u}{\partial x} = 2x\) (y² is constant)</p>
+            <p>\(\frac{\partial z}{\partial x} = e^{x^2 + y^2} \cdot 2x\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial x} = 2xe^{x^2 + y^2}} \]
+            </div>
+            
+            <p><strong>Finding ∂z/∂y:</strong></p>
+            <p>\(\frac{\partial u}{\partial y} = 2y\) (x² is constant)</p>
+            <p>\(\frac{\partial z}{\partial y} = e^{x^2 + y^2} \cdot 2y\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial y} = 2ye^{x^2 + y^2}} \]
+            </div>
+        </div>
 
-    <!-- ========== SECTION 3: HOMOGENEOUS FUNCTIONS ========= -->
-    <section id="homogeneous" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-hashtag"></i> Homogeneous Functions: Definition & Examples
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.4 — Trigonometric Function ⭐⭐</div>
+            <p>If \(z = \sin(x + 2y)\), find \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Using chain rule: \(\frac{d}{dx}(\sin u) = \cos u \cdot \frac{du}{dx}\)</p>
+            
+            <p><strong>Finding ∂z/∂x:</strong></p>
+            <p>Let \(u = x + 2y\), then \(\frac{\partial u}{\partial x} = 1\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial x} = \cos(x + 2y)} \]
+            </div>
+            
+            <p><strong>Finding ∂z/∂y:</strong></p>
+            <p>\(\frac{\partial u}{\partial y} = 2\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial y} = 2\cos(x + 2y)} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.5 — Logarithmic Function ⭐⭐</div>
+            <p>If \(z = \ln(x^2 + y^2)\), find \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Using chain rule: \(\frac{d}{dx}(\ln u) = \frac{1}{u} \cdot \frac{du}{dx}\)</p>
+            
+            <p><strong>Finding ∂z/∂x:</strong></p>
+            <p>\(\frac{\partial z}{\partial x} = \frac{1}{x^2 + y^2} \cdot 2x\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial x} = \frac{2x}{x^2 + y^2}} \]
+            </div>
+            
+            <p><strong>Finding ∂z/∂y:</strong></p>
+            <p>\(\frac{\partial z}{\partial y} = \frac{1}{x^2 + y^2} \cdot 2y\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial y} = \frac{2y}{x^2 + y^2}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.6 — Quotient / Fraction ⭐⭐</div>
+            <p>If \(u = \frac{x + y}{x - y}\), find \(\frac{\partial u}{\partial x}\) and \(\frac{\partial u}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Using quotient rule: \(\frac{d}{dx}\left(\frac{f}{g}\right) = \frac{g \cdot f' - f \cdot g'}{g^2}\)</p>
+            
+            <p><strong>Finding ∂u/∂x:</strong> (y is constant)</p>
+            <p>Let f = x + y, g = x - y</p>
+            <p>\(\frac{\partial f}{\partial x} = 1\), \(\frac{\partial g}{\partial x} = 1\)</p>
+            <p>\(\frac{\partial u}{\partial x} = \frac{(x-y)(1) - (x+y)(1)}{(x-y)^2} = \frac{x - y - x - y}{(x-y)^2} = \frac{-2y}{(x-y)^2}\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial u}{\partial x} = \frac{-2y}{(x-y)^2}} \]
+            </div>
+            
+            <p><strong>Finding ∂u/∂y:</strong> (x is constant)</p>
+            <p>\(\frac{\partial f}{\partial y} = 1\), \(\frac{\partial g}{\partial y} = -1\)</p>
+            <p>\(\frac{\partial u}{\partial y} = \frac{(x-y)(1) - (x+y)(-1)}{(x-y)^2} = \frac{x - y + x + y}{(x-y)^2} = \frac{2x}{(x-y)^2}\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial u}{\partial y} = \frac{2x}{(x-y)^2}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.7 — Mixed Exponential ⭐⭐</div>
+            <p>If \(z = e^{xy}\), find \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Finding ∂z/∂x:</strong> (y is constant)</p>
+            <p>\(\frac{\partial z}{\partial x} = e^{xy} \cdot \frac{\partial}{\partial x}(xy) = e^{xy} \cdot y\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial x} = ye^{xy}} \]
+            </div>
+            
+            <p><strong>Finding ∂z/∂y:</strong> (x is constant)</p>
+            <p>\(\frac{\partial z}{\partial y} = e^{xy} \cdot \frac{\partial}{\partial y}(xy) = e^{xy} \cdot x\)</p>
+            <div class="formula answer">
+                \[ \boxed{\frac{\partial z}{\partial y} = xe^{xy}} \]
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes to Avoid</div>
+            <ol>
+                <li><strong>Forgetting to treat other variables as constants:</strong> When finding ∂z/∂x, the term y³ becomes 0 (constant!), not 3y².</li>
+                <li><strong>Wrong chain rule application:</strong> For \(e^{x+y}\), ∂/∂x gives \(e^{x+y} \cdot 1\), not \(e^{x+y} \cdot (1+0)\).</li>
+                <li><strong>Confusing ∂ with d:</strong> Use ∂ (curly d) for partial derivatives, d for ordinary derivatives.</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 4 : HIGHER ORDER PARTIAL DERIVATIVES                  -->
+<!-- ============================================================== -->
+<section class="section" id="higher-order">
+    <h2 class="section-title">
+        <i class="fas fa-layer-group"></i> Second Order Partial Derivatives ⭐⭐
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Definition</div>
-          <p>A function \( f(x,y) \) is said to be homogeneous of degree \( n \) if for any scalar \( t \),</p>
-          <div class="formula">
-            \[
-            f(tx, ty) = t^n f(x,y)
-            \]
-          </div>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Second Order Partial Derivatives</div>
+            <p>If z = f(x, y), the first order partial derivatives ∂z/∂x and ∂z/∂y are themselves functions of x and y. We can differentiate them again to get <strong>second order partial derivatives</strong>:</p>
+            
+            <div class="formula">
+                \[ \frac{\partial^2 z}{\partial x^2} = \frac{\partial}{\partial x}\left(\frac{\partial z}{\partial x}\right) = f_{xx} \]
+            </div>
+            <div class="formula">
+                \[ \frac{\partial^2 z}{\partial y^2} = \frac{\partial}{\partial y}\left(\frac{\partial z}{\partial y}\right) = f_{yy} \]
+            </div>
+            <div class="formula">
+                \[ \frac{\partial^2 z}{\partial x \partial y} = \frac{\partial}{\partial x}\left(\frac{\partial z}{\partial y}\right) = f_{yx} \]
+            </div>
+            <div class="formula">
+                \[ \frac{\partial^2 z}{\partial y \partial x} = \frac{\partial}{\partial y}\left(\frac{\partial z}{\partial x}\right) = f_{xy} \]
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Mixed Partial Derivatives</div>
+            <p>\(f_{xy}\) and \(f_{yx}\) are called <strong>mixed partial derivatives</strong>.</p>
+            <p><strong>Important Theorem:</strong> For most functions we encounter, the order of differentiation doesn't matter:</p>
+            <div class="formula">
+                \[ \frac{\partial^2 z}{\partial x \partial y} = \frac{\partial^2 z}{\partial y \partial x} \quad \text{i.e., } f_{xy} = f_{yx} \]
+            </div>
+            <p>This is known as <strong>Clairaut's Theorem</strong> (or Schwarz's Theorem).</p>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example 1</div>
-          <p>Check homogeneity of \( f(x,y) = x^3 + 2x^2 y + y^3 \).</p>
-          <button class="toggle-btn" data-target="homog1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="homog1">
-            <div class="formula answer">
-              \[
-              f(tx, ty) = (tx)^3 + 2(tx)^2(ty) + (ty)^3 = t^3 x^3 + 2 t^3 x^2 y + t^3 y^3 = t^3 (x^3 + 2x^2 y + y^3)
-              \]
-              So homogeneous of degree 3.
-            </div>
-          </div>
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.8 — Second Order Derivatives ⭐⭐</div>
+            <p>If \(z = x^3 + 3x^2y + y^3\), find all second order partial derivatives.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Step 1: First order derivatives</strong></p>
+            <p>\(\frac{\partial z}{\partial x} = 3x^2 + 6xy\)</p>
+            <p>\(\frac{\partial z}{\partial y} = 3x^2 + 3y^2\)</p>
+            
+            <p><strong>Step 2: Second order derivatives</strong></p>
+            <p>\(\frac{\partial^2 z}{\partial x^2} = \frac{\partial}{\partial x}(3x^2 + 6xy) = 6x + 6y\)</p>
+            <div class="formula answer">\[ \boxed{\frac{\partial^2 z}{\partial x^2} = 6x + 6y} \]</div>
+            
+            <p>\(\frac{\partial^2 z}{\partial y^2} = \frac{\partial}{\partial y}(3x^2 + 3y^2) = 6y\)</p>
+            <div class="formula answer">\[ \boxed{\frac{\partial^2 z}{\partial y^2} = 6y} \]</div>
+            
+            <p>\(\frac{\partial^2 z}{\partial x \partial y} = \frac{\partial}{\partial x}(3x^2 + 3y^2) = 6x\)</p>
+            <div class="formula answer">\[ \boxed{\frac{\partial^2 z}{\partial x \partial y} = 6x} \]</div>
+            
+            <p>\(\frac{\partial^2 z}{\partial y \partial x} = \frac{\partial}{\partial y}(3x^2 + 6xy) = 6x\)</p>
+            <div class="formula answer">\[ \boxed{\frac{\partial^2 z}{\partial y \partial x} = 6x} \]</div>
+            
+            <p>✓ Note: \(f_{xy} = f_{yx} = 6x\) (Clairaut's theorem verified)</p>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example 2</div>
-          <p>Is \( f(x,y) = \frac{x^2 + y^2}{x + y} \) homogeneous? Find degree.</p>
-          <button class="toggle-btn" data-target="homog2"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="homog2">
-            <div class="formula answer">
-              \[
-              f(tx, ty) = \frac{(tx)^2 + (ty)^2}{tx + ty} = \frac{t^2(x^2 + y^2)}{t(x+y)} = t \cdot \frac{x^2 + y^2}{x+y} = t f(x,y)
-              \]
-              Homogeneous of degree 1.
-            </div>
-          </div>
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.9 — Verify Mixed Derivatives ⭐</div>
+            <p>If \(z = x^2y + xy^2\), verify that \(\frac{\partial^2 z}{\partial x \partial y} = \frac{\partial^2 z}{\partial y \partial x}\).</p>
         </div>
-      </div>
-    </section>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Method 1: ∂²z/∂x∂y</strong></p>
+            <p>First find ∂z/∂y: \(\frac{\partial z}{\partial y} = x^2 + 2xy\)</p>
+            <p>Then differentiate w.r.t. x: \(\frac{\partial^2 z}{\partial x \partial y} = 2x + 2y\)</p>
+            
+            <p><strong>Method 2: ∂²z/∂y∂x</strong></p>
+            <p>First find ∂z/∂x: \(\frac{\partial z}{\partial x} = 2xy + y^2\)</p>
+            <p>Then differentiate w.r.t. y: \(\frac{\partial^2 z}{\partial y \partial x} = 2x + 2y\)</p>
+            
+            <div class="formula answer">
+                \[ \frac{\partial^2 z}{\partial x \partial y} = \frac{\partial^2 z}{\partial y \partial x} = \boxed{2x + 2y} \quad \text{✓ Verified} \]
+            </div>
+        </div>
 
-    <!-- ========== SECTION 4: EULER'S THEOREM (1ST ORDER) ========= -->
-    <section id="euler" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-crown"></i> Euler's Theorem on Homogeneous Functions (2 variables)
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 5 : HOMOGENEOUS FUNCTIONS (5.3)                       -->
+<!-- ============================================================== -->
+<section class="section" id="homogeneous">
+    <h2 class="section-title">
+        <i class="fas fa-equals"></i> 5.3 Homogeneous Functions 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Euler's Theorem (Statement only)</div>
-          <p>If \( f(x,y) \) is a homogeneous function of degree \( n \), then:</p>
-          <div class="formula">
-            \[
-            x \frac{\partial f}{\partial x} + y \frac{\partial f}{\partial y} = n f(x,y)
-            \]
-          </div>
-          <p>This holds for all \( x,y \) where the partial derivatives exist.</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Homogeneous Function 🔥</div>
+            <p>A function f(x, y) is called <strong>homogeneous of degree n</strong> if:</p>
+            <div class="formula">
+                \[ f(\lambda x, \lambda y) = \lambda^n f(x, y) \]
+            </div>
+            <p>for all values of λ (lambda), where <strong>n</strong> is called the <strong>degree of homogeneity</strong>.</p>
+            <p><strong>In simple words:</strong> If we multiply BOTH x and y by the same factor λ, the function value gets multiplied by λⁿ.</p>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Understanding Degree of Homogeneity</div>
+            <p>The <strong>degree n</strong> is found by:</p>
+            <ul>
+                <li>In each term, add the powers of x and y</li>
+                <li>If ALL terms have the SAME total power, that power is the degree n</li>
+                <li>If different terms have different total powers → NOT homogeneous</li>
+            </ul>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Problem 1</div>
-          <p>Verify Euler's theorem for \( f(x,y) = x^3 + y^3 + 2x^2 y \).</p>
-          <button class="toggle-btn" data-target="euler1"><i class="fas fa-eye"></i> Show Verification</button>
-          <div class="answer-reveal" id="euler1">
-            <div class="formula answer">
-              First, check homogeneity: \( f(tx,ty) = t^3(x^3 + y^3 + 2x^2 y) \), so degree \( n=3 \).<br>
-              Compute partials:<br>
-              \( \frac{\partial f}{\partial x} = 3x^2 + 4xy \)<br>
-              \( \frac{\partial f}{\partial y} = 3y^2 + 2x^2 \)<br>
-              LHS = \( x(3x^2 + 4xy) + y(3y^2 + 2x^2) = 3x^3 + 4x^2 y + 3y^3 + 2x^2 y = 3x^3 + 6x^2 y + 3y^3 \)<br>
-              RHS = \( 3(x^3 + y^3 + 2x^2 y) = 3x^3 + 3y^3 + 6x^2 y \) ✔
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.10 — Identifying Homogeneous Functions</div>
+            <p>Check if the following are homogeneous and find their degree:</p>
+            <p>(a) \(f(x,y) = x^2 + xy + y^2\)</p>
+            <p>(b) \(f(x,y) = x^3 + 2x^2y + y^3\)</p>
+            <p>(c) \(f(x,y) = x^2 + y + 1\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            
+            <p><strong>(a) \(f(x,y) = x^2 + xy + y^2\)</strong></p>
+            <div class="degree-example">
+                <p>Term x²: power of x = 2, power of y = 0 → Total = 2</p>
+                <p>Term xy: power of x = 1, power of y = 1 → Total = 2</p>
+                <p>Term y²: power of x = 0, power of y = 2 → Total = 2</p>
+                <p>All terms have degree 2 → <strong>Homogeneous of degree 2</strong> ✓</p>
             </div>
-          </div>
+            <p><strong>Verification:</strong> \(f(\lambda x, \lambda y) = (\lambda x)^2 + (\lambda x)(\lambda y) + (\lambda y)^2 = \lambda^2 x^2 + \lambda^2 xy + \lambda^2 y^2 = \lambda^2(x^2 + xy + y^2) = \lambda^2 f(x,y)\) ✓</p>
+            
+            <p><strong>(b) \(f(x,y) = x^3 + 2x^2y + y^3\)</strong></p>
+            <div class="degree-example">
+                <p>Term x³: 3 + 0 = 3</p>
+                <p>Term 2x²y: 2 + 1 = 3</p>
+                <p>Term y³: 0 + 3 = 3</p>
+                <p>All terms have degree 3 → <strong>Homogeneous of degree 3</strong> ✓</p>
+            </div>
+            
+            <p><strong>(c) \(f(x,y) = x^2 + y + 1\)</strong></p>
+            <div class="degree-example">
+                <p>Term x²: 2 + 0 = 2</p>
+                <p>Term y: 0 + 1 = 1</p>
+                <p>Term 1: 0 + 0 = 0 (constant)</p>
+                <p>Terms have different degrees (2, 1, 0) → <strong>NOT Homogeneous</strong> ✗</p>
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Problem 2</div>
-          <p>If \( f(x,y) = \frac{x^2 + y^2}{x+y} \), use Euler's theorem to find \( x f_x + y f_y \).</p>
-          <button class="toggle-btn" data-target="euler2"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="euler2">
-            <div class="formula answer">
-              From earlier, \( f \) is homogeneous of degree 1.<br>
-              By Euler's theorem: \( x f_x + y f_y = 1 \cdot f = \frac{x^2 + y^2}{x+y} \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.11 — More Examples of Homogeneous Functions ⭐⭐</div>
+            <p>Find the degree of homogeneity:</p>
+            <p>(a) \(f = \frac{x^3 + y^3}{x + y}\)</p>
+            <p>(b) \(f = \sqrt{x^2 + y^2}\)</p>
+            <p>(c) \(f = \tan^{-1}\left(\frac{y}{x}\right)\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            
+            <p><strong>(a) \(f = \frac{x^3 + y^3}{x + y}\)</strong></p>
+            <p>Replace x with λx and y with λy:</p>
+            <p>\(f(\lambda x, \lambda y) = \frac{(\lambda x)^3 + (\lambda y)^3}{\lambda x + \lambda y} = \frac{\lambda^3(x^3 + y^3)}{\lambda(x + y)} = \lambda^2 \cdot \frac{x^3 + y^3}{x + y} = \lambda^2 f(x,y)\)</p>
+            <div class="formula answer">\[ \boxed{\text{Degree} = 2} \]</div>
+            
+            <p><strong>(b) \(f = \sqrt{x^2 + y^2} = (x^2 + y^2)^{1/2}\)</strong></p>
+            <p>\(f(\lambda x, \lambda y) = \sqrt{(\lambda x)^2 + (\lambda y)^2} = \sqrt{\lambda^2(x^2 + y^2)} = \lambda\sqrt{x^2 + y^2} = \lambda^1 f(x,y)\)</p>
+            <div class="formula answer">\[ \boxed{\text{Degree} = 1} \]</div>
+            
+            <p><strong>(c) \(f = \tan^{-1}\left(\frac{y}{x}\right)\)</strong></p>
+            <p>\(f(\lambda x, \lambda y) = \tan^{-1}\left(\frac{\lambda y}{\lambda x}\right) = \tan^{-1}\left(\frac{y}{x}\right) = \lambda^0 f(x,y)\)</p>
+            <div class="formula answer">\[ \boxed{\text{Degree} = 0} \]</div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-table"></i> Summary — Common Homogeneous Functions</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Function</th><th>Degree</th><th>Reason</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>\(x^2 + xy + y^2\)</td><td>2</td><td>All terms: power 2</td></tr>
+                        <tr><td>\(x^3 + y^3\)</td><td>3</td><td>All terms: power 3</td></tr>
+                        <tr><td>\(\frac{x+y}{x-y}\)</td><td>0</td><td>Numerator & denominator same degree</td></tr>
+                        <tr><td>\(\sqrt{x^2+y^2}\)</td><td>1</td><td>\((x^2+y^2)^{1/2}\) → 2 × ½ = 1</td></tr>
+                        <tr><td>\(\frac{x^2+y^2}{xy}\)</td><td>0</td><td>Degree 2 / Degree 2 = 0</td></tr>
+                        <tr><td>\(x^2y + xy^2\)</td><td>3</td><td>Each term: 2+1 = 3</td></tr>
+                        <tr><td>\(\ln\frac{x}{y}\) or \(\tan^{-1}\frac{y}{x}\)</td><td>0</td><td>Ratio inside → degree 0</td></tr>
+                        <tr><td>\(x^2 + y + 1\)</td><td>—</td><td>NOT homogeneous</td></tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Quick Rules for Finding Degree</div>
+            <ul>
+                <li><strong>Polynomial:</strong> Add powers of x and y in each term; all should be equal</li>
+                <li><strong>Fraction:</strong> Degree = (degree of numerator) − (degree of denominator)</li>
+                <li><strong>√(expression):</strong> Degree = ½ × (degree of expression inside)</li>
+                <li><strong>(expression)^k:</strong> Degree = k × (degree of expression)</li>
+                <li><strong>Functions of (y/x) or (x/y):</strong> Degree = 0 (like sin(y/x), ln(x/y), tan⁻¹(y/x))</li>
+            </ul>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Problem 3</div>
-          <p>Given \( u = \tan^{-1}\left( \frac{x^3 + y^3}{x - y} \right) \), show that \( x \frac{\partial u}{\partial x} + y \frac{\partial u}{\partial y} = \sin 2u \).</p>
-          <button class="toggle-btn" data-target="euler3"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="euler3">
-            <div class="formula answer">
-              Let \( v = \frac{x^3 + y^3}{x - y} \). Then \( u = \tan^{-1} v \).<br>
-              Check homogeneity of \( v \): \( v(tx,ty) = t^2 \cdot \frac{x^3 + y^3}{x - y} = t^2 v \) ⇒ degree 2.<br>
-              By Euler: \( x v_x + y v_y = 2v \).<br>
-              Now \( \frac{\partial u}{\partial x} = \frac{1}{1+v^2} \frac{\partial v}{\partial x} \), similarly for y.<br>
-              Then \( x u_x + y u_y = \frac{1}{1+v^2} (x v_x + y v_y) = \frac{2v}{1+v^2} \).<br>
-              But \( v = \tan u \), so \( \frac{2\tan u}{1+\tan^2 u} = 2 \cdot \frac{\tan u}{\sec^2 u} = 2 \sin u \cos u = \sin 2u \). ✔
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.12 — Finding Degree ⭐</div>
+            <p>Find the degree of \(u = \frac{x^4 + y^4}{x^2 - y^2}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Degree of numerator (x⁴ + y⁴) = 4</p>
+            <p>Degree of denominator (x² − y²) = 2</p>
+            <p>Degree of function = 4 − 2 = <strong>2</strong></p>
+            <div class="formula answer">\[ \boxed{\text{Degree} = 2} \]</div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 6 : EULER'S THEOREM (5.4)                             -->
+<!-- ============================================================== -->
+<section class="section" id="euler">
+    <h2 class="section-title">
+        <i class="fas fa-scroll"></i> 5.4 Euler's Theorem on Homogeneous Functions 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="theorem-card">
+            <h4><i class="fas fa-star"></i> Euler's Theorem (First Order) — MUST MEMORIZE!</h4>
+            <p>If \(z = f(x, y)\) is a <strong>homogeneous function of degree n</strong> in x and y, then:</p>
+            <div class="formula">
+                \[ x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz \]
             </div>
-          </div>
+            <p>Or equivalently:</p>
+            <div class="formula">
+                \[ x \cdot z_x + y \cdot z_y = n \cdot z \]
+            </div>
+            <p><strong>Statement:</strong> "The sum of x times partial derivative w.r.t. x and y times partial derivative w.r.t. y equals n times the function itself."</p>
         </div>
-      </div>
-    </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">\( \frac{\partial}{\partial x} f(x,y) \)</div>
-          <div class="tag">\( \frac{\partial}{\partial y} f(x,y) \)</div>
-          <div class="tag">Homogeneous: \( f(tx,ty) = t^n f(x,y) \)</div>
-          <div class="tag">Euler: \( x f_x + y f_y = n f \)</div>
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-exclamation-circle"></i> Why is Euler's Theorem Important?</div>
+            <ul>
+                <li>🔥 <strong>Most common exam question</strong> from this unit!</li>
+                <li>Two types of questions: (a) Verify Euler's theorem (b) Use it to find expressions</li>
+                <li>You must identify that the function is homogeneous AND find its degree</li>
+            </ul>
         </div>
-      </div>
-    </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps to Verify Euler's Theorem</div>
+            <div class="step" data-step="Step 1">
+                <p>Check if f(x, y) is homogeneous. Find degree n.</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Find \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\).</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Calculate LHS: \(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y}\)</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Calculate RHS: \(nz\)</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>Show LHS = RHS. Hence verified.</p>
+            </div>
+        </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.13 — Verify Euler's Theorem ⭐⭐⭐</div>
+            <p>Verify Euler's theorem for \(z = x^3 + 3x^2y + y^3\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            
+            <div class="step" data-step="Step 1 — Check Homogeneity">
+                <p>Each term: x³ (degree 3), 3x²y (degree 2+1=3), y³ (degree 3)</p>
+                <p>All terms have degree 3, so z is homogeneous with <strong>n = 3</strong>.</p>
+            </div>
+            
+            <div class="step" data-step="Step 2 — Find Partial Derivatives">
+                <p>\(\frac{\partial z}{\partial x} = 3x^2 + 6xy\)</p>
+                <p>\(\frac{\partial z}{\partial y} = 3x^2 + 3y^2\)</p>
+            </div>
+            
+            <div class="step" data-step="Step 3 — Calculate LHS">
+                <p>\(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y}\)</p>
+                <p>\(= x(3x^2 + 6xy) + y(3x^2 + 3y^2)\)</p>
+                <p>\(= 3x^3 + 6x^2y + 3x^2y + 3y^3\)</p>
+                <p>\(= 3x^3 + 9x^2y + 3y^3\)</p>
+                <p>\(= 3(x^3 + 3x^2y + y^3)\)</p>
+            </div>
+            
+            <div class="step" data-step="Step 4 — Calculate RHS">
+                <p>\(nz = 3 \times (x^3 + 3x^2y + y^3) = 3(x^3 + 3x^2y + y^3)\)</p>
+            </div>
+            
+            <div class="step" data-step="Step 5 — Conclusion">
+                <p>LHS = RHS = \(3(x^3 + 3x^2y + y^3)\)</p>
+                <div class="formula answer">
+                    \[ \boxed{\text{Hence, Euler's theorem is verified.}} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.14 — Verify Euler's Theorem for Fraction ⭐⭐⭐</div>
+            <p>Verify Euler's theorem for \(u = \frac{x^2 + y^2}{x + y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            
+            <div class="step" data-step="Step 1 — Find Degree">
+                <p>Degree of numerator = 2, Degree of denominator = 1</p>
+                <p>Degree of u = 2 − 1 = <strong>1</strong></p>
+                <p>(Or verify: \(u(\lambda x, \lambda y) = \frac{\lambda^2(x^2+y^2)}{\lambda(x+y)} = \lambda u(x,y)\))</p>
+            </div>
+            
+            <div class="step" data-step="Step 2 — Find Partial Derivatives">
+                <p>Using quotient rule:</p>
+                <p>\(\frac{\partial u}{\partial x} = \frac{(x+y)(2x) - (x^2+y^2)(1)}{(x+y)^2} = \frac{2x^2 + 2xy - x^2 - y^2}{(x+y)^2} = \frac{x^2 + 2xy - y^2}{(x+y)^2}\)</p>
+                <p>\(\frac{\partial u}{\partial y} = \frac{(x+y)(2y) - (x^2+y^2)(1)}{(x+y)^2} = \frac{2xy + 2y^2 - x^2 - y^2}{(x+y)^2} = \frac{-x^2 + 2xy + y^2}{(x+y)^2}\)</p>
+            </div>
+            
+            <div class="step" data-step="Step 3 — Calculate LHS">
+                <p>\(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y}\)</p>
+                <p>\(= x \cdot \frac{x^2 + 2xy - y^2}{(x+y)^2} + y \cdot \frac{-x^2 + 2xy + y^2}{(x+y)^2}\)</p>
+                <p>\(= \frac{x(x^2 + 2xy - y^2) + y(-x^2 + 2xy + y^2)}{(x+y)^2}\)</p>
+                <p>\(= \frac{x^3 + 2x^2y - xy^2 - x^2y + 2xy^2 + y^3}{(x+y)^2}\)</p>
+                <p>\(= \frac{x^3 + x^2y + xy^2 + y^3}{(x+y)^2}\)</p>
+                <p>\(= \frac{x^2(x+y) + y^2(x+y)}{(x+y)^2} = \frac{(x^2+y^2)(x+y)}{(x+y)^2} = \frac{x^2+y^2}{x+y}\)</p>
+            </div>
+            
+            <div class="step" data-step="Step 4 — Calculate RHS">
+                <p>\(nu = 1 \times \frac{x^2+y^2}{x+y} = \frac{x^2+y^2}{x+y}\)</p>
+            </div>
+            
+            <div class="step" data-step="Step 5 — Conclusion">
+                <p>LHS = RHS = \(\frac{x^2+y^2}{x+y}\)</p>
+                <div class="formula answer">
+                    \[ \boxed{\text{Euler's theorem verified.}} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.15 — Direct Application of Euler's Theorem ⭐⭐</div>
+            <p>If \(z = x^3 + y^3 - 3x^2y\), find the value of \(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>First check: Is z homogeneous?</p>
+            <p>Terms: x³ (degree 3), y³ (degree 3), −3x²y (degree 2+1=3)</p>
+            <p>Yes, z is homogeneous of degree n = 3.</p>
+            <p>By Euler's theorem:</p>
+            <div class="formula answer">
+                \[ x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz = \boxed{3(x^3 + y^3 - 3x^2y)} \]
+            </div>
+            <p><em>Note: No need to actually find the partial derivatives when using Euler's theorem directly!</em></p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.16 — Euler's Theorem for √ Function ⭐⭐</div>
+            <p>Verify Euler's theorem for \(u = \sqrt{x^2 + y^2}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            
+            <p><strong>Degree:</strong> \(u = (x^2 + y^2)^{1/2}\), degree = \(\frac{1}{2} \times 2 = 1\)</p>
+            <p>So <strong>n = 1</strong>.</p>
+            
+            <p><strong>Partial derivatives:</strong></p>
+            <p>\(\frac{\partial u}{\partial x} = \frac{1}{2}(x^2+y^2)^{-1/2} \cdot 2x = \frac{x}{\sqrt{x^2+y^2}}\)</p>
+            <p>\(\frac{\partial u}{\partial y} = \frac{1}{2}(x^2+y^2)^{-1/2} \cdot 2y = \frac{y}{\sqrt{x^2+y^2}}\)</p>
+            
+            <p><strong>LHS:</strong></p>
+            <p>\(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = x \cdot \frac{x}{\sqrt{x^2+y^2}} + y \cdot \frac{y}{\sqrt{x^2+y^2}}\)</p>
+            <p>\(= \frac{x^2 + y^2}{\sqrt{x^2+y^2}} = \sqrt{x^2+y^2}\)</p>
+            
+            <p><strong>RHS:</strong> \(nu = 1 \times \sqrt{x^2+y^2} = \sqrt{x^2+y^2}\)</p>
+            
+            <div class="formula answer">
+                \[ \text{LHS = RHS} \Rightarrow \boxed{\text{Verified}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.17 — Euler's Theorem with tan⁻¹ ⭐⭐⭐</div>
+            <p>If \(u = \tan^{-1}\left(\frac{x^3 + y^3}{x + y}\right)\), find \(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y}\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Let \(v = \frac{x^3 + y^3}{x + y}\), so \(u = \tan^{-1}v\)</p>
+            
+            <p><strong>Degree of v:</strong> = (degree of x³+y³) − (degree of x+y) = 3 − 1 = 2</p>
+            <p>Since u = tan⁻¹(v) and v is homogeneous of degree 2, u is NOT directly homogeneous.</p>
+            
+            <p><strong>But we can work with v:</strong></p>
+            <p>By Euler's theorem for v: \(x\frac{\partial v}{\partial x} + y\frac{\partial v}{\partial y} = 2v\)</p>
+            
+            <p>Now, \(u = \tan^{-1}v\), so:</p>
+            <p>\(\frac{\partial u}{\partial x} = \frac{1}{1+v^2} \cdot \frac{\partial v}{\partial x}\)</p>
+            <p>\(\frac{\partial u}{\partial y} = \frac{1}{1+v^2} \cdot \frac{\partial v}{\partial y}\)</p>
+            
+            <p>\(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = \frac{1}{1+v^2}\left(x\frac{\partial v}{\partial x} + y\frac{\partial v}{\partial y}\right) = \frac{1}{1+v^2} \times 2v = \frac{2v}{1+v^2}\)</p>
+            
+            <div class="formula answer">
+                \[ x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = \boxed{\frac{2v}{1+v^2} = \frac{2 \cdot \frac{x^3+y^3}{x+y}}{1+\left(\frac{x^3+y^3}{x+y}\right)^2}} \]
+            </div>
+            <p>Or simply: \(\boxed{\sin 2u}\) (since \(\frac{2\tan\theta}{1+\tan^2\theta} = \sin 2\theta\))</p>
+        </div>
+                <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Exam Mistakes</div>
+            <ol>
+                <li><strong>Not checking homogeneity:</strong> Always verify the function is homogeneous before applying Euler's theorem!</li>
+                <li><strong>Wrong degree calculation:</strong> Be careful with fractions and powers</li>
+                <li><strong>Calculation errors in partial derivatives:</strong> Double-check your differentiation</li>
+                <li><strong>Forgetting to multiply by x and y:</strong> It's x·(∂z/∂x), not just (∂z/∂x)</li>
+            </ol>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 5.18 — Another Euler's Theorem Verification ⭐⭐</div>
+            <p>Verify Euler's theorem for \(z = x^2 + xy - y^2\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Step 1:</strong> Check homogeneity</p>
+            <p>Terms: x² (degree 2), xy (degree 1+1=2), −y² (degree 2)</p>
+            <p>All terms have degree 2 → Homogeneous with <strong>n = 2</strong></p>
+            
+            <p><strong>Step 2:</strong> Find partial derivatives</p>
+            <p>\(\frac{\partial z}{\partial x} = 2x + y\)</p>
+            <p>\(\frac{\partial z}{\partial y} = x - 2y\)</p>
+            
+            <p><strong>Step 3:</strong> Calculate LHS</p>
+            <p>\(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = x(2x + y) + y(x - 2y)\)</p>
+            <p>\(= 2x^2 + xy + xy - 2y^2 = 2x^2 + 2xy - 2y^2\)</p>
+            <p>\(= 2(x^2 + xy - y^2)\)</p>
+            
+            <p><strong>Step 4:</strong> Calculate RHS</p>
+            <p>\(nz = 2(x^2 + xy - y^2)\)</p>
+            
+            <p><strong>Step 5:</strong> LHS = RHS ✓</p>
+            <div class="formula answer">
+                \[ \boxed{\text{Euler's theorem is verified.}} \]
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 7 : KEY FORMULAS SUMMARY                              -->
+<!-- ============================================================== -->
+<section class="section" id="formulas">
+    <h2 class="section-title">
+        <i class="fas fa-square-root-variable"></i> Key Formulas Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Must Memorize for Exam!</div>
+            <p>This unit has fewer formulas but they're all important. Print this section!</p>
+        </div>
+
+        <h3><i class="fas fa-pen"></i> Partial Derivative Notations</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Expression</th><th>Meaning</th><th>Alternative Notations</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>\(\frac{\partial z}{\partial x}\)</td>
+                        <td>Partial derivative of z w.r.t. x</td>
+                        <td>\(f_x\), \(z_x\), \(\partial_x z\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\frac{\partial z}{\partial y}\)</td>
+                        <td>Partial derivative of z w.r.t. y</td>
+                        <td>\(f_y\), \(z_y\), \(\partial_y z\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\frac{\partial^2 z}{\partial x^2}\)</td>
+                        <td>Second partial derivative w.r.t. x</td>
+                        <td>\(f_{xx}\), \(z_{xx}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\frac{\partial^2 z}{\partial y^2}\)</td>
+                        <td>Second partial derivative w.r.t. y</td>
+                        <td>\(f_{yy}\), \(z_{yy}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\frac{\partial^2 z}{\partial x \partial y}\)</td>
+                        <td>Mixed partial derivative</td>
+                        <td>\(f_{xy}\), \(f_{yx}\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-scroll"></i> Euler's Theorem</h3>
+        <div class="theorem-card">
+            <h4>Euler's Theorem (First Order)</h4>
+            <p>If z = f(x, y) is homogeneous of degree n, then:</p>
+            <div class="formula">
+                \[ \boxed{x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz} \]
+            </div>
+        </div>
+
+        <h3><i class="fas fa-calculator"></i> Finding Degree of Homogeneous Functions</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Function Type</th><th>Degree Formula</th><th>Example</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Polynomial \(x^a y^b\)</td>
+                        <td>a + b</td>
+                        <td>\(x^2y^3\) → degree 5</td>
+                    </tr>
+                    <tr>
+                        <td>Sum of terms</td>
+                        <td>Same for all terms</td>
+                        <td>\(x^2 + xy + y^2\) → degree 2</td>
+                    </tr>
+                    <tr>
+                        <td>Fraction \(\frac{f}{g}\)</td>
+                        <td>deg(f) − deg(g)</td>
+                        <td>\(\frac{x^3+y^3}{x+y}\) → 3−1 = 2</td>
+                    </tr>
+                    <tr>
+                        <td>Power \([f(x,y)]^k\)</td>
+                        <td>k × deg(f)</td>
+                        <td>\(\sqrt{x^2+y^2}\) → ½×2 = 1</td>
+                    </tr>
+                    <tr>
+                        <td>Function of ratio</td>
+                        <td>0</td>
+                        <td>\(\sin(y/x)\), \(\ln(x/y)\) → 0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-list"></i> Standard Differentiation Formulas Used</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Function f</th><th>\(\frac{\partial f}{\partial x}\)</th><th>Note</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>\(x^n\)</td><td>\(nx^{n-1}\)</td><td>y treated as constant</td></tr>
+                    <tr><td>\(y^n\)</td><td>0</td><td>y is constant w.r.t. x</td></tr>
+                    <tr><td>\(xy\)</td><td>\(y\)</td><td>y is constant coefficient</td></tr>
+                    <tr><td>\(e^{xy}\)</td><td>\(ye^{xy}\)</td><td>Chain rule</td></tr>
+                    <tr><td>\(\ln(xy)\)</td><td>\(\frac{1}{x}\)</td><td>\(\ln(xy) = \ln x + \ln y\)</td></tr>
+                    <tr><td>\(\sin(x+y)\)</td><td>\(\cos(x+y)\)</td><td>Chain rule</td></tr>
+                    <tr><td>\(\frac{x}{y}\)</td><td>\(\frac{1}{y}\)</td><td>y is constant</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-equals"></i> Important Identity</h3>
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-check"></i> Clairaut's Theorem (Mixed Partials)</div>
+            <div class="formula">
+                \[ \frac{\partial^2 z}{\partial x \partial y} = \frac{\partial^2 z}{\partial y \partial x} \]
+            </div>
+            <p>For continuous functions, the order of differentiation doesn't matter.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 8 : MCQ BANK                                          -->
+<!-- ============================================================== -->
+<section class="section" id="mcq-bank">
+    <h2 class="section-title">
+        <i class="fas fa-circle-check"></i> MCQ Bank (Previous Year Style)
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Strategy</div>
+            <p>MCQs from Unit 5 typically test: Evaluating partial derivatives, finding degree of homogeneous functions, and applying Euler's theorem. Practice these patterns!</p>
+        </div>
+
+        <div class="mcq-grid">
+
+            <div class="mcq-item">
+                <h4>Q 1.</h4>
+                <p>If \(z = x^3 + y^3\), then \(\frac{\partial z}{\partial x}\) is:</p>
+                <ul class="options">
+                    <li>a. \(3x^2 + 3y^2\)</li>
+                    <li>b. \(3x^2\)</li>
+                    <li>c. \(x^3\)</li>
+                    <li>d. \(3x^2 + y^3\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq1">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq1">
+                    <strong>Answer: b. \(3x^2\)</strong>
+                    <p>When differentiating w.r.t. x, y³ is treated as constant (derivative = 0). So ∂z/∂x = 3x² + 0 = 3x².</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 2.</h4>
+                <p>The degree of homogeneity of \(f(x,y) = x^2 + xy + y^2\) is:</p>
+                <ul class="options">
+                    <li>a. 1</li>
+                    <li>b. 2</li>
+                    <li>c. 3</li>
+                    <li>d. 0</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq2">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq2">
+                    <strong>Answer: b. 2</strong>
+                    <p>Each term has total degree 2: x² (2+0), xy (1+1), y² (0+2). All equal → degree = 2.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.</h4>
+                <p>If \(z = e^{xy}\), then \(\frac{\partial z}{\partial x}\) is:</p>
+                <ul class="options">
+                    <li>a. \(e^{xy}\)</li>
+                    <li>b. \(xe^{xy}\)</li>
+                    <li>c. \(ye^{xy}\)</li>
+                    <li>d. \(xye^{xy}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq3">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq3">
+                    <strong>Answer: c. \(ye^{xy}\)</strong>
+                    <p>Using chain rule: ∂/∂x(e^{xy}) = e^{xy} · ∂(xy)/∂x = e^{xy} · y = ye^{xy}</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 4.</h4>
+                <p>According to Euler's theorem, if z is homogeneous of degree n, then:</p>
+                <ul class="options">
+                    <li>a. \(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = z\)</li>
+                    <li>b. \(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz\)</li>
+                    <li>c. \(\frac{\partial z}{\partial x} + \frac{\partial z}{\partial y} = nz\)</li>
+                    <li>d. \(x\frac{\partial z}{\partial x} \cdot y\frac{\partial z}{\partial y} = nz\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq4">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq4">
+                    <strong>Answer: b. \(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz\)</strong>
+                    <p>This is the statement of Euler's theorem for homogeneous functions of degree n.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 5.</h4>
+                <p>The degree of \(f = \frac{x^3 + y^3}{x + y}\) is:</p>
+                <ul class="options">
+                    <li>a. 3</li>
+                    <li>b. 1</li>
+                    <li>c. 2</li>
+                    <li>d. 4</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq5">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq5">
+                    <strong>Answer: c. 2</strong>
+                    <p>Degree = (degree of numerator) − (degree of denominator) = 3 − 1 = 2</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 6.</h4>
+                <p>If \(z = x^2y + xy^2\), then \(\frac{\partial^2 z}{\partial x \partial y}\) is:</p>
+                <ul class="options">
+                    <li>a. \(2x + 2y\)</li>
+                    <li>b. \(2xy\)</li>
+                    <li>c. \(x + y\)</li>
+                    <li>d. \(2x + y\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq6">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq6">
+                    <strong>Answer: a. \(2x + 2y\)</strong>
+                    <p>∂z/∂y = x² + 2xy, then ∂²z/∂x∂y = 2x + 2y</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 7.</h4>
+                <p>Which of the following is NOT homogeneous?</p>
+                <ul class="options">
+                    <li>a. \(x^2 + y^2\)</li>
+                    <li>b. \(x^2 + xy\)</li>
+                    <li>c. \(x^2 + y + 1\)</li>
+                    <li>d. \(\frac{x+y}{x-y}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq7">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq7">
+                    <strong>Answer: c. \(x^2 + y + 1\)</strong>
+                    <p>Terms have different degrees: x² (deg 2), y (deg 1), 1 (deg 0). Not homogeneous.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 8.</h4>
+                <p>If \(z = \sin(x + y)\), then \(\frac{\partial z}{\partial x}\) is:</p>
+                <ul class="options">
+                    <li>a. \(\sin(x + y)\)</li>
+                    <li>b. \(\cos(x + y)\)</li>
+                    <li>c. \(-\cos(x + y)\)</li>
+                    <li>d. \(\cos x + \cos y\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq8">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq8">
+                    <strong>Answer: b. \(\cos(x + y)\)</strong>
+                    <p>Chain rule: ∂/∂x[sin(x+y)] = cos(x+y) · 1 = cos(x+y)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 9.</h4>
+                <p>The degree of \(\sqrt{x^2 + y^2}\) is:</p>
+                <ul class="options">
+                    <li>a. 2</li>
+                    <li>b. 1</li>
+                    <li>c. 1/2</li>
+                    <li>d. 0</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq9">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq9">
+                    <strong>Answer: b. 1</strong>
+                    <p>\(\sqrt{x^2+y^2} = (x^2+y^2)^{1/2}\), degree = ½ × 2 = 1</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 10.</h4>
+                <p>If \(u = \ln(x/y)\), then \(\frac{\partial u}{\partial x}\) is:</p>
+                <ul class="options">
+                    <li>a. \(\frac{1}{x}\)</li>
+                    <li>b. \(\frac{1}{y}\)</li>
+                    <li>c. \(\frac{y}{x}\)</li>
+                    <li>d. \(\frac{1}{xy}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq10">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq10">
+                    <strong>Answer: a. \(\frac{1}{x}\)</strong>
+                    <p>\(\ln(x/y) = \ln x - \ln y\). ∂/∂x gives 1/x − 0 = 1/x</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 11.</h4>
+                <p>The degree of \(\tan^{-1}(y/x)\) is:</p>
+                <ul class="options">
+                    <li>a. 1</li>
+                    <li>b. −1</li>
+                    <li>c. 0</li>
+                    <li>d. 2</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq11">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq11">
+                    <strong>Answer: c. 0</strong>
+                    <p>Functions of y/x (or x/y) are homogeneous of degree 0.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 12.</h4>
+                <p>If \(z = x^3 - 3x^2y\), then \(x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y}\) equals:</p>
+                <ul class="options">
+                    <li>a. \(2z\)</li>
+                    <li>b. \(3z\)</li>
+                    <li>c. \(z\)</li>
+                    <li>d. \(4z\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq12">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq12">
+                    <strong>Answer: b. \(3z\)</strong>
+                    <p>z is homogeneous of degree 3 (x³ has deg 3, 3x²y has deg 2+1=3). By Euler's theorem: x·zₓ + y·zᵧ = nz = 3z</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 13.</h4>
+                <p>If \(z = x^2 + 2xy\), then \(\frac{\partial z}{\partial y}\) is:</p>
+                <ul class="options">
+                    <li>a. \(2x + 2y\)</li>
+                    <li>b. \(2x\)</li>
+                    <li>c. \(2y\)</li>
+                    <li>d. \(x^2 + 2x\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq13">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq13">
+                    <strong>Answer: b. \(2x\)</strong>
+                    <p>∂/∂y(x²) = 0 (x² is constant w.r.t. y), ∂/∂y(2xy) = 2x. Total = 2x</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 14.</h4>
+                <p>For \(f_{xy} = f_{yx}\) to hold, the function must be:</p>
+                <ul class="options">
+                    <li>a. Homogeneous</li>
+                    <li>b. Continuous with continuous partial derivatives</li>
+                    <li>c. Linear</li>
+                    <li>d. Always true for all functions</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq14">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq14">
+                    <strong>Answer: b. Continuous with continuous partial derivatives</strong>
+                    <p>This is Clairaut's theorem — mixed partials are equal if the function has continuous second partial derivatives.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 15.</h4>
+                <p>If \(z = \ln(x^2 + y^2)\), then \(\frac{\partial z}{\partial x}\) is:</p>
+                <ul class="options">
+                    <li>a. \(\frac{2x}{x^2 + y^2}\)</li>
+                    <li>b. \(\frac{1}{x^2 + y^2}\)</li>
+                    <li>c. \(\frac{x}{x^2 + y^2}\)</li>
+                    <li>d. \(\frac{2}{x}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq15">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq15">
+                    <strong>Answer: a. \(\frac{2x}{x^2 + y^2}\)</strong>
+                    <p>Using chain rule: ∂/∂x[ln(x²+y²)] = 1/(x²+y²) · 2x = 2x/(x²+y²)</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 9 : Q&A BANK                                          -->
+<!-- ============================================================== -->
+<section class="section" id="qa-bank">
+    <h2 class="section-title">
+        <i class="fas fa-file-lines"></i> Short & Long Answer Questions
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3><i class="fas fa-pen"></i> Short Answer Questions (2–3 Marks)</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q1.</strong> Define partial derivative with an example.</p>
+            <button class="toggle-btn" data-target="sa1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa1">
+                <p><strong>Answer:</strong> A partial derivative of a function of two or more variables is the derivative with respect to one variable, treating all other variables as constants.</p>
+                <p><strong>Example:</strong> If z = x² + xy + y², then:</p>
+                <p>∂z/∂x = 2x + y (treating y as constant)</p>
+                <p>∂z/∂y = x + 2y (treating x as constant)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q2.</strong> What is a homogeneous function? Give an example.</p>
+            <button class="toggle-btn" data-target="sa2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa2">
+                <p><strong>Answer:</strong> A function f(x, y) is called homogeneous of degree n if f(λx, λy) = λⁿf(x, y) for all values of λ.</p>
+                <p><strong>Example:</strong> f(x, y) = x³ + y³ is homogeneous of degree 3.</p>
+                <p>Verification: f(λx, λy) = (λx)³ + (λy)³ = λ³(x³ + y³) = λ³f(x, y) ✓</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q3.</strong> State Euler's theorem on homogeneous functions.</p>
+            <button class="toggle-btn" data-target="sa3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa3">
+                <p><strong>Answer:</strong> If z = f(x, y) is a homogeneous function of degree n in x and y, then:</p>
+                <p>\[x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz\]</p>
+                <p>This means the sum of x times partial derivative w.r.t. x and y times partial derivative w.r.t. y equals n times the function itself.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q4.</strong> Find ∂z/∂x and ∂z/∂y if z = x²y + xy².</p>
+            <button class="toggle-btn" data-target="sa4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa4">
+                <p><strong>Answer:</strong></p>
+                <p>∂z/∂x = 2xy + y² (differentiating w.r.t. x, y constant)</p>
+                <p>∂z/∂y = x² + 2xy (differentiating w.r.t. y, x constant)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q5.</strong> Find the degree of homogeneity of \(u = \frac{x^2 - y^2}{x + y}\).</p>
+            <button class="toggle-btn" data-target="sa5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa5">
+                <p><strong>Answer:</strong></p>
+                <p>Degree of numerator (x² − y²) = 2</p>
+                <p>Degree of denominator (x + y) = 1</p>
+                <p>Degree of u = 2 − 1 = <strong>1</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q6.</strong> What is the difference between ∂ and d?</p>
+            <button class="toggle-btn" data-target="sa6"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa6">
+                <p><strong>Answer:</strong></p>
+                <ul>
+                    <li><strong>d (ordinary derivative):</strong> Used for functions of one variable, e.g., dy/dx for y = f(x)</li>
+                    <li><strong>∂ (partial derivative):</strong> Used for functions of two or more variables, e.g., ∂z/∂x for z = f(x, y)</li>
+                </ul>
+                <p>∂ indicates that other variables are held constant during differentiation.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q7.</strong> Find ∂z/∂x if z = e^(x+y).</p>
+            <button class="toggle-btn" data-target="sa7"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa7">
+                <p><strong>Answer:</strong></p>
+                <p>Using chain rule:</p>
+                <p>∂z/∂x = e^(x+y) · ∂(x+y)/∂x = e^(x+y) · 1 = <strong>e^(x+y)</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q8.</strong> Is f(x, y) = x² + 3x + y² homogeneous? Justify.</p>
+            <button class="toggle-btn" data-target="sa8"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa8">
+                <p><strong>Answer:</strong> <strong>No</strong>, f(x, y) = x² + 3x + y² is NOT homogeneous.</p>
+                <p><strong>Reason:</strong></p>
+                <ul>
+                    <li>Term x²: degree = 2</li>
+                    <li>Term 3x: degree = 1</li>
+                    <li>Term y²: degree = 2</li>
+                </ul>
+                <p>Since all terms don't have the same degree, the function is not homogeneous.</p>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks)</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q9.</strong> Verify Euler's theorem for z = x³ + 3x²y + 3xy² + y³. [5 marks]</p>
+            <button class="toggle-btn" data-target="la1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la1">
+                <p><strong>Solution:</strong></p>
+                <p><strong>Step 1:</strong> Check homogeneity</p>
+                <p>All terms: x³ (deg 3), 3x²y (deg 3), 3xy² (deg 3), y³ (deg 3)</p>
+                <p>z is homogeneous of degree <strong>n = 3</strong></p>
+                
+                <p><strong>Step 2:</strong> Find partial derivatives</p>
+                <p>∂z/∂x = 3x² + 6xy + 3y²</p>
+                <p>∂z/∂y = 3x² + 6xy + 3y²</p>
+                
+                <p><strong>Step 3:</strong> Calculate LHS</p>
+                <p>x·∂z/∂x + y·∂z/∂y</p>
+                <p>= x(3x² + 6xy + 3y²) + y(3x² + 6xy + 3y²)</p>
+                <p>= 3x³ + 6x²y + 3xy² + 3x²y + 6xy² + 3y³</p>
+                <p>= 3x³ + 9x²y + 9xy² + 3y³</p>
+                <p>= 3(x³ + 3x²y + 3xy² + y³)</p>
+                
+                <p><strong>Step 4:</strong> Calculate RHS</p>
+                <p>nz = 3(x³ + 3x²y + 3xy² + y³)</p>
+                
+                <p><strong>Step 5:</strong> LHS = RHS</p>
+                <p><strong>Hence, Euler's theorem is verified. ✓</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q10.</strong> If u = log(x³ + y³ - x²y - xy²), find x·∂u/∂x + y·∂u/∂y. [6 marks]</p>
+            <button class="toggle-btn" data-target="la2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la2">
+                <p><strong>Solution:</strong></p>
+                <p>Let v = x³ + y³ - x²y - xy², so u = log(v)</p>
+                
+                <p><strong>Check degree of v:</strong></p>
+                <p>x³ (deg 3), y³ (deg 3), x²y (deg 3), xy² (deg 3)</p>
+                <p>v is homogeneous of degree 3</p>
+                
+                <p><strong>By Euler's theorem for v:</strong></p>
+                <p>x·∂v/∂x + y·∂v/∂y = 3v</p>
+                
+                <p><strong>Now, u = log(v):</strong></p>
+                <p>∂u/∂x = (1/v)·∂v/∂x</p>
+                <p>∂u/∂y = (1/v)·∂v/∂y</p>
+                
+                <p><strong>Therefore:</strong></p>
+                <p>x·∂u/∂x + y·∂u/∂y = x·(1/v)·∂v/∂x + y·(1/v)·∂v/∂y</p>
+                <p>= (1/v)(x·∂v/∂x + y·∂v/∂y)</p>
+                <p>= (1/v)(3v)</p>
+                <p>= <strong>3</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q11.</strong> If z = x⁴ + x³y + xy³ + y⁴, verify that ∂²z/∂x∂y = ∂²z/∂y∂x. [5 marks]</p>
+            <button class="toggle-btn" data-target="la3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la3">
+                <p><strong>Solution:</strong></p>
+                <p><strong>Method 1: Find ∂²z/∂x∂y</strong></p>
+                <p>First: ∂z/∂y = x³ + 3xy² + 4y³</p>
+                <p>Then: ∂²z/∂x∂y = ∂/∂x(x³ + 3xy² + 4y³) = 3x² + 3y²</p>
+                
+                <p><strong>Method 2: Find ∂²z/∂y∂x</strong></p>
+                <p>First: ∂z/∂x = 4x³ + 3x²y + y³</p>
+                <p>Then: ∂²z/∂y∂x = ∂/∂y(4x³ + 3x²y + y³) = 3x² + 3y²</p>
+                
+                <p><strong>Conclusion:</strong></p>
+                <p>∂²z/∂x∂y = ∂²z/∂y∂x = 3x² + 3y²</p>
+                <p><strong>Hence verified. ✓</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q12.</strong> Find all first and second order partial derivatives of z = x³y + xy³. [6 marks]</p>
+            <button class="toggle-btn" data-target="la4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la4">
+                <p><strong>Solution:</strong></p>
+                <p><strong>First Order Partial Derivatives:</strong></p>
+                <p>∂z/∂x = 3x²y + y³</p>
+                <p>∂z/∂y = x³ + 3xy²</p>
+                
+                <p><strong>Second Order Partial Derivatives:</strong></p>
+                <p>∂²z/∂x² = ∂/∂x(3x²y + y³) = 6xy</p>
+                <p>∂²z/∂y² = ∂/∂y(x³ + 3xy²) = 6xy</p>
+                <p>∂²z/∂x∂y = ∂/∂x(x³ + 3xy²) = 3x² + 3y²</p>
+                <p>∂²z/∂y∂x = ∂/∂y(3x²y + y³) = 3x² + 3y²</p>
+                
+                <p><strong>Note:</strong> ∂²z/∂x∂y = ∂²z/∂y∂x = 3x² + 3y² (Clairaut's theorem verified)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q13.</strong> If u = sin⁻¹[(x² + y²)/(x + y)], find x·∂u/∂x + y·∂u/∂y. [6 marks]</p>
+            <button class="toggle-btn" data-target="la5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la5">
+                <p><strong>Solution:</strong></p>
+                <p>Let v = (x² + y²)/(x + y), so u = sin⁻¹(v)</p>
+                
+                <p><strong>Degree of v:</strong></p>
+                <p>Degree of numerator = 2, Degree of denominator = 1</p>
+                <p>Degree of v = 2 - 1 = 1</p>
+                
+                <p><strong>By Euler's theorem for v:</strong></p>
+                <p>x·∂v/∂x + y·∂v/∂y = 1·v = v</p>
+                
+                <p><strong>For u = sin⁻¹(v):</strong></p>
+                <p>∂u/∂x = 1/√(1-v²) · ∂v/∂x</p>
+                <p>∂u/∂y = 1/√(1-v²) · ∂v/∂y</p>
+                
+                <p><strong>Therefore:</strong></p>
+                <p>x·∂u/∂x + y·∂u/∂y = 1/√(1-v²) · (x·∂v/∂x + y·∂v/∂y)</p>
+                <p>= 1/√(1-v²) · v</p>
+                <p>= v/√(1-v²)</p>
+                <p>= <strong>tan u</strong> (since if u = sin⁻¹v, then v = sin u, and v/√(1-v²) = tan u)</p>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-calculator"></i> Numerical Problems</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q14.</strong> If z = x³ - 3xy², find ∂z/∂x and ∂z/∂y at (1, 2). [4 marks]</p>
+            <button class="toggle-btn" data-target="num1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num1">
+                <p><strong>Solution:</strong></p>
+                <p>∂z/∂x = 3x² - 3y² = 3(1)² - 3(2)² = 3 - 12 = <strong>-9</strong></p>
+                <p>∂z/∂y = -6xy = -6(1)(2) = <strong>-12</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q15.</strong> Find the degree of f(x,y) = (x⁴ + y⁴)/(x² + y²). [3 marks]</p>
+            <button class="toggle-btn" data-target="num2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num2">
+                <p><strong>Solution:</strong></p>
+                <p>Degree of numerator = 4</p>
+                <p>Degree of denominator = 2</p>
+                <p>Degree of f = 4 - 2 = <strong>2</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q16.</strong> If z = e^(2x+3y), find ∂z/∂x and ∂z/∂y. [4 marks]</p>
+            <button class="toggle-btn" data-target="num3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num3">
+                <p><strong>Solution:</strong></p>
+                <p>∂z/∂x = e^(2x+3y) · ∂(2x+3y)/∂x = e^(2x+3y) · 2 = <strong>2e^(2x+3y)</strong></p>
+                <p>∂z/∂y = e^(2x+3y) · ∂(2x+3y)/∂y = e^(2x+3y) · 3 = <strong>3e^(2x+3y)</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q17.</strong> Using Euler's theorem, find x·∂z/∂x + y·∂z/∂y if z = x² + 2xy + y². [4 marks]</p>
+            <button class="toggle-btn" data-target="num4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num4">
+                <p><strong>Solution:</strong></p>
+                <p>Check: x² (deg 2), 2xy (deg 2), y² (deg 2)</p>
+                <p>z is homogeneous of degree n = 2</p>
+                <p>By Euler's theorem:</p>
+                <p>x·∂z/∂x + y·∂z/∂y = nz = <strong>2(x² + 2xy + y²) = 2(x + y)²</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q18.</strong> If u = (x + y)/(x - y), find ∂u/∂x at x = 2, y = 1. [4 marks]</p>
+            <button class="toggle-btn" data-target="num5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num5">
+                <p><strong>Solution:</strong></p>
+                <p>Using quotient rule:</p>
+                <p>∂u/∂x = [(x-y)(1) - (x+y)(1)] / (x-y)²</p>
+                <p>= (x - y - x - y) / (x-y)²</p>
+                <p>= -2y / (x-y)²</p>
+                <p>At x = 2, y = 1:</p>
+                <p>∂u/∂x = -2(1) / (2-1)² = -2/1 = <strong>-2</strong></p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 10 : QUICK REVISION                                   -->
+<!-- ============================================================== -->
+<section class="section" id="revision">
+    <h2 class="section-title">
+        <i class="fas fa-bolt"></i> Quick Revision — Unit Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-book-open"></i> Complete Unit Summary</div>
+
+            <h4>📌 5.1 Partial Derivative Basics</h4>
+            <ul>
+                <li><strong>Definition:</strong> Derivative of function of multiple variables w.r.t. one variable, keeping others constant</li>
+                <li><strong>Notation:</strong> ∂z/∂x, fₓ, zₓ (curly d, not straight d)</li>
+                <li><strong>Rule:</strong> To find ∂z/∂x — treat y as constant, differentiate w.r.t. x normally</li>
+            </ul>
+
+            <h4>📌 5.2 Evaluating Partial Derivatives</h4>
+            <ul>
+                <li>Use standard differentiation rules (power, chain, product, quotient)</li>
+                <li>Remember: constant × variable differentiation</li>
+                <li>Second order: ∂²z/∂x², ∂²z/∂y², ∂²z/∂x∂y</li>
+                <li><strong>Clairaut's Theorem:</strong> ∂²z/∂x∂y = ∂²z/∂y∂x</li>
+            </ul>
+
+            <h4>📌 5.3 Homogeneous Functions</h4>
+            <ul>
+                <li><strong>Definition:</strong> f(λx, λy) = λⁿf(x, y)</li>
+                <li><strong>Polynomial:</strong> All terms must have same total degree</li>
+                <li><strong>Fraction:</strong> Degree = deg(numerator) − deg(denominator)</li>
+                <li><strong>Power:</strong> Degree = k × deg(expression) for [f]^k</li>
+                <li><strong>Functions of y/x:</strong> Degree = 0</li>
+            </ul>
+
+            <h4>📌 5.4 Euler's Theorem (MOST IMPORTANT!)</h4>
+            <div class="formula">
+                \[ \boxed{x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = nz} \]
+            </div>
+            <ul>
+                <li>Applies only to homogeneous functions</li>
+                <li>n = degree of homogeneity</li>
+                <li>Can use to find x·zₓ + y·zᵧ without actually computing derivatives!</li>
+            </ul>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-exclamation-circle"></i> Don't Forget in Exam!</div>
+            <ol>
+                <li>Use <strong>∂</strong> (curly d) for partial derivatives, not d</li>
+                <li>When differentiating w.r.t. x, <strong>y is treated as constant</strong> (and vice versa)</li>
+                <li>Always <strong>check homogeneity</strong> before applying Euler's theorem</li>
+                <li>For fractions, degree = (numerator degree) − (denominator degree)</li>
+                <li>For √(x²+y²), degree = ½ × 2 = 1</li>
+                <li>tan⁻¹(y/x), ln(x/y), sin(y/x) → <strong>degree = 0</strong></li>
+            </ol>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Last Minute Tips</div>
+            <ul>
+                <li>🔥 <strong>Most important:</strong> Euler's theorem verification problems</li>
+                <li>✍️ <strong>Show all steps:</strong> Check homogeneity → Find derivatives → Calculate LHS → Calculate RHS → Compare</li>
+                <li>⚠️ <strong>Common mistake:</strong> Forgetting to multiply by x and y in Euler's theorem</li>
+                <li>📐 <strong>Quick check:</strong> For polynomial, add powers in each term — if all same, it's homogeneous</li>
+                <li>🎯 <strong>Box your final answer</strong> for easy marking</li>
+            </ul>
+        </div>
+
+        <div class="workshop-box">
+            <div class="box-title"><i class="fas fa-industry"></i> Engineering Applications</div>
+            <ul>
+                <li><strong>Heat Transfer:</strong> Temperature distribution T(x, y, t) — partial derivatives give rate of change in each direction</li>
+                <li><strong>Fluid Mechanics:</strong> Velocity fields, pressure distributions</li>
+                <li><strong>Electrical:</strong> Potential functions in electric fields</li>
+                <li><strong>Structural:</strong> Stress and strain analysis in materials</li>
+                <li><strong>Economics:</strong> Marginal cost, marginal utility (partial derivatives of cost functions)</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-check-double"></i> Quick Formula Card</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Topic</th><th>Formula/Rule</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Partial derivative (x)</td>
+                            <td>∂z/∂x — differentiate w.r.t. x, y = constant</td>
+                        </tr>
+                        <tr>
+                            <td>Partial derivative (y)</td>
+                            <td>∂z/∂y — differentiate w.r.t. y, x = constant</td>
+                        </tr>
+                        <tr>
+                            <td>Mixed partials</td>
+                            <td>∂²z/∂x∂y = ∂²z/∂y∂x</td>
+                        </tr>
+                        <tr>
+                            <td>Homogeneous function</td>
+                            <td>f(λx, λy) = λⁿf(x, y)</td>
+                        </tr>
+                        <tr>
+                            <td>Euler's Theorem</td>
+                            <td>x·∂z/∂x + y·∂z/∂y = nz</td>
+                        </tr>
+                        <tr>
+                            <td>Degree (fraction)</td>
+                            <td>deg(num) − deg(denom)</td>
+                        </tr>
+                        <tr>
+                            <td>Degree (power)</td>
+                            <td>k × deg(base)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</div> <!-- End Container -->
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

@@ -1,391 +1,2422 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Mathematics · Unit 3 · Integral Calculus</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- MathJax for LaTeX rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: calculus / integration / blue-orange -->
-  <style>
-    :root {
-      --primary: #1e6f9f;          /* integral blue */
-      --primary-light: #3a8fc2;
-      --accent: #f97316;            /* integration orange */
-      --accent-light: #fb923c;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #0a3b5a, #1e6f9f, #f97316);
-    }
-    /* header emoji: calculus symbols */
-    .header::after {
-      content: "∫📊📈📉";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* formula cards */
-    .formula-card {
-      background: var(--formula-bg);
-      padding: 15px;
-      border-radius: var(--radius-md);
-      border-left: 5px solid var(--accent);
-      margin: 15px 0;
-    }
-    .mjx-chtml {
-      font-size: 1.1rem !important;
-    }
-    .integral-sign {
-      font-size: 1.8rem;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3 - Integral Calculus | Engg. Mathematics-II</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Integral') ? 'Show Integral' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Integral') ? 'Hide Integral' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .std-integral-table td { vertical-align:middle; padding:10px 14px !important; }
+        .std-integral-table tr:nth-child(odd) { background:var(--formula-bg); }
+        [data-theme="dark"] .std-integral-table tr:nth-child(odd) { background:rgba(41,98,255,0.08); }
+
+        .method-card {
+            background: var(--card-bg); border:1px solid var(--border-color);
+            border-radius: var(--radius-md); padding:18px; margin:14px 0;
+            border-left: 4px solid var(--purple);
+        }
+        [data-theme="dark"] .method-card { background:#1a2332; }
+        .method-card h4 { color:var(--purple); margin-bottom:10px; }
+
+        .step-method {
+            background: var(--formula-bg); border-radius:var(--radius-sm);
+            padding:16px; margin:12px 0; border-left:3px solid var(--success);
+        }
+        [data-theme="dark"] .step-method { background:#1a2332; }
+
+        .outcome-grid { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+        .outcome-badge {
+            background:linear-gradient(135deg,var(--primary),var(--primary-light));
+            color:#fff; padding:8px 16px; border-radius:20px; font-size:0.88rem;
+        }
+
+        .MathJax { overflow-x:auto !important; overflow-y:hidden !important; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>∫ Mathematics · Unit 3 ∫</h1>
-      <h2>Integral Calculus</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-infinity"></i> Indefinite Integral</span>
-        <span class="info-item"><i class="fas fa-chart-area"></i> Definite Integral</span>
-        <span class="info-item"><i class="fas fa-cube"></i> Applications</span>
-      </div>
+        <h1><i class="fas fa-integral"></i> Integral Calculus</h1>
+        <h2>Unit 3 — Engineering Mathematics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS102/M-II</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 3</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-clock"></i> 15 Hours</span>
+            <span class="info-item"><i class="fas fa-star"></i> Group B</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-infinity"></i> MATH·UNIT3</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#indefinite"><i class="fas fa-infinity"></i> Indefinite</a>
-        <a href="#definite"><i class="fas fa-chart-area"></i> Definite</a>
-        <a href="#applications"><i class="fas fa-cube"></i> Applications</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>∫ Math-II U3</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#definition"><i class="fas fa-book"></i> Definition</a>
+            <a href="#rules"><i class="fas fa-list-check"></i> Rules</a>
+            <a href="#standard"><i class="fas fa-table"></i> Std Integrals</a>
+            <a href="#substitution"><i class="fas fa-exchange-alt"></i> Substitution</a>
+            <a href="#byparts"><i class="fas fa-puzzle-piece"></i> By Parts</a>
+            <a href="#partial"><i class="fas fa-divide"></i> Partial Frac</a>
+            <a href="#definite"><i class="fas fa-arrows-alt-h"></i> Definite</a>
+            <a href="#properties"><i class="fas fa-cogs"></i> Properties</a>
+            <a href="#app-area"><i class="fas fa-chart-area"></i> Area</a>
+            <a href="#app-volume"><i class="fas fa-cube"></i> Volume</a>
+            <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+            <a href="#comparisons"><i class="fas fa-scale-balanced"></i> Compare</a>
+            <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+            <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+            <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-infinity"></i> MATH Unit 3</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>∫ Math-II U3</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#indefinite"><i class="fas fa-infinity"></i> Indefinite: definition, rules, standard integrals, substitution, parts, partial fractions</a>
-      <a href="#definite"><i class="fas fa-chart-area"></i> Definite: definition, properties, problems</a>
-      <a href="#applications"><i class="fas fa-cube"></i> Area, volume (x & y axis), surface area</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#definition"><i class="fas fa-book"></i> Definition</a>
+        <a href="#rules"><i class="fas fa-list-check"></i> Rules</a>
+        <a href="#standard"><i class="fas fa-table"></i> Std Integrals</a>
+        <a href="#substitution"><i class="fas fa-exchange-alt"></i> Substitution</a>
+        <a href="#byparts"><i class="fas fa-puzzle-piece"></i> By Parts</a>
+        <a href="#partial"><i class="fas fa-divide"></i> Partial Frac</a>
+        <a href="#definite"><i class="fas fa-arrows-alt-h"></i> Definite</a>
+        <a href="#properties"><i class="fas fa-cogs"></i> Properties</a>
+        <a href="#app-area"><i class="fas fa-chart-area"></i> Area</a>
+        <a href="#app-volume"><i class="fas fa-cube"></i> Volume</a>
+        <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+        <a href="#comparisons"><i class="fas fa-scale-balanced"></i> Compare</a>
+        <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+        <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+        <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: INDEFINITE INTEGRAL ========= -->
-    <section id="indefinite" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-infinity"></i> Indefinite Integral: Definition, Rules, Methods
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+<div class="container">
+
+<!-- ============================================================== -->
+<!--  SECTION 1 : UNIT OVERVIEW                                     -->
+<!-- ============================================================== -->
+<section class="section" id="overview">
+    <h2 class="section-title">
+        <i class="fas fa-info-circle"></i> Unit Overview
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-bullseye"></i> What This Unit Covers</div>
+            <p><strong>Integration</strong> is one of the two fundamental operations in calculus (the other being differentiation). If differentiation is about finding the <em>rate of change</em>, integration is about finding the <em>total accumulation</em>.</p>
+            <p><strong>Real-world analogy:</strong> If speed tells you how fast you're going (differentiation), then integration tells you <em>how far you've traveled</em> by adding up all those tiny speed × time pieces.</p>
+            <p>This unit covers:</p>
+            <ul>
+                <li>🔄 <strong>Indefinite Integration</strong> — Finding anti-derivatives (reverse of differentiation)</li>
+                <li>📊 <strong>Definite Integration</strong> — Finding the exact numerical value between two limits</li>
+                <li>📐 <strong>Applications</strong> — Area under curves, Volume & Surface area of solids of revolution</li>
+            </ul>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Exam Importance</div>
+            <p>This unit is <strong>Group B</strong> — it has its own separate group with at least <strong>20 marks</strong> allocated!</p>
+            <ul>
+                <li>At least <strong>5 objective questions</strong> from Group B</li>
+                <li>At least one <strong>10-mark subjective question</strong></li>
+                <li>Most common: Integration by parts, by substitution, definite integral evaluation, area under curves</li>
+            </ul>
+        </div>
+
+        <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+        <div class="outcome-grid">
+            <span class="outcome-badge">📌 Understand integration as anti-derivative</span>
+            <span class="outcome-badge">📌 Apply standard integral formulas</span>
+            <span class="outcome-badge">📌 Use substitution method</span>
+            <span class="outcome-badge">📌 Apply integration by parts</span>
+            <span class="outcome-badge">📌 Use partial fractions</span>
+            <span class="outcome-badge">📌 Evaluate definite integrals</span>
+            <span class="outcome-badge">📌 Find area under curves</span>
+            <span class="outcome-badge">📌 Find volume of revolution</span>
+        </div>
+
+        <h3><i class="fas fa-book-open"></i> Prerequisites</h3>
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> What You Must Know Before This Unit</div>
+            <ul>
+                <li><strong>Differentiation</strong> from Mathematics-I (MUST KNOW!)</li>
+                <li>Derivatives of: \(x^n, e^x, \sin x, \cos x, \tan x, \log x\)</li>
+                <li>Chain rule of differentiation</li>
+                <li>Basic algebra: factoring, partial fractions</li>
+                <li>Trigonometric identities: \(\sin^2 x + \cos^2 x = 1\), double angle formulas, etc.</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 2 : DEFINITION OF INTEGRATION (3.1.1)                 -->
+<!-- ============================================================== -->
+<section class="section" id="definition">
+    <h2 class="section-title">
+        <i class="fas fa-book"></i> 3.1.1 Definition of Integration
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Integration as Inverse of Differentiation</div>
-          <p>If \( \frac{d}{dx}F(x) = f(x) \), then \( \int f(x) \, dx = F(x) + C \), where \( C \) is constant of integration.</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Integration (Anti-Derivative)</div>
+            <p>Integration is the <strong>inverse (reverse) process of differentiation</strong>.</p>
+            <p>If \(\frac{d}{dx}[F(x)] = f(x)\), then the integral of \(f(x)\) with respect to \(x\) is \(F(x)\).</p>
+            <p>We write:</p>
+            <div class="formula">
+                \[ \int f(x)\, dx = F(x) + C \]
+            </div>
+            <p><strong>Where:</strong></p>
+            <ul>
+                <li>\(\int\) — integral sign (elongated S, stands for "sum")</li>
+                <li>\(f(x)\) — the <strong>integrand</strong> (function to be integrated)</li>
+                <li>\(dx\) — indicates integration is with respect to variable \(x\)</li>
+                <li>\(F(x)\) — the <strong>anti-derivative</strong> (or integral)</li>
+                <li>\(C\) — <strong>constant of integration</strong> (an arbitrary constant)</li>
+            </ul>
         </div>
 
-        <div class="card-grid">
-          <div class="card">
-            <h4>Sum Rule</h4>
-            \( \int [f(x) + g(x)] \, dx = \int f(x) \, dx + \int g(x) \, dx \)
-          </div>
-          <div class="card">
-            <h4>Difference Rule</h4>
-            \( \int [f(x) - g(x)] \, dx = \int f(x) \, dx - \int g(x) \, dx \)
-          </div>
-          <div class="card">
-            <h4>Scalar Multiple Rule</h4>
-            \( \int k f(x) \, dx = k \int f(x) \, dx \)
-          </div>
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Why the Constant C?</div>
+            <p>When we differentiate, any constant disappears (its derivative is 0). So when we go backwards (integrate), we don't know what constant was originally there.</p>
+            <p>Example:</p>
+            <ul>
+                <li>\(\frac{d}{dx}(x^2) = 2x\)</li>
+                <li>\(\frac{d}{dx}(x^2 + 5) = 2x\)</li>
+                <li>\(\frac{d}{dx}(x^2 - 100) = 2x\)</li>
+            </ul>
+            <p>All three give the same derivative \(2x\). So \(\int 2x\,dx = x^2 + C\), where C could be any number.</p>
+            <p><strong>Never forget to write + C in indefinite integrals!</strong></p>
         </div>
 
-        <div class="formula-card">
-          <div class="box-title">Integration of Standard Functions</div>
-          <div class="tag-grid">
-            <div class="tag">\( \int x^n dx = \frac{x^{n+1}}{n+1} + C \ (n \neq -1) \)</div>
-            <div class="tag">\( \int \frac{1}{x} dx = \ln|x| + C \)</div>
-            <div class="tag">\( \int e^x dx = e^x + C \)</div>
-            <div class="tag">\( \int a^x dx = \frac{a^x}{\ln a} + C \)</div>
-            <div class="tag">\( \int \sin x dx = -\cos x + C \)</div>
-            <div class="tag">\( \int \cos x dx = \sin x + C \)</div>
-            <div class="tag">\( \int \sec^2 x dx = \tan x + C \)</div>
-            <div class="tag">\( \int \csc^2 x dx = -\cot x + C \)</div>
-            <div class="tag">\( \int \sec x \tan x dx = \sec x + C \)</div>
-            <div class="tag">\( \int \csc x \cot x dx = -\csc x + C \)</div>
-            <div class="tag">\( \int \frac{1}{\sqrt{1-x^2}} dx = \sin^{-1}x + C \)</div>
-            <div class="tag">\( \int \frac{1}{1+x^2} dx = \tan^{-1}x + C \)</div>
-          </div>
-        </div>
+        <a href="https://www.google.com/search?tbm=isch&q=integration+as+inverse+of+differentiation+diagram+calculus" target="_blank" rel="noopener" class="figure-link">
+            <div class="diagram-placeholder">
+                <i class="fas fa-image"></i>
+                <p><strong>Fig. 3.1:</strong> Integration as the inverse process of differentiation</p>
+                <span class="click-hint">🔍 Click to view on Google Images</span>
+            </div>
+        </a>
 
-        <div class="definition-box">
-          <div class="box-title">Integration by Substitution</div>
-          <p>If \( u = g(x) \), then \( \int f(g(x)) g'(x) \, dx = \int f(u) \, du \).</p>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Integration by Parts</div>
-          <p>\( \int u \, dv = uv - \int v \, du \). Choose \( u \) according to LIATE order.</p>
-        </div>
-
-        <div class="definition-box">
-          <div class="box-title">Integration by Partial Fractions</div>
-          <p>For rational functions \( \frac{P(x)}{Q(x)} \), decompose into simpler fractions before integrating.</p>
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Differentiation ↔ Integration</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>If differentiation gives...</th><th>Then integration gives...</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>\(\frac{d}{dx}(x^3) = 3x^2\)</td><td>\(\int 3x^2\,dx = x^3 + C\)</td></tr>
+                        <tr><td>\(\frac{d}{dx}(\sin x) = \cos x\)</td><td>\(\int \cos x\,dx = \sin x + C\)</td></tr>
+                        <tr><td>\(\frac{d}{dx}(e^x) = e^x\)</td><td>\(\int e^x\,dx = e^x + C\)</td></tr>
+                        <tr><td>\(\frac{d}{dx}(\ln x) = \frac{1}{x}\)</td><td>\(\int \frac{1}{x}\,dx = \ln|x| + C\)</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: Substitution</div>
-          <p>Evaluate \( \int 2x e^{x^2} \, dx \).</p>
-          <button class="toggle-btn" data-target="indef1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="indef1">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.1 — Basic Integration Concept</div>
+            <p>Find \(\int 5x^4\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>We know that \(\frac{d}{dx}(x^5) = 5x^4\).</p>
+            <p>Therefore, \(\int 5x^4\,dx = x^5 + C\).</p>
             <div class="formula answer">
-              Let \( u = x^2 \), \( du = 2x dx \)<br>
-              \( \int 2x e^{x^2} dx = \int e^u du = e^u + C = e^{x^2} + C \)
+                \[ \int 5x^4\,dx = \boxed{x^5 + C} \]
             </div>
-          </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: Integration by Parts</div>
-          <p>Evaluate \( \int x \sin x \, dx \).</p>
-          <button class="toggle-btn" data-target="indef2"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="indef2">
-            <div class="formula answer">
-              Let \( u = x, dv = \sin x dx \)<br>
-              \( du = dx, v = -\cos x \)<br>
-              \( \int x \sin x dx = -x\cos x - \int (-\cos x) dx = -x\cos x + \sin x + C \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.2 — Verify by Differentiation</div>
+            <p>Verify that \(\int \cos x\,dx = \sin x + C\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Differentiate the result: \(\frac{d}{dx}(\sin x + C) = \cos x + 0 = \cos x\) ✓</p>
+            <p>Since differentiating the result gives back the integrand, the integration is correct.</p>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Tip — Always Verify!</div>
+            <p>You can always <strong>check your integration</strong> by differentiating the answer. If you get back the original function (integrand), your integration is correct!</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 3 : RULES FOR INTEGRATION (3.1.2)                     -->
+<!-- ============================================================== -->
+<section class="section" id="rules">
+    <h2 class="section-title">
+        <i class="fas fa-list-check"></i> 3.1.2 Rules for Integration
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-info-circle"></i> Three Basic Rules</div>
+            <p>Just like differentiation has rules for sum, difference, and scalar multiple, integration has the same three rules.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Rule 1 — Scalar Multiple Rule</div>
+            <div class="formula">
+                \[ \int k \cdot f(x)\,dx = k \int f(x)\,dx \]
             </div>
-          </div>
+            <p>A constant multiplier can be taken <strong>outside</strong> the integral sign.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Rule 2 — Sum Rule</div>
+            <div class="formula">
+                \[ \int [f(x) + g(x)]\,dx = \int f(x)\,dx + \int g(x)\,dx \]
+            </div>
+            <p>The integral of a sum equals the sum of the integrals.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Rule 3 — Difference Rule</div>
+            <div class="formula">
+                \[ \int [f(x) - g(x)]\,dx = \int f(x)\,dx - \int g(x)\,dx \]
+            </div>
+            <p>The integral of a difference equals the difference of the integrals.</p>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Important — No Product or Quotient Rule!</div>
+            <p>Unlike differentiation, there is <strong>NO direct product rule or quotient rule</strong> for integration.</p>
+            <ul>
+                <li>\(\int f(x) \cdot g(x)\,dx \neq \int f(x)\,dx \times \int g(x)\,dx\) ❌</li>
+                <li>For products, we use <strong>Integration by Parts</strong> (Section 3.1.5)</li>
+                <li>For certain quotients, we use <strong>Partial Fractions</strong> (Section 3.1.6)</li>
+            </ul>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: Partial Fractions</div>
-          <p>Evaluate \( \int \frac{1}{x^2 - 1} dx \).</p>
-          <button class="toggle-btn" data-target="indef3"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="indef3">
-            <div class="formula answer">
-              \( \frac{1}{x^2-1} = \frac{1}{(x-1)(x+1)} = \frac{A}{x-1} + \frac{B}{x+1} \)<br>
-              Solving: \( A = \frac{1}{2}, B = -\frac{1}{2} \)<br>
-              \( \int \frac{dx}{x^2-1} = \frac{1}{2} \ln\left| \frac{x-1}{x+1} \right| + C \)
-            </div>
-          </div>
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.3 — Applying Rules</div>
+            <p>Evaluate: \(\int (3x^2 + 5x - 4)\,dx\)</p>
         </div>
-      </div>
-    </section>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Using sum/difference and scalar multiple rules:</p>
+            <p>\( = 3\int x^2\,dx + 5\int x\,dx - 4\int 1\,dx \)</p>
+            <p>\( = 3 \cdot \frac{x^3}{3} + 5 \cdot \frac{x^2}{2} - 4x + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{x^3 + \frac{5x^2}{2} - 4x + C} \]
+            </div>
+        </div>
 
-    <!-- ========== SECTION 2: DEFINITE INTEGRAL ========= -->
-    <section id="definite" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-area"></i> Definite Integral: Definition, Properties
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.4 — With Trigonometric Functions</div>
+            <p>Evaluate: \(\int (2\sin x + 3\cos x)\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( = 2\int \sin x\,dx + 3\int \cos x\,dx \)</p>
+            <p>\( = 2(-\cos x) + 3(\sin x) + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{-2\cos x + 3\sin x + C} \]
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 4 : STANDARD INTEGRALS (3.1.3)                        -->
+<!-- ============================================================== -->
+<section class="section" id="standard">
+    <h2 class="section-title">
+        <i class="fas fa-table"></i> 3.1.3 Integration of Standard Functions 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> MUST MEMORIZE!</div>
+            <p>These standard integrals are the <strong>building blocks</strong> of all integration problems. You MUST memorize every single formula in this table. Almost every exam problem uses one or more of these formulas.</p>
+        </div>
+
+        <h3>📌 Power Functions</h3>
+        <div class="table-wrapper">
+            <table class="data-table std-integral-table">
+                <thead>
+                    <tr><th>#</th><th>Function</th><th>Integral</th><th>Condition</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>\(\int x^n\,dx\)</td><td>\(\frac{x^{n+1}}{n+1} + C\)</td><td>\(n \neq -1\)</td></tr>
+                    <tr><td>2</td><td>\(\int x^{-1}\,dx = \int \frac{1}{x}\,dx\)</td><td>\(\ln|x| + C\)</td><td>\(x \neq 0\)</td></tr>
+                    <tr><td>3</td><td>\(\int 1\,dx\)</td><td>\(x + C\)</td><td>—</td></tr>
+                    <tr><td>4</td><td>\(\int 0\,dx\)</td><td>\(C\)</td><td>—</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📌 Exponential & Logarithmic</h3>
+        <div class="table-wrapper">
+            <table class="data-table std-integral-table">
+                <thead>
+                    <tr><th>#</th><th>Function</th><th>Integral</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>5</td><td>\(\int e^x\,dx\)</td><td>\(e^x + C\)</td></tr>
+                    <tr><td>6</td><td>\(\int e^{ax}\,dx\)</td><td>\(\frac{e^{ax}}{a} + C\)</td></tr>
+                    <tr><td>7</td><td>\(\int a^x\,dx\)</td><td>\(\frac{a^x}{\ln a} + C\) \((a > 0, a \neq 1)\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📌 Trigonometric Functions</h3>
+        <div class="table-wrapper">
+            <table class="data-table std-integral-table">
+                <thead>
+                    <tr><th>#</th><th>Function</th><th>Integral</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>8</td><td>\(\int \sin x\,dx\)</td><td>\(-\cos x + C\)</td></tr>
+                    <tr><td>9</td><td>\(\int \cos x\,dx\)</td><td>\(\sin x + C\)</td></tr>
+                    <tr><td>10</td><td>\(\int \sec^2 x\,dx\)</td><td>\(\tan x + C\)</td></tr>
+                    <tr><td>11</td><td>\(\int \csc^2 x\,dx\)</td><td>\(-\cot x + C\)</td></tr>
+                    <tr><td>12</td><td>\(\int \sec x \tan x\,dx\)</td><td>\(\sec x + C\)</td></tr>
+                    <tr><td>13</td><td>\(\int \csc x \cot x\,dx\)</td><td>\(-\csc x + C\)</td></tr>
+                    <tr><td>14</td><td>\(\int \tan x\,dx\)</td><td>\(\ln|\sec x| + C = -\ln|\cos x| + C\)</td></tr>
+                    <tr><td>15</td><td>\(\int \cot x\,dx\)</td><td>\(\ln|\sin x| + C\)</td></tr>
+                    <tr><td>16</td><td>\(\int \sec x\,dx\)</td><td>\(\ln|\sec x + \tan x| + C\)</td></tr>
+                    <tr><td>17</td><td>\(\int \csc x\,dx\)</td><td>\(\ln|\csc x - \cot x| + C\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📌 Inverse Trigonometric (Special Forms)</h3>
+        <div class="table-wrapper">
+            <table class="data-table std-integral-table">
+                <thead>
+                    <tr><th>#</th><th>Function</th><th>Integral</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>18</td><td>\(\int \frac{1}{\sqrt{1-x^2}}\,dx\)</td><td>\(\sin^{-1}x + C\)</td></tr>
+                    <tr><td>19</td><td>\(\int \frac{1}{1+x^2}\,dx\)</td><td>\(\tan^{-1}x + C\)</td></tr>
+                    <tr><td>20</td><td>\(\int \frac{1}{\sqrt{a^2 - x^2}}\,dx\)</td><td>\(\sin^{-1}\frac{x}{a} + C\)</td></tr>
+                    <tr><td>21</td><td>\(\int \frac{1}{a^2 + x^2}\,dx\)</td><td>\(\frac{1}{a}\tan^{-1}\frac{x}{a} + C\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Memory Trick for Trigonometric Integrals</div>
+            <ul>
+                <li><strong>sin → −cos</strong> (negative comes!)</li>
+                <li><strong>cos → +sin</strong> (positive)</li>
+                <li><strong>sec² → tan</strong> (because derivative of tan = sec²)</li>
+                <li><strong>cosec² → −cot</strong> (negative again for co-functions)</li>
+            </ul>
+            <p><strong>Pattern:</strong> "Co-functions" (cos, csc, cot) get <strong>negative signs</strong> when integrated.</p>
+        </div>
+
+        <h3>🔹 Solved Examples on Standard Integrals</h3>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.5 — Power Rule</div>
+            <p>Evaluate: \(\int (x^3 + 4x^2 - 7x + 2)\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( = \frac{x^4}{4} + 4 \cdot \frac{x^3}{3} - 7 \cdot \frac{x^2}{2} + 2x + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\frac{x^4}{4} + \frac{4x^3}{3} - \frac{7x^2}{2} + 2x + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.6 — Negative and Fractional Powers</div>
+            <p>Evaluate: \(\int \left(\sqrt{x} + \frac{1}{x^2}\right)\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Rewrite: \(\sqrt{x} = x^{1/2}\) and \(\frac{1}{x^2} = x^{-2}\)</p>
+            <p>\( = \int x^{1/2}\,dx + \int x^{-2}\,dx \)</p>
+            <p>\( = \frac{x^{3/2}}{3/2} + \frac{x^{-1}}{-1} + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\frac{2}{3}x^{3/2} - \frac{1}{x} + C} = \frac{2}{3}x\sqrt{x} - \frac{1}{x} + C \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.7 — Mixed Functions</div>
+            <p>Evaluate: \(\int \left(3e^x + \frac{5}{x} + 2\sec^2 x\right)\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="formula answer">
+                \[ = 3e^x + 5\ln|x| + 2\tan x + C \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.8 — Algebraic Manipulation Before Integration</div>
+            <p>Evaluate: \(\int \frac{x^2 + 3x + 1}{x}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Divide each term by x: \( = \int \left(x + 3 + \frac{1}{x}\right)\,dx \)</p>
+            <div class="formula answer">
+                \[ = \frac{x^2}{2} + 3x + \ln|x| + C \]
+            </div>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Tip</div>
+                <p>When the numerator has higher or equal degree to denominator, <strong>divide first, then integrate</strong>.</p>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.9 — Using Trigonometric Identities</div>
+            <p>Evaluate: \(\int \sin^2 x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>We can't integrate \(\sin^2 x\) directly. Use the identity:</p>
+            <p>\( \sin^2 x = \frac{1 - \cos 2x}{2} \)</p>
+            <p>\( \int \sin^2 x\,dx = \int \frac{1 - \cos 2x}{2}\,dx = \frac{1}{2}\int (1 - \cos 2x)\,dx \)</p>
+            <p>\( = \frac{1}{2}\left(x - \frac{\sin 2x}{2}\right) + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\frac{x}{2} - \frac{\sin 2x}{4} + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.10 — Similar: \(\cos^2 x\)</div>
+            <p>Evaluate: \(\int \cos^2 x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Using \(\cos^2 x = \frac{1 + \cos 2x}{2}\):</p>
+            <div class="formula answer">
+                \[ \int \cos^2 x\,dx = \boxed{\frac{x}{2} + \frac{\sin 2x}{4} + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.11 — Expand Then Integrate</div>
+            <p>Evaluate: \(\int (1 + x)^2\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Expand: \((1+x)^2 = 1 + 2x + x^2\)</p>
+            <div class="formula answer">
+                \[ \int (1 + 2x + x^2)\,dx = x + x^2 + \frac{x^3}{3} + C \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.12 — \(\int e^{3x}\,dx\)</div>
+            <p>Evaluate: \(\int e^{3x}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Using formula #6: \(\int e^{ax}\,dx = \frac{e^{ax}}{a} + C\)</p>
+            <div class="formula answer">
+                \[ \int e^{3x}\,dx = \boxed{\frac{e^{3x}}{3} + C} \]
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 5 : INTEGRATION BY SUBSTITUTION (3.1.4)               -->
+<!-- ============================================================== -->
+<section class="section" id="substitution">
+    <h2 class="section-title">
+        <i class="fas fa-exchange-alt"></i> 3.1.4 Integration by Substitution 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Definition</div>
-          <p>\( \int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^n f(x_i^*) \Delta x \), where \( \Delta x = \frac{b-a}{n} \).</p>
-          <p>If \( F'(x) = f(x) \), then \( \int_a^b f(x) dx = F(b) - F(a) \).</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> What is Integration by Substitution?</div>
+            <p>Integration by substitution is a method used when the integrand contains a <strong>composite function</strong> — a function inside another function. It is the reverse of the <strong>chain rule</strong> of differentiation.</p>
+            <p>The idea: Replace a complicated expression with a <strong>new variable</strong> (usually \(t\) or \(u\)) to simplify the integral.</p>
         </div>
 
-        <div class="formula-card">
-          <div class="box-title">Properties of Definite Integrals</div>
-          <ul>
-            <li>\( \int_a^b f(x) dx = -\int_b^a f(x) dx \)</li>
-            <li>\( \int_a^a f(x) dx = 0 \)</li>
-            <li>\( \int_a^b k f(x) dx = k \int_a^b f(x) dx \)</li>
-            <li>\( \int_a^b [f(x) \pm g(x)] dx = \int_a^b f(x) dx \pm \int_a^b g(x) dx \)</li>
-            <li>\( \int_a^b f(x) dx = \int_a^c f(x) dx + \int_c^b f(x) dx \)</li>
-            <li>\( \int_a^b f(x) dx = \int_a^b f(a+b-x) dx \)</li>
-          </ul>
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> General Substitution Formula</div>
+            <p>If we substitute \(u = g(x)\), then \(du = g'(x)\,dx\), and:</p>
+            <div class="formula">
+                \[ \int f(g(x)) \cdot g'(x)\,dx = \int f(u)\,du \]
+            </div>
+        </div>
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps for Integration by Substitution</div>
+            <div class="step" data-step="Step 1">
+                <p>Identify the "inner function" and let \(t = \text{inner function}\).</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Differentiate: find \(dt\) in terms of \(dx\) → \(\frac{dt}{dx} = \text{derivative of inner function}\), so \(dx = \frac{dt}{\text{derivative}}\).</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Replace all x-terms and dx in the integral with t-terms and dt.</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Integrate with respect to t (should now be a simple standard integral).</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>Substitute back: replace t with the original expression in x.</p>
+            </div>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Key Pattern to Recognize</div>
+            <p>Look for integrals of the form:</p>
+            <div class="formula">
+                \[ \int [f(x)]^n \cdot f'(x)\,dx = \frac{[f(x)]^{n+1}}{n+1} + C \]
+            </div>
+            <p>If the derivative of the "inner function" is present (or a constant multiple of it) as a factor, substitution will work!</p>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: Definite Integral</div>
-          <p>Evaluate \( \int_0^1 (x^2 + 2x) dx \).</p>
-          <button class="toggle-btn" data-target="def1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="def1">
-            <div class="formula answer">
-              \( \int_0^1 x^2 dx = \left[ \frac{x^3}{3} \right]_0^1 = \frac{1}{3} \)<br>
-              \( \int_0^1 2x dx = \left[ x^2 \right]_0^1 = 1 \)<br>
-              Total = \( \frac{1}{3} + 1 = \frac{4}{3} \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.13 — Basic Substitution ⭐</div>
+            <p>Evaluate: \(\int (2x+3)^5\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1">
+                <p>Let \(t = 2x + 3\)</p>
             </div>
-          </div>
+            <div class="step" data-step="Step 2">
+                <p>\(\frac{dt}{dx} = 2 \Rightarrow dx = \frac{dt}{2}\)</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>\( \int (2x+3)^5\,dx = \int t^5 \cdot \frac{dt}{2} = \frac{1}{2}\int t^5\,dt \)</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>\( = \frac{1}{2} \cdot \frac{t^6}{6} + C = \frac{t^6}{12} + C \)</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>Substitute back \(t = 2x + 3\):</p>
+                <div class="formula answer">
+                    \[ = \boxed{\frac{(2x+3)^6}{12} + C} \]
+                </div>
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: Using Properties</div>
-          <p>If \( \int_0^2 f(x) dx = 5 \) and \( \int_0^1 f(x) dx = 2 \), find \( \int_1^2 f(x) dx \).</p>
-          <button class="toggle-btn" data-target="def2"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="def2">
-            <div class="formula answer">
-              \( \int_0^2 f(x) dx = \int_0^1 f(x) dx + \int_1^2 f(x) dx \)<br>
-              \( 5 = 2 + \int_1^2 f(x) dx \) ⇒ \( \int_1^2 f(x) dx = 3 \)
-            </div>
-          </div>
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.14 — Trigonometric Substitution ⭐</div>
+            <p>Evaluate: \(\int \sin(3x+2)\,dx\)</p>
         </div>
-      </div>
-    </section>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Let \(t = 3x + 2\), so \(dt = 3\,dx \Rightarrow dx = \frac{dt}{3}\)</p>
+            <p>\( = \int \sin t \cdot \frac{dt}{3} = \frac{1}{3}(-\cos t) + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{-\frac{1}{3}\cos(3x+2) + C} \]
+            </div>
+        </div>
 
-    <!-- ========== SECTION 3: APPLICATIONS OF DEFINITE INTEGRAL ========= -->
-    <section id="applications" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-cube"></i> Applications: Area, Volume, Surface Area
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Quick Formula for Linear Substitution</div>
+            <p>For any standard integral, if the variable x is replaced by \((ax + b)\), then:</p>
+            <div class="formula">
+                \[ \int f(ax+b)\,dx = \frac{1}{a} \cdot F(ax+b) + C \]
+            </div>
+            <p>where F is the anti-derivative of f. Just <strong>divide by the coefficient of x</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.15 — Derivative Present as Factor ⭐⭐</div>
+            <p>Evaluate: \(\int \frac{2x}{1+x^2}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Let \(t = 1 + x^2\), so \(dt = 2x\,dx\)</p>
+            <p>\( = \int \frac{dt}{t} = \ln|t| + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\ln|1+x^2| + C} = \ln(1+x^2) + C \]
+            </div>
+            <p>(Absolute value not needed since \(1+x^2 > 0\) always.)</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.16 — \(\int \frac{\cos x}{\sin x}\,dx = \int \cot x\,dx\)</div>
+            <p>Evaluate: \(\int \cot x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( \int \cot x\,dx = \int \frac{\cos x}{\sin x}\,dx \)</p>
+            <p>Let \(t = \sin x\), so \(dt = \cos x\,dx\)</p>
+            <p>\( = \int \frac{dt}{t} = \ln|t| + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\ln|\sin x| + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.17 — Power with Derivative ⭐</div>
+            <p>Evaluate: \(\int x^2 \cdot e^{x^3}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Let \(t = x^3\), so \(dt = 3x^2\,dx \Rightarrow x^2\,dx = \frac{dt}{3}\)</p>
+            <p>\( = \int e^t \cdot \frac{dt}{3} = \frac{1}{3}e^t + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\frac{1}{3}e^{x^3} + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.18 — \(\int \tan x\,dx\)</div>
+            <p>Evaluate: \(\int \tan x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( \int \tan x\,dx = \int \frac{\sin x}{\cos x}\,dx \)</p>
+            <p>Let \(t = \cos x\), so \(dt = -\sin x\,dx \Rightarrow \sin x\,dx = -dt\)</p>
+            <p>\( = \int \frac{-dt}{t} = -\ln|t| + C \)</p>
+            <div class="formula answer">
+                \[ = -\ln|\cos x| + C = \boxed{\ln|\sec x| + C} \]
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> How to Choose What to Substitute</div>
+            <ul>
+                <li>Look for a function whose <strong>derivative is also present</strong> (or nearly present) in the integrand</li>
+                <li>Common substitutions: denominator, expression inside brackets, expression under square root, exponent</li>
+                <li>If you see \(\frac{f'(x)}{f(x)}\), the answer is \(\ln|f(x)| + C\)</li>
+                <li>If you see \([f(x)]^n \cdot f'(x)\), the answer is \(\frac{[f(x)]^{n+1}}{n+1} + C\)</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 6 : INTEGRATION BY PARTS (3.1.5)                      -->
+<!-- ============================================================== -->
+<section class="section" id="byparts">
+    <h2 class="section-title">
+        <i class="fas fa-puzzle-piece"></i> 3.1.5 Integration by Parts 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Area of Bounded Region</div>
-          <p>Area between curve \( y = f(x) \) and x-axis from \( x=a \) to \( x=b \):</p>
-          <p>\( A = \int_a^b |f(x)| \, dx \)</p>
-          <p>Area between two curves \( y = f(x) \) and \( y = g(x) \) where \( f(x) \ge g(x) \):</p>
-          <p>\( A = \int_a^b [f(x) - g(x)] \, dx \)</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> What is Integration by Parts?</div>
+            <p>Integration by parts is a technique used when the integrand is a <strong>product of two functions</strong> that cannot be integrated directly. It is derived from the <strong>product rule of differentiation</strong>.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Integration by Parts Formula</div>
+            <div class="formula">
+                \[ \int u \cdot v\,dx = u \int v\,dx - \int \left(\frac{du}{dx} \cdot \int v\,dx \right)\,dx \]
+            </div>
+            <p>Or in short notation (if u and v are functions of x):</p>
+            <div class="formula">
+                \[ \int u\,dv = uv - \int v\,du \]
+            </div>
+            <p><strong>Where:</strong></p>
+            <ul>
+                <li><strong>u</strong> = first function (to be differentiated)</li>
+                <li><strong>v</strong> = second function (to be integrated)</li>
+            </ul>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> ILATE Rule — How to Choose u and v ⭐⭐</div>
+            <p>The function that comes <strong>first</strong> in the ILATE order should be chosen as <strong>u</strong> (first function). The other becomes <strong>v</strong> (second function).</p>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Letter</th><th>Type</th><th>Examples</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>I</strong></td><td>Inverse Trigonometric</td><td>\(\sin^{-1}x, \cos^{-1}x, \tan^{-1}x\)</td></tr>
+                        <tr><td><strong>L</strong></td><td>Logarithmic</td><td>\(\ln x, \log x\)</td></tr>
+                        <tr><td><strong>A</strong></td><td>Algebraic</td><td>\(x, x^2, x^3, \sqrt{x}\)</td></tr>
+                        <tr><td><strong>T</strong></td><td>Trigonometric</td><td>\(\sin x, \cos x, \tan x\)</td></tr>
+                        <tr><td><strong>E</strong></td><td>Exponential</td><td>\(e^x, a^x, 2^x\)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Memory trick:</strong> <strong>I L A T E</strong> — "I Love All Trigo Exponents" or "Inverse Log Algebraic Trig Exponential"</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.19 — \(\int x \cdot e^x\,dx\) ⭐⭐</div>
+            <p>Evaluate: \(\int x \cdot e^x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>By ILATE: A(lgebraic) before E(xponential), so u = x (first), v = e<sup>x</sup> (second).</p>
+            <p>\( u = x \Rightarrow \frac{du}{dx} = 1 \)</p>
+            <p>\( v = e^x \Rightarrow \int v\,dx = e^x \)</p>
+            <p>Applying formula: \( \int x \cdot e^x\,dx = x \cdot e^x - \int 1 \cdot e^x\,dx \)</p>
+            <p>\( = xe^x - e^x + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{e^x(x - 1) + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.20 — \(\int x \cdot \sin x\,dx\) ⭐⭐</div>
+            <p>Evaluate: \(\int x \cdot \sin x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>By ILATE: u = x (A), v = sin x (T)</p>
+            <p>\( = x \cdot (-\cos x) - \int 1 \cdot (-\cos x)\,dx \)</p>
+            <p>\( = -x\cos x + \int \cos x\,dx \)</p>
+            <p>\( = -x\cos x + \sin x + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{-x\cos x + \sin x + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.21 — \(\int x^2 \cdot e^x\,dx\) (Apply Twice!) ⭐</div>
+            <p>Evaluate: \(\int x^2 e^x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>u = x², v = eˣ. First application:</p>
+            <p>\( = x^2 e^x - \int 2x \cdot e^x\,dx \)</p>
+            <p>Now apply by parts again to \(\int 2x e^x\,dx\) (from Example 3.19):</p>
+            <p>\( \int 2x e^x\,dx = 2[xe^x - e^x] = 2xe^x - 2e^x \)</p>
+            <p>So: \( = x^2 e^x - (2xe^x - 2e^x) + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{e^x(x^2 - 2x + 2) + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.22 — \(\int \ln x\,dx\) ⭐⭐</div>
+            <p>Evaluate: \(\int \ln x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Write as \(\int \ln x \cdot 1\,dx\). By ILATE: u = ln x (L), v = 1 (A).</p>
+            <p>\( = \ln x \cdot x - \int \frac{1}{x} \cdot x\,dx \)</p>
+            <p>\( = x\ln x - \int 1\,dx = x\ln x - x + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{x(\ln x - 1) + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.23 — \(\int x \cdot \cos x\,dx\)</div>
+            <p>Evaluate: \(\int x \cos x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>u = x (A), v = cos x (T)</p>
+            <p>\( = x \cdot \sin x - \int 1 \cdot \sin x\,dx \)</p>
+            <p>\( = x\sin x - (-\cos x) + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{x\sin x + \cos x + C} \]
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes in Integration by Parts</div>
+            <ol>
+                <li><strong>Wrong choice of u and v:</strong> Always use ILATE order. If you choose wrong, you'll get a more complicated integral instead of a simpler one.</li>
+                <li><strong>Sign errors:</strong> The formula has a <strong>minus sign</strong>. Be careful with double negatives.</li>
+                <li><strong>Forgetting to integrate v:</strong> In the formula, v appears as \(\int v\,dx\), not as v itself.</li>
+                <li><strong>Not applying twice when needed:</strong> Sometimes you need to apply the formula 2 or even 3 times (for x², x³ with trig/exp).</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 7 : INTEGRATION BY PARTIAL FRACTIONS (3.1.6)           -->
+<!-- ============================================================== -->
+<section class="section" id="partial">
+    <h2 class="section-title">
+        <i class="fas fa-divide"></i> 3.1.6 Integration by Partial Fractions 🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> What are Partial Fractions?</div>
+            <p>When we need to integrate a <strong>rational function</strong> (fraction where both numerator and denominator are polynomials), and the denominator can be <strong>factored</strong>, we split the fraction into simpler fractions called <strong>partial fractions</strong>. Each simpler fraction can then be integrated easily.</p>
+            <p><strong>Condition:</strong> The degree of the numerator must be <strong>less than</strong> the degree of the denominator (proper fraction). If not, do polynomial long division first.</p>
+        </div>
+
+        <h3>🔹 Types of Partial Fraction Decomposition</h3>
+
+        <div class="method-card">
+            <h4>Type 1 — Non-Repeated Linear Factors</h4>
+            <p>If denominator = \((x-a)(x-b)\):</p>
+            <div class="formula">
+                \[ \frac{P(x)}{(x-a)(x-b)} = \frac{A}{x-a} + \frac{B}{x-b} \]
+            </div>
+            <p>Find A and B by substituting convenient values of x or comparing coefficients.</p>
+        </div>
+
+        <div class="method-card">
+            <h4>Type 2 — Repeated Linear Factors</h4>
+            <p>If denominator = \((x-a)^2(x-b)\):</p>
+            <div class="formula">
+                \[ \frac{P(x)}{(x-a)^2(x-b)} = \frac{A}{x-a} + \frac{B}{(x-a)^2} + \frac{C}{x-b} \]
+            </div>
+        </div>
+
+        <div class="method-card">
+            <h4>Type 3 — Irreducible Quadratic Factor</h4>
+            <p>If denominator = \((x-a)(x^2+bx+c)\) where \(x^2+bx+c\) can't be factored:</p>
+            <div class="formula">
+                \[ \frac{P(x)}{(x-a)(x^2+bx+c)} = \frac{A}{x-a} + \frac{Bx+C}{x^2+bx+c} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.24 — Type 1 Partial Fractions ⭐⭐</div>
+            <p>Evaluate: \(\int \frac{1}{(x-1)(x+2)}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1 — Decompose">
+                <p>\( \frac{1}{(x-1)(x+2)} = \frac{A}{x-1} + \frac{B}{x+2} \)</p>
+                <p>Multiply both sides by \((x-1)(x+2)\): \( 1 = A(x+2) + B(x-1) \)</p>
+            </div>
+            <div class="step" data-step="Step 2 — Find A and B">
+                <p>Put \(x = 1\): \(1 = A(3) + 0 \Rightarrow A = \frac{1}{3}\)</p>
+                <p>Put \(x = -2\): \(1 = 0 + B(-3) \Rightarrow B = -\frac{1}{3}\)</p>
+            </div>
+            <div class="step" data-step="Step 3 — Integrate">
+                <p>\( \int \frac{1}{(x-1)(x+2)}\,dx = \frac{1}{3}\int \frac{dx}{x-1} - \frac{1}{3}\int \frac{dx}{x+2} \)</p>
+                <div class="formula answer">
+                    \[ = \boxed{\frac{1}{3}\ln|x-1| - \frac{1}{3}\ln|x+2| + C} = \frac{1}{3}\ln\left|\frac{x-1}{x+2}\right| + C \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.25 — Another Type 1 ⭐</div>
+            <p>Evaluate: \(\int \frac{x}{(x+1)(x+2)}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( \frac{x}{(x+1)(x+2)} = \frac{A}{x+1} + \frac{B}{x+2} \)</p>
+            <p>Multiply: \(x = A(x+2) + B(x+1)\)</p>
+            <p>Put x = −1: \(-1 = A(1) \Rightarrow A = -1\)</p>
+            <p>Put x = −2: \(-2 = B(-1) \Rightarrow B = 2\)</p>
+            <p>\( = -\int \frac{dx}{x+1} + 2\int \frac{dx}{x+2} \)</p>
+            <div class="formula answer">
+                \[ = \boxed{-\ln|x+1| + 2\ln|x+2| + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.26 — Three Factors</div>
+            <p>Evaluate: \(\int \frac{1}{x(x-1)(x+1)}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( \frac{1}{x(x-1)(x+1)} = \frac{A}{x} + \frac{B}{x-1} + \frac{C}{x+1} \)</p>
+            <p>Multiply: \(1 = A(x-1)(x+1) + Bx(x+1) + Cx(x-1)\)</p>
+            <p>Put x = 0: \(1 = A(-1)(1) \Rightarrow A = -1\)</p>
+            <p>Put x = 1: \(1 = B(1)(2) \Rightarrow B = \frac{1}{2}\)</p>
+            <p>Put x = −1: \(1 = C(-1)(-2) \Rightarrow C = \frac{1}{2}\)</p>
+            <div class="formula answer">
+                \[ = \boxed{-\ln|x| + \frac{1}{2}\ln|x-1| + \frac{1}{2}\ln|x+1| + C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.27 — Type 2: Repeated Factor</div>
+            <p>Evaluate: \(\int \frac{1}{x(x+1)^2}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( \frac{1}{x(x+1)^2} = \frac{A}{x} + \frac{B}{x+1} + \frac{C}{(x+1)^2} \)</p>
+            <p>Multiply: \(1 = A(x+1)^2 + Bx(x+1) + Cx\)</p>
+            <p>Put x = 0: \(1 = A(1) \Rightarrow A = 1\)</p>
+            <p>Put x = −1: \(1 = C(-1) \Rightarrow C = -1\)</p>
+            <p>Compare coefficient of x²: \(0 = A + B \Rightarrow B = -1\)</p>
+            <p>\( = \int \frac{dx}{x} - \int \frac{dx}{x+1} - \int \frac{dx}{(x+1)^2} \)</p>
+            <p>\( = \ln|x| - \ln|x+1| + \frac{1}{x+1} + C \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\ln\left|\frac{x}{x+1}\right| + \frac{1}{x+1} + C} \]
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ============================================================== -->
+<!--  SECTION 8 : DEFINITE INTEGRAL (3.2.1)                         -->
+<!-- ============================================================== -->
+<section class="section" id="definite">
+    <h2 class="section-title">
+        <i class="fas fa-arrows-alt-h"></i> 3.2.1 Definite Integral 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Definite Integral</div>
+            <p>A <strong>definite integral</strong> is an integral evaluated between two specific limits — a <strong>lower limit (a)</strong> and an <strong>upper limit (b)</strong>. Unlike an indefinite integral, a definite integral gives a <strong>specific numerical value</strong> (not a function + C).</p>
+            <div class="formula">
+                \[ \int_a^b f(x)\,dx = \left[F(x)\right]_a^b = F(b) - F(a) \]
+            </div>
+            <p><strong>Where:</strong></p>
+            <ul>
+                <li>\(a\) = lower limit of integration</li>
+                <li>\(b\) = upper limit of integration</li>
+                <li>\(F(x)\) = anti-derivative of \(f(x)\)</li>
+                <li>No constant C is needed (it cancels out when subtracting)</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Why No "+ C" in Definite Integrals?</div>
+            <p>When we compute \(F(b) - F(a)\):</p>
+            <p>\( (F(b) + C) - (F(a) + C) = F(b) - F(a) \)</p>
+            <p>The C cancels out! So we don't write it.</p>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Geometric Meaning</div>
+            <p>The definite integral \(\int_a^b f(x)\,dx\) represents the <strong>signed area</strong> between the curve \(y = f(x)\), the x-axis, and the vertical lines \(x = a\) and \(x = b\).</p>
+            <ul>
+                <li>Area <strong>above</strong> the x-axis → positive</li>
+                <li>Area <strong>below</strong> the x-axis → negative</li>
+            </ul>
+        </div>
+
+        <a href="https://www.google.com/search?tbm=isch&q=definite+integral+area+under+curve+shaded+region+diagram+calculus" target="_blank" rel="noopener" class="figure-link">
+            <div class="diagram-placeholder">
+                <i class="fas fa-image"></i>
+                <p><strong>Fig. 3.2:</strong> Definite integral as the area under the curve between limits a and b</p>
+                <span class="click-hint">🔍 Click to view on Google Images</span>
+            </div>
+        </a>
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps to Evaluate a Definite Integral</div>
+            <div class="step" data-step="Step 1">
+                <p>Find the indefinite integral (anti-derivative) \(F(x)\) of \(f(x)\). Don't write +C.</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Write the result with limits: \(\left[F(x)\right]_a^b\)</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Substitute the upper limit: \(F(b)\)</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Substitute the lower limit: \(F(a)\)</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>Subtract: \(F(b) - F(a)\) = answer (a number).</p>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.28 — Basic Definite Integral ⭐</div>
+            <p>Evaluate: \(\int_1^3 x^2\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( \int_1^3 x^2\,dx = \left[\frac{x^3}{3}\right]_1^3 \)</p>
+            <p>\( = \frac{3^3}{3} - \frac{1^3}{3} = \frac{27}{3} - \frac{1}{3} = 9 - \frac{1}{3} = \frac{26}{3} \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\frac{26}{3} \approx 8.67} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.29 — Definite Integral with Trigonometry ⭐</div>
+            <p>Evaluate: \(\int_0^{\pi/2} \sin x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( = \left[-\cos x\right]_0^{\pi/2} \)</p>
+            <p>\( = -\cos\frac{\pi}{2} - (-\cos 0) = -0 + 1 = 1 \)</p>
+            <div class="formula answer">
+                \[ = \boxed{1} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.30 — Definite with Exponential</div>
+            <p>Evaluate: \(\int_0^1 e^x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( = \left[e^x\right]_0^1 = e^1 - e^0 = e - 1 \)</p>
+            <div class="formula answer">
+                \[ = \boxed{e - 1 \approx 1.718} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.31 — Polynomial Definite Integral ⭐</div>
+            <p>Evaluate: \(\int_0^2 (3x^2 + 2x + 1)\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( = \left[x^3 + x^2 + x\right]_0^2 \)</p>
+            <p>\( = (8 + 4 + 2) - (0 + 0 + 0) = 14 - 0 \)</p>
+            <div class="formula answer">
+                \[ = \boxed{14} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.32 — Definite Integral with Substitution</div>
+            <p>Evaluate: \(\int_0^1 \frac{2x}{1+x^2}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Let \(t = 1 + x^2\), \(dt = 2x\,dx\).</p>
+            <p>When \(x = 0\): \(t = 1\). When \(x = 1\): \(t = 2\). (Limits change!)</p>
+            <p>\( = \int_1^2 \frac{dt}{t} = \left[\ln|t|\right]_1^2 = \ln 2 - \ln 1 = \ln 2 - 0 \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\ln 2 \approx 0.693} \]
+            </div>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Important</div>
+                <p>When using substitution in definite integrals, <strong>change the limits too!</strong> Convert the x-limits to t-limits. Then you don't need to substitute back.</p>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.33 — \(\int_0^{\pi/2} \cos x\,dx\)</div>
+            <p>Evaluate: \(\int_0^{\pi/2} \cos x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( = [\sin x]_0^{\pi/2} = \sin\frac{\pi}{2} - \sin 0 = 1 - 0 \)</p>
+            <div class="formula answer">
+                \[ = \boxed{1} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.34 — \(\int_0^{\pi} \sin x\,dx\)</div>
+            <p>Evaluate: \(\int_0^{\pi} \sin x\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( = [-\cos x]_0^{\pi} = -\cos\pi - (-\cos 0) = -(-1) + 1 = 1 + 1 \)</p>
+            <div class="formula answer">
+                \[ = \boxed{2} \]
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes in Definite Integrals</div>
+            <ol>
+                <li><strong>Wrong substitution of limits:</strong> Always put UPPER limit first minus LOWER limit: \(F(b) - F(a)\), NOT \(F(a) - F(b)\).</li>
+                <li><strong>Forgetting to change limits in substitution:</strong> If you substitute \(t = g(x)\), the limits must also change to \(g(a)\) and \(g(b)\).</li>
+                <li><strong>Writing + C:</strong> No constant of integration in definite integrals!</li>
+                <li><strong>Trigonometric values:</strong> Know values at \(0, \frac{\pi}{6}, \frac{\pi}{4}, \frac{\pi}{3}, \frac{\pi}{2}, \pi\).</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 9 : PROPERTIES OF DEFINITE INTEGRAL (3.2.2)            -->
+<!-- ============================================================== -->
+<section class="section" id="properties">
+    <h2 class="section-title">
+        <i class="fas fa-cogs"></i> 3.2.2 Properties of Definite Integrals ⭐
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-info-circle"></i> Why Properties Matter</div>
+            <p>Properties of definite integrals help us <strong>simplify</strong> evaluation or even evaluate integrals that would be very difficult to compute directly. These are frequently tested in exams.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 1 — Reversing Limits</div>
+            <div class="formula">
+                \[ \int_a^b f(x)\,dx = -\int_b^a f(x)\,dx \]
+            </div>
+            <p>Swapping the limits changes the sign.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 2 — Same Limits</div>
+            <div class="formula">
+                \[ \int_a^a f(x)\,dx = 0 \]
+            </div>
+            <p>If upper and lower limits are the same, the integral is zero.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 3 — Splitting Interval</div>
+            <div class="formula">
+                \[ \int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx \]
+            </div>
+            <p>where \(a < c < b\). You can split the integral at any intermediate point.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 4 — Constant Multiple</div>
+            <div class="formula">
+                \[ \int_a^b k \cdot f(x)\,dx = k\int_a^b f(x)\,dx \]
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 5 — Sum / Difference</div>
+            <div class="formula">
+                \[ \int_a^b [f(x) \pm g(x)]\,dx = \int_a^b f(x)\,dx \pm \int_a^b g(x)\,dx \]
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 6 — Dummy Variable 🔥</div>
+            <div class="formula">
+                \[ \int_a^b f(x)\,dx = \int_a^b f(t)\,dt \]
+            </div>
+            <p>The variable of integration is a "dummy" — the result doesn't depend on the letter used.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 7 — Substitution Property 🔥🔥</div>
+            <div class="formula">
+                \[ \int_0^a f(x)\,dx = \int_0^a f(a - x)\,dx \]
+            </div>
+            <p>This is extremely useful for simplifying integrals with limits 0 to a.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Property 8 — Even and Odd Functions</div>
+            <p>If \(f(x)\) is an <strong>even function</strong> (i.e., \(f(-x) = f(x)\)):</p>
+            <div class="formula">
+                \[ \int_{-a}^{a} f(x)\,dx = 2\int_0^a f(x)\,dx \]
+            </div>
+            <p>If \(f(x)\) is an <strong>odd function</strong> (i.e., \(f(-x) = -f(x)\)):</p>
+            <div class="formula">
+                \[ \int_{-a}^{a} f(x)\,dx = 0 \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.35 — Using Property 7 ⭐</div>
+            <p>Evaluate: \(\int_0^{\pi/2} \frac{\sin x}{\sin x + \cos x}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Let \( I = \int_0^{\pi/2} \frac{\sin x}{\sin x + \cos x}\,dx \) ...(i)</p>
+            <p>Apply Property 7: Replace \(x\) by \(\frac{\pi}{2} - x\):</p>
+            <p>\( I = \int_0^{\pi/2} \frac{\sin(\frac{\pi}{2}-x)}{\sin(\frac{\pi}{2}-x) + \cos(\frac{\pi}{2}-x)}\,dx \)</p>
+            <p>\( I = \int_0^{\pi/2} \frac{\cos x}{\cos x + \sin x}\,dx \) ...(ii)</p>
+            <p>Add (i) and (ii):</p>
+            <p>\( 2I = \int_0^{\pi/2} \frac{\sin x + \cos x}{\sin x + \cos x}\,dx = \int_0^{\pi/2} 1\,dx = \frac{\pi}{2} \)</p>
+            <div class="formula answer">
+                \[ I = \boxed{\frac{\pi}{4}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.36 — Using Even Function Property</div>
+            <p>Evaluate: \(\int_{-1}^{1} x^2\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(f(x) = x^2\). Check: \(f(-x) = (-x)^2 = x^2 = f(x)\). So it's an <strong>even function</strong>.</p>
+            <p>\( = 2\int_0^1 x^2\,dx = 2\left[\frac{x^3}{3}\right]_0^1 = 2 \times \frac{1}{3} \)</p>
+            <div class="formula answer">
+                \[ = \boxed{\frac{2}{3}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.37 — Using Odd Function Property</div>
+            <p>Evaluate: \(\int_{-2}^{2} x^3\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(f(x) = x^3\). Check: \(f(-x) = (-x)^3 = -x^3 = -f(x)\). So it's an <strong>odd function</strong>.</p>
+            <div class="formula answer">
+                \[ \int_{-2}^{2} x^3\,dx = \boxed{0} \]
+            </div>
+            <p>No calculation needed! For odd functions with symmetric limits, the answer is always 0.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.38 — Splitting Property</div>
+            <p>Evaluate: \(\int_0^2 |x - 1|\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(|x-1| = \begin{cases} -(x-1) = 1-x & \text{if } x < 1 \\ x-1 & \text{if } x \geq 1 \end{cases}\)</p>
+            <p>Split at x = 1:</p>
+            <p>\( = \int_0^1 (1-x)\,dx + \int_1^2 (x-1)\,dx \)</p>
+            <p>\( = \left[x - \frac{x^2}{2}\right]_0^1 + \left[\frac{x^2}{2} - x\right]_1^2 \)</p>
+            <p>\( = \left(1 - \frac{1}{2} - 0\right) + \left(2 - 2 - \frac{1}{2} + 1\right) \)</p>
+            <p>\( = \frac{1}{2} + \frac{1}{2} \)</p>
+            <div class="formula answer">
+                \[ = \boxed{1} \]
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 10 : APPLICATION — AREA (3.2.3)                       -->
+<!-- ============================================================== -->
+<section class="section" id="app-area">
+    <h2 class="section-title">
+        <i class="fas fa-chart-area"></i> 3.2.3 Application — Area of Bounded Region 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Area Under a Curve</div>
+            <p>The area bounded by the curve \(y = f(x)\), the x-axis, and the lines \(x = a\) and \(x = b\) is:</p>
+            <div class="formula">
+                \[ A = \int_a^b |f(x)|\,dx = \int_a^b |y|\,dx \]
+            </div>
+            <p>If the curve is <strong>entirely above</strong> the x-axis between a and b, then:</p>
+            <div class="formula">
+                \[ A = \int_a^b y\,dx \quad (\text{when } y \geq 0) \]
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Different Cases for Area</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Case</th><th>Formula</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Area between curve and X-axis</td><td>\(A = \int_a^b y\,dx\)</td></tr>
+                        <tr><td>Area between curve and Y-axis</td><td>\(A = \int_c^d x\,dy\)</td></tr>
+                        <tr><td>Area between two curves</td><td>\(A = \int_a^b [y_{\text{upper}} - y_{\text{lower}}]\,dx\)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <a href="https://www.google.com/search?tbm=isch&q=area+under+curve+definite+integral+shaded+region+diagram+calculus" target="_blank" rel="noopener" class="figure-link">
+            <div class="diagram-placeholder">
+                <i class="fas fa-image"></i>
+                <p><strong>Fig. 3.3:</strong> Area under a curve between x = a and x = b (shaded region)</p>
+                <span class="click-hint">🔍 Click to view on Google Images</span>
+            </div>
+        </a>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.39 — Area Under Parabola ⭐⭐</div>
+            <p>Find the area bounded by the curve \(y = x^2\), the x-axis, and the lines \(x = 0\) and \(x = 3\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(y = x^2 \geq 0\) in [0, 3], so the curve is above the x-axis.</p>
+            <p>\( A = \int_0^3 x^2\,dx = \left[\frac{x^3}{3}\right]_0^3 = \frac{27}{3} - 0 \)</p>
+            <div class="formula answer">
+                \[ A = \boxed{9 \text{ sq. units}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.40 — Area Under Sine Curve</div>
+            <p>Find the area bounded by \(y = \sin x\), the x-axis, and the lines \(x = 0\) and \(x = \pi\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\sin x \geq 0\) in \([0, \pi]\), so:</p>
+            <p>\( A = \int_0^{\pi} \sin x\,dx = [-\cos x]_0^{\pi} = -\cos\pi + \cos 0 = 1 + 1 \)</p>
+            <div class="formula answer">
+                \[ A = \boxed{2 \text{ sq. units}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.41 — Area Under Straight Line ⭐</div>
+            <p>Find the area bounded by the line \(y = 2x + 1\), the x-axis, and the ordinates \(x = 1\) and \(x = 4\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( A = \int_1^4 (2x+1)\,dx = \left[x^2 + x\right]_1^4 \)</p>
+            <p>\( = (16+4) - (1+1) = 20 - 2 \)</p>
+            <div class="formula answer">
+                \[ A = \boxed{18 \text{ sq. units}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.42 — Area Between Curve and Y-axis</div>
+            <p>Find the area bounded by the curve \(x = y^2\), the y-axis, and the lines \(y = 0\) and \(y = 2\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( A = \int_0^2 x\,dy = \int_0^2 y^2\,dy = \left[\frac{y^3}{3}\right]_0^2 = \frac{8}{3} \)</p>
+            <div class="formula answer">
+                \[ A = \boxed{\frac{8}{3} \text{ sq. units} \approx 2.67} \]
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 11 : APPLICATION — VOLUME & SURFACE AREA (3.2.3)      -->
+<!-- ============================================================== -->
+<section class="section" id="app-volume">
+    <h2 class="section-title">
+        <i class="fas fa-cube"></i> 3.2.3 Volume & Surface Area of Revolution 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> What is a Solid of Revolution?</div>
+            <p>When a 2D region (area under a curve) is <strong>rotated</strong> about an axis (usually the X-axis or Y-axis) through 360°, it sweeps out a 3D shape called a <strong>solid of revolution</strong>.</p>
+            <p><strong>Real-world examples:</strong> A wine glass, a vase, a football, a donut — all can be thought of as solids of revolution!</p>
+        </div>
+
+        <a href="https://www.google.com/search?tbm=isch&q=solid+of+revolution+about+x+axis+volume+calculus+diagram" target="_blank" rel="noopener" class="figure-link">
+            <div class="diagram-placeholder">
+                <i class="fas fa-image"></i>
+                <p><strong>Fig. 3.4:</strong> Solid of revolution formed by rotating a curve about the x-axis</p>
+                <span class="click-hint">🔍 Click to view on Google Images</span>
+            </div>
+        </a>
+
+        <!-- VOLUME -->
+        <h3>🔹 Volume of Solid of Revolution ⭐⭐</h3>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Volume by Revolving About X-axis</div>
+            <p>When the region bounded by \(y = f(x)\), the x-axis, \(x = a\), and \(x = b\) is revolved about the <strong>X-axis</strong>:</p>
+            <div class="formula">
+                \[ V = \pi \int_a^b y^2\,dx \]
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Volume by Revolving About Y-axis</div>
+            <p>When the region bounded by \(x = g(y)\), the y-axis, \(y = c\), and \(y = d\) is revolved about the <strong>Y-axis</strong>:</p>
+            <div class="formula">
+                \[ V = \pi \int_c^d x^2\,dy \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.43 — Volume of Revolution (About X-axis) ⭐⭐</div>
+            <p>Find the volume of the solid generated by revolving the area bounded by \(y = x^2\), \(x = 0\), \(x = 2\), and the x-axis about the X-axis.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( V = \pi\int_0^2 y^2\,dx = \pi\int_0^2 (x^2)^2\,dx = \pi\int_0^2 x^4\,dx \)</p>
+            <p>\( = \pi\left[\frac{x^5}{5}\right]_0^2 = \pi \cdot \frac{32}{5} \)</p>
+            <div class="formula answer">
+                \[ V = \boxed{\frac{32\pi}{5} \text{ cubic units} \approx 20.11} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.44 — Volume of a Cone ⭐</div>
+            <p>Find the volume generated by revolving the line \(y = \frac{r}{h}x\) from \(x = 0\) to \(x = h\) about the X-axis. (This gives a cone of radius r and height h.)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( V = \pi\int_0^h y^2\,dx = \pi\int_0^h \left(\frac{r}{h}x\right)^2 dx = \pi\int_0^h \frac{r^2}{h^2}x^2\,dx \)</p>
+            <p>\( = \frac{\pi r^2}{h^2}\left[\frac{x^3}{3}\right]_0^h = \frac{\pi r^2}{h^2} \cdot \frac{h^3}{3} \)</p>
+            <div class="formula answer">
+                \[ V = \boxed{\frac{1}{3}\pi r^2 h} \quad \text{(Standard cone formula!)} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.45 — Volume About Y-axis</div>
+            <p>Find the volume of the solid generated by revolving the area bounded by \(x = \sqrt{y}\), the y-axis, \(y = 0\) and \(y = 4\) about the Y-axis.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\( V = \pi\int_0^4 x^2\,dy = \pi\int_0^4 y\,dy \quad (\text{since } x = \sqrt{y} \Rightarrow x^2 = y) \)</p>
+            <p>\( = \pi\left[\frac{y^2}{2}\right]_0^4 = \pi \cdot \frac{16}{2} \)</p>
+            <div class="formula answer">
+                \[ V = \boxed{8\pi \text{ cubic units} \approx 25.13} \]
+            </div>
+        </div>
+
+        <!-- SURFACE AREA -->
+        <h3>🔹 Surface Area of Solid of Revolution ⭐</h3>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Surface Area — About X-axis</div>
+            <div class="formula">
+                \[ S = 2\pi\int_a^b y\sqrt{1 + \left(\frac{dy}{dx}\right)^2}\,dx \]
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Surface Area — About Y-axis</div>
+            <div class="formula">
+                \[ S = 2\pi\int_c^d x\sqrt{1 + \left(\frac{dx}{dy}\right)^2}\,dy \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 3.46 — Surface Area of a Sphere ⭐</div>
+            <p>Find the surface area generated by revolving the semicircle \(y = \sqrt{r^2 - x^2}\) from \(x = -r\) to \(x = r\) about the X-axis.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(y = \sqrt{r^2 - x^2}\), \(\frac{dy}{dx} = \frac{-x}{\sqrt{r^2-x^2}}\)</p>
+            <p>\( 1 + \left(\frac{dy}{dx}\right)^2 = 1 + \frac{x^2}{r^2-x^2} = \frac{r^2-x^2+x^2}{r^2-x^2} = \frac{r^2}{r^2-x^2} \)</p>
+            <p>\( \sqrt{1+\left(\frac{dy}{dx}\right)^2} = \frac{r}{\sqrt{r^2-x^2}} \)</p>
+            <p>\( S = 2\pi\int_{-r}^{r} \sqrt{r^2-x^2} \cdot \frac{r}{\sqrt{r^2-x^2}}\,dx = 2\pi\int_{-r}^{r} r\,dx \)</p>
+            <p>\( = 2\pi r [x]_{-r}^{r} = 2\pi r \cdot 2r \)</p>
+            <div class="formula answer">
+                \[ S = \boxed{4\pi r^2} \quad \text{(Standard sphere surface area!)} \]
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Tip — Volume Problems</div>
+            <p>For WBSCTE exams, <strong>Volume problems</strong> are more commonly asked than surface area. Focus on:</p>
+            <ol>
+                <li>\(V = \pi\int y^2\,dx\) (about X-axis) — most common</li>
+                <li>\(V = \pi\int x^2\,dy\) (about Y-axis)</li>
+                <li>Always identify which axis the solid is being revolved about</li>
+                <li>Square the y (or x) term before integrating</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 12 : KEY FORMULAS SUMMARY                             -->
+<!-- ============================================================== -->
+<section class="section" id="formulas">
+    <h2 class="section-title">
+        <i class="fas fa-square-root-variable"></i> Key Formulas Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3>📌 Indefinite Integral — Standard Formulas</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>#</th><th>Integral</th><th>Result</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>\(\int x^n\,dx\)</td><td>\(\frac{x^{n+1}}{n+1}+C\) (\(n \neq -1\))</td></tr>
+                    <tr><td>2</td><td>\(\int \frac{1}{x}\,dx\)</td><td>\(\ln|x|+C\)</td></tr>
+                    <tr><td>3</td><td>\(\int e^x\,dx\)</td><td>\(e^x+C\)</td></tr>
+                    <tr><td>4</td><td>\(\int e^{ax}\,dx\)</td><td>\(\frac{e^{ax}}{a}+C\)</td></tr>
+                    <tr><td>5</td><td>\(\int a^x\,dx\)</td><td>\(\frac{a^x}{\ln a}+C\)</td></tr>
+                    <tr><td>6</td><td>\(\int \sin x\,dx\)</td><td>\(-\cos x+C\)</td></tr>
+                    <tr><td>7</td><td>\(\int \cos x\,dx\)</td><td>\(\sin x+C\)</td></tr>
+                    <tr><td>8</td><td>\(\int \sec^2 x\,dx\)</td><td>\(\tan x+C\)</td></tr>
+                    <tr><td>9</td><td>\(\int \csc^2 x\,dx\)</td><td>\(-\cot x+C\)</td></tr>
+                    <tr><td>10</td><td>\(\int \tan x\,dx\)</td><td>\(\ln|\sec x|+C\)</td></tr>
+                    <tr><td>11</td><td>\(\int \cot x\,dx\)</td><td>\(\ln|\sin x|+C\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📌 Integration Methods</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Method</th><th>Formula</th><th>When to Use</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>By Parts</td><td>\(\int u\,dv = uv - \int v\,du\)</td><td>Product of two different types (ILATE)</td></tr>
+                    <tr><td>Substitution</td><td>\(t = g(x)\), \(dt = g'(x)\,dx\)</td><td>Composite function where derivative is present</td></tr>
+                    <tr><td>Partial Fractions</td><td>Decompose rational function</td><td>Rational functions with factorable denominators</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📌 Definite Integral Properties</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>#</th><th>Property</th><th>Formula</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Evaluation</td><td>\(\int_a^b f(x)\,dx = F(b) - F(a)\)</td></tr>
+                    <tr><td>2</td><td>Reverse limits</td><td>\(\int_a^b = -\int_b^a\)</td></tr>
+                    <tr><td>3</td><td>Same limits</td><td>\(\int_a^a = 0\)</td></tr>
+                    <tr><td>4</td><td>Splitting</td><td>\(\int_a^b = \int_a^c + \int_c^b\)</td></tr>
+                    <tr><td>5</td><td>Substitution</td><td>\(\int_0^a f(x)\,dx = \int_0^a f(a-x)\,dx\)</td></tr>
+                    <tr><td>6</td><td>Even function</td><td>\(\int_{-a}^a f(x)\,dx = 2\int_0^a f(x)\,dx\)</td></tr>
+                    <tr><td>7</td><td>Odd function</td><td>\(\int_{-a}^a f(x)\,dx = 0\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📌 Applications</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Application</th><th>About X-axis</th><th>About Y-axis</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Area</strong></td><td>\(\int_a^b y\,dx\)</td><td>\(\int_c^d x\,dy\)</td></tr>
+                    <tr><td><strong>Volume</strong></td><td>\(\pi\int_a^b y^2\,dx\)</td><td>\(\pi\int_c^d x^2\,dy\)</td></tr>
+                    <tr><td><strong>Surface Area</strong></td><td>\(2\pi\int_a^b y\sqrt{1+(dy/dx)^2}\,dx\)</td><td>\(2\pi\int_c^d x\sqrt{1+(dx/dy)^2}\,dy\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 13 : COMPARISON TABLES                                -->
+<!-- ============================================================== -->
+<section class="section" id="comparisons">
+    <h2 class="section-title">
+        <i class="fas fa-scale-balanced"></i> Comparison Tables
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3>📊 1. Indefinite vs Definite Integral ⭐</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>S.No.</th><th>Indefinite Integral</th><th>Definite Integral</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>No limits of integration</td><td>Has upper and lower limits (a and b)</td></tr>
+                    <tr><td>2</td><td>Result is a <strong>function + C</strong></td><td>Result is a <strong>number</strong></td></tr>
+                    <tr><td>3</td><td>Contains constant of integration C</td><td>No constant of integration (C cancels)</td></tr>
+                    <tr><td>4</td><td>Notation: \(\int f(x)\,dx\)</td><td>Notation: \(\int_a^b f(x)\,dx\)</td></tr>
+                    <tr><td>5</td><td>Represents a family of curves</td><td>Represents area under curve (signed)</td></tr>
+                    <tr><td>6</td><td>General anti-derivative</td><td>Net value between two bounds</td></tr>
+                    <tr><td>7</td><td>Example: \(\int x^2\,dx = \frac{x^3}{3}+C\)</td><td>Example: \(\int_0^2 x^2\,dx = \frac{8}{3}\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📊 2. Differentiation vs Integration</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>S.No.</th><th>Differentiation</th><th>Integration</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Finds rate of change (slope)</td><td>Finds accumulation (area)</td></tr>
+                    <tr><td>2</td><td>Result is unique (one answer)</td><td>Result has +C (family of answers)</td></tr>
+                    <tr><td>3</td><td>Has product rule, quotient rule, chain rule</td><td>Has by parts, partial fractions, substitution</td></tr>
+                    <tr><td>4</td><td>Power: \(nx^{n-1}\)</td><td>Power: \(\frac{x^{n+1}}{n+1}\)</td></tr>
+                    <tr><td>5</td><td>Easier for polynomial functions</td><td>Often harder and requires techniques</td></tr>
+                    <tr><td>6</td><td>Notation: \(\frac{d}{dx}\) or \(f'(x)\)</td><td>Notation: \(\int f(x)\,dx\)</td></tr>
+                    <tr><td>7</td><td>Every function can be differentiated</td><td>Not every function can be integrated analytically</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📊 3. Integration by Substitution vs By Parts</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>S.No.</th><th>By Substitution</th><th>By Parts</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Reverse of chain rule</td><td>Reverse of product rule</td></tr>
+                    <tr><td>2</td><td>For composite functions \(f(g(x)) \cdot g'(x)\)</td><td>For product of two different types of functions</td></tr>
+                    <tr><td>3</td><td>Replace variable with t or u</td><td>Choose u (first function) and dv (second)</td></tr>
+                    <tr><td>4</td><td>Simplifies by changing variable</td><td>Reduces to a simpler integral step by step</td></tr>
+                    <tr><td>5</td><td>No special rule for choosing</td><td>Uses ILATE rule for choosing u</td></tr>
+                    <tr><td>6</td><td>Example: \(\int \sin(3x)\,dx\)</td><td>Example: \(\int x\,e^x\,dx\)</td></tr>
+                    <tr><td>7</td><td>Must substitute back at end</td><td>No back-substitution needed</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📊 4. Area vs Volume of Revolution</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>S.No.</th><th>Area Under Curve</th><th>Volume of Revolution</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>2D quantity (square units)</td><td>3D quantity (cubic units)</td></tr>
+                    <tr><td>2</td><td>Formula: \(\int_a^b y\,dx\)</td><td>Formula: \(\pi\int_a^b y^2\,dx\)</td></tr>
+                    <tr><td>3</td><td>No rotation involved</td><td>Curve is rotated 360° about an axis</td></tr>
+                    <tr><td>4</td><td>Uses y directly</td><td>Uses y² (squared)</td></tr>
+                    <tr><td>5</td><td>No π factor</td><td>Has π factor</td></tr>
+                    <tr><td>6</td><td>Region between curve and axis</td><td>Solid generated by revolving the region</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+<!-- ============================================================== -->
+<!--  SECTION 14 : IMPORTANT DEFINITIONS                            -->
+<!-- ============================================================== -->
+<section class="section" id="definitions">
+    <h2 class="section-title">
+        <i class="fas fa-book-open"></i> Important Definitions
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 1. Integration</div>
+            <p>Integration is the inverse (reverse) process of differentiation. If \(\frac{d}{dx}[F(x)] = f(x)\), then \(\int f(x)\,dx = F(x) + C\). It is also called anti-differentiation.</p>
         </div>
 
         <div class="definition-box">
-          <div class="box-title">Volume of Solid of Revolution</div>
-          <p>About x-axis (disk method): \( V = \pi \int_a^b [f(x)]^2 \, dx \)</p>
-          <p>About y-axis: \( V = \pi \int_c^d [g(y)]^2 \, dy \) (using inverse function)</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> 2. Integrand</div>
+            <p>The function \(f(x)\) being integrated in \(\int f(x)\,dx\) is called the integrand.</p>
         </div>
 
         <div class="definition-box">
-          <div class="box-title">Surface Area of Solid of Revolution</div>
-          <p>About x-axis: \( S = 2\pi \int_a^b f(x) \sqrt{1 + [f'(x)]^2} \, dx \)</p>
-          <p>About y-axis: \( S = 2\pi \int_c^d g(y) \sqrt{1 + [g'(y)]^2} \, dy \)</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> 3. Constant of Integration (C)</div>
+            <p>An arbitrary constant added to an indefinite integral because the derivative of any constant is zero. It represents the family of all anti-derivatives.</p>
         </div>
 
-        <div class="example-box">
-          <div class="box-title">Example: Area</div>
-          <p>Find area bounded by \( y = x^2 \) and x-axis from \( x=0 \) to \( x=2 \).</p>
-          <button class="toggle-btn" data-target="app1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="app1">
-            <div class="formula answer">
-              \( A = \int_0^2 x^2 dx = \left[ \frac{x^3}{3} \right]_0^2 = \frac{8}{3} \approx 2.67 \)
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 4. Indefinite Integral</div>
+            <p>An integral without upper and lower limits. It gives a general function plus a constant C. Notation: \(\int f(x)\,dx = F(x) + C\).</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 5. Definite Integral</div>
+            <p>An integral with specific upper limit (b) and lower limit (a). It gives a numerical value. Formula: \(\int_a^b f(x)\,dx = F(b) - F(a)\). Geometrically, it represents the signed area under the curve.</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 6. Integration by Substitution</div>
+            <p>A method of integration where a new variable (t or u) is substituted for a complex expression to simplify the integral. It reverses the chain rule of differentiation.</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 7. Integration by Parts</div>
+            <p>A method of integrating the product of two functions using the formula: \(\int u\,dv = uv - \int v\,du\). The ILATE rule helps choose u (first function).</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 8. Partial Fractions</div>
+            <p>The process of decomposing a complex rational fraction into simpler fractions whose denominators are factors of the original denominator. Each simpler fraction can be integrated individually.</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 9. ILATE Rule</div>
+            <p>A rule for choosing the first function (u) in integration by parts. Priority order: Inverse trigonometric → Logarithmic → Algebraic → Trigonometric → Exponential. The function that comes first in this order is chosen as u.</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 10. Solid of Revolution</div>
+            <p>A 3D solid formed when a 2D region (area bounded by a curve, axis, and limiting lines) is rotated through 360° about an axis (X-axis or Y-axis).</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 11. Even Function</div>
+            <p>A function satisfying \(f(-x) = f(x)\) for all x. Examples: \(x^2, x^4, \cos x\). Graph is symmetric about the Y-axis.</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> 12. Odd Function</div>
+            <p>A function satisfying \(f(-x) = -f(x)\) for all x. Examples: \(x, x^3, \sin x\). Graph is symmetric about the origin. \(\int_{-a}^a f(x)\,dx = 0\) for odd functions.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 15 : MCQ BANK                                         -->
+<!-- ============================================================== -->
+<section class="section" id="mcq-bank">
+    <h2 class="section-title">
+        <i class="fas fa-circle-check"></i> MCQ Bank (Objective Questions)
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="mcq-grid">
+
+            <div class="mcq-item">
+                <h4>Q 3.1</h4>
+                <p>\(\int x^5\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. \(5x^4 + C\)</li>
+                    <li>b. \(\frac{x^6}{6} + C\)</li>
+                    <li>c. \(\frac{x^6}{5} + C\)</li>
+                    <li>d. \(x^6 + C\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc1">
+                    <strong>Answer: b. \(\frac{x^6}{6} + C\)</strong>
+                    <p>Using \(\int x^n\,dx = \frac{x^{n+1}}{n+1}+C\) with n = 5.</p>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Example: Volume (x-axis)</div>
-          <p>Find volume generated by revolving \( y = \sqrt{x} \) from \( x=0 \) to \( x=4 \) about x-axis.</p>
-          <button class="toggle-btn" data-target="app2"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="app2">
-            <div class="formula answer">
-              \( V = \pi \int_0^4 (\sqrt{x})^2 dx = \pi \int_0^4 x dx = \pi \left[ \frac{x^2}{2} \right]_0^4 = \pi \times \frac{16}{2} = 8\pi \)
+            <div class="mcq-item">
+                <h4>Q 3.2</h4>
+                <p>\(\int \sin x\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. \(\cos x + C\)</li>
+                    <li>b. \(-\cos x + C\)</li>
+                    <li>c. \(\sin x + C\)</li>
+                    <li>d. \(-\sin x + C\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc2">
+                    <strong>Answer: b. \(-\cos x + C\)</strong>
+                    <p>Standard integral: \(\int \sin x\,dx = -\cos x + C\).</p>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Example: Surface Area (x-axis)</div>
-          <p>Find surface area for \( y = x^3 \) from \( x=0 \) to \( x=1 \) revolved about x-axis.</p>
-          <button class="toggle-btn" data-target="app3"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="app3">
-            <div class="formula answer">
-              \( y' = 3x^2 \)<br>
-              \( S = 2\pi \int_0^1 x^3 \sqrt{1 + 9x^4} \, dx \)<br>
-              Let \( u = 1+9x^4, du = 36x^3 dx \) ⇒ \( x^3 dx = du/36 \)<br>
-              \( S = 2\pi \int_{1}^{10} \sqrt{u} \, (du/36) = \frac{2\pi}{36} \cdot \frac{2}{3} [u^{3/2}]_{1}^{10} = \frac{\pi}{27} (10^{3/2} - 1) \)
+            <div class="mcq-item">
+                <h4>Q 3.3</h4>
+                <p>\(\int_0^1 2x\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. 0</li>
+                    <li>b. 1</li>
+                    <li>c. 2</li>
+                    <li>d. ½</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc3">
+                    <strong>Answer: b. 1</strong>
+                    <p>\([x^2]_0^1 = 1 - 0 = 1\).</p>
+                </div>
             </div>
-          </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.4</h4>
+                <p>In integration by parts (ILATE), L stands for:</p>
+                <ul class="options">
+                    <li>a. Linear</li>
+                    <li>b. Logarithmic</li>
+                    <li>c. Limit</li>
+                    <li>d. Laplace</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc4">
+                    <strong>Answer: b. Logarithmic</strong>
+                    <p>ILATE = Inverse trig, Logarithmic, Algebraic, Trigonometric, Exponential.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.5</h4>
+                <p>\(\int \frac{1}{x}\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. \(\frac{x^0}{0}\)</li>
+                    <li>b. \(\ln x + C\)</li>
+                    <li>c. \(\ln|x| + C\)</li>
+                    <li>d. \(x^{-1} + C\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc5">
+                    <strong>Answer: c. \(\ln|x| + C\)</strong>
+                    <p>The power rule doesn't apply when n = −1. Special case: \(\int x^{-1}\,dx = \ln|x| + C\).</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.6</h4>
+                <p>\(\int_a^a f(x)\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. 1</li>
+                    <li>b. f(a)</li>
+                    <li>c. 2f(a)</li>
+                    <li>d. 0</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc6">
+                    <strong>Answer: d. 0</strong>
+                    <p>When upper and lower limits are equal, the definite integral is always 0.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.7</h4>
+                <p>\(\int e^{2x}\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. \(2e^{2x} + C\)</li>
+                    <li>b. \(\frac{e^{2x}}{2} + C\)</li>
+                    <li>c. \(e^{2x} + C\)</li>
+                    <li>d. \(\frac{e^{2x}}{2x} + C\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc7">
+                    <strong>Answer: b. \(\frac{e^{2x}}{2} + C\)</strong>
+                    <p>\(\int e^{ax}\,dx = \frac{e^{ax}}{a}+C\). Here a = 2.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.8</h4>
+                <p>The volume of solid obtained by revolving \(y = f(x)\) about X-axis is:</p>
+                <ul class="options">
+                    <li>a. \(\int_a^b y\,dx\)</li>
+                    <li>b. \(\pi\int_a^b y\,dx\)</li>
+                    <li>c. \(\pi\int_a^b y^2\,dx\)</li>
+                    <li>d. \(2\pi\int_a^b y^2\,dx\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc8">
+                    <strong>Answer: c. \(\pi\int_a^b y^2\,dx\)</strong>
+                    <p>Volume = \(\pi\int_a^b y^2\,dx\) when revolving about X-axis.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.9</h4>
+                <p>\(\int_{-a}^a x^3\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. \(\frac{a^4}{4}\)</li>
+                    <li>b. \(\frac{a^4}{2}\)</li>
+                    <li>c. 0</li>
+                    <li>d. \(2 \cdot \frac{a^4}{4}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc9">
+                    <strong>Answer: c. 0</strong>
+                    <p>\(x^3\) is an odd function. \(\int_{-a}^a\) (odd function) = 0.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.10</h4>
+                <p>\(\int \sec^2 x\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. \(\sec x + C\)</li>
+                    <li>b. \(\tan x + C\)</li>
+                    <li>c. \(2\sec x\tan x + C\)</li>
+                    <li>d. \(-\tan x + C\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc10">
+                    <strong>Answer: b. \(\tan x + C\)</strong>
+                    <p>Because \(\frac{d}{dx}(\tan x) = \sec^2 x\).</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.11</h4>
+                <p>Integration is the inverse process of:</p>
+                <ul class="options">
+                    <li>a. Addition</li>
+                    <li>b. Multiplication</li>
+                    <li>c. Differentiation</li>
+                    <li>d. Division</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc11"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc11">
+                    <strong>Answer: c. Differentiation</strong>
+                    <p>Integration is the reverse (inverse) process of differentiation.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.12</h4>
+                <p>\(\int_0^{\pi/2} \cos x\,dx =\)?</p>
+                <ul class="options">
+                    <li>a. 0</li>
+                    <li>b. −1</li>
+                    <li>c. 1</li>
+                    <li>d. π/2</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc12"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc12">
+                    <strong>Answer: c. 1</strong>
+                    <p>\([\sin x]_0^{\pi/2} = \sin(\pi/2) - \sin 0 = 1 - 0 = 1\).</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.13</h4>
+                <p>Area under the curve \(y = f(x)\) from \(x = a\) to \(x = b\) is:</p>
+                <ul class="options">
+                    <li>a. \(\int_a^b x\,dy\)</li>
+                    <li>b. \(\int_a^b y\,dx\)</li>
+                    <li>c. \(\pi\int_a^b y^2\,dx\)</li>
+                    <li>d. \(\frac{d}{dx}f(x)\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc13"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc13">
+                    <strong>Answer: b. \(\int_a^b y\,dx\)</strong>
+                    <p>Area = \(\int_a^b y\,dx\) (when curve is above x-axis).</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.14</h4>
+                <p>\(\int_a^b f(x)\,dx = -\int_b^a f(x)\,dx\) is which property?</p>
+                <ul class="options">
+                    <li>a. Sum property</li>
+                    <li>b. Splitting property</li>
+                    <li>c. Reversing limits property</li>
+                    <li>d. Even function property</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc14"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc14">
+                    <strong>Answer: c. Reversing limits property</strong>
+                    <p>Swapping the upper and lower limits changes the sign of the integral.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.15</h4>
+                <p>\(\int \ln x\,dx\) is evaluated using:</p>
+                <ul class="options">
+                    <li>a. Substitution</li>
+                    <li>b. Partial fractions</li>
+                    <li>c. Integration by parts</li>
+                    <li>d. Direct formula</li>
+                </ul>
+                <button class="toggle-btn" data-target="mc15"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mc15">
+                    <strong>Answer: c. Integration by parts</strong>
+                    <p>We write \(\int \ln x \cdot 1\,dx\) and use ILATE: u = ln x (L), dv = 1 dx (A).</p>
+                </div>
+            </div>
+
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">\( \int x^n dx = \frac{x^{n+1}}{n+1} + C \)</div>
-          <div class="tag">\( \int e^x dx = e^x + C \)</div>
-          <div class="tag">\( \int \sin x dx = -\cos x + C \)</div>
-          <div class="tag">\( \int \cos x dx = \sin x + C \)</div>
-          <div class="tag">\( \int u dv = uv - \int v du \)</div>
-          <div class="tag">\( \int_a^b f(x) dx = F(b)-F(a) \)</div>
-          <div class="tag">Area = \( \int_a^b [f(x)-g(x)]dx \)</div>
-          <div class="tag">Volume (x-axis) = \( \pi \int_a^b [f(x)]^2 dx \)</div>
+<!-- ============================================================== -->
+<!--  SECTION 16 : Q&A BANK                                         -->
+<!-- ============================================================== -->
+<section class="section" id="qa-bank">
+    <h2 class="section-title">
+        <i class="fas fa-file-lines"></i> Short Answer, Long Answer & Practice Numericals
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3>📝 Short Answer Questions (2 Marks)</h3>
+
+        <div class="exercise-area">
+            <h4>SA 1. Define integration. Write the symbol and name its parts.</h4>
+            <button class="toggle-btn" data-target="sa1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa1">
+                <p>Integration is the inverse process of differentiation. Symbol: \(\int f(x)\,dx = F(x) + C\). Parts: \(\int\) = integral sign, \(f(x)\) = integrand, \(dx\) = variable of integration, \(F(x)\) = anti-derivative, \(C\) = constant of integration.</p>
+            </div>
         </div>
-      </div>
-    </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+        <div class="exercise-area">
+            <h4>SA 2. State the ILATE rule for integration by parts.</h4>
+            <button class="toggle-btn" data-target="sa2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa2">
+                <p>ILATE is a priority rule for choosing the first function (u) in integration by parts: <strong>I</strong> – Inverse Trigonometric, <strong>L</strong> – Logarithmic, <strong>A</strong> – Algebraic, <strong>T</strong> – Trigonometric, <strong>E</strong> – Exponential. The function appearing first in this order is chosen as u.</p>
+            </div>
+        </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+        <div class="exercise-area">
+            <h4>SA 3. Evaluate: \(\int (4x^3 - 3x^2 + 2)\,dx\)</h4>
+            <button class="toggle-btn" data-target="sa3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa3">
+                <p>\( = 4 \cdot \frac{x^4}{4} - 3 \cdot \frac{x^3}{3} + 2x + C = x^4 - x^3 + 2x + C \)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>SA 4. Evaluate: \(\int_0^{\pi} \sin x\,dx\)</h4>
+            <button class="toggle-btn" data-target="sa4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa4">
+                <p>\( = [-\cos x]_0^{\pi} = -\cos\pi + \cos 0 = -(-1) + 1 = 2 \)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>SA 5. Write the formula for volume when a curve is revolved about the X-axis.</h4>
+            <button class="toggle-btn" data-target="sa5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa5">
+                <p>\( V = \pi\int_a^b y^2\,dx \) where y = f(x), and the region is between x = a and x = b.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>SA 6. What is the difference between indefinite and definite integral?</h4>
+            <button class="toggle-btn" data-target="sa6"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa6">
+                <p>Indefinite integral has no limits and gives a function + C. Definite integral has upper and lower limits (a to b) and gives a specific numerical value. No C in definite integrals.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>SA 7. Evaluate: \(\int e^{5x}\,dx\)</h4>
+            <button class="toggle-btn" data-target="sa7"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa7">
+                <p>\( = \frac{e^{5x}}{5} + C \) (using \(\int e^{ax}\,dx = \frac{e^{ax}}{a}+C\))</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>SA 8. State any three properties of definite integrals.</h4>
+            <button class="toggle-btn" data-target="sa8"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa8">
+                <ol>
+                    <li>\(\int_a^b f(x)\,dx = -\int_b^a f(x)\,dx\) (reversing limits changes sign)</li>
+                    <li>\(\int_a^a f(x)\,dx = 0\) (same limits gives zero)</li>
+                    <li>\(\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx\) (splitting interval)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>SA 9. Evaluate: \(\int \frac{2x+3}{x^2+3x+5}\,dx\)</h4>
+            <button class="toggle-btn" data-target="sa9"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa9">
+                <p>Let \(t = x^2+3x+5\), then \(dt = (2x+3)\,dx\). So \(\int \frac{dt}{t} = \ln|t| + C = \ln|x^2+3x+5| + C\).</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>SA 10. If \(\int_{-a}^a f(x)\,dx = 0\), what can you say about \(f(x)\)?</h4>
+            <button class="toggle-btn" data-target="sa10"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa10">
+                <p>\(f(x)\) is an <strong>odd function</strong>, meaning \(f(-x) = -f(x)\). Examples: \(\sin x, x^3, x\).</p>
+            </div>
+        </div>
+
+        <!-- LONG ANSWER -->
+        <h3>📄 Long Answer Questions (5–10 Marks)</h3>
+
+        <div class="exercise-area">
+            <h4>LA 1. Evaluate by parts: \(\int x^2 \sin x\,dx\) [10 marks] 🔥</h4>
+            <button class="toggle-btn" data-target="la1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la1">
+                <p>By ILATE: u = x² (A), dv = sin x dx (T).</p>
+                <p>First application: \(= x^2(-\cos x) - \int 2x(-\cos x)\,dx = -x^2\cos x + 2\int x\cos x\,dx\)</p>
+                <p>Second application on \(\int x\cos x\,dx\): u = x, dv = cos x dx.</p>
+                <p>\(= x\sin x - \int \sin x\,dx = x\sin x + \cos x\)</p>
+                <p>So: \(\int x^2\sin x\,dx = -x^2\cos x + 2(x\sin x + \cos x) + C\)</p>
+                <p>\(= \boxed{-x^2\cos x + 2x\sin x + 2\cos x + C}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>LA 2. Evaluate: \(\int \frac{3x+5}{(x-1)(x+3)}\,dx\) using partial fractions. [10 marks] 🔥</h4>
+            <button class="toggle-btn" data-target="la2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la2">
+                <p>\(\frac{3x+5}{(x-1)(x+3)} = \frac{A}{x-1} + \frac{B}{x+3}\)</p>
+                <p>Multiply: \(3x+5 = A(x+3) + B(x-1)\)</p>
+                <p>Put x = 1: \(8 = 4A \Rightarrow A = 2\)</p>
+                <p>Put x = −3: \(-4 = -4B \Rightarrow B = 1\)</p>
+                <p>\(= 2\int\frac{dx}{x-1} + \int\frac{dx}{x+3} = 2\ln|x-1| + \ln|x+3| + C\)</p>
+                <p>\(= \boxed{2\ln|x-1| + \ln|x+3| + C}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>LA 3. Find the area bounded by \(y = x^2 + 1\), the x-axis, \(x = 0\) and \(x = 3\). [5 marks] ⭐</h4>
+            <button class="toggle-btn" data-target="la3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la3">
+                <p>\(A = \int_0^3 (x^2+1)\,dx = \left[\frac{x^3}{3}+x\right]_0^3 = (9+3) - 0 = 12\) sq. units.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>LA 4. Find the volume generated by revolving \(y = x\) from x = 0 to x = 3 about the X-axis. [5 marks] ⭐</h4>
+            <button class="toggle-btn" data-target="la4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la4">
+                <p>\(V = \pi\int_0^3 x^2\,dx = \pi\left[\frac{x^3}{3}\right]_0^3 = \pi \times 9 = 9\pi\) cubic units.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>LA 5. Prove that \(\int_0^{\pi/2} \log(\tan x)\,dx = 0\) using the property \(\int_0^a f(x)\,dx = \int_0^a f(a-x)\,dx\). [10 marks] 🔥</h4>
+            <button class="toggle-btn" data-target="la5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la5">
+                <p>Let \(I = \int_0^{\pi/2} \log(\tan x)\,dx\) ...(i)</p>
+                <p>Replace x by \(\frac{\pi}{2}-x\):</p>
+                <p>\(I = \int_0^{\pi/2}\log\left(\tan\left(\frac{\pi}{2}-x\right)\right)\,dx = \int_0^{\pi/2}\log(\cot x)\,dx\) ...(ii)</p>
+                <p>Add (i) and (ii): \(2I = \int_0^{\pi/2}[\log(\tan x) + \log(\cot x)]\,dx\)</p>
+                <p>\(= \int_0^{\pi/2}\log(\tan x \cdot \cot x)\,dx = \int_0^{\pi/2}\log(1)\,dx = \int_0^{\pi/2} 0\,dx = 0\)</p>
+                <p>Therefore \(2I = 0 \Rightarrow I = 0\). Proved. ✓</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>LA 6. Evaluate: \(\int \frac{dx}{x^2-4}\) using partial fractions. [5 marks]</h4>
+            <button class="toggle-btn" data-target="la6"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la6">
+                <p>\(x^2-4 = (x-2)(x+2)\). \(\frac{1}{(x-2)(x+2)} = \frac{A}{x-2}+\frac{B}{x+2}\)</p>
+                <p>x=2: \(1=4A\Rightarrow A=1/4\). x=−2: \(1=-4B\Rightarrow B=-1/4\).</p>
+                <p>\(=\frac{1}{4}\ln|x-2|-\frac{1}{4}\ln|x+2|+C = \frac{1}{4}\ln\left|\frac{x-2}{x+2}\right|+C\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>LA 7. Evaluate: \(\int_0^1 x\,e^{x^2}\,dx\) [5 marks]</h4>
+            <button class="toggle-btn" data-target="la7"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la7">
+                <p>Let \(t=x^2\), \(dt=2x\,dx\), \(x\,dx = dt/2\). Limits: x=0→t=0, x=1→t=1.</p>
+                <p>\(=\frac{1}{2}\int_0^1 e^t\,dt = \frac{1}{2}[e^t]_0^1 = \frac{1}{2}(e-1) = \boxed{\frac{e-1}{2} \approx 0.859}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>LA 8. Find the volume of a sphere of radius r using integration. [10 marks] 🔥🔥</h4>
+            <button class="toggle-btn" data-target="la8"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la8">
+                <p>A sphere of radius r can be generated by revolving the semicircle \(y = \sqrt{r^2-x^2}\) about X-axis from x = −r to x = r.</p>
+                <p>\(V = \pi\int_{-r}^{r} y^2\,dx = \pi\int_{-r}^{r}(r^2-x^2)\,dx\)</p>
+                <p>Since \(r^2-x^2\) is an even function:</p>
+                <p>\(= 2\pi\int_0^r(r^2-x^2)\,dx = 2\pi\left[r^2x - \frac{x^3}{3}\right]_0^r\)</p>
+                <p>\(= 2\pi\left(r^3 - \frac{r^3}{3}\right) = 2\pi \cdot \frac{2r^3}{3}\)</p>
+                <p>\(V = \boxed{\frac{4}{3}\pi r^3}\) (Standard sphere volume formula!) ✓</p>
+            </div>
+        </div>
+
+        <!-- PRACTICE NUMERICALS -->
+        <h3>🔢 Practice Numericals</h3>
+
+        <div class="exercise-area">
+            <h4>PN 1. Evaluate: \(\int (5x^4 + 3\cos x - \frac{2}{x})\,dx\)</h4>
+            <button class="toggle-btn" data-target="pn1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn1">
+                <p>\(= x^5 + 3\sin x - 2\ln|x| + C\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>PN 2. Evaluate: \(\int_1^2 (x^3 + 1)\,dx\)</h4>
+            <button class="toggle-btn" data-target="pn2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn2">
+                <p>\(= \left[\frac{x^4}{4}+x\right]_1^2 = (4+2)-(1/4+1) = 6 - 5/4 = 19/4 = \boxed{4.75}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>PN 3. Evaluate: \(\int \cos(5x+3)\,dx\)</h4>
+            <button class="toggle-btn" data-target="pn3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn3">
+                <p>\(= \frac{\sin(5x+3)}{5} + C\) (linear substitution: divide by coefficient of x)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>PN 4. Evaluate by parts: \(\int x\,\ln x\,dx\)</h4>
+            <button class="toggle-btn" data-target="pn4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn4">
+                <p>ILATE: u = ln x (L), dv = x dx (A). \(\int v\,dx = x^2/2\).</p>
+                <p>\(= \frac{x^2}{2}\ln x - \int\frac{1}{x}\cdot\frac{x^2}{2}\,dx = \frac{x^2}{2}\ln x - \frac{1}{2}\int x\,dx\)</p>
+                <p>\(= \frac{x^2}{2}\ln x - \frac{x^2}{4} + C = \boxed{\frac{x^2}{4}(2\ln x - 1) + C}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>PN 5. Evaluate: \(\int_0^4 \sqrt{x}\,dx\)</h4>
+            <button class="toggle-btn" data-target="pn5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn5">
+                <p>\(= \int_0^4 x^{1/2}\,dx = \left[\frac{x^{3/2}}{3/2}\right]_0^4 = \frac{2}{3}[x^{3/2}]_0^4 = \frac{2}{3}(8-0) = \boxed{\frac{16}{3} \approx 5.33}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>PN 6. Find the area bounded by \(y = \sqrt{x}\), x-axis, x = 0, x = 9.</h4>
+            <button class="toggle-btn" data-target="pn6"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn6">
+                <p>\(A = \int_0^9 \sqrt{x}\,dx = \frac{2}{3}[x^{3/2}]_0^9 = \frac{2}{3}(27) = \boxed{18 \text{ sq. units}}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>PN 7. Volume: Revolve \(y = 3x\) from x = 0 to x = 2 about X-axis.</h4>
+            <button class="toggle-btn" data-target="pn7"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn7">
+                <p>\(V = \pi\int_0^2(3x)^2\,dx = 9\pi\int_0^2 x^2\,dx = 9\pi\left[\frac{x^3}{3}\right]_0^2 = 9\pi\cdot\frac{8}{3} = \boxed{24\pi \approx 75.4 \text{ cu. units}}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <h4>PN 8. Evaluate: \(\int \frac{2x+1}{(x+1)(x-2)}\,dx\)</h4>
+            <button class="toggle-btn" data-target="pn8"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="pn8">
+                <p>\(\frac{2x+1}{(x+1)(x-2)} = \frac{A}{x+1}+\frac{B}{x-2}\). Multiply: \(2x+1=A(x-2)+B(x+1)\).</p>
+                <p>x=−1: \(-1=-3A\Rightarrow A=1/3\). x=2: \(5=3B\Rightarrow B=5/3\).</p>
+                <p>\(= \frac{1}{3}\ln|x+1|+\frac{5}{3}\ln|x-2|+C\)</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 17 : QUICK REVISION                                   -->
+<!-- ============================================================== -->
+<section class="section" id="revision">
+    <h2 class="section-title">
+        <i class="fas fa-bolt"></i> Quick Revision — Unit 3 Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-clipboard-list"></i> 📌 Indefinite Integration Basics</div>
+            <ul>
+                <li>Integration = reverse of differentiation</li>
+                <li>\(\int x^n\,dx = \frac{x^{n+1}}{n+1}+C\) (n ≠ −1)</li>
+                <li>\(\int \frac{1}{x}\,dx = \ln|x|+C\) (special case n = −1)</li>
+                <li>Always write <strong>+ C</strong> for indefinite integrals!</li>
+                <li>Constants can be pulled outside: \(\int kf(x)\,dx = k\int f(x)\,dx\)</li>
+                <li>Integral of sum/difference = sum/difference of integrals</li>
+                <li>NO product rule or quotient rule for integration!</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-clipboard-list"></i> 📌 Three Main Techniques</div>
+            <ul>
+                <li><strong>Substitution:</strong> When derivative of inner function is present → let t = inner function</li>
+                <li><strong>By Parts:</strong> For product of two different types → use ILATE (I L A T E)</li>
+                <li>Formula: \(\int u\,dv = uv - \int v\,du\)</li>
+                <li><strong>Partial Fractions:</strong> For rational functions with factorable denominators → split into simpler fractions</li>
+                <li>Key pattern: \(\int \frac{f'(x)}{f(x)}\,dx = \ln|f(x)|+C\)</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-clipboard-list"></i> 📌 Definite Integrals</div>
+            <ul>
+                <li>Formula: \(\int_a^b f(x)\,dx = F(b) - F(a)\)</li>
+                <li>Result is a NUMBER, not a function</li>
+                <li>No + C needed</li>
+                <li>Reversing limits → sign changes</li>
+                <li>Same limits → result is 0</li>
+                <li>Even function: \(\int_{-a}^a = 2\int_0^a\)</li>
+                <li>Odd function: \(\int_{-a}^a = 0\)</li>
+                <li>Property 7: \(\int_0^a f(x)\,dx = \int_0^a f(a-x)\,dx\) → very useful!</li>
+            </ul>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-clipboard-list"></i> 📌 Applications</div>
+            <ul>
+                <li><strong>Area:</strong> \(\int_a^b y\,dx\) (about X-axis) or \(\int_c^d x\,dy\) (about Y-axis)</li>
+                <li><strong>Volume:</strong> \(\pi\int_a^b y^2\,dx\) (revolution about X-axis)</li>
+                <li><strong>Volume:</strong> \(\pi\int_c^d x^2\,dy\) (revolution about Y-axis)</li>
+                <li><strong>Surface area:</strong> \(2\pi\int y\sqrt{1+(dy/dx)^2}\,dx\)</li>
+                <li>Cone volume = \(\frac{1}{3}\pi r^2h\) (can be derived!)</li>
+                <li>Sphere volume = \(\frac{4}{3}\pi r^3\) (can be derived!)</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-exclamation-circle"></i> ⚠️ Don't Forget on Exam Day!</div>
+            <ul>
+                <li>✅ Always add <strong>+ C</strong> in indefinite integrals</li>
+                <li>✅ Never add + C in definite integrals</li>
+                <li>✅ \(\int \sin x\,dx = -\cos x\) (NEGATIVE cos!)</li>
+                <li>✅ \(\int \frac{1}{x}\,dx = \ln|x|\) (not \(\frac{x^0}{0}\)!)</li>
+                <li>✅ In substitution: change limits when doing definite integrals</li>
+                <li>✅ ILATE: Logarithmic before Algebraic before Trig before Exp</li>
+                <li>✅ Partial fractions: degree of numerator must be less than denominator</li>
+                <li>✅ Volume formula has \(y^2\) (squared!) and \(\pi\)</li>
+                <li>✅ Verify integration by differentiating your answer</li>
+                <li>✅ Use trig identities: \(\sin^2x = \frac{1-\cos 2x}{2}\), \(\cos^2x = \frac{1+\cos 2x}{2}\)</li>
+            </ul>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-fire"></i> 🔥 Most Frequently Asked in WBSCTE Exams</div>
+            <ol>
+                <li>Integration by parts — \(\int xe^x\,dx\), \(\int x\sin x\,dx\), \(\int \ln x\,dx\) (10 marks)</li>
+                <li>Integration by partial fractions (10 marks)</li>
+                <li>Definite integral evaluation — polynomial, trig (5–10 marks)</li>
+                <li>Area under a curve — \(y = x^2\), \(y = \sin x\) (10 marks)</li>
+                <li>Volume of revolution about X-axis (10 marks)</li>
+                <li>Properties of definite integrals — even/odd, substitution property (5 marks)</li>
+                <li>Standard integrals — power rule, trig (objective)</li>
+                <li>Substitution method (5–10 marks)</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+</div> <!-- END .container -->
+
+<!-- ============================== FABS ============================== -->
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+        <span class="fab-tooltip">Back to Top</span>
+    </button>
+    <button class="fab fab-print" id="fabPrint" title="Print">
+        <i class="fas fa-print"></i>
+        <span class="fab-tooltip">Print</span>
+    </button>
+    <button class="fab fab-save" id="fabSave" title="Save progress">
+        <i class="fas fa-save"></i>
+        <span class="fab-tooltip">Save</span>
+    </button>
+</div>
+
+<!-- ============================== TOAST ============================== -->
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

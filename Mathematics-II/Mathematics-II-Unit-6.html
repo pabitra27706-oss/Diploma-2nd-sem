@@ -1,393 +1,2148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Mathematics · Unit 6 · Statistics & Probability</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- MathJax for LaTeX rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: statistics / probability / blue-green -->
-  <style>
-    :root {
-      --primary: #2563eb;          /* statistics blue */
-      --primary-light: #3b82f6;
-      --accent: #7c3aed;            /* probability purple */
-      --accent-light: #8b5cf6;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #1e3a8a, #2563eb, #7c3aed);
-    }
-    /* header emoji: statistics symbols */
-    .header::after {
-      content: "📊📈🎲🧮";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* formula cards */
-    .formula-card {
-      background: var(--formula-bg);
-      padding: 15px;
-      border-radius: var(--radius-md);
-      border-left: 5px solid var(--accent);
-      margin: 15px 0;
-    }
-    .mjx-chtml {
-      font-size: 1.1rem !important;
-    }
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .data-table th, .data-table td {
-      padding: 8px;
-      text-align: center;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 - Statistics & Probability | Engg. Mathematics-II</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Probability') ? 'Show Probability' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Probability') ? 'Hide Probability' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .step-method {
+            background: var(--formula-bg); border-radius:var(--radius-sm);
+            padding:16px; margin:12px 0; border-left:3px solid var(--success);
+        }
+        [data-theme="dark"] .step-method { background:#1a2332; }
+
+        .outcome-grid { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+        .outcome-badge {
+            background:linear-gradient(135deg,var(--primary),var(--primary-light));
+            color:#fff; padding:8px 16px; border-radius:20px; font-size:0.88rem;
+        }
+
+        .calc-table td, .calc-table th { text-align:center; padding:10px 12px !important; }
+        .calc-table th { background:var(--primary); color:#fff; }
+        .calc-table tr:nth-child(even) { background:var(--formula-bg); }
+        [data-theme="dark"] .calc-table tr:nth-child(even) { background:rgba(41,98,255,0.08); }
+        .calc-table .total-row { background:rgba(46,125,50,0.12) !important; font-weight:bold; }
+        [data-theme="dark"] .calc-table .total-row { background:rgba(46,125,50,0.2) !important; }
+
+        .method-card {
+            background: var(--card-bg); border:1px solid var(--border-color);
+            border-radius: var(--radius-md); padding:18px; margin:14px 0;
+            border-left: 4px solid var(--purple);
+        }
+        [data-theme="dark"] .method-card { background:#1a2332; }
+        .method-card h4 { color:var(--purple); margin-bottom:10px; }
+
+        .event-card {
+            background:var(--card-bg); border:1px solid var(--border-color);
+            border-radius:var(--radius-md); padding:16px; border-top:3px solid var(--info);
+            min-width:0; overflow-wrap:break-word;
+        }
+        .event-card h4 { color:var(--info); margin-bottom:8px; }
+        [data-theme="dark"] .event-card { background:#1a2332; }
+
+        .type-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:480px) { .type-grid { grid-template-columns:1fr; } }
+
+        .highlight-formula {
+            background: linear-gradient(135deg, rgba(41,98,255,0.1), rgba(130,177,255,0.05));
+            border:2px solid var(--accent); border-radius:var(--radius-md);
+            padding:20px; margin:16px 0; text-align:center;
+        }
+        [data-theme="dark"] .highlight-formula { background: linear-gradient(135deg, rgba(41,98,255,0.15), rgba(130,177,255,0.08)); }
+
+        .MathJax { overflow-x:auto !important; overflow-y:hidden !important; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>📊 Mathematics · Unit 6 📊</h1>
-      <h2>Statistics & Probability</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-chart-bar"></i> Central Tendency</span>
-        <span class="info-item"><i class="fas fa-chart-line"></i> Dispersion</span>
-        <span class="info-item"><i class="fas fa-dice"></i> Probability</span>
-      </div>
+        <h1><i class="fas fa-chart-bar"></i> Statistics & Probability</h1>
+        <h2>Unit 6 — Engineering Mathematics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS102/M-II</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 6</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-clock"></i> 9 Hours</span>
+            <span class="info-item"><i class="fas fa-star"></i> Group D</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-chart-bar"></i> MATH·UNIT6</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#statistics"><i class="fas fa-chart-bar"></i> Statistics</a>
-        <a href="#central"><i class="fas fa-chart-line"></i> Central Tendency</a>
-        <a href="#dispersion"><i class="fas fa-chart-scatter"></i> Dispersion</a>
-        <a href="#probability"><i class="fas fa-dice"></i> Probability</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>📊 Math-II U6</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#frequency"><i class="fas fa-table"></i> Frequency</a>
+            <a href="#mean"><i class="fas fa-calculator"></i> Mean</a>
+            <a href="#median"><i class="fas fa-arrows-alt-h"></i> Median</a>
+            <a href="#mode"><i class="fas fa-chart-column"></i> Mode</a>
+            <a href="#sd"><i class="fas fa-wave-square"></i> Std Dev</a>
+            <a href="#prob-basics"><i class="fas fa-dice"></i> Probability</a>
+            <a href="#prob-problems"><i class="fas fa-calculator"></i> Prob. Problems</a>
+            <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+            <a href="#comparisons"><i class="fas fa-scale-balanced"></i> Compare</a>
+            <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+            <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+            <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-chart-bar"></i> MATH Unit 6</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>📊 Math-II U6</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#statistics"><i class="fas fa-chart-bar"></i> Frequency distribution</a>
-      <a href="#central"><i class="fas fa-chart-line"></i> Mean, Median, Mode (ungrouped & grouped)</a>
-      <a href="#dispersion"><i class="fas fa-chart-scatter"></i> Standard deviation</a>
-      <a href="#probability"><i class="fas fa-dice"></i> Random experiment, sample space, event, types, classical probability</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#frequency"><i class="fas fa-table"></i> Frequency</a>
+        <a href="#mean"><i class="fas fa-calculator"></i> Mean</a>
+        <a href="#median"><i class="fas fa-arrows-alt-h"></i> Median</a>
+        <a href="#mode"><i class="fas fa-chart-column"></i> Mode</a>
+        <a href="#sd"><i class="fas fa-wave-square"></i> Std Dev</a>
+        <a href="#prob-basics"><i class="fas fa-dice"></i> Probability</a>
+        <a href="#prob-problems"><i class="fas fa-calculator"></i> Prob. Problems</a>
+        <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+        <a href="#comparisons"><i class="fas fa-scale-balanced"></i> Compare</a>
+        <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+        <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+        <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: STATISTICS - FREQUENCY DISTRIBUTION ========= -->
-    <section id="statistics" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-bar"></i> Statistics: Frequency Distribution
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Frequency Distribution</div>
-          <p>A <strong>frequency distribution</strong> shows how often each value or class interval occurs in a data set.</p>
-          <p><strong>Example:</strong> Marks of 20 students in a test: 45, 50, 45, 55, 50, 60, 45, 55, 50, 60, 65, 45, 50, 55, 60, 65, 70, 45, 50, 55.</p>
-          <table class="data-table">
-            <tr><th>Marks</th><th>Frequency</th></tr>
-            <tr><td>45</td><td>5</td></tr>
-            <tr><td>50</td><td>5</td></tr>
-            <tr><td>55</td><td>4</td></tr>
-            <tr><td>60</td><td>3</td></tr>
-            <tr><td>65</td><td>2</td></tr>
-            <tr><td>70</td><td>1</td></tr>
-          </table>
-        </div>
-      </div>
-    </section>
+<div class="container">
 
-    <!-- ========== SECTION 2: MEASURES OF CENTRAL TENDENCY ========= -->
-    <section id="central" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-line"></i> Measures of Central Tendency: Mean, Median, Mode
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4>Mean (Arithmetic)</h4>
-            <p><strong>Ungrouped:</strong> \( \bar{x} = \frac{\sum x_i}{n} \)</p>
-            <p><strong>Grouped:</strong> \( \bar{x} = \frac{\sum f_i x_i}{\sum f_i} \) (where \( x_i \) = class mark)</p>
-          </div>
-          <div class="card">
-            <h4>Median</h4>
-            <p><strong>Ungrouped:</strong> Middle value when data sorted. If n odd: \( \frac{n+1}{2} \)th term. If n even: average of \( \frac{n}{2} \)th and \( \frac{n}{2}+1 \)th terms.</p>
-            <p><strong>Grouped:</strong> \( M = L + \frac{\frac{N}{2} - cf}{f} \times h \)</p>
-          </div>
-          <div class="card">
-            <h4>Mode</h4>
-            <p><strong>Ungrouped:</strong> Most frequent value.</p>
-            <p><strong>Grouped:</strong> \( Z = L + \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \times h \)</p>
-          </div>
-        </div>
+<!-- ============================================================== -->
+<!--  SECTION 1 : UNIT OVERVIEW                                     -->
+<!-- ============================================================== -->
+<section class="section" id="overview">
+    <h2 class="section-title">
+        <i class="fas fa-info-circle"></i> Unit Overview
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
 
-        <div class="example-box">
-          <div class="box-title">Example: Ungrouped Data</div>
-          <p>Find mean, median, mode for: 12, 15, 12, 18, 20, 15, 12, 16, 18, 20</p>
-          <button class="toggle-btn" data-target="central1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="central1">
-            <div class="formula answer">
-              <strong>Mean:</strong> \( \frac{12+15+12+18+20+15+12+16+18+20}{10} = \frac{158}{10} = 15.8 \)<br>
-              <strong>Median:</strong> Sorted: 12,12,12,15,15,16,18,18,20,20 → median = avg of 5th and 6th = (15+16)/2 = 15.5<br>
-              <strong>Mode:</strong> 12 appears 3 times → mode = 12
-            </div>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Example: Grouped Data</div>
-          <p>Find mean for:</p>
-          <table class="data-table">
-            <tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th></tr>
-            <tr><td>f</td><td>5</td><td>8</td><td>12</td><td>5</td></tr>
-          </table>
-          <button class="toggle-btn" data-target="central2"><i class="fas fa-eye"></i> Show Mean</button>
-          <div class="answer-reveal" id="central2">
-            <div class="formula answer">
-              Class marks: 5, 15, 25, 35<br>
-              \( \sum f_i x_i = 5×5 + 8×15 + 12×25 + 5×35 = 25 + 120 + 300 + 175 = 620 \)<br>
-              \( \sum f_i = 5+8+12+5 = 30 \)<br>
-              Mean = \( 620/30 = 20.67 \)
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 3: MEASURES OF DISPERSION ========= -->
-    <section id="dispersion" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-chart-scatter"></i> Measures of Dispersion: Standard Deviation
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Standard Deviation (σ)</div>
-          <p><strong>Ungrouped:</strong> \( \sigma = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n}} \)</p>
-          <p><strong>Grouped:</strong> \( \sigma = \sqrt{\frac{\sum f_i (x_i - \bar{x})^2}{\sum f_i}} \)</p>
-          <p>Also: \( \sigma = \sqrt{\frac{\sum f_i x_i^2}{\sum f_i} - \left(\frac{\sum f_i x_i}{\sum f_i}\right)^2} \)</p>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Example: Ungrouped SD</div>
-          <p>Find SD for: 5, 8, 10, 12, 15</p>
-          <button class="toggle-btn" data-target="disp1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="disp1">
-            <div class="formula answer">
-              Mean \( \bar{x} = (5+8+10+12+15)/5 = 50/5 = 10 \)<br>
-              Deviations: -5, -2, 0, 2, 5; squares: 25,4,0,4,25; sum = 58<br>
-              \( \sigma = \sqrt{58/5} = \sqrt{11.6} \approx 3.41 \)
-            </div>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Example: Grouped SD</div>
-          <p>Find SD for:</p>
-          <table class="data-table">
-            <tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th></tr>
-            <tr><td>f</td><td>5</td><td>8</td><td>12</td><td>5</td></tr>
-          </table>
-          <button class="toggle-btn" data-target="disp2"><i class="fas fa-eye"></i> Show SD</button>
-          <div class="answer-reveal" id="disp2">
-            <div class="formula answer">
-              Class marks: 5,15,25,35; \( \sum f_i x_i = 620 \) (from before), mean = 20.67<br>
-              \( \sum f_i x_i^2 = 5×25 + 8×225 + 12×625 + 5×1225 = 125 + 1800 + 7500 + 6125 = 15550 \)<br>
-              \( \sigma = \sqrt{15550/30 - (20.67)^2} = \sqrt{518.33 - 427.25} = \sqrt{91.08} \approx 9.54 \)
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 4: PROBABILITY BASICS ========= -->
-    <section id="probability" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-dice"></i> Probability: Definitions & Classical Approach
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title">Basic Definitions</div>
-          <ul>
-            <li><strong>Random experiment:</strong> An experiment whose outcome cannot be predicted in advance (e.g., tossing a coin).</li>
-            <li><strong>Sample space (S):</strong> Set of all possible outcomes (e.g., {H, T} for a coin).</li>
-            <li><strong>Event:</strong> A subset of the sample space (e.g., getting a head).</li>
-            <li><strong>Occurrence of event:</strong> Event E occurs if the outcome is in E.</li>
-          </ul>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4>Types of Events</h4>
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-bullseye"></i> What This Unit Covers</div>
+            <p><strong>Statistics</strong> is the science of collecting, organizing, analyzing, interpreting, and presenting data. <strong>Probability</strong> is the study of how likely an event is to occur.</p>
+            <p>This unit has two parts:</p>
             <ul>
-              <li><strong>Impossible event:</strong> \( \emptyset \) (probability 0)</li>
-              <li><strong>Mutually exclusive:</strong> Events cannot occur together ( \( A \cap B = \emptyset \) )</li>
-              <li><strong>Exhaustive events:</strong> Union covers entire sample space</li>
-              <li><strong>Equally likely events:</strong> Each outcome has same chance</li>
+                <li><strong>Part A — Statistics (6.1):</strong> How to summarize and describe data using numbers (Mean, Median, Mode, Standard Deviation)</li>
+                <li><strong>Part B — Probability (6.2):</strong> How to calculate the chance of something happening</li>
             </ul>
-          </div>
-          <div class="card">
-            <h4>Classical Probability</h4>
-            <p>If an experiment has \( n \) equally likely outcomes, and an event E has \( m \) favorable outcomes, then:</p>
+
+            <h4>🏭 Why are these important for Engineers?</h4>
+            <ul>
+                <li>⚙️ <strong>Quality Control:</strong> Check if products meet specifications (standard deviation)</li>
+                <li>📊 <strong>Data Analysis:</strong> Summarize test results, survey data</li>
+                <li>🔧 <strong>Reliability:</strong> What's the probability of a machine failing?</li>
+                <li>📡 <strong>Communication:</strong> Signal-to-noise ratios, error probability</li>
+                <li>🏗️ <strong>Civil Engineering:</strong> Load analysis, material testing statistics</li>
+            </ul>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Exam Importance</div>
+            <p>This unit is part of <strong>Group D</strong> (Unit 5 + Unit 6 = minimum 20 marks).</p>
+            <ul>
+                <li>At least <strong>5 objective questions</strong> from Group D</li>
+                <li>At least one <strong>10-mark subjective question</strong> from Group D</li>
+                <li><strong>Most common exam questions:</strong> Mean/Median/Mode calculation, Standard deviation, Simple probability problems</li>
+            </ul>
+            <p>⚠️ This unit is <strong>formula-heavy</strong> and <strong>calculation-heavy</strong>. Practice lots of numericals!</p>
+        </div>
+
+        <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+        <div class="outcome-grid">
+            <span class="outcome-badge">📌 Understand frequency distribution</span>
+            <span class="outcome-badge">📌 Calculate Mean (ungrouped & grouped)</span>
+            <span class="outcome-badge">📌 Calculate Median (ungrouped & grouped)</span>
+            <span class="outcome-badge">📌 Calculate Mode (ungrouped & grouped)</span>
+            <span class="outcome-badge">📌 Calculate Standard Deviation</span>
+            <span class="outcome-badge">📌 Understand sample space & events</span>
+            <span class="outcome-badge">📌 Apply classical probability</span>
+        </div>
+
+        <h3><i class="fas fa-book-open"></i> Prerequisites</h3>
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> What You Must Know</div>
+            <ul>
+                <li><strong>Basic arithmetic:</strong> Addition, subtraction, multiplication, division</li>
+                <li><strong>Square root:</strong> Finding √ of numbers</li>
+                <li><strong>Fractions:</strong> Working with fractions and percentages</li>
+                <li><strong>Summation (Σ):</strong> Understanding the sigma notation</li>
+            </ul>
+            <p><strong>Good news:</strong> This unit doesn't need calculus! It's all arithmetic and logic.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 2 : FREQUENCY DISTRIBUTION (6.1.1)                    -->
+<!-- ============================================================== -->
+<section class="section" id="frequency">
+    <h2 class="section-title">
+        <i class="fas fa-table"></i> 6.1.1 Frequency Distribution 🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Frequency</div>
+            <p><strong>Frequency</strong> is the number of times a particular value or data point occurs in a dataset.</p>
+            <p><strong>Example:</strong> If marks of 10 students are: 45, 50, 55, 50, 60, 45, 50, 55, 60, 50</p>
+            <ul>
+                <li>Frequency of 45 = 2 (appears 2 times)</li>
+                <li>Frequency of 50 = 4 (appears 4 times)</li>
+                <li>Frequency of 55 = 2</li>
+                <li>Frequency of 60 = 2</li>
+            </ul>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Frequency Distribution</div>
+            <p>A <strong>frequency distribution</strong> is a table that shows the values (or ranges of values) and their corresponding frequencies. It organizes raw data into a meaningful summary.</p>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Types of Data</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Raw Data</strong></td>
+                            <td>Unorganized, as collected</td>
+                            <td>45, 50, 55, 50, 60, 45...</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ungrouped Data</strong></td>
+                            <td>Individual values with frequencies</td>
+                            <td>Value: 45, 50, 55, 60; Freq: 2, 4, 2, 2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grouped Data</strong></td>
+                            <td>Data arranged in class intervals</td>
+                            <td>0-10, 10-20, 20-30... with frequencies</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Key Terms in Grouped Frequency Distribution</div>
+            <ul>
+                <li><strong>Class Interval (Class):</strong> A range of values, e.g., 10-20, 20-30</li>
+                <li><strong>Lower Class Limit:</strong> The smallest value in a class (e.g., 10 in 10-20)</li>
+                <li><strong>Upper Class Limit:</strong> The largest value in a class (e.g., 20 in 10-20)</li>
+                <li><strong>Class Width (h):</strong> Upper limit − Lower limit (e.g., 20 − 10 = 10)</li>
+                <li><strong>Class Mark (Mid-value, x):</strong> (Lower limit + Upper limit) / 2</li>
+                <li><strong>Cumulative Frequency (c.f.):</strong> Running total of frequencies from the first class</li>
+            </ul>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.1 — Ungrouped Frequency Distribution</div>
+            <p>The marks scored by 20 students are: 5, 8, 10, 5, 8, 12, 10, 5, 8, 10, 12, 15, 5, 8, 10, 12, 15, 8, 10, 12. Prepare a frequency distribution table.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead>
+                        <tr><th>Marks (x)</th><th>Tally Marks</th><th>Frequency (f)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>5</td><td>||||</td><td>4</td></tr>
+                        <tr><td>8</td><td><s>||||</s></td><td>5</td></tr>
+                        <tr><td>10</td><td><s>||||</s></td><td>5</td></tr>
+                        <tr><td>12</td><td>||||</td><td>4</td></tr>
+                        <tr><td>15</td><td>||</td><td>2</td></tr>
+                        <tr class="total-row"><td colspan="2"><strong>Total</strong></td><td><strong>Σf = 20</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.2 — Grouped Frequency Distribution ⭐</div>
+            <p>Given the following grouped frequency distribution, find class marks and cumulative frequencies.</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead>
+                        <tr><th>Class Interval</th><th>Frequency (f)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0 – 10</td><td>4</td></tr>
+                        <tr><td>10 – 20</td><td>8</td></tr>
+                        <tr><td>20 – 30</td><td>12</td></tr>
+                        <tr><td>30 – 40</td><td>10</td></tr>
+                        <tr><td>40 – 50</td><td>6</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead>
+                        <tr><th>Class Interval</th><th>f</th><th>Class Mark (x)</th><th>Cumulative Freq (c.f.)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0 – 10</td><td>4</td><td>(0+10)/2 = 5</td><td>4</td></tr>
+                        <tr><td>10 – 20</td><td>8</td><td>(10+20)/2 = 15</td><td>4+8 = 12</td></tr>
+                        <tr><td>20 – 30</td><td>12</td><td>(20+30)/2 = 25</td><td>12+12 = 24</td></tr>
+                        <tr><td>30 – 40</td><td>10</td><td>(30+40)/2 = 35</td><td>24+10 = 34</td></tr>
+                        <tr><td>40 – 50</td><td>6</td><td>(40+50)/2 = 45</td><td>34+6 = 40</td></tr>
+                        <tr class="total-row"><td><strong>Total</strong></td><td><strong>N = 40</strong></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Remember</div>
+            <ul>
+                <li><strong>Class Mark (x)</strong> = (Lower Limit + Upper Limit) / 2</li>
+                <li><strong>Cumulative Frequency</strong> = Sum of all frequencies up to that class</li>
+                <li>The last cumulative frequency always equals <strong>N</strong> (total frequency)</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 3 : MEAN (6.1.2)                                      -->
+<!-- ============================================================== -->
+<section class="section" id="mean">
+    <h2 class="section-title">
+        <i class="fas fa-calculator"></i> 6.1.2(a) Mean (Arithmetic Mean) 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Arithmetic Mean</div>
+            <p>The <strong>arithmetic mean</strong> (commonly called <strong>average</strong>) is the sum of all values divided by the number of values. It is the most commonly used measure of central tendency.</p>
+            <p><strong>Symbol:</strong> \(\bar{x}\) (read as "x bar")</p>
+        </div>
+
+        <!-- UNGROUPED -->
+        <div class="method-card">
+            <h4><i class="fas fa-list"></i> Case 1: Mean for Ungrouped Data (Without Frequency)</h4>
             <div class="formula">
-              \[
-              P(E) = \frac{m}{n}
-              \]
+                \[ \bar{x} = \frac{x_1 + x_2 + x_3 + ... + x_n}{n} = \frac{\sum x}{n} \]
             </div>
-          </div>
+            <p>where x₁, x₂, ... xₙ are the data values and n is the total number of values.</p>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Problem 1: Coin Toss</div>
-          <p>Find probability of getting a head when tossing a fair coin.</p>
-          <button class="toggle-btn" data-target="prob1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="prob1">
-            <div class="formula answer">
-              Sample space S = {H, T}, n = 2, favorable outcomes {H} → m = 1<br>
-              \( P = \frac{1}{2} \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.3 — Mean (Raw Data) ⭐</div>
+            <p>Find the mean of: 12, 15, 18, 20, 25.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\bar{x} = \frac{\sum x}{n} = \frac{12 + 15 + 18 + 20 + 25}{5} = \frac{90}{5}\)</p>
+            <div class="formula answer">\[ \boxed{\bar{x} = 18} \]</div>
+        </div>
+
+        <!-- WITH FREQUENCY -->
+        <div class="method-card">
+            <h4><i class="fas fa-table"></i> Case 2: Mean for Ungrouped Data (With Frequency)</h4>
+            <div class="formula">
+                \[ \bar{x} = \frac{\sum fx}{\sum f} = \frac{\sum fx}{N} \]
             </div>
-          </div>
+            <p>where f = frequency, x = value, N = Σf = total frequency.</p>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Problem 2: Dice Roll</div>
-          <p>Find probability of getting an even number when rolling a fair die.</p>
-          <button class="toggle-btn" data-target="prob2"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="prob2">
-            <div class="formula answer">
-              S = {1,2,3,4,5,6}, n = 6. Even numbers = {2,4,6} → m = 3<br>
-              \( P = \frac{3}{6} = \frac{1}{2} \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.4 — Mean with Frequency ⭐⭐</div>
+            <p>Find the mean:</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>x</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>3</td><td>5</td><td>8</td><td>4</td><td>2</td></tr></tbody>
+                </table>
             </div>
-          </div>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead>
+                        <tr><th>x</th><th>f</th><th>fx</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>5</td><td>3</td><td>15</td></tr>
+                        <tr><td>10</td><td>5</td><td>50</td></tr>
+                        <tr><td>15</td><td>8</td><td>120</td></tr>
+                        <tr><td>20</td><td>4</td><td>80</td></tr>
+                        <tr><td>25</td><td>2</td><td>50</td></tr>
+                        <tr class="total-row"><td><strong>Total</strong></td><td><strong>N = 22</strong></td><td><strong>Σfx = 315</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>\(\bar{x} = \frac{\sum fx}{N} = \frac{315}{22}\)</p>
+            <div class="formula answer">\[ \boxed{\bar{x} = 14.32} \]</div>
+        </div>
+
+        <!-- GROUPED DATA -->
+        <div class="method-card">
+            <h4><i class="fas fa-table"></i> Case 3: Mean for Grouped Data (Direct Method) 🔥</h4>
+            <div class="formula">
+                \[ \bar{x} = \frac{\sum fx}{N} \]
+            </div>
+            <p>where x = class mark (mid-value) of each class, f = frequency of each class.</p>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Problem 3: Cards</div>
-          <p>From a well-shuffled deck of 52 cards, find probability of drawing a king.</p>
-          <button class="toggle-btn" data-target="prob3"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="prob3">
-            <div class="formula answer">
-              Total outcomes n = 52, kings = 4 → m = 4<br>
-              \( P = \frac{4}{52} = \frac{1}{13} \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.5 — Mean for Grouped Data ⭐⭐⭐</div>
+            <p>Find the mean of the following distribution:</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th><th>40-50</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>5</td><td>8</td><td>15</td><td>10</td><td>2</td></tr></tbody>
+                </table>
             </div>
-          </div>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead>
+                        <tr><th>Class</th><th>f</th><th>x (mid-value)</th><th>fx</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0 – 10</td><td>5</td><td>5</td><td>25</td></tr>
+                        <tr><td>10 – 20</td><td>8</td><td>15</td><td>120</td></tr>
+                        <tr><td>20 – 30</td><td>15</td><td>25</td><td>375</td></tr>
+                        <tr><td>30 – 40</td><td>10</td><td>35</td><td>350</td></tr>
+                        <tr><td>40 – 50</td><td>2</td><td>45</td><td>90</td></tr>
+                        <tr class="total-row"><td><strong>Total</strong></td><td><strong>N = 40</strong></td><td></td><td><strong>Σfx = 960</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>\(\bar{x} = \frac{\sum fx}{N} = \frac{960}{40}\)</p>
+            <div class="formula answer">\[ \boxed{\bar{x} = 24} \]</div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Properties of Mean</div>
+            <ul>
+                <li>Every data value is used in calculation</li>
+                <li>If all values are equal to 'a', then mean = a</li>
+                <li>Sum of deviations from mean = 0, i.e., \(\sum(x - \bar{x}) = 0\)</li>
+                <li>Affected by extreme values (outliers)</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 4 : MEDIAN (6.1.2)                                    -->
+<!-- ============================================================== -->
+<section class="section" id="median">
+    <h2 class="section-title">
+        <i class="fas fa-arrows-alt-h"></i> 6.1.2(b) Median 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Median</div>
+            <p>The <strong>median</strong> is the <strong>middle value</strong> of a dataset when the values are arranged in <strong>ascending or descending order</strong>. It divides the data into two equal halves — 50% below and 50% above.</p>
+        </div>
+
+        <!-- UNGROUPED -->
+        <div class="method-card">
+            <h4><i class="fas fa-list"></i> Case 1: Median for Ungrouped Data</h4>
+            <p>First arrange data in ascending order, then:</p>
+            <div class="formula">
+                \[ \text{If n is odd:} \quad \text{Median} = \left(\frac{n+1}{2}\right)^{th} \text{value} \]
+            </div>
+            <div class="formula">
+                \[ \text{If n is even:} \quad \text{Median} = \frac{\left(\frac{n}{2}\right)^{th} + \left(\frac{n}{2}+1\right)^{th}}{2} \]
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Problem 4: Mutually Exclusive</div>
-          <p>If A and B are mutually exclusive events with P(A)=0.3, P(B)=0.4, find P(A∪B).</p>
-          <button class="toggle-btn" data-target="prob4"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="prob4">
-            <div class="formula answer">
-              Since mutually exclusive, \( P(A \cup B) = P(A) + P(B) = 0.3 + 0.4 = 0.7 \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.6 — Median (Odd n) ⭐</div>
+            <p>Find the median of: 7, 3, 9, 1, 5.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Step 1:</strong> Arrange in ascending order: 1, 3, 5, 7, 9</p>
+            <p><strong>Step 2:</strong> n = 5 (odd)</p>
+            <p>Median = \(\left(\frac{5+1}{2}\right)^{th}\) value = 3rd value = <strong>5</strong></p>
+            <div class="formula answer">\[ \boxed{\text{Median} = 5} \]</div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.7 — Median (Even n) ⭐</div>
+            <p>Find the median of: 4, 8, 2, 6, 10, 12.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>Step 1:</strong> Arrange: 2, 4, 6, 8, 10, 12</p>
+            <p><strong>Step 2:</strong> n = 6 (even)</p>
+            <p>Median = Average of 3rd and 4th values = \(\frac{6 + 8}{2} = \frac{14}{2}\)</p>
+            <div class="formula answer">\[ \boxed{\text{Median} = 7} \]</div>
+        </div>
+
+        <!-- GROUPED DATA -->
+        <div class="method-card">
+            <h4><i class="fas fa-table"></i> Case 2: Median for Grouped Data 🔥🔥</h4>
+            <div class="formula">
+                \[ \text{Median} = L + \frac{\frac{N}{2} - c.f.}{f} \times h \]
             </div>
-          </div>
+            <p>where:</p>
+            <ul>
+                <li><strong>L</strong> = Lower limit of the median class</li>
+                <li><strong>N</strong> = Total frequency (Σf)</li>
+                <li><strong>c.f.</strong> = Cumulative frequency of the class <em>before</em> the median class</li>
+                <li><strong>f</strong> = Frequency of the median class</li>
+                <li><strong>h</strong> = Class width (class size)</li>
+            </ul>
         </div>
-      </div>
-    </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">Mean (grouped): \( \bar{x} = \frac{\sum f x}{\sum f} \)</div>
-          <div class="tag">Median: \( L + \frac{N/2 - cf}{f} \times h \)</div>
-          <div class="tag">Mode: \( L + \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \times h \)</div>
-          <div class="tag">SD: \( \sigma = \sqrt{\frac{\sum f(x-\bar{x})^2}{\sum f}} \)</div>
-          <div class="tag">Probability: \( P(E) = \frac{m}{n} \)</div>
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps for Grouped Median</div>
+            <div class="step" data-step="Step 1"><p>Find N = Σf and calculate N/2.</p></div>
+            <div class="step" data-step="Step 2"><p>Find cumulative frequencies.</p></div>
+            <div class="step" data-step="Step 3"><p>Find the <strong>median class</strong>: the class whose cumulative frequency is ≥ N/2 for the first time.</p></div>
+            <div class="step" data-step="Step 4"><p>Identify L, f, c.f. (of previous class), and h.</p></div>
+            <div class="step" data-step="Step 5"><p>Apply the formula.</p></div>
         </div>
-      </div>
-    </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.8 — Median for Grouped Data ⭐⭐⭐</div>
+            <p>Find the median:</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th><th>40-50</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>5</td><td>8</td><td>15</td><td>10</td><td>2</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1">
+                <p>N = 5 + 8 + 15 + 10 + 2 = 40, so N/2 = 20</p>
+            </div>
+            <div class="step" data-step="Step 2 — Cumulative Frequencies">
+                <div class="table-wrapper">
+                    <table class="data-table calc-table">
+                        <thead><tr><th>Class</th><th>f</th><th>c.f.</th></tr></thead>
+                        <tbody>
+                            <tr><td>0 – 10</td><td>5</td><td>5</td></tr>
+                            <tr><td>10 – 20</td><td>8</td><td>13</td></tr>
+                            <tr><td style="background:rgba(41,98,255,0.15)"><strong>20 – 30</strong></td><td style="background:rgba(41,98,255,0.15)"><strong>15</strong></td><td style="background:rgba(41,98,255,0.15)"><strong>28 ← (≥ 20)</strong></td></tr>
+                            <tr><td>30 – 40</td><td>10</td><td>38</td></tr>
+                            <tr><td>40 – 50</td><td>2</td><td>40</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>N/2 = 20. The first c.f. ≥ 20 is 28 (class 20-30)</p>
+                <p><strong>Median class = 20 – 30</strong></p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>L = 20, f = 15, c.f. (previous class) = 13, h = 10</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>\(\text{Median} = L + \frac{\frac{N}{2} - c.f.}{f} \times h = 20 + \frac{20 - 13}{15} \times 10\)</p>
+                <p>\(= 20 + \frac{7}{15} \times 10 = 20 + \frac{70}{15} = 20 + 4.67\)</p>
+                <div class="formula answer">\[ \boxed{\text{Median} = 24.67} \]</div>
+            </div>
+        </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 5 : MODE (6.1.2)                                      -->
+<!-- ============================================================== -->
+<section class="section" id="mode">
+    <h2 class="section-title">
+        <i class="fas fa-chart-column"></i> 6.1.2(c) Mode 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Mode</div>
+            <p>The <strong>mode</strong> is the value that occurs <strong>most frequently</strong> in a dataset. It is the most "popular" or common value.</p>
+            <ul>
+                <li>A dataset can have <strong>no mode</strong> (all values appear equally)</li>
+                <li>A dataset can have <strong>one mode</strong> (unimodal)</li>
+                <li>A dataset can have <strong>two modes</strong> (bimodal)</li>
+                <li>A dataset can have <strong>more than two modes</strong> (multimodal)</li>
+            </ul>
+        </div>
+
+        <!-- UNGROUPED -->
+        <div class="method-card">
+            <h4><i class="fas fa-list"></i> Case 1: Mode for Ungrouped Data</h4>
+            <p>Simply find the value that appears <strong>most often</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.9 — Mode (Ungrouped) ⭐</div>
+            <p>Find the mode of: 2, 3, 5, 3, 7, 3, 8, 5, 3, 2.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Count each value: 2 appears 2 times, 3 appears 4 times, 5 appears 2 times, 7 appears 1 time, 8 appears 1 time.</p>
+            <p>The value 3 appears most frequently (4 times).</p>
+            <div class="formula answer">\[ \boxed{\text{Mode} = 3} \]</div>
+        </div>
+
+        <!-- GROUPED DATA -->
+        <div class="method-card">
+            <h4><i class="fas fa-table"></i> Case 2: Mode for Grouped Data 🔥🔥</h4>
+            <div class="formula">
+                \[ \text{Mode} = L + \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \times h \]
+            </div>
+            <p>where:</p>
+            <ul>
+                <li><strong>L</strong> = Lower limit of the modal class</li>
+                <li><strong>f₁</strong> = Frequency of the modal class (highest frequency)</li>
+                <li><strong>f₀</strong> = Frequency of the class <em>before</em> the modal class</li>
+                <li><strong>f₂</strong> = Frequency of the class <em>after</em> the modal class</li>
+                <li><strong>h</strong> = Class width</li>
+            </ul>
+            <p><strong>Modal class</strong> = The class with the <strong>highest frequency</strong>.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.10 — Mode for Grouped Data ⭐⭐⭐</div>
+            <p>Find the mode:</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th><th>40-50</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>5</td><td>8</td><td>15</td><td>10</td><td>2</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1">
+                <p>Find modal class: Highest frequency = 15 (class 20–30)</p>
+                <p><strong>Modal class = 20 – 30</strong></p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Identify values: L = 20, f₁ = 15, f₀ = 8 (before), f₂ = 10 (after), h = 10</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>\(\text{Mode} = 20 + \frac{15 - 8}{2(15) - 8 - 10} \times 10\)</p>
+                <p>\(= 20 + \frac{7}{30 - 18} \times 10 = 20 + \frac{7}{12} \times 10 = 20 + 5.83\)</p>
+                <div class="formula answer">\[ \boxed{\text{Mode} = 25.83} \]</div>
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Empirical Relationship</div>
+            <p>For a moderately skewed distribution:</p>
+            <div class="formula">
+                \[ \boxed{\text{Mode} = 3 \times \text{Median} - 2 \times \text{Mean}} \]
+            </div>
+            <p>This is useful when one measure is difficult to calculate.</p>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes in Mode</div>
+            <ol>
+                <li><strong>f₀ and f₂ confusion:</strong> f₀ is BEFORE the modal class, f₂ is AFTER</li>
+                <li><strong>Wrong modal class:</strong> Always pick the class with the HIGHEST frequency</li>
+                <li><strong>Denominator error:</strong> 2f₁ − f₀ − f₂ (not 2f₁ + f₀ + f₂)</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 6 : STANDARD DEVIATION (6.1.3)                        -->
+<!-- ============================================================== -->
+<section class="section" id="sd">
+    <h2 class="section-title">
+        <i class="fas fa-wave-square"></i> 6.1.3 Standard Deviation 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Standard Deviation</div>
+            <p><strong>Standard Deviation (σ or S.D.)</strong> measures how <strong>spread out</strong> the data values are from the mean. A low S.D. means data is clustered near the mean; a high S.D. means data is spread out.</p>
+            <p><strong>Symbol:</strong> σ (sigma)</p>
+            <p><strong>Variance</strong> = σ² (square of standard deviation)</p>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Understanding S.D. with Analogy</div>
+            <p>Imagine two classes scored the following marks (out of 100):</p>
+            <ul>
+                <li><strong>Class A:</strong> 48, 50, 52, 50, 50 → Mean = 50, SD is small (clustered)</li>
+                <li><strong>Class B:</strong> 20, 40, 60, 80, 50 → Mean = 50, SD is large (spread out)</li>
+            </ul>
+            <p>Both have the same mean, but Class B has much higher standard deviation!</p>
+        </div>
+
+        <a href="https://www.google.com/search?tbm=isch&q=standard+deviation+bell+curve+spread+diagram" target="_blank" rel="noopener" class="figure-link">
+            <div class="diagram-placeholder">
+                <i class="fas fa-image"></i>
+                <p><strong>Fig. 6.1:</strong> Standard deviation — shows how data spreads around the mean (bell curve)</p>
+                <span class="click-hint">🔍 Click to view on Google Images</span>
+            </div>
+        </a>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Variance & S.D.</div>
+            <p><strong>Variance (σ²)</strong> = Mean of the squares of deviations from the mean</p>
+            <p><strong>Standard Deviation (σ)</strong> = Positive square root of variance</p>
+        </div>
+
+        <!-- UNGROUPED -->
+        <div class="method-card">
+            <h4><i class="fas fa-list"></i> Case 1: S.D. for Ungrouped Data (Without Frequency)</h4>
+            <div class="formula">
+                \[ \sigma = \sqrt{\frac{\sum(x - \bar{x})^2}{n}} \]
+            </div>
+            <p>Or the shortcut formula:</p>
+            <div class="formula">
+                \[ \sigma = \sqrt{\frac{\sum x^2}{n} - \left(\frac{\sum x}{n}\right)^2} = \sqrt{\frac{\sum x^2}{n} - \bar{x}^2} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.11 — S.D. for Raw Data ⭐⭐</div>
+            <p>Find the standard deviation of: 2, 4, 6, 8, 10.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution (Shortcut Method)</div>
+            <p>n = 5</p>
+            <p>\(\sum x = 2 + 4 + 6 + 8 + 10 = 30\)</p>
+            <p>\(\bar{x} = \frac{30}{5} = 6\)</p>
+            <p>\(\sum x^2 = 4 + 16 + 36 + 64 + 100 = 220\)</p>
+            <p>\(\sigma = \sqrt{\frac{\sum x^2}{n} - \bar{x}^2} = \sqrt{\frac{220}{5} - 6^2} = \sqrt{44 - 36} = \sqrt{8}\)</p>
+            <div class="formula answer">\[ \boxed{\sigma = 2\sqrt{2} \approx 2.83} \]</div>
+        </div>
+
+        <!-- WITH FREQUENCY -->
+        <div class="method-card">
+            <h4><i class="fas fa-table"></i> Case 2: S.D. for Ungrouped Data (With Frequency)</h4>
+            <div class="formula">
+                \[ \sigma = \sqrt{\frac{\sum fx^2}{N} - \left(\frac{\sum fx}{N}\right)^2} = \sqrt{\frac{\sum fx^2}{N} - \bar{x}^2} \]
+            </div>
+            <p>where N = Σf</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.12 — S.D. with Frequency ⭐⭐⭐</div>
+            <p>Find the standard deviation:</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>x</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>2</td><td>5</td><td>8</td><td>4</td><td>1</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead>
+                        <tr><th>x</th><th>f</th><th>fx</th><th>x²</th><th>fx²</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>5</td><td>2</td><td>10</td><td>25</td><td>50</td></tr>
+                        <tr><td>10</td><td>5</td><td>50</td><td>100</td><td>500</td></tr>
+                        <tr><td>15</td><td>8</td><td>120</td><td>225</td><td>1800</td></tr>
+                        <tr><td>20</td><td>4</td><td>80</td><td>400</td><td>1600</td></tr>
+                        <tr><td>25</td><td>1</td><td>25</td><td>625</td><td>625</td></tr>
+                        <tr class="total-row"><td></td><td><strong>N=20</strong></td><td><strong>Σfx=285</strong></td><td></td><td><strong>Σfx²=4575</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>\(\bar{x} = \frac{285}{20} = 14.25\)</p>
+            <p>\(\sigma = \sqrt{\frac{4575}{20} - (14.25)^2} = \sqrt{228.75 - 203.0625} = \sqrt{25.6875}\)</p>
+            <div class="formula answer">\[ \boxed{\sigma \approx 5.07} \]</div>
+        </div>
+
+        <!-- GROUPED DATA -->
+        <div class="method-card">
+            <h4><i class="fas fa-table"></i> Case 3: S.D. for Grouped Data 🔥🔥</h4>
+            <div class="formula">
+                \[ \sigma = \sqrt{\frac{\sum fx^2}{N} - \left(\frac{\sum fx}{N}\right)^2} \]
+            </div>
+            <p>where x = class mark (mid-value), f = frequency, N = Σf</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.13 — S.D. for Grouped Data ⭐⭐⭐</div>
+            <p>Find the standard deviation:</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th><th>40-50</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>5</td><td>8</td><td>15</td><td>10</td><td>2</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead>
+                        <tr><th>Class</th><th>f</th><th>x</th><th>fx</th><th>x²</th><th>fx²</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0 – 10</td><td>5</td><td>5</td><td>25</td><td>25</td><td>125</td></tr>
+                        <tr><td>10 – 20</td><td>8</td><td>15</td><td>120</td><td>225</td><td>1800</td></tr>
+                        <tr><td>20 – 30</td><td>15</td><td>25</td><td>375</td><td>625</td><td>9375</td></tr>
+                        <tr><td>30 – 40</td><td>10</td><td>35</td><td>350</td><td>1225</td><td>12250</td></tr>
+                        <tr><td>40 – 50</td><td>2</td><td>45</td><td>90</td><td>2025</td><td>4050</td></tr>
+                        <tr class="total-row"><td></td><td><strong>N=40</strong></td><td></td><td><strong>Σfx=960</strong></td><td></td><td><strong>Σfx²=27600</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>\(\bar{x} = \frac{960}{40} = 24\)</p>
+            <p>\(\sigma = \sqrt{\frac{27600}{40} - (24)^2} = \sqrt{690 - 576} = \sqrt{114}\)</p>
+            <div class="formula answer">\[ \boxed{\sigma = \sqrt{114} \approx 10.68} \]</div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Properties of Standard Deviation</div>
+            <ul>
+                <li>σ is always ≥ 0 (never negative)</li>
+                <li>σ = 0 only when all values are identical</li>
+                <li>σ has the <strong>same units</strong> as the data (unlike variance which has squared units)</li>
+                <li>A larger σ means more spread/variation in data</li>
+                <li>Not affected by shifting data (adding a constant to all values)</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 7 : PROBABILITY BASICS (6.2.1)                        -->
+<!-- ============================================================== -->
+<section class="section" id="prob-basics">
+    <h2 class="section-title">
+        <i class="fas fa-dice"></i> 6.2.1 Probability — Definitions & Types of Events 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Random Experiment</div>
+            <p>A <strong>random experiment</strong> is an experiment or process whose <strong>outcome cannot be predicted with certainty</strong> before it is performed, even under identical conditions.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>🎲 Tossing a coin — can't predict if it's Head or Tail</li>
+                <li>🎲 Rolling a die — can't predict which number comes up</li>
+                <li>🃏 Drawing a card from a deck — can't predict which card</li>
+                <li>📦 Picking a ball from a bag</li>
+            </ul>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Sample Space (S)</div>
+            <p>The <strong>sample space</strong> is the <strong>set of all possible outcomes</strong> of a random experiment.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li><strong>Tossing a coin:</strong> S = {Head, Tail} or S = {H, T}</li>
+                <li><strong>Rolling a die:</strong> S = {1, 2, 3, 4, 5, 6}</li>
+                <li><strong>Tossing two coins:</strong> S = {HH, HT, TH, TT}</li>
+            </ul>
+            <p>The total number of outcomes in S is denoted by <strong>n(S)</strong>.</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Event</div>
+            <p>An <strong>event</strong> is a <strong>subset</strong> of the sample space. It is one or more outcomes that we are interested in.</p>
+            <p><strong>Example:</strong> Rolling a die, Event A = "getting an even number" = {2, 4, 6}</p>
+            <p>n(A) = 3 (number of favorable outcomes)</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Occurrence of an Event</div>
+            <p>An event is said to have <strong>occurred</strong> if the outcome of the experiment is one of the elements of that event.</p>
+            <p><strong>Example:</strong> If we roll a die and get 4, then event A = {2, 4, 6} has occurred (since 4 ∈ A).</p>
+        </div>
+
+        <h3><i class="fas fa-shapes"></i> Types of Events</h3>
+
+        <div class="type-grid">
+            <div class="event-card">
+                <h4><i class="fas fa-ban"></i> Impossible Event</h4>
+                <p>An event that <strong>can never happen</strong>.</p>
+                <p><strong>Symbol:</strong> ∅ (empty set)</p>
+                <p><strong>Example:</strong> Getting 7 on a single die roll → Impossible!</p>
+                <p><strong>Probability = 0</strong></p>
+            </div>
+
+            <div class="event-card">
+                <h4><i class="fas fa-check-circle"></i> Certain/Sure Event</h4>
+                <p>An event that <strong>always happens</strong>.</p>
+                <p><strong>Symbol:</strong> S (entire sample space)</p>
+                <p><strong>Example:</strong> Getting a number ≤ 6 on a die → Always true!</p>
+                <p><strong>Probability = 1</strong></p>
+            </div>
+
+            <div class="event-card">
+                <h4><i class="fas fa-arrows-alt"></i> Mutually Exclusive Events</h4>
+                <p>Two events that <strong>cannot occur simultaneously</strong>. If one happens, the other can't.</p>
+                <p><strong>Condition:</strong> A ∩ B = ∅</p>
+                <p><strong>Example:</strong> Getting Head and Tail in a single coin toss.</p>
+                <p><strong>Example:</strong> Getting even number AND getting odd number on one die roll.</p>
+            </div>
+
+            <div class="event-card">
+                <h4><i class="fas fa-list-check"></i> Exhaustive Events</h4>
+                <p>A set of events is <strong>exhaustive</strong> if together they cover <strong>all possible outcomes</strong>.</p>
+                <p><strong>Condition:</strong> A₁ ∪ A₂ ∪ ... ∪ Aₙ = S</p>
+                <p><strong>Example:</strong> {Even} and {Odd} are exhaustive for a die roll.</p>
+            </div>
+
+            <div class="event-card">
+                <h4><i class="fas fa-equals"></i> Equally Likely Events</h4>
+                <p>Events that have the <strong>same probability</strong> of occurring.</p>
+                <p><strong>Example:</strong> Getting H or T on a fair coin — each has probability 1/2.</p>
+                <p><strong>Example:</strong> Getting any number on a fair die — each has probability 1/6.</p>
+            </div>
+
+            <div class="event-card">
+                <h4><i class="fas fa-refresh"></i> Complementary Event</h4>
+                <p>The complement of event A (denoted A' or Ā) is the event "A does NOT happen".</p>
+                <p><strong>Formula:</strong> P(A') = 1 − P(A)</p>
+                <p><strong>Example:</strong> If A = {getting even} = {2,4,6}, then A' = {getting odd} = {1,3,5}</p>
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-table"></i> Summary — Sample Spaces for Common Experiments</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Experiment</th><th>Sample Space</th><th>n(S)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1 coin toss</td><td>{H, T}</td><td>2</td></tr>
+                        <tr><td>2 coin tosses</td><td>{HH, HT, TH, TT}</td><td>4</td></tr>
+                        <tr><td>3 coin tosses</td><td>{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}</td><td>8</td></tr>
+                        <tr><td>1 die roll</td><td>{1, 2, 3, 4, 5, 6}</td><td>6</td></tr>
+                        <tr><td>2 dice rolls</td><td>{(1,1), (1,2), ..., (6,6)}</td><td>36</td></tr>
+                        <tr><td>1 card from 52-card deck</td><td>52 individual cards</td><td>52</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Quick Facts About a Deck of Cards 🃏</div>
+            <ul>
+                <li>Total cards = <strong>52</strong></li>
+                <li>4 suits: ♠ Spades (13), ♥ Hearts (13), ♦ Diamonds (13), ♣ Clubs (13)</li>
+                <li>Red cards = ♥ + ♦ = <strong>26</strong></li>
+                <li>Black cards = ♠ + ♣ = <strong>26</strong></li>
+                <li>Face cards (J, Q, K) = 4 × 3 = <strong>12</strong></li>
+                <li>Aces = <strong>4</strong></li>
+                <li>Number cards (2-10) = 4 × 9 = <strong>36</strong></li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+<!-- ============================================================== -->
+<!--  SECTION 8 : PROBABILITY PROBLEMS (6.2.2)                      -->
+<!-- ============================================================== -->
+<section class="section" id="prob-problems">
+    <h2 class="section-title">
+        <i class="fas fa-calculator"></i> 6.2.2 Classical Definition of Probability & Problems 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Classical (Mathematical) Definition of Probability 🔥</div>
+            <p>If a random experiment has <strong>n</strong> equally likely, mutually exclusive, and exhaustive outcomes, and <strong>m</strong> of them are favorable to an event A, then the probability of event A is:</p>
+            <div class="highlight-formula">
+                <div class="formula">
+                    \[ P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}} = \frac{m}{n} = \frac{n(A)}{n(S)} \]
+                </div>
+            </div>
+            <p><strong>Key points:</strong></p>
+            <ul>
+                <li>0 ≤ P(A) ≤ 1 (probability is always between 0 and 1)</li>
+                <li>P(impossible event) = 0</li>
+                <li>P(certain event) = 1</li>
+                <li>P(A') = 1 − P(A) (complement rule)</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Important Probability Formulas</div>
+            <div class="formula">
+                \[ P(A') = 1 - P(A) \quad \text{(Complement Rule)} \]
+            </div>
+            <div class="formula">
+                \[ P(A \cup B) = P(A) + P(B) \quad \text{(if A and B are mutually exclusive)} \]
+            </div>
+            <div class="formula">
+                \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \quad \text{(Addition Rule — general)} \]
+            </div>
+        </div>
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps to Solve Probability Problems</div>
+            <div class="step" data-step="Step 1"><p>Identify the random experiment.</p></div>
+            <div class="step" data-step="Step 2"><p>Find the sample space S and count n(S) = total outcomes.</p></div>
+            <div class="step" data-step="Step 3"><p>Identify the event A and count n(A) = favorable outcomes.</p></div>
+            <div class="step" data-step="Step 4"><p>Apply: P(A) = n(A) / n(S).</p></div>
+        </div>
+
+        <h3><i class="fas fa-coins"></i> Coin Problems</h3>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.14 — Single Coin Toss ⭐</div>
+            <p>A fair coin is tossed once. Find the probability of getting (a) a Head, (b) a Tail.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>S = {H, T}, n(S) = 2</p>
+            <p><strong>(a)</strong> Event A = Getting a Head = {H}, n(A) = 1</p>
+            <div class="formula answer">\[ P(\text{Head}) = \frac{1}{2} = \boxed{0.5} \]</div>
+            <p><strong>(b)</strong> Event B = Getting a Tail = {T}, n(B) = 1</p>
+            <div class="formula answer">\[ P(\text{Tail}) = \frac{1}{2} = \boxed{0.5} \]</div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.15 — Two Coins Tossed ⭐⭐</div>
+            <p>Two fair coins are tossed simultaneously. Find the probability of getting (a) exactly one Head, (b) at least one Head, (c) no Head.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>S = {HH, HT, TH, TT}, n(S) = 4</p>
+            <p><strong>(a)</strong> Exactly one Head = {HT, TH}, n(A) = 2</p>
+            <div class="formula answer">\[ P(\text{exactly 1 Head}) = \frac{2}{4} = \boxed{\frac{1}{2}} \]</div>
+            <p><strong>(b)</strong> At least one Head = {HH, HT, TH}, n(B) = 3</p>
+            <div class="formula answer">\[ P(\text{at least 1 Head}) = \frac{3}{4} = \boxed{0.75} \]</div>
+            <p><strong>(c)</strong> No Head = {TT}, n(C) = 1</p>
+            <div class="formula answer">\[ P(\text{no Head}) = \frac{1}{4} = \boxed{0.25} \]</div>
+            <p><strong>Check:</strong> P(at least 1 Head) + P(no Head) = 3/4 + 1/4 = 1 ✓</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.16 — Three Coins Tossed ⭐⭐</div>
+            <p>Three fair coins are tossed. Find the probability of getting (a) all Heads, (b) exactly 2 Tails.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>S = {HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}, n(S) = 8</p>
+            <p><strong>(a)</strong> All Heads = {HHH}, n(A) = 1</p>
+            <div class="formula answer">\[ P(\text{all Heads}) = \frac{1}{8} = \boxed{0.125} \]</div>
+            <p><strong>(b)</strong> Exactly 2 Tails = {HTT, THT, TTH}, n(B) = 3</p>
+            <div class="formula answer">\[ P(\text{exactly 2 Tails}) = \frac{3}{8} = \boxed{0.375} \]</div>
+        </div>
+
+        <h3><i class="fas fa-dice"></i> Die Problems</h3>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.17 — Single Die Roll ⭐⭐</div>
+            <p>A fair die is rolled once. Find the probability of getting (a) an even number, (b) a prime number, (c) a number greater than 4, (d) a number divisible by 3.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>S = {1, 2, 3, 4, 5, 6}, n(S) = 6</p>
+            <p><strong>(a)</strong> Even numbers = {2, 4, 6}, n(A) = 3</p>
+            <div class="formula answer">\[ P(\text{even}) = \frac{3}{6} = \boxed{\frac{1}{2}} \]</div>
+            <p><strong>(b)</strong> Prime numbers = {2, 3, 5}, n(B) = 3</p>
+            <div class="formula answer">\[ P(\text{prime}) = \frac{3}{6} = \boxed{\frac{1}{2}} \]</div>
+            <p><strong>(c)</strong> Greater than 4 = {5, 6}, n(C) = 2</p>
+            <div class="formula answer">\[ P(\text{> 4}) = \frac{2}{6} = \boxed{\frac{1}{3}} \]</div>
+            <p><strong>(d)</strong> Divisible by 3 = {3, 6}, n(D) = 2</p>
+            <div class="formula answer">\[ P(\text{div by 3}) = \frac{2}{6} = \boxed{\frac{1}{3}} \]</div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.18 — Two Dice Rolled ⭐⭐⭐</div>
+            <p>Two dice are rolled simultaneously. Find the probability that (a) the sum is 7, (b) the sum is 11, (c) both show same number (doublet).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Total outcomes: n(S) = 6 × 6 = 36</p>
+            <p><strong>(a) Sum = 7:</strong></p>
+            <p>Favorable outcomes: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) → n(A) = 6</p>
+            <div class="formula answer">\[ P(\text{sum = 7}) = \frac{6}{36} = \boxed{\frac{1}{6}} \]</div>
+            <p><strong>(b) Sum = 11:</strong></p>
+            <p>Favorable outcomes: (5,6), (6,5) → n(B) = 2</p>
+            <div class="formula answer">\[ P(\text{sum = 11}) = \frac{2}{36} = \boxed{\frac{1}{18}} \]</div>
+            <p><strong>(c) Doublet (both same):</strong></p>
+            <p>Favorable outcomes: (1,1), (2,2), (3,3), (4,4), (5,5), (6,6) → n(C) = 6</p>
+            <div class="formula answer">\[ P(\text{doublet}) = \frac{6}{36} = \boxed{\frac{1}{6}} \]</div>
+        </div>
+
+        <h3><i class="fas fa-clone"></i> Card Problems</h3>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.19 — Drawing a Card ⭐⭐</div>
+            <p>A card is drawn at random from a well-shuffled deck of 52 cards. Find the probability that the card is (a) a King, (b) a red card, (c) a face card, (d) a spade.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>n(S) = 52</p>
+            <p><strong>(a) King:</strong> There are 4 Kings in a deck.</p>
+            <div class="formula answer">\[ P(\text{King}) = \frac{4}{52} = \boxed{\frac{1}{13}} \]</div>
+            <p><strong>(b) Red card:</strong> Hearts (13) + Diamonds (13) = 26</p>
+            <div class="formula answer">\[ P(\text{Red}) = \frac{26}{52} = \boxed{\frac{1}{2}} \]</div>
+            <p><strong>(c) Face card:</strong> J, Q, K of 4 suits = 12</p>
+            <div class="formula answer">\[ P(\text{Face card}) = \frac{12}{52} = \boxed{\frac{3}{13}} \]</div>
+            <p><strong>(d) Spade:</strong> 13 spade cards</p>
+            <div class="formula answer">\[ P(\text{Spade}) = \frac{13}{52} = \boxed{\frac{1}{4}} \]</div>
+        </div>
+
+        <h3><i class="fas fa-circle"></i> Ball / Object Problems</h3>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.20 — Balls in a Bag ⭐⭐</div>
+            <p>A bag contains 5 red balls, 3 blue balls, and 2 green balls. A ball is drawn at random. Find the probability that the ball is (a) red, (b) not green, (c) blue or green.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Total balls = 5 + 3 + 2 = 10, so n(S) = 10</p>
+            <p><strong>(a) Red:</strong> n(R) = 5</p>
+            <div class="formula answer">\[ P(\text{Red}) = \frac{5}{10} = \boxed{\frac{1}{2}} \]</div>
+            <p><strong>(b) Not green:</strong> n(G') = 10 − 2 = 8 (or use complement)</p>
+            <div class="formula answer">\[ P(\text{Not Green}) = 1 - P(\text{Green}) = 1 - \frac{2}{10} = \boxed{\frac{4}{5}} \]</div>
+            <p><strong>(c) Blue or Green:</strong> n(B ∪ G) = 3 + 2 = 5 (mutually exclusive)</p>
+            <div class="formula answer">\[ P(\text{Blue or Green}) = \frac{5}{10} = \boxed{\frac{1}{2}} \]</div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.21 — Complement Rule ⭐⭐</div>
+            <p>The probability that a student passes an exam is 0.85. Find the probability that the student fails.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>P(Pass) = 0.85</p>
+            <p>P(Fail) = 1 − P(Pass) = 1 − 0.85</p>
+            <div class="formula answer">\[ \boxed{P(\text{Fail}) = 0.15} \]</div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.22 — Numbers Problem ⭐⭐</div>
+            <p>A number is chosen at random from 1 to 20. Find the probability that the number is (a) even, (b) a multiple of 5, (c) a perfect square.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>S = {1, 2, 3, ..., 20}, n(S) = 20</p>
+            <p><strong>(a) Even:</strong> {2, 4, 6, 8, 10, 12, 14, 16, 18, 20} → n = 10</p>
+            <div class="formula answer">\[ P(\text{Even}) = \frac{10}{20} = \boxed{\frac{1}{2}} \]</div>
+            <p><strong>(b) Multiple of 5:</strong> {5, 10, 15, 20} → n = 4</p>
+            <div class="formula answer">\[ P(\text{Multiple of 5}) = \frac{4}{20} = \boxed{\frac{1}{5}} \]</div>
+            <p><strong>(c) Perfect square:</strong> {1, 4, 9, 16} → n = 4</p>
+            <div class="formula answer">\[ P(\text{Perfect square}) = \frac{4}{20} = \boxed{\frac{1}{5}} \]</div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 6.23 — Addition Rule ⭐⭐⭐</div>
+            <p>A die is thrown once. Find the probability of getting an even number or a number greater than 4.</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>S = {1, 2, 3, 4, 5, 6}, n(S) = 6</p>
+            <p>Let A = Even = {2, 4, 6}, B = Greater than 4 = {5, 6}</p>
+            <p>A ∩ B = {6} (both even AND > 4)</p>
+            <p>These are NOT mutually exclusive, so use general addition rule:</p>
+            <p>\(P(A \cup B) = P(A) + P(B) - P(A \cap B) = \frac{3}{6} + \frac{2}{6} - \frac{1}{6}\)</p>
+            <div class="formula answer">\[ P(A \cup B) = \frac{4}{6} = \boxed{\frac{2}{3}} \]</div>
+            <p><strong>Verification:</strong> A ∪ B = {2, 4, 5, 6} → 4/6 = 2/3 ✓</p>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes in Probability</div>
+            <ol>
+                <li><strong>Forgetting "at least":</strong> P(at least 1) = 1 − P(none). This is the complement trick!</li>
+                <li><strong>Double counting:</strong> When events overlap, use P(A∪B) = P(A) + P(B) − P(A∩B)</li>
+                <li><strong>Wrong sample space:</strong> For 2 dice, n(S) = 36, NOT 12 or 6!</li>
+                <li><strong>Ordered vs unordered:</strong> For 2 coins: HT and TH are different outcomes!</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 9 : KEY FORMULAS SUMMARY                              -->
+<!-- ============================================================== -->
+<section class="section" id="formulas">
+    <h2 class="section-title">
+        <i class="fas fa-square-root-variable"></i> Key Formulas Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Must Memorize for Exam!</div>
+            <p>This unit is formula-heavy. Memorize ALL formulas below — they appear in every WBSCTE paper!</p>
+        </div>
+
+        <h3><i class="fas fa-calculator"></i> Measures of Central Tendency</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Measure</th><th>Ungrouped (Raw)</th><th>With Frequency</th><th>Grouped Data</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mean (\(\bar{x}\))</strong></td>
+                        <td>\(\frac{\sum x}{n}\)</td>
+                        <td>\(\frac{\sum fx}{N}\)</td>
+                        <td>\(\frac{\sum fx}{N}\) (x = class mark)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Median</strong></td>
+                        <td>\(\left(\frac{n+1}{2}\right)^{th}\) value</td>
+                        <td>—</td>
+                        <td>\(L + \frac{\frac{N}{2} - c.f.}{f} \times h\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mode</strong></td>
+                        <td>Most frequent value</td>
+                        <td>Most frequent value</td>
+                        <td>\(L + \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \times h\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-wave-square"></i> Standard Deviation</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Type</th><th>Formula</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Raw data</td>
+                        <td>\(\sigma = \sqrt{\frac{\sum x^2}{n} - \bar{x}^2}\)</td>
+                    </tr>
+                    <tr>
+                        <td>With frequency / Grouped</td>
+                        <td>\(\sigma = \sqrt{\frac{\sum fx^2}{N} - \bar{x}^2}\) where \(\bar{x} = \frac{\sum fx}{N}\)</td>
+                    </tr>
+                    <tr>
+                        <td>Variance</td>
+                        <td>\(\sigma^2 = \frac{\sum fx^2}{N} - \bar{x}^2\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-link"></i> Relationships</h3>
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-link"></i> Empirical Relationship</div>
+            <div class="formula">
+                \[ \text{Mode} = 3 \times \text{Median} - 2 \times \text{Mean} \]
+            </div>
+        </div>
+
+        <h3><i class="fas fa-dice"></i> Probability Formulas</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Formula</th><th>Expression</th><th>When to Use</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Classical Probability</td>
+                        <td>\(P(A) = \frac{n(A)}{n(S)}\)</td>
+                        <td>Basic probability problems</td>
+                    </tr>
+                    <tr>
+                        <td>Complement</td>
+                        <td>\(P(A') = 1 - P(A)\)</td>
+                        <td>"not A" or "at least" problems</td>
+                    </tr>
+                    <tr>
+                        <td>Addition (ME)</td>
+                        <td>\(P(A \cup B) = P(A) + P(B)\)</td>
+                        <td>Mutually exclusive events</td>
+                    </tr>
+                    <tr>
+                        <td>Addition (General)</td>
+                        <td>\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</td>
+                        <td>Any two events (may overlap)</td>
+                    </tr>
+                    <tr>
+                        <td>Range</td>
+                        <td>\(0 \leq P(A) \leq 1\)</td>
+                        <td>Always true</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-hashtag"></i> Quick Reference — n(S) Values</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Experiment</th><th>n(S)</th><th>Formula</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>n coins tossed</td><td>2ⁿ</td><td>1 coin: 2, 2 coins: 4, 3 coins: 8</td></tr>
+                    <tr><td>n dice rolled</td><td>6ⁿ</td><td>1 die: 6, 2 dice: 36</td></tr>
+                    <tr><td>Card deck</td><td>52</td><td>Standard deck</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-bookmark"></i> Grouped Data Terms</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Term</th><th>Symbol</th><th>Formula/Meaning</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Class Mark</td><td>x</td><td>(Lower + Upper) / 2</td></tr>
+                    <tr><td>Class Width</td><td>h</td><td>Upper − Lower</td></tr>
+                    <tr><td>Total Frequency</td><td>N</td><td>Σf</td></tr>
+                    <tr><td>Cumulative Frequency</td><td>c.f.</td><td>Running sum of f</td></tr>
+                    <tr><td>Modal Class</td><td>—</td><td>Class with highest f</td></tr>
+                    <tr><td>Median Class</td><td>—</td><td>Class where c.f. ≥ N/2 first</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 10 : COMPARISON TABLES                                -->
+<!-- ============================================================== -->
+<section class="section" id="comparisons">
+    <h2 class="section-title">
+        <i class="fas fa-scale-balanced"></i> Comparison Tables
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3><i class="fas fa-arrows-left-right"></i> Mean vs Median vs Mode</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Aspect</th><th>Mean</th><th>Median</th><th>Mode</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Definition</strong></td>
+                        <td>Average of all values</td>
+                        <td>Middle value</td>
+                        <td>Most frequent value</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Formula (ungrouped)</strong></td>
+                        <td>\(\frac{\sum x}{n}\)</td>
+                        <td>Middle term after arranging</td>
+                        <td>Value with highest frequency</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uses all values?</strong></td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Affected by extreme values?</strong></td>
+                        <td>Yes (sensitive to outliers)</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Always unique?</strong></td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>No (can be bimodal, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Can be calculated for open-ended classes?</strong></td>
+                        <td>No (unless assumed)</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best when</strong></td>
+                        <td>Data is symmetrical</td>
+                        <td>Data is skewed</td>
+                        <td>Categorical data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Algebraic treatment</strong></td>
+                        <td>Possible</td>
+                        <td>Limited</td>
+                        <td>Not possible</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-arrows-left-right"></i> Types of Events — Comparison</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Event Type</th><th>Definition</th><th>Example (Die)</th><th>Probability</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Impossible</strong></td>
+                        <td>Cannot happen</td>
+                        <td>Getting 7</td>
+                        <td>P = 0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Certain</strong></td>
+                        <td>Always happens</td>
+                        <td>Getting 1-6</td>
+                        <td>P = 1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mutually Exclusive</strong></td>
+                        <td>Can't happen together</td>
+                        <td>Even AND odd on same roll</td>
+                        <td>P(A∩B) = 0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Exhaustive</strong></td>
+                        <td>Cover all outcomes</td>
+                        <td>{Even} ∪ {Odd} = S</td>
+                        <td>ΣP = 1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equally Likely</strong></td>
+                        <td>Same chance</td>
+                        <td>Each face: P = 1/6</td>
+                        <td>Equal for all</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complementary</strong></td>
+                        <td>A and not-A</td>
+                        <td>{Even} & {Odd}</td>
+                        <td>P(A)+P(A')=1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-arrows-left-right"></i> Variance vs Standard Deviation</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Aspect</th><th>Variance (σ²)</th><th>Standard Deviation (σ)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Definition</strong></td><td>Mean of squared deviations</td><td>Square root of variance</td></tr>
+                    <tr><td><strong>Formula</strong></td><td>\(\frac{\sum fx^2}{N} - \bar{x}^2\)</td><td>\(\sqrt{\frac{\sum fx^2}{N} - \bar{x}^2}\)</td></tr>
+                    <tr><td><strong>Units</strong></td><td>Squared units (cm², kg², etc.)</td><td>Same as data (cm, kg, etc.)</td></tr>
+                    <tr><td><strong>Value</strong></td><td>Always ≥ 0</td><td>Always ≥ 0</td></tr>
+                    <tr><td><strong>Easier to interpret?</strong></td><td>No (squared units)</td><td>Yes (same units as data)</td></tr>
+                    <tr><td><strong>Relationship</strong></td><td>σ² = (σ)²</td><td>σ = √(σ²)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 11 : MCQ BANK                                         -->
+<!-- ============================================================== -->
+<section class="section" id="mcq-bank">
+    <h2 class="section-title">
+        <i class="fas fa-circle-check"></i> MCQ Bank (Previous Year Style)
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Strategy</div>
+            <p>MCQs from this unit typically test: Mean/Median/Mode concepts, S.D. formula, Probability of simple events, and types of events. Know your formulas!</p>
+        </div>
+
+        <div class="mcq-grid">
+
+            <div class="mcq-item">
+                <h4>Q 1.</h4>
+                <p>The mean of 3, 5, 7, 9, 11 is:</p>
+                <ul class="options">
+                    <li>a. 5</li>
+                    <li>b. 7</li>
+                    <li>c. 9</li>
+                    <li>d. 35</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq1">
+                    <strong>Answer: b. 7</strong>
+                    <p>Mean = (3+5+7+9+11)/5 = 35/5 = 7</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 2.</h4>
+                <p>The mode of 2, 3, 4, 3, 5, 3, 6 is:</p>
+                <ul class="options">
+                    <li>a. 2</li>
+                    <li>b. 3</li>
+                    <li>c. 4</li>
+                    <li>d. 5</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq2">
+                    <strong>Answer: b. 3</strong>
+                    <p>3 appears 3 times (most frequent)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.</h4>
+                <p>The median of 4, 1, 7, 3, 5 is:</p>
+                <ul class="options">
+                    <li>a. 7</li>
+                    <li>b. 3</li>
+                    <li>c. 4</li>
+                    <li>d. 5</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq3">
+                    <strong>Answer: c. 4</strong>
+                    <p>Arranged: 1, 3, 4, 5, 7. n=5 (odd). Median = 3rd value = 4</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 4.</h4>
+                <p>The probability of getting a head when a fair coin is tossed is:</p>
+                <ul class="options">
+                    <li>a. 0</li>
+                    <li>b. 1</li>
+                    <li>c. 1/2</li>
+                    <li>d. 1/4</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq4">
+                    <strong>Answer: c. 1/2</strong>
+                    <p>P(H) = 1/2 (1 favorable out of 2 outcomes)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 5.</h4>
+                <p>The empirical relation between Mean, Median and Mode is:</p>
+                <ul class="options">
+                    <li>a. Mode = 2 Median − 3 Mean</li>
+                    <li>b. Mode = 3 Median − 2 Mean</li>
+                    <li>c. Mode = 3 Mean − 2 Median</li>
+                    <li>d. Mode = Mean + Median</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq5">
+                    <strong>Answer: b. Mode = 3 Median − 2 Mean</strong>
+                    <p>This is the standard empirical relationship for moderately skewed distributions.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 6.</h4>
+                <p>When two dice are thrown, the total number of outcomes is:</p>
+                <ul class="options">
+                    <li>a. 6</li>
+                    <li>b. 12</li>
+                    <li>c. 36</li>
+                    <li>d. 24</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq6">
+                    <strong>Answer: c. 36</strong>
+                    <p>n(S) = 6 × 6 = 36</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 7.</h4>
+                <p>Standard deviation is always:</p>
+                <ul class="options">
+                    <li>a. Negative</li>
+                    <li>b. Zero</li>
+                    <li>c. Non-negative (≥ 0)</li>
+                    <li>d. Greater than 1</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq7">
+                    <strong>Answer: c. Non-negative (≥ 0)</strong>
+                    <p>σ is always ≥ 0. It equals 0 only when all data values are the same.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 8.</h4>
+                <p>The class mark of the class interval 20-30 is:</p>
+                <ul class="options">
+                    <li>a. 20</li>
+                    <li>b. 30</li>
+                    <li>c. 25</li>
+                    <li>d. 10</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq8">
+                    <strong>Answer: c. 25</strong>
+                    <p>Class mark = (20 + 30) / 2 = 25</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 9.</h4>
+                <p>If P(A) = 0.4, then P(A') is:</p>
+                <ul class="options">
+                    <li>a. 0.4</li>
+                    <li>b. 0.6</li>
+                    <li>c. 1.4</li>
+                    <li>d. 0</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq9">
+                    <strong>Answer: b. 0.6</strong>
+                    <p>P(A') = 1 − P(A) = 1 − 0.4 = 0.6</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 10.</h4>
+                <p>The probability of an impossible event is:</p>
+                <ul class="options">
+                    <li>a. 1</li>
+                    <li>b. 0</li>
+                    <li>c. −1</li>
+                    <li>d. 0.5</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq10">
+                    <strong>Answer: b. 0</strong>
+                    <p>An impossible event has zero favorable outcomes, so P = 0/n(S) = 0</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 11.</h4>
+                <p>In a grouped frequency distribution, the modal class is the class with:</p>
+                <ul class="options">
+                    <li>a. Lowest frequency</li>
+                    <li>b. Highest frequency</li>
+                    <li>c. Median frequency</li>
+                    <li>d. Mean frequency</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq11"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq11">
+                    <strong>Answer: b. Highest frequency</strong>
+                    <p>The modal class is the class with the highest (maximum) frequency.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 12.</h4>
+                <p>A card is drawn from a deck of 52 cards. The probability of getting a king is:</p>
+                <ul class="options">
+                    <li>a. 1/52</li>
+                    <li>b. 4/52</li>
+                    <li>c. 12/52</li>
+                    <li>d. 13/52</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq12"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq12">
+                    <strong>Answer: b. 4/52 = 1/13</strong>
+                    <p>There are 4 kings in a deck of 52 cards.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 13.</h4>
+                <p>Variance is the square of:</p>
+                <ul class="options">
+                    <li>a. Mean</li>
+                    <li>b. Median</li>
+                    <li>c. Standard Deviation</li>
+                    <li>d. Mode</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq13"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq13">
+                    <strong>Answer: c. Standard Deviation</strong>
+                    <p>Variance = σ² = (Standard Deviation)²</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 14.</h4>
+                <p>Two events that cannot occur at the same time are called:</p>
+                <ul class="options">
+                    <li>a. Independent events</li>
+                    <li>b. Exhaustive events</li>
+                    <li>c. Mutually exclusive events</li>
+                    <li>d. Complementary events</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq14"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq14">
+                    <strong>Answer: c. Mutually exclusive events</strong>
+                    <p>Mutually exclusive events cannot occur simultaneously (A ∩ B = ∅).</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 15.</h4>
+                <p>The median of grouped data uses which of the following in its formula?</p>
+                <ul class="options">
+                    <li>a. Modal class frequency</li>
+                    <li>b. Cumulative frequency</li>
+                    <li>c. Standard deviation</li>
+                    <li>d. Variance</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq15"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="mcq15">
+                    <strong>Answer: b. Cumulative frequency</strong>
+                    <p>The grouped median formula uses c.f. (cumulative frequency of the class before the median class).</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 12 : Q&A BANK                                         -->
+<!-- ============================================================== -->
+<section class="section" id="qa-bank">
+    <h2 class="section-title">
+        <i class="fas fa-file-lines"></i> Short & Long Answer Questions
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3><i class="fas fa-pen"></i> Short Answer Questions (2–3 Marks)</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q1.</strong> Define mean, median, and mode.</p>
+            <button class="toggle-btn" data-target="sa1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa1">
+                <p><strong>Mean:</strong> The arithmetic average of all data values. \(\bar{x} = \frac{\sum x}{n}\)</p>
+                <p><strong>Median:</strong> The middle value of data arranged in ascending or descending order.</p>
+                <p><strong>Mode:</strong> The value that occurs most frequently in a dataset.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q2.</strong> Define sample space and event with example.</p>
+            <button class="toggle-btn" data-target="sa2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa2">
+                <p><strong>Sample Space (S):</strong> The set of all possible outcomes of a random experiment.</p>
+                <p>Example: Rolling a die → S = {1, 2, 3, 4, 5, 6}</p>
+                <p><strong>Event:</strong> A subset of the sample space; a particular outcome or set of outcomes.</p>
+                <p>Example: Getting an even number → A = {2, 4, 6}</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q3.</strong> What are mutually exclusive events? Give an example.</p>
+            <button class="toggle-btn" data-target="sa3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa3">
+                <p><strong>Mutually Exclusive Events:</strong> Two events are mutually exclusive if they cannot occur at the same time. Mathematically, A ∩ B = ∅.</p>
+                <p><strong>Example:</strong> When rolling a die, the events "getting an even number" {2, 4, 6} and "getting an odd number" {1, 3, 5} are mutually exclusive — a number cannot be both even and odd.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q4.</strong> Write the formula for standard deviation of grouped data.</p>
+            <button class="toggle-btn" data-target="sa4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa4">
+                <p><strong>Formula:</strong></p>
+                <p>\[\sigma = \sqrt{\frac{\sum fx^2}{N} - \left(\frac{\sum fx}{N}\right)^2}\]</p>
+                <p>where x = class mark, f = frequency, N = Σf (total frequency)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q5.</strong> State the empirical relationship between Mean, Median, and Mode.</p>
+            <button class="toggle-btn" data-target="sa5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa5">
+                <p><strong>Empirical Relationship:</strong></p>
+                <p>\[\text{Mode} = 3 \times \text{Median} - 2 \times \text{Mean}\]</p>
+                <p>This relation holds approximately for moderately skewed frequency distributions.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q6.</strong> What is the classical definition of probability?</p>
+            <button class="toggle-btn" data-target="sa6"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa6">
+                <p><strong>Classical Definition:</strong> If a random experiment has n equally likely, mutually exclusive, and exhaustive outcomes, and m of them are favorable to event A, then:</p>
+                <p>\[P(A) = \frac{m}{n} = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}}\]</p>
+                <p>Also: 0 ≤ P(A) ≤ 1</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q7.</strong> Define frequency distribution. What is class mark?</p>
+            <button class="toggle-btn" data-target="sa7"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa7">
+                <p><strong>Frequency Distribution:</strong> A table that organizes data into classes (intervals) and shows the frequency (count) for each class.</p>
+                <p><strong>Class Mark (Mid-value):</strong> The middle value of a class interval.</p>
+                <p>Formula: Class Mark = (Lower limit + Upper limit) / 2</p>
+                <p>Example: For class 10-20, Class Mark = (10+20)/2 = 15</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q8.</strong> What is the difference between variance and standard deviation?</p>
+            <button class="toggle-btn" data-target="sa8"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa8">
+                <p><strong>Variance (σ²):</strong> The mean of the squared deviations from the mean. Its unit is the square of the data unit.</p>
+                <p><strong>Standard Deviation (σ):</strong> The positive square root of variance. Its unit is the same as the data unit.</p>
+                <p>Relationship: σ = √(Variance) or Variance = σ²</p>
+                <p>S.D. is preferred because it has the same unit as the data.</p>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks)</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q9.</strong> Find the mean, median, and mode for the following grouped data: [7 marks]</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>Class</th><th>10-20</th><th>20-30</th><th>30-40</th><th>40-50</th><th>50-60</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>3</td><td>5</td><td>12</td><td>6</td><td>4</td></tr></tbody>
+                </table>
+            </div>
+            <button class="toggle-btn" data-target="la1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la1">
+                <p><strong>Solution:</strong></p>
+                <div class="table-wrapper">
+                    <table class="data-table calc-table">
+                        <thead><tr><th>Class</th><th>f</th><th>x</th><th>fx</th><th>c.f.</th></tr></thead>
+                        <tbody>
+                            <tr><td>10-20</td><td>3</td><td>15</td><td>45</td><td>3</td></tr>
+                            <tr><td>20-30</td><td>5</td><td>25</td><td>125</td><td>8</td></tr>
+                            <tr><td>30-40</td><td>12</td><td>35</td><td>420</td><td>20</td></tr>
+                            <tr><td>40-50</td><td>6</td><td>45</td><td>270</td><td>26</td></tr>
+                            <tr><td>50-60</td><td>4</td><td>55</td><td>220</td><td>30</td></tr>
+                            <tr class="total-row"><td></td><td>N=30</td><td></td><td>Σfx=1080</td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Mean:</strong> \(\bar{x} = \frac{1080}{30} = \boxed{36}\)</p>
+                <p><strong>Median:</strong> N/2 = 15. c.f. ≥ 15 first at class 30-40 (c.f. = 20). Median class = 30-40.</p>
+                <p>L = 30, f = 12, c.f.(previous) = 8, h = 10</p>
+                <p>Median = 30 + (15-8)/12 × 10 = 30 + 70/12 = 30 + 5.83 = <strong>35.83</strong></p>
+                <p><strong>Mode:</strong> Modal class = 30-40 (f₁=12 is highest)</p>
+                <p>f₀ = 5, f₁ = 12, f₂ = 6, L = 30, h = 10</p>
+                <p>Mode = 30 + (12-5)/(2×12-5-6) × 10 = 30 + 7/13 × 10 = 30 + 5.38 = <strong>35.38</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q10.</strong> Find the standard deviation for the following data: [6 marks]</p>
+            <div class="table-wrapper">
+                <table class="data-table calc-table">
+                    <thead><tr><th>Class</th><th>0-10</th><th>10-20</th><th>20-30</th><th>30-40</th><th>40-50</th></tr></thead>
+                    <tbody><tr><td><strong>f</strong></td><td>4</td><td>6</td><td>10</td><td>5</td><td>5</td></tr></tbody>
+                </table>
+            </div>
+            <button class="toggle-btn" data-target="la2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la2">
+                <p><strong>Solution:</strong></p>
+                <div class="table-wrapper">
+                    <table class="data-table calc-table">
+                        <thead><tr><th>Class</th><th>f</th><th>x</th><th>fx</th><th>x²</th><th>fx²</th></tr></thead>
+                        <tbody>
+                            <tr><td>0-10</td><td>4</td><td>5</td><td>20</td><td>25</td><td>100</td></tr>
+                            <tr><td>10-20</td><td>6</td><td>15</td><td>90</td><td>225</td><td>1350</td></tr>
+                            <tr><td>20-30</td><td>10</td><td>25</td><td>250</td><td>625</td><td>6250</td></tr>
+                            <tr><td>30-40</td><td>5</td><td>35</td><td>175</td><td>1225</td><td>6125</td></tr>
+                            <tr><td>40-50</td><td>5</td><td>45</td><td>225</td><td>2025</td><td>10125</td></tr>
+                            <tr class="total-row"><td></td><td>N=30</td><td></td><td>Σfx=760</td><td></td><td>Σfx²=23950</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>\(\bar{x} = \frac{760}{30} = 25.33\)</p>
+                <p>\(\sigma = \sqrt{\frac{23950}{30} - (25.33)^2} = \sqrt{798.33 - 641.61} = \sqrt{156.72}\)</p>
+                <p>\(\boxed{\sigma \approx 12.52}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q11.</strong> Define: (a) Random experiment, (b) Sample space, (c) Mutually exclusive events, (d) Exhaustive events, (e) Equally likely events. Give one example for each. [5 marks]</p>
+            <button class="toggle-btn" data-target="la3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la3">
+                <p><strong>(a) Random Experiment:</strong> An experiment whose outcome cannot be predicted with certainty.</p>
+                <p>Example: Tossing a coin.</p>
+                <p><strong>(b) Sample Space (S):</strong> The set of all possible outcomes.</p>
+                <p>Example: S = {H, T} for a coin toss.</p>
+                <p><strong>(c) Mutually Exclusive Events:</strong> Events that cannot occur simultaneously. A ∩ B = ∅.</p>
+                <p>Example: Getting Head and Tail in a single toss.</p>
+                <p><strong>(d) Exhaustive Events:</strong> Events that together cover all possible outcomes. A₁ ∪ A₂ ∪ ... = S.</p>
+                <p>Example: {Even} and {Odd} for a die roll cover all outcomes.</p>
+                <p><strong>(e) Equally Likely Events:</strong> Events with the same probability of occurring.</p>
+                <p>Example: Getting any number (1-6) on a fair die, each has P = 1/6.</p>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-calculator"></i> Numerical Problems</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q12.</strong> Find the mean of: 10, 15, 20, 25, 30. [3 marks]</p>
+            <button class="toggle-btn" data-target="num1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num1">
+                <p>\(\bar{x} = \frac{10+15+20+25+30}{5} = \frac{100}{5} = \boxed{20}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q13.</strong> Find the median of: 12, 8, 15, 6, 10, 18, 20. [3 marks]</p>
+            <button class="toggle-btn" data-target="num2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num2">
+                <p>Arranged: 6, 8, 10, 12, 15, 18, 20</p>
+                <p>n = 7 (odd), Median = (7+1)/2 = 4th value = <strong>12</strong></p>
+                <p>\(\boxed{\text{Median} = 12}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q14.</strong> A bag contains 4 red, 3 white and 5 blue balls. A ball is drawn at random. Find the probability that it is (a) red, (b) not blue, (c) white or blue. [5 marks]</p>
+            <button class="toggle-btn" data-target="num3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num3">
+                <p>Total balls = 4 + 3 + 5 = 12, n(S) = 12</p>
+                <p><strong>(a) Red:</strong> P(R) = 4/12 = <strong>1/3</strong></p>
+                <p><strong>(b) Not blue:</strong> P(B') = 1 − P(B) = 1 − 5/12 = <strong>7/12</strong></p>
+                <p><strong>(c) White or Blue:</strong> P(W∪B) = (3+5)/12 = 8/12 = <strong>2/3</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q15.</strong> Two dice are thrown simultaneously. What is the probability that the sum is (a) 7, (b) greater than 10? [5 marks]</p>
+            <button class="toggle-btn" data-target="num4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num4">
+                <p>n(S) = 6 × 6 = 36</p>
+                <p><strong>(a) Sum = 7:</strong></p>
+                <p>Pairs: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) → 6 outcomes</p>
+                <p>P = 6/36 = <strong>1/6</strong></p>
+                <p><strong>(b) Sum > 10 (i.e., sum = 11 or 12):</strong></p>
+                <p>Sum = 11: (5,6), (6,5) → 2</p>
+                <p>Sum = 12: (6,6) → 1</p>
+                <p>Total favorable = 3</p>
+                <p>P = 3/36 = <strong>1/12</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q16.</strong> Find the standard deviation of: 4, 6, 8, 10, 12. [4 marks]</p>
+            <button class="toggle-btn" data-target="num5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num5">
+                <p>n = 5</p>
+                <p>\(\sum x = 4+6+8+10+12 = 40\), \(\bar{x} = 40/5 = 8\)</p>
+                <p>\(\sum x^2 = 16+36+64+100+144 = 360\)</p>
+                <p>\(\sigma = \sqrt{\frac{360}{5} - 8^2} = \sqrt{72 - 64} = \sqrt{8} = 2\sqrt{2}\)</p>
+                <p>\(\boxed{\sigma = 2\sqrt{2} \approx 2.83}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q17.</strong> If Mean = 40 and Median = 42, find Mode using empirical formula. [2 marks]</p>
+            <button class="toggle-btn" data-target="num6"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num6">
+                <p>Mode = 3 × Median − 2 × Mean</p>
+                <p>= 3 × 42 − 2 × 40</p>
+                <p>= 126 − 80</p>
+                <p>\(\boxed{\text{Mode} = 46}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q18.</strong> Three coins are tossed simultaneously. Find the probability of getting (a) exactly 2 heads, (b) at least 1 tail. [5 marks]</p>
+            <button class="toggle-btn" data-target="num7"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num7">
+                <p>S = {HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}, n(S) = 8</p>
+                <p><strong>(a) Exactly 2 Heads:</strong> {HHT, HTH, THH} → 3 outcomes</p>
+                <p>P = 3/8 = <strong>0.375</strong></p>
+                <p><strong>(b) At least 1 Tail:</strong></p>
+                <p>Using complement: P(at least 1 Tail) = 1 − P(no Tail) = 1 − P(all Heads)</p>
+                <p>P(all Heads) = P(HHH) = 1/8</p>
+                <p>P(at least 1 Tail) = 1 − 1/8 = <strong>7/8</strong></p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 13 : QUICK REVISION                                   -->
+<!-- ============================================================== -->
+<section class="section" id="revision">
+    <h2 class="section-title">
+        <i class="fas fa-bolt"></i> Quick Revision — Unit Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-book-open"></i> Complete Unit Summary</div>
+
+            <h4>📌 6.1.1 Frequency Distribution</h4>
+            <ul>
+                <li><strong>Frequency</strong> = Number of times a value occurs</li>
+                <li><strong>Class Mark (x)</strong> = (Lower + Upper) / 2</li>
+                <li><strong>Cumulative Frequency</strong> = Running total of frequencies</li>
+                <li><strong>Class Width (h)</strong> = Upper limit − Lower limit</li>
+            </ul>
+
+            <h4>📌 6.1.2 Measures of Central Tendency</h4>
+            <ul>
+                <li><strong>Mean:</strong> \(\bar{x} = \frac{\sum fx}{N}\) — Average of all values</li>
+                <li><strong>Median (Grouped):</strong> \(L + \frac{N/2 - c.f.}{f} \times h\) — Middle value</li>
+                <li><strong>Mode (Grouped):</strong> \(L + \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \times h\) — Most frequent</li>
+                <li><strong>Empirical:</strong> Mode = 3 Median − 2 Mean</li>
+            </ul>
+
+            <h4>📌 6.1.3 Standard Deviation</h4>
+            <ul>
+                <li>\(\sigma = \sqrt{\frac{\sum fx^2}{N} - \bar{x}^2}\)</li>
+                <li>Variance = σ² (square of S.D.)</li>
+                <li>σ is always ≥ 0</li>
+                <li>σ = 0 when all data values are equal</li>
+            </ul>
+
+            <h4>📌 6.2.1 Probability Basics</h4>
+            <ul>
+                <li><strong>Random experiment:</strong> Unpredictable outcome</li>
+                <li><strong>Sample space S:</strong> All possible outcomes</li>
+                <li><strong>Event:</strong> Subset of S</li>
+                <li><strong>Types:</strong> Impossible, Certain, Mutually Exclusive, Exhaustive, Equally Likely</li>
+            </ul>
+
+            <h4>📌 6.2.2 Classical Probability</h4>
+            <div class="formula">
+                \[ \boxed{P(A) = \frac{n(A)}{n(S)} = \frac{\text{Favorable}}{\text{Total}}} \]
+            </div>
+            <ul>
+                <li>0 ≤ P(A) ≤ 1</li>
+                <li>P(A') = 1 − P(A)</li>
+                <li>Coin: n(S) = 2ⁿ</li>
+                <li>Die: n(S) = 6ⁿ</li>
+                <li>Cards: n(S) = 52</li>
+            </ul>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-exclamation-circle"></i> Don't Forget in Exam!</div>
+            <ol>
+                <li><strong>Mean:</strong> Use class marks (mid-values) for grouped data</li>
+                <li><strong>Median:</strong> Find median class using c.f. ≥ N/2 (first time)</li>
+                <li><strong>Mode:</strong> f₀ is BEFORE modal class, f₂ is AFTER modal class</li>
+                <li><strong>S.D.:</strong> Prepare the table with columns: f, x, fx, x², fx²</li>
+                <li><strong>Probability:</strong> List sample space carefully — don't miss outcomes!</li>
+                <li><strong>"At least" problems:</strong> Use P(at least 1) = 1 − P(none)</li>
+                <li><strong>Two dice:</strong> n(S) = 36, not 12!</li>
+            </ol>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Last Minute Tips</div>
+            <ul>
+                <li>🔥 <strong>Most important:</strong> Grouped Mean, Median, Mode calculations + Probability of dice/coin/cards</li>
+                <li>✍️ <strong>Show all steps:</strong> Draw the full calculation table — examiners give step marks!</li>
+                <li>📐 <strong>Double check arithmetic:</strong> Common errors in multiplication and addition</li>
+                <li>⚠️ <strong>Mode formula:</strong> Denominator is (2f₁ − f₀ − f₂), NOT (2f₁ + f₀ + f₂)</li>
+                <li>🎲 <strong>Sample space for 2 dice:</strong> Write all 36 pairs if time allows</li>
+                <li>🎯 <strong>Box your final answer</strong> for easy marking</li>
+            </ul>
+        </div>
+
+        <div class="workshop-box">
+            <div class="box-title"><i class="fas fa-industry"></i> Engineering Applications</div>
+            <ul>
+                <li><strong>Quality Control:</strong> Standard deviation used in Six Sigma, quality assurance</li>
+                <li><strong>Reliability Engineering:</strong> Probability of component failure</li>
+                <li><strong>Communication:</strong> Bit Error Rate, signal probability analysis</li>
+                <li><strong>Civil Engineering:</strong> Statistical analysis of material strength tests</li>
+                <li><strong>Data Science:</strong> Mean, SD used in machine learning, data analysis</li>
+                <li><strong>Manufacturing:</strong> Probability of defective products</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+</div> <!-- End Container -->
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>

@@ -1,400 +1,2728 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Mathematics · Unit 4 · Ordinary Differential Equations</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- MathJax for LaTeX rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: differential equations / purple-deep blue -->
-  <style>
-    :root {
-      --primary: #6a4c9c;          /* ODE purple */
-      --primary-light: #8e6ab8;
-      --accent: #d97706;            /* solution amber */
-      --accent-light: #f59e0b;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #3a2b5a, #6a4c9c, #d97706);
-    }
-    /* header emoji: ODE symbols */
-    .header::after {
-      content: "📈📉📊🔢";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* formula cards */
-    .formula-card {
-      background: var(--formula-bg);
-      padding: 15px;
-      border-radius: var(--radius-md);
-      border-left: 5px solid var(--accent);
-      margin: 15px 0;
-    }
-    .mjx-chtml {
-      font-size: 1.1rem !important;
-    }
-    .method-tag {
-      background: var(--primary-light);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 20px;
-      display: inline-block;
-      margin: 5px;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4 - Ordinary Differential Equations | Engg. Mathematics-II</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Solution') ? 'Show Solution' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Solution') ? 'Hide Solution' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .method-card {
+            background: var(--card-bg); border:1px solid var(--border-color);
+            border-radius: var(--radius-md); padding:18px; margin:14px 0;
+            border-left: 4px solid var(--purple);
+        }
+        [data-theme="dark"] .method-card { background:#1a2332; }
+        .method-card h4 { color:var(--purple); margin-bottom:10px; }
+
+        .case-card {
+            background: var(--card-bg); border:1px solid var(--border-color);
+            border-radius: var(--radius-md); padding:18px; margin:14px 0;
+            border-top: 4px solid var(--success);
+        }
+        [data-theme="dark"] .case-card { background:#1a2332; }
+        .case-card h4 { color:var(--success); margin-bottom:10px; }
+
+        .step-method {
+            background: var(--formula-bg); border-radius:var(--radius-sm);
+            padding:16px; margin:12px 0; border-left:3px solid var(--success);
+        }
+        [data-theme="dark"] .step-method { background:#1a2332; }
+
+        .type-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+        .type-card {
+            background:var(--card-bg); border:1px solid var(--border-color);
+            border-radius:var(--radius-md); padding:16px; border-top:3px solid var(--accent);
+            min-width:0; overflow-wrap:break-word;
+        }
+        .type-card h4 { color:var(--accent); margin-bottom:8px; }
+        [data-theme="dark"] .type-card { background:#1a2332; }
+        @media(max-width:480px) { .type-grid { grid-template-columns:1fr; } }
+
+        .outcome-grid { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+        .outcome-badge {
+            background:linear-gradient(135deg,var(--primary),var(--primary-light));
+            color:#fff; padding:8px 16px; border-radius:20px; font-size:0.88rem;
+        }
+
+        .pi-table td { vertical-align:middle; padding:10px 14px !important; }
+        .pi-table tr:nth-child(odd) { background:var(--formula-bg); }
+        [data-theme="dark"] .pi-table tr:nth-child(odd) { background:rgba(41,98,255,0.08); }
+
+        .MathJax { overflow-x:auto !important; overflow-y:hidden !important; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>📈 Mathematics · Unit 4 📈</h1>
-      <h2>Ordinary Differential Equations</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.Sc. / Diploma</span>
-        <span class="info-item"><i class="fas fa-superscript"></i> Order & Degree</span>
-        <span class="info-item"><i class="fas fa-wave-square"></i> First Order</span>
-        <span class="info-item"><i class="fas fa-layer-group"></i> Second Order</span>
-      </div>
+        <h1><i class="fas fa-wave-square"></i> Ordinary Differential Equations</h1>
+        <h2>Unit 4 — Engineering Mathematics-II</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> BS102/M-II</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 4</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-clock"></i> 10 Hours</span>
+            <span class="info-item"><i class="fas fa-star"></i> Group C</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-wave-square"></i> MATH·UNIT4</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#intro"><i class="fas fa-info-circle"></i> Order & Degree</a>
-        <a href="#first"><i class="fas fa-wave-square"></i> First Order</a>
-        <a href="#second"><i class="fas fa-layer-group"></i> Second Order</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>📈 Math-II U4</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#definition"><i class="fas fa-book"></i> Definition</a>
+            <a href="#order-degree"><i class="fas fa-layer-group"></i> Order & Degree</a>
+            <a href="#separation"><i class="fas fa-arrows-split-up-and-left"></i> Separation</a>
+            <a href="#homogeneous"><i class="fas fa-equals"></i> Homogeneous</a>
+            <a href="#exact"><i class="fas fa-check-double"></i> Exact</a>
+            <a href="#linear"><i class="fas fa-chart-line"></i> Linear</a>
+            <a href="#second-order"><i class="fas fa-superscript"></i> 2nd Order</a>
+            <a href="#cf"><i class="fas fa-c"></i> CF</a>
+            <a href="#pi"><i class="fas fa-p"></i> PI</a>
+            <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+            <a href="#comparisons"><i class="fas fa-scale-balanced"></i> Compare</a>
+            <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+            <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+            <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-wave-square"></i> MATH Unit 4</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>📈 Math-II U4</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#intro"><i class="fas fa-info-circle"></i> Definition, order, degree</a>
-      <a href="#first"><i class="fas fa-wave-square"></i> First order: separation, homogeneous, exact, linear</a>
-      <a href="#second"><i class="fas fa-layer-group"></i> Second order linear: CF, PI for polynomial, e^ax, sin/cos, e^ax V</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#definition"><i class="fas fa-book"></i> Definition</a>
+        <a href="#order-degree"><i class="fas fa-layer-group"></i> Order & Degree</a>
+        <a href="#separation"><i class="fas fa-arrows-split-up-and-left"></i> Separation</a>
+        <a href="#homogeneous"><i class="fas fa-equals"></i> Homogeneous</a>
+        <a href="#exact"><i class="fas fa-check-double"></i> Exact</a>
+        <a href="#linear"><i class="fas fa-chart-line"></i> Linear</a>
+        <a href="#second-order"><i class="fas fa-superscript"></i> 2nd Order</a>
+        <a href="#cf"><i class="fas fa-c"></i> CF</a>
+        <a href="#pi"><i class="fas fa-p"></i> PI</a>
+        <a href="#formulas"><i class="fas fa-square-root-variable"></i> Formulas</a>
+        <a href="#comparisons"><i class="fas fa-scale-balanced"></i> Compare</a>
+        <a href="#mcq-bank"><i class="fas fa-circle-check"></i> MCQs</a>
+        <a href="#qa-bank"><i class="fas fa-file-lines"></i> Q&A</a>
+        <a href="#revision"><i class="fas fa-bolt"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: DEFINITION, ORDER & DEGREE ========= -->
-    <section id="intro" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-info-circle"></i> Ordinary Differential Equation: Order & Degree
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+<div class="container">
+
+<!-- ============================================================== -->
+<!--  SECTION 1 : UNIT OVERVIEW                                     -->
+<!-- ============================================================== -->
+<section class="section" id="overview">
+    <h2 class="section-title">
+        <i class="fas fa-info-circle"></i> Unit Overview
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-bullseye"></i> What This Unit Covers</div>
+            <p>A <strong>Differential Equation (DE)</strong> is an equation that contains one or more <strong>derivatives</strong> of an unknown function. Solving a DE means finding the unknown function that satisfies the equation.</p>
+            <p><strong>Why are DEs important?</strong> They model real-world phenomena where things change:</p>
+            <ul>
+                <li>⚡ <strong>Electrical circuits:</strong> Current/voltage changes over time (RC, RL, RLC circuits)</li>
+                <li>🔥 <strong>Heat transfer:</strong> Temperature changes with time/position</li>
+                <li>🏗️ <strong>Mechanics:</strong> Vibrations, motion, forces</li>
+                <li>📈 <strong>Population growth:</strong> Growth/decay models</li>
+                <li>💧 <strong>Fluid flow:</strong> How liquids move through pipes</li>
+            </ul>
+            <p><strong>Real-world analogy:</strong> If you know how fast something is changing (derivative), a differential equation helps you figure out what that something actually is!</p>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Exam Importance</div>
+            <p>This unit is <strong>Group C</strong> with at least <strong>20 marks</strong> allocated!</p>
+            <ul>
+                <li>At least <strong>5 objective questions</strong> from Group C</li>
+                <li>At least one <strong>10-mark subjective question</strong></li>
+                <li>Most common exam questions: Linear type, Homogeneous type, Second order with CF and PI</li>
+            </ul>
+        </div>
+
+        <h3><i class="fas fa-trophy"></i> Unit Outcomes</h3>
+        <div class="outcome-grid">
+            <span class="outcome-badge">📌 Define ODE, order & degree</span>
+            <span class="outcome-badge">📌 Solve by separation of variables</span>
+            <span class="outcome-badge">📌 Solve homogeneous type</span>
+            <span class="outcome-badge">📌 Solve exact type</span>
+            <span class="outcome-badge">📌 Solve linear type</span>
+            <span class="outcome-badge">📌 Find complementary function</span>
+            <span class="outcome-badge">📌 Find particular integral</span>
+            <span class="outcome-badge">📌 Solve 2nd order linear DEs</span>
+        </div>
+
+        <h3><i class="fas fa-book-open"></i> Prerequisites</h3>
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> What You Must Know Before This Unit</div>
+            <ul>
+                <li><strong>Differentiation</strong> — You MUST know how to differentiate all standard functions</li>
+                <li><strong>Integration</strong> — You need Unit 3 (Integral Calculus) completely</li>
+                <li><strong>Partial derivatives</strong> — Basic understanding (covered in Unit 5)</li>
+                <li><strong>Algebra</strong> — Solving quadratic equations, factoring</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 2 : DEFINITION OF ODE (4.1)                           -->
+<!-- ============================================================== -->
+<section class="section" id="definition">
+    <h2 class="section-title">
+        <i class="fas fa-book"></i> 4.1 Definition of Ordinary Differential Equation
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Definition</div>
-          <p>An ordinary differential equation (ODE) is an equation involving derivatives of a dependent variable with respect to one independent variable.</p>
-        </div>
-        
-        <div class="card-grid">
-          <div class="card">
-            <h4>Order</h4>
-            <p>The order of the highest derivative appearing in the equation.</p>
-            <p>Example: \( \frac{d^2y}{dx^2} + 3\frac{dy}{dx} + y = 0 \) has order 2.</p>
-          </div>
-          <div class="card">
-            <h4>Degree</h4>
-            <p>The power of the highest order derivative after the equation is made free of radicals and fractions.</p>
-            <p>Example: \( \left(\frac{d^2y}{dx^2}\right)^3 + 5y = 0 \) has degree 3.</p>
-          </div>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Differential Equation</div>
+            <p>A <strong>differential equation</strong> is an equation that involves:</p>
+            <ul>
+                <li>An unknown function (usually y)</li>
+                <li>One or more of its <strong>derivatives</strong> (\(\frac{dy}{dx}, \frac{d^2y}{dx^2}\), etc.)</li>
+                <li>Possibly the independent variable (usually x) and constants</li>
+            </ul>
         </div>
 
-        <div class="example-box">
-          <div class="box-title">Example</div>
-          <p>Find order and degree of \( \left(\frac{d^3y}{dx^3}\right)^2 + \sin\left(\frac{dy}{dx}\right) = 0 \).</p>
-          <button class="toggle-btn" data-target="order1"><i class="fas fa-eye"></i> Show</button>
-          <div class="answer-reveal" id="order1">
-            <div class="formula answer">
-              Order = 3 (highest derivative is \( \frac{d^3y}{dx^3} \))<br>
-              Degree = Not defined because of the sine term (not a polynomial in derivatives).
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== SECTION 2: FIRST ORDER FIRST DEGREE ========= -->
-    <section id="first" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-wave-square"></i> First Order First Degree Differential Equations
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="method-tag">Separation of Variables</div>
-        <div class="method-tag">Homogeneous</div>
-        <div class="method-tag">Exact</div>
-        <div class="method-tag">Linear</div>
-
-        <!-- Separation -->
         <div class="definition-box">
-          <div class="box-title">Separation of Variables</div>
-          <p>If equation can be written as \( \frac{dy}{dx} = f(x)g(y) \), then separate: \( \frac{dy}{g(y)} = f(x)dx \) and integrate.</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Ordinary vs Partial Differential Equation</div>
+            <p><strong>Ordinary Differential Equation (ODE):</strong> The unknown function depends on only <strong>one independent variable</strong>. Contains ordinary derivatives like \(\frac{dy}{dx}\).</p>
+            <p><strong>Partial Differential Equation (PDE):</strong> The unknown function depends on <strong>two or more independent variables</strong>. Contains partial derivatives like \(\frac{\partial u}{\partial x}\).</p>
+            <p><strong>This syllabus covers only ODEs.</strong></p>
         </div>
 
-        <div class="example-box">
-          <div class="box-title">Example: Separation</div>
-          <p>Solve \( \frac{dy}{dx} = 2xy \).</p>
-          <button class="toggle-btn" data-target="sep1"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="sep1">
-            <div class="formula answer">
-              Separate: \( \frac{dy}{y} = 2x dx \)<br>
-              Integrate: \( \ln|y| = x^2 + C \) ⇒ \( y = Ae^{x^2} \)
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Examples of Differential Equations</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Equation</th><th>Type</th><th>Order</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>\(\frac{dy}{dx} = 5x\)</td><td>ODE</td><td>1</td></tr>
+                        <tr><td>\(\frac{d^2y}{dx^2} + 3\frac{dy}{dx} + 2y = 0\)</td><td>ODE</td><td>2</td></tr>
+                        <tr><td>\(\frac{dy}{dx} + y = e^x\)</td><td>ODE</td><td>1</td></tr>
+                        <tr><td>\(y'' + y = \sin x\)</td><td>ODE</td><td>2</td></tr>
+                        <tr><td>\(\left(\frac{dy}{dx}\right)^2 + y = x\)</td><td>ODE</td><td>1</td></tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
         </div>
 
-        <!-- Homogeneous -->
         <div class="definition-box">
-          <div class="box-title">Homogeneous Type</div>
-          <p>Equation of form \( \frac{dy}{dx} = \frac{f(x,y)}{g(x,y)} \) where f and g are homogeneous of same degree. Substitute \( y = vx \).</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Solution of a Differential Equation</div>
+            <p>A <strong>solution</strong> of a differential equation is a function y = f(x) which, when substituted into the equation, makes it an identity (true statement).</p>
+            <ul>
+                <li><strong>General Solution:</strong> Contains arbitrary constants (as many as the order of the DE)</li>
+                <li><strong>Particular Solution:</strong> Obtained from general solution by giving specific values to the constants (using initial/boundary conditions)</li>
+            </ul>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: Homogeneous</div>
-          <p>Solve \( \frac{dy}{dx} = \frac{x+y}{x} \).</p>
-          <button class="toggle-btn" data-target="hom1"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="hom1">
-            <div class="formula answer">
-              Let \( y = vx \), \( \frac{dy}{dx} = v + x\frac{dv}{dx} \)<br>
-              Equation becomes \( v + x\frac{dv}{dx} = 1 + v \) ⇒ \( x\frac{dv}{dx} = 1 \) ⇒ \( dv = \frac{dx}{x} \)<br>
-              Integrate: \( v = \ln|x| + C \) ⇒ \( y = x(\ln|x| + C) \)
-            </div>
-          </div>
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.1 — Verifying a Solution</div>
+            <p>Verify that \(y = e^{2x}\) is a solution of \(\frac{dy}{dx} = 2y\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Given: \(y = e^{2x}\)</p>
+            <p>LHS: \(\frac{dy}{dx} = 2e^{2x}\)</p>
+            <p>RHS: \(2y = 2e^{2x}\)</p>
+            <p>Since LHS = RHS, \(y = e^{2x}\) is indeed a solution. ✓</p>
         </div>
 
-        <!-- Exact -->
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 3 : ORDER AND DEGREE (4.1)                            -->
+<!-- ============================================================== -->
+<section class="section" id="order-degree">
+    <h2 class="section-title">
+        <i class="fas fa-layer-group"></i> 4.1 Order and Degree of a Differential Equation 🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Exact Type</div>
-          <p>Equation \( M dx + N dy = 0 \) is exact if \( \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \).</p>
-          <p>Solution: \( \int M dx + \int (N - \frac{\partial}{\partial y}\int M dx) dy = C \).</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Order</div>
+            <p>The <strong>order</strong> of a differential equation is the <strong>highest order derivative</strong> present in the equation.</p>
+            <ul>
+                <li>If highest derivative is \(\frac{dy}{dx}\) or \(y'\) → Order = <strong>1</strong></li>
+                <li>If highest derivative is \(\frac{d^2y}{dx^2}\) or \(y''\) → Order = <strong>2</strong></li>
+                <li>If highest derivative is \(\frac{d^3y}{dx^3}\) or \(y'''\) → Order = <strong>3</strong></li>
+            </ul>
         </div>
 
-        <div class="example-box">
-          <div class="box-title">Example: Exact</div>
-          <p>Solve \( (2xy + 1) dx + (x^2 + 3) dy = 0 \).</p>
-          <button class="toggle-btn" data-target="exact1"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="exact1">
-            <div class="formula answer">
-              \( M = 2xy+1, N = x^2+3 \)<br>
-              \( \frac{\partial M}{\partial y} = 2x, \frac{\partial N}{\partial x} = 2x \) ⇒ Exact<br>
-              \( \int M dx = \int (2xy+1)dx = x^2y + x + f(y) \)<br>
-              \( \frac{\partial}{\partial y}(x^2y + x + f(y)) = x^2 + f'(y) = N = x^2+3 \) ⇒ \( f'(y)=3 \) ⇒ \( f(y)=3y \)<br>
-              Solution: \( x^2y + x + 3y = C \)
-            </div>
-          </div>
-        </div>
-
-        <!-- Linear -->
         <div class="definition-box">
-          <div class="box-title">Linear Type</div>
-          <p>Form: \( \frac{dy}{dx} + P(x)y = Q(x) \). Integrating factor \( IF = e^{\int P dx} \).</p>
-          <p>Solution: \( y(IF) = \int Q(IF) dx + C \).</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Degree</div>
+            <p>The <strong>degree</strong> of a differential equation is the <strong>power (exponent)</strong> of the highest order derivative, <strong>after the equation has been made free from radicals and fractions</strong> involving derivatives.</p>
+            <p><strong>Important conditions for degree to be defined:</strong></p>
+            <ul>
+                <li>The equation must be a polynomial in derivatives</li>
+                <li>No fractional powers of derivatives</li>
+                <li>No derivatives inside sin, cos, log, exp, etc.</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> When Degree is NOT Defined</div>
+            <p>Degree is <strong>not defined</strong> when the equation contains:</p>
+            <ul>
+                <li>\(\sin\left(\frac{dy}{dx}\right)\) — derivative inside trig function</li>
+                <li>\(e^{dy/dx}\) — derivative inside exponential</li>
+                <li>\(\ln\left(\frac{dy}{dx}\right)\) — derivative inside logarithm</li>
+            </ul>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: Linear</div>
-          <p>Solve \( \frac{dy}{dx} + 2xy = x \).</p>
-          <button class="toggle-btn" data-target="lin1"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="lin1">
-            <div class="formula answer">
-              \( P = 2x, IF = e^{\int 2x dx} = e^{x^2} \)<br>
-              \( y e^{x^2} = \int x e^{x^2} dx = \frac{1}{2}e^{x^2} + C \)<br>
-              \( y = \frac{1}{2} + Ce^{-x^2} \)
-            </div>
-          </div>
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.2 — Finding Order and Degree</div>
+            <p>Find the order and degree of:</p>
+            <p>(i) \(\frac{d^2y}{dx^2} + 3\frac{dy}{dx} + 2y = 0\)</p>
+            <p>(ii) \(\left(\frac{dy}{dx}\right)^3 + y^2 = x\)</p>
+            <p>(iii) \(\frac{d^3y}{dx^3} + \left(\frac{d^2y}{dx^2}\right)^4 + y = 0\)</p>
         </div>
-      </div>
-    </section>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p><strong>(i)</strong> Highest derivative: \(\frac{d^2y}{dx^2}\) → <strong>Order = 2</strong></p>
+            <p>Power of highest derivative: 1 → <strong>Degree = 1</strong></p>
 
-    <!-- ========== SECTION 3: SECOND ORDER LINEAR WITH CONSTANT COEFFICIENTS ========= -->
-    <section id="second" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-layer-group"></i> Second Order Linear ODE with Constant Coefficients
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
+            <p><strong>(ii)</strong> Highest derivative: \(\frac{dy}{dx}\) → <strong>Order = 1</strong></p>
+            <p>Power of \(\frac{dy}{dx}\): 3 → <strong>Degree = 3</strong></p>
+
+            <p><strong>(iii)</strong> Highest derivative: \(\frac{d^3y}{dx^3}\) → <strong>Order = 3</strong></p>
+            <p>Power of \(\frac{d^3y}{dx^3}\): 1 → <strong>Degree = 1</strong></p>
+            <p>(Note: The power 4 is on \(\frac{d^2y}{dx^2}\), which is NOT the highest order derivative.)</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.3 — Equation with Radical</div>
+            <p>Find order and degree of: \(\sqrt{1 + \left(\frac{dy}{dx}\right)^2} = \frac{d^2y}{dx^2}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>First, remove the radical by squaring both sides:</p>
+            <p>\(1 + \left(\frac{dy}{dx}\right)^2 = \left(\frac{d^2y}{dx^2}\right)^2\)</p>
+            <p>Now: Highest derivative: \(\frac{d^2y}{dx^2}\) → <strong>Order = 2</strong></p>
+            <p>Power of highest derivative: 2 → <strong>Degree = 2</strong></p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.4 — Degree Not Defined</div>
+            <p>Find order and degree of: \(\sin\left(\frac{dy}{dx}\right) = x + y\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Highest derivative: \(\frac{dy}{dx}\) → <strong>Order = 1</strong></p>
+            <p>The derivative is inside a sine function, so it's not a polynomial in the derivative.</p>
+            <p><strong>Degree = Not Defined</strong></p>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Quick Summary — Order vs Degree</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Equation</th><th>Order</th><th>Degree</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>\(\frac{dy}{dx} + y = 0\)</td><td>1</td><td>1</td></tr>
+                        <tr><td>\(\left(\frac{dy}{dx}\right)^2 + y = 0\)</td><td>1</td><td>2</td></tr>
+                        <tr><td>\(\frac{d^2y}{dx^2} + y = 0\)</td><td>2</td><td>1</td></tr>
+                        <tr><td>\(\left(\frac{d^2y}{dx^2}\right)^3 + y = 0\)</td><td>2</td><td>3</td></tr>
+                        <tr><td>\(e^{dy/dx} = x\)</td><td>1</td><td>Not defined</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 4 : SEPARATION OF VARIABLES (4.2.1)                   -->
+<!-- ============================================================== -->
+<section class="section" id="separation">
+    <h2 class="section-title">
+        <i class="fas fa-arrows-split-up-and-left"></i> 4.2.1 Separation of Variables 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">General Form</div>
-          <p>\( a\frac{d^2y}{dx^2} + b\frac{dy}{dx} + cy = f(x) \) with constant \( a,b,c \).</p>
-          <p>Solution: \( y = C.F. + P.I. \)</p>
+            <div class="box-title"><i class="fas fa-bookmark"></i> What is Separation of Variables?</div>
+            <p>This is the <strong>simplest method</strong> for solving first-order, first-degree differential equations. It works when we can write the equation in a form where <strong>all x terms (including dx)</strong> are on one side and <strong>all y terms (including dy)</strong> are on the other side.</p>
         </div>
 
-        <!-- Complementary Function -->
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Standard Form</div>
+            <p>If the equation can be written as:</p>
+            <div class="formula">
+                \[ f(y)\,dy = g(x)\,dx \]
+            </div>
+            <p>Then we integrate both sides:</p>
+            <div class="formula">
+                \[ \int f(y)\,dy = \int g(x)\,dx + C \]
+            </div>
+        </div>
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps for Separation of Variables</div>
+            <div class="step" data-step="Step 1">
+                <p>Write the equation in the form \(\frac{dy}{dx} = h(x, y)\).</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Separate variables: Move all y terms and dy to one side, all x terms and dx to the other.</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Integrate both sides.</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Add the constant of integration C (only one C needed, add to one side).</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>Simplify if possible (express y in terms of x if required).</p>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.5 — Basic Separation ⭐</div>
+            <p>Solve: \(\frac{dy}{dx} = xy\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1">
+                <p>Separate variables:</p>
+                <p>\(\frac{dy}{y} = x\,dx\)</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Integrate both sides:</p>
+                <p>\(\int \frac{dy}{y} = \int x\,dx\)</p>
+                <p>\(\ln|y| = \frac{x^2}{2} + C\)</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Solve for y:</p>
+                <p>\(|y| = e^{x^2/2 + C} = e^C \cdot e^{x^2/2}\)</p>
+                <div class="formula answer">
+                    \[ y = Ae^{x^2/2} \quad \text{where } A = \pm e^C \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.6 — Separation with Product ⭐</div>
+            <p>Solve: \(\frac{dy}{dx} = \frac{1+y^2}{1+x^2}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Separate variables:</p>
+            <p>\(\frac{dy}{1+y^2} = \frac{dx}{1+x^2}\)</p>
+            <p>Integrate both sides:</p>
+            <p>\(\tan^{-1}y = \tan^{-1}x + C\)</p>
+            <div class="formula answer">
+                \[ \tan^{-1}y - \tan^{-1}x = C \]
+            </div>
+            <p>Or equivalently: \(y = \tan(\tan^{-1}x + C)\)</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.7 — Separation of Variables ⭐⭐</div>
+            <p>Solve: \((1+x)y\,dx + (1-y)x\,dy = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Rearrange:</p>
+            <p>\((1+x)y\,dx = -(1-y)x\,dy\)</p>
+            <p>Separate:</p>
+            <p>\(\frac{1+x}{x}\,dx = \frac{-(1-y)}{y}\,dy = \frac{y-1}{y}\,dy\)</p>
+            <p>\(\left(\frac{1}{x} + 1\right)dx = \left(1 - \frac{1}{y}\right)dy\)</p>
+            <p>Integrate:</p>
+            <p>\(\ln|x| + x = y - \ln|y| + C\)</p>
+            <div class="formula answer">
+                \[ \ln|x| + \ln|y| + x - y = C \quad \text{or} \quad \ln|xy| + x - y = C \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.8 — With Initial Condition</div>
+            <p>Solve: \(\frac{dy}{dx} = e^{x-y}\), given \(y(0) = 0\).</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\frac{dy}{dx} = e^x \cdot e^{-y} = \frac{e^x}{e^y}\)</p>
+            <p>Separate: \(e^y\,dy = e^x\,dx\)</p>
+            <p>Integrate: \(e^y = e^x + C\)</p>
+            <p>Apply initial condition: When x = 0, y = 0:</p>
+            <p>\(e^0 = e^0 + C \Rightarrow 1 = 1 + C \Rightarrow C = 0\)</p>
+            <div class="formula answer">
+                \[ e^y = e^x \quad \Rightarrow \quad \boxed{y = x} \]
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> How to Recognize Separable Equations</div>
+            <p>A DE is separable if \(\frac{dy}{dx}\) can be written as a <strong>product of a function of x alone and a function of y alone</strong>:</p>
+            <p>\(\frac{dy}{dx} = f(x) \cdot g(y)\)</p>
+            <p>Then: \(\frac{dy}{g(y)} = f(x)\,dx\)</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 5 : HOMOGENEOUS TYPE (4.2.2)                          -->
+<!-- ============================================================== -->
+<section class="section" id="homogeneous">
+    <h2 class="section-title">
+        <i class="fas fa-equals"></i> 4.2.2 Homogeneous Type Differential Equations 🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
         <div class="definition-box">
-          <div class="box-title">Complementary Function (C.F.)</div>
-          <p>Solve auxiliary equation \( am^2 + bm + c = 0 \):</p>
-          <ul>
-            <li>Roots real distinct \( m_1, m_2 \): \( C.F. = C_1 e^{m_1 x} + C_2 e^{m_2 x} \)</li>
-            <li>Roots real equal \( m \): \( C.F. = (C_1 + C_2 x)e^{m x} \)</li>
-            <li>Roots complex \( \alpha \pm i\beta \): \( C.F. = e^{\alpha x}(C_1 \cos\beta x + C_2 \sin\beta x) \)</li>
-          </ul>
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Homogeneous Function</div>
+            <p>A function \(f(x, y)\) is called <strong>homogeneous of degree n</strong> if:</p>
+            <div class="formula">
+                \[ f(\lambda x, \lambda y) = \lambda^n f(x, y) \]
+            </div>
+            <p>for any constant λ and for all x, y.</p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>\(x^2 + xy + y^2\) is homogeneous of degree 2</li>
+                <li>\(x^3 + y^3\) is homogeneous of degree 3</li>
+                <li>\(\frac{x+y}{x-y}\) is homogeneous of degree 0</li>
+                <li>\(x + y + 1\) is NOT homogeneous (the constant 1 breaks it)</li>
+            </ul>
         </div>
 
-        <!-- Particular Integral Cases -->
-        <div class="formula-card">
-          <div class="box-title">Particular Integral (P.I.)</div>
-          
-          <h4>Case 1: Polynomial function</h4>
-          <p>If \( f(x) \) is polynomial, assume P.I. polynomial of same degree.</p>
-          
-          <h4>Case 2: \( e^{ax} \)</h4>
-          <p>If \( f(x) = e^{ax} \), try \( P.I. = \frac{e^{ax}}{a^2a + ba + c} \) provided denominator ≠ 0.</p>
-          
-          <h4>Case 3: \( \sin ax \) or \( \cos ax \)</h4>
-          <p>If \( f(x) = \sin ax \) (or \( \cos ax \)), and \( F(-a^2) \neq 0 \), where \( F(D) = aD^2 + bD + c \), then:</p>
-          <p>\( P.I. = \frac{\sin ax}{F(-a^2)} \) or \( \frac{\cos ax}{F(-a^2)} \).</p>
-          
-          <h4>Case 4: \( e^{ax} V \) where V is polynomial</h4>
-          <p>Use method: \( P.I. = \frac{1}{F(D)} e^{ax} V = e^{ax} \frac{1}{F(D+a)} V \).</p>
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Homogeneous Differential Equation</div>
+            <p>A first-order DE \(\frac{dy}{dx} = f(x, y)\) is called <strong>homogeneous</strong> if \(f(x, y)\) can be expressed as a function of \(\frac{y}{x}\) only, i.e., \(f(x, y) = \phi\left(\frac{y}{x}\right)\).</p>
+            <p>Equivalently, if the equation can be written as \(\frac{dy}{dx} = \frac{M(x,y)}{N(x,y)}\) where M and N are homogeneous functions of the <strong>same degree</strong>.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Method — Substitution</div>
+            <p>To solve a homogeneous DE, substitute:</p>
+            <div class="formula">
+                \[ y = vx \quad \text{where v is a function of x} \]
+            </div>
+            <p>Then: \(\frac{dy}{dx} = v + x\frac{dv}{dx}\)</p>
+            <p>This substitution converts the homogeneous DE into a <strong>separable</strong> DE in v and x.</p>
+        </div>
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps for Homogeneous Type</div>
+            <div class="step" data-step="Step 1">
+                <p>Check that the equation is homogeneous (M and N have same degree, or RHS is function of y/x).</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Substitute \(y = vx\), so \(\frac{dy}{dx} = v + x\frac{dv}{dx}\).</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Replace y/x by v wherever it appears. The equation becomes separable in v and x.</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Separate variables and integrate.</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>Replace v back with y/x to get the solution in terms of x and y.</p>
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: CF + PI (e^{ax})</div>
-          <p>Solve \( y'' - 3y' + 2y = e^{3x} \).</p>
-          <button class="toggle-btn" data-target="second1"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="second1">
-            <div class="formula answer">
-              Auxiliary: \( m^2 - 3m + 2 = 0 \) ⇒ \( m = 1, 2 \)<br>
-              CF = \( C_1 e^{x} + C_2 e^{2x} \)<br>
-              PI: \( \frac{e^{3x}}{(3)^2 - 3(3) + 2} = \frac{e^{3x}}{9 - 9 + 2} = \frac{e^{3x}}{2} \)<br>
-              General solution: \( y = C_1 e^{x} + C_2 e^{2x} + \frac{1}{2}e^{3x} \)
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.9 — Homogeneous DE ⭐⭐</div>
+            <p>Solve: \(\frac{dy}{dx} = \frac{x+y}{x}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>The equation can be written as: \(\frac{dy}{dx} = 1 + \frac{y}{x}\)</p>
+            <p>This is a function of y/x only → Homogeneous.</p>
+            <div class="step" data-step="Step 1">
+                <p>Let \(y = vx\), so \(\frac{dy}{dx} = v + x\frac{dv}{dx}\)</p>
             </div>
-          </div>
+            <div class="step" data-step="Step 2">
+                <p>Substituting:</p>
+                <p>\(v + x\frac{dv}{dx} = 1 + v\)</p>
+                <p>\(x\frac{dv}{dx} = 1\)</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Separate: \(dv = \frac{dx}{x}\)</p>
+                <p>Integrate: \(v = \ln|x| + C\)</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Replace \(v = \frac{y}{x}\):</p>
+                <div class="formula answer">
+                    \[ \frac{y}{x} = \ln|x| + C \quad \Rightarrow \quad \boxed{y = x\ln|x| + Cx} \]
+                </div>
+            </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: sin ax</div>
-          <p>Solve \( y'' + 4y = \sin 2x \).</p>
-          <button class="toggle-btn" data-target="second2"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="second2">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.10 — Another Homogeneous DE ⭐⭐</div>
+            <p>Solve: \((x^2 + y^2)dx - 2xy\,dy = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Rewrite: \(\frac{dy}{dx} = \frac{x^2 + y^2}{2xy}\)</p>
+            <p>Check: Numerator degree = 2, Denominator degree = 2 → Homogeneous.</p>
+            <p>Let \(y = vx\), \(\frac{dy}{dx} = v + x\frac{dv}{dx}\):</p>
+            <p>\(v + x\frac{dv}{dx} = \frac{x^2 + v^2x^2}{2x \cdot vx} = \frac{x^2(1+v^2)}{2vx^2} = \frac{1+v^2}{2v}\)</p>
+            <p>\(x\frac{dv}{dx} = \frac{1+v^2}{2v} - v = \frac{1+v^2 - 2v^2}{2v} = \frac{1-v^2}{2v}\)</p>
+            <p>Separate: \(\frac{2v\,dv}{1-v^2} = \frac{dx}{x}\)</p>
+            <p>Integrate LHS: Let \(t = 1-v^2\), \(dt = -2v\,dv\), so \(\int \frac{2v\,dv}{1-v^2} = -\ln|1-v^2|\)</p>
+            <p>\(-\ln|1-v^2| = \ln|x| + C_1\)</p>
+            <p>\(\ln|1-v^2| = -\ln|x| + C_2 = \ln\frac{1}{|x|} + C_2\)</p>
+            <p>\(1 - v^2 = \frac{A}{x}\) where \(A = e^{C_2}\)</p>
+            <p>Replace \(v = \frac{y}{x}\): \(1 - \frac{y^2}{x^2} = \frac{A}{x}\)</p>
             <div class="formula answer">
-              Auxiliary: \( m^2 + 4 = 0 \) ⇒ \( m = \pm 2i \)<br>
-              CF = \( C_1 \cos 2x + C_2 \sin 2x \)<br>
-              For PI: \( F(D) = D^2 + 4 \), \( F(-a^2) = F(-4) = (-4) + 4 = 0 \) so need modification.<br>
-              Use \( P.I. = -\frac{x}{2a} \cos ax \) rule: \( P.I. = -\frac{x}{4} \cos 2x \)<br>
-              General: \( y = C_1 \cos 2x + C_2 \sin 2x - \frac{x}{4}\cos 2x \)
+                \[ x^2 - y^2 = Ax \quad \text{or} \quad \boxed{x^2 - y^2 = Cx} \]
             </div>
-          </div>
         </div>
 
         <div class="example-box">
-          <div class="box-title">Example: e^{ax}V (polynomial)</div>
-          <p>Solve \( y'' - 2y' + y = x e^{x} \).</p>
-          <button class="toggle-btn" data-target="second3"><i class="fas fa-eye"></i> Show Solution</button>
-          <div class="answer-reveal" id="second3">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.11 — Homogeneous Type</div>
+            <p>Solve: \(x\,dy - y\,dx = \sqrt{x^2 + y^2}\,dx\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Rewrite: \(x\,dy = (y + \sqrt{x^2+y^2})\,dx\)</p>
+            <p>\(\frac{dy}{dx} = \frac{y + \sqrt{x^2+y^2}}{x} = \frac{y}{x} + \frac{\sqrt{x^2+y^2}}{x} = \frac{y}{x} + \sqrt{1 + \frac{y^2}{x^2}}\)</p>
+            <p>This is a function of y/x → Homogeneous.</p>
+            <p>Let \(y = vx\): \(v + x\frac{dv}{dx} = v + \sqrt{1+v^2}\)</p>
+            <p>\(x\frac{dv}{dx} = \sqrt{1+v^2}\)</p>
+            <p>Separate: \(\frac{dv}{\sqrt{1+v^2}} = \frac{dx}{x}\)</p>
+            <p>Integrate: \(\ln|v + \sqrt{1+v^2}| = \ln|x| + C_1\)</p>
+            <p>\(v + \sqrt{1+v^2} = Ax\) where \(A = e^{C_1}\)</p>
+            <p>Replace \(v = y/x\):</p>
             <div class="formula answer">
-              Auxiliary: \( m^2 - 2m + 1 = (m-1)^2 = 0 \) ⇒ \( m = 1,1 \)<br>
-              CF = \( (C_1 + C_2 x)e^{x} \)<br>
-              PI: Use \( \frac{1}{F(D)} e^{x} x = e^{x} \frac{1}{F(D+1)} x \)<br>
-              \( F(D) = (D-1)^2 \), so \( F(D+1) = D^2 \)<br>
-              \( \frac{1}{D^2} x = \int\int x dx dx = \int \frac{x^2}{2} dx = \frac{x^3}{6} \)<br>
-              PI = \( e^{x} \cdot \frac{x^3}{6} \)<br>
-              General: \( y = (C_1 + C_2 x)e^{x} + \frac{x^3}{6}e^{x} \)
+                \[ \frac{y}{x} + \sqrt{1+\frac{y^2}{x^2}} = Ax \]
+                \[ \boxed{y + \sqrt{x^2+y^2} = Ax^2} \]
             </div>
-          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">Separation: \( \frac{dy}{dx} = f(x)g(y) \)</div>
-          <div class="tag">Homogeneous: \( y = vx \)</div>
-          <div class="tag">Exact: \( \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \)</div>
-          <div class="tag">Linear: \( IF = e^{\int P dx} \)</div>
-          <div class="tag">Auxiliary: \( am^2+bm+c=0 \)</div>
-          <div class="tag">PI for \( e^{ax} \): \( \frac{e^{ax}}{F(a)} \)</div>
-          <div class="tag">PI for sin/cos: \( \frac{\sin ax}{F(-a^2)} \)</div>
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> How to Recognize Homogeneous Equations</div>
+            <ul>
+                <li>All terms have the <strong>same total degree</strong> in x and y</li>
+                <li>No standalone constants (like +1, +5)</li>
+                <li>Can be rewritten as a function of (y/x) or (x/y) only</li>
+                <li>If unsure, try substituting y = vx and see if x cancels out</li>
+            </ul>
         </div>
-      </div>
-    </section>
-  </div>
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+    </div>
+</section>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+<!-- ============================================================== -->
+<!--  SECTION 6 : EXACT TYPE (4.2.3)                                -->
+<!-- ============================================================== -->
+<section class="section" id="exact">
+    <h2 class="section-title">
+        <i class="fas fa-check-double"></i> 4.2.3 Exact Type Differential Equations ⭐⭐
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Exact Differential Equation</div>
+            <p>A first-order DE of the form:</p>
+            <div class="formula">
+                \[ M(x,y)\,dx + N(x,y)\,dy = 0 \]
+            </div>
+            <p>is called <strong>exact</strong> if there exists a function \(F(x,y)\) such that:</p>
+            <ul>
+                <li>\(\frac{\partial F}{\partial x} = M\)</li>
+                <li>\(\frac{\partial F}{\partial y} = N\)</li>
+            </ul>
+            <p>In this case, the equation becomes \(dF = 0\), so the solution is \(F(x,y) = C\).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Condition for Exactness 🔥</div>
+            <p>The equation \(M\,dx + N\,dy = 0\) is exact if and only if:</p>
+            <div class="formula">
+                \[ \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \]
+            </div>
+            <p>This is the <strong>test for exactness</strong> — always check this first!</p>
+        </div>
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps for Solving Exact Equations</div>
+            <div class="step" data-step="Step 1">
+                <p>Identify M and N from the equation \(M\,dx + N\,dy = 0\).</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Check exactness: Verify \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\).</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Find F by integrating: \(F = \int M\,dx\) (treat y as constant) + an unknown function g(y).</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Differentiate F with respect to y and set equal to N to find g(y).</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>The solution is \(F(x,y) = C\).</p>
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Alternative Method (Shorter!)</div>
+            <p>The general solution can also be written as:</p>
+            <div class="formula">
+                \[ \int M\,dx \text{ (y constant)} + \int (\text{terms of N not containing x})\,dy = C \]
+            </div>
+            <p>This is often faster for exam purposes.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.12 — Exact DE ⭐⭐</div>
+            <p>Solve: \((2xy + 3)\,dx + (x^2 + 4y)\,dy = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1">
+                <p>\(M = 2xy + 3\), \(N = x^2 + 4y\)</p>
+            </div>
+            <div class="step" data-step="Step 2 — Check Exactness">
+                <p>\(\frac{\partial M}{\partial y} = 2x\)</p>
+                <p>\(\frac{\partial N}{\partial x} = 2x\)</p>
+                <p>Since \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\), the equation is <strong>exact</strong>. ✓</p>
+            </div>
+            <div class="step" data-step="Step 3 — Find Solution">
+                <p>Using the alternative method:</p>
+                <p>\(\int M\,dx = \int (2xy + 3)\,dx = x^2y + 3x\)</p>
+                <p>Terms in N not containing x: \(4y\)</p>
+                <p>\(\int 4y\,dy = 2y^2\)</p>
+                <div class="formula answer">
+                    \[ \boxed{x^2y + 3x + 2y^2 = C} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.13 — Exact DE (Detailed Method) ⭐</div>
+            <p>Solve: \((y\cos x + 2xe^y)dx + (\sin x + x^2e^y - 1)dy = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(M = y\cos x + 2xe^y\), \(N = \sin x + x^2e^y - 1\)</p>
+            <p>\(\frac{\partial M}{\partial y} = \cos x + 2xe^y\)</p>
+            <p>\(\frac{\partial N}{\partial x} = \cos x + 2xe^y\)</p>
+            <p>Equal → <strong>Exact</strong>. ✓</p>
+            <p>\(\int M\,dx = \int (y\cos x + 2xe^y)\,dx = y\sin x + x^2e^y\)</p>
+            <p>Terms in N not containing x: \(-1\)</p>
+            <p>\(\int (-1)\,dy = -y\)</p>
+            <div class="formula answer">
+                \[ \boxed{y\sin x + x^2e^y - y = C} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.14 — Checking Exactness (Not Exact)</div>
+            <p>Is the equation \((x + y)dx + x\,dy = 0\) exact?</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(M = x + y\), \(N = x\)</p>
+            <p>\(\frac{\partial M}{\partial y} = 1\)</p>
+            <p>\(\frac{\partial N}{\partial x} = 1\)</p>
+            <p>Since \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} = 1\), the equation <strong>is exact</strong>. ✓</p>
+            <p>Solution: \(\int (x+y)\,dx + \int 0\,dy = \frac{x^2}{2} + xy = C\)</p>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes in Exact Equations</div>
+            <ol>
+                <li><strong>Wrong identification of M and N:</strong> M is the coefficient of dx, N is the coefficient of dy.</li>
+                <li><strong>Forgetting to check exactness:</strong> Always verify \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\) first!</li>
+                <li><strong>Double counting terms:</strong> When using the alternative method, be careful not to include terms already in \(\int M\,dx\).</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 7 : LINEAR TYPE (4.2.4)                               -->
+<!-- ============================================================== -->
+<section class="section" id="linear">
+    <h2 class="section-title">
+        <i class="fas fa-chart-line"></i> 4.2.4 Linear Type Differential Equations 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Linear First-Order DE</div>
+            <p>A first-order DE is called <strong>linear</strong> if it can be written in the standard form:</p>
+            <div class="formula">
+                \[ \frac{dy}{dx} + P(x) \cdot y = Q(x) \]
+            </div>
+            <p>where P(x) and Q(x) are functions of x only (or constants).</p>
+            <p><strong>Key features:</strong></p>
+            <ul>
+                <li>The dependent variable y and its derivative appear to the <strong>first power only</strong></li>
+                <li>No products like y·(dy/dx) or y²</li>
+                <li>The coefficients P and Q depend only on x</li>
+            </ul>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> Solution Method — Integrating Factor 🔥</div>
+            <p>The solution uses an <strong>Integrating Factor (I.F.)</strong>:</p>
+            <div class="formula">
+                \[ \text{I.F.} = e^{\int P(x)\,dx} \]
+            </div>
+            <p>The general solution is:</p>
+            <div class="formula">
+                \[ y \cdot (\text{I.F.}) = \int Q(x) \cdot (\text{I.F.})\,dx + C \]
+            </div>
+            <p>Or equivalently:</p>
+            <div class="formula">
+                \[ y \cdot e^{\int P\,dx} = \int Q \cdot e^{\int P\,dx}\,dx + C \]
+            </div>
+        </div>
+
+        <div class="step-method">
+            <div class="box-title"><i class="fas fa-list-ol"></i> Steps for Linear First-Order DE</div>
+            <div class="step" data-step="Step 1">
+                <p>Write the equation in standard form: \(\frac{dy}{dx} + Py = Q\).</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Identify P(x) and Q(x).</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Calculate I.F. = \(e^{\int P\,dx}\).</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Multiply both sides by I.F. and recognize that LHS = \(\frac{d}{dx}(y \cdot \text{I.F.})\).</p>
+            </div>
+            <div class="step" data-step="Step 5">
+                <p>Integrate: \(y \cdot \text{I.F.} = \int Q \cdot \text{I.F.}\,dx + C\).</p>
+            </div>
+            <div class="step" data-step="Step 6">
+                <p>Solve for y.</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Common Integrating Factors</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>P(x)</th><th>\(\int P\,dx\)</th><th>I.F. = \(e^{\int P\,dx}\)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2</td><td>2x</td><td>\(e^{2x}\)</td></tr>
+                        <tr><td>1/x</td><td>ln|x|</td><td>\(e^{\ln|x|} = |x| = x\) (for x > 0)</td></tr>
+                        <tr><td>−1/x</td><td>−ln|x|</td><td>\(e^{-\ln|x|} = 1/x\)</td></tr>
+                        <tr><td>2/x</td><td>2ln|x|</td><td>\(e^{2\ln|x|} = x^2\)</td></tr>
+                        <tr><td>n/x</td><td>n·ln|x|</td><td>\(x^n\)</td></tr>
+                        <tr><td>tan x</td><td>−ln|cos x|</td><td>sec x</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.15 — Linear DE (Basic) ⭐⭐</div>
+            <p>Solve: \(\frac{dy}{dx} + 2y = e^x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1">
+                <p>Already in standard form. \(P = 2\), \(Q = e^x\).</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>I.F. = \(e^{\int 2\,dx} = e^{2x}\)</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Solution: \(y \cdot e^{2x} = \int e^x \cdot e^{2x}\,dx = \int e^{3x}\,dx = \frac{e^{3x}}{3} + C\)</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Solve for y:</p>
+                <div class="formula answer">
+                    \[ y = \frac{e^{3x}}{3e^{2x}} + Ce^{-2x} = \boxed{\frac{e^x}{3} + Ce^{-2x}} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.16 — Linear DE with 1/x ⭐⭐</div>
+            <p>Solve: \(\frac{dy}{dx} + \frac{y}{x} = x^2\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(P = \frac{1}{x}\), \(Q = x^2\)</p>
+            <p>I.F. = \(e^{\int \frac{1}{x}dx} = e^{\ln x} = x\)</p>
+            <p>Solution: \(y \cdot x = \int x^2 \cdot x\,dx = \int x^3\,dx = \frac{x^4}{4} + C\)</p>
+            <div class="formula answer">
+                \[ y = \frac{x^4}{4x} + \frac{C}{x} = \boxed{\frac{x^3}{4} + \frac{C}{x}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.17 — Linear DE (Need to Rearrange) ⭐⭐</div>
+            <p>Solve: \(\frac{dy}{dx} - \frac{2y}{x} = x^2\cos x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(P = -\frac{2}{x}\), \(Q = x^2\cos x\)</p>
+            <p>I.F. = \(e^{\int -\frac{2}{x}dx} = e^{-2\ln x} = e^{\ln x^{-2}} = x^{-2} = \frac{1}{x^2}\)</p>
+            <p>Solution: \(\frac{y}{x^2} = \int x^2\cos x \cdot \frac{1}{x^2}\,dx = \int \cos x\,dx = \sin x + C\)</p>
+            <div class="formula answer">
+                \[ y = x^2(\sin x + C) = \boxed{x^2\sin x + Cx^2} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.18 — Linear DE (Trigonometric)</div>
+            <p>Solve: \(\frac{dy}{dx} + y\tan x = \sec x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(P = \tan x\), \(Q = \sec x\)</p>
+            <p>I.F. = \(e^{\int \tan x\,dx} = e^{\ln|\sec x|} = \sec x\)</p>
+            <p>Solution: \(y \cdot \sec x = \int \sec x \cdot \sec x\,dx = \int \sec^2 x\,dx = \tan x + C\)</p>
+            <div class="formula answer">
+                \[ y = \frac{\tan x + C}{\sec x} = \frac{\tan x}{\sec x} + C\cos x = \boxed{\sin x + C\cos x} \]
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Linear in x (Bernoulli's hint)</div>
+            <p>Sometimes the equation is linear in <strong>x</strong> (not y). Then we treat x as the dependent variable:</p>
+            <div class="formula">
+                \[ \frac{dx}{dy} + P(y) \cdot x = Q(y) \]
+            </div>
+            <p>The I.F. would be \(e^{\int P(y)\,dy}\), and the solution is \(x \cdot \text{I.F.} = \int Q \cdot \text{I.F.}\,dy + C\).</p>
+        </div>
+
+        <div class="warning-box">
+            <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes in Linear DEs</div>
+            <ol>
+                <li><strong>Wrong sign in P:</strong> Be careful with the sign when rearranging to standard form.</li>
+                <li><strong>Forgetting to integrate P:</strong> I.F. = \(e^{\int P\,dx}\), not \(e^P\)!</li>
+                <li><strong>Not solving for y at the end:</strong> After finding \(y \cdot \text{I.F.}\), you must divide by I.F. to get y.</li>
+                <li><strong>Forgetting the constant:</strong> Always include +C in the solution.</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+<!-- ============================================================== -->
+<!--  SECTION 8 : SECOND ORDER LINEAR DE (4.3)                      -->
+<!-- ============================================================== -->
+<section class="section" id="second-order">
+    <h2 class="section-title">
+        <i class="fas fa-superscript"></i> 4.3 Second Order Linear DE with Constant Coefficients 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Second Order Linear DE</div>
+            <p>A <strong>second order linear differential equation with constant coefficients</strong> has the form:</p>
+            <div class="formula">
+                \[ a\frac{d^2y}{dx^2} + b\frac{dy}{dx} + cy = f(x) \]
+            </div>
+            <p>where a, b, c are <strong>constants</strong> (a ≠ 0), and f(x) is a function of x.</p>
+            <p><strong>Alternative notation:</strong></p>
+            <div class="formula">
+                \[ ay'' + by' + cy = f(x) \quad \text{or} \quad (aD^2 + bD + c)y = f(x) \]
+            </div>
+            <p>where \(D = \frac{d}{dx}\) (the differential operator).</p>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Understanding the D Operator</div>
+            <p>The operator <strong>D</strong> represents differentiation with respect to x:</p>
+            <ul>
+                <li>\(Dy = \frac{dy}{dx}\) — first derivative</li>
+                <li>\(D^2y = \frac{d^2y}{dx^2}\) — second derivative</li>
+                <li>\(D^ny = \frac{d^ny}{dx^n}\) — nth derivative</li>
+            </ul>
+            <p><strong>Why use D notation?</strong> It makes the equation look like an algebraic equation, which is easier to solve!</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Homogeneous vs Non-Homogeneous</div>
+            <p><strong>Homogeneous:</strong> If f(x) = 0, the equation is:</p>
+            <div class="formula">
+                \[ ay'' + by' + cy = 0 \]
+            </div>
+            <p><strong>Non-Homogeneous:</strong> If f(x) ≠ 0, the equation is:</p>
+            <div class="formula">
+                \[ ay'' + by' + cy = f(x) \]
+            </div>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title"><i class="fas fa-calculator"></i> General Solution Structure 🔥</div>
+            <p>The <strong>complete (general) solution</strong> of a non-homogeneous second order linear DE is:</p>
+            <div class="formula">
+                \[ y = \text{C.F.} + \text{P.I.} \]
+            </div>
+            <p>where:</p>
+            <ul>
+                <li><strong>C.F. (Complementary Function):</strong> General solution of the homogeneous equation (with f(x) = 0)</li>
+                <li><strong>P.I. (Particular Integral):</strong> Any one particular solution of the non-homogeneous equation</li>
+            </ul>
+            <p>For homogeneous equations: y = C.F. only (since P.I. = 0).</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Auxiliary Equation (Characteristic Equation) 🔥</div>
+            <p>To find C.F., we first form the <strong>auxiliary equation</strong> by replacing:</p>
+            <ul>
+                <li>D² with m²</li>
+                <li>D with m</li>
+                <li>y with 1 (or simply remove it)</li>
+            </ul>
+            <p>For the equation \((aD^2 + bD + c)y = 0\), the auxiliary equation is:</p>
+            <div class="formula">
+                \[ am^2 + bm + c = 0 \]
+            </div>
+            <p>The roots of this quadratic equation determine the form of C.F.</p>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Solving the Auxiliary Equation</div>
+            <p>Use the quadratic formula:</p>
+            <div class="formula">
+                \[ m = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+            </div>
+            <p>The <strong>discriminant</strong> \(\Delta = b^2 - 4ac\) determines the nature of roots:</p>
+            <ul>
+                <li>Δ > 0 → Two distinct real roots</li>
+                <li>Δ = 0 → Two equal (repeated) real roots</li>
+                <li>Δ < 0 → Two complex conjugate roots</li>
+            </ul>
+        </div>
+
+        <a href="https://www.google.com/search?tbm=isch&q=second+order+linear+differential+equation+flowchart+solution+method" target="_blank" rel="noopener" class="figure-link">
+            <div class="diagram-placeholder">
+                <i class="fas fa-image"></i>
+                <p><strong>Fig. 4.1:</strong> Flowchart for solving second order linear DE — showing how CF and PI combine to form general solution</p>
+                <span class="click-hint">🔍 Click to view on Google Images</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 9 : COMPLEMENTARY FUNCTION (4.3.1)                    -->
+<!-- ============================================================== -->
+<section class="section" id="cf">
+    <h2 class="section-title">
+        <i class="fas fa-c"></i> 4.3.1 Complementary Function (C.F.) 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Complementary Function</div>
+            <p>The <strong>Complementary Function (C.F.)</strong> is the general solution of the homogeneous equation:</p>
+            <div class="formula">
+                \[ ay'' + by' + cy = 0 \quad \text{or} \quad (aD^2 + bD + c)y = 0 \]
+            </div>
+            <p>It contains <strong>two arbitrary constants</strong> (because it's a second order DE).</p>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> The Three Cases of C.F.</div>
+            <p>The form of C.F. depends on the <strong>nature of roots</strong> of the auxiliary equation \(am^2 + bm + c = 0\):</p>
+            <ol>
+                <li><strong>Case I:</strong> Two distinct real roots (m₁ ≠ m₂)</li>
+                <li><strong>Case II:</strong> Two equal real roots (m₁ = m₂ = m)</li>
+                <li><strong>Case III:</strong> Complex conjugate roots (m = α ± iβ)</li>
+            </ol>
+            <p>⚠️ <strong>You MUST memorize all three cases!</strong></p>
+        </div>
+
+        <!-- CASE 1 -->
+        <div class="case-card">
+            <h4><i class="fas fa-1"></i> Case I: Two Distinct Real Roots (m₁ ≠ m₂)</h4>
+            <p><strong>When:</strong> Discriminant b² − 4ac > 0</p>
+            <p><strong>Roots:</strong> m₁ and m₂ are different real numbers</p>
+            <div class="formula">
+                \[ \text{C.F.} = C_1 e^{m_1 x} + C_2 e^{m_2 x} \]
+            </div>
+            <p>where C₁ and C₂ are arbitrary constants.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.19 — Case I (Distinct Real Roots) ⭐⭐</div>
+            <p>Find the C.F. of: \(\frac{d^2y}{dx^2} - 5\frac{dy}{dx} + 6y = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1">
+                <p>Write in operator form: \((D^2 - 5D + 6)y = 0\)</p>
+            </div>
+            <div class="step" data-step="Step 2">
+                <p>Form auxiliary equation: \(m^2 - 5m + 6 = 0\)</p>
+            </div>
+            <div class="step" data-step="Step 3">
+                <p>Solve: \((m-2)(m-3) = 0\)</p>
+                <p>\(m_1 = 2\), \(m_2 = 3\) — Two distinct real roots</p>
+            </div>
+            <div class="step" data-step="Step 4">
+                <p>Apply Case I formula:</p>
+                <div class="formula answer">
+                    \[ \boxed{\text{C.F.} = C_1 e^{2x} + C_2 e^{3x}} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.20 — Case I (Using Quadratic Formula)</div>
+            <p>Find the C.F. of: \(y'' + y' - 6y = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Auxiliary equation: \(m^2 + m - 6 = 0\)</p>
+            <p>Using quadratic formula: \(m = \frac{-1 \pm \sqrt{1 + 24}}{2} = \frac{-1 \pm 5}{2}\)</p>
+            <p>\(m_1 = \frac{-1+5}{2} = 2\), \(m_2 = \frac{-1-5}{2} = -3\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{C.F.} = C_1 e^{2x} + C_2 e^{-3x}} \]
+            </div>
+        </div>
+
+        <!-- CASE 2 -->
+        <div class="case-card">
+            <h4><i class="fas fa-2"></i> Case II: Two Equal Real Roots (m₁ = m₂ = m)</h4>
+            <p><strong>When:</strong> Discriminant b² − 4ac = 0</p>
+            <p><strong>Roots:</strong> m₁ = m₂ = m (repeated root)</p>
+            <div class="formula">
+                \[ \text{C.F.} = (C_1 + C_2 x) e^{mx} \]
+            </div>
+            <p>⚠️ <strong>Note the extra 'x' factor!</strong> This is crucial for repeated roots.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.21 — Case II (Equal Roots) ⭐⭐</div>
+            <p>Find the C.F. of: \(\frac{d^2y}{dx^2} - 4\frac{dy}{dx} + 4y = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Auxiliary equation: \(m^2 - 4m + 4 = 0\)</p>
+            <p>\((m-2)^2 = 0\)</p>
+            <p>\(m = 2, 2\) — Equal (repeated) roots</p>
+            <p>Apply Case II formula:</p>
+            <div class="formula answer">
+                \[ \boxed{\text{C.F.} = (C_1 + C_2 x) e^{2x}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.22 — Case II</div>
+            <p>Solve: \(y'' + 6y' + 9y = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Auxiliary equation: \(m^2 + 6m + 9 = 0\)</p>
+            <p>\((m+3)^2 = 0\)</p>
+            <p>\(m = -3, -3\) — Equal roots</p>
+            <div class="formula answer">
+                \[ y = \text{C.F.} = \boxed{(C_1 + C_2 x) e^{-3x}} \]
+            </div>
+        </div>
+
+        <!-- CASE 3 -->
+        <div class="case-card">
+            <h4><i class="fas fa-3"></i> Case III: Complex Conjugate Roots (m = α ± iβ)</h4>
+            <p><strong>When:</strong> Discriminant b² − 4ac < 0</p>
+            <p><strong>Roots:</strong> \(m = \alpha \pm i\beta\) (complex conjugates)</p>
+            <p>where \(\alpha = -\frac{b}{2a}\) (real part) and \(\beta = \frac{\sqrt{4ac - b^2}}{2a}\) (imaginary part)</p>
+            <div class="formula">
+                \[ \text{C.F.} = e^{\alpha x} (C_1 \cos\beta x + C_2 \sin\beta x) \]
+            </div>
+            <p><strong>Special case:</strong> If α = 0 (purely imaginary roots ±iβ):</p>
+            <div class="formula">
+                \[ \text{C.F.} = C_1 \cos\beta x + C_2 \sin\beta x \]
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Understanding Complex Roots</div>
+            <p><strong>What is i?</strong> The imaginary unit i = √(−1), so i² = −1.</p>
+            <p><strong>Complex conjugates:</strong> If one root is α + iβ, the other is always α − iβ.</p>
+            <p><strong>Example:</strong> If m² + 4 = 0, then m² = −4, so m = ±√(−4) = ±2i = 0 ± 2i</p>
+            <p>Here α = 0, β = 2.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.23 — Case III (Complex Roots) ⭐⭐</div>
+            <p>Find the C.F. of: \(\frac{d^2y}{dx^2} + 4y = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Auxiliary equation: \(m^2 + 4 = 0\)</p>
+            <p>\(m^2 = -4\)</p>
+            <p>\(m = \pm 2i = 0 \pm 2i\)</p>
+            <p>Here α = 0, β = 2</p>
+            <p>Apply Case III formula:</p>
+            <div class="formula answer">
+                \[ \text{C.F.} = e^{0 \cdot x}(C_1\cos 2x + C_2\sin 2x) = \boxed{C_1\cos 2x + C_2\sin 2x} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.24 — Case III (Complex Roots with Real Part) ⭐⭐</div>
+            <p>Find the C.F. of: \(y'' - 2y' + 5y = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Auxiliary equation: \(m^2 - 2m + 5 = 0\)</p>
+            <p>Discriminant: \(\Delta = 4 - 20 = -16 < 0\) → Complex roots</p>
+            <p>\(m = \frac{2 \pm \sqrt{-16}}{2} = \frac{2 \pm 4i}{2} = 1 \pm 2i\)</p>
+            <p>Here α = 1, β = 2</p>
+            <div class="formula answer">
+                \[ \boxed{\text{C.F.} = e^{x}(C_1\cos 2x + C_2\sin 2x)} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.25 — Case III</div>
+            <p>Solve: \((D^2 + 2D + 10)y = 0\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>Auxiliary equation: \(m^2 + 2m + 10 = 0\)</p>
+            <p>\(m = \frac{-2 \pm \sqrt{4 - 40}}{2} = \frac{-2 \pm \sqrt{-36}}{2} = \frac{-2 \pm 6i}{2} = -1 \pm 3i\)</p>
+            <p>Here α = −1, β = 3</p>
+            <div class="formula answer">
+                \[ y = \boxed{e^{-x}(C_1\cos 3x + C_2\sin 3x)} \]
+            </div>
+        </div>
+
+        <!-- Summary Table -->
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-table"></i> Summary — C.F. for All Three Cases</div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Case</th>
+                            <th>Nature of Roots</th>
+                            <th>Discriminant</th>
+                            <th>Roots</th>
+                            <th>C.F. Formula</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>I</strong></td>
+                            <td>Distinct real</td>
+                            <td>b² − 4ac > 0</td>
+                            <td>m₁, m₂</td>
+                            <td>\(C_1e^{m_1x} + C_2e^{m_2x}\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>II</strong></td>
+                            <td>Equal real</td>
+                            <td>b² − 4ac = 0</td>
+                            <td>m, m</td>
+                            <td>\((C_1 + C_2x)e^{mx}\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>III</strong></td>
+                            <td>Complex conjugate</td>
+                            <td>b² − 4ac < 0</td>
+                            <td>α ± iβ</td>
+                            <td>\(e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Quick Tips for Finding C.F.</div>
+            <ol>
+                <li>Always factor the auxiliary equation first if possible</li>
+                <li>If you can't factor, use the quadratic formula</li>
+                <li>Check the discriminant to identify the case</li>
+                <li>For Case III, carefully identify α (real part) and β (imaginary part)</li>
+                <li>Don't forget the 'x' factor in Case II!</li>
+            </ol>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 10 : PARTICULAR INTEGRAL (4.3.2)                      -->
+<!-- ============================================================== -->
+<section class="section" id="pi">
+    <h2 class="section-title">
+        <i class="fas fa-p"></i> 4.3.2 Particular Integral (P.I.) 🔥🔥🔥
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="definition-box">
+            <div class="box-title"><i class="fas fa-bookmark"></i> Definition — Particular Integral</div>
+            <p>The <strong>Particular Integral (P.I.)</strong> is any <strong>one specific solution</strong> of the non-homogeneous equation:</p>
+            <div class="formula">
+                \[ (aD^2 + bD + c)y = f(x) \]
+            </div>
+            <p>It represents the effect of the <strong>forcing function f(x)</strong> on the system.</p>
+            <p>Using operator notation:</p>
+            <div class="formula">
+                \[ \text{P.I.} = \frac{1}{aD^2 + bD + c} \cdot f(x) = \frac{1}{\phi(D)} \cdot f(x) \]
+            </div>
+            <p>where \(\phi(D) = aD^2 + bD + c\).</p>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Types of P.I. Based on f(x)</div>
+            <p>The method for finding P.I. depends on the form of f(x):</p>
+            <ol>
+                <li><strong>Type I:</strong> \(f(x) = e^{ax}\) (exponential)</li>
+                <li><strong>Type II:</strong> \(f(x) = \sin(ax)\) or \(\cos(ax)\) (trigonometric)</li>
+                <li><strong>Type III:</strong> \(f(x) = x^n\) (polynomial)</li>
+                <li><strong>Type IV:</strong> \(f(x) = e^{ax} \cdot V(x)\) (exponential times another function)</li>
+            </ol>
+        </div>
+
+        <!-- TYPE 1: e^ax -->
+        <div class="method-card">
+            <h4><i class="fas fa-function"></i> Type I: P.I. when f(x) = e<sup>ax</sup></h4>
+            <div class="formula">
+                \[ \text{P.I.} = \frac{1}{\phi(D)} e^{ax} = \frac{e^{ax}}{\phi(a)} \quad \text{if } \phi(a) \neq 0 \]
+            </div>
+            <p><strong>Method:</strong> Replace D with 'a' in φ(D). If φ(a) ≠ 0, P.I. = e<sup>ax</sup>/φ(a).</p>
+            <p><strong>Failure case:</strong> If φ(a) = 0, multiply by x and differentiate the denominator:</p>
+            <div class="formula">
+                \[ \text{P.I.} = \frac{x \cdot e^{ax}}{\phi'(a)} \quad \text{if } \phi(a) = 0 \text{ but } \phi'(a) \neq 0 \]
+            </div>
+            <p>If φ'(a) = 0 also, multiply by x² and use φ''(a), and so on.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.26 — P.I. for e<sup>ax</sup> (Normal Case) ⭐⭐</div>
+            <p>Find the P.I. of: \((D^2 - 5D + 6)y = e^{4x}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 - 5D + 6} e^{4x}\)</p>
+            <p>Replace D with 4:</p>
+            <p>\(\text{P.I.} = \frac{e^{4x}}{4^2 - 5(4) + 6} = \frac{e^{4x}}{16 - 20 + 6} = \frac{e^{4x}}{2}\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = \frac{e^{4x}}{2}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.27 — P.I. for e<sup>ax</sup> (Failure Case) ⭐⭐⭐</div>
+            <p>Find the P.I. of: \((D^2 - 5D + 6)y = e^{2x}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 - 5D + 6} e^{2x}\)</p>
+            <p>Check: Replace D with 2: \(2^2 - 5(2) + 6 = 4 - 10 + 6 = 0\) ❌ Failure!</p>
+            <p><strong>Use failure case method:</strong></p>
+            <p>\(\phi(D) = D^2 - 5D + 6 = (D-2)(D-3)\)</p>
+            <p>\(\phi'(D) = 2D - 5\)</p>
+            <p>\(\phi'(2) = 2(2) - 5 = -1\)</p>
+            <p>\(\text{P.I.} = \frac{x \cdot e^{2x}}{\phi'(2)} = \frac{xe^{2x}}{-1} = -xe^{2x}\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = -xe^{2x}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.28 — P.I. for e<sup>ax</sup> (Double Failure)</div>
+            <p>Find the P.I. of: \((D^2 - 4D + 4)y = e^{2x}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\phi(D) = D^2 - 4D + 4 = (D-2)^2\)</p>
+            <p>Check: \(\phi(2) = (2-2)^2 = 0\) ❌</p>
+            <p>\(\phi'(D) = 2(D-2)\), \(\phi'(2) = 0\) ❌ Double failure!</p>
+            <p>\(\phi''(D) = 2\), \(\phi''(2) = 2\) ✓</p>
+            <p>\(\text{P.I.} = \frac{x^2 \cdot e^{2x}}{\phi''(2)} = \frac{x^2 e^{2x}}{2}\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = \frac{x^2 e^{2x}}{2}} \]
+            </div>
+        </div>
+
+        <!-- TYPE 2: sin(ax), cos(ax) -->
+        <div class="method-card">
+            <h4><i class="fas fa-wave-square"></i> Type II: P.I. when f(x) = sin(ax) or cos(ax)</h4>
+            <div class="formula">
+                \[ \text{P.I.} = \frac{1}{\phi(D^2)} \sin(ax) = \frac{\sin(ax)}{\phi(-a^2)} \quad \text{if } \phi(-a^2) \neq 0 \]
+            </div>
+            <p><strong>Key Rule:</strong> Replace D² with −a² (NOT D with a!)</p>
+            <p>Similarly for cos(ax): Replace D² with −a².</p>
+            <p><strong>What if there's a D term (odd power)?</strong></p>
+            <ul>
+                <li>If φ(D) = D² + pD + q, we can't directly replace D² only.</li>
+                <li>Method: Write φ(D) = (D² + q) + pD, replace D² = −a², then rationalize.</li>
+            </ul>
+            <p><strong>Failure case:</strong> If φ(−a²) = 0, multiply numerator by x and differentiate denominator w.r.t. D².</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.29 — P.I. for sin(ax) (Normal Case) ⭐⭐</div>
+            <p>Find the P.I. of: \((D^2 + 4)y = \sin 3x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 + 4} \sin 3x\)</p>
+            <p>Replace D² with −(3)² = −9:</p>
+            <p>\(\text{P.I.} = \frac{\sin 3x}{-9 + 4} = \frac{\sin 3x}{-5}\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = -\frac{\sin 3x}{5}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.30 — P.I. for cos(ax) ⭐</div>
+            <p>Find the P.I. of: \((D^2 + 9)y = \cos 2x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 + 9} \cos 2x\)</p>
+            <p>Replace D² with −(2)² = −4:</p>
+            <p>\(\text{P.I.} = \frac{\cos 2x}{-4 + 9} = \frac{\cos 2x}{5}\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = \frac{\cos 2x}{5}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.31 — P.I. for sin(ax) (Failure Case) ⭐⭐⭐</div>
+            <p>Find the P.I. of: \((D^2 + 4)y = \sin 2x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 + 4} \sin 2x\)</p>
+            <p>Replace D² with −(2)² = −4: \(\frac{\sin 2x}{-4+4} = \frac{\sin 2x}{0}\) ❌ Failure!</p>
+            <p><strong>Use failure case method:</strong></p>
+            <p>\(\text{P.I.} = \frac{x}{2D} \sin 2x = \frac{x}{2} \int \sin 2x\,dx = \frac{x}{2} \cdot \left(-\frac{\cos 2x}{2}\right)\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = -\frac{x\cos 2x}{4}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.32 — P.I. with D term (Rationalization) ⭐⭐⭐</div>
+            <p>Find the P.I. of: \((D^2 + 2D + 5)y = \sin 2x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 + 2D + 5} \sin 2x\)</p>
+            <p>Replace D² = −4:</p>
+            <p>\(\text{P.I.} = \frac{1}{-4 + 2D + 5} \sin 2x = \frac{1}{1 + 2D} \sin 2x\)</p>
+            <p><strong>Rationalize by multiplying by (1 − 2D)/(1 − 2D):</strong></p>
+            <p>\(\text{P.I.} = \frac{1 - 2D}{(1+2D)(1-2D)} \sin 2x = \frac{1-2D}{1 - 4D^2} \sin 2x\)</p>
+            <p>Replace D² = −4 again: \(\frac{1-2D}{1-4(-4)} = \frac{1-2D}{17}\)</p>
+            <p>\(\text{P.I.} = \frac{1}{17}(1-2D)\sin 2x = \frac{1}{17}[\sin 2x - 2D(\sin 2x)]\)</p>
+            <p>\(= \frac{1}{17}[\sin 2x - 2 \cdot 2\cos 2x] = \frac{1}{17}[\sin 2x - 4\cos 2x]\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = \frac{\sin 2x - 4\cos 2x}{17}} \]
+            </div>
+        </div>
+
+        <!-- TYPE 3: x^n (polynomial) -->
+        <div class="method-card">
+            <h4><i class="fas fa-superscript"></i> Type III: P.I. when f(x) = x<sup>n</sup> (Polynomial)</h4>
+            <p>When f(x) is a polynomial of degree n, we use <strong>binomial expansion</strong>:</p>
+            <div class="formula">
+                \[ \text{P.I.} = \frac{1}{\phi(D)} x^n = \frac{1}{c(1 + \psi(D))} x^n = \frac{1}{c}[1 + \psi(D)]^{-1} x^n \]
+            </div>
+            <p><strong>Binomial expansion:</strong> \([1 + \psi(D)]^{-1} = 1 - \psi(D) + [\psi(D)]^2 - [\psi(D)]^3 + ...\)</p>
+            <p>Expand up to D<sup>n</sup> terms only (since D<sup>n+1</sup>x<sup>n</sup> = 0).</p>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Useful Binomial Expansions</div>
+            <ul>
+                <li>\((1+u)^{-1} = 1 - u + u^2 - u^3 + ...\)</li>
+                <li>\((1-u)^{-1} = 1 + u + u^2 + u^3 + ...\)</li>
+                <li>\((1+u)^{-2} = 1 - 2u + 3u^2 - 4u^3 + ...\)</li>
+            </ul>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.33 — P.I. for x² ⭐⭐</div>
+            <p>Find the P.I. of: \((D^2 + 3D + 2)y = x^2\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 + 3D + 2} x^2 = \frac{1}{2(1 + \frac{D^2+3D}{2})} x^2\)</p>
+            <p>Let \(u = \frac{D^2+3D}{2}\)</p>
+            <p>\(\text{P.I.} = \frac{1}{2}(1+u)^{-1}x^2 = \frac{1}{2}(1 - u + u^2 - ...)x^2\)</p>
+            <p>Since we have x², we need terms up to D²:</p>
+            <p>\(= \frac{1}{2}\left[1 - \frac{D^2+3D}{2} + \frac{9D^2}{4}\right]x^2\) (keeping D² terms only)</p>
+            <p>\(= \frac{1}{2}\left[1 - \frac{3D}{2} - \frac{D^2}{2} + \frac{9D^2}{4}\right]x^2\)</p>
+            <p>\(= \frac{1}{2}\left[1 - \frac{3D}{2} + \frac{7D^2}{4}\right]x^2\)</p>
+            <p>\(= \frac{1}{2}\left[x^2 - \frac{3}{2}(2x) + \frac{7}{4}(2)\right] = \frac{1}{2}\left[x^2 - 3x + \frac{7}{2}\right]\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = \frac{x^2}{2} - \frac{3x}{2} + \frac{7}{4}} \]
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.34 — P.I. for x (Simple Case) ⭐</div>
+            <p>Find the P.I. of: \((D^2 + 1)y = x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2 + 1} x = \frac{1}{1+D^2} x = (1+D^2)^{-1}x\)</p>
+            <p>\(= (1 - D^2 + D^4 - ...)x\)</p>
+            <p>For x (degree 1), we need terms up to D only, but D²x = 0:</p>
+            <p>\(= (1 - 0)x = x\)</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = x} \]
+            </div>
+        </div>
+
+        <!-- TYPE 4: e^ax * V(x) -->
+        <div class="method-card">
+            <h4><i class="fas fa-times"></i> Type IV: P.I. when f(x) = e<sup>ax</sup> · V(x)</h4>
+            <p>When f(x) is an exponential multiplied by another function V(x):</p>
+            <div class="formula">
+                \[ \text{P.I.} = \frac{1}{\phi(D)} e^{ax} V(x) = e^{ax} \cdot \frac{1}{\phi(D+a)} V(x) \]
+            </div>
+            <p><strong>Rule:</strong> Take e<sup>ax</sup> outside and replace D with (D + a) in φ(D).</p>
+            <p>Then evaluate \(\frac{1}{\phi(D+a)} V(x)\) based on the type of V(x).</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.35 — P.I. for e<sup>ax</sup>·x ⭐⭐⭐</div>
+            <p>Find the P.I. of: \((D^2 - 4D + 4)y = xe^{2x}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <p>\(\text{P.I.} = \frac{1}{D^2-4D+4} xe^{2x} = \frac{1}{(D-2)^2} xe^{2x}\)</p>
+            <p>Take e<sup>2x</sup> outside, replace D with (D+2):</p>
+            <p>\(= e^{2x} \cdot \frac{1}{(D+2-2)^2} x = e^{2x} \cdot \frac{1}{D^2} x\)</p>
+            <p>\(= e^{2x} \cdot \frac{x^3}{6}\) (since \(\frac{1}{D^2}x = \int\int x\,dx\,dx = \frac{x^3}{6}\))</p>
+            <div class="formula answer">
+                \[ \boxed{\text{P.I.} = \frac{x^3 e^{2x}}{6}} \]
+            </div>
+        </div>
+
+        <!-- Complete Solution Examples -->
+        <h3><i class="fas fa-clipboard-check"></i> Complete Solution Examples (CF + PI)</h3>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.36 — Complete Solution ⭐⭐⭐</div>
+            <p>Solve completely: \(\frac{d^2y}{dx^2} - 5\frac{dy}{dx} + 6y = e^{x}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1 — Find C.F.">
+                <p>Auxiliary equation: \(m^2 - 5m + 6 = 0\)</p>
+                <p>\((m-2)(m-3) = 0 \Rightarrow m = 2, 3\)</p>
+                <p>\(\text{C.F.} = C_1e^{2x} + C_2e^{3x}\)</p>
+            </div>
+            <div class="step" data-step="Step 2 — Find P.I.">
+                <p>\(\text{P.I.} = \frac{1}{D^2-5D+6} e^x\)</p>
+                <p>Replace D = 1: \(\frac{e^x}{1-5+6} = \frac{e^x}{2}\)</p>
+            </div>
+            <div class="step" data-step="Step 3 — General Solution">
+                <div class="formula answer">
+                    \[ y = \text{C.F.} + \text{P.I.} = \boxed{C_1e^{2x} + C_2e^{3x} + \frac{e^x}{2}} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.37 — Complete Solution with cos(ax) ⭐⭐⭐</div>
+            <p>Solve: \((D^2 + 4)y = \cos 3x\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1 — C.F.">
+                <p>\(m^2 + 4 = 0 \Rightarrow m = \pm 2i\) (Complex: α = 0, β = 2)</p>
+                <p>\(\text{C.F.} = C_1\cos 2x + C_2\sin 2x\)</p>
+            </div>
+            <div class="step" data-step="Step 2 — P.I.">
+                <p>\(\text{P.I.} = \frac{1}{D^2+4}\cos 3x = \frac{\cos 3x}{-9+4} = -\frac{\cos 3x}{5}\)</p>
+            </div>
+            <div class="step" data-step="Step 3 — General Solution">
+                <div class="formula answer">
+                    \[ y = \boxed{C_1\cos 2x + C_2\sin 2x - \frac{\cos 3x}{5}} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title"><i class="fas fa-pencil"></i> Example 4.38 — Complete Solution (Equal Roots + Failure) ⭐⭐⭐</div>
+            <p>Solve: \(\frac{d^2y}{dx^2} - 6\frac{dy}{dx} + 9y = e^{3x}\)</p>
+        </div>
+        <div class="solution-box">
+            <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+            <div class="step" data-step="Step 1 — C.F.">
+                <p>\(m^2 - 6m + 9 = 0 \Rightarrow (m-3)^2 = 0 \Rightarrow m = 3, 3\)</p>
+                <p>Equal roots → \(\text{C.F.} = (C_1 + C_2x)e^{3x}\)</p>
+            </div>
+            <div class="step" data-step="Step 2 — P.I.">
+                <p>\(\text{P.I.} = \frac{1}{(D-3)^2} e^{3x}\)</p>
+                <p>Replace D = 3: \(\frac{e^{3x}}{(3-3)^2} = \frac{e^{3x}}{0}\) ❌ Failure!</p>
+                <p>Double failure (since (D-3)²): Use \(\frac{x^2 e^{3x}}{2!} = \frac{x^2 e^{3x}}{2}\)</p>
+            </div>
+            <div class="step" data-step="Step 3 — General Solution">
+                <div class="formula answer">
+                    \[ y = \boxed{(C_1 + C_2x)e^{3x} + \frac{x^2e^{3x}}{2}} \]
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Table for PI -->
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-table"></i> Summary — P.I. Formulas</div>
+            <div class="table-wrapper">
+                <table class="data-table pi-table">
+                    <thead>
+                        <tr>
+                            <th>f(x)</th>
+                            <th>P.I. Formula</th>
+                            <th>Condition / Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>\(e^{ax}\)</td>
+                            <td>\(\frac{e^{ax}}{\phi(a)}\)</td>
+                            <td>If φ(a) ≠ 0</td>
+                        </tr>
+                        <tr>
+                            <td>\(e^{ax}\) (failure)</td>
+                            <td>\(\frac{x \cdot e^{ax}}{\phi'(a)}\)</td>
+                            <td>If φ(a) = 0, φ'(a) ≠ 0</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin ax\) or \(\cos ax\)</td>
+                            <td>\(\frac{\sin ax}{\phi(-a^2)}\)</td>
+                            <td>Replace D² = −a²</td>
+                        </tr>
+                        <tr>
+                            <td>\(\sin ax\) (failure)</td>
+                            <td>\(\frac{-x\cos ax}{2a}\)</td>
+                            <td>When φ(−a²) = 0</td>
+                        </tr>
+                        <tr>
+                            <td>\(\cos ax\) (failure)</td>
+                            <td>\(\frac{x\sin ax}{2a}\)</td>
+                            <td>When φ(−a²) = 0</td>
+                        </tr>
+                        <tr>
+                            <td>\(x^n\)</td>
+                            <td>Expand \(\frac{1}{\phi(D)}\) by binomial</td>
+                            <td>Keep terms up to D<sup>n</sup></td>
+                        </tr>
+                        <tr>
+                            <td>\(e^{ax}V(x)\)</td>
+                            <td>\(e^{ax} \cdot \frac{1}{\phi(D+a)}V(x)\)</td>
+                            <td>Replace D → D+a</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 11 : KEY FORMULAS SUMMARY                             -->
+<!-- ============================================================== -->
+<section class="section" id="formulas">
+    <h2 class="section-title">
+        <i class="fas fa-square-root-variable"></i> Key Formulas Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-star"></i> Must Memorize for Exam!</div>
+            <p>These formulas appear in almost every WBSCTE paper. Print this page and revise before the exam!</p>
+        </div>
+
+        <h3><i class="fas fa-layer-group"></i> First Order DE Formulas</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Type</th><th>Standard Form</th><th>Solution Method</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Separation of Variables</strong></td>
+                        <td>\(f(y)dy = g(x)dx\)</td>
+                        <td>\(\int f(y)dy = \int g(x)dx + C\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Homogeneous</strong></td>
+                        <td>\(\frac{dy}{dx} = \phi\left(\frac{y}{x}\right)\)</td>
+                        <td>Put \(y = vx\), then \(\frac{dy}{dx} = v + x\frac{dv}{dx}\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Exact</strong></td>
+                        <td>\(Mdx + Ndy = 0\)</td>
+                        <td>Check \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\), then integrate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Linear</strong></td>
+                        <td>\(\frac{dy}{dx} + Py = Q\)</td>
+                        <td>I.F. = \(e^{\int P\,dx}\), Sol: \(y \cdot \text{I.F.} = \int Q \cdot \text{I.F.}\,dx + C\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-superscript"></i> Second Order DE — C.F. Formulas</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Nature of Roots (m₁, m₂)</th><th>Condition</th><th>C.F.</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Distinct real (m₁ ≠ m₂)</td>
+                        <td>b² − 4ac > 0</td>
+                        <td>\(C_1e^{m_1x} + C_2e^{m_2x}\)</td>
+                    </tr>
+                    <tr>
+                        <td>Equal real (m₁ = m₂ = m)</td>
+                        <td>b² − 4ac = 0</td>
+                        <td>\((C_1 + C_2x)e^{mx}\)</td>
+                    </tr>
+                    <tr>
+                        <td>Complex (α ± iβ)</td>
+                        <td>b² − 4ac < 0</td>
+                        <td>\(e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-p"></i> Second Order DE — P.I. Formulas</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>f(x) Type</th><th>P.I. = \(\frac{1}{\phi(D)}f(x)\)</th><th>Special Rule</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>\(e^{ax}\)</td>
+                        <td>\(\frac{e^{ax}}{\phi(a)}\)</td>
+                        <td>Replace D = a</td>
+                    </tr>
+                    <tr>
+                        <td>\(e^{ax}\) (failure)</td>
+                        <td>\(\frac{xe^{ax}}{\phi'(a)}\)</td>
+                        <td>If φ(a) = 0</td>
+                    </tr>
+                    <tr>
+                        <td>\(\sin ax\) or \(\cos ax\)</td>
+                        <td>\(\frac{\sin ax}{\phi(-a^2)}\)</td>
+                        <td>Replace D² = −a²</td>
+                    </tr>
+                    <tr>
+                        <td>\(\sin ax\) (failure)</td>
+                        <td>\(-\frac{x\cos ax}{2a}\)</td>
+                        <td>When \(D^2 + a^2\) in denom</td>
+                    </tr>
+                    <tr>
+                        <td>\(\cos ax\) (failure)</td>
+                        <td>\(\frac{x\sin ax}{2a}\)</td>
+                        <td>When \(D^2 + a^2\) in denom</td>
+                    </tr>
+                    <tr>
+                        <td>\(x^n\)</td>
+                        <td>Binomial expansion</td>
+                        <td>Expand and keep up to D<sup>n</sup></td>
+                    </tr>
+                    <tr>
+                        <td>\(e^{ax}V(x)\)</td>
+                        <td>\(e^{ax}\frac{1}{\phi(D+a)}V(x)\)</td>
+                        <td>Replace D → D+a, take e<sup>ax</sup> out</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-calculator"></i> Common Integration Formulas Used in DEs</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Integral</th><th>Result</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>\(\int \frac{1}{x}dx\)</td><td>\(\ln|x| + C\)</td></tr>
+                    <tr><td>\(\int e^{ax}dx\)</td><td>\(\frac{e^{ax}}{a} + C\)</td></tr>
+                    <tr><td>\(\int \sin ax\,dx\)</td><td>\(-\frac{\cos ax}{a} + C\)</td></tr>
+                    <tr><td>\(\int \cos ax\,dx\)</td><td>\(\frac{\sin ax}{a} + C\)</td></tr>
+                    <tr><td>\(\int \frac{1}{1+x^2}dx\)</td><td>\(\tan^{-1}x + C\)</td></tr>
+                    <tr><td>\(\int \frac{1}{\sqrt{1-x^2}}dx\)</td><td>\(\sin^{-1}x + C\)</td></tr>
+                    <tr><td>\(\int \tan x\,dx\)</td><td>\(-\ln|\cos x| + C = \ln|\sec x| + C\)</td></tr>
+                    <tr><td>\(\int \sec^2 x\,dx\)</td><td>\(\tan x + C\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-lightbulb"></i> Quick Reference — I.F. Values</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>P(x) in \(\frac{dy}{dx} + Py = Q\)</th><th>I.F. = \(e^{\int P\,dx}\)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>k (constant)</td><td>\(e^{kx}\)</td></tr>
+                    <tr><td>\(\frac{n}{x}\)</td><td>\(x^n\)</td></tr>
+                    <tr><td>\(-\frac{n}{x}\)</td><td>\(x^{-n} = \frac{1}{x^n}\)</td></tr>
+                    <tr><td>\(\tan x\)</td><td>\(\sec x\)</td></tr>
+                    <tr><td>\(\cot x\)</td><td>\(\sin x\)</td></tr>
+                    <tr><td>\(-\tan x\)</td><td>\(\cos x\)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 12 : COMPARISON TABLES                                -->
+<!-- ============================================================== -->
+<section class="section" id="comparisons">
+    <h2 class="section-title">
+        <i class="fas fa-scale-balanced"></i> Comparison Tables
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3><i class="fas fa-arrows-left-right"></i> First Order DE Methods — Comparison</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Separation of Variables</th>
+                        <th>Homogeneous</th>
+                        <th>Exact</th>
+                        <th>Linear</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Standard Form</strong></td>
+                        <td>\(f(y)dy = g(x)dx\)</td>
+                        <td>\(\frac{dy}{dx} = \phi(y/x)\)</td>
+                        <td>\(Mdx + Ndy = 0\)</td>
+                        <td>\(\frac{dy}{dx} + Py = Q\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recognition</strong></td>
+                        <td>Variables can be separated</td>
+                        <td>Same degree in all terms</td>
+                        <td>\(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\)</td>
+                        <td>y and y' to first power only</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Substitution</strong></td>
+                        <td>None needed</td>
+                        <td>y = vx</td>
+                        <td>None</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Key Step</strong></td>
+                        <td>Separate & integrate</td>
+                        <td>Reduces to separable</td>
+                        <td>\(\int M\,dx\) + terms of N without x</td>
+                        <td>Find I.F. = \(e^{\int P\,dx}\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Difficulty Level</strong></td>
+                        <td>Easiest</td>
+                        <td>Moderate</td>
+                        <td>Moderate</td>
+                        <td>Moderate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Exam Frequency</strong></td>
+                        <td>🔥🔥</td>
+                        <td>🔥🔥</td>
+                        <td>🔥</td>
+                        <td>🔥🔥🔥</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-arrows-left-right"></i> Order vs Degree — Comparison</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Aspect</th><th>Order</th><th>Degree</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Definition</strong></td>
+                        <td>Highest derivative present</td>
+                        <td>Power of highest derivative</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Always Defined?</strong></td>
+                        <td>Yes, always</td>
+                        <td>Not always (may be undefined)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>When Undefined</strong></td>
+                        <td>Never</td>
+                        <td>When derivative is inside sin, cos, exp, log</td>
+                    </tr>
+                    <tr>
+                        <td><strong>What It Tells</strong></td>
+                        <td>Number of arbitrary constants in general solution</td>
+                        <td>Number of values of highest derivative</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Example: \(\left(\frac{d^2y}{dx^2}\right)^3 + y = 0\)</strong></td>
+                        <td>Order = 2</td>
+                        <td>Degree = 3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-arrows-left-right"></i> C.F. Cases — Comparison</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Case</th>
+                        <th>Roots</th>
+                        <th>Discriminant</th>
+                        <th>C.F. Form</th>
+                        <th>Example Equation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Case I</strong></td>
+                        <td>m₁ ≠ m₂ (real)</td>
+                        <td>> 0</td>
+                        <td>\(C_1e^{m_1x} + C_2e^{m_2x}\)</td>
+                        <td>\(y'' - 5y' + 6y = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Case II</strong></td>
+                        <td>m₁ = m₂ = m</td>
+                        <td>= 0</td>
+                        <td>\((C_1 + C_2x)e^{mx}\)</td>
+                        <td>\(y'' - 4y' + 4y = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Case III</strong></td>
+                        <td>α ± iβ</td>
+                        <td>< 0</td>
+                        <td>\(e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)\)</td>
+                        <td>\(y'' + 4y = 0\)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-arrows-left-right"></i> P.I. Types — Comparison</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>f(x)</th>
+                        <th>Method</th>
+                        <th>Normal Case</th>
+                        <th>Failure Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>\(e^{ax}\)</td>
+                        <td>Replace D = a</td>
+                        <td>\(\frac{e^{ax}}{\phi(a)}\)</td>
+                        <td>Multiply by x, differentiate denom</td>
+                    </tr>
+                    <tr>
+                        <td>\(\sin ax, \cos ax\)</td>
+                        <td>Replace D² = −a²</td>
+                        <td>\(\frac{\sin ax}{\phi(-a^2)}\)</td>
+                        <td>Multiply by x, use \(\frac{1}{2D}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(x^n\)</td>
+                        <td>Binomial expansion</td>
+                        <td>Expand up to D<sup>n</sup></td>
+                        <td>N/A (always works)</td>
+                    </tr>
+                    <tr>
+                        <td>\(e^{ax}V(x)\)</td>
+                        <td>Replace D → D+a</td>
+                        <td>Take e<sup>ax</sup> out, solve for V</td>
+                        <td>Combine with above</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3><i class="fas fa-arrows-left-right"></i> Homogeneous Equation vs Homogeneous Type</h3>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr><th>Aspect</th><th>Homogeneous Type (First Order)</th><th>Homogeneous Equation (Second Order)</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Meaning</strong></td>
+                        <td>All terms have same degree in x and y</td>
+                        <td>RHS = 0 (no forcing function)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Example</strong></td>
+                        <td>\(\frac{dy}{dx} = \frac{x+y}{x}\)</td>
+                        <td>\(y'' + 3y' + 2y = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Solution Method</strong></td>
+                        <td>Substitute y = vx</td>
+                        <td>Find C.F. using auxiliary equation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Result</strong></td>
+                        <td>General solution</td>
+                        <td>C.F. only (no P.I.)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 13 : MCQ BANK                                         -->
+<!-- ============================================================== -->
+<section class="section" id="mcq-bank">
+    <h2 class="section-title">
+        <i class="fas fa-circle-check"></i> MCQ Bank (Previous Year Style)
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Exam Strategy</div>
+            <p>MCQs from this unit typically test: Order & Degree, Type identification, I.F., C.F. roots. Practice these well!</p>
+        </div>
+
+        <div class="mcq-grid">
+
+            <div class="mcq-item">
+                <h4>Q 1.</h4>
+                <p>The order and degree of \(\frac{d^2y}{dx^2} + 3\left(\frac{dy}{dx}\right)^2 + y = 0\) are:</p>
+                <ul class="options">
+                    <li>a. Order 2, Degree 1</li>
+                    <li>b. Order 2, Degree 2</li>
+                    <li>c. Order 1, Degree 2</li>
+                    <li>d. Order 1, Degree 1</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq1">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq1">
+                    <strong>Answer: a. Order 2, Degree 1</strong>
+                    <p>Highest derivative is d²y/dx² → Order = 2. Power of d²y/dx² is 1 → Degree = 1. (The power 2 on dy/dx doesn't matter since d²y/dx² is the highest order derivative.)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 2.</h4>
+                <p>The integrating factor for \(\frac{dy}{dx} + \frac{y}{x} = x^2\) is:</p>
+                <ul class="options">
+                    <li>a. \(e^x\)</li>
+                    <li>b. \(x\)</li>
+                    <li>c. \(\frac{1}{x}\)</li>
+                    <li>d. \(\ln x\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq2">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq2">
+                    <strong>Answer: b. x</strong>
+                    <p>P = 1/x, so I.F. = \(e^{\int \frac{1}{x}dx} = e^{\ln x} = x\)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 3.</h4>
+                <p>The C.F. of \((D^2 + 4)y = 0\) is:</p>
+                <ul class="options">
+                    <li>a. \(C_1e^{2x} + C_2e^{-2x}\)</li>
+                    <li>b. \((C_1 + C_2x)e^{2x}\)</li>
+                    <li>c. \(C_1\cos 2x + C_2\sin 2x\)</li>
+                    <li>d. \(e^{2x}(C_1\cos x + C_2\sin x)\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq3">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq3">
+                    <strong>Answer: c. \(C_1\cos 2x + C_2\sin 2x\)</strong>
+                    <p>Auxiliary equation: m² + 4 = 0 → m = ±2i (complex roots with α = 0, β = 2)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 4.</h4>
+                <p>The P.I. of \((D^2 + 1)y = e^{2x}\) is:</p>
+                <ul class="options">
+                    <li>a. \(\frac{e^{2x}}{3}\)</li>
+                    <li>b. \(\frac{e^{2x}}{5}\)</li>
+                    <li>c. \(e^{2x}\)</li>
+                    <li>d. \(\frac{e^{2x}}{4}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq4">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq4">
+                    <strong>Answer: b. \(\frac{e^{2x}}{5}\)</strong>
+                    <p>P.I. = \(\frac{e^{2x}}{2^2 + 1} = \frac{e^{2x}}{5}\)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 5.</h4>
+                <p>Which equation is exact?</p>
+                <ul class="options">
+                    <li>a. \((2xy + 1)dx + x^2dy = 0\)</li>
+                    <li>b. \((x + y)dx + xdy = 0\)</li>
+                    <li>c. \(ydx + xdy = 0\)</li>
+                    <li>d. Both a and c</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq5">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq5">
+                    <strong>Answer: d. Both a and c</strong>
+                    <p>For (a): ∂M/∂y = 2x, ∂N/∂x = 2x ✓<br>
+                    For (b): ∂M/∂y = 1, ∂N/∂x = 1 ✓ (Actually b is also exact!)<br>
+                    For (c): ∂M/∂y = 1, ∂N/∂x = 1 ✓<br>
+                    All three are exact, but if only a and c given as option, select d.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 6.</h4>
+                <p>The degree of \(\sqrt{1 + \left(\frac{dy}{dx}\right)^2} = x\) is:</p>
+                <ul class="options">
+                    <li>a. 1</li>
+                    <li>b. 2</li>
+                    <li>c. 1/2</li>
+                    <li>d. Not defined</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq6">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq6">
+                    <strong>Answer: b. 2</strong>
+                    <p>Squaring: \(1 + (dy/dx)^2 = x^2\), so degree = 2</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 7.</h4>
+                <p>The equation \(y'' + 6y' + 9y = 0\) has:</p>
+                <ul class="options">
+                    <li>a. Two distinct real roots</li>
+                    <li>b. Two equal real roots</li>
+                    <li>c. Complex roots</li>
+                    <li>d. One real root</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq7">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq7">
+                    <strong>Answer: b. Two equal real roots</strong>
+                    <p>m² + 6m + 9 = (m + 3)² = 0 → m = −3, −3 (repeated roots)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 8.</h4>
+                <p>The P.I. of \((D^2 + 4)y = \sin 2x\) is:</p>
+                <ul class="options">
+                    <li>a. \(\frac{\sin 2x}{8}\)</li>
+                    <li>b. \(-\frac{x\cos 2x}{4}\)</li>
+                    <li>c. \(\frac{x\sin 2x}{4}\)</li>
+                    <li>d. \(-\frac{\sin 2x}{4}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq8">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq8">
+                    <strong>Answer: b. \(-\frac{x\cos 2x}{4}\)</strong>
+                    <p>This is a failure case since D² = −4 gives 0 in denominator. P.I. = \(-\frac{x\cos 2x}{2 \times 2} = -\frac{x\cos 2x}{4}\)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 9.</h4>
+                <p>The equation \(\frac{dy}{dx} = \frac{x + y}{x - y}\) is of type:</p>
+                <ul class="options">
+                    <li>a. Separable</li>
+                    <li>b. Homogeneous</li>
+                    <li>c. Linear</li>
+                    <li>d. Exact</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq9">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq9">
+                    <strong>Answer: b. Homogeneous</strong>
+                    <p>Both numerator and denominator are homogeneous of degree 1. Can be written as function of y/x.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 10.</h4>
+                <p>The C.F. of \((D^2 - 4D + 4)y = 0\) is:</p>
+                <ul class="options">
+                    <li>a. \(C_1e^{2x} + C_2e^{-2x}\)</li>
+                    <li>b. \((C_1 + C_2x)e^{2x}\)</li>
+                    <li>c. \((C_1 + C_2x)e^{-2x}\)</li>
+                    <li>d. \(C_1\cos 2x + C_2\sin 2x\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq10">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq10">
+                    <strong>Answer: b. \((C_1 + C_2x)e^{2x}\)</strong>
+                    <p>m² − 4m + 4 = (m − 2)² = 0 → m = 2, 2 (equal roots)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 11.</h4>
+                <p>The differential equation \(\sin\left(\frac{dy}{dx}\right) = x\) has:</p>
+                <ul class="options">
+                    <li>a. Order 1, Degree 1</li>
+                    <li>b. Order 1, Degree not defined</li>
+                    <li>c. Order 2, Degree 1</li>
+                    <li>d. Order 1, Degree 2</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq11">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq11">
+                    <strong>Answer: b. Order 1, Degree not defined</strong>
+                    <p>Derivative inside sine function, so degree is not defined.</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 12.</h4>
+                <p>The I.F. for \(\frac{dy}{dx} + y\tan x = \sec x\) is:</p>
+                <ul class="options">
+                    <li>a. \(\cos x\)</li>
+                    <li>b. \(\sin x\)</li>
+                    <li>c. \(\sec x\)</li>
+                    <li>d. \(\tan x\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq12">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq12">
+                    <strong>Answer: c. \(\sec x\)</strong>
+                    <p>I.F. = \(e^{\int \tan x\,dx} = e^{\ln|\sec x|} = \sec x\)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 13.</h4>
+                <p>The general solution of \(\frac{dy}{dx} = \frac{y}{x}\) is:</p>
+                <ul class="options">
+                    <li>a. \(y = Cx\)</li>
+                    <li>b. \(y = Cx^2\)</li>
+                    <li>c. \(xy = C\)</li>
+                    <li>d. \(y = Ce^x\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq13">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq13">
+                    <strong>Answer: a. \(y = Cx\)</strong>
+                    <p>\(\frac{dy}{y} = \frac{dx}{x}\) → \(\ln y = \ln x + \ln C\) → \(y = Cx\)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 14.</h4>
+                <p>If roots of auxiliary equation are 3 and −2, then C.F. is:</p>
+                <ul class="options">
+                    <li>a. \((C_1 + C_2x)e^{3x}\)</li>
+                    <li>b. \(C_1e^{3x} + C_2e^{-2x}\)</li>
+                    <li>c. \(e^x(C_1\cos 2x + C_2\sin 2x)\)</li>
+                    <li>d. \(C_1e^{3x} + C_2e^{2x}\)</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq14">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq14">
+                    <strong>Answer: b. \(C_1e^{3x} + C_2e^{-2x}\)</strong>
+                    <p>Distinct real roots: C.F. = \(C_1e^{m_1x} + C_2e^{m_2x}\)</p>
+                </div>
+            </div>
+
+            <div class="mcq-item">
+                <h4>Q 15.</h4>
+                <p>The complete solution of a 2nd order linear DE is:</p>
+                <ul class="options">
+                    <li>a. C.F. only</li>
+                    <li>b. P.I. only</li>
+                    <li>c. C.F. + P.I.</li>
+                    <li>d. C.F. × P.I.</li>
+                </ul>
+                <button class="toggle-btn" data-target="mcq15">
+                    <i class="fas fa-eye"></i> Show Answer
+                </button>
+                <div class="answer-reveal" id="mcq15">
+                    <strong>Answer: c. C.F. + P.I.</strong>
+                    <p>General solution = Complementary Function + Particular Integral</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 14 : Q&A BANK                                         -->
+<!-- ============================================================== -->
+<section class="section" id="qa-bank">
+    <h2 class="section-title">
+        <i class="fas fa-file-lines"></i> Short & Long Answer Questions
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <h3><i class="fas fa-pen"></i> Short Answer Questions (2–3 Marks)</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q1.</strong> Define ordinary differential equation with an example.</p>
+            <button class="toggle-btn" data-target="sa1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa1">
+                <p><strong>Answer:</strong> An ordinary differential equation (ODE) is an equation containing an unknown function of one independent variable and its derivatives.</p>
+                <p><strong>Example:</strong> \(\frac{dy}{dx} + y = e^x\)</p>
+                <p>Here, y is the unknown function of x, and dy/dx is its derivative.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q2.</strong> What is the order and degree of \(\left(\frac{d^2y}{dx^2}\right)^4 + \left(\frac{dy}{dx}\right)^3 = x\)?</p>
+            <button class="toggle-btn" data-target="sa2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa2">
+                <p><strong>Answer:</strong></p>
+                <p>Highest order derivative present: \(\frac{d^2y}{dx^2}\) → <strong>Order = 2</strong></p>
+                <p>Power of highest order derivative: 4 → <strong>Degree = 4</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q3.</strong> Write the condition for exactness of the equation \(Mdx + Ndy = 0\).</p>
+            <button class="toggle-btn" data-target="sa3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa3">
+                <p><strong>Answer:</strong> The equation \(Mdx + Ndy = 0\) is exact if and only if:</p>
+                <p>\[\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\]</p>
+                <p>This means the partial derivative of M with respect to y equals the partial derivative of N with respect to x.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q4.</strong> Find the integrating factor for \(\frac{dy}{dx} + 2y = e^x\).</p>
+            <button class="toggle-btn" data-target="sa4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa4">
+                <p><strong>Answer:</strong></p>
+                <p>Comparing with standard form \(\frac{dy}{dx} + Py = Q\): P = 2</p>
+                <p>I.F. = \(e^{\int P\,dx} = e^{\int 2\,dx} = e^{2x}\)</p>
+                <p><strong>Integrating Factor = \(e^{2x}\)</strong></p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q5.</strong> State the three cases of complementary function based on roots of auxiliary equation.</p>
+            <button class="toggle-btn" data-target="sa5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa5">
+                <p><strong>Answer:</strong></p>
+                <ol>
+                    <li><strong>Case I (Distinct real roots m₁, m₂):</strong> C.F. = \(C_1e^{m_1x} + C_2e^{m_2x}\)</li>
+                    <li><strong>Case II (Equal real roots m, m):</strong> C.F. = \((C_1 + C_2x)e^{mx}\)</li>
+                    <li><strong>Case III (Complex roots α ± iβ):</strong> C.F. = \(e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)\)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q6.</strong> What substitution is used for solving homogeneous differential equations?</p>
+            <button class="toggle-btn" data-target="sa6"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa6">
+                <p><strong>Answer:</strong> For solving homogeneous differential equations, we use the substitution:</p>
+                <p>\[y = vx\]</p>
+                <p>where v is a function of x. This gives \(\frac{dy}{dx} = v + x\frac{dv}{dx}\).</p>
+                <p>This substitution converts the homogeneous DE into a separable equation in v and x.</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q7.</strong> Write the formula for P.I. when f(x) = e<sup>ax</sup>.</p>
+            <button class="toggle-btn" data-target="sa7"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa7">
+                <p><strong>Answer:</strong> For \((aD^2 + bD + c)y = e^{ax}\), the P.I. is:</p>
+                <p>\[\text{P.I.} = \frac{1}{\phi(D)}e^{ax} = \frac{e^{ax}}{\phi(a)}\]</p>
+                <p>where we replace D with 'a' in φ(D).</p>
+                <p><strong>Failure case:</strong> If φ(a) = 0, then P.I. = \(\frac{xe^{ax}}{\phi'(a)}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q8.</strong> Distinguish between order and degree of a differential equation.</p>
+            <button class="toggle-btn" data-target="sa8"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="sa8">
+                <p><strong>Answer:</strong></p>
+                <table class="data-table">
+                    <tr><th>Order</th><th>Degree</th></tr>
+                    <tr><td>Highest order derivative present</td><td>Power of highest order derivative</td></tr>
+                    <tr><td>Always defined</td><td>May be undefined (if derivative inside sin, log, etc.)</td></tr>
+                    <tr><td>Determines number of arbitrary constants</td><td>Indicates number of values of highest derivative</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-file-alt"></i> Long Answer Questions (5–7 Marks)</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q9.</strong> Solve the differential equation \(\frac{dy}{dx} + \frac{y}{x} = x^2\) using the method of integrating factor. [5 marks]</p>
+            <button class="toggle-btn" data-target="la1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la1">
+                <p><strong>Solution:</strong></p>
+                <p>Given: \(\frac{dy}{dx} + \frac{y}{x} = x^2\)</p>
+                <p>This is a linear DE of the form \(\frac{dy}{dx} + Py = Q\) where P = 1/x, Q = x².</p>
+                <p><strong>Step 1:</strong> Find I.F.</p>
+                <p>I.F. = \(e^{\int \frac{1}{x}dx} = e^{\ln x} = x\)</p>
+                <p><strong>Step 2:</strong> Solution formula</p>
+                <p>\(y \times \text{I.F.} = \int Q \times \text{I.F.}\,dx + C\)</p>
+                <p>\(y \cdot x = \int x^2 \cdot x\,dx + C\)</p>
+                <p>\(xy = \int x^3\,dx + C\)</p>
+                <p>\(xy = \frac{x^4}{4} + C\)</p>
+                <p><strong>Answer:</strong> \(\boxed{y = \frac{x^3}{4} + \frac{C}{x}}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q10.</strong> Solve: \((x^2 + y^2)dx - 2xy\,dy = 0\) [6 marks]</p>
+            <button class="toggle-btn" data-target="la2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la2">
+                <p><strong>Solution:</strong></p>
+                <p>Rewriting: \(\frac{dy}{dx} = \frac{x^2 + y^2}{2xy}\)</p>
+                <p>This is homogeneous (numerator and denominator both have degree 2).</p>
+                <p><strong>Step 1:</strong> Put y = vx, so \(\frac{dy}{dx} = v + x\frac{dv}{dx}\)</p>
+                <p>\(v + x\frac{dv}{dx} = \frac{x^2 + v^2x^2}{2x \cdot vx} = \frac{1 + v^2}{2v}\)</p>
+                <p><strong>Step 2:</strong> Separate</p>
+                <p>\(x\frac{dv}{dx} = \frac{1 + v^2}{2v} - v = \frac{1 + v^2 - 2v^2}{2v} = \frac{1 - v^2}{2v}\)</p>
+                <p>\(\frac{2v\,dv}{1 - v^2} = \frac{dx}{x}\)</p>
+                <p><strong>Step 3:</strong> Integrate</p>
+                <p>\(-\ln|1 - v^2| = \ln|x| + C_1\)</p>
+                <p>\(\ln\frac{1}{|1-v^2|} = \ln|x| + C_1\)</p>
+                <p>\(\frac{1}{1-v^2} = Ax\) (where A = ±e^C₁)</p>
+                <p><strong>Step 4:</strong> Replace v = y/x</p>
+                <p>\(\frac{1}{1 - y^2/x^2} = Ax\)</p>
+                <p>\(\frac{x^2}{x^2 - y^2} = Ax\)</p>
+                <p><strong>Answer:</strong> \(\boxed{x^2 - y^2 = Cx}\) (where C = 1/A)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q11.</strong> Solve completely: \(\frac{d^2y}{dx^2} - 5\frac{dy}{dx} + 6y = e^{2x}\) [7 marks]</p>
+            <button class="toggle-btn" data-target="la3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la3">
+                <p><strong>Solution:</strong></p>
+                <p>Given: \((D^2 - 5D + 6)y = e^{2x}\)</p>
+                <p><strong>Part A: Find C.F.</strong></p>
+                <p>Auxiliary equation: \(m^2 - 5m + 6 = 0\)</p>
+                <p>\((m - 2)(m - 3) = 0\)</p>
+                <p>m = 2, 3 (distinct real roots)</p>
+                <p>C.F. = \(C_1e^{2x} + C_2e^{3x}\)</p>
+                <p><strong>Part B: Find P.I.</strong></p>
+                <p>P.I. = \(\frac{1}{D^2 - 5D + 6}e^{2x}\)</p>
+                <p>Replace D = 2: \(\frac{e^{2x}}{4 - 10 + 6} = \frac{e^{2x}}{0}\) ❌ Failure!</p>
+                <p>φ(D) = (D - 2)(D - 3), φ'(D) = 2D - 5</p>
+                <p>φ'(2) = 4 - 5 = -1</p>
+                <p>P.I. = \(\frac{xe^{2x}}{\phi'(2)} = \frac{xe^{2x}}{-1} = -xe^{2x}\)</p>
+                <p><strong>Complete Solution:</strong></p>
+                <p>\(\boxed{y = C_1e^{2x} + C_2e^{3x} - xe^{2x}}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q12.</strong> Solve: \((D^2 + 4)y = \cos 3x\) [6 marks]</p>
+            <button class="toggle-btn" data-target="la4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la4">
+                <p><strong>Solution:</strong></p>
+                <p><strong>Part A: Find C.F.</strong></p>
+                <p>Auxiliary equation: \(m^2 + 4 = 0\)</p>
+                <p>\(m^2 = -4\), m = ±2i</p>
+                <p>Complex roots: α = 0, β = 2</p>
+                <p>C.F. = \(C_1\cos 2x + C_2\sin 2x\)</p>
+                <p><strong>Part B: Find P.I.</strong></p>
+                <p>P.I. = \(\frac{1}{D^2 + 4}\cos 3x\)</p>
+                <p>Replace D² = −9:</p>
+                <p>P.I. = \(\frac{\cos 3x}{-9 + 4} = \frac{\cos 3x}{-5} = -\frac{\cos 3x}{5}\)</p>
+                <p><strong>Complete Solution:</strong></p>
+                <p>\(\boxed{y = C_1\cos 2x + C_2\sin 2x - \frac{\cos 3x}{5}}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q13.</strong> Verify that (2xy + 3)dx + (x² + 4y)dy = 0 is exact and solve it. [5 marks]</p>
+            <button class="toggle-btn" data-target="la5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="la5">
+                <p><strong>Solution:</strong></p>
+                <p>M = 2xy + 3, N = x² + 4y</p>
+                <p><strong>Check exactness:</strong></p>
+                <p>\(\frac{\partial M}{\partial y} = 2x\)</p>
+                <p>\(\frac{\partial N}{\partial x} = 2x\)</p>
+                <p>Since \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\), the equation is exact. ✓</p>
+                <p><strong>Solution:</strong></p>
+                <p>\(\int M\,dx\) (treating y as constant) = \(\int (2xy + 3)dx = x^2y + 3x\)</p>
+                <p>Terms in N not containing x = 4y</p>
+                <p>\(\int 4y\,dy = 2y^2\)</p>
+                <p><strong>Answer:</strong> \(\boxed{x^2y + 3x + 2y^2 = C}\)</p>
+            </div>
+        </div>
+
+        <h3><i class="fas fa-calculator"></i> Numerical Problems</h3>
+
+        <div class="exercise-area">
+            <p><strong>Q14.</strong> Solve: \(\frac{dy}{dx} = xy\) [4 marks]</p>
+            <button class="toggle-btn" data-target="num1"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num1">
+                <p><strong>Solution:</strong> This is separable.</p>
+                <p>\(\frac{dy}{y} = x\,dx\)</p>
+                <p>Integrating: \(\ln|y| = \frac{x^2}{2} + C\)</p>
+                <p>\(|y| = e^{x^2/2 + C} = e^C \cdot e^{x^2/2}\)</p>
+                <p><strong>Answer:</strong> \(\boxed{y = Ae^{x^2/2}}\) where A = ±e^C</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q15.</strong> Solve: \(y'' - 4y' + 4y = 0\) [4 marks]</p>
+            <button class="toggle-btn" data-target="num2"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num2">
+                <p><strong>Solution:</strong></p>
+                <p>Auxiliary equation: \(m^2 - 4m + 4 = 0\)</p>
+                <p>\((m - 2)^2 = 0\)</p>
+                <p>m = 2, 2 (equal roots)</p>
+                <p><strong>Answer:</strong> \(\boxed{y = (C_1 + C_2x)e^{2x}}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q16.</strong> Find P.I. of \((D^2 + 1)y = \sin 2x\) [4 marks]</p>
+            <button class="toggle-btn" data-target="num3"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num3">
+                <p><strong>Solution:</strong></p>
+                <p>P.I. = \(\frac{1}{D^2 + 1}\sin 2x\)</p>
+                <p>Replace D² = −4:</p>
+                <p>P.I. = \(\frac{\sin 2x}{-4 + 1} = \frac{\sin 2x}{-3}\)</p>
+                <p><strong>Answer:</strong> \(\boxed{\text{P.I.} = -\frac{\sin 2x}{3}}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q17.</strong> Solve: \(\frac{dy}{dx} - \frac{2y}{x} = x^3\) [5 marks]</p>
+            <button class="toggle-btn" data-target="num4"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num4">
+                <p><strong>Solution:</strong></p>
+                <p>Linear DE with P = −2/x, Q = x³</p>
+                <p>I.F. = \(e^{\int -\frac{2}{x}dx} = e^{-2\ln x} = x^{-2} = \frac{1}{x^2}\)</p>
+                <p>\(\frac{y}{x^2} = \int x^3 \cdot \frac{1}{x^2}dx = \int x\,dx = \frac{x^2}{2} + C\)</p>
+                <p><strong>Answer:</strong> \(\boxed{y = \frac{x^4}{2} + Cx^2}\)</p>
+            </div>
+        </div>
+
+        <div class="exercise-area">
+            <p><strong>Q18.</strong> Find C.F. and P.I. of \((D^2 + 9)y = e^{2x}\) [6 marks]</p>
+            <button class="toggle-btn" data-target="num5"><i class="fas fa-eye"></i> Show Answer</button>
+            <div class="answer-reveal" id="num5">
+                <p><strong>Solution:</strong></p>
+                <p><strong>C.F.:</strong> m² + 9 = 0 → m = ±3i</p>
+                <p>C.F. = \(C_1\cos 3x + C_2\sin 3x\)</p>
+                <p><strong>P.I.:</strong> = \(\frac{e^{2x}}{4 + 9} = \frac{e^{2x}}{13}\)</p>
+                <p><strong>Complete Solution:</strong> \(\boxed{y = C_1\cos 3x + C_2\sin 3x + \frac{e^{2x}}{13}}\)</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ============================================================== -->
+<!--  SECTION 15 : QUICK REVISION                                   -->
+<!-- ============================================================== -->
+<section class="section" id="revision">
+    <h2 class="section-title">
+        <i class="fas fa-bolt"></i> Quick Revision — Unit Summary
+        <i class="fas fa-chevron-up collapse-icon"></i>
+    </h2>
+    <div class="section-content">
+
+        <div class="concept-box">
+            <div class="box-title"><i class="fas fa-book-open"></i> Complete Unit Summary</div>
+
+            <h4>📌 Basic Concepts</h4>
+            <ul>
+                <li><strong>Order</strong> = Highest derivative present (always defined)</li>
+                <li><strong>Degree</strong> = Power of highest derivative (after removing radicals; may be undefined)</li>
+                <li><strong>General Solution</strong> = Contains arbitrary constants</li>
+                <li><strong>Particular Solution</strong> = Specific values of constants given</li>
+            </ul>
+
+            <h4>📌 First Order Methods (Remember the Types!)</h4>
+            <ul>
+                <li><strong>Separation of Variables:</strong> Separate x's and y's, integrate both sides</li>
+                <li><strong>Homogeneous:</strong> Same degree → Put y = vx, then separate</li>
+                <li><strong>Exact:</strong> Check ∂M/∂y = ∂N/∂x, then integrate M w.r.t. x + remaining N terms w.r.t. y</li>
+                <li><strong>Linear:</strong> dy/dx + Py = Q → I.F. = e^(∫P dx) → y·I.F. = ∫Q·I.F. dx + C</li>
+            </ul>
+
+            <h4>📌 Second Order C.F. (Three Cases - MUST MEMORIZE!)</h4>
+            <ul>
+                <li><strong>Case I:</strong> Distinct roots m₁, m₂ → C.F. = C₁e^(m₁x) + C₂e^(m₂x)</li>
+                <li><strong>Case II:</strong> Equal roots m, m → C.F. = (C₁ + C₂x)e^(mx)</li>
+                <li><strong>Case III:</strong> Complex roots α ± iβ → C.F. = e^(αx)(C₁cos βx + C₂sin βx)</li>
+            </ul>
+
+            <h4>📌 P.I. Formulas</h4>
+            <ul>
+                <li><strong>e^(ax):</strong> Replace D = a; if 0, multiply by x and differentiate denom</li>
+                <li><strong>sin(ax)/cos(ax):</strong> Replace D² = −a²; if 0, multiply by x</li>
+                <li><strong>x^n:</strong> Binomial expansion of 1/φ(D)</li>
+                <li><strong>e^(ax)·V(x):</strong> Take e^(ax) out, replace D → D+a</li>
+            </ul>
+
+            <h4>📌 Complete Solution</h4>
+            <div class="formula">
+                \[ y = \text{C.F.} + \text{P.I.} \]
+            </div>
+        </div>
+
+        <div class="important-note">
+            <div class="box-title"><i class="fas fa-exclamation-circle"></i> Don't Forget in Exam!</div>
+            <ol>
+                <li>Always check type of equation first before solving</li>
+                <li>For linear type: P is coefficient of y (after making coefficient of dy/dx = 1)</li>
+                <li>For C.F.: Solve auxiliary equation correctly using quadratic formula if needed</li>
+                <li>For P.I. with sin/cos: Replace D² (not D) with −a²</li>
+                <li>Always add constant C in first order solutions</li>
+                <li>For second order: Two constants C₁ and C₂ in C.F.</li>
+                <li>Final answer = C.F. + P.I. for non-homogeneous equations</li>
+            </ol>
+        </div>
+
+        <div class="tip-box">
+            <div class="box-title"><i class="fas fa-lightbulb"></i> Last Minute Tips</div>
+            <ul>
+                <li>🔥 <strong>Most important:</strong> Linear type, C.F. all three cases, P.I. for e^x and sin/cos</li>
+                <li>✍️ <strong>Show all steps:</strong> Auxiliary equation, I.F. calculation, integration steps</li>
+                <li>📐 <strong>Check your answer:</strong> Substitute back if time permits</li>
+                <li>⚠️ <strong>Common mistake:</strong> Don't confuse D² = −a² rule (for sin/cos) with D = a rule (for e^x)</li>
+                <li>🎯 <strong>Box your final answer</strong> for easy marking</li>
+            </ul>
+        </div>
+
+        <div class="workshop-box">
+            <div class="box-title"><i class="fas fa-industry"></i> Engineering Applications</div>
+            <ul>
+                <li><strong>Electrical:</strong> RC, RL, RLC circuit analysis (current/voltage as function of time)</li>
+                <li><strong>Mechanical:</strong> Spring-mass-damper systems, vibrations</li>
+                <li><strong>Civil:</strong> Beam deflection equations</li>
+                <li><strong>Chemical:</strong> Reaction rate equations, mixing problems</li>
+                <li><strong>Thermal:</strong> Newton's law of cooling, heat conduction</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+</div> <!-- End Container -->
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>
