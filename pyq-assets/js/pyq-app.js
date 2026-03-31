@@ -1,12 +1,12 @@
 /* ========================================
    PYQ APP - Main Application Controller
-   Clean Version - Delegates to modules
+   UPDATED - With Print Overlay + Text Size
    ======================================== */
 
 class PYQApp {
     constructor(config) {
         this.config = config;
-        
+
         this.state = {
             currentYear: config.years[0],
             currentQuestionIndex: 0,
@@ -30,27 +30,22 @@ class PYQApp {
     async init() {
         console.log(`🚀 Initializing PYQ App for ${this.config.subject}`);
 
-        // Render page structure
         const root = document.getElementById('pyq-root');
         if (root) {
             root.innerHTML = PYQRender.renderPage(this.config);
         }
 
-        // Apply saved theme
         const theme = PYQStorage.getTheme();
         PYQStorage.setTheme(theme);
         this.updateThemeUI(theme);
 
-        // Setup event listeners
         this.setupEventListeners();
         this.setupKeyboardShortcuts();
         this.setupTouchGestures();
         this.setupAutoSave();
 
-        // Load initial year data
         await this.loadYear(this.state.currentYear);
 
-        // Hide loading screen
         this.hideLoadingScreen();
 
         console.log('✅ App initialized successfully');
@@ -69,24 +64,22 @@ class PYQApp {
 
     async loadYear(year) {
         console.log(`📚 Loading year ${year}...`);
-        
+
         this.state.isLoading = true;
         this.state.error = null;
-        
+
         const container = document.getElementById('questionContainer');
         if (container) {
             container.innerHTML = PYQRender.renderLoading();
         }
 
         try {
-            // Try to fetch JSON first
             const jsonPath = `${this.config.dataPath}${year}.json`;
             let data;
-            
+
             try {
                 data = await PYQHelpers.fetchJSON(jsonPath);
             } catch (fetchError) {
-                // Fallback to global variable (backward compatibility)
                 const globalVar = `PYQ_${year}`;
                 if (window[globalVar]) {
                     console.log(`📦 Using global variable ${globalVar}`);
@@ -96,7 +89,6 @@ class PYQApp {
                 }
             }
 
-            // Process questions
             this.state.questions = (data.questions || []).map((q, index) => ({
                 ...q,
                 _index: index,
@@ -109,10 +101,7 @@ class PYQApp {
             this.state.currentQuestionIndex = 0;
             this.state.selectedOption = null;
 
-            // Load saved progress
             this.loadProgress();
-
-            // Update UI
             this.updateYearTabs(year);
             this.updateBookmarkBadge();
             this.render();
@@ -122,7 +111,7 @@ class PYQApp {
         } catch (error) {
             console.error(`❌ Failed to load year ${year}:`, error);
             this.state.error = error.message;
-            
+
             if (container) {
                 container.innerHTML = PYQRender.renderError(error.message);
             }
@@ -135,19 +124,18 @@ class PYQApp {
 
     loadProgress() {
         const saved = PYQStorage.loadProgress(this.config.code, this.state.currentYear);
-        
+
         if (saved) {
             this.state.userAnswers = saved.userAnswers || {};
             this.state.bookmarks = saved.bookmarks || [];
             this.state.mode = saved.mode || 'practice';
-            
-            // Validate saved index
+
             const savedIndex = saved.currentQuestionIndex || 0;
             this.state.currentQuestionIndex = Math.min(
                 savedIndex,
                 Math.max(0, this.state.filteredQuestions.length - 1)
             );
-            
+
             console.log('📥 Progress loaded');
         } else {
             this.state.userAnswers = {};
@@ -177,7 +165,7 @@ class PYQApp {
         this.state.selectedOption = null;
 
         PYQStorage.resetProgress(this.config.code, this.state.currentYear);
-        
+
         this.updateBookmarkBadge();
         this.render();
         PYQRender.showToast('Progress reset successfully', 'success');
@@ -187,12 +175,12 @@ class PYQApp {
 
     getCurrentQuestion() {
         if (this.state.filteredQuestions.length === 0) return null;
-        
+
         const index = Math.min(
             this.state.currentQuestionIndex,
             this.state.filteredQuestions.length - 1
         );
-        
+
         return this.state.filteredQuestions[index] || null;
     }
 
@@ -212,11 +200,10 @@ class PYQApp {
 
         this.state.currentQuestionIndex = index;
         this.state.selectedOption = null;
-        
+
         this.saveProgress();
         this.render();
-        
-        // Scroll to top of question
+
         const container = document.getElementById('questionContainer');
         if (container) {
             container.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -250,8 +237,7 @@ class PYQApp {
 
     selectOption(value) {
         this.state.selectedOption = value;
-        
-        // Enable submit button
+
         const submitBtn = document.getElementById('submitBtn');
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -285,7 +271,6 @@ class PYQApp {
                 break;
         }
 
-        // Store answer
         this.state.userAnswers[question._uniqueId] = {
             answer,
             isCorrect,
@@ -297,14 +282,12 @@ class PYQApp {
         this.saveProgress();
         this.render();
 
-        // Show feedback toast
         if (isCorrect) {
             PYQRender.showToast('✅ Correct! Well done!', 'success');
         } else {
             PYQRender.showToast('❌ Incorrect. Check the explanation.', 'error');
         }
 
-        // Render MathJax if available
         this.renderMath();
     }
 
@@ -350,13 +333,12 @@ class PYQApp {
             this.state.bookmarks.splice(index, 1);
             this.saveProgress();
             this.updateBookmarkBadge();
-            
-            // Refresh bookmarks modal if open
+
             const modal = document.getElementById('bookmarksModal');
             if (modal && modal.classList.contains('active')) {
                 this.openBookmarksModal();
             }
-            
+
             PYQRender.showToast('Bookmark removed', 'info');
         }
     }
@@ -389,8 +371,7 @@ class PYQApp {
 
         this.state.mode = mode;
         this.state.selectedOption = null;
-        
-        // Update mode buttons
+
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.mode === mode);
         });
@@ -406,14 +387,12 @@ class PYQApp {
 
     applyFilters(filters) {
         this.state.filters = filters;
-        
+
         this.state.filteredQuestions = this.state.questions.filter(q => {
-            // Type filter
             if (filters.types.length > 0 && !filters.types.includes(q.type)) {
                 return false;
             }
 
-            // Status filter
             if (filters.status.length > 0) {
                 const answer = this.state.userAnswers[q._uniqueId];
                 const isAttempted = answer?.isCorrect !== undefined || answer?.viewed;
@@ -452,7 +431,6 @@ class PYQApp {
         this.state.currentQuestionIndex = 0;
         this.state.selectedOption = null;
 
-        // Reset checkboxes
         document.querySelectorAll('.filter-type, .filter-status').forEach(cb => {
             cb.checked = cb.classList.contains('filter-type');
         });
@@ -476,23 +454,19 @@ class PYQApp {
         this.state.questions.forEach(q => {
             let score = 0;
 
-            // Search in question text
             const questionText = PYQHelpers.stripHTML(q.question).toLowerCase();
             if (questionText.includes(term)) score += 10;
 
-            // Search in options (MCQ)
             if (q.options) {
                 q.options.forEach(opt => {
                     if (PYQHelpers.stripHTML(String(opt)).toLowerCase().includes(term)) score += 5;
                 });
             }
 
-            // Search in answer
             if (q.answer) {
                 if (PYQHelpers.stripHTML(String(q.answer)).toLowerCase().includes(term)) score += 8;
             }
 
-            // Search in explanation
             if (q.explanation) {
                 if (PYQHelpers.stripHTML(q.explanation).toLowerCase().includes(term)) score += 6;
             }
@@ -510,7 +484,7 @@ class PYQApp {
 
     openStatsModal() {
         const stats = this.calculateStats();
-        
+
         const content = document.getElementById('statsContent');
         if (content) {
             content.innerHTML = PYQRender.renderStats(stats);
@@ -563,7 +537,7 @@ class PYQApp {
         scoredQuestions.forEach(q => {
             totalMarks += q.marks || 1;
             const answer = this.state.userAnswers[q._uniqueId];
-            
+
             if (answer?.isCorrect !== undefined) {
                 attempted++;
                 if (answer.isCorrect) {
@@ -575,14 +549,13 @@ class PYQApp {
             }
         });
 
-        // Type stats
         const typeStats = {};
         const types = ['mcq', 'truefalse', 'gapfill', 'saq', 'laq'];
-        
+
         types.forEach(type => {
             const typeQuestions = this.state.questions.filter(q => q.type === type);
             let typeCorrect = 0;
-            
+
             typeQuestions.forEach(q => {
                 const answer = this.state.userAnswers[q._uniqueId];
                 if (answer?.isCorrect === true) typeCorrect++;
@@ -701,6 +674,81 @@ class PYQApp {
         }
     }
 
+    // ============ PRINT ============
+
+    printQuestions() {
+        const questions = this.state.filteredQuestions;
+
+        if (questions.length === 0) {
+            PYQRender.showToast('No questions to print', 'error');
+            return;
+        }
+
+        // Create overlay
+        let overlay = document.getElementById('printOverlay');
+
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'printOverlay';
+            overlay.className = 'print-overlay print-text-normal';
+            document.body.appendChild(overlay);
+        }
+
+        // Populate
+        overlay.innerHTML = PYQRender.renderPrintOverlay(
+            questions,
+            this.config,
+            this.state.currentYear,
+            this.state.filters
+        );
+
+        // Show overlay
+        overlay.classList.add('active');
+        document.body.classList.add('print-mode');
+        overlay.scrollTop = 0;
+
+        // Render MathJax in overlay
+        if (window.MathJax?.typesetPromise) {
+            window.MathJax.typesetPromise([overlay]).catch(err => {
+                console.warn('MathJax print render warning:', err);
+            });
+        }
+
+        PYQRender.showToast(
+            `${questions.length} question${questions.length !== 1 ? 's' : ''} ready to print`,
+            'info'
+        );
+    }
+
+    closePrintView() {
+        const overlay = document.getElementById('printOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+            document.body.classList.remove('print-mode');
+
+            // Destroy after animation
+            setTimeout(() => {
+                overlay.remove();
+            }, 100);
+        }
+    }
+
+    setPrintSize(size) {
+        const overlay = document.getElementById('printOverlay');
+        if (!overlay) return;
+
+        // Remove all size classes
+        overlay.classList.remove('print-text-small', 'print-text-normal', 'print-text-large');
+
+        // Add selected size
+        overlay.classList.add(`print-text-${size}`);
+
+        // Update button states
+        overlay.querySelectorAll('.print-size-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.printSize === size);
+        });
+    }
+
     // ============ MAIN RENDER ============
 
     render() {
@@ -715,27 +763,18 @@ class PYQApp {
             return;
         }
 
-        // Render question
         const container = document.getElementById('questionContainer');
         if (container) {
             container.innerHTML = PYQRender.renderQuestion(question, this.state);
         }
 
-        // Render sidebar and navigator
         this.renderSidebarAndNav();
-
-        // Update progress display
         this.updateProgressDisplay();
-
-        // Update navigation buttons
         this.updateNavigationButtons();
-
-        // Render MathJax
         this.renderMath();
     }
 
     renderSidebarAndNav() {
-        // Question list
         const listEl = document.getElementById('questionList');
         if (listEl) {
             listEl.innerHTML = PYQRender.renderQuestionList(
@@ -746,7 +785,6 @@ class PYQApp {
             );
         }
 
-        // Navigator dots
         const navEl = document.getElementById('questionNavigator');
         if (navEl) {
             navEl.innerHTML = PYQRender.renderNavigator(
@@ -760,7 +798,7 @@ class PYQApp {
 
     updateProgressDisplay() {
         const stats = this.calculateStats();
-        
+
         const attemptedEl = document.getElementById('attemptedCount');
         if (attemptedEl) {
             attemptedEl.textContent = `${stats.score.attempted}/${stats.score.total}`;
@@ -773,8 +811,8 @@ class PYQApp {
 
         const progressBar = document.getElementById('overallProgress');
         if (progressBar) {
-            const pct = stats.score.total > 0 
-                ? (stats.score.attempted / stats.score.total) * 100 
+            const pct = stats.score.total > 0
+                ? (stats.score.attempted / stats.score.total) * 100
                 : 0;
             progressBar.style.width = `${pct}%`;
         }
@@ -800,21 +838,17 @@ class PYQApp {
     // ============ EVENT LISTENERS ============
 
     setupEventListeners() {
-        // Global click handler (event delegation)
         document.addEventListener('click', (e) => this.handleGlobalClick(e));
 
-        // Menu button
         document.getElementById('menuBtn')?.addEventListener('click', () => this.toggleSidebar());
         document.getElementById('closeSidebar')?.addEventListener('click', () => this.closeSidebar());
         document.getElementById('overlay')?.addEventListener('click', () => this.closeSidebar());
 
-        // Theme
         document.getElementById('themeBtn')?.addEventListener('click', () => this.toggleTheme());
 
-        // Search
         document.getElementById('searchBtn')?.addEventListener('click', () => this.toggleSearch());
         document.getElementById('closeSearch')?.addEventListener('click', () => this.closeSearch());
-        
+
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
             searchInput.addEventListener('input', PYQHelpers.debounce((e) => {
@@ -822,23 +856,23 @@ class PYQApp {
             }, 300));
         }
 
-        // Year tabs
         document.querySelectorAll('.year-tab').forEach(tab => {
             tab.addEventListener('click', () => this.switchYear(tab.dataset.year));
         });
 
-        // Mode toggle
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.addEventListener('click', () => this.switchMode(btn.dataset.mode));
         });
 
-        // Navigation
         document.getElementById('prevBtn')?.addEventListener('click', () => this.prevQuestion());
         document.getElementById('nextBtn')?.addEventListener('click', () => this.nextQuestion());
 
+        // Print button
+        document.getElementById('printBtn')?.addEventListener('click', () => this.printQuestions());
+
         // Filter
         document.getElementById('filterBtn')?.addEventListener('click', () => this.toggleFilterPanel());
-        
+
         document.getElementById('applyFilters')?.addEventListener('click', () => {
             const types = Array.from(document.querySelectorAll('.filter-type:checked')).map(cb => cb.value);
             const status = Array.from(document.querySelectorAll('.filter-status:checked')).map(cb => cb.value);
@@ -856,12 +890,11 @@ class PYQApp {
         document.getElementById('statsBtn')?.addEventListener('click', () => this.openStatsModal());
         document.getElementById('resetBtn')?.addEventListener('click', () => this.resetProgress());
 
-        // Modal close buttons
+        // Modal close
         document.querySelectorAll('.close-modal').forEach(btn => {
             btn.addEventListener('click', () => this.closeModal(btn.dataset.modal));
         });
 
-        // Modal backdrop
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) this.closeModal(modal.id);
@@ -873,7 +906,7 @@ class PYQApp {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Scroll handler
+        // Scroll
         window.addEventListener('scroll', PYQHelpers.throttle(() => {
             this.updateGoToTopButton();
         }, 200));
@@ -893,12 +926,35 @@ class PYQApp {
     handleGlobalClick(e) {
         const target = e.target;
 
+        // === PRINT OVERLAY CLICKS ===
+
+        // Print back button
+        if (target.closest('#printBackBtn')) {
+            this.closePrintView();
+            return;
+        }
+
+        // Print now button
+        if (target.closest('#printNowBtn')) {
+            window.print();
+            return;
+        }
+
+        // Print size button
+        const sizeBtn = target.closest('.print-size-btn');
+        if (sizeBtn && sizeBtn.dataset.printSize) {
+            this.setPrintSize(sizeBtn.dataset.printSize);
+            return;
+        }
+
+        // === MAIN APP CLICKS ===
+
         // MCQ option
         const mcqOption = target.closest('.mcq-option');
         if (mcqOption && !mcqOption.classList.contains('disabled')) {
             const index = parseInt(mcqOption.dataset.optionIndex);
             this.selectOption(index);
-            
+
             document.querySelectorAll('.mcq-option').forEach(opt => opt.classList.remove('selected'));
             mcqOption.classList.add('selected');
             return;
@@ -909,7 +965,7 @@ class PYQApp {
         if (tfOption && !tfOption.classList.contains('disabled')) {
             const value = tfOption.dataset.tfValue === 'true';
             this.selectOption(value);
-            
+
             document.querySelectorAll('.tf-option').forEach(opt => opt.classList.remove('selected'));
             tfOption.classList.add('selected');
             return;
@@ -973,7 +1029,7 @@ class PYQApp {
                 if (id) this.removeBookmark(id);
                 return;
             }
-            
+
             const id = bookmarkItem.dataset.questionId;
             if (id) {
                 this.goToQuestionById(id);
@@ -990,6 +1046,17 @@ class PYQApp {
                 if (e.key === 'Enter' && e.target.id === 'gapfillInput') {
                     e.preventDefault();
                     this.submitAnswer();
+                }
+                return;
+            }
+
+            // Check if print overlay is open
+            const isPrintOpen = document.body.classList.contains('print-mode');
+
+            if (isPrintOpen) {
+                // Only allow Escape in print mode
+                if (e.key === 'Escape') {
+                    this.closePrintView();
                 }
                 return;
             }
@@ -1026,6 +1093,9 @@ class PYQApp {
                 case 'd': case 'D':
                     this.toggleTheme();
                     break;
+                case 'p': case 'P':
+                    this.printQuestions();
+                    break;
                 case 'Enter':
                     const submitBtn = document.getElementById('submitBtn');
                     if (submitBtn && !submitBtn.disabled) submitBtn.click();
@@ -1056,11 +1126,10 @@ class PYQApp {
         container.addEventListener('touchend', (e) => {
             const endX = e.changedTouches[0].screenX;
             const endY = e.changedTouches[0].screenY;
-            
+
             const diffX = startX - endX;
             const diffY = Math.abs(startY - endY);
 
-            // Horizontal swipe (not vertical scroll)
             if (Math.abs(diffX) > 50 && diffY < 100) {
                 if (diffX > 0) {
                     this.nextQuestion();
@@ -1072,16 +1141,13 @@ class PYQApp {
     }
 
     setupAutoSave() {
-        // Auto-save every 30 seconds
         this.autoSaveInterval = setInterval(() => {
             this.saveProgress();
             console.log('💾 Auto-saved');
         }, 30000);
 
-        // Save on page unload
         window.addEventListener('beforeunload', () => this.saveProgress());
 
-        // Save on visibility change
         document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'hidden') {
                 this.saveProgress();
@@ -1102,9 +1168,8 @@ class PYQApp {
 // ============ AUTO INITIALIZE ============
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Check for config
     if (typeof PYQ_CONFIG === 'undefined') {
-        console.error('❌ PYQ_CONFIG not found! Please define it in your HTML.');
+        console.error('❌ PYQ_CONFIG not found!');
         const root = document.getElementById('pyq-root');
         if (root) {
             root.innerHTML = `
@@ -1121,7 +1186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.app = new PYQApp(PYQ_CONFIG);
 });
 
-// Export for modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = PYQApp;
 }

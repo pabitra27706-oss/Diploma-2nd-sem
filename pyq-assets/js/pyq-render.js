@@ -1,118 +1,88 @@
 /* ========================================
    PYQ RENDER - DOM Rendering Functions
-   UPDATED VERSION - With formatAnswerText
+   UPDATED - With Print Overlay + Text Size
    All HTML generation in one place
    ======================================== */
 
 const PYQRender = {
 
     // ============ ICONS (DRY) ============
-    
+
     icons: {
         check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
-        
+
         cross: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
-        
+
         bookmark: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>`,
-        
+
         bookmarkFilled: `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>`,
-        
+
         eye: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`,
-        
+
         sun: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
-        
+
         moon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
-        
+
         menu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`,
-        
+
         search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
-        
+
         filter: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>`,
-        
+
         chart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
-        
+
         refresh: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>`,
-        
+
         chevronLeft: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>`,
-        
+
         chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>`,
-        
+
         arrowUp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>`,
-        
+
         info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`,
-        
-        alert: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`
+
+        alert: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`,
+
+        print: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>`
     },
 
     // ============ PAGE STRUCTURE ============
 
-    /**
-     * Render complete page structure
-     * @param {Object} config - App configuration
-     * @returns {string} HTML string
-     */
     renderPage(config) {
         return `
-            <!-- Loading Screen -->
             <div id="loadingScreen" class="loading-screen">
                 <div class="loading-spinner"></div>
                 <p>Loading ${config.subject}...</p>
             </div>
 
-            <!-- Header -->
             ${this.renderHeader(config)}
 
-            <!-- Main Layout -->
             <div class="app-layout">
-                <!-- Sidebar -->
                 ${this.renderSidebar()}
-
-                <!-- Main Content -->
                 <main class="main-content">
-                    <!-- Year Tabs -->
                     ${this.renderYearTabs(config.years)}
-
-                    <!-- Toolbar -->
                     ${this.renderToolbar()}
-
-                    <!-- Question Container -->
-                    <div id="questionContainer" class="question-container">
-                        <!-- Questions render here -->
-                    </div>
-
-                    <!-- Navigation Footer -->
+                    <div id="questionContainer" class="question-container"></div>
                     ${this.renderFooter()}
                 </main>
             </div>
 
-            <!-- Overlay -->
             <div id="overlay" class="overlay"></div>
-
-            <!-- Search Panel -->
             ${this.renderSearchPanel()}
-
-            <!-- Filter Panel -->
             ${this.renderFilterPanel()}
-
-            <!-- Modals -->
             ${this.renderStatsModalContainer()}
             ${this.renderBookmarksModalContainer()}
 
-            <!-- Toast -->
             <div id="toast" class="toast hidden">
                 <span class="toast-message"></span>
             </div>
 
-            <!-- Go to Top -->
             <button id="goToTop" class="go-to-top hidden" aria-label="Go to top">
                 ${this.icons.arrowUp}
             </button>
         `;
     },
 
-    /**
-     * Render header
-     */
     renderHeader(config) {
         return `
             <header class="app-header">
@@ -138,9 +108,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render year tabs
-     */
     renderYearTabs(years) {
         const tabsHTML = years.map((year, index) => `
             <button class="year-tab ${index === 0 ? 'active' : ''}" data-year="${year}">
@@ -150,16 +117,11 @@ const PYQRender = {
 
         return `
             <div class="year-tabs-container">
-                <div class="year-tabs" id="yearTabs">
-                    ${tabsHTML}
-                </div>
+                <div class="year-tabs" id="yearTabs">${tabsHTML}</div>
             </div>
         `;
     },
 
-    /**
-     * Render toolbar
-     */
     renderToolbar() {
         return `
             <div class="toolbar">
@@ -170,6 +132,9 @@ const PYQRender = {
                     </div>
                 </div>
                 <div class="toolbar-right">
+                    <button id="printBtn" class="icon-btn" aria-label="Print Questions" title="Print (P)">
+                        ${this.icons.print}
+                    </button>
                     <button id="filterBtn" class="icon-btn" aria-label="Filter" title="Filter">
                         ${this.icons.filter}
                     </button>
@@ -183,9 +148,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render sidebar
-     */
     renderSidebar() {
         return `
             <aside id="sidebar" class="sidebar">
@@ -195,7 +157,6 @@ const PYQRender = {
                         ${this.icons.cross}
                     </button>
                 </div>
-                
                 <div class="sidebar-progress">
                     <div class="progress-bar">
                         <div id="overallProgress" class="progress-fill" style="width: 0%"></div>
@@ -204,7 +165,6 @@ const PYQRender = {
                         <span id="questionPosition">Question 0 of 0</span>
                     </div>
                 </div>
-
                 <div class="sidebar-actions">
                     <button id="bookmarksBtn" class="sidebar-action-btn">
                         ${this.icons.bookmark}
@@ -220,23 +180,15 @@ const PYQRender = {
                         <span>Reset Progress</span>
                     </button>
                 </div>
-
-                <div class="sidebar-list" id="questionList">
-                    <!-- Question items render here -->
-                </div>
+                <div class="sidebar-list" id="questionList"></div>
             </aside>
         `;
     },
 
-    /**
-     * Render footer navigation
-     */
     renderFooter() {
         return `
             <footer class="nav-footer">
-                <div class="question-navigator" id="questionNavigator">
-                    <!-- Navigator dots render here -->
-                </div>
+                <div class="question-navigator" id="questionNavigator"></div>
                 <div class="nav-buttons">
                     <button id="prevBtn" class="nav-btn" disabled>
                         ${this.icons.chevronLeft}
@@ -251,9 +203,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render search panel
-     */
     renderSearchPanel() {
         return `
             <div id="searchPanel" class="search-panel hidden">
@@ -262,20 +211,13 @@ const PYQRender = {
                         ${this.icons.search}
                         <input type="text" id="searchInput" placeholder="Search questions..." autocomplete="off">
                     </div>
-                    <button id="closeSearch" class="icon-btn">
-                        ${this.icons.cross}
-                    </button>
+                    <button id="closeSearch" class="icon-btn">${this.icons.cross}</button>
                 </div>
-                <div id="searchResults" class="search-results">
-                    <!-- Results render here -->
-                </div>
+                <div id="searchResults" class="search-results"></div>
             </div>
         `;
     },
 
-    /**
-     * Render filter panel
-     */
     renderFilterPanel() {
         return `
             <div id="filterPanel" class="filter-panel hidden">
@@ -307,43 +249,29 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render stats modal container
-     */
     renderStatsModalContainer() {
         return `
             <div id="statsModal" class="modal hidden">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2>Statistics</h2>
-                        <button class="close-modal icon-btn" data-modal="statsModal">
-                            ${this.icons.cross}
-                        </button>
+                        <button class="close-modal icon-btn" data-modal="statsModal">${this.icons.cross}</button>
                     </div>
-                    <div class="modal-body" id="statsContent">
-                        <!-- Stats render here -->
-                    </div>
+                    <div class="modal-body" id="statsContent"></div>
                 </div>
             </div>
         `;
     },
 
-    /**
-     * Render bookmarks modal container
-     */
     renderBookmarksModalContainer() {
         return `
             <div id="bookmarksModal" class="modal hidden">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2>Bookmarks</h2>
-                        <button class="close-modal icon-btn" data-modal="bookmarksModal">
-                            ${this.icons.cross}
-                        </button>
+                        <button class="close-modal icon-btn" data-modal="bookmarksModal">${this.icons.cross}</button>
                     </div>
-                    <div class="modal-body" id="bookmarksContent">
-                        <!-- Bookmarks render here -->
-                    </div>
+                    <div class="modal-body" id="bookmarksContent"></div>
                 </div>
             </div>
         `;
@@ -351,15 +279,9 @@ const PYQRender = {
 
     // ============ QUESTION RENDERING ============
 
-    /**
-     * Render a question
-     * @param {Object} question - Question data
-     * @param {Object} state - Current state
-     * @returns {string} HTML string
-     */
     renderQuestion(question, state) {
         if (!question) return this.renderEmpty();
-        
+
         if (question.type === 'missing') {
             return this.renderMissing(question);
         }
@@ -377,12 +299,9 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render question header
-     */
     renderQuestionHeader(question, isBookmarked, displayNumber) {
         const marks = PYQHelpers.formatMarks(question.marks);
-        
+
         return `
             <div class="question-header">
                 <div class="question-meta">
@@ -394,7 +313,7 @@ const PYQRender = {
                     ${question.group ? `<span class="question-group">Group ${question.group}</span>` : ''}
                 </div>
                 <div class="question-actions">
-                    <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" 
+                    <button class="bookmark-btn ${isBookmarked ? 'active' : ''}"
                             id="bookmarkBtn"
                             aria-label="${isBookmarked ? 'Remove bookmark' : 'Add bookmark'}"
                             title="Bookmark (B)">
@@ -405,9 +324,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render question body based on type
-     */
     renderQuestionBody(question, userAnswer, mode) {
         const renderers = {
             mcq: () => this.renderMCQ(question, userAnswer, mode),
@@ -421,9 +337,6 @@ const PYQRender = {
         return renderer ? renderer() : '<p class="error">Unknown question type</p>';
     },
 
-    /**
-     * Render MCQ question
-     */
     renderMCQ(question, userAnswer, mode) {
         const isAnswered = userAnswer?.isCorrect !== undefined;
         const showFeedback = mode === 'practice' && isAnswered;
@@ -431,12 +344,12 @@ const PYQRender = {
         const isDisabled = showFeedback || showAnswers;
 
         let html = '<div class="mcq-options">';
-        
+
         question.options.forEach((option, index) => {
             const letter = String.fromCharCode(65 + index);
             const isSelected = userAnswer?.answer === index;
             const isCorrect = index === question.correct;
-            
+
             let classes = ['mcq-option'];
             if (isSelected) classes.push('selected');
             if (isDisabled) {
@@ -461,7 +374,6 @@ const PYQRender = {
 
         html += '</div>';
 
-        // Submit button
         if (mode === 'practice' && !isAnswered) {
             html += `
                 <button class="submit-btn" id="submitBtn" disabled>
@@ -471,7 +383,6 @@ const PYQRender = {
             `;
         }
 
-        // Feedback
         if (showFeedback) {
             html += this.renderFeedback(userAnswer.isCorrect, question);
         }
@@ -483,9 +394,6 @@ const PYQRender = {
         return html;
     },
 
-    /**
-     * Render True/False question
-     */
     renderTrueFalse(question, userAnswer, mode) {
         const isAnswered = userAnswer?.isCorrect !== undefined;
         const showFeedback = mode === 'practice' && isAnswered;
@@ -497,7 +405,7 @@ const PYQRender = {
         [true, false].forEach(value => {
             const isSelected = userAnswer?.answer === value;
             const isCorrect = value === question.correct;
-            
+
             let classes = ['tf-option'];
             if (isSelected) classes.push('selected');
             if (isDisabled) {
@@ -507,7 +415,7 @@ const PYQRender = {
             }
 
             html += `
-                <button class="${classes.join(' ')}" 
+                <button class="${classes.join(' ')}"
                         data-tf-value="${value}"
                         ${isDisabled ? 'disabled' : ''}>
                     ${value ? 'True' : 'False'}
@@ -537,9 +445,6 @@ const PYQRender = {
         return html;
     },
 
-    /**
-     * Render Gap Fill question
-     */
     renderGapFill(question, userAnswer, mode) {
         const isAnswered = userAnswer?.isCorrect !== undefined;
         const showFeedback = mode === 'practice' && isAnswered;
@@ -553,7 +458,7 @@ const PYQRender = {
 
         let html = `
             <div class="gapfill-wrapper">
-                <input type="text" 
+                <input type="text"
                        id="gapfillInput"
                        class="${inputClass}"
                        placeholder="Type your answer..."
@@ -583,12 +488,8 @@ const PYQRender = {
         return html;
     },
 
-    /**
-     * Render SAQ question - UPDATED with formatAnswerText
-     */
     renderSAQ(question, userAnswer, mode) {
         const isViewed = userAnswer?.viewed === true;
-
         let html = '';
 
         if (!isViewed && mode === 'practice') {
@@ -618,12 +519,8 @@ const PYQRender = {
         return html;
     },
 
-    /**
-     * Render LAQ question - UPDATED with formatAnswerText
-     */
     renderLAQ(question, userAnswer, mode) {
         const isViewed = userAnswer?.viewed === true;
-
         let html = '';
 
         if (!isViewed && mode === 'practice') {
@@ -653,9 +550,6 @@ const PYQRender = {
         return html;
     },
 
-    /**
-     * Render missing question
-     */
     renderMissing(question) {
         return `
             <div class="question-wrapper missing">
@@ -668,11 +562,8 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render feedback section - UPDATED with formatAnswerText
-     */
     renderFeedback(isCorrect, question) {
-        const icon = isCorrect 
+        const icon = isCorrect
             ? `<span class="feedback-icon correct">${this.icons.check}</span>`
             : `<span class="feedback-icon wrong">${this.icons.cross}</span>`;
 
@@ -695,9 +586,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render correct answer box - UPDATED with formatAnswerText
-     */
     renderCorrectAnswer(question) {
         return `
             <div class="answer-display correct-answer-box">
@@ -715,9 +603,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Get correct answer text
-     */
     getCorrectAnswerText(question) {
         switch (question.type) {
             case 'mcq':
@@ -735,9 +620,6 @@ const PYQRender = {
 
     // ============ SIDEBAR ITEMS ============
 
-    /**
-     * Render question list for sidebar
-     */
     renderQuestionList(questions, currentIndex, userAnswers, bookmarks) {
         return questions.map((q, index) => {
             const answer = userAnswers[q._uniqueId];
@@ -764,9 +646,6 @@ const PYQRender = {
         }).join('');
     },
 
-    /**
-     * Render navigator dots
-     */
     renderNavigator(questions, currentIndex, userAnswers, bookmarks) {
         return questions.map((q, index) => {
             const answer = userAnswers[q._uniqueId];
@@ -782,7 +661,7 @@ const PYQRender = {
             if (isBookmarked) classes.push('bookmarked');
 
             return `
-                <button class="${classes.join(' ')}" 
+                <button class="${classes.join(' ')}"
                         data-question-index="${index}"
                         title="Question ${index + 1}">
                     ${index + 1}
@@ -793,9 +672,6 @@ const PYQRender = {
 
     // ============ MODALS ============
 
-    /**
-     * Render statistics content
-     */
     renderStats(stats) {
         const { score, typeStats, overallAccuracy } = stats;
 
@@ -827,7 +703,6 @@ const PYQRender = {
                         <strong class="text-danger">${score.wrong}</strong>
                     </div>
                 </div>
-
                 <div class="stats-card">
                     <h3>By Question Type</h3>
                     ${Object.entries(typeStats).map(([type, data]) => `
@@ -841,9 +716,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render bookmarks content
-     */
     renderBookmarks(questions, bookmarks, userAnswers) {
         if (bookmarks.length === 0) {
             return `
@@ -898,9 +770,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render search results
-     */
     renderSearchResults(results, searchTerm) {
         if (results.length === 0) {
             return '<p class="search-empty">No results found</p>';
@@ -930,9 +799,6 @@ const PYQRender = {
 
     // ============ STATES ============
 
-    /**
-     * Render loading state
-     */
     renderLoading() {
         return `
             <div class="state-container loading">
@@ -942,9 +808,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render error state
-     */
     renderError(message) {
         return `
             <div class="state-container error">
@@ -956,9 +819,6 @@ const PYQRender = {
         `;
     },
 
-    /**
-     * Render empty state
-     */
     renderEmpty() {
         return `
             <div class="state-container empty">
@@ -971,9 +831,6 @@ const PYQRender = {
 
     // ============ TOAST ============
 
-    /**
-     * Show toast notification
-     */
     showToast(message, type = 'info', duration = 3000) {
         const toast = document.getElementById('toast');
         if (!toast) {
@@ -985,19 +842,255 @@ const PYQRender = {
         if (messageEl) messageEl.textContent = message;
 
         toast.className = `toast ${type}`;
-        
+
         clearTimeout(this._toastTimeout);
-        
+
         this._toastTimeout = setTimeout(() => {
             toast.classList.add('hidden');
         }, duration);
+    },
+
+    // ============ PRINT OVERLAY ============
+
+    getFilterDescription(filters) {
+        if (!filters) return 'None (showing all)';
+
+        const parts = [];
+
+        if (filters.types?.length > 0) {
+            parts.push('Types: ' + filters.types.map(t =>
+                PYQHelpers.formatQuestionType(t)
+            ).join(', '));
+        }
+
+        if (filters.status?.length > 0) {
+            const statusNames = {
+                attempted: 'Attempted',
+                unattempted: 'Unattempted',
+                correct: 'Correct',
+                wrong: 'Wrong',
+                bookmarked: 'Bookmarked'
+            };
+            parts.push('Status: ' + filters.status.map(s =>
+                statusNames[s] || s
+            ).join(', '));
+        }
+
+        return parts.length > 0 ? parts.join(' | ') : 'None (showing all)';
+    },
+
+    renderPrintOverlay(questions, config, year, filters) {
+        const questionsHTML = questions.map((q, i) =>
+            this.renderPrintQuestion(q, i)
+        ).join('');
+
+        const typeBreakdown = {};
+        let totalMarks = 0;
+        questions.forEach(q => {
+            const type = PYQHelpers.formatQuestionType(q.type);
+            typeBreakdown[type] = (typeBreakdown[type] || 0) + 1;
+            totalMarks += (q.marks || 0);
+        });
+        const breakdownText = Object.entries(typeBreakdown)
+            .map(([type, count]) => `${type}: ${count}`)
+            .join('  |  ');
+
+        const filterDesc = this.getFilterDescription(filters);
+
+        const date = new Date().toLocaleDateString('en-IN', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        return `
+            <div class="print-action-bar">
+                <div class="print-bar-left">
+                    <button class="print-bar-btn" id="printBackBtn">
+                        ${this.icons.chevronLeft}
+                        <span>Back</span>
+                    </button>
+                </div>
+                <div class="print-bar-center">
+                    <div class="print-size-group">
+                        <button class="print-size-btn size-small" data-print-size="small">A-</button>
+                        <button class="print-size-btn size-normal active" data-print-size="normal">A</button>
+                        <button class="print-size-btn size-large" data-print-size="large">A+</button>
+                    </div>
+                </div>
+                <div class="print-bar-right">
+                    <button class="print-bar-btn primary" id="printNowBtn">
+                        ${this.icons.print}
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="print-body">
+                <div class="print-page-header">
+                    <h1>${config.subject} — Previous Year Questions ${year}</h1>
+                    <div class="print-page-meta">
+                        <p><strong>${config.board || ''}</strong>${config.course ? ' | ' + config.course : ''}</p>
+                        <p>Total Questions: ${questions.length}${totalMarks > 0 ? ' | Total Marks: ' + totalMarks : ''} | Generated: ${date}</p>
+                        <p>Active Filters: ${filterDesc}</p>
+                    </div>
+                    <div class="print-page-breakdown">${breakdownText}</div>
+                </div>
+
+                ${questionsHTML}
+
+                <div class="print-page-footer">
+                    <p>Generated from ${config.subject} PYQ System | ${config.board || ''} ${config.course || ''}</p>
+                </div>
+            </div>
+        `;
+    },
+
+    renderPrintQuestion(question, index) {
+        if (question.type === 'missing') {
+            return this.renderPrintMissing(question, index + 1);
+        }
+
+        const num = index + 1;
+        const type = PYQHelpers.formatQuestionType(question.type);
+        const marks = PYQHelpers.formatMarks(question.marks);
+
+        let answerHTML = '';
+        switch (question.type) {
+            case 'mcq':
+                answerHTML = this.renderPrintMCQ(question);
+                break;
+            case 'truefalse':
+                answerHTML = this.renderPrintTrueFalse(question);
+                break;
+            case 'gapfill':
+                answerHTML = this.renderPrintGapFill(question);
+                break;
+            case 'saq':
+                answerHTML = this.renderPrintSAQ(question);
+                break;
+            case 'laq':
+                answerHTML = this.renderPrintLAQ(question);
+                break;
+            default:
+                answerHTML = '<p><em>Answer not available.</em></p>';
+        }
+
+        const explanationHTML = question.explanation ? `
+            <div class="pq-explanation">
+                <span class="pq-explanation-label">💡 Explanation:</span>
+                <div class="pq-explanation-content">${PYQHelpers.formatAnswerText(question.explanation)}</div>
+            </div>
+        ` : '';
+
+        return `
+            <div class="print-question-block">
+                <div class="pq-header">
+                    <span class="pq-number">Q${num}.</span>
+                    <span class="pq-type">${type}</span>
+                    ${marks ? `<span class="pq-marks">${marks}</span>` : ''}
+                    ${question.group ? `<span class="pq-group">Group ${question.group}</span>` : ''}
+                </div>
+                <div class="pq-text">${question.question}</div>
+                ${answerHTML}
+                ${explanationHTML}
+            </div>
+        `;
+    },
+
+    renderPrintMCQ(question) {
+        const correctLetter = String.fromCharCode(65 + question.correct);
+
+        const optionsHTML = question.options.map((opt, i) => {
+            const letter = String.fromCharCode(65 + i);
+            const isCorrect = i === question.correct;
+            return `<div class="pq-option ${isCorrect ? 'correct-opt' : ''}">
+                ${letter}. ${opt} ${isCorrect ? '✓' : ''}
+            </div>`;
+        }).join('');
+
+        return `
+            <div class="pq-options">${optionsHTML}</div>
+            <div class="pq-answer">
+                <span class="pq-answer-label">✅ Answer:</span> ${correctLetter}. ${question.options[question.correct]}
+            </div>
+        `;
+    },
+
+    renderPrintTrueFalse(question) {
+        return `
+            <div class="pq-answer">
+                <span class="pq-answer-label">✅ Answer:</span> ${question.correct ? 'True' : 'False'}
+            </div>
+        `;
+    },
+
+    renderPrintGapFill(question) {
+        const primaryAnswer = question.acceptableAnswers?.[0] || question.answer;
+
+        let alsoAccepted = '';
+        if (question.acceptableAnswers?.length > 1) {
+            const others = question.acceptableAnswers.slice(1).join(', ');
+            alsoAccepted = `<div class="pq-also-accepted"><em>Also accepted: ${others}</em></div>`;
+        }
+
+        return `
+            <div class="pq-answer">
+                <span class="pq-answer-label">✅ Answer:</span> ${primaryAnswer}
+                ${alsoAccepted}
+            </div>
+        `;
+    },
+
+    renderPrintSAQ(question) {
+        const keywordsHTML = question.keywords?.length ? `
+            <div class="pq-keywords">
+                <strong>Key Points:</strong> ${question.keywords.join(' • ')}
+            </div>
+        ` : '';
+
+        return `
+            <div class="pq-answer">
+                <span class="pq-answer-label">📝 Model Answer:</span>
+                <div class="pq-answer-content">${PYQHelpers.formatAnswerText(question.answer)}</div>
+            </div>
+            ${keywordsHTML}
+        `;
+    },
+
+    renderPrintLAQ(question) {
+        const keyPointsHTML = question.keyPoints?.length ? `
+            <div class="pq-keywords">
+                <strong>Key Points to Include:</strong>
+                <ul>${question.keyPoints.map(p => `<li>${p}</li>`).join('')}</ul>
+            </div>
+        ` : '';
+
+        return `
+            <div class="pq-answer">
+                <span class="pq-answer-label">📝 Complete Answer:</span>
+                <div class="pq-answer-content">${PYQHelpers.formatAnswerText(question.answer)}</div>
+            </div>
+            ${keyPointsHTML}
+        `;
+    },
+
+    renderPrintMissing(question, num) {
+        return `
+            <div class="print-question-block pq-missing">
+                <div class="pq-header">
+                    <span class="pq-number">Q${num}.</span>
+                    <span class="pq-type">Unavailable</span>
+                </div>
+                <p class="pq-missing-text">${question.reason || 'Question data not available.'}</p>
+            </div>
+        `;
     }
 };
 
 // Make globally available
 window.PYQRender = PYQRender;
 
-// Export for modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = PYQRender;
 }
