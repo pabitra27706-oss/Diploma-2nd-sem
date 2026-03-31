@@ -1,464 +1,2109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Engineering Mechanics · Unit VII · Motion in a Plane</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: motion / dynamics / red-blue -->
-  <style>
-    :root {
-      --primary: #b13e3e;          /* motion red */
-      --primary-light: #d45a5a;
-      --accent: #2c6e8f;            /* curvilinear blue */
-      --accent-light: #4a9ac0;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #4a1e1e, #b13e3e, #2c6e8f);
-    }
-    /* header emoji: motion symbols */
-    .header::after {
-      content: "📈🔄⚡💥";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* graph placeholders */
-    .graph-demo {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .graph-box {
-      background: var(--card-bg);
-      border: 2px solid var(--primary);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      width: 200px;
-      text-align: center;
-    }
-    .graph-icon {
-      font-size: 3rem;
-    }
-    /* centripetal force illustration */
-    .circle-demo {
-      width: 150px;
-      height: 150px;
-      border: 4px solid var(--accent);
-      border-radius: 50%;
-      position: relative;
-      margin: 20px auto;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: var(--danger);
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .arrow {
-      position: absolute;
-      top: 20px;
-      left: 70px;
-      font-size: 1.2rem;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 - Simple Lifting Machines | Engineering Mechanics</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Velocity') ? 'Show Velocity' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Velocity') ? 'Hide Velocity' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        @media(max-width:768px) { .mcq-grid { grid-template-columns:1fr; } }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 3px; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; text-align:center; }
+        .fraction .den { padding:3px 6px 0; text-align:center; }
+
+        .formula-card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+        .formula-card { background:var(--formula-bg); border:1px solid var(--accent); border-radius:var(--radius-md); padding:16px; min-width:0; }
+        .formula-card h4 { color:var(--primary); margin-bottom:8px; font-size:0.95rem; }
+
+        .machine-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:16px 0; }
+        .machine-card { background:var(--card-bg); border:1px solid var(--border-color); border-top:4px solid var(--success); border-radius:var(--radius-md); padding:18px; min-width:0; }
+        [data-theme="dark"] .machine-card { background:#1a2332; }
+
+        .step-list { margin:12px 0; padding-left:18px; }
+        .step-list li { margin:8px 0; }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>📈 Engineering Mechanics · Unit VII 📈</h1>
-      <h2>Motion in a Plane · Work · Power · Energy</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.E./Diploma</span>
-        <span class="info-item"><i class="fas fa-chart-line"></i> Rectilinear Motion</span>
-        <span class="info-item"><i class="fas fa-circle"></i> Curvilinear Motion</span>
-        <span class="info-item"><i class="fas fa-bolt"></i> Work, Power, Energy</span>
-      </div>
+        <h1><i class="fas fa-dumbbell"></i> Simple Lifting Machines</h1>
+        <h2>Unit 6 — Engineering Mechanics</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> Engineering Mechanics</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 6</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-clock"></i> 5L + 2T</span>
+            <span class="info-item"><i class="fas fa-cogs"></i> Group B</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-gear"></i> MECH·UNIT7</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#rectilinear"><i class="fas fa-arrow-right"></i> Rectilinear</a>
-        <a href="#curvilinear"><i class="fas fa-circle"></i> Curvilinear</a>
-        <a href="#work"><i class="fas fa-bolt"></i> Work, Power, Energy</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>🔧 EM U6</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#basics"><i class="fas fa-tools"></i> Basics</a>
+            <a href="#ma-vr-eff"><i class="fas fa-calculator"></i> M.A. V.R. η</a>
+            <a href="#law-machine"><i class="fas fa-chart-line"></i> Law of Machine</a>
+            <a href="#ideal-reversible"><i class="fas fa-sync-alt"></i> Ideal/Reversible</a>
+            <a href="#simple-axle-wheel"><i class="fas fa-circle-notch"></i> Simple Axle-Wheel</a>
+            <a href="#differential-axle"><i class="fas fa-adjust"></i> Differential Axle</a>
+            <a href="#worm-wheel"><i class="fas fa-cog"></i> Worm & Wheel</a>
+            <a href="#crab-winch"><i class="fas fa-gear"></i> Crab Winch</a>
+            <a href="#screw-jack"><i class="fas fa-screwdriver-wrench"></i> Screw Jack</a>
+            <a href="#pulley-block"><i class="fas fa-link"></i> Pulley Block</a>
+            <a href="#solved-numericals"><i class="fas fa-pencil-alt"></i> Numericals</a>
+            <a href="#key-formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcq-bank"><i class="fas fa-question-circle"></i> MCQs</a>
+            <a href="#short-answers"><i class="fas fa-pen"></i> Short Q&A</a>
+            <a href="#long-answers"><i class="fas fa-file-alt"></i> Long Q&A</a>
+            <a href="#practice-numericals"><i class="fas fa-pencil-ruler"></i> Practice</a>
+            <a href="#quick-revision"><i class="fas fa-bolt"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-gear"></i> MECH Unit 7</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>🔧 EM U6</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#rectilinear"><i class="fas fa-arrow-right"></i> s-t, v-t graphs, equations, Newton's 2nd, momentum</a>
-      <a href="#curvilinear"><i class="fas fa-circle"></i> Angular motion, centripetal/centrifugal force</a>
-      <a href="#work"><i class="fas fa-bolt"></i> Work, Power, Energy definitions & units</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#basics"><i class="fas fa-tools"></i> Basics</a>
+        <a href="#ma-vr-eff"><i class="fas fa-calculator"></i> M.A. V.R. η</a>
+        <a href="#law-machine"><i class="fas fa-chart-line"></i> Law of Machine</a>
+        <a href="#ideal-reversible"><i class="fas fa-sync-alt"></i> Ideal/Reversible</a>
+        <a href="#simple-axle-wheel"><i class="fas fa-circle-notch"></i> Simple Axle-Wheel</a>
+        <a href="#differential-axle"><i class="fas fa-adjust"></i> Differential Axle</a>
+        <a href="#worm-wheel"><i class="fas fa-cog"></i> Worm & Wheel</a>
+        <a href="#crab-winch"><i class="fas fa-gear"></i> Crab Winch</a>
+        <a href="#screw-jack"><i class="fas fa-screwdriver-wrench"></i> Screw Jack</a>
+        <a href="#pulley-block"><i class="fas fa-link"></i> Pulley Block</a>
+        <a href="#solved-numericals"><i class="fas fa-pencil-alt"></i> Numericals</a>
+        <a href="#key-formulas"><i class="fas fa-square-root-alt"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcq-bank"><i class="fas fa-question-circle"></i> MCQs</a>
+        <a href="#short-answers"><i class="fas fa-pen"></i> Short Q&A</a>
+        <a href="#long-answers"><i class="fas fa-file-alt"></i> Long Q&A</a>
+        <a href="#practice-numericals"><i class="fas fa-pencil-ruler"></i> Practice</a>
+        <a href="#quick-revision"><i class="fas fa-bolt"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: RECTILINEAR MOTION ========= -->
-    <section id="rectilinear" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-arrow-right"></i> Rectilinear Motion
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="graph-demo">
-          <div class="graph-box">
-            <div class="graph-icon">📊</div>
-            <h4>s-t diagram</h4>
-            <p>Slope = velocity</p>
-          </div>
-          <div class="graph-box">
-            <div class="graph-icon">📈</div>
-            <h4>v-t diagram</h4>
-            <p>Slope = acceleration, area = displacement</p>
-          </div>
-        </div>
+<div class="container">
 
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-calculator"></i> Motion Equations (with deduction)</div>
-          <p>For constant acceleration a:</p>
-          <div class="formula">v = u + at</div>
-          <div class="formula">s = ut + ½at²</div>
-          <div class="formula">v² = u² + 2as</div>
-          <p><strong>Deduction:</strong> From a = dv/dt → ∫dv = ∫a dt → v = u + at. Then ds/dt = v → ∫ds = ∫(u+at)dt → s = ut + ½at². Eliminating t gives v² = u² + 2as.</p>
-        </div>
+    <!-- ==================== SECTION 1: OVERVIEW ==================== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-balance-scale"></i> Newton's Second Law</div>
-          <p>Force = mass × acceleration</p>
-          <div class="formula">P = ma</div>
-          <p>where P = net force, m = mass, a = acceleration.</p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-rocket"></i> Momentum</h4>
-            <p>Momentum = mass × velocity</p>
-            <div class="formula">p = mv</div>
-            <p>SI unit: kg·m/s</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-sync-alt"></i> Conservation of Momentum</h4>
-            <p>In absence of external forces, total momentum of a system remains constant.</p>
-            <p>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 1</div>
-          <p>A car starts from rest and accelerates at 2 m/s² for 5s. Find velocity and distance covered.</p>
-          <button class="toggle-btn" data-target="rect1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="rect1">
-            <div class="formula answer">
-              u=0, a=2 m/s², t=5s<br>
-              v = u + at = 0 + 2×5 = <strong>10 m/s</strong><br>
-              s = ut + ½at² = 0 + ½×2×25 = <strong>25 m</strong>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bullseye"></i> What This Unit Covers</div>
+                <p>This unit explains <strong>Simple Lifting Machines</strong> — machines used to lift heavy loads by applying comparatively smaller effort. In everyday life, we use screw jacks to lift cars, pulleys in wells and cranes, winches for lifting materials, and worm gears in hoists.</p>
+                <p>The main idea is simple: a machine helps us <strong>multiply force</strong>. We apply a small effort over a larger distance, and the machine lifts a big load through a smaller distance.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 2 (Momentum)</div>
-          <p>A 2kg ball moving at 3 m/s collides with a 3kg stationary ball. After collision, they move together. Find common velocity.</p>
-          <button class="toggle-btn" data-target="rect2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="rect2">
-            <div class="formula answer">
-              Initial momentum = 2×3 + 3×0 = 6 kg·m/s<br>
-              Final mass = 5 kg<br>
-              v = 6/5 = <strong>1.2 m/s</strong>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-industry"></i> Why This Unit Matters in Engineering</div>
+                <ul>
+                    <li>Used in garages, workshops, warehouses, construction sites, and factories</li>
+                    <li>Helps understand practical machines like jacks, pulley systems, cranes, hoists, and winches</li>
+                    <li>Very important for diploma exams — many direct formula-based numericals come from this unit</li>
+                    <li>Builds the concept of machine efficiency, machine friction, and reversibility</li>
+                </ul>
             </div>
-          </div>
+
+            <h3>🎯 Unit Outcomes</h3>
+            <div class="tag-grid">
+                <span class="info-item"><i class="fas fa-check"></i> Define lifting machine</span>
+                <span class="info-item"><i class="fas fa-check"></i> Compute M.A., V.R., efficiency</span>
+                <span class="info-item"><i class="fas fa-check"></i> Use law of machine</span>
+                <span class="info-item"><i class="fas fa-check"></i> Explain ideal and reversible machine</span>
+                <span class="info-item"><i class="fas fa-check"></i> Find velocity ratio of common machines</span>
+                <span class="info-item"><i class="fas fa-check"></i> Solve exam numericals confidently</span>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Prerequisites</div>
+                <ul>
+                    <li>Basic idea of force and motion</li>
+                    <li>Simple ratio calculations</li>
+                    <li>Unit conversions (N, kN, m, mm)</li>
+                    <li>Basic understanding of gears, wheel, and screw</li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 2: CURVILINEAR MOTION ========= -->
-    <section id="curvilinear" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-circle"></i> Curvilinear Motion
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-undo-alt"></i> Angular Motion Concepts</div>
-          <ul>
-            <li><strong>Angular displacement (θ):</strong> angle swept by radius vector (radians).</li>
-            <li><strong>Angular velocity (ω):</strong> ω = dθ/dt (rad/s).</li>
-            <li><strong>Angular acceleration (α):</strong> α = dω/dt (rad/s²).</li>
-          </ul>
-        </div>
+    <!-- ==================== SECTION 2: BASICS ==================== -->
+    <section class="section" id="basics">
+        <h2 class="section-title">
+            <i class="fas fa-tools"></i> Basics of Lifting Machines
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title">Relation between Linear & Angular Quantities</div>
-          <div class="formula">v = r ω</div>
-          <div class="formula">a<sub>t</sub> = r α</div>
-          <p>where r = radius of circular path, v = linear velocity, a<sub>t</sub> = tangential acceleration.</p>
-        </div>
+            <h3>2.1 Definition of Lifting Machine</h3>
 
-        <div class="important-note">
-          <div class="box-title">Centripetal Force</div>
-          <p>For circular motion, centripetal force acts towards center.</p>
-          <div class="formula">F<sub>c</sub> = mv²/r = m r ω²</div>
-          <p><strong>Deduction:</strong> From Newton's 2nd, F = ma, and centripetal acceleration a<sub>c</sub> = v²/r = r ω².</p>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title">Centrifugal Force</div>
-          <p>Pseudo force acting outward in rotating frame. Magnitude same as centripetal but opposite direction. Used in problems from rotating reference frame.</p>
-          <div class="formula">F<sub>cf</sub> = mv²/r (outward)</div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 3</div>
-          <p>A 0.5kg stone is whirled in horizontal circle of radius 1.5m at 2 revolutions per second. Find centripetal force.</p>
-          <button class="toggle-btn" data-target="curv1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="curv1">
-            <div class="formula answer">
-              f = 2 Hz, ω = 2πf = 4π rad/s ≈ 12.57 rad/s<br>
-              v = rω = 1.5 × 12.57 = 18.855 m/s<br>
-              F<sub>c</sub> = mv²/r = 0.5 × (18.855)² / 1.5 = 0.5 × 355.5 / 1.5 = 177.75 / 1.5 = <strong>118.5 N</strong><br>
-              Alternatively F<sub>c</sub> = m r ω² = 0.5 × 1.5 × (12.57)² = 0.75 × 158 = <strong>118.5 N</strong>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition</div>
+                <p>A <strong>lifting machine</strong> is a mechanical device used to <strong>raise, lower, or move a heavy load</strong> by applying a comparatively small force called effort.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 4</div>
-          <p>A car of mass 1000kg takes a turn of radius 50m at 36 km/h. Find centripetal force.</p>
-          <button class="toggle-btn" data-target="curv2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="curv2">
-            <div class="formula answer">
-              v = 36 km/h = 10 m/s<br>
-              F<sub>c</sub> = mv²/r = 1000 × (10)² / 50 = 1000 × 100 / 50 = 100000/50 = <strong>2000 N</strong>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Simple Meaning</div>
+                <p>If a 1000 N load is lifted by applying only 100 N effort, then the machine is helping us. This is the function of a lifting machine — to make difficult work easier.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 5</div>
-          <p>A wheel of radius 0.4m accelerates from rest to 20 rad/s in 5s. Find angular acceleration and linear velocity after 5s.</p>
-          <button class="toggle-btn" data-target="curv3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="curv3">
-            <div class="formula answer">
-              α = (ω - ω₀)/t = (20 - 0)/5 = <strong>4 rad/s²</strong><br>
-              v = rω = 0.4 × 20 = <strong>8 m/s</strong>
+            <h3>2.2 Applications of Lifting Machines</h3>
+            <div class="machine-grid">
+                <div class="machine-card">
+                    <h4>Garage</h4>
+                    <p>Car lifting by screw jack or hydraulic jack</p>
+                </div>
+                <div class="machine-card">
+                    <h4>Construction</h4>
+                    <p>Cranes and pulley systems for lifting cement, bricks, steel</p>
+                </div>
+                <div class="machine-card">
+                    <h4>Warehouse</h4>
+                    <p>Hoists and winches for moving goods</p>
+                </div>
+                <div class="machine-card">
+                    <h4>Well</h4>
+                    <p>Pulley block for drawing water</p>
+                </div>
+                <div class="machine-card">
+                    <h4>Shipping</h4>
+                    <p>Crab winch for loading and unloading cargo</p>
+                </div>
+                <div class="machine-card">
+                    <h4>Maintenance</h4>
+                    <p>Worm gear hoist and chain pulley blocks</p>
+                </div>
             </div>
-          </div>
+
+            <h3>2.3 Advantages of Lifting Machines</h3>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-thumbs-up"></i> Advantages</div>
+                <ol class="step-list">
+                    <li>They reduce the effort required to lift heavy loads.</li>
+                    <li>They make work safer and faster.</li>
+                    <li>They can lift loads to great heights.</li>
+                    <li>They improve efficiency in workshops and industries.</li>
+                    <li>They help a single worker perform work that otherwise needs many people.</li>
+                </ol>
+            </div>
+
+            <h3>2.4 Basic Terms — Load and Effort</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-weight-hanging"></i> Load</div>
+                <p><strong>Load (W)</strong> is the resistance or weight lifted by the machine.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-hand-rock"></i> Effort</div>
+                <p><strong>Effort (P)</strong> is the force applied to the machine to lift the load.</p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Exam Tip</div>
+                <p>In many books, load is denoted by <strong>W</strong> and effort by <strong>P</strong>. In numericals, always write clearly:</p>
+                <ul>
+                    <li>Load = W</li>
+                    <li>Effort = P</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=lifting+machine+load+and+effort+diagram+engineering" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.1:</strong> General lifting machine showing effort applied at one side and load lifted at the other side</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>2.5 Solved Basics Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.1</div>
+                <p>A machine lifts a load of <strong>2000 N</strong> by applying an effort of <strong>250 N</strong>. Identify the load and effort.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.1</div>
+                <p><strong>Load (W)</strong> = 2000 N</p>
+                <p><strong>Effort (P)</strong> = 250 N</p>
+                <p class="formula answer"><strong>Answer: Load = 2000 N, Effort = 250 N</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.2</div>
+                <p>State whether the following are lifting machines or not: (a) Screw jack, (b) Bicycle brake, (c) Pulley block, (d) Crab winch.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.2</div>
+                <ul>
+                    <li>(a) Screw jack → <strong>Yes</strong></li>
+                    <li>(b) Bicycle brake → <strong>No</strong> (not mainly a lifting machine)</li>
+                    <li>(c) Pulley block → <strong>Yes</strong></li>
+                    <li>(d) Crab winch → <strong>Yes</strong></li>
+                </ul>
+                <p class="formula answer"><strong>Lifting machines: Screw jack, pulley block, crab winch</strong></p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: WORK, POWER, ENERGY ========= -->
-    <section id="work" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-bolt"></i> Work, Power, Energy
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-briefcase"></i> Work</h4>
-            <p>Work done = Force × displacement in force direction</p>
-            <div class="formula">W = F·s·cosθ</div>
-            <p>SI unit: Joule (J) = N·m</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-gauge-high"></i> Power</h4>
-            <p>Rate of doing work</p>
-            <div class="formula">P = Work / time = F·v (if constant force)</div>
-            <p>SI unit: Watt (W) = J/s</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-battery-full"></i> Energy</h4>
-            <p>Capacity to do work</p>
+    <!-- ==================== SECTION 3: MA, VR, EFFICIENCY ==================== -->
+    <section class="section" id="ma-vr-eff">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Mechanical Advantage, Velocity Ratio & Efficiency 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>3.1 Mechanical Advantage (M.A.)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition</div>
+                <p><strong>Mechanical Advantage (M.A.)</strong> is the ratio of load lifted by the machine to the effort applied.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>M.A. = <span class="fraction"><span class="num">Load</span><span class="den">Effort</span></span> = <span class="fraction"><span class="num">W</span><span class="den">P</span></span></strong></p>
+            </div>
+
+            <p>If M.A. is large, a small effort can lift a large load. That means the machine is effective in multiplying force.</p>
+
+            <h3>3.2 Velocity Ratio (V.R.)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition</div>
+                <p><strong>Velocity Ratio (V.R.)</strong> is the ratio of the distance moved by the effort to the distance moved by the load in the same time.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>V.R. = <span class="fraction"><span class="num">Distance moved by effort</span><span class="den">Distance moved by load</span></span></strong></p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-route"></i> Physical Meaning</div>
+                <p>In a lifting machine, the effort usually moves through a longer distance than the load. That is why a small effort can lift a large load.</p>
+            </div>
+
+            <h3>3.3 Efficiency of Machine (η)</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition</div>
+                <p><strong>Efficiency</strong> of a machine is the ratio of useful work output to work input. It is also the ratio of mechanical advantage to velocity ratio.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>η = <span class="fraction"><span class="num">M.A.</span><span class="den">V.R.</span></span></strong></p>
+                <p>or in percentage:</p>
+                <p class="formula"><strong>η% = <span class="fraction"><span class="num">M.A.</span><span class="den">V.R.</span></span> × 100</strong></p>
+            </div>
+
+            <h3>3.4 Relationship Among M.A., V.R., and Efficiency ⭐</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-link"></i> Derivation</h4>
+                <p>Input work = Effort × distance moved by effort</p>
+                <p>Output work = Load × distance moved by load</p>
+                <p>Efficiency = Output work / Input work</p>
+                <p class="formula">η = <span class="fraction"><span class="num">W × distance moved by load</span><span class="den">P × distance moved by effort</span></span></p>
+                <p>Rearranging,</p>
+                <p class="formula">η = <span class="fraction"><span class="num">W/P</span><span class="den">distance moved by effort / distance moved by load</span></span></p>
+                <p class="formula">η = <span class="fraction"><span class="num">M.A.</span><span class="den">V.R.</span></span></p>
+                <p class="formula answer"><strong>Therefore: M.A. = η × V.R.</strong></p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Important Formula Triangle</div>
+                <ul>
+                    <li><strong>M.A. = W / P</strong></li>
+                    <li><strong>V.R. = distance by effort / distance by load</strong></li>
+                    <li><strong>η = M.A. / V.R.</strong></li>
+                    <li><strong>M.A. = η × V.R.</strong></li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=mechanical+advantage+velocity+ratio+efficiency+triangle+machine+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.2:</strong> Concept diagram showing relation between Load, Effort, M.A., V.R., and Efficiency</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>3.5 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.3</div>
+                <p>A machine lifts a load of <strong>1200 N</strong> by an effort of <strong>150 N</strong>. Find the mechanical advantage.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.3</div>
+                <p>M.A. = W / P = 1200 / 150 = 8</p>
+                <p class="formula answer"><strong>M.A. = 8</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.4</div>
+                <p>The effort moves <strong>2 m</strong> while the load rises by <strong>0.25 m</strong>. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.4</div>
+                <p>V.R. = distance moved by effort / distance moved by load</p>
+                <p>V.R. = 2 / 0.25 = 8</p>
+                <p class="formula answer"><strong>V.R. = 8</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.5</div>
+                <p>A machine has M.A. = <strong>6</strong> and V.R. = <strong>10</strong>. Find its efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.5</div>
+                <p>η = M.A. / V.R. = 6 / 10 = 0.6</p>
+                <p>η% = 0.6 × 100 = 60%</p>
+                <p class="formula answer"><strong>Efficiency = 60%</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.6</div>
+                <p>A lifting machine raises a load of <strong>3000 N</strong> with an effort of <strong>500 N</strong>. The effort moves <strong>4 m</strong> while the load moves <strong>0.5 m</strong>. Find M.A., V.R., and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.6</div>
+                <p><strong>Mechanical Advantage:</strong></p>
+                <p>M.A. = W / P = 3000 / 500 = 6</p>
+                <p><strong>Velocity Ratio:</strong></p>
+                <p>V.R. = 4 / 0.5 = 8</p>
+                <p><strong>Efficiency:</strong></p>
+                <p>η = M.A. / V.R. = 6 / 8 = 0.75</p>
+                <p>η% = 0.75 × 100 = 75%</p>
+                <p class="formula answer"><strong>M.A. = 6, V.R. = 8, Efficiency = 75%</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 4: LAW OF MACHINE ==================== -->
+    <section class="section" id="law-machine">
+        <h2 class="section-title">
+            <i class="fas fa-chart-line"></i> Law of Machine 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>4.1 Definition</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Law of Machine</div>
+                <p>The <strong>law of machine</strong> gives the relation between the effort applied and the load lifted by the machine.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Standard Equation</div>
+                <p class="formula"><strong>P = mW + C</strong></p>
+                <p>Where:</p>
+                <ul>
+                    <li><strong>P</strong> = Effort applied</li>
+                    <li><strong>W</strong> = Load lifted</li>
+                    <li><strong>m</strong> = Constant of the machine (slope of line)</li>
+                    <li><strong>C</strong> = Effort required to overcome machine friction at no load</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Meaning of the Equation</div>
+                <p>The effort needed to lift a load is not only for lifting the load, but also for overcoming machine friction. So even if load is zero, some effort is still needed. That no-load effort is <strong>C</strong>.</p>
+            </div>
+
+            <h3>4.2 Graph of Law of Machine</h3>
+            <p>If we plot <strong>P</strong> on Y-axis and <strong>W</strong> on X-axis, we get a straight line.</p>
             <ul>
-              <li><strong>Kinetic Energy:</strong> KE = ½mv²</li>
-              <li><strong>Potential Energy:</strong> PE = mgh</li>
+                <li>Slope = <strong>m</strong></li>
+                <li>Y-intercept = <strong>C</strong></li>
             </ul>
-            <p>SI unit: Joule (J)</p>
-          </div>
-        </div>
 
-        <div class="definition-box">
-          <div class="box-title">SI Units Summary</div>
-          <table class="data-table">
-            <tr><th>Quantity</th><th>Unit</th><th>Symbol</th></tr>
-            <tr><td>Work, Energy</td><td>Joule</td><td>J = N·m</td></tr>
-            <tr><td>Power</td><td>Watt</td><td>W = J/s</td></tr>
-            <tr><td>Force</td><td>Newton</td><td>N = kg·m/s²</td></tr>
-          </table>
-        </div>
+            <a href="https://www.google.com/search?tbm=isch&q=law+of+machine+graph+P+mW+C+straight+line+engineering" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.3:</strong> Graph of law of machine showing straight line P = mW + C, slope m and intercept C</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 6</div>
-          <p>A 10kg box is lifted vertically 2m at constant speed. Find work done against gravity.</p>
-          <button class="toggle-btn" data-target="wpe1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe1">
-            <div class="formula answer">
-              Force = mg = 10×9.81 = 98.1 N<br>
-              Work = F·s = 98.1 × 2 = <strong>196.2 J</strong>
+            <h3>4.3 Why is Law of Machine Important?</h3>
+            <div class="tip-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Importance</div>
+                <ul>
+                    <li>Helps predict effort for any given load</li>
+                    <li>Helps determine frictional resistance in the machine</li>
+                    <li>Used to find maximum mechanical advantage and efficiency</li>
+                    <li>Very common in WBSCTE numerical questions</li>
+                </ul>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 7</div>
-          <p>A force of 50N moves a body 10m at 30° to displacement. Find work done.</p>
-          <button class="toggle-btn" data-target="wpe2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe2">
-            <div class="formula answer">
-              W = F·s·cosθ = 50 × 10 × cos30° = 500 × 0.866 = <strong>433 J</strong>
+            <h3>4.4 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.7</div>
+                <p>The law of a machine is <strong>P = 0.04W + 20</strong>. Find the effort required to lift a load of <strong>1000 N</strong>.</p>
             </div>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 8</div>
-          <p>A motor lifts 500kg at constant speed of 2 m/s. Find power output.</p>
-          <button class="toggle-btn" data-target="wpe3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe3">
-            <div class="formula answer">
-              Force = mg = 500×9.81 = 4905 N<br>
-              Power = F·v = 4905 × 2 = <strong>9810 W</strong> = 9.81 kW
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.7</div>
+                <p>Given: P = 0.04W + 20, W = 1000 N</p>
+                <p>P = 0.04 × 1000 + 20 = 40 + 20 = 60 N</p>
+                <p class="formula answer"><strong>Effort required = 60 N</strong></p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 9</div>
-          <p>A 0.2kg ball is thrown upward with 15 m/s. Find KE at start and PE at top (g=10 m/s²).</p>
-          <button class="toggle-btn" data-target="wpe4"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe4">
-            <div class="formula answer">
-              KE = ½mv² = 0.5×0.2×225 = 0.1×225 = <strong>22.5 J</strong><br>
-              At top, v=0, height = v²/(2g) = 225/(20)=11.25m<br>
-              PE = mgh = 0.2×10×11.25 = <strong>22.5 J</strong> (energy conservation)
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.8</div>
+                <p>A machine follows the law <strong>P = 0.02W + 15</strong>. Find the effort needed to raise a load of <strong>2500 N</strong>.</p>
             </div>
-          </div>
-        </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.8</div>
+                <p>P = 0.02 × 2500 + 15 = 50 + 15 = 65 N</p>
+                <p class="formula answer"><strong>Effort = 65 N</strong></p>
+            </div>
 
-        <div class="exercise-area">
-          <p><strong>Practice:</strong> A 1200kg car accelerates from 20 km/h to 50 km/h. Find increase in KE.</p>
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.9</div>
+                <p>For a machine, the effort needed to lift 1000 N and 3000 N loads are 60 N and 140 N respectively. Find the law of the machine.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.9</div>
+                <p>Let law be: P = mW + C</p>
+                <p>For W = 1000 N, P = 60 N:</p>
+                <p>60 = 1000m + C ... (1)</p>
+                <p>For W = 3000 N, P = 140 N:</p>
+                <p>140 = 3000m + C ... (2)</p>
+                <p>Subtract (1) from (2):</p>
+                <p>80 = 2000m</p>
+                <p>m = 80/2000 = 0.04</p>
+                <p>Substitute in (1):</p>
+                <p>60 = 1000 × 0.04 + C = 40 + C</p>
+                <p>C = 20</p>
+                <p class="formula answer"><strong>Law of machine: P = 0.04W + 20</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.10</div>
+                <p>The law of machine is <strong>P = 0.05W + 25</strong>. If the machine lifts <strong>2000 N</strong>, find its mechanical advantage.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.10</div>
+                <p>P = 0.05 × 2000 + 25 = 100 + 25 = 125 N</p>
+                <p>M.A. = W / P = 2000 / 125 = 16</p>
+                <p class="formula answer"><strong>M.A. = 16</strong></p>
+            </div>
+
         </div>
-        <button class="toggle-btn" data-target="wpe5"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="wpe5">
-          <div class="formula answer">
-            v₁ = 20 km/h = 5.556 m/s, v₂ = 50 km/h = 13.889 m/s<br>
-            KE₁ = ½×1200×(5.556)² = 600×30.86 = 18516 J<br>
-            KE₂ = ½×1200×(13.889)² = 600×192.9 = 115740 J<br>
-            ΔKE = 115740 - 18516 = <strong>97224 J</strong> = 97.2 kJ
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">v = u + at</div>
-          <div class="tag">s = ut + ½at²</div>
-          <div class="tag">v² = u² + 2as</div>
-          <div class="tag">p = mv</div>
-          <div class="tag">F = ma</div>
-          <div class="tag">v = rω</div>
-          <div class="tag">a<sub>c</sub> = v²/r = rω²</div>
-          <div class="tag">F<sub>c</sub> = mv²/r</div>
-          <div class="tag">W = F·s·cosθ</div>
-          <div class="tag">P = W/t = F·v</div>
-          <div class="tag">KE = ½mv²</div>
-          <div class="tag">PE = mgh</div>
+    <!-- ==================== SECTION 5: IDEAL & REVERSIBLE ==================== -->
+    <section class="section" id="ideal-reversible">
+        <h2 class="section-title">
+            <i class="fas fa-sync-alt"></i> Ideal Machine, Friction, Maximum M.A., Reversible & Non-Reversible Machines
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>5.1 Ideal Machine</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ideal Machine</div>
+                <p>An <strong>ideal machine</strong> is a machine in which there is <strong>no loss of energy due to friction</strong>. Therefore, input work equals output work.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Condition for Ideal Machine</div>
+                <p class="formula"><strong>Efficiency η = 100%</strong></p>
+                <p class="formula"><strong>M.A. = V.R.</strong></p>
+            </div>
+
+            <h3>5.2 Friction in Machine</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Friction in Machine</div>
+                <p>In actual machines, some effort is wasted in overcoming friction between moving parts. So actual efficiency is always less than 100%.</p>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Practical Fact</div>
+                <p>No real machine is ideal. Every practical machine has friction, wear, and some energy loss as heat and sound.</p>
+            </div>
+
+            <h3>5.3 Maximum Mechanical Advantage</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p>From law of machine:</p>
+                <p class="formula"><strong>P = mW + C</strong></p>
+                <p>Mechanical Advantage:</p>
+                <p class="formula"><strong>M.A. = <span class="fraction"><span class="num">W</span><span class="den">P</span></span> = <span class="fraction"><span class="num">W</span><span class="den">mW + C</span></span></strong></p>
+                <p>When W becomes very large, C becomes negligible.</p>
+                <p class="formula answer"><strong>Maximum M.A. = 1 / m</strong></p>
+            </div>
+
+            <h3>5.4 Maximum Efficiency</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p>Efficiency = M.A. / V.R.</p>
+                <p>Using maximum M.A. = 1/m,</p>
+                <p class="formula answer"><strong>Maximum Efficiency = 1 / (m × V.R.)</strong></p>
+                <p>In percentage:</p>
+                <p class="formula"><strong>Maximum η% = [1 / (m × V.R.)] × 100</strong></p>
+            </div>
+
+            <h3>5.5 Reversible Machine</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Reversible Machine</div>
+                <p>A <strong>reversible machine</strong> is one in which, when effort is removed, the load can move downward and the machine can run backward.</p>
+            </div>
+
+            <h3>5.6 Non-Reversible or Self-Locking Machine</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-lock"></i> Non-Reversible Machine</div>
+                <p>A <strong>non-reversible machine</strong> is one in which, when effort is removed, the load does not move downward by itself. Such a machine is also called a <strong>self-locking machine</strong>.</p>
+            </div>
+
+            <h3>5.7 Condition for Reversibility ⭐</h3>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Important Condition</div>
+                <ul>
+                    <li>If <strong>Efficiency &gt; 50%</strong> → Machine is generally <strong>reversible</strong></li>
+                    <li>If <strong>Efficiency &lt; 50%</strong> → Machine is generally <strong>non-reversible / self-locking</strong></li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=reversible+and+self+locking+machine+diagram+engineering" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.4:</strong> Conceptual comparison of reversible machine and self-locking machine</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>5.8 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.11</div>
+                <p>The law of a machine is <strong>P = 0.02W + 10</strong>. Find the maximum mechanical advantage.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.11</div>
+                <p>Here, m = 0.02</p>
+                <p>Maximum M.A. = 1 / m = 1 / 0.02 = 50</p>
+                <p class="formula answer"><strong>Maximum M.A. = 50</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.12</div>
+                <p>A machine has law <strong>P = 0.04W + 20</strong> and velocity ratio <strong>25</strong>. Find maximum efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.12</div>
+                <p>Given: m = 0.04, V.R. = 25</p>
+                <p>Maximum efficiency = 1 / (m × V.R.)</p>
+                <p>= 1 / (0.04 × 25) = 1 / 1 = 1</p>
+                <p>η% = 1 × 100 = 100%</p>
+                <p class="formula answer"><strong>Maximum efficiency = 100%</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.13</div>
+                <p>A machine has efficiency of <strong>40%</strong>. State whether it is reversible or non-reversible.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.13</div>
+                <p>Efficiency = 40% &lt; 50%</p>
+                <p>Therefore, the machine is <strong>non-reversible (self-locking)</strong>.</p>
+                <p class="formula answer"><strong>Machine is non-reversible</strong></p>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
+    
+    <!-- ==================== SECTION 6: SIMPLE AXLE AND WHEEL ==================== -->
+    <section class="section" id="simple-axle-wheel">
+        <h2 class="section-title">
+            <i class="fas fa-circle-notch"></i> Simple Axle and Wheel
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+            <h3>6.1 Construction and Working Principle</h3>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Simple Axle and Wheel</div>
+                <p>A <strong>simple axle and wheel</strong> consists of a large wheel rigidly fixed to a smaller axle, both rotating together about a common axis. The effort is applied at the rim of the wheel and the load is lifted by a rope wound around the axle.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Working</div>
+                <p>When effort is applied at the larger wheel, the wheel and axle rotate together. Since the wheel radius is larger than axle radius, a small effort can lift a larger load.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=simple+axle+and+wheel+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.5:</strong> Simple axle and wheel showing wheel radius R, axle radius r, effort P and load W</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>6.2 Velocity Ratio of Simple Axle and Wheel</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Derivation</h4>
+                <p>In one revolution:</p>
+                <ul>
+                    <li>Distance moved by effort = circumference of wheel = <strong>2πR</strong></li>
+                    <li>Distance moved by load = circumference of axle = <strong>2πr</strong></li>
+                </ul>
+                <p>Therefore,</p>
+                <p class="formula"><strong>V.R. = <span class="fraction"><span class="num">2πR</span><span class="den">2πr</span></span></strong></p>
+                <p class="formula answer"><strong>V.R. = R / r = D / d</strong></p>
+                <p>Where:</p>
+                <ul>
+                    <li>R = radius of wheel</li>
+                    <li>r = radius of axle</li>
+                    <li>D = diameter of wheel</li>
+                    <li>d = diameter of axle</li>
+                </ul>
+            </div>
+
+            <h3>6.3 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.14</div>
+                <p>In a simple axle and wheel, the diameter of the wheel is <strong>600 mm</strong> and the diameter of the axle is <strong>100 mm</strong>. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.14</div>
+                <p>V.R. = D / d = 600 / 100 = 6</p>
+                <p class="formula answer"><strong>Velocity Ratio = 6</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.15</div>
+                <p>A simple axle and wheel lifts a load of <strong>1500 N</strong> by an effort of <strong>300 N</strong>. If the diameter ratio is 8, find M.A. and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.15</div>
+                <p>M.A. = W / P = 1500 / 300 = 5</p>
+                <p>V.R. = 8</p>
+                <p>η = M.A. / V.R. = 5 / 8 = 0.625</p>
+                <p>η% = 62.5%</p>
+                <p class="formula answer"><strong>M.A. = 5, Efficiency = 62.5%</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 7: DIFFERENTIAL AXLE AND WHEEL ==================== -->
+    <section class="section" id="differential-axle">
+        <h2 class="section-title">
+            <i class="fas fa-adjust"></i> Differential Axle and Wheel
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>7.1 Construction and Working</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Differential Axle and Wheel</div>
+                <p>A <strong>differential axle and wheel</strong> has one large wheel and two axles of different diameters fixed on the same shaft. The load is suspended by a rope wound in opposite directions on the two axles.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Why "Differential"?</div>
+                <p>Because the two axles have different diameters, the rope wound and unwound in one revolution is different. The effective lift depends on the <strong>difference</strong> of the two circumferences.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=differential+axle+and+wheel+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.6:</strong> Differential axle and wheel showing wheel diameter D and two axle diameters d1 and d2</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>7.2 Velocity Ratio</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Derivation</h4>
+                <p>In one revolution:</p>
+                <ul>
+                    <li>Distance moved by effort = circumference of wheel = <strong>πD</strong></li>
+                    <li>Rope wound on larger axle = <strong>πd<sub>1</sub></strong></li>
+                    <li>Rope unwound from smaller axle = <strong>πd<sub>2</sub></strong></li>
+                </ul>
+                <p>Net shortening of rope = π(d<sub>1</sub> − d<sub>2</sub>)</p>
+                <p>Since load is supported by two segments of rope, load rises by half of this distance:</p>
+                <p class="formula">Distance moved by load = <span class="fraction"><span class="num">π(d<sub>1</sub> − d<sub>2</sub>)</span><span class="den">2</span></span></p>
+                <p>Therefore,</p>
+                <p class="formula"><strong>V.R. = <span class="fraction"><span class="num">πD</span><span class="den">π(d<sub>1</sub> − d<sub>2</sub>) / 2</span></span></strong></p>
+                <p class="formula answer"><strong>V.R. = 2D / (d<sub>1</sub> − d<sub>2</sub>)</strong></p>
+            </div>
+
+            <h3>7.3 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.16</div>
+                <p>A differential axle and wheel has wheel diameter <strong>500 mm</strong>, and axle diameters <strong>120 mm</strong> and <strong>80 mm</strong>. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.16</div>
+                <p>V.R. = 2D / (d₁ − d₂)</p>
+                <p>= 2 × 500 / (120 − 80)</p>
+                <p>= 1000 / 40 = 25</p>
+                <p class="formula answer"><strong>Velocity Ratio = 25</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.17</div>
+                <p>A differential axle and wheel has V.R. = <strong>20</strong>. It lifts a load of <strong>4000 N</strong> with an effort of <strong>250 N</strong>. Find M.A. and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.17</div>
+                <p>M.A. = W / P = 4000 / 250 = 16</p>
+                <p>η = M.A. / V.R. = 16 / 20 = 0.8</p>
+                <p>η% = 80%</p>
+                <p class="formula answer"><strong>M.A. = 16, Efficiency = 80%</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 8: WORM AND WORM WHEEL ==================== -->
+    <section class="section" id="worm-wheel">
+        <h2 class="section-title">
+            <i class="fas fa-cog"></i> Worm and Worm Wheel
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>8.1 Construction and Working</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Worm and Worm Wheel</div>
+                <p>A worm and worm wheel machine consists of a <strong>worm</strong> (screw-like gear) mounted on a shaft and a <strong>worm wheel</strong> (gear wheel) meshing with it. When the effort wheel is rotated, the worm turns and rotates the worm wheel, thereby lifting the load.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-cogs"></i> Working Principle</div>
+                <p>One complete revolution of the worm generally moves the worm wheel by one tooth (for single-thread worm). Because of this slow motion, a very high velocity ratio is obtained.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=worm+and+worm+wheel+lifting+machine+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.7:</strong> Worm and worm wheel lifting machine showing effort wheel, worm, worm wheel, load drum, and load</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>8.2 Velocity Ratio</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Formula</h4>
+                <p>Let:</p>
+                <ul>
+                    <li>D = diameter of effort wheel</li>
+                    <li>r = radius of load drum</li>
+                    <li>T = number of teeth on worm wheel</li>
+                </ul>
+                <p>In one revolution of effort wheel:</p>
+                <ul>
+                    <li>Distance moved by effort = <strong>πD</strong></li>
+                    <li>Worm rotates once and worm wheel advances by one tooth</li>
+                    <li>So worm wheel turns by <strong>1/T revolution</strong></li>
+                    <li>Distance moved by load = circumference of drum × 1/T = <strong>2πr / T</strong></li>
+                </ul>
+                <p>Therefore,</p>
+                <p class="formula"><strong>V.R. = <span class="fraction"><span class="num">πD</span><span class="den">2πr / T</span></span></strong></p>
+                <p class="formula answer"><strong>V.R. = DT / 2r</strong></p>
+            </div>
+
+            <h3>8.3 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.18</div>
+                <p>In a worm and worm wheel machine, the effort wheel diameter is <strong>400 mm</strong>, the load drum radius is <strong>50 mm</strong>, and the worm wheel has <strong>40 teeth</strong>. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.18</div>
+                <p>V.R. = DT / 2r</p>
+                <p>= 400 × 40 / (2 × 50)</p>
+                <p>= 16000 / 100 = 160</p>
+                <p class="formula answer"><strong>Velocity Ratio = 160</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.19</div>
+                <p>A worm and worm wheel machine of V.R. <strong>120</strong> lifts <strong>6000 N</strong> load by an effort of <strong>100 N</strong>. Find M.A. and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.19</div>
+                <p>M.A. = W / P = 6000 / 100 = 60</p>
+                <p>η = M.A. / V.R. = 60 / 120 = 0.5</p>
+                <p>η% = 50%</p>
+                <p class="formula answer"><strong>M.A. = 60, Efficiency = 50%</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: CRAB WINCH ==================== -->
+    <section class="section" id="crab-winch">
+        <h2 class="section-title">
+            <i class="fas fa-gear"></i> Single Purchase and Double Purchase Crab Winch 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>9.1 Single Purchase Crab Winch</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Single Purchase Crab Winch</div>
+                <p>In a <strong>single purchase crab winch</strong>, the effort applied at the handle rotates a pinion, which meshes with a larger gear. The gear is attached to the load drum, so the drum rotates and lifts the load.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=single+purchase+crab+winch+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.8:</strong> Single purchase crab winch showing handle length L, pinion teeth T1, gear teeth T2, drum radius r, effort and load</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>9.2 Velocity Ratio of Single Purchase Crab Winch</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Formula</h4>
+                <p>Let:</p>
+                <ul>
+                    <li>L = length of handle</li>
+                    <li>r = radius of load drum</li>
+                    <li>T₁ = number of teeth on pinion</li>
+                    <li>T₂ = number of teeth on gear</li>
+                </ul>
+                <p>In one revolution of handle:</p>
+                <ul>
+                    <li>Distance moved by effort = <strong>2πL</strong></li>
+                    <li>Pinion makes 1 revolution, gear makes <strong>T₁ / T₂</strong> revolution</li>
+                    <li>Drum also makes <strong>T₁ / T₂</strong> revolution</li>
+                    <li>Distance moved by load = <strong>2πr × (T₁ / T₂)</strong></li>
+                </ul>
+                <p>Therefore,</p>
+                <p class="formula"><strong>V.R. = <span class="fraction"><span class="num">2πL</span><span class="den">2πr × (T₁/T₂)</span></span></strong></p>
+                <p class="formula answer"><strong>V.R. = LT₂ / rT₁</strong></p>
+            </div>
+
+            <h3>9.3 Double Purchase Crab Winch</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Double Purchase Crab Winch</div>
+                <p>In a <strong>double purchase crab winch</strong>, there are two gear pairs instead of one. This gives a much larger velocity ratio and allows very heavy loads to be lifted with small effort.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=double+purchase+crab+winch+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.9:</strong> Double purchase crab winch showing two gear-pinion pairs, handle, load drum and load</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>9.4 Velocity Ratio of Double Purchase Crab Winch</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Formula</h4>
+                <p>Let:</p>
+                <ul>
+                    <li>L = handle length</li>
+                    <li>r = radius of load drum</li>
+                    <li>T₁, T₂ = teeth on first pinion and first gear</li>
+                    <li>T₃, T₄ = teeth on second pinion and second gear</li>
+                </ul>
+                <p>The overall speed reduction is product of both gear ratios.</p>
+                <p class="formula answer"><strong>V.R. = LT₂T₄ / rT₁T₃</strong></p>
+            </div>
+
+            <h3>9.5 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.20</div>
+                <p>A single purchase crab has handle length <strong>300 mm</strong>, drum radius <strong>50 mm</strong>, pinion teeth <strong>12</strong>, and gear teeth <strong>48</strong>. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.20</div>
+                <p>V.R. = LT₂ / rT₁</p>
+                <p>= 300 × 48 / (50 × 12)</p>
+                <p>= 14400 / 600 = 24</p>
+                <p class="formula answer"><strong>Velocity Ratio = 24</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.21</div>
+                <p>A double purchase crab winch has handle length <strong>400 mm</strong>, drum radius <strong>80 mm</strong>, teeth: T₁ = 10, T₂ = 50, T₃ = 12, T₄ = 60. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.21</div>
+                <p>V.R. = LT₂T₄ / rT₁T₃</p>
+                <p>= 400 × 50 × 60 / (80 × 10 × 12)</p>
+                <p>= 1200000 / 9600 = 125</p>
+                <p class="formula answer"><strong>Velocity Ratio = 125</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.22</div>
+                <p>A single purchase crab winch lifts <strong>2400 N</strong> load with <strong>150 N</strong> effort. If V.R. = <strong>20</strong>, find M.A. and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.22</div>
+                <p>M.A. = W / P = 2400 / 150 = 16</p>
+                <p>η = 16 / 20 = 0.8 = 80%</p>
+                <p class="formula answer"><strong>M.A. = 16, Efficiency = 80%</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.23</div>
+                <p>A double purchase crab has V.R. = <strong>100</strong>. If its efficiency is <strong>70%</strong>, find the mechanical advantage.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.23</div>
+                <p>η = M.A. / V.R.</p>
+                <p>M.A. = η × V.R. = 0.70 × 100 = 70</p>
+                <p class="formula answer"><strong>M.A. = 70</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 10: SIMPLE SCREW JACK ==================== -->
+    <section class="section" id="screw-jack">
+        <h2 class="section-title">
+            <i class="fas fa-screwdriver-wrench"></i> Simple Screw Jack
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>10.1 Construction and Working</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Simple Screw Jack</div>
+                <p>A <strong>simple screw jack</strong> consists of a square-threaded screw passing through a threaded nut. A handle is used to rotate the screw and lift the load placed on the top of the screw.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-car"></i> Common Use</div>
+                <p>The screw jack is widely used in garages for lifting cars. It gives very high mechanical advantage with simple construction.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=simple+screw+jack+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.10:</strong> Simple screw jack showing handle length L, pitch p, screw, and load W</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>10.2 Velocity Ratio of Screw Jack</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Formula</h4>
+                <p>In one revolution of handle:</p>
+                <ul>
+                    <li>Distance moved by effort = circumference of handle circle = <strong>2πL</strong></li>
+                    <li>Distance moved by load = pitch of screw = <strong>p</strong></li>
+                </ul>
+                <p>Therefore,</p>
+                <p class="formula answer"><strong>V.R. = 2πL / p</strong></p>
+                <p>Where:</p>
+                <ul>
+                    <li>L = length of handle</li>
+                    <li>p = pitch of screw</li>
+                </ul>
+            </div>
+
+            <h3>10.3 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.24</div>
+                <p>A screw jack has handle length <strong>300 mm</strong> and screw pitch <strong>6 mm</strong>. Find its velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.24</div>
+                <p>V.R. = 2πL / p</p>
+                <p>= 2 × 3.1416 × 300 / 6</p>
+                <p>= 1884.96 / 6 = 314.16</p>
+                <p class="formula answer"><strong>Velocity Ratio = 314.16</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.25</div>
+                <p>A screw jack lifts a load of <strong>5000 N</strong> by an effort of <strong>100 N</strong>. If its velocity ratio is <strong>250</strong>, find M.A. and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.25</div>
+                <p>M.A. = W / P = 5000 / 100 = 50</p>
+                <p>η = 50 / 250 = 0.2</p>
+                <p>η% = 20%</p>
+                <p class="formula answer"><strong>M.A. = 50, Efficiency = 20%</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 11: SIMPLE PULLEY BLOCK ==================== -->
+    <section class="section" id="pulley-block">
+        <h2 class="section-title">
+            <i class="fas fa-link"></i> Simple Pulley Block
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>11.1 Construction and Working</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Simple Pulley Block</div>
+                <p>A <strong>simple pulley block</strong> consists of two sets of pulleys — one fixed block and one movable block — connected by a rope. The load is attached to the movable block and effort is applied at the free end of the rope.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-link"></i> Working Principle</div>
+                <p>The load is supported by several rope segments. Therefore, the effort required becomes smaller. The velocity ratio depends mainly on the number of rope segments supporting the movable block.</p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=simple+pulley+block+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 6.11:</strong> Simple pulley block showing fixed pulleys, movable pulleys, rope path, effort and load</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>11.2 Velocity Ratio</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p>For a simple pulley block,</p>
+                <p class="formula answer"><strong>V.R. = n</strong></p>
+                <p>Where <strong>n</strong> = number of rope segments supporting the load</p>
+                <p>In many exam problems, if there are <strong>n pulleys</strong>, the commonly used relation is:</p>
+                <p class="formula"><strong>V.R. = number of supporting rope segments</strong></p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Important Clarification</div>
+                <p>For diploma exams, the velocity ratio of a pulley block is usually taken as the <strong>number of rope segments supporting the movable block</strong>. If the diagram is given, count carefully.</p>
+            </div>
+
+            <h3>11.3 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.26</div>
+                <p>A simple pulley block has <strong>4 supporting rope segments</strong>. Find its velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.26</div>
+                <p>V.R. = number of supporting rope segments = 4</p>
+                <p class="formula answer"><strong>Velocity Ratio = 4</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 6.27</div>
+                <p>A pulley block of velocity ratio <strong>6</strong> lifts a load of <strong>1800 N</strong> with an effort of <strong>400 N</strong>. Find its M.A. and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 6.27</div>
+                <p>M.A. = W / P = 1800 / 400 = 4.5</p>
+                <p>η = 4.5 / 6 = 0.75</p>
+                <p>η% = 75%</p>
+                <p class="formula answer"><strong>M.A. = 4.5, Efficiency = 75%</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 12: COMPREHENSIVE SOLVED NUMERICALS ==================== -->
+    <section class="section" id="solved-numericals">
+        <h2 class="section-title">
+            <i class="fas fa-pencil-alt"></i> Comprehensive Solved Numericals 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 1</div>
+                <p>A machine lifts a load of <strong>2500 N</strong> with an effort of <strong>125 N</strong>. The effort moves <strong>3 m</strong> while the load moves <strong>0.2 m</strong>. Find M.A., V.R., and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>M.A. = W / P = 2500 / 125 = 20</p>
+                <p>V.R. = 3 / 0.2 = 15</p>
+                <p>η = 20 / 15 = 1.333</p>
+                <p>η% = 133.3%</p>
+                <p>This is not physically possible for an actual machine. Therefore, the given data is unrealistic or may represent a theoretical error.</p>
+                <p class="formula answer"><strong>M.A. = 20, V.R. = 15, Efficiency = 133.3% (not possible practically)</strong></p>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Important Observation</div>
+                <p>If efficiency comes out more than 100%, the data is not physically possible for a real machine. In exams, if this happens, mention it clearly.</p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 2</div>
+                <p>The law of machine is <strong>P = 0.03W + 18</strong>. Find (a) effort needed to lift 2000 N, (b) maximum M.A., and (c) if V.R. = 25, maximum efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p><strong>(a) Effort:</strong></p>
+                <p>P = 0.03 × 2000 + 18 = 60 + 18 = 78 N</p>
+                <p><strong>(b) Maximum M.A.:</strong></p>
+                <p>m = 0.03</p>
+                <p>Maximum M.A. = 1 / 0.03 = 33.33</p>
+                <p><strong>(c) Maximum Efficiency:</strong></p>
+                <p>η<sub>max</sub> = 1 / (m × V.R.) = 1 / (0.03 × 25) = 1 / 0.75 = 1.333</p>
+                <p>η<sub>max</sub>% = 133.3%</p>
+                <p>Again, this value is not practical.</p>
+                <p class="formula answer"><strong>Effort = 78 N, Max M.A. = 33.33, Max Efficiency = 133.3% (not practical)</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 3</div>
+                <p>A simple axle and wheel has wheel diameter <strong>800 mm</strong> and axle diameter <strong>100 mm</strong>. If it lifts a load of <strong>1600 N</strong> by an effort of <strong>250 N</strong>, find V.R., M.A., and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>V.R. = D / d = 800 / 100 = 8</p>
+                <p>M.A. = 1600 / 250 = 6.4</p>
+                <p>η = 6.4 / 8 = 0.8</p>
+                <p>η% = 80%</p>
+                <p class="formula answer"><strong>V.R. = 8, M.A. = 6.4, Efficiency = 80%</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 4</div>
+                <p>A screw jack with handle length <strong>250 mm</strong> and pitch <strong>5 mm</strong> lifts a load of <strong>3000 N</strong> with effort of <strong>75 N</strong>. Find V.R., M.A., and efficiency.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>V.R. = 2πL / p = 2 × 3.1416 × 250 / 5 = 314.16</p>
+                <p>M.A. = 3000 / 75 = 40</p>
+                <p>η = 40 / 314.16 = 0.1273</p>
+                <p>η% = 12.73%</p>
+                <p class="formula answer"><strong>V.R. = 314.16, M.A. = 40, Efficiency = 12.73%</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 5</div>
+                <p>A worm and worm wheel machine has D = <strong>500 mm</strong>, r = <strong>50 mm</strong>, and T = <strong>60</strong>. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>V.R. = DT / 2r = 500 × 60 / (2 × 50)</p>
+                <p>= 30000 / 100 = 300</p>
+                <p class="formula answer"><strong>Velocity Ratio = 300</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 6</div>
+                <p>A double purchase crab winch has handle length <strong>350 mm</strong>, drum radius <strong>70 mm</strong>, teeth T₁ = 12, T₂ = 48, T₃ = 10, T₄ = 50. Find the velocity ratio.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>V.R. = LT₂T₄ / rT₁T₃</p>
+                <p>= 350 × 48 × 50 / (70 × 12 × 10)</p>
+                <p>= 840000 / 8400 = 100</p>
+                <p class="formula answer"><strong>Velocity Ratio = 100</strong></p>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ==================== SECTION 13: KEY FORMULAS ==================== -->
+    <section class="section" id="key-formulas">
+        <h2 class="section-title">
+            <i class="fas fa-square-root-alt"></i> Key Formulas Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>Mechanical Advantage</h4>
+                    <p class="formula"><strong>M.A. = W / P</strong></p>
+                    <p>W = Load, P = Effort</p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Velocity Ratio</h4>
+                    <p class="formula"><strong>V.R. = Distance moved by effort / Distance moved by load</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Efficiency</h4>
+                    <p class="formula"><strong>η = M.A. / V.R.</strong></p>
+                    <p class="formula"><strong>η% = (M.A./V.R.) × 100</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Law of Machine</h4>
+                    <p class="formula"><strong>P = mW + C</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Maximum Mechanical Advantage</h4>
+                    <p class="formula"><strong>Maximum M.A. = 1 / m</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Maximum Efficiency</h4>
+                    <p class="formula"><strong>η<sub>max</sub> = 1 / (m × V.R.)</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Simple Axle and Wheel</h4>
+                    <p class="formula"><strong>V.R. = R/r = D/d</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Differential Axle and Wheel</h4>
+                    <p class="formula"><strong>V.R. = 2D / (d₁ − d₂)</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Worm and Worm Wheel</h4>
+                    <p class="formula"><strong>V.R. = DT / 2r</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Single Purchase Crab Winch</h4>
+                    <p class="formula"><strong>V.R. = LT₂ / rT₁</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Double Purchase Crab Winch</h4>
+                    <p class="formula"><strong>V.R. = LT₂T₄ / rT₁T₃</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Simple Screw Jack</h4>
+                    <p class="formula"><strong>V.R. = 2πL / p</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Simple Pulley Block</h4>
+                    <p class="formula"><strong>V.R. = number of supporting rope segments</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Condition of Ideal Machine</h4>
+                    <p class="formula"><strong>η = 100% and M.A. = V.R.</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Condition for Reversibility</h4>
+                    <p class="formula"><strong>If η &gt; 50% → reversible</strong></p>
+                    <p class="formula"><strong>If η &lt; 50% → self-locking</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 14: DEFINITIONS ==================== -->
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-book-open"></i> Important Definitions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Lifting Machine</div>
+                <p>A lifting machine is a device used to lift heavy loads by applying comparatively smaller effort.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Load</div>
+                <p>The resistance or weight lifted by the machine is called load.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Effort</div>
+                <p>The force applied to operate the machine is called effort.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Mechanical Advantage</div>
+                <p>Mechanical advantage is the ratio of load lifted to effort applied.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Velocity Ratio</div>
+                <p>Velocity ratio is the ratio of distance moved by effort to distance moved by load in the same time.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Efficiency</div>
+                <p>Efficiency is the ratio of useful work output to work input. It is also equal to M.A./V.R.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Law of Machine</div>
+                <p>The law of machine gives the relation between effort and load, usually expressed as P = mW + C.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Ideal Machine</div>
+                <p>An ideal machine is one in which input work equals output work and efficiency is 100%.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Reversible Machine</div>
+                <p>A reversible machine is one in which the load can descend by itself when the effort is removed.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Self-locking Machine</div>
+                <p>A self-locking or non-reversible machine is one in which the load does not descend by itself when effort is removed.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 15: COMPARISONS ==================== -->
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>Ideal Machine vs Actual Machine</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Ideal Machine</th>
+                            <th>Actual Machine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>No friction</td><td>Friction present</td></tr>
+                        <tr><td>2</td><td>Efficiency = 100%</td><td>Efficiency &lt; 100%</td></tr>
+                        <tr><td>3</td><td>M.A. = V.R.</td><td>M.A. &lt; V.R.</td></tr>
+                        <tr><td>4</td><td>No energy loss</td><td>Energy loss present</td></tr>
+                        <tr><td>5</td><td>Theoretical</td><td>Practical</td></tr>
+                        <tr><td>6</td><td>No wear and tear</td><td>Wear and tear possible</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Reversible vs Non-Reversible Machine</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Reversible Machine</th>
+                            <th>Non-Reversible Machine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Load descends when effort is removed</td><td>Load does not descend when effort is removed</td></tr>
+                        <tr><td>2</td><td>Efficiency usually more than 50%</td><td>Efficiency usually less than 50%</td></tr>
+                        <tr><td>3</td><td>Not self-locking</td><td>Self-locking</td></tr>
+                        <tr><td>4</td><td>Can run backward</td><td>Cannot run backward</td></tr>
+                        <tr><td>5</td><td>Used where reverse motion is allowed</td><td>Used where load must stay safe</td></tr>
+                        <tr><td>6</td><td>Example: some pulley systems</td><td>Example: screw jack</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Single Purchase vs Double Purchase Crab Winch</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Single Purchase</th>
+                            <th>Double Purchase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>One gear-pinion pair</td><td>Two gear-pinion pairs</td></tr>
+                        <tr><td>2</td><td>Smaller V.R.</td><td>Larger V.R.</td></tr>
+                        <tr><td>3</td><td>Simpler construction</td><td>More complex construction</td></tr>
+                        <tr><td>4</td><td>Used for moderate loads</td><td>Used for heavy loads</td></tr>
+                        <tr><td>5</td><td>Cheaper</td><td>Costlier</td></tr>
+                        <tr><td>6</td><td>Lower multiplication of effort</td><td>Higher multiplication of effort</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 16: MCQ BANK ==================== -->
+    <section class="section" id="mcq-bank">
+        <h2 class="section-title">
+            <i class="fas fa-question-circle"></i> MCQ Bank
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q1</h4>
+                    <p>Mechanical advantage is equal to:</p>
+                    <ul class="options">
+                        <li>a. Effort / Load</li>
+                        <li>b. Load / Effort</li>
+                        <li>c. Distance by effort / Distance by load</li>
+                        <li>d. Output / Input</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq1">
+                        <strong>Answer: b. Load / Effort</strong>
+                        <p>M.A. = W/P</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q2</h4>
+                    <p>Velocity ratio is the ratio of:</p>
+                    <ul class="options">
+                        <li>a. Load to effort</li>
+                        <li>b. Effort to load</li>
+                        <li>a. Distance moved by effort to distance moved by load</li>
+                        <li>d. Output to input</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2">
+                        <strong>Answer: c. Distance moved by effort to distance moved by load</strong>
+                        <p>This is the standard definition of V.R.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q3</h4>
+                    <p>Efficiency of an ideal machine is:</p>
+                    <ul class="options">
+                        <li>a. 50%</li>
+                        <li>b. 75%</li>
+                        <li>c. 100%</li>
+                        <li>d. 0%</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3">
+                        <strong>Answer: c. 100%</strong>
+                        <p>In an ideal machine, no energy is lost.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q4</h4>
+                    <p>Law of machine is:</p>
+                    <ul class="options">
+                        <li>a. W = mP + C</li>
+                        <li>b. P = mW + C</li>
+                        <li>c. P = W/m + C</li>
+                        <li>d. η = M.A. / V.R.</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4">
+                        <strong>Answer: b. P = mW + C</strong>
+                        <p>This is the standard law of machine equation.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q5</h4>
+                    <p>For an ideal machine:</p>
+                    <ul class="options">
+                        <li>a. M.A. &lt; V.R.</li>
+                        <li>b. M.A. &gt; V.R.</li>
+                        <li>c. M.A. = V.R.</li>
+                        <li>d. M.A. = 0</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq5">
+                        <strong>Answer: c. M.A. = V.R.</strong>
+                        <p>Because efficiency is 100%.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q6</h4>
+                    <p>A reversible machine generally has efficiency:</p>
+                    <ul class="options">
+                        <li>a. Less than 50%</li>
+                        <li>b. More than 50%</li>
+                        <li>c. Equal to 0</li>
+                        <li>d. Equal to 200%</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq6">
+                        <strong>Answer: b. More than 50%</strong>
+                        <p>This is the usual condition for reversibility.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q7</h4>
+                    <p>A self-locking machine is also called:</p>
+                    <ul class="options">
+                        <li>a. Ideal machine</li>
+                        <li>b. Reversible machine</li>
+                        <li>c. Non-reversible machine</li>
+                        <li>d. Efficient machine</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq7">
+                        <strong>Answer: c. Non-reversible machine</strong>
+                        <p>In such a machine, the load does not descend by itself.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q8</h4>
+                    <p>The velocity ratio of simple screw jack is:</p>
+                    <ul class="options">
+                        <li>a. D/d</li>
+                        <li>b. 2D/(d1-d2)</li>
+                        <li>c. 2πL/p</li>
+                        <li>d. DT/2r</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq8">
+                        <strong>Answer: c. 2πL/p</strong>
+                        <p>This is the formula for screw jack.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q9</h4>
+                    <p>In a simple axle and wheel, V.R. is:</p>
+                    <ul class="options">
+                        <li>a. D/d</li>
+                        <li>b. DT/2r</li>
+                        <li>c. LT₂/rT₁</li>
+                        <li>d. 2πL/p</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq9">
+                        <strong>Answer: a. D/d</strong>
+                        <p>For simple axle and wheel, V.R. = D/d.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q10</h4>
+                    <p>The term C in P = mW + C represents:</p>
+                    <ul class="options">
+                        <li>a. Load</li>
+                        <li>b. Effort lost in friction at no load</li>
+                        <li>c. Velocity ratio</li>
+                        <li>d. Efficiency</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq10">
+                        <strong>Answer: b. Effort lost in friction at no load</strong>
+                        <p>C is the no-load effort to overcome friction.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q11</h4>
+                    <p>Maximum M.A. is equal to:</p>
+                    <ul class="options">
+                        <li>a. m</li>
+                        <li>b. 1/m</li>
+                        <li>c. C/m</li>
+                        <li>d. V.R./m</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq11"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq11">
+                        <strong>Answer: b. 1/m</strong>
+                        <p>This comes from the law of machine.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q12</h4>
+                    <p>A pulley block mainly works on:</p>
+                    <ul class="options">
+                        <li>a. Gear ratio</li>
+                        <li>b. Screw thread</li>
+                        <li>c. Number of supporting rope segments</li>
+                        <li>d. Diameter ratio</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq12"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq12">
+                        <strong>Answer: c. Number of supporting rope segments</strong>
+                        <p>The more supporting rope segments, the greater the V.R.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q13</h4>
+                    <p>Which machine is commonly used to lift a car?</p>
+                    <ul class="options">
+                        <li>a. Crab winch</li>
+                        <li>b. Screw jack</li>
+                        <li>c. Worm wheel</li>
+                        <li>d. Pulley block</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq13"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq13">
+                        <strong>Answer: b. Screw jack</strong>
+                        <p>Screw jack is widely used in garages.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q14</h4>
+                    <p>If efficiency is less than 50%, the machine is usually:</p>
+                    <ul class="options">
+                        <li>a. Reversible</li>
+                        <li>b. Ideal</li>
+                        <li>c. Self-locking</li>
+                        <li>d. Frictionless</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq14"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq14">
+                        <strong>Answer: c. Self-locking</strong>
+                        <p>Self-locking means non-reversible.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q15</h4>
+                    <p>Efficiency is given by:</p>
+                    <ul class="options">
+                        <li>a. V.R./M.A.</li>
+                        <li>b. M.A./V.R.</li>
+                        <li>c. W × P</li>
+                        <li>d. W + P</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq15"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq15">
+                        <strong>Answer: b. M.A./V.R.</strong>
+                        <p>This is the standard formula for efficiency.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 17: SHORT ANSWERS ==================== -->
+    <section class="section" id="short-answers">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. Define a lifting machine.</h4>
+                <button class="toggle-btn" data-target="sa1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa1">
+                    <p>A lifting machine is a device used to raise heavy loads by applying comparatively smaller effort.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. Define mechanical advantage.</h4>
+                <button class="toggle-btn" data-target="sa2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa2">
+                    <p>Mechanical advantage is the ratio of load lifted to the effort applied. M.A. = W/P.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Define velocity ratio.</h4>
+                <button class="toggle-btn" data-target="sa3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa3">
+                    <p>Velocity ratio is the ratio of distance moved by effort to the distance moved by load in the same time.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. State the relation between efficiency, M.A., and V.R.</h4>
+                <button class="toggle-btn" data-target="sa4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa4">
+                    <p>Efficiency η = M.A. / V.R. and in percentage η% = (M.A./V.R.) × 100.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. State the law of machine.</h4>
+                <button class="toggle-btn" data-target="sa5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa5">
+                    <p>The law of machine gives the relation between effort and load and is written as P = mW + C.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. What is an ideal machine?</h4>
+                <button class="toggle-btn" data-target="sa6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa6">
+                    <p>An ideal machine is a machine having no friction and 100% efficiency.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q7. What is a reversible machine?</h4>
+                <button class="toggle-btn" data-target="sa7"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa7">
+                    <p>A reversible machine is one in which the load descends by itself when the effort is removed.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q8. What is a self-locking machine?</h4>
+                <button class="toggle-btn" data-target="sa8"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa8">
+                    <p>A self-locking machine is one in which the load does not descend when the effort is removed.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q9. State the condition for reversibility.</h4>
+                <button class="toggle-btn" data-target="sa9"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa9">
+                    <p>A machine is generally reversible if its efficiency is more than 50%.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q10. Write the velocity ratio of a simple screw jack.</h4>
+                <button class="toggle-btn" data-target="sa10"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="sa10">
+                    <p>The velocity ratio of a simple screw jack is V.R. = 2πL / p.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 18: LONG ANSWERS ==================== -->
+    <section class="section" id="long-answers">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. Define lifting machine and explain load, effort, mechanical advantage, velocity ratio, and efficiency. [5–7 Marks]</h4>
+                <button class="toggle-btn" data-target="la1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la1">
+                    <p>A lifting machine is a device used to lift heavy loads by applying comparatively smaller effort.</p>
+                    <ul>
+                        <li><strong>Load:</strong> The weight lifted by the machine.</li>
+                        <li><strong>Effort:</strong> The force applied to operate the machine.</li>
+                        <li><strong>Mechanical Advantage:</strong> Ratio of load to effort, M.A. = W/P.</li>
+                        <li><strong>Velocity Ratio:</strong> Ratio of distance moved by effort to distance moved by load.</li>
+                        <li><strong>Efficiency:</strong> Ratio of M.A. to V.R., η = M.A./V.R.</li>
+                    </ul>
+                    <p>These quantities help us judge the performance of the machine.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. State and explain the law of machine. [5 Marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2">
+                    <p>The law of machine gives the relation between effort and load and is expressed as:</p>
+                    <p><strong>P = mW + C</strong></p>
+                    <p>Where:</p>
+                    <ul>
+                        <li>P = effort</li>
+                        <li>W = load</li>
+                        <li>m = constant of machine</li>
+                        <li>C = frictional effort at no load</li>
+                    </ul>
+                    <p>This equation shows that effort increases linearly with load. When load is zero, effort is still C due to friction. The graph of P vs W is a straight line.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Explain ideal machine, reversible machine, and self-locking machine. [5 Marks]</h4>
+                <button class="toggle-btn" data-target="la3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3">
+                    <p><strong>Ideal Machine:</strong> A machine with no friction and 100% efficiency. In it, M.A. = V.R.</p>
+                    <p><strong>Reversible Machine:</strong> A machine in which load descends when effort is removed. Its efficiency is usually more than 50%.</p>
+                    <p><strong>Self-Locking Machine:</strong> A machine in which load does not descend when effort is removed. It is also called non-reversible. Its efficiency is usually less than 50%.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. Derive the velocity ratio of a simple axle and wheel. [5 Marks]</h4>
+                <button class="toggle-btn" data-target="la4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4">
+                    <p>Let R be radius of wheel and r be radius of axle.</p>
+                    <p>In one revolution:</p>
+                    <ul>
+                        <li>Distance moved by effort = circumference of wheel = 2πR</li>
+                        <li>Distance moved by load = circumference of axle = 2πr</li>
+                    </ul>
+                    <p>Therefore,</p>
+                    <p>V.R. = 2πR / 2πr = R/r</p>
+                    <p>If diameters are used, then V.R. = D/d</p>
+                    <p><strong>Hence proved.</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. Derive the velocity ratio of a simple screw jack. [5 Marks]</h4>
+                <button class="toggle-btn" data-target="la5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la5">
+                    <p>Let L be the handle length and p be the pitch of screw.</p>
+                    <p>In one revolution of handle:</p>
+                    <ul>
+                        <li>Distance moved by effort = circumference of handle circle = 2πL</li>
+                        <li>Distance moved by load = pitch of screw = p</li>
+                    </ul>
+                    <p>Therefore,</p>
+                    <p>V.R. = 2πL / p</p>
+                    <p>This is the velocity ratio of a simple screw jack.</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. Compare single purchase and double purchase crab winch. [5 Marks]</h4>
+                <button class="toggle-btn" data-target="la6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la6">
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>S.No.</th><th>Single Purchase</th><th>Double Purchase</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>One gear pair</td><td>Two gear pairs</td></tr>
+                                <tr><td>2</td><td>Lower V.R.</td><td>Higher V.R.</td></tr>
+                                <tr><td>3</td><td>Simple construction</td><td>Complex construction</td></tr>
+                                <tr><td>4</td><td>Used for moderate loads</td><td>Used for heavy loads</td></tr>
+                                <tr><td>5</td><td>Less costly</td><td>More costly</td></tr>
+                                <tr><td>6</td><td>Less effort multiplication</td><td>More effort multiplication</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 19: PRACTICE NUMERICALS ==================== -->
+    <section class="section" id="practice-numericals">
+        <h2 class="section-title">
+            <i class="fas fa-pencil-ruler"></i> Practice Numericals
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>P1. A machine lifts 1800 N load by 300 N effort. Find M.A.</h4>
+                <button class="toggle-btn" data-target="pn1"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn1">
+                    <p>M.A. = W/P = 1800/300 = <strong>6</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P2. The effort moves 5 m while load moves 0.25 m. Find V.R.</h4>
+                <button class="toggle-btn" data-target="pn2"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2">
+                    <p>V.R. = 5 / 0.25 = <strong>20</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P3. M.A. = 8 and V.R. = 10. Find efficiency.</h4>
+                <button class="toggle-btn" data-target="pn3"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3">
+                    <p>η = 8/10 = 0.8</p>
+                    <p>η% = <strong>80%</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P4. Law of machine is P = 0.05W + 10. Find effort for W = 1000 N.</h4>
+                <button class="toggle-btn" data-target="pn4"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4">
+                    <p>P = 0.05 × 1000 + 10 = 50 + 10 = <strong>60 N</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P5. In a simple axle and wheel, D = 500 mm and d = 100 mm. Find V.R.</h4>
+                <button class="toggle-btn" data-target="pn5"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn5">
+                    <p>V.R. = D/d = 500/100 = <strong>5</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P6. For a screw jack, L = 250 mm and p = 4 mm. Find V.R.</h4>
+                <button class="toggle-btn" data-target="pn6"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn6">
+                    <p>V.R. = 2πL/p = 2 × 3.1416 × 250 / 4</p>
+                    <p>= 1570.8 / 4 = <strong>392.7</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P7. A worm and worm wheel has D = 300 mm, T = 50, r = 30 mm. Find V.R.</h4>
+                <button class="toggle-btn" data-target="pn7"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn7">
+                    <p>V.R. = DT/2r = 300 × 50 / (2 × 30)</p>
+                    <p>= 15000 / 60 = <strong>250</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P8. A machine has efficiency 45%. Is it reversible?</h4>
+                <button class="toggle-btn" data-target="pn8"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn8">
+                    <p>Since efficiency = 45% &lt; 50%, machine is <strong>non-reversible / self-locking</strong>.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 20: QUICK REVISION ==================== -->
+    <section class="section" id="quick-revision">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> Quick Revision / Unit Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-star"></i> Last Minute Revision</div>
+                <ul>
+                    <li>A lifting machine helps lift heavy load using smaller effort.</li>
+                    <li>Load = W, Effort = P</li>
+                    <li>M.A. = W/P</li>
+                    <li>V.R. = distance moved by effort / distance moved by load</li>
+                    <li>Efficiency η = M.A./V.R.</li>
+                    <li>Law of machine: P = mW + C</li>
+                    <li>Maximum M.A. = 1/m</li>
+                    <li>Maximum efficiency = 1/(m × V.R.)</li>
+                    <li>Ideal machine: η = 100%, M.A. = V.R.</li>
+                    <li>Reversible machine: η &gt; 50%</li>
+                    <li>Self-locking machine: η &lt; 50%</li>
+                    <li>Simple axle & wheel: V.R. = D/d</li>
+                    <li>Differential axle & wheel: V.R. = 2D/(d₁ − d₂)</li>
+                    <li>Worm & wheel: V.R. = DT/2r</li>
+                    <li>Single purchase crab: V.R. = LT₂/rT₁</li>
+                    <li>Double purchase crab: V.R. = LT₂T₄/rT₁T₃</li>
+                    <li>Screw jack: V.R. = 2πL/p</li>
+                    <li>Pulley block: V.R. = number of supporting rope segments</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Most Important for Exam</div>
+                <ul>
+                    <li>Definitions of M.A., V.R., efficiency</li>
+                    <li>Law of machine and numericals from it</li>
+                    <li>Maximum M.A. and maximum efficiency</li>
+                    <li>Reversible vs self-locking</li>
+                    <li>Velocity ratio formulas of all machines</li>
+                    <li>Screw jack and crab winch numericals are very common</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes</div>
+                <ul>
+                    <li>Do not confuse M.A. with V.R.</li>
+                    <li>Do not forget to convert efficiency into decimal before formula use</li>
+                    <li>Check units of diameters, radius, pitch before substitution</li>
+                    <li>Write full formula before putting numbers</li>
+                    <li>If efficiency is more than 100%, mention that the data is not practical</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>
