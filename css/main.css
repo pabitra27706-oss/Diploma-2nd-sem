@@ -1295,3 +1295,1037 @@ html, body {
         border-right: 1px solid rgba(255, 255, 255, 0.04);
     }
 }
+
+/* ============================================
+   BUG FIXES
+   ============================================ */
+
+/* Bug 1: .back-btn.hidden overridden by .hidden utility
+   Higher specificity keeps collapse animation working */
+.header .back-btn.hidden {
+    display: flex !important;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s var(--ease);
+}
+
+/* Bug 2: Keyboard users see no focus indicator */
+*:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.subject-card:focus-visible,
+.type-card:focus-visible,
+.content-item:focus-visible,
+.quick-link-item:focus-visible,
+.start-btn:focus-visible,
+.continue-banner:focus-visible,
+.nav-btn:focus-visible,
+.more-item:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+}
+
+/* Bug 3: Animations run even when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .floating-shape {
+        animation: none;
+    }
+
+    .welcome-logo {
+        animation: none;
+    }
+}
+
+/* Bug 4: Hover stuck on touch devices after tap */
+@media (hover: none) and (pointer: coarse) {
+    .subject-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .subject-card:hover::before {
+        transform: scaleX(0);
+    }
+
+    .subject-card:hover::after {
+        opacity: 0;
+    }
+
+    .type-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .type-card:hover::before {
+        opacity: 0;
+    }
+
+    .content-item:hover {
+        transform: none;
+        background: var(--bg-card);
+        border-color: rgba(255, 255, 255, 0.04);
+    }
+
+    .content-item:hover .item-arrow {
+        transform: none;
+        color: var(--text-muted);
+    }
+
+    .quick-link-item:hover {
+        transform: none;
+    }
+
+    .continue-banner:hover {
+        transform: none;
+    }
+
+    .continue-banner:hover .continue-arrow {
+        transform: none;
+    }
+
+    .subject-card.full-width:hover .card-arrow {
+        transform: none;
+    }
+
+    /* Keep active states for tap feedback */
+    .subject-card:active {
+        transform: scale(0.97);
+    }
+
+    .type-card:active {
+        transform: scale(0.97);
+    }
+
+    .content-item:active {
+        background: var(--bg-card-hover);
+    }
+}
+
+/* Bug 5: GPU acceleration missing for animated elements */
+.floating-shape,
+.welcome-logo,
+.more-panel,
+.footer,
+.subject-card,
+.type-card,
+.content-item {
+    will-change: transform;
+}
+
+/* ============================================
+   SMALL PHONE FIX (320px)
+   ============================================ */
+@media (max-width: 320px) {
+    .welcome-title {
+        font-size: 1.9rem;
+    }
+
+    .welcome-logo {
+        font-size: 56px;
+    }
+
+    .welcome-stats {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .stat-divider {
+        width: 60%;
+        height: 1px;
+    }
+
+    .start-btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+    }
+
+    .welcome-badge {
+        font-size: 0.7rem;
+        padding: 4px 14px;
+    }
+
+    .subject-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .subject-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 18px;
+        text-align: left;
+    }
+
+    .subject-icon {
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .type-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 18px;
+        text-align: left;
+    }
+
+    .type-icon {
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    .quick-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .title {
+        font-size: 1.1rem;
+    }
+
+    .nav-btn {
+        min-width: 42px;
+        padding: 6px 8px;
+    }
+
+    .nav-btn span {
+        font-size: 0.58rem;
+    }
+}
+
+/* ============================================
+   TABLET PORTRAIT (481px - 768px)
+   ============================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+
+    .progress-bar {
+        max-width: 600px;
+    }
+
+    .footer {
+        max-width: 600px;
+    }
+
+    .more-panel {
+        max-width: 600px;
+    }
+
+    .welcome-title {
+        font-size: 3.2rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.05rem;
+        max-width: 380px;
+    }
+
+    .welcome-logo {
+        font-size: 88px;
+    }
+
+    .welcome-stats {
+        gap: 32px;
+        padding: 24px 40px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .start-btn {
+        padding: 16px 48px;
+        font-size: 1.1rem;
+    }
+
+    .screen {
+        padding: 24px 28px;
+        padding-bottom: 110px;
+    }
+
+    .header {
+        padding: 18px 24px;
+    }
+
+    .subject-grid {
+        gap: 16px;
+    }
+
+    .subject-card {
+        padding: 30px 18px 24px;
+    }
+
+    .content-grid {
+        gap: 16px;
+    }
+
+    .home-greeting {
+        padding: 22px 24px;
+    }
+
+    .greeting-text h2 {
+        font-size: 1.4rem;
+    }
+
+    .quick-link-item {
+        padding: 18px 10px;
+        font-size: 0.78rem;
+    }
+
+    .quick-link-item span:first-child {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============================================
+   TABLET LANDSCAPE / SMALL DESKTOP (769px+)
+   ============================================ */
+@media (min-width: 769px) {
+    /* Body desktop background */
+    body {
+        background: linear-gradient(160deg, #060610 0%, #0a0a1a 50%, #080818 100%);
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(
+            ellipse at 50% 50%,
+            rgba(108, 99, 255, 0.03) 0%,
+            transparent 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* Container desktop frame */
+    .container {
+        max-width: 780px;
+        position: relative;
+        z-index: 1;
+        box-shadow:
+            -1px 0 0 rgba(255, 255, 255, 0.06),
+             1px 0 0 rgba(255, 255, 255, 0.06),
+             0 0 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .progress-bar {
+        max-width: 780px;
+    }
+
+    .footer {
+        max-width: 780px;
+    }
+
+    .more-panel {
+        max-width: 520px;
+        bottom: auto;
+        top: 50%;
+        border-radius: var(--radius-lg);
+        transform: translateX(-50%) translateY(-50%) scale(0.9);
+        opacity: 0;
+        transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .more-panel.show {
+        transform: translateX(-50%) translateY(-50%) scale(1);
+        opacity: 1;
+    }
+
+    /* Welcome screen desktop */
+    .floating-shape {
+        filter: blur(120px);
+        opacity: 0.12;
+    }
+
+    .shape-1 {
+        width: 500px;
+        height: 500px;
+    }
+
+    .shape-2 {
+        width: 420px;
+        height: 420px;
+    }
+
+    .shape-3 {
+        width: 350px;
+        height: 350px;
+    }
+
+    .shape-4 {
+        width: 280px;
+        height: 280px;
+    }
+
+    .shape-5 {
+        width: 320px;
+        height: 320px;
+    }
+
+    .welcome-content {
+        padding: 60px 40px;
+    }
+
+    .welcome-badge {
+        font-size: 0.85rem;
+        padding: 8px 24px;
+        margin-bottom: 32px;
+    }
+
+    .welcome-logo {
+        font-size: 100px;
+        margin-bottom: 28px;
+    }
+
+    .welcome-title {
+        font-size: 3.8rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.15rem;
+        max-width: 450px;
+        margin-bottom: 44px;
+    }
+
+    .welcome-stats {
+        gap: 40px;
+        padding: 28px 52px;
+        display: inline-flex;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.82rem;
+    }
+
+    .stat-divider {
+        height: 44px;
+    }
+
+    .start-btn {
+        padding: 18px 56px;
+        font-size: 1.2rem;
+        margin-top: 8px;
+    }
+
+    .welcome-note {
+        font-size: 0.82rem;
+        margin-top: 28px;
+    }
+
+    /* Header desktop */
+    .header {
+        padding: 20px 32px;
+    }
+
+    .back-btn,
+    .more-btn {
+        width: 46px;
+        height: 46px;
+        border-radius: var(--radius-sm);
+        font-size: 1.05rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.85rem;
+        margin-top: 4px;
+    }
+
+    /* Screen desktop */
+    .screen {
+        padding: 28px 36px;
+        padding-bottom: 110px;
+    }
+
+    /* Home greeting desktop */
+    .home-greeting {
+        padding: 24px 28px;
+    }
+
+    .greeting-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .greeting-sub {
+        font-size: 0.9rem;
+    }
+
+    .greeting-date {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+
+    /* Continue banner desktop */
+    .continue-banner {
+        padding: 16px 22px;
+    }
+
+    .continue-icon {
+        font-size: 1.8rem;
+    }
+
+    .continue-subject {
+        font-size: 1rem;
+    }
+
+    /* Exam countdown desktop */
+    .exam-countdown {
+        padding: 14px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Quick links desktop */
+    .quick-links {
+        gap: 14px;
+    }
+
+    .quick-link-item {
+        padding: 22px 14px;
+        font-size: 0.82rem;
+        border-radius: var(--radius-md);
+    }
+
+    .quick-link-item span:first-child {
+        font-size: 1.6rem;
+    }
+
+    /* Subject grid 3 columns */
+    .subject-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .subject-card {
+        padding: 34px 20px 26px;
+    }
+
+    .subject-icon {
+        font-size: 3.2rem;
+        margin-bottom: 16px;
+    }
+
+    .subject-name {
+        font-size: 1rem;
+    }
+
+    .subject-meta {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+
+    .subject-card.full-width {
+        padding: 22px 28px;
+    }
+
+    .subject-card.full-width .subject-icon {
+        font-size: 2.6rem;
+    }
+
+    .subject-card.full-width .subject-name {
+        font-size: 1.1rem;
+    }
+
+    /* Content grid 3 columns */
+    .content-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .type-card {
+        padding: 32px 20px 24px;
+    }
+
+    .type-icon {
+        font-size: 2.8rem;
+        margin-bottom: 14px;
+    }
+
+    .type-name {
+        font-size: 1rem;
+    }
+
+    .type-count {
+        font-size: 0.82rem;
+    }
+
+    /* Selected banner desktop */
+    .selected-banner {
+        padding: 20px 24px;
+    }
+
+    .selected-banner::before {
+        width: 5px;
+    }
+
+    .banner-icon {
+        font-size: 2.4rem;
+    }
+
+    .banner-title {
+        font-size: 1.15rem;
+    }
+
+    .banner-subtitle {
+        font-size: 0.85rem;
+    }
+
+    /* Content list desktop */
+    .content-item {
+        padding: 18px 22px;
+    }
+
+    .item-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+    }
+
+    .item-info h4 {
+        font-size: 1.05rem;
+    }
+
+    .item-info p {
+        font-size: 0.85rem;
+    }
+
+    /* Section labels desktop */
+    .section-label {
+        margin-bottom: 16px;
+    }
+
+    .section-label span:first-child {
+        font-size: 0.85rem;
+    }
+
+    /* Footer nav desktop */
+    .nav-btn {
+        font-size: 0.78rem;
+        padding: 10px 20px;
+        min-width: 76px;
+    }
+
+    .nav-btn i {
+        font-size: 1.25rem;
+    }
+
+    /* More panel desktop */
+    .panel-header {
+        padding: 20px 28px 14px;
+    }
+
+    .panel-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .panel-content {
+        padding: 10px 20px 34px;
+    }
+
+    .more-item {
+        padding: 14px 16px;
+    }
+
+    .more-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .more-text h4 {
+        font-size: 0.95rem;
+    }
+
+    .more-text p {
+        font-size: 0.78rem;
+    }
+
+    /* Overlay desktop */
+    .overlay {
+        backdrop-filter: blur(6px);
+    }
+
+    /* Scrollbar desktop wider */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+}
+
+/* ============================================
+   DESKTOP (1024px - 1199px)
+   ============================================ */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 880px;
+    }
+
+    .progress-bar {
+        max-width: 880px;
+    }
+
+    .footer {
+        max-width: 880px;
+    }
+
+    .screen {
+        padding: 32px 44px;
+        padding-bottom: 120px;
+    }
+
+    .header {
+        padding: 22px 40px;
+    }
+
+    .welcome-title {
+        font-size: 4rem;
+    }
+
+    .welcome-logo {
+        font-size: 110px;
+    }
+
+    .welcome-stats {
+        gap: 48px;
+        padding: 32px 60px;
+    }
+
+    .stat-number {
+        font-size: 2.4rem;
+    }
+
+    .subject-grid {
+        gap: 20px;
+    }
+
+    .subject-card {
+        padding: 38px 22px 28px;
+    }
+
+    .content-grid {
+        gap: 20px;
+    }
+
+    .type-card {
+        padding: 34px 22px 26px;
+    }
+
+    /* Content list 2 column on desktop */
+    .content-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .home-greeting {
+        padding: 28px 32px;
+    }
+
+    .greeting-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .quick-link-item {
+        padding: 24px 16px;
+        font-size: 0.85rem;
+        gap: 10px;
+    }
+
+    .quick-link-item span:first-child {
+        font-size: 1.8rem;
+    }
+}
+
+/* ============================================
+   LARGE DESKTOP (1200px+)
+   ============================================ */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .progress-bar {
+        max-width: 960px;
+    }
+
+    .footer {
+        max-width: 960px;
+    }
+
+    .screen {
+        padding: 36px 52px;
+        padding-bottom: 120px;
+    }
+
+    .header {
+        padding: 24px 48px;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    /* Subject grid 4 columns */
+    .subject-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .subject-card {
+        padding: 36px 18px 28px;
+    }
+
+    /* Content grid 4 columns */
+    .content-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    /* Welcome screen large */
+    .welcome-title {
+        font-size: 4.5rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.25rem;
+        max-width: 500px;
+    }
+
+    .welcome-logo {
+        font-size: 120px;
+        margin-bottom: 32px;
+    }
+
+    .welcome-stats {
+        gap: 56px;
+        padding: 36px 72px;
+    }
+
+    .stat-number {
+        font-size: 2.6rem;
+    }
+
+    .stat-label {
+        font-size: 0.88rem;
+    }
+
+    .start-btn {
+        padding: 20px 64px;
+        font-size: 1.25rem;
+    }
+
+    .welcome-badge {
+        font-size: 0.9rem;
+        padding: 10px 28px;
+        margin-bottom: 36px;
+    }
+
+    .welcome-note {
+        font-size: 0.85rem;
+    }
+
+    .home-greeting {
+        padding: 30px 36px;
+    }
+
+    .greeting-text h2 {
+        font-size: 1.7rem;
+    }
+
+    .greeting-sub {
+        font-size: 0.95rem;
+    }
+
+    .continue-banner {
+        padding: 18px 26px;
+    }
+
+    .selected-banner {
+        padding: 22px 28px;
+    }
+
+    .banner-title {
+        font-size: 1.2rem;
+    }
+
+    .content-item {
+        padding: 20px 24px;
+    }
+
+    .item-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+    }
+
+    .item-info h4 {
+        font-size: 1.1rem;
+    }
+
+    .nav-btn {
+        min-width: 84px;
+        padding: 12px 22px;
+        font-size: 0.82rem;
+    }
+
+    .nav-btn i {
+        font-size: 1.3rem;
+    }
+
+    .more-panel {
+        max-width: 560px;
+    }
+}
+
+/* ============================================
+   ULTRAWIDE (1440px+)
+   ============================================ */
+@media (min-width: 1440px) {
+    body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background:
+            radial-gradient(ellipse at 20% 50%, rgba(108, 99, 255, 0.02) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 50%, rgba(255, 107, 107, 0.02) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .container {
+        max-width: 1000px;
+        box-shadow:
+            -1px 0 0 rgba(255, 255, 255, 0.05),
+             1px 0 0 rgba(255, 255, 255, 0.05),
+             0 0 120px rgba(0, 0, 0, 0.6);
+    }
+
+    .progress-bar {
+        max-width: 1000px;
+    }
+
+    .footer {
+        max-width: 1000px;
+    }
+
+    .floating-shape {
+        filter: blur(150px);
+    }
+
+    .shape-1 {
+        width: 600px;
+        height: 600px;
+    }
+
+    .shape-2 {
+        width: 500px;
+        height: 500px;
+    }
+
+    .shape-3 {
+        width: 450px;
+        height: 450px;
+    }
+
+    .shape-4 {
+        width: 350px;
+        height: 350px;
+    }
+
+    .shape-5 {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+/* ============================================
+   DESKTOP-ONLY HOVER ENHANCEMENTS
+   ============================================ */
+@media (hover: hover) and (pointer: fine) {
+    .subject-card {
+        transition: all 0.35s var(--ease);
+    }
+
+    .subject-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .type-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .content-item:hover {
+        transform: translateX(8px);
+    }
+
+    .quick-link-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .continue-banner:hover {
+        transform: translateX(6px);
+    }
+
+    .start-btn:hover {
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 20px 60px rgba(108, 99, 255, 0.5);
+    }
+
+    .back-btn:hover,
+    .more-btn:hover {
+        transform: scale(1.08);
+    }
+
+    .nav-btn:hover {
+        background: rgba(108, 99, 255, 0.08);
+    }
+
+    .more-item:hover {
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateX(4px);
+    }
+
+    .close-btn:hover {
+        transform: rotate(90deg);
+    }
+}
