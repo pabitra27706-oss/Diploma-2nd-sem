@@ -1,0 +1,208 @@
+2nd-sem.zip
+│
+├── Applied-Physics-II/
+│   ├── all_questions/
+│   │   ├── 21.html
+│   │   ├── 22.html
+│   │   ├── 23.html
+│   │   ├── 24.html
+│   │   └── 25.html
+│   ├── all_answers/
+│   │   ├── index.html
+│   │   └── data/
+│   │       ├── 2021.json
+│   │       ├── 2022.json
+│   │       ├── 2023.json
+│   │       ├── 2024.json
+│   │       └── 2025.json
+│   ├── Applied-Physics-II-Unit-1.html
+│   ├── Applied-Physics-II-Unit-2.html
+│   ├── Applied-Physics-II-Unit-3.html
+│   ├── Applied-Physics-II-Unit-4.html
+│   ├── Applied-Physics-II-Unit-5.html
+│   ├── Applied-Physics-II-Unit-6.html
+│   ├── Applied-Physics-II-Unit-7.html
+│   └── Formula-Sheet.html
+│
+├── Engineering-Mechanics/
+│   ├── all_questions/
+│   │   ├── 21.html
+│   │   ├── 22.html
+│   │   ├── 23.html
+│   │   ├── 24.html
+│   │   ├── 25.html
+│   │   ├── 22/
+│   │   │   ├── 7a.jpg
+│   │   │   ├── 6c.jpg
+│   │   │   └── 6a.jpg
+│   │   ├── 23/
+│   │   │   ├── fig5a.jpg
+│   │   │   ├── fig5b.jpg
+│   │   │   └── fig9b.jpg
+│   │   └── 25/
+│   │       ├── 3a.jpg
+│   │       ├── 4b.jpg
+│   │       ├── 5a.jpg
+│   │       └── 9b.jpg
+│   ├── all_answers/
+│   │   ├── index.html
+│   │   └── data/
+│   │       ├── 2021.json
+│   │       ├── 2022.json
+│   │       ├── 2023.json
+│   │       ├── 2024.json
+│   │       └── 2025.json
+│   ├── Engineering-Mechanics-Unit-1.html
+│   ├── Engineering-Mechanics-Unit-2.html
+│   ├── Engineering-Mechanics-Unit-3.html
+│   ├── Engineering-Mechanics-Unit-4.html
+│   ├── Engineering-Mechanics-Unit-5.html
+│   ├── Engineering-Mechanics-Unit-6.html
+│   └── Engineering-Mechanics-Unit-7.html
+│
+├── FEEE/
+│   ├── all_questions/
+│   │   ├── 21.html
+│   │   ├── 22.html
+│   │   ├── 23.html
+│   │   ├── 24.html
+│   │   ├── 25.html
+│   │   ├── 21/
+│   │   │   └── fig2b.jpg
+│   │   ├── 22/
+│   │   │   └── 5i.jpg
+│   │   └── 24/
+│   │       └── 2b.jpg
+│   ├── all_answers/
+│   │   ├── index.html
+│   │   └── data/
+│   │       ├── 2021.json
+│   │       ├── 2022.json
+│   │       ├── 2023.json
+│   │       ├── 2024.json
+│   │       └── 2025.json
+│   ├── FEEE-Unit-1.html
+│   ├── FEEE-Unit-2.html
+│   ├── FEEE-Unit-3.html
+│   ├── FEEE-Unit-4.html
+│   ├── FEEE-Unit-5.html
+│   ├── FEEE-Unit-6.html
+│   ├── FEEE-Unit-7.html
+│   └── Formula-Sheet.html
+│
+├── IT-Systems-Theory/
+│   ├── all_questions/
+│   │   ├── 21.html
+│   │   ├── 22.html
+│   │   ├── 23.html
+│   │   ├── 24.html
+│   │   └── 25.html
+│   ├── all_answers/
+│   │   ├── index.html
+│   │   └── data/
+│   │       ├── 2021.json
+│   │       ├── 2022.json
+│   │       ├── 2023.json
+│   │       ├── 2024.json
+│   │       └── 2025.json
+│   ├── IT-Systems-Unit-1.html
+│   ├── IT-Systems-Unit-2.html
+│   ├── IT-Systems-Unit-3.html
+│   └── IT-Systems-Unit-4-Cybersecurity.html
+│
+├── Mathematics-II/
+│   ├── all_questions/
+│   │   ├── 21.html
+│   │   ├── 22.html
+│   │   ├── 23.html
+│   │   ├── 24.html
+│   │   └── 25.html
+│   ├── all_answers/
+│   │   ├── index.html
+│   │   └── data/
+│   │       ├── 2021.json
+│   │       ├── 2022.json
+│   │       ├── 2023.json
+│   │       ├── 2024.json
+│   │       └── 2025.json
+│   ├── Mathematics-II-Unit-1.html
+│   ├── Mathematics-II-Unit-2.html
+│   ├── Mathematics-II-Unit-3.html
+│   ├── Mathematics-II-Unit-4.html
+│   ├── Mathematics-II-Unit-5.html
+│   ├── Mathematics-II-Unit-6.html
+│   └── Formula-Sheet.html
+│
+├── Practice_question/
+│   ├── questions/
+│   │   ├── index.html
+│   │   └── data/
+│   │       ├── day1.json  ...  day15.json (15 files)
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── helper.js
+│   │   └── renderer.js
+│   └── roadmap.html
+│
+├── app-resorses/
+│   ├── sections/
+│   │   ├── about-app.html
+│   │   ├── contact-support.html
+│   │   ├── credits-thanks.html
+│   │   ├── disclaimer-notice.html
+│   │   ├── privacy-policy.html
+│   │   ├── professional-hub.html
+│   │   ├── send-feedback.html
+│   │   ├── terms-conditions.html
+│   │   └── usage-guide.html
+│   ├── scripts/
+│   │   └── navigation.js
+│   └── styles/
+│       └── professional.css
+│
+├── css/
+│   └── main.css
+│
+├── js/
+│   ├── app.js
+│   └── data.js
+│
+├── pyq-assets/
+│   ├── css/
+│   │   └── pyq-style.css
+│   └── js/
+│       ├── pyq-app.js
+│       ├── pyq-helpers.js
+│       ├── pyq-render.js
+│       └── pyq-storage.js
+│
+├── unused/
+│   ├── q&a.txt
+│   ├── unit.txt
+│   └── data/
+│       ├── math_all.json
+│       ├── physics_all.json
+│       ├── mechanics_all.json
+│       ├── feee_all.json
+│       └── it_all.json
+│
+├── units-com/
+│   ├── engine.js
+│   └── base.css
+│
+├── icons/
+│   ├── icon-72x72.png
+│   ├── icon-96x96.png
+│   ├── icon-128x128.png
+│   ├── icon-144x144.png
+│   ├── icon-152x152.png
+│   ├── icon-180x180.png
+│   ├── icon-192x192.png
+│   └── icon-512x512.png
+│
+├── index.html
+├── manifest.json
+├── sw.js
+└── offline.html
