@@ -1,464 +1,1753 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Engineering Mechanics · Unit VII · Motion in a Plane</title>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- base.css (shared styles from units-com folder) -->
-  <link rel="stylesheet" href="../units-com/base.css">
-  <!-- CHAPTER THEME: motion / dynamics / red-blue -->
-  <style>
-    :root {
-      --primary: #b13e3e;          /* motion red */
-      --primary-light: #d45a5a;
-      --accent: #2c6e8f;            /* curvilinear blue */
-      --accent-light: #4a9ac0;
-      --danger: #c62828;
-      --warning: #ef6c00;
-      --success: #2e7d32;
-      --purple: #6a4c9c;
-      --info: #0288d1;
-      --header-bg: linear-gradient(145deg, #4a1e1e, #b13e3e, #2c6e8f);
-    }
-    /* header emoji: motion symbols */
-    .header::after {
-      content: "📈🔄⚡💥";
-      position: absolute;
-      bottom: 12px; right: 20px;
-      font-size: 2.6rem;
-      opacity: 0.15;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: rotate(-1deg);
-    }
-    /* graph placeholders */
-    .graph-demo {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .graph-box {
-      background: var(--card-bg);
-      border: 2px solid var(--primary);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      width: 200px;
-      text-align: center;
-    }
-    .graph-icon {
-      font-size: 3rem;
-    }
-    /* centripetal force illustration */
-    .circle-demo {
-      width: 150px;
-      height: 150px;
-      border: 4px solid var(--accent);
-      border-radius: 50%;
-      position: relative;
-      margin: 20px auto;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: var(--danger);
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .arrow {
-      position: absolute;
-      top: 20px;
-      left: 70px;
-      font-size: 1.2rem;
-    }
-  </style>
-  <!-- SELF-CONTAINED TOGGLE BUTTON SCRIPT -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure all answer divs start hidden
-      document.querySelectorAll('.answer-reveal').forEach(function(el) {
-        el.style.display = 'none';
-      });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 7 - Motion in a Plane | Engineering Mechanics</title>
+    <link rel="stylesheet" href="../units-com/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      // Add click handlers to all toggle buttons
-      document.querySelectorAll('.toggle-btn[data-target]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('data-target');
-          var answer = document.getElementById(targetId);
-          if (answer) {
-            var visible = answer.style.display === 'block';
-            answer.style.display = visible ? 'none' : 'block';
-            
-            // Update button text
-            var btnText = this.innerHTML;
-            if (visible) {
-              this.innerHTML = '<i class="fas fa-eye"></i> ' + (btnText.includes('Velocity') ? 'Show Velocity' : 'Show Answer');
-            } else {
-              this.innerHTML = '<i class="fas fa-eye-slash"></i> ' + (btnText.includes('Velocity') ? 'Hide Velocity' : 'Hide Answer');
-            }
-          }
-        });
-      });
-    });
-  </script>
-  <!-- engine.js (deferred) -->
-  <script src="../units-com/engine.js" defer></script>
+    <style>
+        .figure-link { text-decoration:none; color:inherit; display:block; cursor:pointer; }
+        .figure-link .diagram-placeholder { transition:all var(--transition); border:2px dashed var(--gray); position:relative; }
+        .figure-link:hover .diagram-placeholder { border-color:var(--accent); background:var(--formula-bg); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .diagram-placeholder .click-hint { display:block; margin-top:8px; font-size:0.78rem; color:var(--accent); font-weight:500; }
+        .figure-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:16px 0; }
+        @media(max-width:768px) { .figure-row { grid-template-columns:1fr; } }
+
+        .mcq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin:20px 0; }
+        .mcq-item { background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:20px; border-left:4px solid var(--accent); }
+        .mcq-item h4 { color:var(--primary); margin-bottom:12px; font-size:0.95rem; }
+        .mcq-item .options { list-style:none; padding:0; }
+        .mcq-item .options li { padding:6px 0; font-size:0.9rem; }
+        [data-theme="dark"] .mcq-item { background:#1a2332; }
+
+        .fraction { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 3px; }
+        .fraction .num { border-bottom:2px solid currentColor; padding:0 6px 3px; text-align:center; }
+        .fraction .den { padding:3px 6px 0; text-align:center; }
+
+        .formula-card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin:16px 0; }
+        .formula-card { background:var(--formula-bg); border:1px solid var(--accent); border-radius:var(--radius-md); padding:16px; min-width:0; }
+
+        .graph-note { padding:14px 16px; border-left:4px solid var(--info); background:rgba(0,188,212,0.08); border-radius:8px; margin:12px 0; }
+        [data-theme="dark"] .graph-note { background:rgba(0,188,212,0.12); }
+    </style>
 </head>
 <body>
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- HEADER -->
-  <header class="header">
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header">
     <div class="header-content">
-      <h1>📈 Engineering Mechanics · Unit VII 📈</h1>
-      <h2>Motion in a Plane · Work · Power · Energy</h2>
-      <div class="course-info">
-        <span class="info-item"><i class="fas fa-calendar-alt"></i> B.E./Diploma</span>
-        <span class="info-item"><i class="fas fa-chart-line"></i> Rectilinear Motion</span>
-        <span class="info-item"><i class="fas fa-circle"></i> Curvilinear Motion</span>
-        <span class="info-item"><i class="fas fa-bolt"></i> Work, Power, Energy</span>
-      </div>
+        <h1><i class="fas fa-person-running"></i> Motion in a Plane</h1>
+        <h2>Unit 7 — Engineering Mechanics</h2>
+        <div class="course-info">
+            <span class="info-item"><i class="fas fa-book"></i> Engineering Mechanics</span>
+            <span class="info-item"><i class="fas fa-layer-group"></i> Unit 7</span>
+            <span class="info-item"><i class="fas fa-graduation-cap"></i> WBSCTE Diploma</span>
+            <span class="info-item"><i class="fas fa-cogs"></i> Group C</span>
+            <span class="info-item"><i class="fas fa-clock"></i> Comprehensive</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- STICKY NAVBAR -->
-  <nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="nav-brand"><h3><i class="fas fa-gear"></i> MECH·UNIT7</h3></div>
-      <div class="nav-links" id="navLinks">
-        <a href="#rectilinear"><i class="fas fa-arrow-right"></i> Rectilinear</a>
-        <a href="#curvilinear"><i class="fas fa-circle"></i> Curvilinear</a>
-        <a href="#work"><i class="fas fa-bolt"></i> Work, Power, Energy</a>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
+        <div class="nav-brand"><h3>🔧 EM U7</h3></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#rectilinear-motion"><i class="fas fa-arrows-alt-h"></i> Rectilinear</a>
+            <a href="#equations-motion"><i class="fas fa-square-root-alt"></i> Equations</a>
+            <a href="#newton-momentum"><i class="fas fa-arrow-right-arrow-left"></i> Newton & Momentum</a>
+            <a href="#curvilinear-motion"><i class="fas fa-circle-notch"></i> Curvilinear</a>
+            <a href="#centripetal-force"><i class="fas fa-bullseye"></i> Centripetal</a>
+            <a href="#solved-numericals"><i class="fas fa-pencil-alt"></i> Numericals</a>
+            <a href="#work-power-energy"><i class="fas fa-bolt"></i> W-P-E</a>
+            <a href="#key-formulas"><i class="fas fa-list"></i> Formulas</a>
+            <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+            <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+            <a href="#mcq-bank"><i class="fas fa-question-circle"></i> MCQs</a>
+            <a href="#short-answers"><i class="fas fa-pen"></i> Short</a>
+            <a href="#long-answers"><i class="fas fa-file-alt"></i> Long</a>
+            <a href="#practice-numericals"><i class="fas fa-calculator"></i> Practice</a>
+            <a href="#quick-revision"><i class="fas fa-bolt"></i> Revision</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- MOBILE DRAWER -->
-  <div class="nav-overlay" id="navOverlay"></div>
-  <div class="mobile-drawer" id="mobileDrawer">
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
-      <h3><i class="fas fa-gear"></i> MECH Unit 7</h3>
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3>🔧 EM U7</h3>
+        <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="drawer-links" id="drawerLinks">
-      <a href="#rectilinear"><i class="fas fa-arrow-right"></i> s-t, v-t graphs, equations, Newton's 2nd, momentum</a>
-      <a href="#curvilinear"><i class="fas fa-circle"></i> Angular motion, centripetal/centrifugal force</a>
-      <a href="#work"><i class="fas fa-bolt"></i> Work, Power, Energy definitions & units</a>
+        <a href="#overview"><i class="fas fa-info-circle"></i> Overview</a>
+        <a href="#rectilinear-motion"><i class="fas fa-arrows-alt-h"></i> Rectilinear</a>
+        <a href="#equations-motion"><i class="fas fa-square-root-alt"></i> Equations</a>
+        <a href="#newton-momentum"><i class="fas fa-arrow-right-arrow-left"></i> Newton & Momentum</a>
+        <a href="#curvilinear-motion"><i class="fas fa-circle-notch"></i> Curvilinear</a>
+        <a href="#centripetal-force"><i class="fas fa-bullseye"></i> Centripetal</a>
+        <a href="#solved-numericals"><i class="fas fa-pencil-alt"></i> Numericals</a>
+        <a href="#work-power-energy"><i class="fas fa-bolt"></i> W-P-E</a>
+        <a href="#key-formulas"><i class="fas fa-list"></i> Formulas</a>
+        <a href="#definitions"><i class="fas fa-book-open"></i> Definitions</a>
+        <a href="#comparisons"><i class="fas fa-columns"></i> Comparisons</a>
+        <a href="#mcq-bank"><i class="fas fa-question-circle"></i> MCQs</a>
+        <a href="#short-answers"><i class="fas fa-pen"></i> Short</a>
+        <a href="#long-answers"><i class="fas fa-file-alt"></i> Long</a>
+        <a href="#practice-numericals"><i class="fas fa-calculator"></i> Practice</a>
+        <a href="#quick-revision"><i class="fas fa-bolt"></i> Revision</a>
     </div>
     <div class="drawer-footer">
-      <button id="drawerThemeToggle"><i class="fas fa-palette"></i> Theme</button>
-      <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
+        <button id="drawerThemeToggle"><i class="fas fa-moon"></i> Theme</button>
+        <button id="drawerPrint"><i class="fas fa-print"></i> Print</button>
     </div>
-  </div>
+</div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <!-- ========== SECTION 1: RECTILINEAR MOTION ========= -->
-    <section id="rectilinear" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-arrow-right"></i> Rectilinear Motion
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="graph-demo">
-          <div class="graph-box">
-            <div class="graph-icon">📊</div>
-            <h4>s-t diagram</h4>
-            <p>Slope = velocity</p>
-          </div>
-          <div class="graph-box">
-            <div class="graph-icon">📈</div>
-            <h4>v-t diagram</h4>
-            <p>Slope = acceleration, area = displacement</p>
-          </div>
-        </div>
+<div class="container">
 
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-calculator"></i> Motion Equations (with deduction)</div>
-          <p>For constant acceleration a:</p>
-          <div class="formula">v = u + at</div>
-          <div class="formula">s = ut + ½at²</div>
-          <div class="formula">v² = u² + 2as</div>
-          <p><strong>Deduction:</strong> From a = dv/dt → ∫dv = ∫a dt → v = u + at. Then ds/dt = v → ∫ds = ∫(u+at)dt → s = ut + ½at². Eliminating t gives v² = u² + 2as.</p>
-        </div>
+    <!-- ==================== SECTION 1: OVERVIEW ==================== -->
+    <section class="section" id="overview">
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Unit Overview
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title"><i class="fas fa-balance-scale"></i> Newton's Second Law</div>
-          <p>Force = mass × acceleration</p>
-          <div class="formula">P = ma</div>
-          <p>where P = net force, m = mass, a = acceleration.</p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-rocket"></i> Momentum</h4>
-            <p>Momentum = mass × velocity</p>
-            <div class="formula">p = mv</div>
-            <p>SI unit: kg·m/s</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-sync-alt"></i> Conservation of Momentum</h4>
-            <p>In absence of external forces, total momentum of a system remains constant.</p>
-            <p>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 1</div>
-          <p>A car starts from rest and accelerates at 2 m/s² for 5s. Find velocity and distance covered.</p>
-          <button class="toggle-btn" data-target="rect1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="rect1">
-            <div class="formula answer">
-              u=0, a=2 m/s², t=5s<br>
-              v = u + at = 0 + 2×5 = <strong>10 m/s</strong><br>
-              s = ut + ½at² = 0 + ½×2×25 = <strong>25 m</strong>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-bullseye"></i> What This Unit Covers</div>
+                <p>This unit studies <strong>motion</strong> — how a body moves with time. It includes straight-line motion, circular/curved motion, and the basic ideas of work, power, and energy.</p>
+                <p>This unit is very important because it connects <strong>force</strong> with <strong>motion</strong>. It tells us why bodies move, how fast they move, how acceleration works, and how energy is used in motion.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 2 (Momentum)</div>
-          <p>A 2kg ball moving at 3 m/s collides with a 3kg stationary ball. After collision, they move together. Find common velocity.</p>
-          <button class="toggle-btn" data-target="rect2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="rect2">
-            <div class="formula answer">
-              Initial momentum = 2×3 + 3×0 = 6 kg·m/s<br>
-              Final mass = 5 kg<br>
-              v = 6/5 = <strong>1.2 m/s</strong>
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-industry"></i> Practical Importance</div>
+                <ul>
+                    <li>Used in automobile motion and braking</li>
+                    <li>Used in design of rotating machinery</li>
+                    <li>Helps in understanding fans, wheels, turbines, motors</li>
+                    <li>Useful in studying cranes, lifts, and conveyors</li>
+                </ul>
             </div>
-          </div>
+
+            <h3>🎯 Unit Outcomes</h3>
+            <div class="tag-grid">
+                <span class="info-item"><i class="fas fa-check"></i> Read motion graphs</span>
+                <span class="info-item"><i class="fas fa-check"></i> Use equations of motion</span>
+                <span class="info-item"><i class="fas fa-check"></i> Apply Newton’s second law</span>
+                <span class="info-item"><i class="fas fa-check"></i> Understand momentum</span>
+                <span class="info-item"><i class="fas fa-check"></i> Relate linear and angular quantities</span>
+                <span class="info-item"><i class="fas fa-check"></i> Compute work, power, energy</span>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Prerequisites</div>
+                <ul>
+                    <li>Basic algebra and unit conversion</li>
+                    <li>Understanding of force and mass</li>
+                    <li>Basic trigonometry</li>
+                    <li>Graph reading skill</li>
+                </ul>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 2: CURVILINEAR MOTION ========= -->
-    <section id="curvilinear" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-circle"></i> Curvilinear Motion
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="definition-box">
-          <div class="box-title"><i class="fas fa-undo-alt"></i> Angular Motion Concepts</div>
-          <ul>
-            <li><strong>Angular displacement (θ):</strong> angle swept by radius vector (radians).</li>
-            <li><strong>Angular velocity (ω):</strong> ω = dθ/dt (rad/s).</li>
-            <li><strong>Angular acceleration (α):</strong> α = dω/dt (rad/s²).</li>
-          </ul>
-        </div>
+    <!-- ==================== SECTION 2: RECTILINEAR MOTION ==================== -->
+    <section class="section" id="rectilinear-motion">
+        <h2 class="section-title">
+            <i class="fas fa-arrows-alt-h"></i> Rectilinear Motion
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-        <div class="concept-box">
-          <div class="box-title">Relation between Linear & Angular Quantities</div>
-          <div class="formula">v = r ω</div>
-          <div class="formula">a<sub>t</sub> = r α</div>
-          <p>where r = radius of circular path, v = linear velocity, a<sub>t</sub> = tangential acceleration.</p>
-        </div>
+            <h3>2.1 Meaning of Rectilinear Motion</h3>
 
-        <div class="important-note">
-          <div class="box-title">Centripetal Force</div>
-          <p>For circular motion, centripetal force acts towards center.</p>
-          <div class="formula">F<sub>c</sub> = mv²/r = m r ω²</div>
-          <p><strong>Deduction:</strong> From Newton's 2nd, F = ma, and centripetal acceleration a<sub>c</sub> = v²/r = r ω².</p>
-        </div>
-
-        <div class="important-note">
-          <div class="box-title">Centrifugal Force</div>
-          <p>Pseudo force acting outward in rotating frame. Magnitude same as centripetal but opposite direction. Used in problems from rotating reference frame.</p>
-          <div class="formula">F<sub>cf</sub> = mv²/r (outward)</div>
-        </div>
-
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 3</div>
-          <p>A 0.5kg stone is whirled in horizontal circle of radius 1.5m at 2 revolutions per second. Find centripetal force.</p>
-          <button class="toggle-btn" data-target="curv1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="curv1">
-            <div class="formula answer">
-              f = 2 Hz, ω = 2πf = 4π rad/s ≈ 12.57 rad/s<br>
-              v = rω = 1.5 × 12.57 = 18.855 m/s<br>
-              F<sub>c</sub> = mv²/r = 0.5 × (18.855)² / 1.5 = 0.5 × 355.5 / 1.5 = 177.75 / 1.5 = <strong>118.5 N</strong><br>
-              Alternatively F<sub>c</sub> = m r ω² = 0.5 × 1.5 × (12.57)² = 0.75 × 158 = <strong>118.5 N</strong>
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Rectilinear Motion</div>
+                <p><strong>Rectilinear motion</strong> is the motion of a body along a straight line.</p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 4</div>
-          <p>A car of mass 1000kg takes a turn of radius 50m at 36 km/h. Find centripetal force.</p>
-          <button class="toggle-btn" data-target="curv2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="curv2">
-            <div class="formula answer">
-              v = 36 km/h = 10 m/s<br>
-              F<sub>c</sub> = mv²/r = 1000 × (10)² / 50 = 1000 × 100 / 50 = 100000/50 = <strong>2000 N</strong>
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-road"></i> Examples</div>
+                <ul>
+                    <li>A train moving on a straight track</li>
+                    <li>A stone falling vertically</li>
+                    <li>A lift moving up or down</li>
+                    <li>A car moving on a straight road</li>
+                </ul>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 5</div>
-          <p>A wheel of radius 0.4m accelerates from rest to 20 rad/s in 5s. Find angular acceleration and linear velocity after 5s.</p>
-          <button class="toggle-btn" data-target="curv3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="curv3">
-            <div class="formula answer">
-              α = (ω - ω₀)/t = (20 - 0)/5 = <strong>4 rad/s²</strong><br>
-              v = rω = 0.4 × 20 = <strong>8 m/s</strong>
+            <h3>2.2 Basic Terms</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-location-arrow"></i> Distance</div>
+                <p>Distance is the total path length travelled by a body, irrespective of direction. It is a scalar quantity.</p>
             </div>
-          </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-arrow-right"></i> Displacement</div>
+                <p>Displacement is the shortest distance between initial and final positions of a body, measured in a particular direction. It is a vector quantity.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-tachometer-alt"></i> Speed</div>
+                <p>Speed is the distance travelled per unit time. It is a scalar quantity.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-gauge-high"></i> Velocity</div>
+                <p>Velocity is the displacement per unit time in a specified direction. It is a vector quantity.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-forward"></i> Acceleration</div>
+                <p>Acceleration is the rate of change of velocity with time.</p>
+            </div>
+
+            <h3>2.3 Displacement–Time Diagram</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-chart-line"></i> Meaning of Displacement-Time Graph</div>
+                <p>A displacement–time graph shows how displacement changes with time.</p>
+                <ul>
+                    <li>If graph is a straight line with constant slope → body moves with constant velocity</li>
+                    <li>If graph is horizontal → body is at rest</li>
+                    <li>If slope increases → velocity increases</li>
+                    <li>If slope decreases → velocity decreases</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=displacement+time+graph+engineering+mechanics+straight+line+curve" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.1:</strong> Displacement–time graphs showing rest, uniform velocity, and varying velocity</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="graph-note">
+                <strong>Important:</strong> The slope of displacement–time graph gives <strong>velocity</strong>.
+            </div>
+
+            <h3>2.4 Velocity–Time Diagram</h3>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-chart-area"></i> Meaning of Velocity-Time Graph</div>
+                <p>A velocity–time graph shows how velocity changes with time.</p>
+                <ul>
+                    <li>If graph is horizontal → constant velocity</li>
+                    <li>If graph is a straight line rising upward → uniform acceleration</li>
+                    <li>If graph slopes downward → retardation (negative acceleration)</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=velocity+time+graph+uniform+acceleration+retardation+engineering" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.2:</strong> Velocity–time graphs for constant velocity, acceleration, and retardation</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="graph-note">
+                <strong>Important:</strong>
+                <ul>
+                    <li>Slope of velocity–time graph gives <strong>acceleration</strong></li>
+                    <li>Area under velocity–time graph gives <strong>displacement</strong></li>
+                </ul>
+            </div>
+
+            <h3>2.5 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.1</div>
+                <p>A body moves with constant velocity of <strong>10 m/s</strong> for <strong>6 s</strong>. Find its displacement.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.1</div>
+                <p>Displacement = velocity × time</p>
+                <p>= 10 × 6 = 60 m</p>
+                <p class="formula answer"><strong>Displacement = 60 m</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.2</div>
+                <p>The displacement–time graph of a body is a straight line. What does it indicate?</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.2</div>
+                <p>A straight-line displacement–time graph means slope is constant.</p>
+                <p>Since slope of s–t graph gives velocity, the body has <strong>uniform velocity</strong>.</p>
+                <p class="formula answer"><strong>It indicates uniform velocity</strong></p>
+            </div>
+
         </div>
-      </div>
     </section>
 
-    <!-- ========== SECTION 3: WORK, POWER, ENERGY ========= -->
-    <section id="work" class="section">
-      <h2 class="section-title">
-        <i class="fas fa-bolt"></i> Work, Power, Energy
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="card-grid">
-          <div class="card">
-            <h4><i class="fas fa-briefcase"></i> Work</h4>
-            <p>Work done = Force × displacement in force direction</p>
-            <div class="formula">W = F·s·cosθ</div>
-            <p>SI unit: Joule (J) = N·m</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-gauge-high"></i> Power</h4>
-            <p>Rate of doing work</p>
-            <div class="formula">P = Work / time = F·v (if constant force)</div>
-            <p>SI unit: Watt (W) = J/s</p>
-          </div>
-          <div class="card">
-            <h4><i class="fas fa-battery-full"></i> Energy</h4>
-            <p>Capacity to do work</p>
+    <!-- ==================== SECTION 3: EQUATIONS OF MOTION ==================== -->
+    <section class="section" id="equations-motion">
+        <h2 class="section-title">
+            <i class="fas fa-square-root-alt"></i> Equations of Motion with Deduction 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>3.1 Standard Symbols Used</h3>
             <ul>
-              <li><strong>Kinetic Energy:</strong> KE = ½mv²</li>
-              <li><strong>Potential Energy:</strong> PE = mgh</li>
+                <li><strong>u</strong> = Initial velocity</li>
+                <li><strong>v</strong> = Final velocity</li>
+                <li><strong>a</strong> = Acceleration</li>
+                <li><strong>t</strong> = Time</li>
+                <li><strong>s</strong> = Displacement</li>
             </ul>
-            <p>SI unit: Joule (J)</p>
-          </div>
-        </div>
 
-        <div class="definition-box">
-          <div class="box-title">SI Units Summary</div>
-          <table class="data-table">
-            <tr><th>Quantity</th><th>Unit</th><th>Symbol</th></tr>
-            <tr><td>Work, Energy</td><td>Joule</td><td>J = N·m</td></tr>
-            <tr><td>Power</td><td>Watt</td><td>W = J/s</td></tr>
-            <tr><td>Force</td><td>Newton</td><td>N = kg·m/s²</td></tr>
-          </table>
-        </div>
+            <h3>3.2 First Equation of Motion</h3>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 6</div>
-          <p>A 10kg box is lifted vertically 2m at constant speed. Find work done against gravity.</p>
-          <button class="toggle-btn" data-target="wpe1"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe1">
-            <div class="formula answer">
-              Force = mg = 10×9.81 = 98.1 N<br>
-              Work = F·s = 98.1 × 2 = <strong>196.2 J</strong>
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>v = u + at</strong></p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 7</div>
-          <p>A force of 50N moves a body 10m at 30° to displacement. Find work done.</p>
-          <button class="toggle-btn" data-target="wpe2"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe2">
-            <div class="formula answer">
-              W = F·s·cosθ = 50 × 10 × cos30° = 500 × 0.866 = <strong>433 J</strong>
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Deduction</h4>
+                <p>We know, acceleration = change in velocity / time</p>
+                <p class="formula">a = (v - u) / t</p>
+                <p>Therefore,</p>
+                <p class="formula">at = v - u</p>
+                <p class="formula answer"><strong>v = u + at</strong></p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 8</div>
-          <p>A motor lifts 500kg at constant speed of 2 m/s. Find power output.</p>
-          <button class="toggle-btn" data-target="wpe3"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe3">
-            <div class="formula answer">
-              Force = mg = 500×9.81 = 4905 N<br>
-              Power = F·v = 4905 × 2 = <strong>9810 W</strong> = 9.81 kW
+            <h3>3.3 Second Equation of Motion</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>s = ut + ½at²</strong></p>
             </div>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <div class="box-title">Numerical Problem 9</div>
-          <p>A 0.2kg ball is thrown upward with 15 m/s. Find KE at start and PE at top (g=10 m/s²).</p>
-          <button class="toggle-btn" data-target="wpe4"><i class="fas fa-eye"></i> Calculate</button>
-          <div class="answer-reveal" id="wpe4">
-            <div class="formula answer">
-              KE = ½mv² = 0.5×0.2×225 = 0.1×225 = <strong>22.5 J</strong><br>
-              At top, v=0, height = v²/(2g) = 225/(20)=11.25m<br>
-              PE = mgh = 0.2×10×11.25 = <strong>22.5 J</strong> (energy conservation)
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Deduction</h4>
+                <p>For uniformly accelerated motion, average velocity = (u + v)/2</p>
+                <p>Displacement = average velocity × time</p>
+                <p class="formula">s = [(u + v)/2] × t</p>
+                <p>Using first equation, v = u + at</p>
+                <p class="formula">s = [(u + u + at)/2] × t</p>
+                <p class="formula">s = [(2u + at)/2] × t</p>
+                <p class="formula answer"><strong>s = ut + ½at²</strong></p>
             </div>
-          </div>
-        </div>
 
-        <div class="exercise-area">
-          <p><strong>Practice:</strong> A 1200kg car accelerates from 20 km/h to 50 km/h. Find increase in KE.</p>
+            <h3>3.4 Third Equation of Motion</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>v² = u² + 2as</strong></p>
+            </div>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Deduction</h4>
+                <p>From first equation:</p>
+                <p class="formula">v = u + at</p>
+                <p class="formula">t = (v - u)/a</p>
+                <p>Substitute in second equation:</p>
+                <p class="formula">s = [(u + v)/2] × [(v - u)/a]</p>
+                <p class="formula">s = (v² - u²) / 2a</p>
+                <p class="formula">2as = v² - u²</p>
+                <p class="formula answer"><strong>v² = u² + 2as</strong></p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Very Important</div>
+                <p>These three equations are valid only for <strong>uniform acceleration</strong>.</p>
+            </div>
+
+            <h3>3.5 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.3</div>
+                <p>A car starts from rest and accelerates uniformly at <strong>2 m/s²</strong> for <strong>5 s</strong>. Find the final velocity.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.3</div>
+                <p>Given: u = 0, a = 2 m/s², t = 5 s</p>
+                <p>Using v = u + at</p>
+                <p>v = 0 + 2 × 5 = 10 m/s</p>
+                <p class="formula answer"><strong>Final velocity = 10 m/s</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.4</div>
+                <p>A body with initial velocity <strong>4 m/s</strong> moves with acceleration <strong>3 m/s²</strong> for <strong>6 s</strong>. Find displacement.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.4</div>
+                <p>Given: u = 4 m/s, a = 3 m/s², t = 6 s</p>
+                <p>Using s = ut + ½at²</p>
+                <p>s = 4 × 6 + ½ × 3 × 6²</p>
+                <p>s = 24 + 1.5 × 36</p>
+                <p>s = 24 + 54 = 78 m</p>
+                <p class="formula answer"><strong>Displacement = 78 m</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.5</div>
+                <p>A vehicle moving at <strong>10 m/s</strong> accelerates at <strong>2 m/s²</strong> and covers a distance of <strong>30 m</strong>. Find final velocity.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.5</div>
+                <p>Given: u = 10 m/s, a = 2 m/s², s = 30 m</p>
+                <p>Using v² = u² + 2as</p>
+                <p>v² = 10² + 2 × 2 × 30</p>
+                <p>v² = 100 + 120 = 220</p>
+                <p>v = √220 = 14.83 m/s</p>
+                <p class="formula answer"><strong>Final velocity = 14.83 m/s</strong></p>
+            </div>
+
         </div>
-        <button class="toggle-btn" data-target="wpe5"><i class="fas fa-eye"></i> Show Solution</button>
-        <div class="answer-reveal" id="wpe5">
-          <div class="formula answer">
-            v₁ = 20 km/h = 5.556 m/s, v₂ = 50 km/h = 13.889 m/s<br>
-            KE₁ = ½×1200×(5.556)² = 600×30.86 = 18516 J<br>
-            KE₂ = ½×1200×(13.889)² = 600×192.9 = 115740 J<br>
-            ΔKE = 115740 - 18516 = <strong>97224 J</strong> = 97.2 kJ
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- quick reference card -->
-    <section class="section">
-      <h2 class="section-title">
-        <i class="fas fa-list"></i> Formula Quick Reference
-        <i class="fas fa-chevron-down collapse-icon"></i>
-      </h2>
-      <div class="section-content">
-        <div class="tag-grid">
-          <div class="tag">v = u + at</div>
-          <div class="tag">s = ut + ½at²</div>
-          <div class="tag">v² = u² + 2as</div>
-          <div class="tag">p = mv</div>
-          <div class="tag">F = ma</div>
-          <div class="tag">v = rω</div>
-          <div class="tag">a<sub>c</sub> = v²/r = rω²</div>
-          <div class="tag">F<sub>c</sub> = mv²/r</div>
-          <div class="tag">W = F·s·cosθ</div>
-          <div class="tag">P = W/t = F·v</div>
-          <div class="tag">KE = ½mv²</div>
-          <div class="tag">PE = mgh</div>
+    <!-- ==================== SECTION 4: NEWTON & MOMENTUM ==================== -->
+    <section class="section" id="newton-momentum">
+        <h2 class="section-title">
+            <i class="fas fa-arrow-right-arrow-left"></i> Newton’s Second Law, Momentum & Conservation of Momentum
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>4.1 Newton’s Second Law of Linear Motion 🔥</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Newton’s Second Law</div>
+                <p>Newton’s second law states that the rate of change of momentum of a body is directly proportional to the impressed force and takes place in the direction of that force.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>P = ma</strong></p>
+                <p>Where:</p>
+                <ul>
+                    <li>P = Force</li>
+                    <li>m = Mass</li>
+                    <li>a = Acceleration</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Meaning</div>
+                <p>This means:</p>
+                <ul>
+                    <li>Greater force produces greater acceleration</li>
+                    <li>For same force, lighter body gets more acceleration</li>
+                    <li>Force is needed to change velocity</li>
+                </ul>
+            </div>
+
+            <h3>4.2 Momentum</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Momentum</div>
+                <p>Momentum is the quantity of motion possessed by a body. It is equal to the product of mass and velocity.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>Momentum = mv</strong></p>
+            </div>
+
+            <h3>4.3 Conservation of Momentum</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Law of Conservation of Momentum</div>
+                <p>When no external force acts on a system, the total momentum of the system remains constant.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula for Two Bodies</div>
+                <p class="formula"><strong>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</strong></p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=conservation+of+momentum+collision+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.3:</strong> Two-body collision showing conservation of momentum before and after impact</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>4.4 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.6</div>
+                <p>Find the force required to accelerate a body of mass <strong>20 kg</strong> at <strong>3 m/s²</strong>.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.6</div>
+                <p>P = ma = 20 × 3 = 60 N</p>
+                <p class="formula answer"><strong>Force = 60 N</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.7</div>
+                <p>A body of mass <strong>5 kg</strong> moves with velocity <strong>8 m/s</strong>. Find its momentum.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.7</div>
+                <p>Momentum = mv = 5 × 8 = 40 kg·m/s</p>
+                <p class="formula answer"><strong>Momentum = 40 kg·m/s</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.8</div>
+                <p>A mass of <strong>2 kg</strong> moving at <strong>6 m/s</strong> collides with another mass of <strong>3 kg</strong> at rest. If both move together after collision, find their common velocity.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.8</div>
+                <p>Using conservation of momentum:</p>
+                <p>m₁u₁ + m₂u₂ = (m₁ + m₂)v</p>
+                <p>2 × 6 + 3 × 0 = (2 + 3)v</p>
+                <p>12 = 5v</p>
+                <p>v = 12/5 = 2.4 m/s</p>
+                <p class="formula answer"><strong>Common velocity = 2.4 m/s</strong></p>
+            </div>
+
         </div>
-      </div>
     </section>
-  </div>
+    
+    <!-- ==================== SECTION 5: CURVILINEAR MOTION ==================== -->
+    <section class="section" id="curvilinear-motion">
+        <h2 class="section-title">
+            <i class="fas fa-circle-notch"></i> Curvilinear Motion
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
 
-  <!-- FLOATING ACTION BUTTONS -->
-  <div class="fab-container">
-    <button class="fab fab-save" id="fabSave" aria-label="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
-    <button class="fab fab-print" id="fabPrint" aria-label="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
-    <button class="fab fab-top" id="fabTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Top</span></button>
-  </div>
+            <h3>5.1 Meaning of Curvilinear Motion</h3>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Curvilinear Motion</div>
+                <p><strong>Curvilinear motion</strong> is the motion of a body along a curved path.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-road-circle-check"></i> Examples</div>
+                <ul>
+                    <li>A stone tied to a string and rotated in a circle</li>
+                    <li>A car taking a turn on a curved road</li>
+                    <li>A fan blade rotating</li>
+                    <li>A point on a rotating wheel</li>
+                </ul>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=curvilinear+motion+circular+path+diagram+engineering+mechanics" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.4:</strong> Curvilinear motion of a particle moving along a circular path</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>5.2 Angular Displacement</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Angular Displacement</div>
+                <p><strong>Angular displacement</strong> is the angle through which a rotating body turns about a fixed axis.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-compass"></i> Symbol and Unit</div>
+                <p>Angular displacement is usually denoted by <strong>θ</strong> (theta).</p>
+                <p>SI unit: <strong>radian (rad)</strong></p>
+            </div>
+
+            <h3>5.3 Angular Velocity</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Angular Velocity</div>
+                <p><strong>Angular velocity</strong> is the rate of change of angular displacement with time.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>ω = θ / t</strong></p>
+                <p>Where:</p>
+                <ul>
+                    <li>ω = angular velocity</li>
+                    <li>θ = angular displacement</li>
+                    <li>t = time</li>
+                </ul>
+                <p>SI unit: <strong>rad/s</strong></p>
+            </div>
+
+            <h3>5.4 Angular Acceleration</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Angular Acceleration</div>
+                <p><strong>Angular acceleration</strong> is the rate of change of angular velocity with time.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>α = (ω₂ - ω₁) / t</strong></p>
+                <p>Or, if initial angular velocity = ω₀ and final = ω:</p>
+                <p class="formula"><strong>α = (ω - ω₀)/t</strong></p>
+                <p>SI unit: <strong>rad/s²</strong></p>
+            </div>
+
+            <h3>5.5 Relation Between Linear and Angular Velocity ⭐</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-link"></i> Derivation</h4>
+                <p>Consider a body moving on a circular path of radius <strong>r</strong>.</p>
+                <p>In time t, it moves through angle θ.</p>
+                <p>Arc length travelled:</p>
+                <p class="formula">s = rθ</p>
+                <p>Now linear velocity:</p>
+                <p class="formula">v = s / t = rθ / t</p>
+                <p>But θ/t = ω</p>
+                <p class="formula answer"><strong>v = rω</strong></p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Important Relation</div>
+                <p class="formula"><strong>v = rω</strong></p>
+                <p>This is one of the most commonly asked formulas.</p>
+            </div>
+
+            <h3>5.6 Relation Between Linear and Angular Acceleration</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-link"></i> Derivation</h4>
+                <p>We know:</p>
+                <p class="formula">v = rω</p>
+                <p>Differentiating with respect to time:</p>
+                <p class="formula">a = rα</p>
+                <p class="formula answer"><strong>a = rα</strong></p>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Important Relation</div>
+                <p class="formula"><strong>a = rα</strong></p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=linear+and+angular+velocity+relation+v+r+omega+diagram" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.5:</strong> Relation between linear velocity and angular velocity for circular motion</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>5.7 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.9</div>
+                <p>A wheel rotates through an angle of <strong>10 rad</strong> in <strong>2 s</strong>. Find angular velocity.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.9</div>
+                <p>ω = θ/t = 10/2 = 5 rad/s</p>
+                <p class="formula answer"><strong>Angular velocity = 5 rad/s</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.10</div>
+                <p>A point on the rim of a wheel of radius <strong>0.4 m</strong> has angular velocity <strong>20 rad/s</strong>. Find its linear velocity.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.10</div>
+                <p>v = rω = 0.4 × 20 = 8 m/s</p>
+                <p class="formula answer"><strong>Linear velocity = 8 m/s</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.11</div>
+                <p>A wheel of radius <strong>0.5 m</strong> has angular acceleration <strong>6 rad/s²</strong>. Find linear acceleration at its rim.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.11</div>
+                <p>a = rα = 0.5 × 6 = 3 m/s²</p>
+                <p class="formula answer"><strong>Linear acceleration = 3 m/s²</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 6: CENTRIPETAL AND CENTRIFUGAL FORCE ==================== -->
+    <section class="section" id="centripetal-force">
+        <h2 class="section-title">
+            <i class="fas fa-bullseye"></i> Centripetal and Centrifugal Force 🔥
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>6.1 Why Circular Motion Needs a Special Force</h3>
+            <p>When a body moves in a circle, its direction changes continuously. Even if speed is constant, velocity changes because velocity has direction. Therefore, acceleration exists even in uniform circular motion.</p>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-circle"></i> Key Idea</div>
+                <p>A body moving in a circle always tries to move tangentially in a straight line. To keep it in circular path, a force must act toward the centre.</p>
+            </div>
+
+            <h3>6.2 Centripetal Force</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Centripetal Force</div>
+                <p><strong>Centripetal force</strong> is the force acting on a body moving in a circular path, directed <strong>towards the centre</strong> of the circle, which keeps the body in circular motion.</p>
+            </div>
+
+            <h3>6.3 Derivation of Centripetal Force ⭐</h3>
+
+            <div class="derivation-box">
+                <h4><i class="fas fa-drafting-compass"></i> Deduction</h4>
+                <p>For a body of mass <strong>m</strong> moving with linear velocity <strong>v</strong> in a circular path of radius <strong>r</strong>, the centripetal acceleration is:</p>
+                <p class="formula"><strong>a<sub>c</sub> = v²/r</strong></p>
+                <p>Using Newton’s second law:</p>
+                <p class="formula">F = ma</p>
+                <p>So,</p>
+                <p class="formula">F<sub>c</sub> = m(v²/r)</p>
+                <p class="formula answer"><strong>F<sub>c</sub> = mv²/r</strong></p>
+
+                <p>Since v = rω, we can also write:</p>
+                <p class="formula">F<sub>c</sub> = m(rω)² / r</p>
+                <p class="formula answer"><strong>F<sub>c</sub> = mrω²</strong></p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Final Formulas</div>
+                <p class="formula"><strong>Centripetal Force = mv²/r</strong></p>
+                <p class="formula"><strong>Centripetal Force = mrω²</strong></p>
+            </div>
+
+            <a href="https://www.google.com/search?tbm=isch&q=centripetal+force+diagram+body+moving+in+circle+engineering" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.6:</strong> Body moving in circular path showing velocity tangentially and centripetal force toward centre</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <h3>6.4 Centrifugal Force</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Centrifugal Force</div>
+                <p><strong>Centrifugal force</strong> is the apparent outward force experienced by a body moving in a circular path when seen from the rotating frame. It acts away from the centre and is equal in magnitude to centripetal force.</p>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Important Concept</div>
+                <p>Centripetal force is the real inward force required for circular motion. Centrifugal force is the apparent outward force felt by the body in a rotating frame.</p>
+            </div>
+
+            <div class="workshop-box">
+                <div class="box-title"><i class="fas fa-car-side"></i> Real-Life Examples</div>
+                <ul>
+                    <li>Passengers feel pushed outward when a bus takes a turn</li>
+                    <li>Water drops fly outward from a spinning wet umbrella</li>
+                    <li>Planets move in nearly circular orbits due to centripetal force</li>
+                    <li>Stone tied to a string moves in a circle because of tension in the string</li>
+                </ul>
+            </div>
+
+            <h3>6.5 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.12</div>
+                <p>A body of mass <strong>2 kg</strong> moves in a circle of radius <strong>0.5 m</strong> with speed <strong>4 m/s</strong>. Find the centripetal force.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.12</div>
+                <p>F = mv²/r</p>
+                <p>= 2 × 4² / 0.5</p>
+                <p>= 2 × 16 / 0.5 = 32 / 0.5 = 64 N</p>
+                <p class="formula answer"><strong>Centripetal force = 64 N</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.13</div>
+                <p>A mass of <strong>1.5 kg</strong> rotates in a circle of radius <strong>0.8 m</strong> with angular velocity <strong>5 rad/s</strong>. Find centripetal force.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.13</div>
+                <p>F = mrω²</p>
+                <p>= 1.5 × 0.8 × 5²</p>
+                <p>= 1.5 × 0.8 × 25</p>
+                <p>= 30 N</p>
+                <p class="formula answer"><strong>Centripetal force = 30 N</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.14</div>
+                <p>A stone of mass <strong>0.5 kg</strong> tied to a string moves in a circle of radius <strong>1 m</strong>. If the tension in string is <strong>18 N</strong>, find speed of stone.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.14</div>
+                <p>Here tension provides centripetal force.</p>
+                <p>F = mv²/r</p>
+                <p>18 = 0.5 × v² / 1</p>
+                <p>v² = 18 / 0.5 = 36</p>
+                <p>v = 6 m/s</p>
+                <p class="formula answer"><strong>Speed = 6 m/s</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 7: COMPREHENSIVE SOLVED NUMERICALS ==================== -->
+    <section class="section" id="solved-numericals">
+        <h2 class="section-title">
+            <i class="fas fa-pencil-alt"></i> Comprehensive Solved Numericals
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 1</div>
+                <p>A train starts from rest and accelerates uniformly at <strong>1.5 m/s²</strong> for <strong>12 s</strong>. Find final velocity and distance travelled.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Given: u = 0, a = 1.5 m/s², t = 12 s</p>
+                <p>v = u + at = 0 + 1.5 × 12 = 18 m/s</p>
+                <p>s = ut + ½at² = 0 + ½ × 1.5 × 12²</p>
+                <p>= 0.75 × 144 = 108 m</p>
+                <p class="formula answer"><strong>Final velocity = 18 m/s, Distance = 108 m</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 2</div>
+                <p>A car moving at <strong>20 m/s</strong> is retarded uniformly at <strong>2 m/s²</strong>. Find the distance travelled before it stops.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Given: u = 20 m/s, v = 0, a = -2 m/s²</p>
+                <p>Using: v² = u² + 2as</p>
+                <p>0 = 20² + 2(-2)s</p>
+                <p>0 = 400 - 4s</p>
+                <p>4s = 400</p>
+                <p>s = 100 m</p>
+                <p class="formula answer"><strong>Distance = 100 m</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 3</div>
+                <p>A force of <strong>80 N</strong> acts on a mass of <strong>10 kg</strong>. Find acceleration produced.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>Using P = ma</p>
+                <p>a = P/m = 80/10 = 8 m/s²</p>
+                <p class="formula answer"><strong>Acceleration = 8 m/s²</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 4</div>
+                <p>A wheel of radius <strong>0.25 m</strong> rotates at <strong>40 rad/s</strong>. Find linear velocity of a point on its rim.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>v = rω = 0.25 × 40 = 10 m/s</p>
+                <p class="formula answer"><strong>Linear velocity = 10 m/s</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 5</div>
+                <p>A body of mass <strong>4 kg</strong> moves in a circular path of radius <strong>2 m</strong> with speed <strong>6 m/s</strong>. Find centripetal force.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>F = mv²/r = 4 × 6² / 2 = 4 × 36 / 2 = 72 N</p>
+                <p class="formula answer"><strong>Centripetal force = 72 N</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Numerical 6</div>
+                <p>A body rotates from <strong>5 rad/s</strong> to <strong>17 rad/s</strong> in <strong>4 s</strong>. Find angular acceleration.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution</div>
+                <p>α = (ω - ω₀)/t = (17 - 5)/4 = 12/4 = 3 rad/s²</p>
+                <p class="formula answer"><strong>Angular acceleration = 3 rad/s²</strong></p>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- ==================== SECTION 8: WORK, POWER, ENERGY ==================== -->
+    <section class="section" id="work-power-energy">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> Work, Power and Energy
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>8.1 Work</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition of Work</div>
+                <p><strong>Work</strong> is said to be done when a force acts on a body and the body moves through a certain distance in the direction of the force.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-lightbulb"></i> Simple Understanding</div>
+                <p>If you push a wall but the wall does not move, then no mechanical work is done on the wall. But if you push a trolley and it moves, then work is done.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula of Work</div>
+                <p class="formula"><strong>Work = Force × Displacement</strong></p>
+                <p class="formula"><strong>W = F × s</strong></p>
+                <p>If force acts at angle θ to displacement:</p>
+                <p class="formula"><strong>W = F × s × cos θ</strong></p>
+            </div>
+
+            <p><strong>SI Unit:</strong> Joule (J)</p>
+            <p>1 Joule = 1 Newton × 1 metre</p>
+
+            <a href="https://www.google.com/search?tbm=isch&q=work+done+force+displacement+angle+theta+diagram+engineering" target="_blank" rel="noopener" class="figure-link">
+                <div class="diagram-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p><strong>Fig. 7.7:</strong> Work done by force F causing displacement s, including inclined force case</p>
+                    <span class="click-hint">🔍 Click to view on Google Images</span>
+                </div>
+            </a>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Types of Work</div>
+                <ul>
+                    <li><strong>Positive work:</strong> Force and displacement in same direction</li>
+                    <li><strong>Negative work:</strong> Force opposite to displacement</li>
+                    <li><strong>Zero work:</strong> No displacement or force perpendicular to displacement</li>
+                </ul>
+            </div>
+
+            <h3>8.2 Power</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition of Power</div>
+                <p><strong>Power</strong> is the rate of doing work.</p>
+            </div>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula of Power</div>
+                <p class="formula"><strong>Power = Work / Time</strong></p>
+                <p class="formula"><strong>P = W / t</strong></p>
+            </div>
+
+            <p><strong>SI Unit:</strong> Watt (W)</p>
+            <p>1 Watt = 1 Joule/second</p>
+            <p>1 kilowatt (kW) = 1000 W</p>
+
+            <h3>8.3 Energy</h3>
+
+            <div class="definition-box">
+                <div class="box-title"><i class="fas fa-bookmark"></i> Definition of Energy</div>
+                <p><strong>Energy</strong> is the capacity of a body to do work.</p>
+            </div>
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-battery-full"></i> Common Forms of Mechanical Energy</div>
+                <ul>
+                    <li><strong>Kinetic Energy:</strong> Energy possessed by a body due to its motion</li>
+                    <li><strong>Potential Energy:</strong> Energy possessed by a body due to its position</li>
+                </ul>
+            </div>
+
+            <h3>8.4 Kinetic Energy</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>K.E. = ½mv²</strong></p>
+            </div>
+
+            <h3>8.5 Potential Energy</h3>
+
+            <div class="formula-box">
+                <div class="box-title"><i class="fas fa-calculator"></i> Formula</div>
+                <p class="formula"><strong>P.E. = mgh</strong></p>
+            </div>
+
+            <p><strong>SI Unit of Energy:</strong> Joule (J)</p>
+
+            <h3>8.6 Solved Examples</h3>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.15</div>
+                <p>A force of <strong>50 N</strong> moves a body through <strong>6 m</strong> in the direction of force. Find work done.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.15</div>
+                <p>W = F × s = 50 × 6 = 300 J</p>
+                <p class="formula answer"><strong>Work done = 300 J</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.16</div>
+                <p>A machine does <strong>2000 J</strong> of work in <strong>10 s</strong>. Find power.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.16</div>
+                <p>P = W/t = 2000/10 = 200 W</p>
+                <p class="formula answer"><strong>Power = 200 W</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.17</div>
+                <p>Find the kinetic energy of a body of mass <strong>4 kg</strong> moving with velocity <strong>5 m/s</strong>.</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.17</div>
+                <p>K.E. = ½mv² = ½ × 4 × 5² = 2 × 25 = 50 J</p>
+                <p class="formula answer"><strong>Kinetic Energy = 50 J</strong></p>
+            </div>
+
+            <div class="example-box">
+                <div class="box-title"><i class="fas fa-pencil-alt"></i> Example 7.18</div>
+                <p>A body of mass <strong>3 kg</strong> is raised to a height of <strong>8 m</strong>. Find potential energy. Take g = 9.81 m/s².</p>
+            </div>
+            <div class="solution-box">
+                <div class="box-title"><i class="fas fa-check-circle"></i> Solution 7.18</div>
+                <p>P.E. = mgh = 3 × 9.81 × 8</p>
+                <p>= 235.44 J</p>
+                <p class="formula answer"><strong>Potential Energy = 235.44 J</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: KEY FORMULAS ==================== -->
+    <section class="section" id="key-formulas">
+        <h2 class="section-title">
+            <i class="fas fa-list"></i> Key Formulas Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="formula-card-grid">
+                <div class="formula-card">
+                    <h4>First Equation of Motion</h4>
+                    <p class="formula"><strong>v = u + at</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Second Equation of Motion</h4>
+                    <p class="formula"><strong>s = ut + ½at²</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Third Equation of Motion</h4>
+                    <p class="formula"><strong>v² = u² + 2as</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Newton’s Second Law</h4>
+                    <p class="formula"><strong>P = ma</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Momentum</h4>
+                    <p class="formula"><strong>Momentum = mv</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Conservation of Momentum</h4>
+                    <p class="formula"><strong>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Angular Velocity</h4>
+                    <p class="formula"><strong>ω = θ/t</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Angular Acceleration</h4>
+                    <p class="formula"><strong>α = (ω - ω₀)/t</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Linear and Angular Velocity Relation</h4>
+                    <p class="formula"><strong>v = rω</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Linear and Angular Acceleration Relation</h4>
+                    <p class="formula"><strong>a = rα</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Centripetal Force</h4>
+                    <p class="formula"><strong>F = mv²/r</strong></p>
+                    <p class="formula"><strong>F = mrω²</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Work Done</h4>
+                    <p class="formula"><strong>W = F × s</strong></p>
+                    <p class="formula"><strong>W = Fs cos θ</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Power</h4>
+                    <p class="formula"><strong>P = W/t</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Kinetic Energy</h4>
+                    <p class="formula"><strong>K.E. = ½mv²</strong></p>
+                </div>
+
+                <div class="formula-card">
+                    <h4>Potential Energy</h4>
+                    <p class="formula"><strong>P.E. = mgh</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 10: DEFINITIONS ==================== -->
+    <section class="section" id="definitions">
+        <h2 class="section-title">
+            <i class="fas fa-book-open"></i> Important Definitions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Rectilinear Motion</div><p>Motion along a straight line is called rectilinear motion.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Curvilinear Motion</div><p>Motion along a curved path is called curvilinear motion.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Velocity</div><p>Velocity is the rate of change of displacement with time.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Acceleration</div><p>Acceleration is the rate of change of velocity with time.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Momentum</div><p>Momentum is the product of mass and velocity of a body.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Angular Displacement</div><p>Angular displacement is the angle through which a body rotates about a fixed axis.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Angular Velocity</div><p>Angular velocity is the rate of change of angular displacement.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Angular Acceleration</div><p>Angular acceleration is the rate of change of angular velocity.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Centripetal Force</div><p>Centripetal force is the inward force acting on a body moving in a circular path.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Work</div><p>Work is done when force causes displacement of a body in its direction.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Power</div><p>Power is the rate of doing work.</p></div>
+            <div class="definition-box"><div class="box-title"><i class="fas fa-bookmark"></i> Energy</div><p>Energy is the capacity to do work.</p></div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 11: COMPARISONS ==================== -->
+    <section class="section" id="comparisons">
+        <h2 class="section-title">
+            <i class="fas fa-columns"></i> Comparison Tables
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <h3>Distance vs Displacement</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>S.No.</th><th>Distance</th><th>Displacement</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Total path travelled</td><td>Shortest distance between two points</td></tr>
+                        <tr><td>2</td><td>Scalar quantity</td><td>Vector quantity</td></tr>
+                        <tr><td>3</td><td>Always positive</td><td>Can be positive, negative, or zero</td></tr>
+                        <tr><td>4</td><td>Path dependent</td><td>Path independent</td></tr>
+                        <tr><td>5</td><td>Never less than displacement</td><td>Always less than or equal to distance</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Speed vs Velocity</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>S.No.</th><th>Speed</th><th>Velocity</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Distance per unit time</td><td>Displacement per unit time</td></tr>
+                        <tr><td>2</td><td>Scalar</td><td>Vector</td></tr>
+                        <tr><td>3</td><td>No direction</td><td>Has direction</td></tr>
+                        <tr><td>4</td><td>Always positive</td><td>May be positive or negative</td></tr>
+                        <tr><td>5</td><td>Path dependent</td><td>Depends on displacement</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Centripetal Force vs Centrifugal Force</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>S.No.</th><th>Centripetal Force</th><th>Centrifugal Force</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Acts toward the centre</td><td>Acts away from the centre</td></tr>
+                        <tr><td>2</td><td>Real force</td><td>Apparent force</td></tr>
+                        <tr><td>3</td><td>Keeps body in circular motion</td><td>Felt by body in rotating frame</td></tr>
+                        <tr><td>4</td><td>Provided by tension, gravity, etc.</td><td>Not due to physical interaction</td></tr>
+                        <tr><td>5</td><td>Direction inward</td><td>Direction outward</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Kinetic Energy vs Potential Energy</h3>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>S.No.</th><th>Kinetic Energy</th><th>Potential Energy</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Due to motion</td><td>Due to position</td></tr>
+                        <tr><td>2</td><td>K.E. = ½mv²</td><td>P.E. = mgh</td></tr>
+                        <tr><td>3</td><td>Depends on velocity</td><td>Depends on height</td></tr>
+                        <tr><td>4</td><td>Zero if body is at rest</td><td>May exist even at rest</td></tr>
+                        <tr><td>5</td><td>Increases with speed</td><td>Increases with height</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 12: MCQ BANK ==================== -->
+    <section class="section" id="mcq-bank">
+        <h2 class="section-title">
+            <i class="fas fa-question-circle"></i> MCQ Bank
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="mcq-grid">
+
+                <div class="mcq-item">
+                    <h4>Q1</h4>
+                    <p>The slope of displacement–time graph gives:</p>
+                    <ul class="options">
+                        <li>a. Acceleration</li>
+                        <li>b. Velocity</li>
+                        <li>c. Force</li>
+                        <li>d. Power</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq1"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq1">
+                        <strong>Answer: b. Velocity</strong>
+                        <p>Slope of displacement–time graph represents velocity.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q2</h4>
+                    <p>The area under velocity–time graph gives:</p>
+                    <ul class="options">
+                        <li>a. Force</li>
+                        <li>b. Acceleration</li>
+                        <li>c. Displacement</li>
+                        <li>d. Power</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq2"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq2">
+                        <strong>Answer: c. Displacement</strong>
+                        <p>Area under v–t graph gives displacement.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q3</h4>
+                    <p>The first equation of motion is:</p>
+                    <ul class="options">
+                        <li>a. s = ut + ½at²</li>
+                        <li>b. v² = u² + 2as</li>
+                        <li>c. v = u + at</li>
+                        <li>d. P = ma</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq3"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq3">
+                        <strong>Answer: c. v = u + at</strong>
+                        <p>This is the standard first equation of motion.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q4</h4>
+                    <p>Newton’s second law is:</p>
+                    <ul class="options">
+                        <li>a. P = mv</li>
+                        <li>b. P = ma</li>
+                        <li>c. W = Fs</li>
+                        <li>d. v = rω</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq4"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq4">
+                        <strong>Answer: b. P = ma</strong>
+                        <p>Force equals mass times acceleration.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q5</h4>
+                    <p>Momentum is equal to:</p>
+                    <ul class="options">
+                        <li>a. ma</li>
+                        <li>b. mv</li>
+                        <li>c. mgh</li>
+                        <li>d. ½mv²</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq5"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq5">
+                        <strong>Answer: b. mv</strong>
+                        <p>Momentum is mass × velocity.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q6</h4>
+                    <p>Angular velocity is measured in:</p>
+                    <ul class="options">
+                        <li>a. m/s</li>
+                        <li>b. rad/s</li>
+                        <li>c. N</li>
+                        <li>d. J</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq6"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq6">
+                        <strong>Answer: b. rad/s</strong>
+                        <p>Angular velocity unit is radian per second.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q7</h4>
+                    <p>The relation between linear and angular velocity is:</p>
+                    <ul class="options">
+                        <li>a. v = r/ω</li>
+                        <li>b. v = rω</li>
+                        <li>c. ω = rv</li>
+                        <li>d. v = ω/r</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq7"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq7">
+                        <strong>Answer: b. v = rω</strong>
+                        <p>This is the basic relation for circular motion.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q8</h4>
+                    <p>Centripetal force acts:</p>
+                    <ul class="options">
+                        <li>a. Tangentially</li>
+                        <li>b. Vertically upward</li>
+                        <li>c. Toward the centre</li>
+                        <li>d. Away from the centre</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq8"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq8">
+                        <strong>Answer: c. Toward the centre</strong>
+                        <p>Centripetal force always acts inward.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q9</h4>
+                    <p>Formula of centripetal force is:</p>
+                    <ul class="options">
+                        <li>a. mrω</li>
+                        <li>b. mv²/r</li>
+                        <li>c. ½mv²</li>
+                        <li>d. mgh</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq9"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq9">
+                        <strong>Answer: b. mv²/r</strong>
+                        <p>This is the standard formula for centripetal force.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q10</h4>
+                    <p>Work done is zero when force is:</p>
+                    <ul class="options">
+                        <li>a. Parallel to displacement</li>
+                        <li>b. Opposite to displacement</li>
+                        <li>c. Perpendicular to displacement</li>
+                        <li>d. Equal to displacement</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq10"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq10">
+                        <strong>Answer: c. Perpendicular to displacement</strong>
+                        <p>Because cos 90° = 0, so work becomes zero.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q11</h4>
+                    <p>SI unit of work is:</p>
+                    <ul class="options">
+                        <li>a. Watt</li>
+                        <li>b. Newton</li>
+                        <li>c. Joule</li>
+                        <li>d. m/s</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq11"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq11">
+                        <strong>Answer: c. Joule</strong>
+                        <p>Work is measured in joule.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q12</h4>
+                    <p>Power is:</p>
+                    <ul class="options">
+                        <li>a. Work × time</li>
+                        <li>b. Work / time</li>
+                        <li>c. Force × time</li>
+                        <li>d. Energy × time</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq12"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq12">
+                        <strong>Answer: b. Work / time</strong>
+                        <p>Power is rate of doing work.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q13</h4>
+                    <p>Kinetic energy depends on:</p>
+                    <ul class="options">
+                        <li>a. Height</li>
+                        <li>b. Position only</li>
+                        <li>c. Motion</li>
+                        <li>d. Temperature only</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq13"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq13">
+                        <strong>Answer: c. Motion</strong>
+                        <p>Kinetic energy is due to motion of body.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q14</h4>
+                    <p>Potential energy is given by:</p>
+                    <ul class="options">
+                        <li>a. ½mv²</li>
+                        <li>b. mgh</li>
+                        <li>c. mv</li>
+                        <li>d. Fs</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq14"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq14">
+                        <strong>Answer: b. mgh</strong>
+                        <p>Potential energy due to height is mgh.</p>
+                    </div>
+                </div>
+
+                <div class="mcq-item">
+                    <h4>Q15</h4>
+                    <p>Angular acceleration is measured in:</p>
+                    <ul class="options">
+                        <li>a. rad/s</li>
+                        <li>b. rad/s²</li>
+                        <li>c. m/s²</li>
+                        <li>d. N</li>
+                    </ul>
+                    <button class="toggle-btn" data-target="mcq15"><i class="fas fa-eye"></i> Show Answer</button>
+                    <div class="answer-reveal" id="mcq15">
+                        <strong>Answer: b. rad/s²</strong>
+                        <p>Angular acceleration unit is radian per second square.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 13: SHORT ANSWERS ==================== -->
+    <section class="section" id="short-answers">
+        <h2 class="section-title">
+            <i class="fas fa-pen"></i> Short Answer Questions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area"><h4>Q1. Define rectilinear motion.</h4><button class="toggle-btn" data-target="sa1"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa1"><p>Motion along a straight line is called rectilinear motion.</p></div></div>
+
+            <div class="exercise-area"><h4>Q2. What is momentum?</h4><button class="toggle-btn" data-target="sa2"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa2"><p>Momentum is the product of mass and velocity of a body. Momentum = mv.</p></div></div>
+
+            <div class="exercise-area"><h4>Q3. State Newton’s second law.</h4><button class="toggle-btn" data-target="sa3"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa3"><p>Newton’s second law states that force is equal to mass times acceleration, i.e., P = ma.</p></div></div>
+
+            <div class="exercise-area"><h4>Q4. Write the three equations of motion.</h4><button class="toggle-btn" data-target="sa4"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa4"><p>v = u + at, s = ut + ½at², and v² = u² + 2as.</p></div></div>
+
+            <div class="exercise-area"><h4>Q5. Define angular velocity.</h4><button class="toggle-btn" data-target="sa5"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa5"><p>Angular velocity is the rate of change of angular displacement with time.</p></div></div>
+
+            <div class="exercise-area"><h4>Q6. State relation between linear and angular velocity.</h4><button class="toggle-btn" data-target="sa6"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa6"><p>The relation is v = rω, where v is linear velocity, r is radius, and ω is angular velocity.</p></div></div>
+
+            <div class="exercise-area"><h4>Q7. What is centripetal force?</h4><button class="toggle-btn" data-target="sa7"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa7"><p>Centripetal force is the inward force acting toward the centre of a circular path to keep the body moving in a circle.</p></div></div>
+
+            <div class="exercise-area"><h4>Q8. Define work.</h4><button class="toggle-btn" data-target="sa8"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa8"><p>Work is done when a force causes displacement of a body in its direction.</p></div></div>
+
+            <div class="exercise-area"><h4>Q9. Define power.</h4><button class="toggle-btn" data-target="sa9"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa9"><p>Power is the rate of doing work. P = W/t.</p></div></div>
+
+            <div class="exercise-area"><h4>Q10. Define energy.</h4><button class="toggle-btn" data-target="sa10"><i class="fas fa-eye"></i> Show Answer</button><div class="answer-reveal" id="sa10"><p>Energy is the capacity to do work.</p></div></div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 14: LONG ANSWERS ==================== -->
+    <section class="section" id="long-answers">
+        <h2 class="section-title">
+            <i class="fas fa-file-alt"></i> Long Answer Questions
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>Q1. Derive the three equations of motion. [5–7 Marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la1"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la1">
+                    <p>Let initial velocity = u, final velocity = v, acceleration = a, time = t, displacement = s.</p>
+                    <p><strong>First Equation:</strong></p>
+                    <p>a = (v - u)/t</p>
+                    <p>at = v - u</p>
+                    <p><strong>v = u + at</strong></p>
+
+                    <p><strong>Second Equation:</strong></p>
+                    <p>Average velocity = (u + v)/2</p>
+                    <p>s = [(u + v)/2] × t</p>
+                    <p>Substitute v = u + at</p>
+                    <p>s = [(u + u + at)/2] × t</p>
+                    <p><strong>s = ut + ½at²</strong></p>
+
+                    <p><strong>Third Equation:</strong></p>
+                    <p>s = [(u + v)/2] × t and t = (v - u)/a</p>
+                    <p>s = [(u + v)/2] × [(v - u)/a]</p>
+                    <p>2as = v² - u²</p>
+                    <p><strong>v² = u² + 2as</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q2. State Newton’s second law and explain momentum and conservation of momentum. [5 Marks]</h4>
+                <button class="toggle-btn" data-target="la2"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la2">
+                    <p>Newton’s second law states that force is equal to mass times acceleration, i.e., P = ma.</p>
+                    <p><strong>Momentum:</strong> Momentum is the quantity of motion possessed by a body and is equal to mv.</p>
+                    <p><strong>Conservation of Momentum:</strong> If no external force acts on a system, the total momentum before collision is equal to the total momentum after collision.</p>
+                    <p>For two bodies:</p>
+                    <p>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q3. Define angular displacement, angular velocity, and angular acceleration. Derive relation v = rω. [5 Marks] 🔥</h4>
+                <button class="toggle-btn" data-target="la3"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la3">
+                    <p><strong>Angular displacement:</strong> Angle through which a body rotates.</p>
+                    <p><strong>Angular velocity:</strong> Rate of change of angular displacement.</p>
+                    <p><strong>Angular acceleration:</strong> Rate of change of angular velocity.</p>
+                    <p><strong>Derivation of v = rω:</strong></p>
+                    <p>For a particle moving in a circle of radius r, arc length s = rθ</p>
+                    <p>Linear velocity v = s/t = rθ/t</p>
+                    <p>But θ/t = ω</p>
+                    <p>Therefore, <strong>v = rω</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q4. Derive the expression for centripetal force. [5 Marks] ⭐</h4>
+                <button class="toggle-btn" data-target="la4"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la4">
+                    <p>For a body of mass m moving with velocity v in a circle of radius r, centripetal acceleration is:</p>
+                    <p>a = v²/r</p>
+                    <p>Using Newton’s second law:</p>
+                    <p>F = ma = m(v²/r)</p>
+                    <p><strong>Therefore, centripetal force F = mv²/r</strong></p>
+                    <p>Since v = rω, then:</p>
+                    <p>F = m(rω)²/r = mrω²</p>
+                    <p><strong>Hence, F = mv²/r = mrω²</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q5. Define work, power, and energy. Write their formulas and SI units. [5 Marks]</h4>
+                <button class="toggle-btn" data-target="la5"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la5">
+                    <p><strong>Work:</strong> Work is done when a force causes displacement. Formula: W = Fs. SI unit: Joule.</p>
+                    <p><strong>Power:</strong> Power is the rate of doing work. Formula: P = W/t. SI unit: Watt.</p>
+                    <p><strong>Energy:</strong> Energy is the capacity to do work. SI unit: Joule.</p>
+                    <p>Mechanical energy includes kinetic energy and potential energy.</p>
+                    <p>K.E. = ½mv² and P.E. = mgh</p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>Q6. Compare speed and velocity, and compare kinetic energy and potential energy. [5 Marks]</h4>
+                <button class="toggle-btn" data-target="la6"><i class="fas fa-eye"></i> Show Answer</button>
+                <div class="answer-reveal" id="la6">
+                    <p><strong>Speed vs Velocity:</strong></p>
+                    <ul>
+                        <li>Speed is scalar; velocity is vector.</li>
+                        <li>Speed = distance/time; velocity = displacement/time.</li>
+                        <li>Speed has no direction; velocity has direction.</li>
+                    </ul>
+                    <p><strong>Kinetic Energy vs Potential Energy:</strong></p>
+                    <ul>
+                        <li>Kinetic energy is due to motion; potential energy is due to position.</li>
+                        <li>K.E. = ½mv²; P.E. = mgh.</li>
+                        <li>K.E. depends on velocity; P.E. depends on height.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 15: PRACTICE NUMERICALS ==================== -->
+    <section class="section" id="practice-numericals">
+        <h2 class="section-title">
+            <i class="fas fa-calculator"></i> Practice Numericals
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="exercise-area">
+                <h4>P1. A body starts from rest and moves with acceleration 4 m/s² for 5 s. Find final velocity.</h4>
+                <button class="toggle-btn" data-target="pn1"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn1">
+                    <p>v = u + at = 0 + 4 × 5 = <strong>20 m/s</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P2. A body with initial velocity 3 m/s accelerates at 2 m/s² for 4 s. Find displacement.</h4>
+                <button class="toggle-btn" data-target="pn2"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn2">
+                    <p>s = ut + ½at² = 3×4 + ½×2×16 = 12 + 16 = <strong>28 m</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P3. A force of 45 N acts on a body of mass 9 kg. Find acceleration.</h4>
+                <button class="toggle-btn" data-target="pn3"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn3">
+                    <p>a = P/m = 45/9 = <strong>5 m/s²</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P4. A mass of 6 kg moves with velocity 7 m/s. Find momentum.</h4>
+                <button class="toggle-btn" data-target="pn4"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn4">
+                    <p>Momentum = mv = 6 × 7 = <strong>42 kg·m/s</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P5. A wheel of radius 0.3 m rotates with angular velocity 12 rad/s. Find linear velocity.</h4>
+                <button class="toggle-btn" data-target="pn5"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn5">
+                    <p>v = rω = 0.3 × 12 = <strong>3.6 m/s</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P6. A body of mass 3 kg moves in a circle of radius 1.5 m at speed 6 m/s. Find centripetal force.</h4>
+                <button class="toggle-btn" data-target="pn6"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn6">
+                    <p>F = mv²/r = 3 × 36 / 1.5 = 108 / 1.5 = <strong>72 N</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P7. A force of 20 N moves a body through 15 m in the same direction. Find work done.</h4>
+                <button class="toggle-btn" data-target="pn7"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn7">
+                    <p>W = Fs = 20 × 15 = <strong>300 J</strong></p>
+                </div>
+            </div>
+
+            <div class="exercise-area">
+                <h4>P8. Find the kinetic energy of a body of mass 5 kg moving with speed 4 m/s.</h4>
+                <button class="toggle-btn" data-target="pn8"><i class="fas fa-eye"></i> Show Solution</button>
+                <div class="answer-reveal" id="pn8">
+                    <p>K.E. = ½mv² = ½ × 5 × 16 = 2.5 × 16 = <strong>40 J</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 16: QUICK REVISION ==================== -->
+    <section class="section" id="quick-revision">
+        <h2 class="section-title">
+            <i class="fas fa-bolt"></i> Quick Revision / Unit Summary
+            <i class="fas fa-chevron-up collapse-icon"></i>
+        </h2>
+        <div class="section-content">
+
+            <div class="concept-box">
+                <div class="box-title"><i class="fas fa-star"></i> Last Minute Revision</div>
+                <ul>
+                    <li>Rectilinear motion = motion in straight line</li>
+                    <li>Curvilinear motion = motion in curved path</li>
+                    <li>Slope of displacement–time graph = velocity</li>
+                    <li>Slope of velocity–time graph = acceleration</li>
+                    <li>Area under velocity–time graph = displacement</li>
+                    <li>Equations of motion: v = u + at, s = ut + ½at², v² = u² + 2as</li>
+                    <li>Newton’s second law: P = ma</li>
+                    <li>Momentum = mv</li>
+                    <li>Conservation of momentum: total momentum remains constant if no external force acts</li>
+                    <li>Angular velocity ω = θ/t</li>
+                    <li>Angular acceleration α = change in angular velocity / time</li>
+                    <li>Linear and angular relation: v = rω, a = rα</li>
+                    <li>Centripetal force: F = mv²/r = mrω²</li>
+                    <li>Work = Fs</li>
+                    <li>Power = Work/time</li>
+                    <li>K.E. = ½mv²</li>
+                    <li>P.E. = mgh</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <div class="box-title"><i class="fas fa-exclamation-circle"></i> Most Important Exam Topics</div>
+                <ul>
+                    <li>Derivation of three equations of motion</li>
+                    <li>Newton’s second law and momentum</li>
+                    <li>Relation v = rω and a = rα</li>
+                    <li>Centripetal force derivation</li>
+                    <li>Work, power, and energy formulas</li>
+                    <li>Numericals from motion equations and circular motion</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes</div>
+                <ul>
+                    <li>Do not use equations of motion if acceleration is not uniform.</li>
+                    <li>Do not confuse distance with displacement.</li>
+                    <li>Do not confuse speed with velocity.</li>
+                    <li>Use proper SI units in all answers.</li>
+                    <li>In circular motion, centripetal force is inward, not outward.</li>
+                    <li>Write work as zero when force is perpendicular to displacement.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<div class="fab-container">
+    <button class="fab fab-top" id="fabTop" title="Back to top"><i class="fas fa-arrow-up"></i><span class="fab-tooltip">Back to Top</span></button>
+    <button class="fab fab-print" id="fabPrint" title="Print"><i class="fas fa-print"></i><span class="fab-tooltip">Print</span></button>
+    <button class="fab fab-save" id="fabSave" title="Save progress"><i class="fas fa-save"></i><span class="fab-tooltip">Save</span></button>
+</div>
+
+<div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
-    <span id="toastMsg">Ready</span>
-  </div>
+    <span id="toastMsg">Action completed</span>
+</div>
+
+<script src="../units-com/engine.js"></script>
 </body>
 </html>
