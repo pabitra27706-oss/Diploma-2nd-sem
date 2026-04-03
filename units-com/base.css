@@ -1,6 +1,8 @@
 /* ================================================
-   BASE STYLES v3.3 — shared across all chapters
-   Fixed: opaque navbar, stacking contexts, overflow
+   BASE STYLES v3.5 — shared across all chapters
+   KEY FIX: .section-content has overflow:visible 
+   when expanded, overflow:hidden only during 
+   collapse transition
    ================================================ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -78,6 +80,7 @@
     position: fixed; top: 0; left: 0; height: 3px;
     background: linear-gradient(90deg, var(--accent), var(--danger), var(--purple));
     z-index: 10001; transition: width .1s linear; border-radius: 0 2px 2px 0;
+    will-change: width;
 }
 
 /* ===== BODY ===== */
@@ -133,7 +136,7 @@ body {
 }
 .info-item:hover { background: rgba(255,255,255,.22); transform: translateY(-2px); }
 
-/* ===== NAVBAR — STICKY, FULLY OPAQUE, ISOLATED STACKING ===== */
+/* ===== NAVBAR ===== */
 .navbar {
     position: sticky;
     top: 0;
@@ -141,15 +144,13 @@ body {
     height: var(--nav-height);
     display: flex;
     align-items: center;
-    /* FULLY OPAQUE — no content bleed-through */
     background: #ffffff;
     box-shadow: var(--shadow-md);
     transition: background var(--transition), box-shadow var(--transition);
-    /* Enforce own stacking context — always on top of sections */
     isolation: isolate;
+    will-change: transform;
 }
 [data-theme="dark"] .navbar {
-    /* FULLY OPAQUE dark */
     background: #1e293b;
 }
 .navbar.scrolled {
@@ -161,7 +162,6 @@ body {
     max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 20px;
 }
 
-/* NAV BRAND — always visible */
 .nav-brand {
     flex-shrink: 0;
     margin-right: 12px;
@@ -178,7 +178,6 @@ body {
     letter-spacing: 0.3px;
 }
 
-/* NAV LINKS */
 .nav-links {
     display: flex; gap: 4px; align-items: center; flex-wrap: nowrap;
     overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
@@ -194,7 +193,6 @@ body {
 .nav-links a:hover { background: var(--light); color: var(--accent); }
 .nav-links a.active { background: var(--primary); color: #fff; }
 
-/* NAV RIGHT */
 .nav-right {
     display: flex; align-items: center; gap: 8px; flex-shrink: 0;
     margin-left: 8px;
@@ -232,7 +230,9 @@ body {
     height: 100vh; height: 100dvh;
     background: var(--card-bg); z-index: 9999;
     transition: right var(--transition); box-shadow: var(--shadow-lg);
-    display: flex; flex-direction: column; overflow-y: auto;
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 .mobile-drawer.active { right: 0; }
 .drawer-header {
@@ -284,7 +284,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== SECTIONS — NO persistent transform ===== */
+/* ===== SECTIONS ===== */
 .section {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
@@ -294,13 +294,10 @@ body {
     border: 1px solid var(--border-color);
     overflow: hidden;
     max-width: 100%;
-    /* Start hidden for scroll reveal */
     opacity: 0;
     transform: translateY(30px);
-    /* Transition for reveal animation */
     transition: box-shadow var(--transition), opacity 0.5s ease, transform 0.5s ease;
 }
-/* FIXED: transform:none removes stacking context after reveal */
 .section.visible {
     opacity: 1;
     transform: none;
@@ -324,21 +321,44 @@ body {
 }
 .section-title .collapse-icon.collapsed { transform: rotate(-90deg); }
 
-/* ===== COLLAPSE — CSS Grid ===== */
+/* ==============================================
+   SECTION CONTENT — THE SCROLL FIX
+   
+   THREE STATES:
+   1. .expanded        → overflow:visible (NO scroll trap)
+   2. .transitioning   → overflow:hidden  (needed for animation)
+   3. .collapsed       → overflow:hidden  (content hidden)
+   
+   Default is overflow:hidden for safety.
+   JS adds .expanded after page load and after
+   each expand transition finishes.
+   ============================================== */
 .section-content {
     display: grid;
     grid-template-rows: 1fr;
     transition: grid-template-rows 0.45s ease, opacity 0.3s ease;
-    overflow-x: hidden;
-    overflow-y: visible;
+    overflow: hidden;
     min-width: 0;
     max-width: 100%;
 }
+
+/* EXPANDED — no scroll trap, content flows naturally */
+.section-content.expanded {
+    overflow: visible;
+}
+
+/* TRANSITIONING — needs hidden for clean animation */
+.section-content.transitioning {
+    overflow: hidden;
+}
+
+/* COLLAPSED — hidden content */
 .section-content.collapsed {
     grid-template-rows: 0fr;
     opacity: 0;
     overflow: hidden;
 }
+
 .section-content-inner {
     overflow: hidden;
     min-height: 0;
@@ -347,6 +367,12 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
+
+/* When parent is expanded, inner doesn't need to clip either */
+.section-content.expanded .section-content-inner {
+    overflow: visible;
+}
+
 .section-content > * {
     min-width: 0;
     max-width: 100%;
@@ -427,7 +453,7 @@ body {
     overflow-x: auto; overflow-y: hidden;
     font-family: var(--font-mono);
     max-width: 100%;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
 }
 .formula:hover { box-shadow: var(--shadow-md); }
 .formula.answer {
@@ -468,7 +494,8 @@ body {
 .table-wrapper {
     width: 100%; overflow-x: auto; margin: 20px 0;
     border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
-    -webkit-overflow-scrolling: touch; max-width: 100%;
+    max-width: 100%;
+    -webkit-overflow-scrolling: auto;
 }
 .data-table { width: 100%; border-collapse: collapse; min-width: 400px; }
 .data-table th {
@@ -587,6 +614,7 @@ img { max-width: 100%; height: auto; }
 .fab-top {
     background: var(--primary); opacity: 0;
     transform: translateY(20px) scale(.8); pointer-events: none;
+    will-change: opacity, transform;
 }
 .fab-top.visible {
     opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
@@ -632,13 +660,11 @@ code { word-break: break-all; }
    RESPONSIVE
    ============================================================ */
 
-/* Desktop */
 @media (min-width: 769px) {
     .mobile-drawer, .nav-overlay { display: none !important; }
     .mobile-menu-btn { display: none !important; }
 }
 
-/* Tablet & Mobile */
 @media (max-width: 768px) {
     .header { padding: 35px 16px 30px; }
     .course-info { gap: 8px; }
@@ -681,7 +707,6 @@ code { word-break: break-all; }
     .toast.show { transform: translateX(0) translateY(0); }
 }
 
-/* Small Mobile */
 @media (max-width: 480px) {
     .header { padding: 24px 10px 18px; }
     .header h1 { font-size: 1.4rem; }
@@ -697,7 +722,19 @@ code { word-break: break-all; }
     .nav-brand h3 { font-size: 0.9rem; }
 }
 
-/* Print */
+/* ===== TOUCH DEVICES ===== */
+@media (hover: none) and (pointer: coarse) {
+    .section:hover { box-shadow: var(--shadow-sm); }
+    .card:hover { transform: none; box-shadow: var(--shadow-sm); }
+    .tag:hover { transform: none; box-shadow: none; }
+    .info-item:hover { transform: none; background: rgba(255,255,255,.12); }
+    .formula:hover { box-shadow: var(--shadow-sm); }
+    .toggle-btn:hover { transform: none; box-shadow: none; }
+    .fab:hover { transform: none; box-shadow: var(--shadow-md); }
+    .header::before { animation: none; }
+}
+
+/* ===== PRINT ===== */
 @media print {
     .navbar, .fab-container, .scroll-progress, .nav-overlay, .mobile-drawer,
     .toast, .toggle-btn, .theme-toggle, .mobile-menu-btn {
@@ -726,7 +763,7 @@ code { word-break: break-all; }
     }
 }
 
-/* Reduced Motion */
+/* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: .01ms !important;

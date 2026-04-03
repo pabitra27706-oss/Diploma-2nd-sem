@@ -1,6 +1,7 @@
 /* ================================================
-   ENGINE v3.3 — Performance-fixed behavior engine
-   Fixes: scroll jank, mobile perf, startup speed
+   ENGINE v3.5 — Final mobile scroll fix
+   The collapse transition applies overflow:hidden
+   temporarily, then removes it when done.
    ================================================ */
 (function() {
     'use strict';
@@ -8,20 +9,18 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         // ========== AUTO-WRAP SECTION CONTENT ==========
-        // Use DocumentFragment to batch DOM moves (reduces reflows)
         document.querySelectorAll('.section-content').forEach(function(content) {
             if (content.querySelector('.section-content-inner')) return;
-            
+
             var wrapper = document.createElement('div');
             wrapper.className = 'section-content-inner';
-            
-            // Batch: move to fragment first (off-DOM = no reflows)
+
             var frag = document.createDocumentFragment();
             while (content.firstChild) {
                 frag.appendChild(content.firstChild);
             }
             wrapper.appendChild(frag);
-            content.appendChild(wrapper); // single reflow
+            content.appendChild(wrapper);
         });
 
         // ========== TOAST ==========
@@ -57,6 +56,15 @@
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         setTheme(saved ? saved === 'dark' : prefersDark);
 
+        try {
+            window.matchMedia('(prefers-color-scheme: dark)')
+                .addEventListener('change', function(e) {
+                    if (!localStorage.getItem('theme')) {
+                        setTheme(e.matches);
+                    }
+                });
+        } catch(e) {}
+
         if (themeBtn) {
             themeBtn.addEventListener('click', function() {
                 var isDark = document.documentElement.getAttribute('data-theme') !== 'dark';
@@ -66,7 +74,9 @@
         }
         if (drawerThemeBtn) {
             drawerThemeBtn.addEventListener('click', function() {
-                if (themeBtn) themeBtn.click();
+                var isDark = document.documentElement.getAttribute('data-theme') !== 'dark';
+                setTheme(isDark);
+                showToast(isDark ? 'Dark mode on' : 'Light mode on', isDark ? 'moon' : 'sun');
             });
         }
 
@@ -76,21 +86,45 @@
         var overlay = document.getElementById('navOverlay');
         var drawerCloseBtn = document.getElementById('drawerClose');
 
+        var savedScrollY = 0;
+
         function openDrawer() {
             if (drawer) drawer.classList.add('active');
             if (overlay) overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            savedScrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = '-' + savedScrollY + 'px';
+            document.body.style.left = '0';
+            document.body.style.right = '0';
         }
 
         function closeDrawer() {
             if (drawer) drawer.classList.remove('active');
             if (overlay) overlay.classList.remove('active');
-            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            window.scrollTo(0, savedScrollY);
         }
 
         if (menuBtn) menuBtn.addEventListener('click', openDrawer);
         if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
         if (overlay) overlay.addEventListener('click', closeDrawer);
+
+        if (drawer) {
+            drawer.addEventListener('transitionend', function() {
+                if (!drawer.classList.contains('active')) {
+                    if (document.body.style.position === 'fixed') {
+                        document.body.style.position = '';
+                        document.body.style.top = '';
+                        document.body.style.left = '';
+                        document.body.style.right = '';
+                        window.scrollTo(0, savedScrollY);
+                    }
+                }
+            });
+        }
 
         var drawerPrintBtn = document.getElementById('drawerPrint');
         if (drawerPrintBtn) {
@@ -115,6 +149,7 @@
                             var icon = target.querySelector('.collapse-icon');
                             if (content && content.classList.contains('collapsed')) {
                                 content.classList.remove('collapsed');
+                                content.classList.add('transitioning');
                                 if (icon) icon.classList.remove('collapsed');
                             }
                             window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
@@ -138,6 +173,7 @@
                         var icon = target.querySelector('.collapse-icon');
                         if (content && content.classList.contains('collapsed')) {
                             content.classList.remove('collapsed');
+                            content.classList.add('transitioning');
                             if (icon) icon.classList.remove('collapsed');
                         }
                         window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
@@ -146,8 +182,7 @@
             });
         }
 
-        // ========== SCROLL PERFORMANCE FIX ==========
-        // Cache section positions — avoid reading layout during scroll
+        // ========== SCROLL PERFORMANCE ==========
         var progressBar = document.getElementById('scrollProgress');
         var navbar = document.getElementById('navbar');
         var fabTop = document.getElementById('fabTop');
@@ -155,22 +190,23 @@
         var allNavLinks = document.querySelectorAll('#navLinks a, #drawerLinks a');
         var allSections = document.querySelectorAll('.section');
 
-        // *** KEY FIX: Pre-calculate and cache positions ***
         var sectionPositions = [];
+        var cachedDocHeight = 1;
 
         function cacheSectionPositions() {
             sectionPositions = [];
             scrollSections.forEach(function(sec) {
                 sectionPositions.push({
                     id: sec.id,
-                    top: sec.offsetTop  // read layout ONCE, not per frame
+                    top: sec.offsetTop
                 });
             });
+            cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (cachedDocHeight < 1) cachedDocHeight = 1;
         }
 
-        // Build cache after layout settles
         cacheSectionPositions();
-        // Rebuild on resize (positions change)
+
         var resizeTimer;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
@@ -180,41 +216,55 @@
             }, 250);
         });
 
-        // *** SINGLE scroll listener — combines everything ***
+        var prevNavState = '';
+        var prevNavbarScrolled = false;
+        var prevFabVisible = false;
+
         var ticking = false;
         var scrollEndTimer;
 
         window.addEventListener('scroll', function() {
-            // --- rAF-throttled work ---
             if (!ticking) {
                 requestAnimationFrame(function() {
                     var y = window.scrollY;
-                    var h = document.documentElement.scrollHeight - window.innerHeight;
 
-                    // Batch all WRITES together (no read-write-read cycle)
-                    if (progressBar) progressBar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
-                    if (navbar) navbar.classList.toggle('scrolled', y > 10);
-                    if (fabTop) fabTop.classList.toggle('visible', y > 400);
+                    if (progressBar) {
+                        progressBar.style.width = ((y / cachedDocHeight) * 100) + '%';
+                    }
 
-                    // Use CACHED positions — zero reflow
+                    var shouldBeScrolled = y > 10;
+                    if (navbar && shouldBeScrolled !== prevNavbarScrolled) {
+                        navbar.classList.toggle('scrolled', shouldBeScrolled);
+                        prevNavbarScrolled = shouldBeScrolled;
+                    }
+
+                    var shouldShowFab = y > 400;
+                    if (fabTop && shouldShowFab !== prevFabVisible) {
+                        fabTop.classList.toggle('visible', shouldShowFab);
+                        prevFabVisible = shouldShowFab;
+                    }
+
                     var current = '';
                     for (var i = 0; i < sectionPositions.length; i++) {
                         if (y >= sectionPositions[i].top - 120) {
                             current = sectionPositions[i].id;
                         }
                     }
-                    allNavLinks.forEach(function(a) {
-                        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-                    });
+                    if (current !== prevNavState) {
+                        allNavLinks.forEach(function(a) {
+                            a.classList.toggle('active',
+                                a.getAttribute('href') === '#' + current);
+                        });
+                        prevNavState = current;
+                    }
 
                     ticking = false;
                 });
                 ticking = true;
             }
 
-            // --- Debounced reveal (runs once after scroll stops) ---
             clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(forceRevealVisible, 150);
+            scrollEndTimer = setTimeout(forceRevealVisible, 300);
 
         }, { passive: true });
 
@@ -235,7 +285,7 @@
         var fabSave = document.getElementById('fabSave');
         if (fabSave) {
             fabSave.addEventListener('click', function() {
-                if (fabSave._saving) return; // debounce rapid clicks
+                if (fabSave._saving) return;
                 fabSave._saving = true;
                 var btn = this;
                 btn.innerHTML = '<i class="fas fa-check"></i><span class="fab-tooltip">Saved!</span>';
@@ -249,20 +299,76 @@
             });
         }
 
-        // ========== COLLAPSIBLE SECTIONS ==========
+        // ========== COLLAPSIBLE SECTIONS (FIXED) ==========
+        // The key: overflow:hidden only during transition, removed after
         document.querySelectorAll('.section-title').forEach(function(title) {
             var content = title.nextElementSibling;
             var icon = title.querySelector('.collapse-icon');
             if (!content || !content.classList.contains('section-content')) return;
             if (!icon) return;
 
+            title.setAttribute('role', 'button');
+            title.setAttribute('tabindex', '0');
+            title.setAttribute('aria-expanded', 'true');
+
+            // Remove overflow:hidden from expanded sections on load
+            // This is THE fix — expanded content must not clip
+            if (!content.classList.contains('collapsed')) {
+                content.classList.add('expanded');
+            }
+
+            // Listen for transition end to toggle overflow
+            content.addEventListener('transitionend', function(e) {
+                // Only react to grid-template-rows transition
+                if (e.propertyName !== 'grid-template-rows') return;
+
+                if (!content.classList.contains('collapsed')) {
+                    // Expand finished — remove clipping
+                    content.classList.add('expanded');
+                    content.classList.remove('transitioning');
+                } else {
+                    // Collapse finished — keep clipping
+                    content.classList.remove('expanded');
+                    content.classList.remove('transitioning');
+                }
+
+                cacheSectionPositions();
+            });
+
             title.addEventListener('click', function() {
                 var isCollapsed = content.classList.contains('collapsed');
-                content.classList.toggle('collapsed');
-                icon.classList.toggle('collapsed');
 
-                // Recache positions after collapse animation finishes
-                setTimeout(cacheSectionPositions, 400);
+                // Starting a transition — need overflow:hidden during animation
+                content.classList.remove('expanded');
+                content.classList.add('transitioning');
+
+                if (isCollapsed) {
+                    // Expanding
+                    content.classList.remove('collapsed');
+                    icon.classList.remove('collapsed');
+                    title.setAttribute('aria-expanded', 'true');
+                } else {
+                    // Collapsing
+                    content.classList.add('collapsed');
+                    icon.classList.add('collapsed');
+                    title.setAttribute('aria-expanded', 'false');
+                }
+
+                // Safety: if transitionend doesn't fire, clean up after timeout
+                setTimeout(function() {
+                    content.classList.remove('transitioning');
+                    if (!content.classList.contains('collapsed')) {
+                        content.classList.add('expanded');
+                    }
+                    cacheSectionPositions();
+                }, 600);
+            });
+
+            title.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
             });
         });
 
@@ -290,9 +396,7 @@
                 this.innerHTML = isHidden ?
                     '<i class="fas fa-eye-slash"></i> Hide ' + label :
                     '<i class="fas fa-eye"></i> Show ' + label;
-
-                // Recache after content size changes
-                setTimeout(cacheSectionPositions, 100);
+                setTimeout(cacheSectionPositions, 150);
             });
         });
 
@@ -313,7 +417,6 @@
             revealObserver.observe(s);
         });
 
-        // Optimized fallback — only checks non-visible sections
         function forceRevealVisible() {
             var viewportHeight = window.innerHeight;
             var remaining = 0;
@@ -325,7 +428,6 @@
                     s.classList.add('visible');
                 }
             });
-            // All revealed — no need to keep checking
             if (remaining === 0) {
                 clearTimeout(scrollEndTimer);
             }
