@@ -69,7 +69,7 @@ No framework dependency is required.
 ### 1) Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/pabitra27706-oss/Diploma-2nd-sem.git
 cd Diploma-2nd-sem
 ```
 
