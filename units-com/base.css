@@ -771,3 +771,8 @@ code { word-break: break-all; }
     }
     .section { opacity: 1; transform: none; }
 }
+.section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: box-shadow var(--transition) !important;
+}
