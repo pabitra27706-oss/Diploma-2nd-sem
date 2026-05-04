@@ -93,7 +93,7 @@
             "group": "A",
             "question": "The order and degree of the differential equation \\(\\left(1 + \\frac{dy}{dx}\\right)^{2/3} = \\frac{d^{3}y}{dx^{3}}\\) are",
             "options": ["3 and 2", "3 and 3", "2 and 3", "3 and 1"],
-            "correct": 0,
+            "correct": 1,
             "marks": 3,
             "explanation": "<p>First, remove the fractional power by raising both sides to the power 3:</p><p>\\(\\left(1 + \\frac{dy}{dx}\\right)^2 = \\left(\\frac{d^3y}{dx^3}\\right)^3\\)</p><p>The highest order derivative present is \\(\\frac{d^3y}{dx^3}\\), so the order is 3.</p><p>The equation is now a polynomial in derivatives, and the power of the highest order derivative is 3. So the degree is 3.</p><p>Therefore, order = 3, degree = 3. The correct option is <strong>3 and 3</strong>.</p>",
             "unit": "Differential Equations"
