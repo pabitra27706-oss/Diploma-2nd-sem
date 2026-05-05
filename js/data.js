@@ -262,7 +262,7 @@ const subjects = {
         icon: "💡",
         color: "#FFC107",
         isDirectSubject: true,          // flag to open directly
-        directLink: "/suggestions/index.html"
+        directLink: "../suggestions/index.html"
     },
 
     "practice": {
