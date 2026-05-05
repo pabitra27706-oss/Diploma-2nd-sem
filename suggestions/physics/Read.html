@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Physics–II • 1-Week Rescue Plan • Score 35+ with Ease</title>
+    <style>
+        :root {
+            --bg: #f0f4f8;
+            --card: #ffffff;
+            --text: #1e293b;
+            --soft: #64748b;
+            --accent: #0f4c81;
+            --accent-light: #e8f1fc;
+            --gold: #b76e00;
+            --gold-light: #fef9e7;
+            --green: #0b5e42;
+            --green-light: #e6f7f0;
+            --red-soft: #f9eaea;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+            --transition: 0.2s ease;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 16px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(135deg, #0f4c81 0%, #1a6fb5 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .hero h1 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            margin-bottom: 6px;
+        }
+        .hero .tagline {
+            font-size: 1rem;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+        .hero .pattern-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Priority Table */
+        .priority-table-section {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 600px;
+        }
+        th {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 700;
+            padding: 12px 8px;
+            text-align: left;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-bottom: 2px solid var(--accent);
+        }
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+        .rank-badge {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 800;
+            font-size: 0.8rem;
+        }
+        .unit-name {
+            font-weight: 700;
+        }
+        .stars-cell {
+            color: #e6a817;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .marks-cell {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+        .study-cell {
+            font-weight: 600;
+            color: var(--green);
+        }
+        .topic-cell {
+            font-size: 0.82rem;
+            color: var(--soft);
+            max-width: 200px;
+        }
+
+        /* Unit cards */
+        .unit-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .unit-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border-left: 5px solid var(--accent);
+            transition: var(--transition);
+        }
+        .unit-card.easiest {
+            border-left-color: #0b5e42;
+        }
+        .unit-card.medium {
+            border-left-color: #b76e00;
+        }
+        .unit-card .card-header {
+            padding: 16px 20px;
+            background: #f8fafc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .badge-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .badge.gold {
+            background: var(--gold-light);
+            color: var(--gold);
+        }
+        .badge.green {
+            background: var(--green-light);
+            color: var(--green);
+        }
+        .card-body {
+            padding: 16px 20px;
+        }
+        .card-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .card-body li {
+            padding: 5px 0 5px 22px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .card-body li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .marks-guarantee {
+            margin-top: 12px;
+            background: var(--green-light);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Formula Cards */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .formula-card {
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .formula-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+        .formula-card .formula-name {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--soft);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 6px;
+        }
+        .formula-card .formula-expr {
+            font-family: 'Cambria Math', 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0c2d4a;
+            word-break: break-word;
+        }
+        .formula-card .unit-tag {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        /* Footer Note */
+        .footer-note {
+            background: #fff9e8;
+            border-left: 4px solid #e6a817;
+            padding: 18px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            color: #5c4b1f;
+            margin-top: 10px;
+            box-shadow: var(--shadow);
+        }
+        .footer-note strong {
+            color: #b76e00;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Hero -->
+        <div class="hero">
+            <h1>⚡ Applied Physics–II Rescue Plan</h1>
+            <p class="tagline">Score 35+ marks with just 5 easy units — even if you start late.</p>
+            <span class="pattern-badge">📋 2024–25 Pattern: MCQ + Explanation • 60 Marks</span>
+        </div>
+
+        <!-- Priority Table -->
+        <div class="priority-table-section">
+            <div class="section-title">
+                <span>📊</span> Priority Ranking: Easiest to Hardest (High-Yield Only)
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Unit</th>
+                            <th>Estimated Study Time</th>
+                            <th>Expected Long Q Marks</th>
+                            <th>MCQ Coverage</th>
+                            <th>Appearance (5 yrs)</th>
+                            <th>Key High-Yield Topics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="rank-badge">1</span></td>
+                            <td class="unit-name">6. Semiconductor Physics</td>
+                            <td class="study-cell">3–4 hrs</td>
+                            <td class="marks-cell">8 marks</td>
+                            <td>2–3 MCQs</td>
+                            <td class="stars-cell">★★★★★</td>
+                            <td class="topic-cell">Energy bands, p‑n junction, rectifiers, transistor CE mode</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">2</span></td>
+                            <td class="unit-name">7. Modern Physics</td>
+                            <td class="study-cell">3–4 hrs</td>
+                            <td class="marks-cell">8 marks</td>
+                            <td>2–3 MCQs</td>
+                            <td class="stars-cell">★★★★★</td>
+                            <td class="topic-cell">X‑rays, LASER, optical fibre, Bohr model (transition energy)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">3</span></td>
+                            <td class="unit-name">1. Wave Motion & SHM</td>
+                            <td class="study-cell">3–4 hrs</td>
+                            <td class="marks-cell">8 marks</td>
+                            <td>2 MCQs</td>
+                            <td class="stars-cell">★★★★★</td>
+                            <td class="topic-cell">SHM (v, a, T), wave equation, beats, ultrasonic applications</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">4</span></td>
+                            <td class="unit-name">2. Optics</td>
+                            <td class="study-cell">3–4 hrs</td>
+                            <td class="marks-cell">8 marks</td>
+                            <td>2 MCQs</td>
+                            <td class="stars-cell">★★★★★</td>
+                            <td class="topic-cell">TIR, lens formula, lens maker’s formula, optical fibre basics</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">5</span></td>
+                            <td class="unit-name">3. Electrostatics</td>
+                            <td class="study-cell">3–4 hrs</td>
+                            <td class="marks-cell">8 marks</td>
+                            <td>1–2 MCQs</td>
+                            <td class="stars-cell">★★★★☆</td>
+                            <td class="topic-cell">Coulomb’s law, Gauss’s law, capacitors series/parallel</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top:14px; font-size:0.85rem; color:#475569;">
+                💡 <strong>Total study time:</strong> ~18–20 hours. Cover these 5 units and you can answer <strong>5 long questions (40 marks)</strong> + tackle ~10 MCQs confidently → <strong>50+ total marks</strong>.
+            </p>
+        </div>
+
+        <!-- Detailed Unit Cards -->
+        <div class="unit-grid">
+
+            <!-- Unit 6 -->
+            <div class="unit-card easiest">
+                <div class="card-header">
+                    <h3>🥇 Unit 6 · Semiconductor Physics</h3>
+                    <div class="badge-group">
+                        <span class="badge green">Easiest</span>
+                        <span class="badge">~3.5 hrs</span>
+                        <span class="badge gold">8 Marks Long Q</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Energy band diagrams – conductor vs semiconductor vs insulator</li>
+                        <li>Intrinsic & extrinsic semiconductors; p‑type & n‑type doping</li>
+                        <li>p‑n junction formation & depletion region</li>
+                        <li>Forward & reverse bias – V‑I characteristics (draw graph)</li>
+                        <li>Full‑wave rectifier (centre‑tapped) – circuit diagram & waveforms</li>
+                        <li>Transistor (n‑p‑n) CE amplifier – working, α, β, relation β=α/(1‑α)</li>
+                        <li>LED, solar cell – working principle (short notes)</li>
+                    </ul>
+                    <div class="marks-guarantee">
+                        ✅ <span><strong>Guaranteed 8 marks</strong> – one full long question from this unit every year. Mostly descriptive with diagrams.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 7 -->
+            <div class="unit-card easiest">
+                <div class="card-header">
+                    <h3>🥈 Unit 7 · Modern Physics</h3>
+                    <div class="badge-group">
+                        <span class="badge green">Very Easy</span>
+                        <span class="badge">~3.5 hrs</span>
+                        <span class="badge gold">8 Marks Long Q</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>X‑rays – Coolidge tube, continuous vs characteristic spectrum</li>
+                        <li>Intensity vs wavelength graph (mark λ<sub>min</sub>, peaks)</li>
+                        <li>Duane‑Hunt formula: λ<sub>min</sub> = 12400/V Å</li>
+                        <li>LASER – principle, population inversion, properties (coherence, monochromatic)</li>
+                        <li>He‑Ne laser energy level diagram</li>
+                        <li>Optical fibre – propagation by total internal reflection, advantages</li>
+                        <li>Bohr model – energy levels E<sub>n</sub> = −13.6/n² eV, transition energy</li>
+                    </ul>
+                    <div class="marks-guarantee">
+                        ✅ <span><strong>Guaranteed 8 marks</strong> – X‑rays + LASER + optical fibre appear almost every year in combination.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 1 -->
+            <div class="unit-card medium">
+                <div class="card-header">
+                    <h3>🥉 Unit 1 · Wave Motion & SHM</h3>
+                    <div class="badge-group">
+                        <span class="badge">~3.5 hrs</span>
+                        <span class="badge gold">8 Marks Long Q</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>SHM – definition, displacement, velocity, acceleration equations</li>
+                        <li>v<sub>max</sub> = Aω, a<sub>max</sub> = ω²A</li>
+                        <li>Wave equation y = A sin(ωt − kx) – find f, λ, v from equation</li>
+                        <li>Beats – definition, beat frequency = |f₁ − f₂|</li>
+                        <li>Free, damped & forced vibrations (differences)</li>
+                        <li>Ultrasonic waves – properties and medical/industrial uses</li>
+                    </ul>
+                    <div class="marks-guarantee">
+                        ✅ <span><strong>Guaranteed 8 marks</strong> – SHM + wave equation are the core; beats/ultrasonic often fill 2‑mark sub‑questions.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 2 -->
+            <div class="unit-card medium">
+                <div class="card-header">
+                    <h3>🏅 Unit 2 · Optics</h3>
+                    <div class="badge-group">
+                        <span class="badge">~3.5 hrs</span>
+                        <span class="badge gold">8 Marks Long Q</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Total internal reflection – critical angle, relation θ<sub>c</sub> = sin⁻¹(1/μ)</li>
+                        <li>Lens formula 1/f = 1/v − 1/u, magnification</li>
+                        <li>Lens maker’s formula 1/f = (μ−1)(1/R₁ − 1/R₂)</li>
+                        <li>Ray diagrams – convex lens (object between F and O → virtual image)</li>
+                        <li>Simple & compound microscope (magnification formula)</li>
+                        <li>Optical fibre – TIR based light propagation (overlap with Unit 7)</li>
+                    </ul>
+                    <div class="marks-guarantee">
+                        ✅ <span><strong>Guaranteed 8 marks</strong> – TIR and lens numericals are favourite. Combine with optical fibre for easy marks.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 3 -->
+            <div class="unit-card medium">
+                <div class="card-header">
+                    <h3>📌 Unit 3 · Electrostatics</h3>
+                    <div class="badge-group">
+                        <span class="badge">~3.5 hrs</span>
+                        <span class="badge gold">8 Marks Long Q</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Coulomb’s law (vector form) – force between two charges</li>
+                        <li>Electric field due to a point charge</li>
+                        <li>Gauss’s law statement & derivation for field outside a charged sphere</li>
+                        <li>Capacitance – series & parallel combination formulas</li>
+                        <li>Numerical: equivalent capacitance, energy stored U=½CV²</li>
+                    </ul>
+                    <div class="marks-guarantee">
+                        ✅ <span><strong>Guaranteed 8 marks</strong> – Gauss law derivation is a fixed 5‑mark question; capacitors appear as 3‑mark numerical.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Quick Formula Card Section -->
+        <div class="section-title" style="margin-top:24px;">
+            <span>🧪</span> Only Formulas You Must Memorize (From These 5 Units)
+        </div>
+        <div class="formula-grid">
+            <!-- Unit 1 -->
+            <div class="formula-card">
+                <div class="formula-name">SHM Displacement</div>
+                <div class="formula-expr">y = A sin(ωt + φ)</div>
+                <span class="unit-tag">Unit 1</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Velocity max</div>
+                <div class="formula-expr">v<sub>max</sub> = Aω</div>
+                <span class="unit-tag">Unit 1</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Acceleration max</div>
+                <div class="formula-expr">a<sub>max</sub> = ω²A</div>
+                <span class="unit-tag">Unit 1</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Wave speed</div>
+                <div class="formula-expr">v = f λ = ω/k</div>
+                <span class="unit-tag">Unit 1</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Beat frequency</div>
+                <div class="formula-expr">f<sub>beat</sub> = |f₁ − f₂|</div>
+                <span class="unit-tag">Unit 1</span>
+            </div>
+            <!-- Unit 2 -->
+            <div class="formula-card">
+                <div class="formula-name">Critical angle</div>
+                <div class="formula-expr">θ<sub>c</sub> = sin⁻¹(1/μ)</div>
+                <span class="unit-tag">Unit 2</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Lens formula</div>
+                <div class="formula-expr">1/f = 1/v − 1/u</div>
+                <span class="unit-tag">Unit 2</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Lens maker’s</div>
+                <div class="formula-expr">1/f = (μ−1)(1/R₁ − 1/R₂)</div>
+                <span class="unit-tag">Unit 2</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Magnification</div>
+                <div class="formula-expr">m = v/u = h<sub>i</sub>/h<sub>o</sub></div>
+                <span class="unit-tag">Unit 2</span>
+            </div>
+            <!-- Unit 3 -->
+            <div class="formula-card">
+                <div class="formula-name">Coulomb’s law</div>
+                <div class="formula-expr">F = k q₁q₂/r²</div>
+                <span class="unit-tag">Unit 3</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Electric field (point)</div>
+                <div class="formula-expr">E = k q/r²</div>
+                <span class="unit-tag">Unit 3</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Series C</div>
+                <div class="formula-expr">1/C<sub>eq</sub> = 1/C₁ + 1/C₂</div>
+                <span class="unit-tag">Unit 3</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Parallel C</div>
+                <div class="formula-expr">C<sub>eq</sub> = C₁ + C₂</div>
+                <span class="unit-tag">Unit 3</span>
+            </div>
+            <!-- Unit 6 -->
+            <div class="formula-card">
+                <div class="formula-name">Transistor α, β</div>
+                <div class="formula-expr">β = α/(1−α)</div>
+                <span class="unit-tag">Unit 6</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Knee voltage</div>
+                <div class="formula-expr">Si ≈ 0.7V, Ge ≈ 0.3V</div>
+                <span class="unit-tag">Unit 6</span>
+            </div>
+            <!-- Unit 7 -->
+            <div class="formula-card">
+                <div class="formula-name">X‑ray λ<sub>min</sub></div>
+                <div class="formula-expr">λ<sub>min</sub> = 12400 / V(volts) Å</div>
+                <span class="unit-tag">Unit 7</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Bohr energy</div>
+                <div class="formula-expr">E<sub>n</sub> = −13.6 / n² eV</div>
+                <span class="unit-tag">Unit 7</span>
+            </div>
+            <div class="formula-card">
+                <div class="formula-name">Photon energy</div>
+                <div class="formula-expr">E = hc/λ</div>
+                <span class="unit-tag">Unit 7</span>
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="footer-note">
+            <strong>📌 Latest Exam Pattern Reminder (2024–25 & Expected 2026):</strong><br>
+            • <strong>10 MCQs × 2 marks each</strong> = 20 marks. You must write the correct option <u>and</u> a one‑line explanation. No marks for guesswork without reason.<br>
+            • <strong>5 long questions × 8 marks each</strong> = 40 marks. You choose any 5 from 9–10 questions. Each long question has sub‑parts (diagrams + derivations + numericals).<br>
+            • <strong>Your strategy:</strong> Prepare exactly the 5 units above → answer all long questions from them → use remaining time to attempt MCQs from these units first, then intelligent guesses for the others.<br>
+            • <strong>Result:</strong> With 18–20 focused hours, you can comfortably cross 35 marks — often hitting 45–50. Keep a cool head, draw neat diagrams, and write formulas before plugging numbers. You’ve got this! 💪
+        </div>
+
+    </div>
+</body>
+</html>

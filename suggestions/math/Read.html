@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics-II — Smart Study Guide (Score 35+ with Minimum Effort)</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-light: #334155;
+            --border: #e2e8f0;
+            --prio1: #0d9488;
+            --prio2: #2563eb;
+            --prio3: #7c3aed;
+            --prio4: #ea580c;
+            --star-gold: #eab308;
+            --badge-bg: #dbeafe;
+            --badge-text: #1e40af;
+            --formula-card: #f0fdf4;
+            --formula-border: #86efac;
+            --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+            --font-sans: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 12px;
+            -webkit-text-size-adjust: 100%;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            padding: 30px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .hero h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+        .hero .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        .hero .exam-note {
+            margin-top: 14px;
+            background: #fef3c7;
+            color: #92400e;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Priority Table */
+        .priority-table-wrapper {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+        .priority-table-wrapper h2 {
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        th {
+            background: #f8fafc;
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+        }
+        .rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-right: 8px;
+        }
+        .rank1 { background: var(--prio1); }
+        .rank2 { background: var(--prio2); }
+        .rank3 { background: var(--prio3); }
+        .rank4 { background: var(--prio4); }
+        .unit-cell {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+        .stars-display {
+            color: var(--star-gold);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .effort-badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        .marks-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th {
+                display: none;
+            }
+            td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 12px;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #475569;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                margin-right: 8px;
+            }
+            .unit-cell {
+                justify-content: flex-start;
+            }
+        }
+
+        /* Unit Cards */
+        .unit-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+        .unit-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .unit-card-header {
+            padding: 14px 18px;
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .unit-card-header .uc-num {
+            background: rgba(255,255,255,0.2);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        .uc-prio1 { background: var(--prio1); }
+        .uc-prio2 { background: var(--prio2); }
+        .uc-prio3 { background: var(--prio3); }
+        .uc-prio4 { background: var(--prio4); }
+        .unit-card-body {
+            padding: 16px 18px;
+            flex: 1;
+        }
+        .unit-card-body ul {
+            list-style: none;
+            padding: 0;
+        }
+        .unit-card-body li {
+            padding: 6px 0;
+            border-bottom: 1px dashed #e5e7eb;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .unit-card-body li::before {
+            content: "✔";
+            color: #0d9488;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .unit-card-footer {
+            padding: 10px 18px;
+            background: #f8fafc;
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Formula Card Section */
+        .formula-quick-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .formula-quick-card h2 {
+            padding: 14px 20px;
+            background: #f0fdf4;
+            border-bottom: 1px solid #bbf7d0;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 0;
+            border-top: none;
+        }
+        .formula-cell {
+            padding: 14px 18px;
+            border-bottom: 1px solid #f1f5f9;
+            border-right: 1px solid #f1f5f9;
+        }
+        .formula-cell:nth-child(even) {
+            border-right: none;
+        }
+        @media (max-width: 500px) {
+            .formula-grid {
+                grid-template-columns: 1fr;
+            }
+            .formula-cell {
+                border-right: none;
+            }
+        }
+        .formula-title {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #065f46;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .formula-expr {
+            font-family: var(--font-mono);
+            background: #ffffff;
+            border: 1px solid #d1fae5;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            word-break: break-word;
+            display: block;
+        }
+
+        /* Motivational box */
+        .motivation-box {
+            background: #fef9c3;
+            border-left: 5px solid #eab308;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: #854d0e;
+        }
+
+        .footer-note {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 18px 20px;
+            border-radius: var(--radius);
+            font-size: 0.82rem;
+            line-height: 1.7;
+            margin-top: 24px;
+        }
+        .footer-note strong {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>🚀 Mathematics-II Smart Study Plan</h1>
+            <p class="tagline">Score 35+ marks by studying only the easiest 4 units</p>
+            <span class="exam-note">📌 2024–25 Pattern: MCQs need explanation (1 mark answer + 1 mark reasoning)</span>
+        </div>
+
+        <!-- MOTIVATION -->
+        <div class="motivation-box">
+            <strong>⏳ Short on time?</strong> You can skip the hardest topics (Integration & Differential Equations) entirely and still pass comfortably. Focus on the <strong>4 high‑yield, formula‑based units</strong> below. They appear in every single exam and require less practice.
+        </div>
+
+        <!-- PRIORITY TABLE -->
+        <div class="priority-table-wrapper">
+            <h2>📊 Priority Ranking – Easiest to Hardest</h2>
+            <table>
+                <thead>
+                     <tr>
+                        <th>Priority</th>
+                        <th>Unit</th>
+                        <th>Study Hours</th>
+                        <th>Expected Marks</th>
+                        <th>Frequency</th>
+                        <th>Difficulty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Priority"><span class="unit-cell"><span class="rank-badge rank1">1</span> Highest</span></td>
+                        <td data-label="Unit"><strong>Unit 1 – Determinants & Matrices</strong></td>
+                        <td data-label="Hours"><span class="effort-badge">⏳ 4–5 hrs</span></td>
+                        <td data-label="Marks"><span class="marks-badge">✅ 12–15 marks</span></td>
+                        <td data-label="Frequency"><span class="stars-display">★★★★★</span></td>
+                        <td data-label="Difficulty">Easy – formula application</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Priority"><span class="unit-cell"><span class="rank-badge rank2">2</span></span></td>
+                        <td data-label="Unit"><strong>Unit 2 – Co‑ordinate Geometry</strong></td>
+                        <td data-label="Hours"><span class="effort-badge">⏳ 3–4 hrs</span></td>
+                        <td data-label="Marks"><span class="marks-badge">✅ 10–12 marks</span></td>
+                        <td data-label="Frequency"><span class="stars-display">★★★★★</span></td>
+                        <td data-label="Difficulty">Easy – direct formula use</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Priority"><span class="unit-cell"><span class="rank-badge rank3">3</span></span></td>
+                        <td data-label="Unit"><strong>Unit 6 – Statistics & Probability</strong></td>
+                        <td data-label="Hours"><span class="effort-badge">⏳ 3–4 hrs</span></td>
+                        <td data-label="Marks"><span class="marks-badge">✅ 10–12 marks</span></td>
+                        <td data-label="Frequency"><span class="stars-display">★★★★★</span></td>
+                        <td data-label="Difficulty">Easy – arithmetic & logic</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Priority"><span class="unit-cell"><span class="rank-badge rank4">4</span></span></td>
+                        <td data-label="Unit"><strong>Unit 5 – Partial Differentiation</strong></td>
+                        <td data-label="Hours"><span class="effort-badge">⏳ 1–2 hrs</span></td>
+                        <td data-label="Marks"><span class="marks-badge">✅ 8–10 marks</span></td>
+                        <td data-label="Frequency"><span class="stars-display">★★★★★</span></td>
+                        <td data-label="Difficulty">Very easy – only 2 types of problems</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="padding:12px 20px; font-size:0.8rem; color:#475569;">
+                💡 <strong>Total time investment ≈ 11–15 hours</strong> — study these 4 units and you can answer <strong>40–45 marks</strong> worth of questions confidently.
+            </div>
+        </div>
+
+        <!-- UNIT DETAIL CARDS -->
+        <h2 style="margin-bottom:12px; font-size:1.2rem;">📚 What to Study in Each Priority Unit</h2>
+        <div class="unit-cards-grid">
+            <!-- Unit 1 Card -->
+            <div class="unit-card">
+                <div class="unit-card-header uc-prio1">
+                    <span class="uc-num">1</span> Determinants & Matrices
+                </div>
+                <div class="unit-card-body">
+                    <ul>
+                        <li>Evaluate 2×2 and 3×3 determinants</li>
+                        <li>Minors, Cofactors, and finding inverse by adjoint method</li>
+                        <li>Cramer's rule for 3 equations</li>
+                        <li>Orthogonal matrix verification (AAᵀ = I)</li>
+                        <li>det(kA) = kⁿdet(A), singular matrix condition</li>
+                        <li>A·(adj A) = det(A)·I, skew‑symmetric properties</li>
+                    </ul>
+                </div>
+                <div class="unit-card-footer">
+                    <span>🕒 4–5 hours</span>
+                    <span>📈 12–15 marks</span>
+                </div>
+            </div>
+
+            <!-- Unit 2 Card -->
+            <div class="unit-card">
+                <div class="unit-card-header uc-prio2">
+                    <span class="uc-num">2</span> Co‑ordinate Geometry
+                </div>
+                <div class="unit-card-body">
+                    <ul>
+                        <li>Collinearity of points (area = 0 or equal slopes)</li>
+                        <li>Equation of straight line (all forms)</li>
+                        <li>Angle between lines, parallel/perpendicular condition</li>
+                        <li>Distance point↔line, distance between parallel lines</li>
+                        <li>Circle: centre, radius, equation from conditions</li>
+                        <li>Parabola: latus rectum, focus, directrix</li>
+                        <li>Ellipse: eccentricity, foci, major axis</li>
+                        <li>Cartesian ↔ Polar conversion</li>
+                    </ul>
+                </div>
+                <div class="unit-card-footer">
+                    <span>🕒 3–4 hours</span>
+                    <span>📈 10–12 marks</span>
+                </div>
+            </div>
+
+            <!-- Unit 6 Card -->
+            <div class="unit-card">
+                <div class="unit-card-header uc-prio3">
+                    <span class="uc-num">3</span> Statistics & Probability
+                </div>
+                <div class="unit-card-body">
+                    <ul>
+                        <li>Mean, Median, Mode for grouped frequency</li>
+                        <li>Standard Deviation & Variance (grouped data)</li>
+                        <li>Probability of coins (at least one head, etc.)</li>
+                        <li>Probability with two dice (sum, at least one '6')</li>
+                        <li>Urn / ball problems (with/without replacement)</li>
+                        <li>Addition rule P(A∪B), complementary events</li>
+                        <li>Bayes' theorem & conditional probability</li>
+                    </ul>
+                </div>
+                <div class="unit-card-footer">
+                    <span>🕒 3–4 hours</span>
+                    <span>📈 10–12 marks</span>
+                </div>
+            </div>
+
+            <!-- Unit 5 Card -->
+            <div class="unit-card">
+                <div class="unit-card-header uc-prio4">
+                    <span class="uc-num">4</span> Partial Differentiation
+                </div>
+                <div class="unit-card-body">
+                    <ul>
+                        <li>Compute ∂u/∂x and ∂u/∂y (treat other variable as constant)</li>
+                        <li>Verify Euler's theorem (x·∂f/∂x + y·∂f/∂y = nf)</li>
+                        <li>Prove identities like x·∂u/∂x + y·∂u/∂y = sin 2u</li>
+                        <li>Use of implicit differentiation (tan u = expression)</li>
+                    </ul>
+                </div>
+                <div class="unit-card-footer">
+                    <span>🕒 1–2 hours</span>
+                    <span>📈 8–10 marks</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK FORMULA CARD -->
+        <div class="formula-quick-card">
+            <h2>🧾 Essential Formula Card (Only the 4 Easy Units)</h2>
+            <div class="formula-grid">
+                <div class="formula-cell">
+                    <div class="formula-title">Determinant 2×2</div>
+                    <span class="formula-expr">|a b; c d| = ad − bc</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Inverse (adjoint)</div>
+                    <span class="formula-expr">A⁻¹ = (1/det(A))·adj(A)</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Cramer's Rule</div>
+                    <span class="formula-expr">x = det(Aₓ)/det(A) ; y = det(Aᵧ)/det(A)</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Orthogonal Matrix</div>
+                    <span class="formula-expr">AAᵀ = I ⇒ A⁻¹ = Aᵀ</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Collinear Points</div>
+                    <span class="formula-expr">Area = ½|x₁(y₂−y₃)+x₂(y₃−y₁)+x₃(y₁−y₂)| = 0</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Line Slope & Eqns</div>
+                    <span class="formula-expr">m = (y₂−y₁)/(x₂−x₁)<br>y−y₁ = m(x−x₁) ; x/a+y/b=1</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Distance Point→Line</div>
+                    <span class="formula-expr">|Ax₁+By₁+C|/√(A²+B²)</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Circle Centre-Radius</div>
+                    <span class="formula-expr">(x−h)²+(y−k)²=r² ; x²+y²+2gx+2fy+c=0</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Parabola / Ellipse</div>
+                    <span class="formula-expr">y²=4ax: LR=4a; ellipse: c²=a²−b², e=c/a</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Median (Grouped)</div>
+                    <span class="formula-expr">L + [(N/2 − cf)/f] × h</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Mean & SD</div>
+                    <span class="formula-expr">x̄ = Σfᵢxᵢ/N ; σ = √[Σfᵢ(xᵢ−x̄)²/N]</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Probability Rules</div>
+                    <span class="formula-expr">P(Ē)=1−P(E) ; P(A∪B)=P(A)+P(B)−P(A∩B)</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Euler's Theorem</div>
+                    <span class="formula-expr">x·∂f/∂x + y·∂f/∂y = n·f</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Implicit Partial Diff</div>
+                    <span class="formula-expr">If tan u = f(x,y), differentiate both sides</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Coins/Dice Total</div>
+                    <span class="formula-expr">n coins: 2ⁿ outcomes; 2 dice: 36</span>
+                </div>
+                <div class="formula-cell">
+                    <div class="formula-title">Bayes' Theorem</div>
+                    <span class="formula-expr">P(A|B)=[P(B|A)P(A)]/P(B)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXAM PATTERN NOTE -->
+        <div class="footer-note">
+            <strong>📋 Latest Exam Pattern (2024–25):</strong> The paper has <strong>10 MCQs (20–30 marks)</strong> and <strong>5 long-answer questions (40 marks)</strong>. In MCQs, you <strong>must explain each answer</strong> – 1 mark for the correct option and 1 mark for proper reasoning. Long questions are chosen from any 5 of the 10 available (covering all units). By preparing the 4 units above, you can easily answer 7–8 MCQs and 3–4 long questions, comfortably crossing 35 marks.<br><br>
+            <strong>⏰ Time Management Tip:</strong> In a 1‑hour exam (2024), spend <strong>15–18 minutes on MCQs</strong> (with explanations) and the remaining on long answers. Practise writing formulas first — many marks are awarded for correct steps even if the final answer slips.
+        </div>
+
+    </div>
+</body>
+</html>

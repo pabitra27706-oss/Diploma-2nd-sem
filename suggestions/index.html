@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Study Hub · WBSCTE Smart Suggestions</title>
+    <style>
+        :root {
+            --bg: #0f0f12;
+            --surface: #1a1a20;
+            --surface-hover: #23232b;
+            --text: #e2e2ea;
+            --text-secondary: #9b9bb1;
+            --border: #2a2a35;
+            --physics: #60a5fa;
+            --math: #a78bfa;
+            --feee: #fbbf24;
+            --it: #34d399;
+            --mechanics: #f87171;
+            --shadow: 0 15px 30px -10px rgba(0,0,0,0.6);
+            --transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1.5rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #3b3b50, #232333);
+            border-radius: 20px;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            background: linear-gradient(135deg, #d1d5db, #a0aec0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #8b8fa3;
+            font-size: 1rem;
+            margin-top: 0.4rem;
+            font-weight: 400;
+        }
+
+        .chip {
+            display: inline-block;
+            background: #1f1f2c;
+            color: #c0c5d0;
+            padding: 0.2rem 1.1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 0.8rem;
+            border: 1px solid #343449;
+        }
+
+        /* subjects grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* subject card (clickable) */
+        .subject-card {
+            background: var(--surface);
+            border-radius: 1.8rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 1.5rem 1.5rem 1rem;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .subject-card:hover {
+            background: var(--surface-hover);
+            border-color: #3d3d55;
+        }
+
+        .subject-card .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .icon-bg {
+            width: 54px;
+            height: 54px;
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+        }
+
+        .subject-info h3 {
+            font-size: 1.3rem;
+            font-weight: 650;
+            margin-bottom: 0.15rem;
+            color: #f0f0f8;
+        }
+
+        .subject-info span {
+            font-size: 0.8rem;
+            color: #9595b0;
+        }
+
+        .expand-hint {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: #6b6b85;
+            margin-top: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .expand-hint svg {
+            transition: transform 0.3s;
+        }
+
+        /* expanded sub-cards container (hidden by default) */
+        .sub-actions {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            display: flex;
+            gap: 0.8rem;
+            flex-direction: column;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s;
+            margin-top: 0;
+            pointer-events: none;
+        }
+
+        .subject-card.expanded .sub-actions {
+            max-height: 250px;
+            opacity: 1;
+            margin-top: 1rem;
+            pointer-events: auto;
+        }
+
+        .subject-card.expanded .expand-hint svg {
+            transform: rotate(180deg);
+        }
+
+        .sub-card {
+            background: #252531;
+            border-radius: 1.2rem;
+            padding: 0.9rem 1.1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #33334a;
+            transition: background 0.2s, transform 0.15s;
+            color: #e0e0f0;
+            font-weight: 500;
+        }
+
+        .sub-card:hover {
+            background: #2e2e3d;
+            transform: translateX(4px);
+        }
+
+        .sub-card .label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .sub-card svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+        }
+
+        .arrow-icon {
+            color: #5f5f80;
+        }
+
+        /* subject accent colors */
+        .physics .icon-bg { background: rgba(96, 165, 250, 0.15); }
+        .physics .subject-info h3 { color: #93c5fd; }
+        .physics .sub-card { border-left: 3px solid var(--physics); }
+        .math .icon-bg { background: rgba(167, 139, 250, 0.15); }
+        .math .subject-info h3 { color: #c4b5fd; }
+        .math .sub-card { border-left: 3px solid var(--math); }
+        .feee .icon-bg { background: rgba(251, 191, 36, 0.15); }
+        .feee .subject-info h3 { color: #fcd34d; }
+        .feee .sub-card { border-left: 3px solid var(--feee); }
+        .it .icon-bg { background: rgba(52, 211, 153, 0.15); }
+        .it .subject-info h3 { color: #6ee7b7; }
+        .it .sub-card { border-left: 3px solid var(--it); }
+        .mechanics .icon-bg { background: rgba(248, 113, 113, 0.15); }
+        .mechanics .subject-info h3 { color: #fca5a5; }
+        .mechanics .sub-card { border-left: 3px solid var(--mechanics); }
+
+        /* last row centering for odd number */
+        .center-last {
+            display: contents;
+        }
+        @media (min-width: 701px) {
+            .subject-card:nth-child(5):last-child {
+                grid-column: span 2;
+                justify-self: center;
+                width: calc(50% - 0.8rem);
+            }
+        }
+
+        /* footer */
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #686882;
+            border-top: 1px solid #2a2a35;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .footer-note strong {
+            color: #b9b9d0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+            </div>
+            <h1>Smart Study Dashboard</h1>
+            <p>Click a subject to reveal <strong>Important Questions</strong> & <strong>Easy Read</strong></p>
+            <span class="chip">WBSCTE · All Branches · Updated 2025</span>
+        </div>
+
+        <div class="subjects-grid" id="subjectsGrid">
+            <!-- Physics -->
+            <div class="subject-card physics" data-subject="physics">
+                <div class="card-header">
+                    <div class="icon-bg">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                            <path d="M2 12h20"/>
+                        </svg>
+                    </div>
+                    <div class="subject-info">
+                        <h3>Physics</h3>
+                        <span>Mechanics · Optics · Modern Physics</span>
+                    </div>
+                </div>
+                <div class="expand-hint">
+                    <span>tap to explore</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="sub-actions">
+                    <a href="physics/Phy-1st.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            Important Questions
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="physics/Read.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Easy Read
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mathematics -->
+            <div class="subject-card math" data-subject="math">
+                <div class="card-header">
+                    <div class="icon-bg">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="4"/>
+                            <path d="M18 8L6 16"/>
+                            <path d="M18 16L6 8"/>
+                        </svg>
+                    </div>
+                    <div class="subject-info">
+                        <h3>Mathematics</h3>
+                        <span>Calculus · Algebra · Vectors</span>
+                    </div>
+                </div>
+                <div class="expand-hint">
+                    <span>tap to explore</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="sub-actions">
+                    <a href="math/math-1st.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            Important Questions
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="math/Read.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Easy Read
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FEEE -->
+            <div class="subject-card feee" data-subject="feee">
+                <div class="card-header">
+                    <div class="icon-bg">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <div class="subject-info">
+                        <h3>FEEE</h3>
+                        <span>Fundamentals of Electrical & Electronics</span>
+                    </div>
+                </div>
+                <div class="expand-hint">
+                    <span>tap to explore</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="sub-actions">
+                    <a href="feee/FEEE-1ST.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            Important Questions
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="feee/read.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Easy Read
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- IT Systems -->
+            <div class="subject-card it" data-subject="it">
+                <div class="card-header">
+                    <div class="icon-bg">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                    </div>
+                    <div class="subject-info">
+                        <h3>IT Systems</h3>
+                        <span>Computer Architecture · OS · Networking</span>
+                    </div>
+                </div>
+                <div class="expand-hint">
+                    <span>tap to explore</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="sub-actions">
+                    <a href="it/IT-1st.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            Important Questions
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="it/Read.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Easy Read
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Engineering Mechanics -->
+            <div class="subject-card mechanics" data-subject="mechanics">
+                <div class="card-header">
+                    <div class="icon-bg">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <div class="subject-info">
+                        <h3>Engg. Mechanics</h3>
+                        <span>Statics · Friction · Centroid · Machines</span>
+                    </div>
+                </div>
+                <div class="expand-hint">
+                    <span>tap to explore</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="sub-actions">
+                    <a href="mechanics/E_mac-1ST.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            Important Questions
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="mechanics/Read.html" class="sub-card">
+                        <span class="label">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Easy Read
+                        </span>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            Click any subject card to expand <strong>Important Questions</strong> (year‑wise PYQs + formulas) and <strong>Easy Read</strong> (smart study guide for maximum marks).
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const cards = document.querySelectorAll('.subject-card');
+            
+            function toggleCard(card) {
+                // Close other cards
+                cards.forEach(c => {
+                    if (c !== card && c.classList.contains('expanded')) {
+                        c.classList.remove('expanded');
+                    }
+                });
+                // Toggle current
+                card.classList.toggle('expanded');
+            }
+
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Prevent toggling when clicking on actual links (sub-cards)
+                    if (e.target.closest('a')) return;
+                    toggleCard(this);
+                });
+            });
+
+            // Close expanded card if clicking outside the grid (optional)
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.subject-card')) {
+                    cards.forEach(c => c.classList.remove('expanded'));
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -254,6 +254,17 @@ const subjects = {
         }
     },
 
+    // ========== SUGGESTIONS – DIRECT LINK SUBJECT ==========
+    "suggestions": {
+        id: "suggestions",
+        name: "Suggestions",
+        shortName: "Suggestions",
+        icon: "💡",
+        color: "#FFC107",
+        isDirectSubject: true,          // flag to open directly
+        directLink: "/suggestions/index.html"
+    },
+
     "practice": {
         id: "practice",
         name: "Practice Questions",

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics-II — Exam Study Guide (2021–2025)</title>
+    <style>
+        :root {
+            --bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #475569;
+            --border: #e2e8f0;
+            --accent1: #2563eb;
+            --accent2: #0d9488;
+            --accent3: #7c3aed;
+            --accent4: #dc2626;
+            --accent5: #ea580c;
+            --accent6: #0891b2;
+            --star-gold: #eab308;
+            --year-badge: #dbeafe;
+            --year-text: #1e40af;
+            --formula-bg: #f0fdf4;
+            --formula-border: #86efac;
+            --question-bg: #fff;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --radius: 10px;
+            --radius-sm: 6px;
+            --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+            --font-sans: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #fff;
+            padding: 28px 24px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+        .header h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 4px;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            font-weight: 400;
+        }
+        .header .badge-row {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .header .badge-row span {
+            background: #ffffff22;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            letter-spacing: 0.2px;
+        }
+
+        /* Unit section */
+        .unit-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 22px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .unit-header {
+            padding: 14px 20px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .unit-header .unit-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .unit-header .unit-title {
+            font-size: 1.05rem;
+        }
+        .unit-header .freq-badge {
+            margin-left: auto;
+            font-size: 0.72rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 3px 10px;
+            border-radius: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Color accents per unit */
+        .u1 .unit-num {
+            background: var(--accent1);
+        }
+        .u1 .unit-header {
+            border-left: 5px solid var(--accent1);
+        }
+        .u2 .unit-num {
+            background: var(--accent2);
+        }
+        .u2 .unit-header {
+            border-left: 5px solid var(--accent2);
+        }
+        .u3 .unit-num {
+            background: var(--accent3);
+        }
+        .u3 .unit-header {
+            border-left: 5px solid var(--accent3);
+        }
+        .u4 .unit-num {
+            background: var(--accent4);
+        }
+        .u4 .unit-header {
+            border-left: 5px solid var(--accent4);
+        }
+        .u5 .unit-num {
+            background: var(--accent5);
+        }
+        .u5 .unit-header {
+            border-left: 5px solid var(--accent5);
+        }
+        .u6 .unit-num {
+            background: var(--accent6);
+        }
+        .u6 .unit-header {
+            border-left: 5px solid var(--accent6);
+        }
+
+        /* Two-column grid */
+        .unit-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-top: 1px solid var(--border);
+        }
+        .col-questions,
+        .col-formulas {
+            padding: 16px 18px;
+        }
+        .col-questions {
+            background: #fafbfc;
+        }
+        .col-formulas {
+            background: var(--formula-bg);
+            border-left: 1px solid var(--border);
+        }
+        .col-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 10px;
+            color: #64748b;
+        }
+        .col-label-q {
+            color: var(--accent1);
+        }
+        .col-label-f {
+            color: #166534;
+        }
+
+        /* Question items */
+        .q-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e5e7eb;
+            font-size: 0.9rem;
+        }
+        .q-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .q-text {
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #1e293b;
+        }
+        .q-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+        }
+        .year-tag {
+            display: inline-block;
+            background: var(--year-badge);
+            color: var(--year-text);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 3px;
+            letter-spacing: 0.2px;
+        }
+        .stars {
+            color: var(--star-gold);
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .stars-dim {
+            color: #d4d4d4;
+        }
+
+        /* Formula items */
+        .formula-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #d1fae5;
+            font-size: 0.85rem;
+        }
+        .formula-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .formula-name {
+            font-weight: 600;
+            font-size: 0.76rem;
+            color: #065f46;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .formula-expr {
+            font-family: var(--font-mono);
+            background: #ffffffcc;
+            padding: 5px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 0.82rem;
+            line-height: 1.5;
+            word-break: break-all;
+            border: 1px solid var(--formula-border);
+            display: block;
+            color: #1e293b;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px 24px;
+            border-radius: var(--radius);
+            margin-top: 24px;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+        .footer h3 {
+            color: #fbbf24;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer ul li {
+            padding: 3px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+        .footer ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #fbbf24;
+            font-weight: 700;
+        }
+        .footer .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Responsive: stack columns on mobile */
+        @media (max-width: 700px) {
+            .unit-body {
+                grid-template-columns: 1fr;
+            }
+            .col-formulas {
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            .header {
+                padding: 20px 14px;
+            }
+            .unit-header {
+                font-size: 0.95rem;
+                padding: 12px 14px;
+            }
+            .col-questions,
+            .col-formulas {
+                padding: 12px 14px;
+            }
+            body {
+                padding: 8px;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+                font-size: 10px;
+                line-height: 1.4;
+            }
+            .header {
+                background: #1e293b !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .unit-section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+            }
+            .unit-body {
+                grid-template-columns: 1fr 1fr;
+            }
+            .col-formulas {
+                background: #f0fdf4 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .footer {
+                background: #1e293b !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>📐 Mathematics-II — Exam Study Guide</h1>
+            <p class="subtitle">2nd Semester Diploma (All Branches) | Based on 2021–2025 Question Papers</p>
+            <div class="badge-row">
+                <span>📋 60 Marks</span>
+                <span>⏱ 1–2.5 Hours</span>
+                <span>📝 MCQs + Long Qs</span>
+                <span>🔍 Explanation Required (2024–25)</span>
+            </div>
+        </div>
+
+        <!-- UNIT 1 -->
+        <div class="unit-section u1">
+            <div class="unit-header">
+                <span class="unit-num">1</span>
+                <span class="unit-title">Determinants &amp; Matrices</span>
+                <span class="freq-badge">🔥 Very High Weightage</span>
+            </div>
+            <div class="unit-body">
+                <div class="col-questions">
+                    <div class="col-label col-label-q">📝 Important Questions</div>
+
+                    <div class="q-item">
+                        <div class="q-text">Evaluate determinant of 2×2 / 3×3 matrices; find minors &amp; cofactors of specific elements.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Use determinant properties: skew‑symmetric has det = 0; prove (a+b+c) is a factor; show value = 0 without expanding.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Solve system of 3 linear equations by <strong>Cramer's Rule</strong>.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find the <strong>inverse</strong> of a 2×2 or 3×3 matrix (using adjoint method). Verify A·A⁻¹ = I.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Show that a given matrix is <strong>orthogonal</strong> (i.e., AAᵀ = AᵀA = I₃). Hence find A⁻¹.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Prove that if A is skew‑symmetric then A² is symmetric. / Show A + Aᵀ is symmetric.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find A(adj A) and verify A(adj A) = det(A)·I. / For singular matrix, find unknown element m.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Evaluate 4×4 determinant using <strong>Chio's method</strong>.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2024</span>
+                            <span class="stars">★★</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-formulas">
+                    <div class="col-label col-label-f">📐 Key Formulas</div>
+                    <div class="formula-item">
+                        <div class="formula-name">Determinant 2×2</div>
+                        <span class="formula-expr">|a b; c d| = ad − bc</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Cofactor</div>
+                        <span class="formula-expr">Cᵢⱼ = (−1)ⁱ⁺ʲ · Mᵢⱼ</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">det(kA) for n×n</div>
+                        <span class="formula-expr">det(kA) = kⁿ · det(A)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Inverse (adjoint method)</div>
+                        <span class="formula-expr">A⁻¹ = (1/det(A)) · adj(A)<br>adj(A) = transpose of cofactor matrix</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Orthogonal Matrix</div>
+                        <span class="formula-expr">AAᵀ = I ⇒ A⁻¹ = Aᵀ</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Cramer's Rule</div>
+                        <span class="formula-expr">x = det(Aₓ)/det(A), y = det(Aᵧ)/det(A),<br>z = det(A_z)/det(A)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">A(adj A)</div>
+                        <span class="formula-expr">A · adj(A) = det(A) · I</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Singular Matrix</div>
+                        <span class="formula-expr">Matrix is singular ⇔ det(A) = 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 2 -->
+        <div class="unit-section u2">
+            <div class="unit-header">
+                <span class="unit-num">2</span>
+                <span class="unit-title">Co‑ordinate Geometry (2D)</span>
+                <span class="freq-badge">🔥 Very High Weightage</span>
+            </div>
+            <div class="unit-body">
+                <div class="col-questions">
+                    <div class="col-label col-label-q">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Check <strong>collinearity</strong> of 3 points (using area = 0 or equal slopes).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>equation of straight line</strong> (point‑slope, two‑point, intercept, parallel/perpendicular to given line).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>equation of circle</strong> given centre &amp; radius, or passing through given points, or touching axes.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>angle between two lines</strong>; check if lines are parallel or perpendicular.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>distance</strong> from a point to a line / distance between two parallel lines.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2025</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Parabola: find <strong>latus rectum</strong> length, standard equation, or related parameters.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Ellipse: find <strong>eccentricity, foci, major axis</strong> from standard equation or vice versa.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2023</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Convert Cartesian ↔ <strong>Polar coordinates</strong>.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-formulas">
+                    <div class="col-label col-label-f">📐 Key Formulas</div>
+                    <div class="formula-item">
+                        <div class="formula-name">Distance</div>
+                        <span class="formula-expr">d = √[(x₂−x₁)² + (y₂−y₁)²]</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Area of Triangle / Collinear</div>
+                        <span class="formula-expr">Area = ½|x₁(y₂−y₃)+x₂(y₃−y₁)+x₃(y₁−y₂)|<br>Collinear ⇔ Area = 0</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Slope</div>
+                        <span class="formula-expr">m = (y₂−y₁)/(x₂−x₁)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Line: Point‑Slope</div>
+                        <span class="formula-expr">y − y₁ = m(x − x₁)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Line: Intercept</div>
+                        <span class="formula-expr">x/a + y/b = 1</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Angle Between Lines</div>
+                        <span class="formula-expr">tan θ = |(m₁−m₂)/(1+m₁m₂)|<br>∥ : m₁=m₂, ⊥ : m₁m₂=−1</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Distance Point→Line</div>
+                        <span class="formula-expr">|Ax₁+By₁+C| / √(A²+B²)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Circle (Centre‑Radius)</div>
+                        <span class="formula-expr">(x−h)²+(y−k)²=r²<br>General: x²+y²+2gx+2fy+c=0<br>Centre (−g,−f), r=√(g²+f²−c)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Parabola y²=4ax</div>
+                        <span class="formula-expr">Focus (a,0), Directrix x=−a,<br>Latus Rectum = 4a</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Ellipse x²/a²+y²/b²=1</div>
+                        <span class="formula-expr">c²=a²−b², e=c/a, foci (±c,0),<br>Latus Rectum = 2b²/a</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Polar ⇔ Cartesian</div>
+                        <span class="formula-expr">x = r cos θ, y = r sin θ<br>r = √(x²+y²), θ = tan⁻¹(y/x)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 3 -->
+        <div class="unit-section u3">
+            <div class="unit-header">
+                <span class="unit-num">3</span>
+                <span class="unit-title">Integral Calculus</span>
+                <span class="freq-badge">🔥 Very High Weightage</span>
+            </div>
+            <div class="unit-body">
+                <div class="col-questions">
+                    <div class="col-label col-label-q">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Integrate by <strong>substitution</strong>: ∫sin x/cos x dx, ∫dx/(1−cos x), ∫dx/(1+x²), ∫eˣ/(1+eˣ) dx, etc.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Integrate by <strong>parts</strong>: ∫eˣcos x dx, ∫x·e²ˣ dx, ∫log x dx.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Integrate by <strong>partial fractions</strong>: ∫(x−1)/[(x−3)(x+2)] dx, ∫cos x/[(2sin x−3)(sin x+2)] dx.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Evaluate <strong>definite integrals</strong> using properties: ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a−x)dx; ∫₋ₐᵃ x³dx = 0 (odd function).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>area bounded</strong> by curves: parabola y²=4ax &amp; latus rectum; circle &amp; line; y=2x−x² &amp; y=x.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>volume of solid of revolution</strong> (revolve about x‑axis or y‑axis).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2023</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Prove: ∫₀^{π/2} sin x/(sin x+cos x) dx = π/4; ∫₀^{π/2} √tan x/(√tan x+√cot x) dx = π/4.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2023</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-formulas">
+                    <div class="col-label col-label-f">📐 Key Formulas</div>
+                    <div class="formula-item">
+                        <div class="formula-name">Basic Integrals</div>
+                        <span class="formula-expr">∫xⁿdx = xⁿ⁺¹/(n+1)+c (n≠−1)<br>∫1/x dx = ln|x|+c<br>∫eˣdx = eˣ+c<br>∫sin x dx = −cos x+c<br>∫cos x dx = sin x+c<br>∫sec²x dx = tan x+c</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Integration by Parts</div>
+                        <span class="formula-expr">∫u·v dx = u∫v dx − ∫(u′·∫v dx)dx</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Partial Fractions</div>
+                        <span class="formula-expr">1/[(x−a)(x−b)] = A/(x−a) + B/(x−b)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Definite Integral Property</div>
+                        <span class="formula-expr">∫₀ᵃ f(x)dx = ∫₀ᵃ f(a−x)dx</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Odd Function</div>
+                        <span class="formula-expr">∫₋ₐᵃ f(x)dx = 0 if f(−x)=−f(x)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Area Under Curve</div>
+                        <span class="formula-expr">Area = ∫ₐᵇ [f(x)−g(x)] dx</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Volume of Revolution</div>
+                        <span class="formula-expr">About x‑axis: V = π∫ₐᵇ [f(x)]² dx</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">∫eˣcos x dx</div>
+                        <span class="formula-expr">∫eˣcos x dx = ½eˣ(cos x+sin x)+c</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 4 -->
+        <div class="unit-section u4">
+            <div class="unit-header">
+                <span class="unit-num">4</span>
+                <span class="unit-title">Ordinary Differential Equations</span>
+                <span class="freq-badge">🔥 Very High Weightage</span>
+            </div>
+            <div class="unit-body">
+                <div class="col-questions">
+                    <div class="col-label col-label-q">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>order and degree</strong> of a given differential equation.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Solve <strong>separable</strong> ODE: y dy = (y²−1)(x+1)dx; cos y dx + (1+2e⁻ˣ)sin y dy = 0.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2023</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Solve <strong>homogeneous</strong> ODE: x dy − y dx = (x²+y²)dx; (x+2y)dy/dx = y; dy/dx = y/x + x².</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Check <strong>exactness</strong> &amp; solve exact ODE; find k for exactness.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2023</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Solve <strong>linear</strong> ODE dy/dx + P(x)y = Q(x); find integrating factor (IF).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Solve <strong>Bernoulli</strong> equation: dy/dx + xy = xy³.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>Complementary Function (CF)</strong> for 2nd order ODE with constant coefficients.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>Particular Integral (PI)</strong> for eᵃˣ, polynomials (xⁿ), sin ax, cos ax; solve full ODE = CF + PI.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-formulas">
+                    <div class="col-label col-label-f">📐 Key Formulas</div>
+                    <div class="formula-item">
+                        <div class="formula-name">Separable ODE</div>
+                        <span class="formula-expr">dy/dx = f(x)·g(y)<br>⇒ ∫dy/g(y) = ∫f(x)dx</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Homogeneous ODE</div>
+                        <span class="formula-expr">dy/dx = f(y/x)<br>Put y = vx ⇒ dy/dx = v + x·dv/dx</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Exact ODE</div>
+                        <span class="formula-expr">Mdx+Ndy=0 is exact if ∂M/∂y = ∂N/∂x</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Linear ODE + IF</div>
+                        <span class="formula-expr">dy/dx + Py = Q<br>IF = e^{∫P dx}<br>y·IF = ∫Q·IF dx + c</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Bernoulli Equation</div>
+                        <span class="formula-expr">dy/dx + Py = Qyⁿ<br>Substitute z = y¹⁻ⁿ to make linear</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">2nd Order CF (Roots m₁,m₂)</div>
+                        <span class="formula-expr">Real≠ : c₁e^{m₁x}+c₂e^{m₂x}<br>Real= : (c₁+c₂x)e^{mx}<br>Complex α±iβ : e^{αx}(c₁cos βx+c₂sin βx)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">PI for eᵃˣ</div>
+                        <span class="formula-expr">PI = eᵃˣ / F(D), D→a (if F(a)≠0)<br>If F(a)=0, multiply by x</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">PI for sin/cos ax</div>
+                        <span class="formula-expr">PI = sin ax / F(D²), D²→−a²</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">PI for xⁿ</div>
+                        <span class="formula-expr">Expand 1/F(D) as series in D</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 5 -->
+        <div class="unit-section u5">
+            <div class="unit-header">
+                <span class="unit-num">5</span>
+                <span class="unit-title">Partial Differentiation</span>
+                <span class="freq-badge">🔶 Medium Weightage (Small Unit)</span>
+            </div>
+            <div class="unit-body">
+                <div class="col-questions">
+                    <div class="col-label col-label-q">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>∂u/∂x and ∂u/∂y</strong> for functions like u = 7xy², u = e^{xy}, u = x²y+xy², u = log(x³+y³+z³−3xyz).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text"><strong>Verify Euler's theorem</strong> for homogeneous functions (e.g., f=3x²+4y², u=5x²+7xy+3y²).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2023</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text"><strong>Prove identity</strong>: x·∂u/∂x + y·∂u/∂y = expression (e.g., = sin 2u, = ¼sin 2z, +½cot u = 0).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>second‑order partial derivatives</strong> ∂²u/∂x∂y.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">If u = log(x³+y³+z³−3xyz), show ∂u/∂x+∂u/∂y+∂u/∂z = 3/(x+y+z).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2024</span>
+                            <span class="stars">★★★</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-formulas">
+                    <div class="col-label col-label-f">📐 Key Formulas</div>
+                    <div class="formula-item">
+                        <div class="formula-name">Partial Derivative</div>
+                        <span class="formula-expr">∂u/∂x: treat y as constant<br>∂u/∂y: treat x as constant</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Homogeneous Function</div>
+                        <span class="formula-expr">f(tx,ty) = tⁿf(x,y) ⇒ degree n</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Euler's Theorem</div>
+                        <span class="formula-expr">x·∂f/∂x + y·∂f/∂y = n·f</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Identity Strategy</div>
+                        <span class="formula-expr">If u = tan⁻¹(expr), let tan u = expr,<br>then differentiate implicitly &amp; apply<br>Euler's theorem on the rational function.</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Second Order</div>
+                        <span class="formula-expr">∂²u/∂x∂y = ∂/∂x(∂u/∂y) = ∂/∂y(∂u/∂x)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 6 -->
+        <div class="unit-section u6">
+            <div class="unit-header">
+                <span class="unit-num">6</span>
+                <span class="unit-title">Statistics &amp; Probability</span>
+                <span class="freq-badge">🔥 Very High Weightage</span>
+            </div>
+            <div class="unit-body">
+                <div class="col-questions">
+                    <div class="col-label col-label-q">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>mean, median, mode</strong> for grouped frequency distribution (using formulas with L, cf, f, h).</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Calculate <strong>standard deviation &amp; variance</strong> for grouped/ungrouped data.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text"><strong>Coin toss</strong> probability: at least one head, at most one tail, exactly 2 heads in 3 tosses, etc.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text"><strong>Dice</strong> problems: sum = 6, at least one '6', even face, multiple of 3.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text"><strong>Urn/ball</strong> probability: draw with/without replacement; conditional probability; Bayes' theorem.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Use <strong>P(A∪B) = P(A)+P(B)−P(A∩B)</strong>; find P(complement); mutually exclusive events.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2024</span><span class="year-tag">2025</span>
+                            <span class="stars">★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Find <strong>combined mean &amp; SD</strong> of multiple groups; probability of hitting a target by multiple shooters.</div>
+                        <div class="q-meta">
+                            <span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2024</span>
+                            <span class="stars">★★★★</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-formulas">
+                    <div class="col-label col-label-f">📐 Key Formulas</div>
+                    <div class="formula-item">
+                        <div class="formula-name">Mean (Grouped)</div>
+                        <span class="formula-expr">x̄ = Σfᵢxᵢ / Σfᵢ</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Median (Grouped)</div>
+                        <span class="formula-expr">Median = L + [(N/2 − cf)/f] × h</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Mode (Grouped)</div>
+                        <span class="formula-expr">Mode = L + [(f₁−f₀)/(2f₁−f₀−f₂)] × h</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Standard Deviation</div>
+                        <span class="formula-expr">σ = √[Σfᵢ(xᵢ−x̄)² / N]</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Variance</div>
+                        <span class="formula-expr">Var(X) = σ²<br>Var(aX+b) = a²·Var(X)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Probability Basics</div>
+                        <span class="formula-expr">P(E) = n(E)/n(S)<br>P(Ē) = 1 − P(E)<br>0 ≤ P(E) ≤ 1</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Addition Rule</div>
+                        <span class="formula-expr">P(A∪B) = P(A)+P(B)−P(A∩B)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Conditional &amp; Bayes</div>
+                        <span class="formula-expr">P(A|B) = P(A∩B)/P(B)<br>Bayes: P(A|B)=P(B|A)P(A)/P(B)</span>
+                    </div>
+                    <div class="formula-item">
+                        <div class="formula-name">Coins/Dice</div>
+                        <span class="formula-expr">n coins: total = 2ⁿ<br>2 dice: total = 36 outcomes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3>💡 Exam Tips &amp; Strategy</h3>
+            <ul>
+                <li><span class="highlight">2024–25 Pattern:</span> MCQs require a <strong>written explanation</strong> for the chosen answer — 1 mark for the correct option + 1 mark for correct reasoning. Never skip the explanation.</li>
+                <li><span class="highlight">Time Management:</span> In the 1‑hour paper (2024), allocate ~20 min for 10 MCQs and ~35 min for 5 long questions. Practise speed.</li>
+                <li><span class="highlight">Easiest 35+ Marks Path:</span> Focus on <strong>Units 1, 2, 5, and 6</strong>. They are formula‑driven and require less practice than Integration (Unit 3) or Differential Equations (Unit 4).</li>
+                <li><span class="highlight">Cramer's Rule &amp; Inverse:</span> These appear almost every year. Memorise the steps — they are easy 5–8 marks.</li>
+                <li><span class="highlight">Euler's Theorem Proofs:</span> The identity questions in Unit 5 follow a standard pattern. Practise 3–4 examples and you can solve any variant.</li>
+                <li><span class="highlight">Median/Mode/Mean:</span> Always write the <strong>formula first</strong>, then substitute values. Many marks are awarded for correct formula even if the arithmetic slips.</li>
+                <li><span class="highlight">Probability:</span> Draw a sample space or tree diagram for coin/dice/urn problems. For Bayes' theorem, identify P(A), P(B|A), P(B|Ā) clearly before plugging into the formula.</li>
+                <li><span class="highlight">Show All Steps:</span> In long‑answer questions, stepwise working fetches partial marks. Never skip directly to the final answer.</li>
+                <li><span class="highlight">Determinant Properties:</span> For "prove without expanding" questions, use row/column operations — look for common factors, row subtractions, or cyclic symmetry.</li>
+                <li><span class="highlight">Revise Past Papers:</span> Over 70% of questions are direct repeats or minor variations from 2021–2025. Practise all starred questions above.</li>
+            </ul>
+            <p style="margin-top:12px;font-size:0.78rem;opacity:0.7;text-align:center;">📚 Based on WBSCTVESD Diploma Syllabus (Semester II) &amp; 2021–2025 Question Papers | Study Guide v1.0</p>
+        </div>
+
+    </div>
+</body>
+</html>

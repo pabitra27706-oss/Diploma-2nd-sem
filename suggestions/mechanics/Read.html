@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Smart Study Guide: Minimum Effort, Maximum Marks | Engineering Mechanics (WBSCTE)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef2f7 0%, #d9e2ec 100%);
+            font-family: 'Segoe UI', 'Poppins', Roboto, system-ui, sans-serif;
+            padding: 1.8rem;
+            color: #1a2e3f;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header motivational */
+        .hero {
+            background: linear-gradient(125deg, #0f2c39, #1c5a7a);
+            border-radius: 2.5rem;
+            padding: 2rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.6rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .chip {
+            background: #ffcd7e;
+            color: #1e3b48;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 80px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* priority card grid */
+        .priority-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            margin: 2rem 0;
+        }
+        .priority-card {
+            background: white;
+            border-radius: 1.8rem;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
+            border: 1px solid #cbdde6;
+        }
+        .priority-card:hover {
+            transform: translateY(-3px);
+        }
+        .card-header {
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.8rem;
+            background: #fafeff;
+            border-bottom: 2px solid #e2edf2;
+        }
+        .unit-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1b5e7a, #0f3f55);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .priority-badge {
+            background: #ff914d;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .stat {
+            background: #eef3fa;
+            padding: 0.25rem 0.8rem;
+            border-radius: 28px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1b5e7a;
+        }
+        .card-body {
+            padding: 1.3rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .topics-list {
+            flex: 2;
+            min-width: 200px;
+        }
+        .topics-list ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        .topics-list li {
+            margin: 0.6rem 0;
+            line-height: 1.4;
+        }
+        .marks-info {
+            flex: 1;
+            background: #f6fafe;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            border-left: 4px solid #ff914d;
+        }
+        .marks-info p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .frequency {
+            font-weight: bold;
+            color: #c2410c;
+        }
+
+        /* table ranking */
+        .ranking-table {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        .ranking-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .ranking-table th, .ranking-table td {
+            padding: 0.9rem;
+            text-align: left;
+            border-bottom: 1px solid #dce5ec;
+        }
+        .ranking-table th {
+            background: #e5f0f7;
+            color: #0c4a6e;
+        }
+        .easy-badge {
+            background: #10b98120;
+            color: #0b5e42;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        /* formula cards section */
+        .quick-formulas {
+            background: #1e2f3c;
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin: 2rem 0;
+            color: white;
+        }
+        .quick-formulas h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #ffdfa5;
+        }
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+        .formula-card {
+            background: #2d4455;
+            border-radius: 1.2rem;
+            padding: 1rem;
+        }
+        .formula-card p {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            background: #0f2c34;
+            padding: 0.4rem 0.6rem;
+            border-radius: 14px;
+            margin: 0.5rem 0;
+        }
+
+        .note-pattern {
+            background: #ffe6c7;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            margin-top: 1rem;
+            border-left: 6px solid #f97316;
+            color: #3b2a1f;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #2c5a6e;
+        }
+
+        @media (max-width: 680px) {
+            body { padding: 1rem; }
+            .unit-name { font-size: 1.3rem; }
+            .card-header { flex-direction: column; }
+        }
+        .star {
+            color: #f5b042;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1>⚡ Engineering Mechanics · Smart Revision Blueprint</h1>
+        <p>“Work smarter, not harder” — Based on WBSCTE past 5 years (2021–2025) analysis</p>
+        <div class="chip">🎯 Guarantee 35+ marks with focused 10–12 hours study</div>
+    </div>
+
+    <!-- Priority ranking table (easiest to hardest) -->
+    <div class="ranking-table">
+        <h2 style="margin-bottom: 0.8rem;">📊 Priority ranking: easiest → hardest (best ROI)</h2>
+        <table>
+            <thead>
+                <tr><th>Priority</th><th>Unit / Topic</th><th>Estimated Study Hours</th><th>Expected Marks (Min)</th><th>Appearance Frequency</th><th>Difficulty</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>🥇 1st</td><td><strong>Unit VI: Lifting Machines</strong> (MA, VR, Efficiency, law of machine, screw jack, wheel & axle)</td><td>3–4 hrs</td><td><strong>15–20 marks</strong></td><td>★★★★★ (every year)</td><td><span class="easy-badge">Very Easy</span></td></tr>
+                <tr><td>🥈 2nd</td><td><strong>Unit III: Equilibrium & Beam Reactions</strong> (simply supported, point loads, UDL, Lami)</td><td>2.5–3 hrs</td><td><strong>8–12 marks</strong></td><td>★★★★★ (2021,22,24)</td><td><span class="easy-badge">Easy</span></td></tr>
+                <tr><td>🥉 3rd</td><td><strong>Unit IV: Friction</strong> (Inclined plane min P, horizontal pull/push, angle of repose)</td><td>3 hrs</td><td><strong>10–12 marks</strong></td><td>★★★★★ (every year)</td><td><span class="easy-badge">Easy-Medium</span></td></tr>
+                <tr><td>4th</td><td><strong>Unit V: Centroid</strong> (I-section, composite lamina – table method)</td><td>2 hrs</td><td><strong>6–8 marks</strong></td><td>★★★★★ (4 out of 5 years)</td><td><span class="easy-badge">Very Easy</span></td></tr>
+                <tr><td>5th</td><td><strong>Unit VII: Kinematics + Work/Power/Energy</strong> (nth second, basic equations)</td><td>2–3 hrs</td><td><strong>4–6 marks</strong></td><td>★★★☆☆ (2023,24,25)</td><td>Medium</td></tr>
+                <tr><td>6th</td><td>Unit I & II (Varignon, concurrent forces, couple) – pick selected topics</td><td>1.5 hrs</td><td>4–6 marks (if time permits)</td><td>★★★☆☆</td><td>Medium</td></tr>
+            </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 0.85rem;">✅ Focus on top 4 units (Lifting machines + Beam reactions + Friction + Centroid) = ~40–50 marks potential.</p>
+    </div>
+
+    <!-- detailed priority cards with exact topics to cover -->
+    <div class="priority-grid">
+        <!-- Unit VI - Lifting machines -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">🏗️ UNIT VI: LIFTING MACHINES</span>
+                <span class="priority-badge">PRIORITY #1 · Highest yield</span>
+            </div>
+            <div class="stats">
+                <span class="stat">⏱️ Study: 3-4 hrs</span>
+                <span class="stat">📈 Marks guarantee: 15–20</span>
+                <span class="stat">⭐ Appears: Every year (2021-2025)</span>
+            </div>
+            <div class="card-body">
+                <div class="topics-list">
+                    <strong>📌 What to cover (only high-yield parts):</strong>
+                    <ul>
+                        <li>✔️ Law of machine: <strong>P = mW + C</strong> – find m & C from two data points (most repeated numerical)</li>
+                        <li>✔️ MA, VR, Efficiency relations: η = MA/VR, Max MA = 1/m, Max η = 1/(m·VR)</li>
+                        <li>✔️ Reversibility condition (η > 50%) & self-locking (η ≤ 50%)</li>
+                        <li>✔️ Velocity Ratio formulas: <strong>Screw jack</strong> (VR = 2πL/p), <strong>Wheel & Axle</strong> (VR = D/d), <strong>Differential wheel & axle</strong> (VR = 2D/(d₁-d₂))</li>
+                        <li>✔️ Numerical types: Given law P=0.2W+50, find MA, effort, load, max efficiency (2023,2025)</li>
+                        <li>✔️ Single purchase crab / worm & wheel VR (basic)</li>
+                    </ul>
+                </div>
+                <div class="marks-info">
+                    <p>🔥 <strong>Appearance proof</strong><br>2021 (diff. axle + law), 2022 (screw jack), 2023 (wheel & axle 5 parts), 2024 (VR + effort), 2025 (law + max MA).</p>
+                    <p>📖 <strong>Tip:</strong> Learn to solve two linear equations (W₁,P₁) & (W₂,P₂) → get m, C. That alone fetches 6-8 marks.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit III - Equilibrium & beam reactions -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">📐 UNIT III: BEAM REACTIONS & EQUILIBRIUM</span>
+                <span class="priority-badge">PRIORITY #2 · Guaranteed numerical</span>
+            </div>
+            <div class="stats">
+                <span class="stat">⏱️ Study: 2.5 hrs</span>
+                <span class="stat">📈 Marks guarantee: 8–12</span>
+                <span class="stat">⭐ Appears: 2021, 2022, 2024</span>
+            </div>
+            <div class="card-body">
+                <div class="topics-list">
+                    <strong>🔧 Focus only on:</strong>
+                    <ul>
+                        <li>✔️ Simply supported beam with point loads + UDL (full span or partial). Calculate reactions by ΣM=0, ΣV=0.</li>
+                        <li>✔️ Lami’s theorem (statement & simple concurrent force problem).</li>
+                        <li>✔️ Free body diagram concept (FBD).</li>
+                        <li>✔️ Types of supports (roller, hinge, fixed – theory question).</li>
+                        <li>❌ Skip complicated overhang with multiple UDLs (appears rarely).</li>
+                    </ul>
+                </div>
+                <div class="marks-info">
+                    <p>✅ <strong>Exam trend:</strong> 2021: 4m span with 5,2,3kN → reactions. 2022: bridge 18m + lorry. 2024: 6m span + two point loads + UDL 12kN/m.</p>
+                    <p>⚡ <strong>Smart trick:</strong> Take moments about one end; sum of loads = RA+RB. Always verify.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit IV - Friction -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">🧲 UNIT IV: FRICTION (Inclined & Horizontal)</span>
+                <span class="priority-badge">PRIORITY #3 · Regular 10-mark question</span>
+            </div>
+            <div class="stats">
+                <span class="stat">⏱️ Study: 3 hrs</span>
+                <span class="stat">📈 Marks guarantee: 10–12</span>
+                <span class="stat">⭐ Appears: Every year (2021–2025)</span>
+            </div>
+            <div class="card-body">
+                <div class="topics-list">
+                    <strong>🎯 Nail these problem types:</strong>
+                    <ul>
+                        <li>✔️ Inclined plane: body of weight W, angle θ, find minimum P (parallel to plane) to prevent sliding down. Formula: P = W sinθ - μW cosθ (if motion down) OR P = W sinθ + μW cosθ (impending up).</li>
+                        <li>✔️ Horizontal plane: pull at angle θ & push at angle θ – compare to find μ and W.</li>
+                        <li>✔️ Angle of friction (φ) & angle of repose (θ = φ), relation tan φ = μ.</li>
+                        <li>✔️ Limiting friction definition & Coulomb's laws.</li>
+                    </ul>
+                </div>
+                <div class="marks-info">
+                    <p>📅 <strong>Classic questions:</strong> 2021 (pull 180N/push 200N @30°), 2023 (500N on incline 25°, φ=20° find min P), 2025 (same pattern).</p>
+                    <p>💡 <strong>Key reminder:</strong> Normal reaction changes when force is inclined. Draw FBD carefully.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit V - Centroid -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">📍 UNIT V: CENTROID (I-Section / Composite)</span>
+                <span class="priority-badge">PRIORITY #4 · Very scoring</span>
+            </div>
+            <div class="stats">
+                <span class="stat">⏱️ Study: 2 hrs</span>
+                <span class="stat">📈 Marks guarantee: 6–8</span>
+                <span class="stat">⭐ Appears: 2021,2023,2024,2025</span>
+            </div>
+            <div class="card-body">
+                <div class="topics-list">
+                    <strong>✍️ Only practice:</strong>
+                    <ul>
+                        <li>✔️ Centroid of I-section (3 rectangles: top flange, web, bottom flange). Table method: Area, y (from base), A·y.</li>
+                        <li>✔️ Centroid of T-section, channel (basic composite shapes).</li>
+                        <li>✔️ Difference between centroid & centre of gravity (theory).</li>
+                        <li>❌ Avoid complex cut-out holes unless time permits (rare).</li>
+                    </ul>
+                </div>
+                <div class="marks-info">
+                    <p>📐 <strong>Common data:</strong> Top flange 160×20, web 80×30, bottom flange 200×10 (mm) – appears in 2023,2024,2025 with slight dimension changes.</p>
+                    <p>✅ Step: find reference axis (usually bottom), compute ΣAȳ/ΣA. Easy 6+ marks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- quick formula card ONLY from easy units -->
+    <div class="quick-formulas">
+        <h3>🧠 Quick Formula Card – "Easy Unit Power Pack"</h3>
+        <div class="formula-grid">
+            <div class="formula-card">
+                <strong>⚙️ Lifting machines</strong>
+                <p>MA = W / P &nbsp;|&nbsp; VR = effort distance / load distance</p>
+                <p>η = MA / VR &nbsp;|&nbsp; P = mW + C</p>
+                <p>Max MA = 1/m &nbsp;|&nbsp; Max η = 1/(m·VR)</p>
+                <p>Screw jack VR = 2πL / p</p>
+                <p>Wheel & axle VR = D/d</p>
+            </div>
+            <div class="formula-card">
+                <strong>📐 Beam reactions</strong>
+                <p>ΣF<sub>y</sub> = 0 &nbsp;→&nbsp; R<sub>A</sub> + R<sub>B</sub> = total load</p>
+                <p>ΣM<sub>A</sub> = 0 &nbsp;→&nbsp; R<sub>B</sub>·L = Σ(Wᵢ·xᵢ)</p>
+                <p>UDL: total force = w×L, acts at midspan</p>
+                <p>Lami: P/sinα = Q/sinβ = R/sinγ</p>
+            </div>
+            <div class="formula-card">
+                <strong>🧲 Friction essentials</strong>
+                <p>F<sub>max</sub> = μₛ × N &nbsp;|&nbsp; tan φ = μ, Angle of repose = φ</p>
+                <p>Inclined plane (P parallel): P = W sinθ ± μW cosθ</p>
+                <p>Horizontal pull: P cosθ = μ(W - P sinθ)</p>
+                <p>Horizontal push: P cosθ = μ(W + P sinθ)</p>
+            </div>
+            <div class="formula-card">
+                <strong>📍 Centroid (I-section)</strong>
+                <p>ȳ = Σ(Aᵢ·yᵢ) / ΣAᵢ &nbsp; (from reference axis)</p>
+                <p>Rectangle: centroid = h/2 from base</p>
+                <p>Table method: Area, y, A·y → sum</p>
+                <p>Symmetry: x̄ = centre line</p>
+            </div>
+        </div>
+        <div style="margin-top: 1.2rem; font-size: 0.85rem; text-align: center;">⭐ These 4 units together cover ≈ 80% of exam marks. Master formulas → practice 2 problems each → guarantee pass!</div>
+    </div>
+
+    <!-- Exam pattern note and motivational time plan -->
+    <div class="note-pattern">
+        <h3>📌 Latest exam pattern (2024–2025) – crucial updates</h3>
+        <ul style="margin-left: 1.2rem;">
+            <li><strong>✅ MCQ with explanation (2025):</strong> 10 MCQs, each 2 marks (1 for correct option + 1 for brief justification). Always add 1 line reason (law/formula).</li>
+            <li><strong>✅ Subjective:</strong> Choose any 5 questions (Group B) – often one full numerical from friction, one from lifting machine law, one beam reaction, one centroid.</li>
+            <li><strong>✅ Time friendly:</strong> 2.5 hrs for 60 marks or 3 hrs for 70 marks. Prioritise questions from easy units first.</li>
+        </ul>
+        <p style="margin-top: 12px; background: #ffedd5; padding: 0.8rem; border-radius: 1rem;"><strong>🎯 3-day smart plan (total ~10 hours):</strong><br>
+        Day 1: Lifting machines (3 hrs) + formulas & 3 past problems.<br>
+        Day 2: Friction + Beam reactions (4 hrs) – solve 2 each.<br>
+        Day 3: Centroid + revise formula card + MCQ explanation practice (3 hrs).<br>
+        <em>Result: confidently attempt 45+ marks worth questions.</em>
+        </p>
+    </div>
+
+    <!-- additional motivational note : score more -->
+    <div style="background: #ffffffcc; border-radius: 1.5rem; padding: 1rem; margin-top: 1.5rem; text-align: center; border: 1px solid #cbdde6;">
+        <p>🌟 <strong>Remember:</strong> In 2021–2025 papers, <strong>Unit VI (Lifting machines)</strong> and <strong>Friction</strong> together contributed 25-30 marks each year. <br>
+        📅 <strong>Short on time?</strong> Skip projectiles, ladder, couple derivations. Focus on the 4 priority units above & you’ll easily score 35+.</p>
+        <p style="font-size:0.85rem;">📖 Based on WBSCTE official syllabus (Group A, B, C) and real PYQ trend. Good luck! 💪</p>
+    </div>
+
+    <footer>
+        ⚡ Engineering Mechanics smart guide · Designed for limited preparation · All essential formulas from easy units
+    </footer>
+</div>
+</body>
+</html>

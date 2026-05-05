@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>IT Systems – Important Questions & Formula Guide (2021-2025)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f4f8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      padding: 20px;
+      color: #1e2a3e;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
+      color: #0a2b3e;
+    }
+
+    .subhead {
+      color: #2c5a6e;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #2c7da0;
+      padding-left: 1rem;
+      font-weight: 500;
+    }
+
+    /* unit card */
+    .unit-card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .unit-header {
+      background: #1e4660;
+      color: white;
+      padding: 1rem 1.5rem;
+    }
+
+    .unit-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .unit-header p {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    /* two column layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: #e2e8f0;
+    }
+
+    .questions-col, .formulas-col {
+      background: white;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .questions-col {
+      background: #ffffff;
+    }
+
+    .formulas-col {
+      background: #fefcf5;
+      border-left: 1px solid #e9edf2;
+    }
+
+    /* question list styling */
+    .q-item {
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dashed #e2edf2;
+    }
+
+    .q-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #0f2c3b;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 6px;
+      font-size: 0.75rem;
+    }
+
+    .years {
+      background: #eef2ff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      color: #1e4a76;
+      font-weight: 500;
+    }
+
+    .stars {
+      color: #f5b042;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* formula styling */
+    .formula-block {
+      margin-bottom: 1.2rem;
+    }
+
+    .formula-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: #b86b2c;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .formula-content {
+      background: #f9f3e0;
+      padding: 8px 12px;
+      border-radius: 14px;
+      font-family: 'SF Mono', 'Cascadia Code', monospace;
+      font-size: 0.85rem;
+      color: #2c3e2f;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    hr {
+      margin: 10px 0;
+      border: 0;
+      height: 1px;
+      background: #e0e7ed;
+    }
+
+    .footer-tips {
+      background: #0f2c3b;
+      color: #eef4ff;
+      border-radius: 28px;
+      padding: 1.4rem 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-tips h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-tips ul {
+      margin-left: 1.4rem;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .badge {
+      background: #2c7da0;
+      padding: 2px 10px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: normal;
+    }
+
+    @media (max-width: 780px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .formulas-col {
+        border-left: none;
+        border-top: 1px solid #e2e8f0;
+      }
+      body {
+        padding: 12px;
+      }
+      .unit-header h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>📘 Introduction to IT Systems</h1>
+  <div class="subhead">🔍 Exam-smart guide • Based on WBSCTE papers 2021–2025 • Unit-wise important questions + formulas</div>
+
+  <!-- ================= UNIT 1 ================= -->
+  <div class="unit-card">
+    <div class="unit-header">
+      <h2>📟 Unit 1 – Number Systems & Codes</h2>
+      <p>Binary, Decimal, Hex, Octal, BCD, Gray code, 1’s/2’s complement</p>
+    </div>
+    <div class="two-col">
+      <div class="questions-col">
+        <div class="q-item"><div class="q-text">1. Convert (97)₁₀ to binary & binary to Gray code.</div><div class="meta"><span class="years">2021, 2022, 2023, 2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">2. Represent (-14)₁₀ using 2’s complement (8-bit).</div><div class="meta"><span class="years">2021, 2024</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">3. Subtract 25-16 using 2’s complement method (2025).</div><div class="meta"><span class="years">2025, 2021</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">4. Gray code equivalent of binary 0110 & (1101101)₂ → Gray.</div><div class="meta"><span class="years">2023, 2025, 2022</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">5. Convert (27.23)₁₀ to binary & (542)₈ → hexadecimal.</div><div class="meta"><span class="years">2023, 2024, 2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">6. BCD representation of (5)₁₀ using 2-4-2-1 code.</div><div class="meta"><span class="years">2022, 2024</span><span class="stars">★★★☆☆</span></div></div>
+        <div class="q-item"><div class="q-text">7. Difference between 8421 and 2421 BCD code.</div><div class="meta"><span class="years">2022</span><span class="stars">★★☆☆☆</span></div></div>
+      </div>
+      <div class="formulas-col">
+        <div class="formula-block"><div class="formula-title">⚡ Binary ↔ Decimal</div><div class="formula-content">(1010)₂ = 1×2³ + 0×2² + 1×2¹ + 0×2⁰ = 10</div></div>
+        <div class="formula-block"><div class="formula-title">🎯 Gray code (binary → Gray)</div><div class="formula-content">MSB same; next bits = XOR(bitᵢ , bitᵢ₋₁)<br>Ex: 1011 → Gray = 1110</div></div>
+        <div class="formula-block"><div class="formula-title">🔁 2’s complement subtraction</div><div class="formula-content">A − B = A + (2’s complement of B)<br>Ignore final carry if present.</div></div>
+        <div class="formula-block"><div class="formula-title">📦 BCD</div><div class="formula-content">Each decimal digit → 4-bit binary<br> 9 → 1001 , 5 → 0101</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIT 2 ================= -->
+  <div class="unit-card">
+    <div class="unit-header">
+      <h2>🧠 Unit 2 – Boolean Algebra & Logic Gates</h2>
+      <p>De Morgan’s theorems, Universal gates, SOP/POS, simplification</p>
+    </div>
+    <div class="two-col">
+      <div class="questions-col">
+        <div class="q-item"><div class="q-text">1. State & prove De Morgan’s first & second law.</div><div class="meta"><span class="years">2021,2022,2023,2024,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">2. Simplify: \(\overline{ABC} + \overline{ABC} + \overline{ABC} + \overline{ABC} = C\) (2021,2023)</div><div class="meta"><span class="years">2021,2023</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">3. Why are NAND and NOR called universal gates? Implement AND using NOR only.</div><div class="meta"><span class="years">2022,2023,2025,2024</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">4. Draw Ex-OR & Ex-NOR gate logic diagram with truth table.</div><div class="meta"><span class="years">2021,2023</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">5. Prove: AB + AC + ABC(AB + C) = 1 (2021).</div><div class="meta"><span class="years">2021</span><span class="stars">★★★☆☆</span></div></div>
+        <div class="q-item"><div class="q-text">6. Simplify (X+Y)(X+Y’)(X’+Z) & implement AB+ABC+ABC+AC using logic gates.</div><div class="meta"><span class="years">2023</span><span class="stars">★★★★☆</span></div></div>
+      </div>
+      <div class="formulas-col">
+        <div class="formula-block"><div class="formula-title">📐 De Morgan’s laws</div><div class="formula-content">(A+B)’ = A’ · B’<br>(A·B)’ = A’ + B’</div></div>
+        <div class="formula-block"><div class="formula-title">🧩 Universal gate mapping (NOR as AND)</div><div class="formula-content">A·B = (A NOR A) NOR (B NOR B)</div></div>
+        <div class="formula-block"><div class="formula-title">📌 Boolean identities</div><div class="formula-content">A + A’B = A + B<br>A(A+B) = A<br>Absorption, complement, idempotent</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIT 3 ================= -->
+  <div class="unit-card">
+    <div class="unit-header">
+      <h2>💿 Unit 3 – Operating Systems</h2>
+      <p>OS functions, types (batch, time-sharing, multiprogramming), Booting, BIOS</p>
+    </div>
+    <div class="two-col">
+      <div class="questions-col">
+        <div class="q-item"><div class="q-text">1. What is an OS? Explain major functions of OS.</div><div class="meta"><span class="years">2022,2023,2024,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">2. Difference between multiprogramming and time-sharing systems.</div><div class="meta"><span class="years">2023,2024,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">3. Batch processing vs real-time OS – comparison.</div><div class="meta"><span class="years">2021,2023</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">4. Define Booting. What is BIOS? Where is it stored?</div><div class="meta"><span class="years">2022,2024</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">5. What is CPU scheduling? Why needed in multiprogramming?</div><div class="meta"><span class="years">2022,2021</span><span class="stars">★★★☆☆</span></div></div>
+      </div>
+      <div class="formulas-col">
+        <div class="formula-block"><div class="formula-title">⚙️ OS types – quick memory</div><div class="formula-content">Batch: no user interaction<br>Time-sharing: time slices (round robin)<br>Multiprogramming: CPU switches on I/O wait</div></div>
+        <div class="formula-block"><div class="formula-title">🧠 BIOS & Cache</div><div class="formula-content">BIOS → ROM (non-volatile)<br>Cache → small, fast SRAM between CPU & RAM</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIT 4 ================= -->
+  <div class="unit-card">
+    <div class="unit-header">
+      <h2>📐 Unit 4 – Algorithm & Flowchart</h2>
+      <p>Algorithm definition, flowchart symbols, logic building</p>
+    </div>
+    <div class="two-col">
+      <div class="questions-col">
+        <div class="q-item"><div class="q-text">1. Draw flowchart to find largest among three given numbers.</div><div class="meta"><span class="years">2023,2024,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">2. Algorithm & flowchart to calculate factorial of an integer.</div><div class="meta"><span class="years">2021,2024</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">3. Write an algorithm to convert temperature Celsius → Fahrenheit.</div><div class="meta"><span class="years">2021,2023</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">4. Distinguish between loop and branching statements. Flowchart symbols?</div><div class="meta"><span class="years">2023,2021</span><span class="stars">★★★☆☆</span></div></div>
+        <div class="q-item"><div class="q-text">5. Algorithm to find area of triangle (2025).</div><div class="meta"><span class="years">2025</span><span class="stars">★★★★☆</span></div></div>
+      </div>
+      <div class="formulas-col">
+        <div class="formula-block"><div class="formula-title">📌 Flowchart symbols</div><div class="formula-content">Oval ➜ Start/End<br>Rhombus ➜ Decision<br>Parallelogram ➜ I/O<br>Rectangle ➜ Process</div></div>
+        <div class="formula-block"><div class="formula-title">🌡️ Celsius to Fahrenheit</div><div class="formula-content">F = (C × 9/5) + 32</div></div>
+        <div class="formula-block"><div class="formula-title">🔢 Factorial (iterative)</div><div class="formula-content">n! = 1×2×3×...×n</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIT 5 ================= -->
+  <div class="unit-card">
+    <div class="unit-header">
+      <h2>🌐 Unit 5 – HTML, CSS & JavaScript</h2>
+      <p>Tables, forms, CSS integration, JS basics</p>
+    </div>
+    <div class="two-col">
+      <div class="questions-col">
+        <div class="q-item"><div class="q-text">1. Write HTML code to create a table with Name, Department, Mobile (2021,2023,2025).</div><div class="meta"><span class="years">2021,2023,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">2. What is CSS? List 3 ways to integrate CSS into HTML page.</div><div class="meta"><span class="years">2021,2024,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">3. JS program to calculate sum of n natural numbers or sum of two integers.</div><div class="meta"><span class="years">2023,2025,2021</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">4. Differentiate between static and dynamic web pages.</div><div class="meta"><span class="years">2021,2024</span><span class="stars">★★★☆☆</span></div></div>
+        <div class="q-item"><div class="q-text">5. Write an HTML page with JavaScript that finds HCF/GCD of two numbers.</div><div class="meta"><span class="years">2021</span><span class="stars">★★★☆☆</span></div></div>
+        <div class="q-item"><div class="q-text">6. Difference between <picture> tag and <img> tag, Ordered vs Unordered list.</div><div class="meta"><span class="years">2024</span><span class="stars">★★★★☆</span></div></div>
+      </div>
+      <div class="formulas-col">
+        <div class="formula-block"><div class="formula-title">🎨 CSS integration</div><div class="formula-content">1. Inline (style attr)<br>2. Internal (&lt;style&gt;)<br>3. External (.css file)</div></div>
+        <div class="formula-block"><div class="formula-title">🧮 JavaScript sum snippet</div><div class="formula-content">let a=10,b=20; let sum=a+b;<br>alert(sum);</div></div>
+        <div class="formula-block"><div class="formula-title">📋 HTML table skeleton</div><div class="formula-content">&lt;table border="1"&gt;<br>&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;<br>&lt;/table&gt;</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIT 6 ================= -->
+  <div class="unit-card">
+    <div class="unit-header">
+      <h2>🛡️ Unit 6 – Cyber Security & Malware</h2>
+      <p>Virus, worm, DoS, hacking, phishing, cyber stalking</p>
+    </div>
+    <div class="two-col">
+      <div class="questions-col">
+        <div class="q-item"><div class="q-text">1. Define malware. Write differences between virus and worm.</div><div class="meta"><span class="years">2021,2022,2023,2024,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">2. What is DoS attack? Suggest security measures.</div><div class="meta"><span class="years">2021,2023,2024,2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">3. Explain cyber stalking, fraud, and abuse with examples.</div><div class="meta"><span class="years">2023,2024,2025</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">4. What is phishing? Give an example (2025).</div><div class="meta"><span class="years">2025</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">5. How can you protect your computer from being hacked?</div><div class="meta"><span class="years">2024,2025</span><span class="stars">★★★★☆</span></div></div>
+      </div>
+      <div class="formulas-col">
+        <div class="formula-block"><div class="formula-title">⚠️ Key definitions</div><div class="formula-content">Virus: attaches to files, self-replicates.<br>Worm: spreads via network without user action.<br>DoS: flood server → resource unavailable.</div></div>
+        <div class="formula-block"><div class="formula-title">🕵️ Cyber stalking</div><div class="formula-content">Online harassment using email/social media, repeated threatening behavior.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNIT 7 ================= -->
+  <div class="unit-card">
+    <div class="unit-header">
+      <h2>💾 Unit 7 – Computer Hardware & Memory</h2>
+      <p>Primary vs secondary, RAM/ROM, SSD/HDD, Cache, BIOS</p>
+    </div>
+    <div class="two-col">
+      <div class="questions-col">
+        <div class="q-item"><div class="q-text">1. Difference between SRAM and DRAM (characteristics, usage).</div><div class="meta"><span class="years">2022,2023,2024</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">2. HDD vs SSD – why SSD is faster?</div><div class="meta"><span class="years">2022,2023,2025</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">3. Primary memory vs secondary memory (2025).</div><div class="meta"><span class="years">2025,2024</span><span class="stars">★★★★★</span></div></div>
+        <div class="q-item"><div class="q-text">4. What is cache memory? Mention its utility.</div><div class="meta"><span class="years">2023,2022,2024</span><span class="stars">★★★★☆</span></div></div>
+        <div class="q-item"><div class="q-text">5. Expand: ROM, PROM, EPROM, EEPROM.</div><div class="meta"><span class="years">2024</span><span class="stars">★★★☆☆</span></div></div>
+        <div class="q-item"><div class="q-text">6. Full forms: SSD, HTML, UPS, SMPS, ASCII (2025).</div><div class="meta"><span class="years">2025,2022</span><span class="stars">★★★★☆</span></div></div>
+      </div>
+      <div class="formulas-col">
+        <div class="formula-block"><div class="formula-title">🧠 SRAM vs DRAM</div><div class="formula-content">SRAM: faster, less density, cache memory<br>DRAM: slower, higher density, main memory</div></div>
+        <div class="formula-block"><div class="formula-title">⚡ SSD speed reason</div><div class="formula-content">No moving parts, NAND flash, lower access latency.</div></div>
+        <div class="formula-block"><div class="formula-title">📀 Memory hierarchy</div><div class="formula-content">Register → Cache → RAM → SSD/HDD</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER: exam tips -->
+  <div class="footer-tips">
+    <h3>📌 Exam pattern alert (2024–2025) &nbsp;<span class="badge">MCQ + explanation mandatory</span></h3>
+    <ul>
+      <li>✅ Each MCQ in Group-A carries 2 marks → <strong>1 mark for correct option + 1 mark for valid explanation</strong>.</li>
+      <li>❌ No marks if explanation is wrong or missing – even if option is correct.</li>
+      <li>📖 Prioritise understanding <strong>“why”</strong> behind answers (De Morgan’s working, why Gray code is used, why SSD faster, etc).</li>
+      <li>⏱️ Subjective part (Group-B): answer any 5 out of 8–10 questions, each 8 marks. Focus on repeated topics: number conversion, 2’s complement, OS types, HTML table, flowchart, malware types, CSS integration.</li>
+      <li>🎯 Smart revision: practice MCQs with self-explanation; write at least 2–3 flowchart algorithms; practice binary/Gray conversions quickly.</li>
+      <li>📅 Time management: 2.5 hrs – allocate ~25 min for Group-A (MCQ+explanation), remaining for long answers.</li>
+    </ul>
+    <p style="margin-top: 12px; font-size: 0.8rem; opacity: 0.8;">⭐ Star rating based on frequency (2021–2025) ★★★★★ = appears in ≥4 years. Use formula column for last-minute glance.</p>
+  </div>
+</div>
+</body>
+</html>

@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// WELCOME STATS (Dynamic)
+// WELCOME STATS (Dynamic - safely skip direct subjects)
 // ============================================
 function calculateStats() {
-    const subjectList = Object.values(subjects).filter(s => !s.isPractice);
+    const subjectList = Object.values(subjects).filter(s => !s.isPractice && !s.isDirectSubject);
     let totalUnits = 0;
     let totalPYQs = 0;
 
@@ -134,7 +134,7 @@ function updateContinueBanner() {
     try {
         const data = JSON.parse(lastVisited);
         const subject = subjects[data.id];
-        if (!subject) {
+        if (!subject || subject.isDirectSubject) {
             banner.style.display = 'none';
             return;
         }
@@ -166,7 +166,7 @@ function updateSubjectCount() {
 }
 
 function trackSubjectVisit(subject) {
-    if (subject && !subject.isPractice) {
+    if (subject && !subject.isPractice && !subject.isDirectSubject) {
         localStorage.setItem('lastVisitedSubject', JSON.stringify({
             id: subject.id,
             timestamp: Date.now()
@@ -403,9 +403,15 @@ function renderSubjects() {
             card.className = 'subject-card';
             card.style.setProperty('--card-color', subject.color);
 
-            const unitCount = subject.types?.units?.items?.length || 0;
-            const hasAnswers = subject.types?.answers ? ' • Answers' : '';
-            const meta = `${unitCount} Units${hasAnswers}`;
+            // For direct-link subjects, show a different meta text
+            let meta = '';
+            if (subject.isDirectSubject) {
+                meta = 'Tap to open';
+            } else {
+                const unitCount = subject.types?.units?.items?.length || 0;
+                const hasAnswers = subject.types?.answers ? ' • Answers' : '';
+                meta = `${unitCount} Units${hasAnswers}`;
+            }
 
             card.innerHTML = `
                 <span class="subject-icon">${subject.icon}</span>
@@ -420,14 +426,21 @@ function renderSubjects() {
 }
 
 // ============================================
-// SELECT SUBJECT
+// SELECT SUBJECT (handles direct subjects)
 // ============================================
 function selectSubject(subject) {
+    // If it's a direct-link subject, open immediately
+    if (subject.isDirectSubject && subject.directLink) {
+        saveState();
+        window.location.href = subject.directLink;
+        return;
+    }
+
     appState.history.push({ screen: 1 });
     appState.selectedSubject = subject;
     appState.selectedType = null;
 
-    // Track visit for continue banner
+    // Track visit for continue banner (skip direct subjects)
     trackSubjectVisit(subject);
 
     if (subject.isPractice) {

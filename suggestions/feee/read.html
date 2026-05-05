@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>FEEE · Easiest Units – Smart Study Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef2f7 0%, #d9e2ec 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1rem;
+            color: #1a2c3e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* header card */
+        .hero {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255,255,240,0.8);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #1f5e7e, #0c3b4f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .sub {
+            color: #2c647e;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            border-left: 3px solid #f5b042;
+            padding-left: 1rem;
+        }
+
+        /* grid for cards */
+        .plan-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .priority-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: 0.2s;
+            border: 1px solid #eaf0f6;
+        }
+
+        .card-header {
+            background: #f9fbfe;
+            padding: 0.9rem 1.5rem;
+            border-bottom: 2px solid #ffd966;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .unit-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1c5a7a;
+        }
+
+        .priority-badge {
+            background: #28a74520;
+            color: #1e6f3f;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .topics {
+            flex: 2;
+            min-width: 200px;
+        }
+
+        .topics ul {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .topics li {
+            margin: 0.5rem 0;
+            line-height: 1.4;
+            font-size: 0.92rem;
+        }
+
+        .stats {
+            flex: 1;
+            background: #f8fafc;
+            border-radius: 1.2rem;
+            padding: 0.8rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            border: 1px solid #e2edf7;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #cbdde9;
+            padding-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #2c5a7a;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            background: #eef2fa;
+            padding: 0.1rem 0.7rem;
+            border-radius: 20px;
+        }
+
+        .marks-highlight {
+            color: #c97e00;
+            font-weight: 800;
+        }
+
+        hr {
+            margin: 0.5rem 0;
+        }
+
+        .strategy-note {
+            background: #eef6ff;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            padding: 1.2rem 1.8rem;
+            border-left: 6px solid #f5b042;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #e9f0f9;
+            font-weight: 700;
+        }
+
+        .badge-easy {
+            background: #d4edda;
+            color: #155724;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #5a6e84;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 750px) {
+            .card-body {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1>⚡ FEEE · Minimum & Easiest Units</h1>
+        <div class="sub">📌 Score 35–45 marks with just ~12 hours of focused study (based on WBSCTE 2021–2025 trends)</div>
+        <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <span style="background:#e9ecef; padding:0.3rem 0.9rem; border-radius:40px;">✅ No heavy derivations</span>
+            <span style="background:#e9ecef; padding:0.3rem 0.9rem; border-radius:40px;">✅ Formula‑based &amp; recall</span>
+            <span style="background:#e9ecef; padding:0.3rem 0.9rem; border-radius:40px;">✅ High exam frequency</span>
+        </div>
+    </div>
+
+    <div class="plan-grid">
+        <!-- Unit 7 - Digital Electronics (Easiest) -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">🔢 Unit 7 – Digital Electronics</span>
+                <span class="priority-badge">🥇 Easiest · 2–3 hours</span>
+            </div>
+            <div class="card-body">
+                <div class="topics">
+                    <strong>📘 What to cover (only what appears in exams):</strong>
+                    <ul>
+                        <li>Logic gates: AND, OR, NOT, NAND, NOR, XOR – symbols & truth tables</li>
+                        <li>De-Morgan’s theorems (both laws) – memorize & apply</li>
+                        <li>Universal gates: NAND & NOR (why universal)</li>
+                        <li>Flip-flop = 1‑bit storage element. Decade counter → 4 flip-flops</li>
+                        <li>SOP / POS definition (basic)</li>
+                        <li>XOR gate application: staircase switch logic (asked 2025)</li>
+                    </ul>
+                    <div style="margin-top: 10px;"><span class="badge-easy">⭐ No math · only tables & laws</span></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><span class="stat-label">⏱️ Time needed</span><span class="stat-value">2–3 hours</span></div>
+                    <div class="stat-item"><span class="stat-label">📊 Expected marks</span><span class="stat-value marks-highlight">8–12 marks</span></div>
+                    <div class="stat-item"><span class="stat-label">📅 Appears in</span><span class="stat-value">Every year (2021–25)</span></div>
+                    <div class="stat-item"><span class="stat-label">🔥 Priority</span><span class="stat-value">#1 MUST DO</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit 6 - OP-AMP -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">📈 Unit 6 – Operational Amplifiers</span>
+                <span class="priority-badge">🥈 2 hours · high recall</span>
+            </div>
+            <div class="card-body">
+                <div class="topics">
+                    <strong>📘 Core topics (very limited):</strong>
+                    <ul>
+                        <li>Ideal Op-Amp: R<sub>in</sub>=∞, A<sub>ol</sub>=∞, R<sub>out</sub>=0, CMRR=∞</li>
+                        <li>Inverting amplifier gain: <strong>V<sub>out</sub> = – (R<sub>f</sub>/R<sub>i</sub>)·V<sub>in</sub></strong></li>
+                        <li>Non-inverting gain: <strong>V<sub>out</sub> = (1 + R<sub>f</sub>/R<sub>i</sub>)·V<sub>in</sub></strong></li>
+                        <li>Pin diagram of IC 741 (label all pins) – repeated every year</li>
+                        <li>Virtual ground concept (one line)</li>
+                        <li>Op-amp as adder (summing) – formula only</li>
+                    </ul>
+                    <div><span class="badge-easy">🎯 Two formulas + pinout = 80% questions</span></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><span class="stat-label">⏱️ Time needed</span><span class="stat-value">2 hours</span></div>
+                    <div class="stat-item"><span class="stat-label">📊 Expected marks</span><span class="stat-value marks-highlight">8–10 marks</span></div>
+                    <div class="stat-item"><span class="stat-label">📅 Appears in</span><span class="stat-value">2021,22,23,24,25</span></div>
+                    <div class="stat-item"><span class="stat-label">🔥 Priority</span><span class="stat-value">#2 (very safe)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit 1 - Sources & components -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">🔌 Unit 1 – Electrical Components & Sources</span>
+                <span class="priority-badge">🥉 1.5–2 hours</span>
+            </div>
+            <div class="card-body">
+                <div class="topics">
+                    <strong>📘 Minimal theory + one numerical:</strong>
+                    <ul>
+                        <li>Ideal voltage source (internal resistance = 0) & ideal current source (internal resistance = ∞)</li>
+                        <li>Source transformation: V<sub>s</sub> = I<sub>s</sub>·R , I<sub>s</sub> = V<sub>s</sub>/R</li>
+                        <li>Active vs passive components (examples: diode, transistor vs resistor, capacitor)</li>
+                        <li>Simple numerical on source transformation (find current / voltage)</li>
+                    </ul>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><span class="stat-label">⏱️ Time needed</span><span class="stat-value">1.5–2 hours</span></div>
+                    <div class="stat-item"><span class="stat-label">📊 Expected marks</span><span class="stat-value marks-highlight">4–8 marks</span></div>
+                    <div class="stat-item"><span class="stat-label">📅 Appears in</span><span class="stat-value">2021,2022,2024</span></div>
+                    <div class="stat-item"><span class="stat-label">🔥 Priority</span><span class="stat-value">#3 (quick win)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit 4 - Transformer (only formulas) -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">🔁 Unit 4 – Transformer (core only)</span>
+                <span class="priority-badge">⚡ 2 hours · high weightage</span>
+            </div>
+            <div class="card-body">
+                <div class="topics">
+                    <strong>📘 Focus ONLY on these (skip motor construction):</strong>
+                    <ul>
+                        <li>EMF equation: <strong>E = 4.44 f N Φ<sub>m</sub></strong></li>
+                        <li>Turns ratio: <strong>V<sub>p</sub>/V<sub>s</sub> = N<sub>p</sub>/N<sub>s</sub> = I<sub>s</sub>/I<sub>p</sub></strong></li>
+                        <li>Transformer rating in kVA (why not kW)</li>
+                        <li>Laminated core → reduces eddy current loss</li>
+                        <li>Numerical: given Vp, Vs, Ns, find Np or flux or full load currents</li>
+                    </ul>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><span class="stat-label">⏱️ Time needed</span><span class="stat-value">2 hours</span></div>
+                    <div class="stat-item"><span class="stat-label">📊 Expected marks</span><span class="stat-value marks-highlight">6–10 marks</span></div>
+                    <div class="stat-item"><span class="stat-label">📅 Appears in</span><span class="stat-value">Every year (compulsory)</span></div>
+                    <div class="stat-item"><span class="stat-label">🔥 Priority</span><span class="stat-value">#4 (non-negotiable)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit 3 - AC Circuits (limited portion) -->
+        <div class="priority-card">
+            <div class="card-header">
+                <span class="unit-name">🔄 Unit 3 – AC Circuits (selective)</span>
+                <span class="priority-badge">📐 3–4 hours</span>
+            </div>
+            <div class="card-body">
+                <div class="topics">
+                    <strong>📘 Only essential topics (skip complex exponentials):</strong>
+                    <ul>
+                        <li>RMS = V<sub>m</sub>/√2 , Average = 2V<sub>m</sub>/π, Peak factor=1.414, Form factor=1.11</li>
+                        <li>X<sub>L</sub>=2πfL , X<sub>C</sub>=1/(2πfC) , Impedance Z=√(R²+(X<sub>L</sub>-X<sub>C</sub>)²)</li>
+                        <li>Power factor cosφ = R/Z , Active power P=VI cosφ, Reactive power Q=VI sinφ</li>
+                        <li><strong>Must practice:</strong> Series RLC numerical – find I, pf, power, voltage drops</li>
+                        <li>Phase relation: In L → current lags; in C → current leads (90°)</li>
+                    </ul>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><span class="stat-label">⏱️ Time needed</span><span class="stat-value">3–4 hours</span></div>
+                    <div class="stat-item"><span class="stat-label">📊 Expected marks</span><span class="stat-value marks-highlight">8–12 marks</span></div>
+                    <div class="stat-item"><span class="stat-label">📅 Appears in</span><span class="stat-value">Every year (1 long + MCQ)</span></div>
+                    <div class="stat-item"><span class="stat-label">🔥 Priority</span><span class="stat-value">#5 (good but more formulas)</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Table: Easiest Units Overall -->
+    <div class="strategy-note">
+        <h3 style="margin-bottom: 1rem;">📋 Priority Summary – Minimum Effort Study Plan</h3>
+        <table>
+            <thead>
+                <tr><th>Priority</th><th>Unit</th><th>Core Focus</th><th>Hours</th><th>Expected Marks</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>🥇 1st</td><td>Unit 7 (Digital)</td><td>Gates, De-Morgan, NAND/NOR, flip-flop</td><td>2-3 hrs</td><td>8-12</td></tr>
+                <tr><td>🥈 2nd</td><td>Unit 6 (Op-Amp)</td><td>Ideal op-amp, gains, IC741 pin diagram</td><td>2 hrs</td><td>8-10</td></tr>
+                <tr><td>🥉 3rd</td><td>Unit 1 (Sources)</td><td>Ideal sources, source transformation numerical</td><td>1.5-2 hrs</td><td>4-8</td></tr>
+                <tr><td>4th</td><td>Unit 4 (Transformer)</td><td>EMF equation, turns ratio, kVA rating</td><td>2 hrs</td><td>6-10</td></tr>
+                <tr><td>5th</td><td>Unit 3 (AC Basics)</td><td>RMS, XL, XC, RLC series, power factor</td><td>3-4 hrs</td><td>8-12</td></tr>
+            </tbody>
+        </table>
+        <p style="margin-top: 1rem;">✅ <strong>Total hours:</strong> ~10–12 hours &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Expected score:</strong> <span style="background:#2b6f5c; color:white; padding:0.2rem 0.8rem; border-radius:40px;">35–45+ marks</span> (well above passing ~24 marks)</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">🔔 <strong>Strategy:</strong> First master Unit 7 + Unit 6 → they give maximum return with zero math. Then Unit 1 & Unit 4 (numerical plug‑and‑play). Unit 3 requires little practice but appears every year. Avoid heavy units like magnetic circuit details (reluctance + BH curve drawing) until you finish these.</p>
+    </div>
+
+    <!-- Quick formula recap (just for easiest topics) -->
+    <div style="background: white; border-radius: 1.5rem; margin-top: 2rem; padding: 1.2rem 1.5rem; border: 1px solid #e2edf7;">
+        <h3>🧠 Quick Formula Card (for easiest units)</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+            <div style="background: #f8fafc; padding: 0.5rem 1rem; border-radius: 1rem;"><strong>Op-Amp inv:</strong> V<sub>out</sub> = –(R<sub>f</sub>/R<sub>i</sub>)·V<sub>in</sub></div>
+            <div style="background: #f8fafc; padding: 0.5rem 1rem; border-radius: 1rem;"><strong>Non-inv:</strong> V<sub>out</sub> = (1+R<sub>f</sub>/R<sub>i</sub>)·V<sub>in</sub></div>
+            <div style="background: #f8fafc; padding: 0.5rem 1rem; border-radius: 1rem;"><strong>Transformer:</strong> V<sub>p</sub>/V<sub>s</sub> = N<sub>p</sub>/N<sub>s</sub> , E = 4.44 f N Φ<sub>m</sub></div>
+            <div style="background: #f8fafc; padding: 0.5rem 1rem; border-radius: 1rem;"><strong>Source transform:</strong> V = I·R , I = V/R</div>
+            <div style="background: #f8fafc; padding: 0.5rem 1rem; border-radius: 1rem;"><strong>AC:</strong> V<sub>rms</sub> = V<sub>m</sub>/√2 , Z = √(R²+X²) , P = VI cosφ</div>
+            <div style="background: #f8fafc; padding: 0.5rem 1rem; border-radius: 1rem;"><strong>De‑Morgan:</strong> (A+B)' = A'·B' , (AB)' = A'+B'</div>
+        </div>
+        <div class="small-note" style="margin-top: 0.8rem; color:#4a6a85;">⭐ <strong>Exam tip (2024–25 pattern):</strong> MCQs need 1‑line explanation. For example: “Ideal current source has infinite resistance because it must supply constant current regardless of load.” Prepare short reasons for each formula.</div>
+    </div>
+
+    <footer>
+        📍 Based on WBSCTE FEEE syllabus & past papers (2021–2025) | Skip lengthy derivations & focus on these 5 units to pass with good margin.<br>
+        ✅ After covering these, you can attempt any 5 long answer questions and all MCQs confidently.
+    </footer>
+</div>
+</body>
+</html>

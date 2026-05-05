@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Engineering Mechanics · WBSCTE | Important Questions & Formula Sheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 1.5rem;
+            color: #1a2c3e;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .header {
+            background: linear-gradient(135deg, #0b2b3d, #1b4f6e);
+            color: white;
+            padding: 1.6rem 2rem;
+            border-radius: 32px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .badge {
+            background: #ffc107;
+            color: #1e2a3a;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.6rem;
+        }
+
+        /* unit card */
+        .unit-card {
+            background: white;
+            border-radius: 28px;
+            margin-bottom: 2.2rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+            border: 1px solid #e2edf2;
+        }
+
+        .unit-title {
+            background: #eef3fa;
+            padding: 1rem 1.8rem;
+            border-bottom: 3px solid #2c7da0;
+        }
+
+        .unit-title h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0f3b4f;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .unit-tag {
+            background: #2c7da0;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-weight: normal;
+        }
+
+        /* two column layout inside unit */
+        .two-col {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .questions-col {
+            flex: 2;
+            min-width: 240px;
+            background: #ffffff;
+            padding: 1.2rem 1.5rem;
+            border-right: 1px solid #e2edf2;
+        }
+
+        .formulas-col {
+            flex: 1.2;
+            min-width: 240px;
+            background: #fafeff;
+            padding: 1.2rem 1.5rem;
+        }
+
+        /* question list */
+        .question-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #e0ecf3;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 6px;
+            color: #0f2b38;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+
+        .years {
+            background: #e9ecef;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .stars {
+            color: #f5b042;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .star-empty {
+            color: #cfdde6;
+        }
+
+        /* formula block */
+        .formula-block {
+            background: #f0f9fe;
+            border-left: 4px solid #2c7da0;
+            padding: 0.8rem;
+            margin-bottom: 1.2rem;
+            border-radius: 16px;
+            font-size: 0.85rem;
+        }
+
+        .formula-title {
+            font-weight: 700;
+            color: #1b5e7a;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .formula {
+            font-family: 'Courier New', 'Fira Code', monospace;
+            background: #eef2f5;
+            padding: 0.3rem 0.5rem;
+            border-radius: 12px;
+            display: inline-block;
+            font-size: 0.82rem;
+            margin: 0.2rem 0;
+        }
+
+        hr {
+            margin: 0.5rem 0;
+            border: 0;
+            border-top: 1px solid #cde0e8;
+        }
+
+        /* footer tips */
+        .footer-tips {
+            background: #1e2f3c;
+            color: #e6f7ff;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            line-height: 1.5;
+        }
+
+        .footer-tips h3 {
+            color: #ffda88;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-tips ul {
+            margin-left: 1.3rem;
+        }
+
+        .footer-tips li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                padding: 1rem;
+            }
+            .questions-col, .formulas-col {
+                flex: auto;
+                width: 100%;
+                border-right: none;
+            }
+            .questions-col {
+                border-bottom: 1px solid #dce7ef;
+            }
+            .unit-title h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📐 Engineering Mechanics · WBSCTE</h1>
+        <p>Important questions (2021–2025) · Unit-wise formula reference · Exam strategy</p>
+        <div class="badge">⭐ Based on 5 years PYQ analysis (2021-2025) + official syllabus</div>
+    </div>
+
+    <!-- UNIT 1 : Basics & Force System -->
+    <div class="unit-card">
+        <div class="unit-title">
+            <h2><span>📌 Unit 1: Force System & Basics</span> <span class="unit-tag">Statics · Vectors · Resolution</span></h2>
+        </div>
+        <div class="two-col">
+            <div class="questions-col">
+                <div class="question-item">
+                    <div class="question-text">🔹 State & explain Parallelogram law of forces. (Or Polygon law of forces)</div>
+                    <div class="meta"><span class="years">2021, 2025 (MCQ)</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Two forces 2P and P act on a particle. If first force is doubled & second increased by 12 kN, resultant direction unchanged. Find P.</div>
+                    <div class="meta"><span class="years">2021, 2023, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Find resultant of concurrent coplanar forces (4 forces with directions – typical numerical).</div>
+                    <div class="meta"><span class="years">2022, 2024</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Principle of transmissibility of force & Bow’s notation.</div>
+                    <div class="meta"><span class="years">2022, 2023</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Resolution of a force into rectangular components – numerical (horizontal & vertical).</div>
+                    <div class="meta"><span class="years">2021, 2024 (MCQ basis)</span> <span class="stars">★★★★☆</span></div>
+                </div>
+            </div>
+            <div class="formulas-col">
+                <div class="formula-block">
+                    <div class="formula-title">📐 Vector / Force basics</div>
+                    <div>Resultant <span class="formula">R = √(P² + Q² + 2PQ cosθ)</span></div>
+                    <div>Direction <span class="formula">tan α = (Q sinθ)/(P + Q cosθ)</span></div>
+                    <div>Components: <span class="formula">Fₓ = F cosθ , Fᵧ = F sinθ</span></div>
+                </div>
+                <div class="formula-block">
+                    <div class="formula-title">⚖️ Parallelogram / Triangle law</div>
+                    <div>Triangle law: <span class="formula">R = P + Q</span> (vector addition)</div>
+                    <div>Polygon law: closing side gives resultant</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIT 2 : Moments & Couples + Varignon -->
+    <div class="unit-card">
+        <div class="unit-title">
+            <h2><span>🔄 Unit 2: Moments & Couples (Varignon's theorem)</span> <span class="unit-tag">Moment · Couple · Varignon</span></h2>
+        </div>
+        <div class="two-col">
+            <div class="questions-col">
+                <div class="question-item">
+                    <div class="question-text">🔹 State & explain Varignon’s theorem (principle of moments).</div>
+                    <div class="meta"><span class="years">2021, 2023, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Replace a force by an equivalent force-couple system at a point.</div>
+                    <div class="meta"><span class="years">2021, 2025 (concept)</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Oil drum rolling over a footstep (minimum push at top) – application of moment.</div>
+                    <div class="meta"><span class="years">2021</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Moment of a force about a point & resultant of parallel forces.</div>
+                    <div class="meta"><span class="years">2022, 2024</span> <span class="stars">★★★★☆</span></div>
+                </div>
+            </div>
+            <div class="formulas-col">
+                <div class="formula-block">
+                    <div class="formula-title">🧮 Moment & Varignon</div>
+                    <div><span class="formula">M = F × d</span> (perpendicular distance)</div>
+                    <div>Varignon: Moment of resultant = Σ moments of components</div>
+                    <div>Couple moment: <span class="formula">M = F × arm</span> (independent of point)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIT 3 : Equilibrium & Beam Reactions -->
+    <div class="unit-card">
+        <div class="unit-title">
+            <h2><span>⚖️ Unit 3: Equilibrium (Beams, Lami, Supports)</span> <span class="unit-tag">Free body · Reactions · Lami</span></h2>
+        </div>
+        <div class="two-col">
+            <div class="questions-col">
+                <div class="question-item">
+                    <div class="question-text">🔹 Beam reaction problems – simply supported beam with point loads + UDL (span 4m/6m).</div>
+                    <div class="meta"><span class="years">2021, 2022, 2024</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 State Lami’s theorem & application (force triangle for concurrent equilibrium).</div>
+                    <div class="meta"><span class="years">2021, 2023</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Ladder resting against smooth wall (5m, 60°, weight 900N) – find reactions / sliding condition.</div>
+                    <div class="meta"><span class="years">2021</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Conditions of equilibrium for coplanar non-concurrent forces & free body diagram.</div>
+                    <div class="meta"><span class="years">2022, 2024, 2025</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Horizontal force P to hold block on smooth incline (30°).</div>
+                    <div class="meta"><span class="years">2021, 2023</span> <span class="stars">★★★★☆</span></div>
+                </div>
+            </div>
+            <div class="formulas-col">
+                <div class="formula-block">
+                    <div class="formula-title">📌 Equilibrium equations</div>
+                    <div><span class="formula">ΣFₓ = 0</span> &nbsp; <span class="formula">ΣFᵧ = 0</span> &nbsp; <span class="formula">ΣM = 0</span></div>
+                    <div>Lami’s theorem: <span class="formula">P/sinα = Q/sinβ = R/sinγ</span></div>
+                </div>
+                <div class="formula-block">
+                    <div class="formula-title">📐 Beam reaction (simply supported)</div>
+                    <div>RA = Σ(Wᵢ × dᵢ)/L , RB = total load – RA</div>
+                    <div>UDL load = w × L (acts at mid-span)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIT 4 : Friction (horizontal & incline) -->
+    <div class="unit-card">
+        <div class="unit-title">
+            <h2><span>🧲 Unit 4: Friction (Laws, Incline, Angle of Repose)</span> <span class="unit-tag">μ · Limiting friction · Inclined plane</span></h2>
+        </div>
+        <div class="two-col">
+            <div class="questions-col">
+                <div class="question-item">
+                    <div class="question-text">🔹 Body on rough horizontal plane: pull of 180N at 30° & push of 200N at 30° just moves it. Find weight & μ.</div>
+                    <div class="meta"><span class="years">2021, 2024</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Weight 500N on rough inclined plane (25°), angle of friction = 20°. Determine minimum effort P (parallel to plane) to maintain equilibrium.</div>
+                    <div class="meta"><span class="years">2023, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Define angle of friction, angle of repose & relation between them.</div>
+                    <div class="meta"><span class="years">2022, 2023, 2024</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Find friction force for given P = 20N, 50N, 60N (μₛ=0.5, μₖ=0.4) – static vs kinetic.</div>
+                    <div class="meta"><span class="years">2023, 2025</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Two smooth spheres in channel – find reactions (equilibrium + geometry).</div>
+                    <div class="meta"><span class="years">2023, 2025</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+            </div>
+            <div class="formulas-col">
+                <div class="formula-block">
+                    <div class="formula-title">🔁 Friction essentials</div>
+                    <div><span class="formula">F_max = μₛ × N</span>  (limiting friction)</div>
+                    <div><span class="formula">tan φ = μ</span>  (angle of friction)</div>
+                    <div>Angle of repose θ = φ → <span class="formula">tan θ = μ</span></div>
+                </div>
+                <div class="formula-block">
+                    <div class="formula-title">📐 Inclined plane (P parallel to plane)</div>
+                    <div>Motion up: <span class="formula">P = W sinθ + μ W cosθ</span></div>
+                    <div>Prevent sliding down: <span class="formula">P = W sinθ − μ W cosθ</span> (μ = tanφ)</div>
+                    <div>Horizontal pull/push: <span class="formula">P cosα = μ (W ∓ P sinα)</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIT 5 : Centroid & Centre of Gravity -->
+    <div class="unit-card">
+        <div class="unit-title">
+            <h2><span>📍 Unit 5: Centroid (I-section, Composite figures)</span> <span class="unit-tag">CG · Composite lamina</span></h2>
+        </div>
+        <div class="two-col">
+            <div class="questions-col">
+                <div class="question-item">
+                    <div class="question-text">🔹 Determine centroid of I-section: Top flange 160×20, web 80×30, bottom flange 200×10 (mm). (Values change but same pattern)</div>
+                    <div class="meta"><span class="years">2021, 2023, 2024, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Differentiate between centroid & centre of gravity.</div>
+                    <div class="meta"><span class="years">2021, 2023, 2024</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Centroid of T-section, angle section, channel section (numerical).</div>
+                    <div class="meta"><span class="years">2022, 2023</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Locate centroid of lamina (cut-out circles / composite shape).</div>
+                    <div class="meta"><span class="years">2025 (Fig.9b)</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+            </div>
+            <div class="formulas-col">
+                <div class="formula-block">
+                    <div class="formula-title">📏 Centroid (composite bodies)</div>
+                    <div><span class="formula">x̄ = Σ(Aᵢ xᵢ) / ΣAᵢ</span> &nbsp; <span class="formula">ȳ = Σ(Aᵢ yᵢ) / ΣAᵢ</span></div>
+                    <div>Rectangle: centroid at h/2 from base</div>
+                    <div>Triangle: ȳ = h/3 from base</div>
+                    <div>Semicircle: ȳ = 4r/3π from diameter</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIT 6 : Simple Lifting Machines (MA, VR, Efficiency, law) -->
+    <div class="unit-card">
+        <div class="unit-title">
+            <h2><span>🏗️ Unit 6: Lifting Machines (Wheel & Axle, Screw jack, Law of machine)</span> <span class="unit-tag">MA · VR · efficiency · reversibility</span></h2>
+        </div>
+        <div class="two-col">
+            <div class="questions-col">
+                <div class="question-item">
+                    <div class="question-text">🔹 Law of machine P = mW + C. Find m, C from two observations (1500N with 100N, 2500N with 160N) – also MA & efficiency.</div>
+                    <div class="meta"><span class="years">2021, 2023, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Differential wheel & axle: D=40cm, radii 15 & 10 cm, effort 100N, efficiency 75% → find load lifted.</div>
+                    <div class="meta"><span class="years">2021, 2022</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Simple screw jack: pitch = 10mm, handle length 500mm, effort 20N lifts 2.6kN. Find MA, VR, efficiency.</div>
+                    <div class="meta"><span class="years">2022, 2023, 2024</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Condition for reversibility / self-locking machine. Prove η > 50% for reversibility.</div>
+                    <div class="meta"><span class="years">2023, 2024, 2025</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Wheel & axle: P = 0.2W + 50, D=600mm, r_axle=50mm. Find MA, effort for W=2000N, max efficiency, max MA, load for effort 520N.</div>
+                    <div class="meta"><span class="years">2023, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Velocity ratio of simple wheel & axle, single/double purchase crab, worm & worm wheel.</div>
+                    <div class="meta"><span class="years">2021, 2022, 2023, 2025</span> <span class="stars">★★★★☆</span></div>
+                </div>
+            </div>
+            <div class="formulas-col">
+                <div class="formula-block">
+                    <div class="formula-title">⚙️ Machine fundamentals</div>
+                    <div><span class="formula">MA = W / P</span> &nbsp; <span class="formula">VR = (effort distance)/(load distance)</span></div>
+                    <div><span class="formula">η = MA / VR × 100%</span></div>
+                    <div>Law of machine: <span class="formula">P = mW + C</span> → Max MA = 1/m , Max η = 1/(m·VR)</div>
+                    <div>Self-locking: η ≤ 50% &nbsp; Reversible: η > 50%</div>
+                </div>
+                <div class="formula-block">
+                    <div class="formula-title">🔄 VR formulas (important)</div>
+                    <div>Wheel & Axle: <span class="formula">VR = D/d</span></div>
+                    <div>Diff. Wheel & Axle: <span class="formula">VR = 2D / (d₁ – d₂)</span></div>
+                    <div>Screw jack: <span class="formula">VR = 2πL / p</span> (L = handle length, p = pitch)</div>
+                    <div>Single purchase crab: <span class="formula">VR = (lever length × T_pinion)/(R_axle × T_spur)</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIT 7 : Motion (kinematics, dynamics, work power energy) -->
+    <div class="unit-card">
+        <div class="unit-title">
+            <h2><span>🏃 Unit 7: Motion in a Plane (Kinematics, Work, Power, Energy)</span> <span class="unit-tag">Equations · Projectile · Work-Energy</span></h2>
+        </div>
+        <div class="two-col">
+            <div class="questions-col">
+                <div class="question-item">
+                    <div class="question-text">🔹 Derive the distance travelled by a body in the nth second: Sₙ = u + a/2(2n-1).</div>
+                    <div class="meta"><span class="years">2023, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Braking problem: car at 15 m/s, sees block 40m ahead, stops within 5m of block. Find retardation & time.</div>
+                    <div class="meta"><span class="years">2025</span> <span class="stars">★★★★☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Projectile: projected at 45°, 150 m/s. Calculate max height, range, time of flight.</div>
+                    <div class="meta"><span class="years">2024</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Define work, power, energy with SI units & examples. (Potential & kinetic energy)</div>
+                    <div class="meta"><span class="years">2023, 2024, 2025</span> <span class="stars">★★★★★</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Pump power calculation: lift 18000 litres water to 12m in 20 min, efficiency 65% → find power.</div>
+                    <div class="meta"><span class="years">2025</span> <span class="stars">★★★☆☆</span></div>
+                </div>
+                <div class="question-item">
+                    <div class="question-text">🔹 Newton’s second law: P = mf, conservation of momentum (simple numerical).</div>
+                    <div class="meta"><span class="years">2021, 2023</span> <span class="stars">★★★★☆</span></div>
+                </div>
+            </div>
+            <div class="formulas-col">
+                <div class="formula-block">
+                    <div class="formula-title">📈 Kinematic equations</div>
+                    <div><span class="formula">v = u + at</span> &nbsp; <span class="formula">s = ut + ½ at²</span> &nbsp; <span class="formula">v² = u² + 2as</span></div>
+                    <div>Distance in nth second: <span class="formula">Sₙ = u + (a/2)(2n−1)</span></div>
+                    <div>Centripetal force: <span class="formula">F = mv²/r</span></div>
+                </div>
+                <div class="formula-block">
+                    <div class="formula-title">💡 Work, Power, Energy</div>
+                    <div><span class="formula">W = F × s × cosθ</span> (Joule)</div>
+                    <div><span class="formula">Power = Work/time = F·v</span> (Watt)</div>
+                    <div><span class="formula">KE = ½ mv²</span> &nbsp; <span class="formula">PE = mgh</span></div>
+                    <div>Pump power: <span class="formula">P = (ṁ g h)/η</span> (ṁ in kg/s)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer: Exam tips & 2025 pattern -->
+    <div class="footer-tips">
+        <h3>📌 Exam strategy · 2024–2025 pattern & MCQ explanation</h3>
+        <ul>
+            <li><strong>⭐ 2025 updated pattern:</strong> MCQs in Group A now carry <strong>2 marks each</strong> (1 mark for correct answer + <strong>1 mark for valid explanation</strong>). Always write key reason/law/formula in one line.</li>
+            <li><strong>📖 High-frequency topics (must revise):</strong> Centroid of I-section, Law of machine (P=mW+C), Inclined plane friction, Beam reactions, Screw jack / Wheel & axle VR, Distance in nth second, Work-Energy definitions.</li>
+            <li><strong>🧮 Formula priority:</strong> MA, VR, η relations; Friction equations (inclined/horizontal); Beam equilibrium; Centroid composite formula; Kinematics equations.</li>
+            <li><strong>⌛ Time management:</strong> Attempt theory+derivation questions first (Varignon, Lami, reversibility). Numerical from friction, machine law, centroid carry heavy marks — practice tabular format.</li>
+            <li><strong>✅ For True/False & Fill-ups (2021-2023 pattern):</strong> Focus on SI units, angle of repose = angle of friction, MA max = 1/m, efficiency of self locking ≤ 50%.</li>
+            <li><strong>⚠️ Common mistakes:</strong> In friction problems, normal reaction changes when force inclined; in centroid, always measure reference line (bottom or top). In law of machine, take two observations to solve m & C.</li>
+        </ul>
+        <p style="margin-top: 12px; font-size: 0.85rem; border-top: 1px solid #3d5a6c; padding-top: 12px;">🎯 Based on WBSCTE syllabus (2021–2025) – includes all essential questions & unit-wise formulas. Use stars ★★★★★ to prioritize revision.</p>
+    </div>
+</div>
+</body>
+</html>

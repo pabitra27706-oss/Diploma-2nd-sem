@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Physics–II (BS104) – Unit-wise Important Questions & Formula Guide</title>
+    <style>
+        :root {
+            --bg: #f5f6f8;
+            --card-bg: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --accent: #1e5fbb;
+            --accent-light: #e8f0fb;
+            --border: #e0e0e6;
+            --star: #e6a817;
+            --star-empty: #d0d0d6;
+            --tag-bg: #eef2f7;
+            --tag-text: #3a5a8c;
+            --formula-bg: #f9fafb;
+            --formula-border: #d8dde3;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --radius: 10px;
+            --radius-sm: 6px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-left: 5px solid var(--accent);
+        }
+        .header h1 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+        .header .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .header .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .header .meta span {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Unit Card */
+        .unit-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            margin-bottom: 18px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .unit-header {
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .unit-header .unit-num {
+            background: rgba(255, 255, 255, 0.2);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .unit-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 100px;
+        }
+        @media (max-width: 680px) {
+            .unit-body {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            .unit-header {
+                font-size: 0.95rem;
+            }
+        }
+        .questions-col {
+            padding: 16px;
+            border-right: 1px solid var(--border);
+        }
+        @media (max-width: 680px) {
+            .questions-col {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+        }
+        .formulas-col {
+            padding: 16px;
+            background: var(--formula-bg);
+        }
+
+        .col-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .col-title svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Question item */
+        .q-item {
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px dotted var(--border);
+        }
+        .q-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .q-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 5px;
+            line-height: 1.45;
+        }
+        .q-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+        }
+        .year-tag {
+            display: inline-block;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.73rem;
+            white-space: nowrap;
+        }
+        .stars {
+            color: var(--star);
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+        .stars .empty {
+            color: var(--star-empty);
+        }
+
+        /* Formula item */
+        .formula-item {
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .formula-item .f-name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.82rem;
+            display: block;
+            margin-bottom: 1px;
+        }
+        .formula-item .f-expr {
+            background: #fff;
+            border: 1px solid var(--formula-border);
+            border-radius: var(--radius-sm);
+            padding: 6px 10px;
+            font-family: 'Cambria Math', 'Times New Roman', 'Georgia', serif;
+            font-size: 0.9rem;
+            color: #1a3a5c;
+            display: inline-block;
+            margin-top: 2px;
+            letter-spacing: 0.3px;
+            word-break: break-all;
+            max-width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            margin-top: 18px;
+            box-shadow: var(--shadow);
+            border-top: 3px solid #e6a817;
+        }
+        .footer h3 {
+            font-size: 0.95rem;
+            color: #b8780a;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer ul li {
+            font-size: 0.82rem;
+            padding: 4px 0 4px 18px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .footer ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        /* Print tweaks */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+            .unit-card,
+            .header,
+            .footer {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+            .formulas-col {
+                background: #fafafa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Applied Physics–II (BS104)</h1>
+            <div class="subtitle">Unit-wise Important Questions &amp; Formula Guide</div>
+            <div class="meta">
+                <span>📋 Syllabus: WBSCTE Diploma</span>
+                <span>📅 Papers: 2021–2025</span>
+                <span>⏱️ Pattern: 2024–25 (MCQ+Explanation)</span>
+                <span>⭐ 5 = Most Repeated</span>
+            </div>
+        </div>
+
+        <!-- UNIT 1 -->
+        <div class="unit-card">
+            <div class="unit-header"><span class="unit-num">1</span> Wave Motion and Its Applications</div>
+            <div class="unit-body">
+                <div class="questions-col">
+                    <div class="col-title">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Define SHM. Derive expressions for displacement, velocity, and acceleration of a particle executing SHM. Also find maximum velocity and maximum acceleration.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Write the differential equation of SHM and give its solution. Explain the characteristics of SHM.</div>
+                        <div class="q-meta"><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">The equation of a plane progressive wave is given. Calculate its amplitude, frequency, wavelength, and speed.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What are free, damped, and forced oscillations? Distinguish between them with examples.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2022</span><span class="year-tag">2024</span><span class="stars">★★★★☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What are beats? Prove that the number of beats per second equals the difference in frequencies of the two sources.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What are ultrasonic waves? Write their properties and medical/engineering applications.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★★☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Define reverberation and reverberation time. What are the requirements of good acoustics in an auditorium?</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2022</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">A particle executes SHM with amplitude 0.1 m and time period 2 s. Find its maximum velocity and maximum acceleration.</div>
+                        <div class="q-meta"><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                </div>
+                <div class="formulas-col">
+                    <div class="col-title">📐 Key Formulas</div>
+                    <div class="formula-item"><span class="f-name">SHM Displacement:</span><span class="f-expr">y = A sin(ωt + φ)</span></div>
+                    <div class="formula-item"><span class="f-name">Velocity in SHM:</span><span class="f-expr">v = Aω cos(ωt + φ), &nbsp;v<sub>max</sub> = Aω</span></div>
+                    <div class="formula-item"><span class="f-name">Acceleration in SHM:</span><span class="f-expr">a = −ω²y, &nbsp;a<sub>max</sub> = ω²A</span></div>
+                    <div class="formula-item"><span class="f-name">Angular Frequency:</span><span class="f-expr">ω = 2πf = 2π/T</span></div>
+                    <div class="formula-item"><span class="f-name">Wave Equation:</span><span class="f-expr">y = A sin(ωt − kx) = A sin 2π(t/T − x/λ)</span></div>
+                    <div class="formula-item"><span class="f-name">Wave Speed:</span><span class="f-expr">v = f λ = ω/k</span></div>
+                    <div class="formula-item"><span class="f-name">Beat Frequency:</span><span class="f-expr">f<sub>beat</sub> = |f₁ − f₂|</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 2 -->
+        <div class="unit-card">
+            <div class="unit-header"><span class="unit-num">2</span> Optics (Co-ordinate Geometry &amp; Light)</div>
+            <div class="unit-body">
+                <div class="questions-col">
+                    <div class="col-title">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">State the conditions for total internal reflection. Establish the relation between critical angle and absolute refractive index.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State Snell's law of refraction. A ray enters from air to glass (μ=1.5) at 30°. Find the angle of refraction.</div>
+                        <div class="q-meta"><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Write the lens maker's formula and explain each term. Calculate the focal length of a plano-convex lens (R=20 cm, μ=1.5).</div>
+                        <div class="q-meta"><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Draw a ray diagram of a compound microscope. Write the expression for its magnifying power.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">With a ray diagram, show the position and nature of the image formed by a convex lens when the object is between F and the optical centre.</div>
+                        <div class="q-meta"><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">How does the focal length of a lens change when red light is replaced by violet light? Explain.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2022</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Distinguish between interference and diffraction patterns (Young's double slit vs single slit).</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What is optical fibre? Explain the mechanism of light propagation using total internal reflection.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★☆</span></div>
+                    </div>
+                </div>
+                <div class="formulas-col">
+                    <div class="col-title">📐 Key Formulas</div>
+                    <div class="formula-item"><span class="f-name">Snell's Law:</span><span class="f-expr">μ = sin i / sin r</span></div>
+                    <div class="formula-item"><span class="f-name">Critical Angle:</span><span class="f-expr">θ<sub>c</sub> = sin⁻¹(1/μ)</span></div>
+                    <div class="formula-item"><span class="f-name">Lens Formula:</span><span class="f-expr">1/f = 1/v − 1/u</span></div>
+                    <div class="formula-item"><span class="f-name">Magnification:</span><span class="f-expr">m = v/u = h<sub>i</sub>/h<sub>o</sub></span></div>
+                    <div class="formula-item"><span class="f-name">Power of Lens:</span><span class="f-expr">P = 1/f (m), &nbsp;unit: Dioptre (D)</span></div>
+                    <div class="formula-item"><span class="f-name">Lens Maker's Formula:</span><span class="f-expr">1/f = (μ−1)(1/R₁ − 1/R₂)</span></div>
+                    <div class="formula-item"><span class="f-name">Compound Microscope:</span><span class="f-expr">M = (L/f<sub>o</sub>) × (D/f<sub>e</sub>)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 3 -->
+        <div class="unit-card">
+            <div class="unit-header"><span class="unit-num">3</span> Electrostatics</div>
+            <div class="unit-body">
+                <div class="questions-col">
+                    <div class="col-title">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">State Coulomb's law in vector form. Two point charges +5μC and −5μC are placed 10 cm apart. Find the electric field at the midpoint.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State Gauss's law in electrostatics. Using it, derive an expression for the electric field due to a uniformly charged sphere at an outside point.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Why is electrostatic potential constant throughout the volume of a conductor?</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Define capacitance. Derive the formula for equivalent capacitance of capacitors in series and parallel. Two capacitors 30μF and 50μF are in series – find C<sub>eq</sub>.</div>
+                        <div class="q-meta"><span class="year-tag">2022</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What happens to the capacitance when a dielectric slab is inserted between the plates? Explain with the formula.</div>
+                        <div class="q-meta"><span class="year-tag">2022</span><span class="year-tag">2024</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State the factors on which the capacitance of a conductor depends.</div>
+                        <div class="q-meta"><span class="year-tag">2025</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Calculate how many electrons are present in one coulomb of charge. (e = 1.6×10⁻¹⁹ C)</div>
+                        <div class="q-meta"><span class="year-tag">2025</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                </div>
+                <div class="formulas-col">
+                    <div class="col-title">📐 Key Formulas</div>
+                    <div class="formula-item"><span class="f-name">Coulomb's Law:</span><span class="f-expr">F = (1/4πε₀)·(q₁q₂/r²)</span></div>
+                    <div class="formula-item"><span class="f-name">Electric Field (point charge):</span><span class="f-expr">E = (1/4πε₀)·(q/r²)</span></div>
+                    <div class="formula-item"><span class="f-name">Gauss's Law:</span><span class="f-expr">∮E·dA = Q<sub>enc</sub>/ε₀</span></div>
+                    <div class="formula-item"><span class="f-name">Field outside charged sphere:</span><span class="f-expr">E = (1/4πε₀)·(Q/r²)</span></div>
+                    <div class="formula-item"><span class="f-name">Electric Potential:</span><span class="f-expr">V = (1/4πε₀)·(q/r)</span></div>
+                    <div class="formula-item"><span class="f-name">Capacitance:</span><span class="f-expr">C = Q/V, &nbsp;C<sub>plate</sub> = ε₀A/d</span></div>
+                    <div class="formula-item"><span class="f-name">With Dielectric:</span><span class="f-expr">C = Kε₀A/d</span></div>
+                    <div class="formula-item"><span class="f-name">Series C:</span><span class="f-expr">1/C<sub>eq</sub> = 1/C₁ + 1/C₂ + …</span></div>
+                    <div class="formula-item"><span class="f-name">Parallel C:</span><span class="f-expr">C<sub>eq</sub> = C₁ + C₂ + …</span></div>
+                    <div class="formula-item"><span class="f-name">Energy in Capacitor:</span><span class="f-expr">U = ½CV² = Q²/2C</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 4 -->
+        <div class="unit-card">
+            <div class="unit-header"><span class="unit-num">4</span> Current Electricity</div>
+            <div class="unit-body">
+                <div class="questions-col">
+                    <div class="col-title">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Define resistivity. On what factors does the resistance of a conductor depend? A wire of 10Ω is stretched to double its length – find its new resistance.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State Kirchhoff's Current Law and Kirchhoff's Voltage Law. Apply them to find the equivalent resistance in a given network.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Draw the circuit of a Wheatstone bridge. Using Kirchhoff's laws, derive its balance condition.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Three resistors 6Ω, 4Ω, and 8Ω are connected in a triangle ABC. A 12V battery is connected across the 6Ω resistor. Find the equivalent resistance between A &amp; B and current through the 8Ω resistor.</div>
+                        <div class="q-meta"><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Define neutral temperature and inversion temperature for a thermocouple. Draw the thermo-emf vs temperature graph.</div>
+                        <div class="q-meta"><span class="year-tag">2022</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">An electric lamp is marked 100W, 220V. Find its resistance and the current drawn.</div>
+                        <div class="q-meta"><span class="year-tag">2024</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Show that the equivalent resistance in a parallel combination is less than the smallest individual resistance.</div>
+                        <div class="q-meta"><span class="year-tag">2025</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                </div>
+                <div class="formulas-col">
+                    <div class="col-title">📐 Key Formulas</div>
+                    <div class="formula-item"><span class="f-name">Resistance:</span><span class="f-expr">R = ρ·L/A</span></div>
+                    <div class="formula-item"><span class="f-name">Ohm's Law:</span><span class="f-expr">V = IR</span></div>
+                    <div class="formula-item"><span class="f-name">Electric Power:</span><span class="f-expr">P = VI = I²R = V²/R</span></div>
+                    <div class="formula-item"><span class="f-name">Energy:</span><span class="f-expr">E = Pt = VIt</span></div>
+                    <div class="formula-item"><span class="f-name">Series Resistance:</span><span class="f-expr">R<sub>eq</sub> = R₁ + R₂ + …</span></div>
+                    <div class="formula-item"><span class="f-name">Parallel Resistance:</span><span class="f-expr">1/R<sub>eq</sub> = 1/R₁ + 1/R₂ + …</span></div>
+                    <div class="formula-item"><span class="f-name">Wheatstone Bridge Balance:</span><span class="f-expr">R₁/R₂ = R₃/R₄</span></div>
+                    <div class="formula-item"><span class="f-name">Kirchhoff's Current Law:</span><span class="f-expr">ΣI<sub>in</sub> = ΣI<sub>out</sub></span></div>
+                    <div class="formula-item"><span class="f-name">Kirchhoff's Voltage Law:</span><span class="f-expr">ΣV = 0 (around loop)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 5 -->
+        <div class="unit-card">
+            <div class="unit-header"><span class="unit-num">5</span> Electromagnetism</div>
+            <div class="unit-body">
+                <div class="questions-col">
+                    <div class="col-title">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">State and explain Biot-Savart law. Derive the expression for magnetic field at the centre of a circular coil carrying current.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State Faraday's laws of electromagnetic induction and Lenz's law. Show that Lenz's law obeys conservation of energy.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">A galvanometer of resistance 100Ω gives full-scale deflection at 500μA. How can it be converted into (a) a voltmeter of 10V range, (b) an ammeter of 5A range? Draw the circuit.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State Ampere's circuital law. Calculate the magnetic field inside a long solenoid (500 turns/m, 4A current).</div>
+                        <div class="q-meta"><span class="year-tag">2022</span><span class="year-tag">2024</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State Fleming's left-hand rule and right-hand rule. Explain why magnetic force on a moving charge does no work.</div>
+                        <div class="q-meta"><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">An electron enters a uniform magnetic field of 0.2T perpendicular to its path with velocity 30 cm/s. Calculate the Lorentz force on it (e=1.6×10⁻¹⁹ C).</div>
+                        <div class="q-meta"><span class="year-tag">2023</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Distinguish between diamagnetic, paramagnetic, and ferromagnetic materials. What is Curie point?</div>
+                        <div class="q-meta"><span class="year-tag">2022</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                </div>
+                <div class="formulas-col">
+                    <div class="col-title">📐 Key Formulas</div>
+                    <div class="formula-item"><span class="f-name">Biot-Savart Law (vector):</span><span class="f-expr">dB = (μ₀/4π)·(I dl×r̂)/r²</span></div>
+                    <div class="formula-item"><span class="f-name">B at centre of circular coil:</span><span class="f-expr">B = μ₀NI/2R</span></div>
+                    <div class="formula-item"><span class="f-name">B inside long solenoid:</span><span class="f-expr">B = μ₀nI</span></div>
+                    <div class="formula-item"><span class="f-name">Ampere's Law:</span><span class="f-expr">∮B·dl = μ₀I<sub>enc</sub></span></div>
+                    <div class="formula-item"><span class="f-name">Faraday's Law (induced emf):</span><span class="f-expr">ε = −N·dΦ/dt</span></div>
+                    <div class="formula-item"><span class="f-name">Lorentz Force:</span><span class="f-expr">F = q(v × B)</span></div>
+                    <div class="formula-item"><span class="f-name">Force on current wire:</span><span class="f-expr">F = I(L × B)</span></div>
+                    <div class="formula-item"><span class="f-name">Galvanometer → Voltmeter:</span><span class="f-expr">R<sub>s</sub> = (V/I<sub>g</sub>) − G</span></div>
+                    <div class="formula-item"><span class="f-name">Galvanometer → Ammeter:</span><span class="f-expr">S = (I<sub>g</sub>·G)/(I − I<sub>g</sub>)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 6 -->
+        <div class="unit-card">
+            <div class="unit-header"><span class="unit-num">6</span> Semiconductor Physics</div>
+            <div class="unit-body">
+                <div class="questions-col">
+                    <div class="col-title">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">Compare conductor, semiconductor, and insulator based on energy band diagrams. Distinguish between intrinsic and extrinsic semiconductors.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Explain the formation of a p-n junction. What is the depletion region? Distinguish between forward and reverse biasing with circuit diagrams.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Draw the V-I characteristics of a p-n junction diode for both forward and reverse bias. Mark the knee voltage.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2024</span><span class="stars">★★★★☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">With a labelled circuit diagram and input-output waveforms, explain the working of a p-n junction diode as a full-wave rectifier (using two diodes / centre-tapped).</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Explain the working of an n-p-n transistor in CE configuration. Define α and β; derive the relation between them.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What is an LED? State advantages of LED lamps over incandescent lamps. Explain the working principle of a solar cell.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What is Zener breakdown? Write one application of a Zener diode.</div>
+                        <div class="q-meta"><span class="year-tag">2024</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                </div>
+                <div class="formulas-col">
+                    <div class="col-title">📐 Key Formulas</div>
+                    <div class="formula-item"><span class="f-name">Transistor Currents:</span><span class="f-expr">I<sub>E</sub> = I<sub>C</sub> + I<sub>B</sub></span></div>
+                    <div class="formula-item"><span class="f-name">Current Gain (CB):</span><span class="f-expr">α = I<sub>C</sub>/I<sub>E</sub></span></div>
+                    <div class="formula-item"><span class="f-name">Current Gain (CE):</span><span class="f-expr">β = I<sub>C</sub>/I<sub>B</sub></span></div>
+                    <div class="formula-item"><span class="f-name">α ↔ β Relation:</span><span class="f-expr">β = α/(1−α), &nbsp;α = β/(β+1)</span></div>
+                    <div class="formula-item"><span class="f-name">Knee Voltage:</span><span class="f-expr">Si ≈ 0.7V, &nbsp;Ge ≈ 0.3V</span></div>
+                    <div class="formula-item"><span class="f-name">Diode as Rectifier:</span><span class="f-expr">(Qualitative – draw circuit &amp; waveforms)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UNIT 7 -->
+        <div class="unit-card">
+            <div class="unit-header"><span class="unit-num">7</span> Modern Physics (X-rays, LASER, Optical Fibre, Nanoscience)</div>
+            <div class="unit-body">
+                <div class="questions-col">
+                    <div class="col-title">📝 Important Questions</div>
+                    <div class="q-item">
+                        <div class="q-text">What are X-rays? How are they produced in a Coolidge tube? Distinguish between continuous and characteristic X-rays.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Draw the intensity vs wavelength curve for X-rays, marking the cut-off wavelength (λ<sub>min</sub>), continuous spectrum, and characteristic peaks.</div>
+                        <div class="q-meta"><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★★☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Calculate the tube voltage required to produce X-rays of minimum wavelength 1 Å. (Given h=6.626×10⁻³⁴ J·s)</div>
+                        <div class="q-meta"><span class="year-tag">2023</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Explain the principle of LASER. What is population inversion? Write three unique properties of LASER light.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Draw the energy level diagram of a He-Ne laser and explain its working. What are the applications of LASER?</div>
+                        <div class="q-meta"><span class="year-tag">2023</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">Explain the mechanism of light propagation through an optical fibre. State advantages of optical fibre over conducting wires.</div>
+                        <div class="q-meta"><span class="year-tag">2021</span><span class="year-tag">2023</span><span class="year-tag">2024</span><span class="year-tag">2025</span><span class="stars">★★★★★</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">State Bohr's postulates. A hydrogen atom makes a transition from the 1st excited state to ground state – find the photon energy emitted.</div>
+                        <div class="q-meta"><span class="year-tag">2022</span><span class="year-tag">2025</span><span class="stars">★★★☆☆</span></div>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-text">What is nanotechnology? Mention any three uses of nanotechnology. What does CNT stand for?</div>
+                        <div class="q-meta"><span class="year-tag">2022</span><span class="year-tag">2023</span><span class="stars">★★☆☆☆</span></div>
+                    </div>
+                </div>
+                <div class="formulas-col">
+                    <div class="col-title">📐 Key Formulas</div>
+                    <div class="formula-item"><span class="f-name">Photon Energy:</span><span class="f-expr">E = hν = hc/λ</span></div>
+                    <div class="formula-item"><span class="f-name">X-ray λ<sub>min</sub> (Duane-Hunt):</span><span class="f-expr">λ<sub>min</sub> = hc/eV = 12400/V(volts) Å</span></div>
+                    <div class="formula-item"><span class="f-name">Bohr Energy Levels:</span><span class="f-expr">E<sub>n</sub> = −13.6/n² eV</span></div>
+                    <div class="formula-item"><span class="f-name">Bohr Radius:</span><span class="f-expr">r<sub>n</sub> = n² × 0.529 Å</span></div>
+                    <div class="formula-item"><span class="f-name">Transition Energy:</span><span class="f-expr">ΔE = 13.6(1/n₁² − 1/n₂²) eV</span></div>
+                    <div class="formula-item"><span class="f-name">LASER / Optical Fibre:</span><span class="f-expr">(Qualitative only – diagrams &amp; principles)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3>🔑 Exam Tips for 2024–25 Pattern (Expected for 2026)</h3>
+            <ul>
+                <li><strong>MCQs now carry 2 marks each:</strong> 1 mark for the correct option + 1 mark for a <em>written explanation</em>. Never skip the explanation – even a one-line justification can fetch that extra mark.</li>
+                <li><strong>Time management:</strong> You have 2.5 hours. Spend ~25 minutes on the 10 MCQs, ~25 minutes per long question (you choose 5 out of 9–10). Reserve 10 minutes for final review.</li>
+                <li><strong>Diagrams are compulsory:</strong> Questions on rectifiers, transistor circuits, ray diagrams, X-ray spectra, and energy level diagrams explicitly require neat, labelled diagrams. Practice drawing them from memory.</li>
+                <li><strong>Prepare 5 easy units deeply:</strong> Units 1, 2, 3, 6, and 7 are highly predictable and mostly theoretical. Mastering just these 5 can secure 35+ marks (40 from long questions + aim for 15+ from MCQs).</li>
+                <li><strong>Don't ignore Unit 4 &amp; 5 for MCQs:</strong> These units contribute heavily to the 20-mark objective section. Revise basic formulas and definitions (resistivity, Kirchhoff, Biot-Savart, Faraday).</li>
+                <li><strong>Numerical practice:</strong> SHM (v<sub>max</sub>, a<sub>max</sub>), wave equation (find f, λ, v), lens formula, equivalent resistance/capacitance, X-ray λ<sub>min</sub>, Bohr transition energy – these are frequent and scoring.</li>
+                <li><strong>Star ratings guide:</strong> ★★★★★ questions are almost guaranteed; ★★★★☆ are very likely; ★★★☆☆ and below are good to know but lower priority if time is short.</li>
+                <li><strong>Write structured answers:</strong> For long questions, break your answer into clear sub-parts (a, b, c, d) as shown in the question paper. Use bullet points for comparisons and always end numericals with proper units.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
